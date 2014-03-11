@@ -6,3 +6,8 @@ Add the line
 export PYTHONSTARTUP=~/path/to/harrypotter.py
 ```
 to your `~/.bashrc` or `~/.bash_profile` to really screw things up.
+
+
+Add nagini script
+Create symlink in usr/local/bin to nagini script
+chmod nagini
