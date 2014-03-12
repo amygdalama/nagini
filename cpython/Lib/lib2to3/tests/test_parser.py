@@ -11,14 +11,10 @@ from __future__ import with_statement
 # Testing imports
 from . import support
 from .support import driver, test_dir
-from test.support import verbose
 
 # Python imports
 import os
 import sys
-import unittest
-import warnings
-import subprocess
 
 # Local imports
 from lib2to3.pgen2 import tokenize
@@ -162,25 +158,21 @@ class TestParserIdempotency(support.TestCase):
 
     """A cut-down version of pytree_idempotency.py."""
 
-    # Issue 13125
-    @unittest.expectedFailure
     def test_all_project_files(self):
+        if sys.platform.startswith("win"):
+            # XXX something with newlines goes wrong on Windows.
+            return
         for filepath in support.all_project_files():
             with open(filepath, "rb") as fp:
                 encoding = tokenize.detect_encoding(fp.readline)[0]
             self.assertIsNotNone(encoding,
                                  "can't detect encoding for %s" % filepath)
-            with open(filepath, "r", encoding=encoding) as fp:
+            with open(filepath, "r") as fp:
                 source = fp.read()
-            try:
-                tree = driver.parse_string(source)
-            except ParseError as err:
-                if verbose > 0:
-                    warnings.warn('ParseError on file %s (%s)' % (filepath, err))
-                continue
-            new = str(tree)
-            x = diff(filepath, new)
-            if x:
+                source = source.decode(encoding)
+            tree = driver.parse_string(source)
+            new = unicode(tree)
+            if diff(filepath, new, encoding):
                 self.fail("Idempotency failed: %s" % filepath)
 
     def test_extended_unpacking(self):
@@ -188,7 +180,6 @@ class TestParserIdempotency(support.TestCase):
         driver.parse_string("[*a, b] = x\n")
         driver.parse_string("(z, *y, w) = m\n")
         driver.parse_string("for *z, m in d: pass\n")
-
 
 class TestLiterals(GrammarTest):
 
@@ -223,14 +214,14 @@ class TestLiterals(GrammarTest):
         self.validate(s)
 
 
-def diff(fn, result):
+def diff(fn, result, encoding):
+    f = open("@", "w")
     try:
-        with open('@', 'w') as f:
-            f.write(str(result))
-        fn = fn.replace('"', '\\"')
-        return subprocess.call(['diff', '-u', fn, '@'], stdout=(subprocess.DEVNULL if verbose < 1 else None))
+        f.write(result.encode(encoding))
     finally:
-        try:
-            os.remove("@")
-        except OSError:
-            pass
+        f.close()
+    try:
+        fn = fn.replace('"', '\\"')
+        return os.system('diff -u "%s" @' % fn)
+    finally:
+        os.remove("@")

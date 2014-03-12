@@ -1,10 +1,9 @@
-import io
-import locale
 import mimetypes
-import sys
+import StringIO
 import unittest
+import sys
 
-from test import support
+from test import test_support
 
 # Tell it we don't know about external files:
 mimetypes.knownfiles = []
@@ -34,7 +33,7 @@ class MimeTypesTestCase(unittest.TestCase):
 
     def test_file_parsing(self):
         eq = self.assertEqual
-        sio = io.StringIO("x-application/x-unittest pyunit\n")
+        sio = StringIO.StringIO("x-application/x-unittest pyunit\n")
         self.db.readfp(sio)
         eq(self.db.guess_type("foo.pyunit"),
            ("x-application/x-unittest", None))
@@ -65,18 +64,6 @@ class MimeTypesTestCase(unittest.TestCase):
         all = self.db.guess_all_extensions('image/jpg', strict=True)
         eq(all, [])
 
-    def test_encoding(self):
-        getpreferredencoding = locale.getpreferredencoding
-        self.addCleanup(setattr, locale, 'getpreferredencoding',
-                                 getpreferredencoding)
-        locale.getpreferredencoding = lambda: 'ascii'
-
-        filename = support.findfile("mime.types")
-        mimes = mimetypes.MimeTypes([filename])
-        exts = mimes.guess_all_extensions('application/vnd.geocube+xml',
-                                          strict=True)
-        self.assertEqual(exts, ['.g3', '.g\xb3'])
-
 
 @unittest.skipUnless(sys.platform.startswith("win"), "Windows only")
 class Win32MimeTypesTestCase(unittest.TestCase):
@@ -102,7 +89,7 @@ class Win32MimeTypesTestCase(unittest.TestCase):
         eq(self.db.guess_type("image.png"), ("image/png", None))
 
 def test_main():
-    support.run_unittest(MimeTypesTestCase,
+    test_support.run_unittest(MimeTypesTestCase,
         Win32MimeTypesTestCase
         )
 

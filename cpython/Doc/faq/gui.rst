@@ -8,18 +8,10 @@ Graphic User Interface FAQ
 
    .. contents::
 
-.. XXX need review for Python 3.
-
-
-General GUI Questions
-=====================
-
 What platform-independent GUI toolkits exist for Python?
 ========================================================
 
-Depending on what platform(s) you are aiming at, there are several.  Some
-of them haven't been ported to Python 3 yet.  At least `Tkinter`_ and `Qt`_
-are known to be Python 3-compatible.
+Depending on what platform(s) you are aiming at, there are several.
 
 .. XXX check links
 
@@ -27,12 +19,10 @@ Tkinter
 -------
 
 Standard builds of Python include an object-oriented interface to the Tcl/Tk
-widget set, called :ref:`tkinter <Tkinter>`.  This is probably the easiest to
-install (since it comes included with most
-`binary distributions <http://www.python.org/download/>`_ of Python) and use.
-For more info about Tk, including pointers to the source, see the
-`Tcl/Tk home page <http://www.tcl.tk>`_.  Tcl/Tk is fully portable to the
-MacOS, Windows, and Unix platforms.
+widget set, called Tkinter.  This is probably the easiest to install and use.
+For more info about Tk, including pointers to the source, see the Tcl/Tk home
+page at http://www.tcl.tk.  Tcl/Tk is fully portable to the MacOS, Windows, and
+Unix platforms.
 
 wxWidgets
 ---------
@@ -59,7 +49,7 @@ Qt
 
 There are bindings available for the Qt toolkit (using either `PyQt
 <http://www.riverbankcomputing.co.uk/software/pyqt/>`_ or `PySide
-<http://www.pyside.org/>`_) and for KDE (`PyKDE <http://www.riverbankcomputing.co.uk/software/pykde/intro>`__).
+<http://www.pyside.org/>`_) and for KDE (`PyKDE <http://www.riverbankcomputing.co.uk/software/pykde/intro>`_).
 PyQt is currently more mature than PySide, but you must buy a PyQt license from
 `Riverbank Computing <http://www.riverbankcomputing.co.uk/software/pyqt/license>`_
 if you want to write proprietary applications.  PySide is free for all applications.
@@ -70,12 +60,8 @@ are available from `Nokia <http://qt.nokia.com/>`_.
 Gtk+
 ----
 
-The `GObject introspection bindings <https://live.gnome.org/PyGObject>`_
-for Python allow you to write GTK+ 3 applications.  There is also a
-`Python GTK+ 3 Tutorial <http://python-gtk-3-tutorial.readthedocs.org/en/latest/>`_.
-
-The older PyGtk bindings for the `Gtk+ 2 toolkit <http://www.gtk.org>`_ have
-been implemented by James Henstridge; see <http://www.pygtk.org>.
+PyGtk bindings for the `Gtk+ toolkit <http://www.gtk.org>`_ have been
+implemented by James Henstridge; see <http://www.pygtk.org>.
 
 FLTK
 ----
@@ -179,3 +165,6 @@ The most common cause is that the widget to which the binding applies doesn't
 have "keyboard focus".  Check out the Tk documentation for the focus command.
 Usually a widget is given the keyboard focus by clicking in it (but not for
 labels; see the takefocus option).
+
+
+

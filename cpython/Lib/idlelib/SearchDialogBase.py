@@ -1,5 +1,5 @@
 '''Define SearchDialogBase used by Search, Replace, and Grep dialogs.'''
-from tkinter import *
+from Tkinter import *
 
 class SearchDialogBase:
     '''Create most of a modal search dialog (make_frame, create_widgets).

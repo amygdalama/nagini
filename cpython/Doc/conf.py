@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Python documentation build configuration file
 #
@@ -12,8 +13,8 @@ sys.path.append(os.path.abspath('tools/sphinxext'))
 # General configuration
 # ---------------------
 
-extensions = ['sphinx.ext.coverage', 'sphinx.ext.doctest',
-              'pyspecific', 'c_annotations']
+extensions = ['sphinx.ext.refcounting', 'sphinx.ext.coverage',
+              'sphinx.ext.doctest', 'pyspecific']
 templates_path = ['tools/sphinxext']
 
 # General substitutions.
@@ -58,20 +59,12 @@ add_function_parentheses = True
 # unit titles (such as .. function::).
 add_module_names = True
 
-# By default, highlight as Python 3.
-highlight_language = 'python3'
-
-needs_sphinx = '1.1'
-
 
 # Options for HTML output
 # -----------------------
 
-html_theme = 'pydoctheme'
-html_theme_path = ['tools/sphinxext']
+html_theme = 'default'
 html_theme_options = {'collapsiblesidebar': True}
-
-html_short_title = '%s Documentation' % release
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -93,7 +86,7 @@ html_additional_pages = {
 }
 
 # Output an OpenSearch description file.
-html_use_opensearch = 'http://docs.python.org/' + version
+html_use_opensearch = 'http://docs.python.org/'
 
 # Additional static files.
 html_static_path = ['tools/sphinxext/static']

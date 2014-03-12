@@ -1,5 +1,5 @@
 /* Unicode name database interface */
-#ifndef Py_LIMITED_API
+
 #ifndef Py_UCNHASH_H
 #define Py_UCNHASH_H
 #ifdef __cplusplus
@@ -19,13 +19,11 @@ typedef struct {
        success, zero if not.  Does not set Python exceptions. 
        If self is NULL, data come from the default version of the database.
        If it is not NULL, it should be a unicodedata.ucd_X_Y_Z object */
-    int (*getname)(PyObject *self, Py_UCS4 code, char* buffer, int buflen,
-                   int with_alias_and_seq);
+    int (*getname)(PyObject *self, Py_UCS4 code, char* buffer, int buflen);
 
     /* Get character code for a given name.  Same error handling
        as for getname. */
-    int (*getcode)(PyObject *self, const char* name, int namelen, Py_UCS4* code,
-                   int with_named_seq);
+    int (*getcode)(PyObject *self, const char* name, int namelen, Py_UCS4* code);
 
 } _PyUnicode_Name_CAPI;
 
@@ -33,4 +31,3 @@ typedef struct {
 }
 #endif
 #endif /* !Py_UCNHASH_H */
-#endif /* !Py_LIMITED_API */

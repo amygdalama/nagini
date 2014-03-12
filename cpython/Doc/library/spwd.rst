@@ -1,3 +1,4 @@
+
 :mod:`spwd` --- The shadow password database
 ============================================
 
@@ -5,6 +6,8 @@
    :platform: Unix
    :synopsis: The shadow password database (getspnam() and friends).
 
+
+.. versionadded:: 2.5
 
 This module provides access to the Unix shadow password database. It is
 available on various Unix versions.
@@ -19,9 +22,9 @@ below, see ``<shadow.h>``):
 +-------+---------------+---------------------------------+
 | Index | Attribute     | Meaning                         |
 +=======+===============+=================================+
-| 0     | ``sp_namp``   | Login name                      |
+| 0     | ``sp_nam``    | Login name                      |
 +-------+---------------+---------------------------------+
-| 1     | ``sp_pwdp``   | Encrypted password              |
+| 1     | ``sp_pwd``    | Encrypted password              |
 +-------+---------------+---------------------------------+
 | 2     | ``sp_lstchg`` | Date of last change             |
 +-------+---------------+---------------------------------+
@@ -36,18 +39,18 @@ below, see ``<shadow.h>``):
 +-------+---------------+---------------------------------+
 | 6     | ``sp_inact``  | Number of days after password   |
 |       |               | expires until account is        |
-|       |               | disabled                        |
+|       |               | blocked                         |
 +-------+---------------+---------------------------------+
 | 7     | ``sp_expire`` | Number of days since 1970-01-01 |
-|       |               | when account expires            |
+|       |               | until account is disabled       |
 +-------+---------------+---------------------------------+
 | 8     | ``sp_flag``   | Reserved                        |
 +-------+---------------+---------------------------------+
 
-The sp_namp and sp_pwdp items are strings, all others are integers.
+The sp_nam and sp_pwd items are strings, all others are integers.
 :exc:`KeyError` is raised if the entry asked for cannot be found.
 
-The following functions are defined:
+It defines the following items:
 
 
 .. function:: getspnam(name)

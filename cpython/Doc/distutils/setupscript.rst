@@ -336,10 +336,6 @@ Other options
 
 There are still some other options which can be used to handle special cases.
 
-The :option:`optional` option is a boolean; if it is true,
-a build failure in the extension will not abort the build process, but
-instead simply not install the failing extension.
-
 The :option:`extra_objects` option is a list of object files to be passed to the
 linker. These files must not have extensions, as the default extension for the
 compiler is used.
@@ -456,10 +452,9 @@ way.  From the PyXML setup script::
           scripts=['scripts/xmlproc_parse', 'scripts/xmlproc_val']
           )
 
-.. versionchanged:: 3.1
-   All the scripts will also be added to the ``MANIFEST`` file if no template is
-   provided.  See :ref:`manifest`.
-
+.. versionchanged:: 2.7
+    All the scripts will also be added to the ``MANIFEST``
+    file if no template is provided. See :ref:`manifest`.
 
 .. _distutils-installing-package-data:
 
@@ -503,10 +498,11 @@ The corresponding call to :func:`setup` might be::
           package_data={'mypkg': ['data/*.dat']},
           )
 
+.. versionadded:: 2.4
 
-.. versionchanged:: 3.1
-   All the files that match ``package_data`` will be added to the ``MANIFEST``
-   file if no template is provided.  See :ref:`manifest`.
+.. versionchanged:: 2.7
+    All the files that match ``package_data`` will be added to the ``MANIFEST``
+    file if no template is provided. See :ref:`manifest`.
 
 
 .. _distutils-additional-files:
@@ -545,9 +541,10 @@ without specifying a target directory, but this is not recommended, and the
 files directly in the target directory, an empty string should be given as the
 directory.
 
-.. versionchanged:: 3.1
-   All the files that match ``data_files`` will be added to the ``MANIFEST``
-   file if no template is provided.  See :ref:`manifest`.
+.. versionchanged:: 2.7
+    All the files that match ``data_files`` will be added to the ``MANIFEST``
+    file if no template is provided. See :ref:`manifest`.
+
 
 
 .. _meta-data:
@@ -632,6 +629,8 @@ Notes:
 
 'list of strings'
     See below.
+
+None of the string values may be Unicode.
 
 Encoding the version information is an art in itself. Python packages generally
 adhere to the version format *major.minor[.patch][sub]*. The major number is 0

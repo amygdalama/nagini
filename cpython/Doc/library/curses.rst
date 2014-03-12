@@ -2,17 +2,20 @@
 ===============================================================
 
 .. module:: curses
-   :synopsis: An interface to the curses library, providing portable
-              terminal handling.
+   :synopsis: An interface to the curses library, providing portable terminal
+              handling.
    :platform: Unix
 .. sectionauthor:: Moshe Zadka <moshez@zadka.site.co.il>
 .. sectionauthor:: Eric Raymond <esr@thyrsus.com>
+
+.. versionchanged:: 1.6
+   Added support for the ``ncurses`` library and converted to a package.
 
 The :mod:`curses` module provides an interface to the curses library, the
 de-facto standard for portable advanced terminal handling.
 
 While curses is most widely used in the Unix environment, versions are available
-for Windows, DOS, and possibly other systems as well.  This extension module is
+for DOS, OS/2, and possibly other systems as well.  This extension module is
 designed to match the API of ncurses, an open-source curses library hosted on
 Linux and the BSD variants of Unix.
 
@@ -45,7 +48,7 @@ Linux and the BSD variants of Unix.
       Tutorial material on using curses with Python, by Andrew Kuchling and Eric
       Raymond.
 
-   The :source:`Tools/demo/` directory in the Python source distribution contains
+   The :source:`Demo/curses/` directory in the Python source distribution contains
    some example programs using the curses bindings provided by this module.
 
 
@@ -563,11 +566,11 @@ The module :mod:`curses` defines the following functions:
    capability, or is canceled or absent from the terminal description.
 
 
-.. function:: tparm(str[, ...])
+.. function:: tparm(str[,...])
 
    Instantiate the string *str* with the supplied parameters, where *str* should
    be a parameterized string obtained from the terminfo database.  E.g.
-   ``tparm(tigetstr("cup"), 5, 3)`` could result in ``b'\033[6;4H'``, the exact
+   ``tparm(tigetstr("cup"), 5, 3)`` could result in ``'\033[6;4H'``, the exact
    result depending on terminal type.
 
 
@@ -597,17 +600,6 @@ The module :mod:`curses` defines the following functions:
    .. note::
 
       Only one *ch* can be pushed before :meth:`getch` is called.
-
-
-.. function:: unget_wch(ch)
-
-   Push *ch* so the next :meth:`get_wch` will return it.
-
-   .. note::
-
-      Only one *ch* can be pushed before :meth:`get_wch` is called.
-
-   .. versionadded:: 3.3
 
 
 .. function:: ungetmouse(id, x, y, z, bstate)
@@ -654,7 +646,7 @@ Window Objects
 --------------
 
 Window objects, as returned by :func:`initscr` and :func:`newwin` above, have
-the following methods and attributes:
+the following methods:
 
 
 .. method:: window.addch(ch[, attr])
@@ -842,16 +834,6 @@ the following methods and attributes:
    event.
 
 
-.. attribute:: window.encoding
-
-   Encoding used to encode method arguments (Unicode strings and characters).
-   The encoding attribute is inherited from the parent window when a subwindow
-   is created, for example with :meth:`window.subwin`. By default, the locale
-   encoding is used (see :func:`locale.getpreferredencoding`).
-
-   .. versionadded:: 3.3
-
-
 .. method:: window.erase()
 
    Clear the window.
@@ -875,20 +857,11 @@ the following methods and attributes:
    until a key is pressed.
 
 
-.. method:: window.get_wch([y, x])
-
-   Get a wide character. Return a character for most keys, or an integer for
-   function keys, keypad keys, and other special keys.
-
-   .. versionadded:: 3.3
-
-
 .. method:: window.getkey([y, x])
 
    Get a character, returning a string instead of an integer, as :meth:`getch`
-   does. Function keys, keypad keys and other special keys return a multibyte
-   string containing the key name.  In no-delay mode, an exception is raised if
-   there is no input.
+   does. Function keys, keypad keys and so on return a multibyte string containing
+   the key name.  In no-delay mode, an exception is raised if there is no input.
 
 
 .. method:: window.getmaxyx()
@@ -1637,6 +1610,8 @@ The following table lists the predefined colors:
 .. sectionauthor:: Eric Raymond <esr@thyrsus.com>
 
 
+.. versionadded:: 1.6
+
 The :mod:`curses.textpad` module provides a :class:`Textbox` class that handles
 elementary text editing in a curses window, supporting a set of keybindings
 resembling those of Emacs (thus, also of Netscape Navigator, BBedit 6.x,
@@ -1762,3 +1737,4 @@ You can instantiate a :class:`Textbox` object as follows:
       cursor motion that would land the cursor on a trailing blank goes to the
       end of that line instead, and trailing blanks are stripped when the window
       contents are gathered.
+

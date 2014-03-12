@@ -29,20 +29,12 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    fails, in which case a 2-tuple of ``('', '')`` is returned.
 
 
-.. function:: formataddr(pair, charset='utf-8')
+.. function:: formataddr(pair)
 
    The inverse of :meth:`parseaddr`, this takes a 2-tuple of the form ``(realname,
    email_address)`` and returns the string value suitable for a :mailheader:`To` or
    :mailheader:`Cc` header.  If the first element of *pair* is false, then the
    second element is returned unmodified.
-
-   Optional *charset* is the character set that will be used in the :rfc:`2047`
-   encoding of the ``realname`` if the ``realname`` contains non-ASCII
-   characters.  Can be an instance of :class:`str` or a
-   :class:`~email.charset.Charset`.  Defaults to ``utf-8``.
-
-   .. versionchanged:: 3.3
-      Added the *charset* option.
 
 
 .. function:: getaddresses(fieldvalues)
@@ -82,20 +74,6 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    indexes 6, 7, and 8 of the result tuple are not usable.
 
 
-.. function:: parsedate_to_datetime(date)
-
-   The inverse of :func:`format_datetime`.  Performs the same function as
-   :func:`parsedate`, but on success returns a :mod:`~datetime.datetime`.  If
-   the input date has a timezone of ``-0000``, the ``datetime`` will be a naive
-   ``datetime``, and if the date is conforming to the RFCs it will represent a
-   time in UTC but with no indication of the actual source timezone of the
-   message the date comes from.  If the input date has any other valid timezone
-   offset, the ``datetime`` will be an aware ``datetime`` with the
-   corresponding a :class:`~datetime.timezone` :class:`~datetime.tzinfo`.
-
-   .. versionadded:: 3.3
-
-
 .. function:: mktime_tz(tuple)
 
    Turn a 10-tuple as returned by :func:`parsedate_tz` into a UTC timestamp.  It
@@ -106,7 +84,7 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    about for common use.
 
 
-.. function:: formatdate(timeval=None, localtime=False, usegmt=False)
+.. function:: formatdate([timeval[, localtime][, usegmt]])
 
    Returns a date string as per :rfc:`2822`, e.g.::
 
@@ -126,49 +104,14 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    needed for some protocols (such as HTTP). This only applies when *localtime* is
    ``False``.  The default is ``False``.
 
-
-.. function:: format_datetime(dt, usegmt=False)
-
-   Like ``formatdate``, but the input is a :mod:`datetime` instance.  If it is
-   a naive datetime, it is assumed to be "UTC with no information about the
-   source timezone", and the conventional ``-0000`` is used for the timezone.
-   If it is an aware ``datetime``, then the numeric timezone offset is used.
-   If it is an aware timezone with offset zero, then *usegmt* may be set to
-   ``True``, in which case the string ``GMT`` is used instead of the numeric
-   timezone offset.  This provides a way to generate standards conformant HTTP
-   date headers.
-
-   .. versionadded:: 3.3
+   .. versionadded:: 2.4
 
 
-.. function:: localtime(dt=None)
-
-    Return local time as an aware datetime object.  If called without
-    arguments, return current time.  Otherwise *dt* argument should be a
-    :class:`~datetime.datetime` instance, and it is converted to the local time
-    zone according to the system time zone database.  If *dt* is naive (that
-    is, ``dt.tzinfo`` is ``None``), it is assumed to be in local time.  In this
-    case, a positive or zero value for *isdst* causes ``localtime`` to presume
-    initially that summer time (for example, Daylight Saving Time) is or is not
-    (respectively) in effect for the specified time.  A negative value for
-    *isdst* causes the ``localtime`` to attempt to divine whether summer time
-    is in effect for the specified time.
-
-    .. versionadded:: 3.3
-
-
-.. function:: make_msgid(idstring=None, domain=None)
+.. function:: make_msgid([idstring])
 
    Returns a string suitable for an :rfc:`2822`\ -compliant
-   :mailheader:`Message-ID` header.  Optional *idstring* if given, is a string
-   used to strengthen the uniqueness of the message id.  Optional *domain* if
-   given provides the portion of the msgid after the '@'.  The default is the
-   local hostname.  It is not normally necessary to override this default, but
-   may be useful certain cases, such as a constructing distributed system that
-   uses a consistent domain name across multiple hosts.
-
-   .. versionchanged:: 3.2
-      Added the *domain* keyword.
+   :mailheader:`Message-ID` header.  Optional *idstring* if given, is a string used
+   to strengthen the uniqueness of the message id.
 
 
 .. function:: decode_rfc2231(s)
@@ -176,7 +119,7 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    Decode the string *s* according to :rfc:`2231`.
 
 
-.. function:: encode_rfc2231(s, charset=None, language=None)
+.. function:: encode_rfc2231(s[, charset[, language]])
 
    Encode the string *s* according to :rfc:`2231`.  Optional *charset* and
    *language*, if given is the character set name and language name to use.  If
@@ -184,16 +127,16 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    is not, the string is encoded using the empty string for *language*.
 
 
-.. function:: collapse_rfc2231_value(value, errors='replace', fallback_charset='us-ascii')
+.. function:: collapse_rfc2231_value(value[, errors[, fallback_charset]])
 
    When a header parameter is encoded in :rfc:`2231` format,
    :meth:`Message.get_param <email.message.Message.get_param>` may return a
    3-tuple containing the character set,
    language, and value.  :func:`collapse_rfc2231_value` turns this into a unicode
-   string.  Optional *errors* is passed to the *errors* argument of :class:`str`'s
-   :func:`~str.encode` method; it defaults to ``'replace'``.  Optional
+   string.  Optional *errors* is passed to the *errors* argument of the built-in
+   :func:`unicode` function; it defaults to ``replace``.  Optional
    *fallback_charset* specifies the character set to use if the one in the
-   :rfc:`2231` header is not known by Python; it defaults to ``'us-ascii'``.
+   :rfc:`2231` header is not known by Python; it defaults to ``us-ascii``.
 
    For convenience, if the *value* passed to :func:`collapse_rfc2231_value` is not
    a tuple, it should be a string and it is returned unquoted.
@@ -204,6 +147,18 @@ There are several useful utilities provided in the :mod:`email.utils` module:
    Decode parameters list according to :rfc:`2231`.  *params* is a sequence of
    2-tuples containing elements of the form ``(content-type, string-value)``.
 
+.. versionchanged:: 2.4
+   The :func:`dump_address_pair` function has been removed; use :func:`formataddr`
+   instead.
+
+.. versionchanged:: 2.4
+   The :func:`decode` function has been removed; use the
+   :meth:`Header.decode_header <email.header.Header.decode_header>` method
+   instead.
+
+.. versionchanged:: 2.4
+   The :func:`encode` function has been removed; use the :meth:`Header.encode
+   <email.header.Header.encode>` method instead.
 
 .. rubric:: Footnotes
 

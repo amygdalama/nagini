@@ -7,12 +7,16 @@
 #
 
 import unittest
-from test import support
+from test import test_support
 
 #
 # No test cases for outstanding bugs at the moment.
 #
 
 
+def test_main():
+    #test_support.run_unittest()
+    pass
+
 if __name__ == "__main__":
-    unittest.main()
+    test_main()

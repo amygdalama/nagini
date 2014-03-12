@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This file should be kept compatible with both Python 2.6 and Python >= 3.0.
 
 from __future__ import division
@@ -10,6 +11,7 @@ ccbench, a Python concurrency benchmark.
 import time
 import os
 import sys
+import functools
 import itertools
 import threading
 import subprocess
@@ -276,21 +278,18 @@ def _recv(sock, n):
 
 def latency_client(addr, nb_pings, interval):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        _time = time.time
-        _sleep = time.sleep
-        def _ping():
-            _sendto(sock, "%r\n" % _time(), addr)
-        # The first ping signals the parent process that we are ready.
+    _time = time.time
+    _sleep = time.sleep
+    def _ping():
+        _sendto(sock, "%r\n" % _time(), addr)
+    # The first ping signals the parent process that we are ready.
+    _ping()
+    # We give the parent a bit of time to notice.
+    _sleep(1.0)
+    for i in range(nb_pings):
+        _sleep(interval)
         _ping()
-        # We give the parent a bit of time to notice.
-        _sleep(1.0)
-        for i in range(nb_pings):
-            _sleep(interval)
-            _ping()
-        _sendto(sock, LAT_END + "\n", addr)
-    finally:
-        sock.close()
+    _sendto(sock, LAT_END + "\n", addr)
 
 def run_latency_client(**kwargs):
     cmd_line = [sys.executable, '-E', os.path.abspath(__file__)]
@@ -365,7 +364,6 @@ def run_latency_test(func, args, nthreads):
     for t in threads:
         t.join()
     process.wait()
-    sock.close()
 
     for recv_time, chunk in chunks:
         # NOTE: it is assumed that a line sent by a client wasn't received
@@ -434,70 +432,70 @@ def run_bandwidth_client(**kwargs):
 def run_bandwidth_test(func, args, nthreads):
     # Create a listening socket to receive the packets. We use UDP which should
     # be painlessly cross-platform.
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-        sock.bind(("127.0.0.1", 0))
-        addr = sock.getsockname()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind(("127.0.0.1", 0))
+    addr = sock.getsockname()
 
-        duration = BANDWIDTH_DURATION
-        packet_size = BANDWIDTH_PACKET_SIZE
+    duration = BANDWIDTH_DURATION
+    packet_size = BANDWIDTH_PACKET_SIZE
+
+    results = []
+    threads = []
+    end_event = []
+    start_cond = threading.Condition()
+    started = False
+    if nthreads > 0:
+        # Warm up
+        func(*args)
 
         results = []
-        threads = []
-        end_event = []
-        start_cond = threading.Condition()
-        started = False
-        if nthreads > 0:
-            # Warm up
-            func(*args)
+        loop = TimedLoop(func, args)
+        ready = []
+        ready_cond = threading.Condition()
 
-            results = []
-            loop = TimedLoop(func, args)
-            ready = []
-            ready_cond = threading.Condition()
-
-            def run():
-                with ready_cond:
-                    ready.append(None)
-                    ready_cond.notify()
-                with start_cond:
-                    while not started:
-                        start_cond.wait()
-                loop(start_time, duration * 1.5, end_event, do_yield=False)
-
-            for i in range(nthreads):
-                threads.append(threading.Thread(target=run))
-            for t in threads:
-                t.setDaemon(True)
-                t.start()
-            # Wait for threads to be ready
+        def run():
             with ready_cond:
-                while len(ready) < nthreads:
-                    ready_cond.wait()
+                ready.append(None)
+                ready_cond.notify()
+            with start_cond:
+                while not started:
+                    start_cond.wait()
+            loop(start_time, duration * 1.5, end_event, do_yield=False)
 
-        # Run the client and wait for the first packet to arrive before
-        # unblocking the background threads.
-        process = run_bandwidth_client(addr=addr,
-                                       packet_size=packet_size,
-                                       duration=duration)
-        _time = time.time
-        # This will also wait for the parent to be ready
+        for i in range(nthreads):
+            threads.append(threading.Thread(target=run))
+        for t in threads:
+            t.setDaemon(True)
+            t.start()
+        # Wait for threads to be ready
+        with ready_cond:
+            while len(ready) < nthreads:
+                ready_cond.wait()
+
+    # Run the client and wait for the first packet to arrive before
+    # unblocking the background threads.
+    process = run_bandwidth_client(addr=addr,
+                                   packet_size=packet_size,
+                                   duration=duration)
+    _time = time.time
+    # This will also wait for the parent to be ready
+    s = _recv(sock, packet_size)
+    remote_addr = eval(s.partition('#')[0])
+
+    with start_cond:
+        start_time = _time()
+        started = True
+        start_cond.notify(nthreads)
+
+    n = 0
+    first_time = None
+    while not end_event and BW_END not in s:
+        _sendto(sock, s, remote_addr)
         s = _recv(sock, packet_size)
-        remote_addr = eval(s.partition('#')[0])
-
-        with start_cond:
-            start_time = _time()
-            started = True
-            start_cond.notify(nthreads)
-
-        n = 0
-        first_time = None
-        while not end_event and BW_END not in s:
-            _sendto(sock, s, remote_addr)
-            s = _recv(sock, packet_size)
-            if first_time is None:
-                first_time = _time()
-            n += 1
-        end_time = _time()
+        if first_time is None:
+            first_time = _time()
+        n += 1
+    end_time = _time()
 
     end_event.append(None)
     for t in threads:

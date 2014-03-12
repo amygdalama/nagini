@@ -7,9 +7,11 @@
 .. moduleauthor:: Greg Ward <gward@python.net>
 .. sectionauthor:: Greg Ward <gward@python.net>
 
-.. deprecated:: 3.2
-  The :mod:`optparse` module is deprecated and will not be developed further;
-  development will continue with the :mod:`argparse` module.
+.. versionadded:: 2.3
+
+.. deprecated:: 2.7
+   The :mod:`optparse` module is deprecated and will not be developed further;
+   development will continue with the :mod:`argparse` module.
 
 **Source code:** :source:`Lib/optparse.py`
 
@@ -353,7 +355,7 @@ right up against the option: since ``-n42`` (one argument) is equivalent to
 ``-n 42`` (two arguments), the code ::
 
    (options, args) = parser.parse_args(["-n42"])
-   print(options.num)
+   print options.num
 
 will print ``42``.
 
@@ -369,7 +371,7 @@ default from the option strings: if the first long option string is
 long option strings, :mod:`optparse` looks at the first short option string: the
 default destination for ``-f`` is ``f``.
 
-:mod:`optparse` also includes the built-in ``complex`` type.  Adding
+:mod:`optparse` also includes built-in ``long`` and ``complex`` types.  Adding
 types is covered in section :ref:`optparse-extending-optparse`.
 
 
@@ -548,10 +550,11 @@ help message:
   semantic description "write output to FILE". This is a simple but effective
   way to make your help text a lot clearer and more useful for end users.
 
-* options that have a default value can include ``%default`` in the help
-  string---\ :mod:`optparse` will replace it with :func:`str` of the option's
-  default value.  If an option has no default value (or the default value is
-  ``None``), ``%default`` expands to ``none``.
+.. versionadded:: 2.4
+   Options that have a default value can include ``%default`` in the help
+   string---\ :mod:`optparse` will replace it with :func:`str` of the option's
+   default value.  If an option has no default value (or the default value is
+   ``None``), ``%default`` expands to ``none``.
 
 Grouping Options
 ++++++++++++++++
@@ -773,7 +776,7 @@ Here's what :mod:`optparse`\ -based scripts usually look like::
        if len(args) != 1:
            parser.error("incorrect number of arguments")
        if options.verbose:
-           print("reading %s..." % options.filename)
+           print "reading %s..." % options.filename
        [...]
 
    if __name__ == "__main__":
@@ -1276,14 +1279,14 @@ must specify for any option using that action.
 Standard option types
 ^^^^^^^^^^^^^^^^^^^^^
 
-:mod:`optparse` has five built-in option types: ``"string"``, ``"int"``,
-``"choice"``, ``"float"`` and ``"complex"``.  If you need to add new
+:mod:`optparse` has six built-in option types: ``"string"``, ``"int"``,
+``"long"``, ``"choice"``, ``"float"`` and ``"complex"``.  If you need to add new
 option types, see section :ref:`optparse-extending-optparse`.
 
 Arguments to string options are not checked or converted in any way: the text on
 the command line is stored in the destination (or passed to the callback) as-is.
 
-Integer arguments (type ``"int"``) are parsed as follows:
+Integer arguments (type ``"int"`` or ``"long"``) are parsed as follows:
 
 * if the number starts with ``0x``, it is parsed as a hexadecimal number
 
@@ -1294,9 +1297,9 @@ Integer arguments (type ``"int"``) are parsed as follows:
 * otherwise, the number is parsed as a decimal number
 
 
-The conversion is done by calling :func:`int` with the appropriate base (2, 8,
-10, or 16).  If this fails, so will :mod:`optparse`, although with a more useful
-error message.
+The conversion is done by calling either :func:`int` or :func:`long` with the
+appropriate base (2, 8, 10, or 16).  If this fails, so will :mod:`optparse`,
+although with a more useful error message.
 
 ``"float"`` and ``"complex"`` option arguments are converted directly with
 :func:`float` and :func:`complex`, with similar error-handling.

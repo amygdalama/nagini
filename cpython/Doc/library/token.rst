@@ -68,6 +68,7 @@ The token constants are:
           EQUAL
           DOT
           PERCENT
+          BACKQUOTE
           LBRACE
           RBRACE
           EQEQUAL
@@ -93,8 +94,6 @@ The token constants are:
           DOUBLESLASH
           DOUBLESLASHEQUAL
           AT
-          RARROW
-          ELLIPSIS
           OP
           ERRORTOKEN
           N_TOKENS

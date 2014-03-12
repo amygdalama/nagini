@@ -1,12 +1,12 @@
+# -*- encoding: utf8 -*-
 """Tests for distutils.command.upload."""
 import os
 import unittest
-from test.support import run_unittest
+from test.test_support import run_unittest
 
 from distutils.command import upload as upload_mod
 from distutils.command.upload import upload
 from distutils.core import Distribution
-from distutils.log import INFO
 
 from distutils.tests.test_config import PYPIRC, PyPIRCCommandTestCase
 
@@ -48,14 +48,6 @@ class FakeOpen(object):
         else:
             self.req = None
         self.msg = 'OK'
-
-    def getheader(self, name, default=None):
-        return {
-            'content-type': 'text/plain; charset=utf-8',
-            }.get(name.lower(), default)
-
-    def read(self):
-        return b'xyzzy'
 
     def getcode(self):
         return 200
@@ -115,26 +107,22 @@ class uploadTestCase(PyPIRCCommandTestCase):
         self.write_file(self.rc, PYPIRC_LONG_PASSWORD)
 
         # lets run it
-        pkg_dir, dist = self.create_dist(dist_files=dist_files)
+        pkg_dir, dist = self.create_dist(dist_files=dist_files, author=u'dédé')
         cmd = upload(dist)
-        cmd.show_response = 1
         cmd.ensure_finalized()
         cmd.run()
 
         # what did we send ?
+        self.assertIn('dédé', self.last_open.req.data)
         headers = dict(self.last_open.req.headers)
-        self.assertEqual(headers['Content-length'], '2087')
-        content_type = headers['Content-type']
-        self.assertTrue(content_type.startswith('multipart/form-data'))
+        self.assertEqual(headers['Content-length'], '2085')
+        self.assertTrue(headers['Content-type'].startswith('multipart/form-data'))
         self.assertEqual(self.last_open.req.get_method(), 'POST')
-        expected_url = 'https://pypi.python.org/pypi'
-        self.assertEqual(self.last_open.req.get_full_url(), expected_url)
-        self.assertTrue(b'xxx' in self.last_open.req.data)
-
-        # The PyPI response body was echoed
-        results = self.get_logs(INFO)
-        self.assertIn('xyzzy\n', results[-1])
-
+        self.assertEqual(self.last_open.req.get_full_url(),
+                         'https://pypi.python.org/pypi')
+        self.assertIn('xxx', self.last_open.req.data)
+        auth = self.last_open.req.headers['Authorization']
+        self.assertNotIn('\n', auth)
 
 def test_suite():
     return unittest.makeSuite(uploadTestCase)

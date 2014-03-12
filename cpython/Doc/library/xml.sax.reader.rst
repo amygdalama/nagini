@@ -1,3 +1,4 @@
+
 :mod:`xml.sax.xmlreader` --- Interface for XML parsers
 ======================================================
 
@@ -6,6 +7,8 @@
 .. moduleauthor:: Lars Marius Garshol <larsga@garshol.priv.no>
 .. sectionauthor:: Martin v. Löwis <martin@v.loewis.de>
 
+
+.. versionadded:: 2.0
 
 SAX parsers implement the :class:`XMLReader` interface. They are implemented in
 a Python module, which must provide a function :func:`create_parser`. This
@@ -47,7 +50,7 @@ a new  parser object.
    methods may return ``None``.
 
 
-.. class:: InputSource(system_id=None)
+.. class:: InputSource([systemId])
 
    Encapsulation of the information needed by the :class:`XMLReader` to read
    entities.
@@ -309,7 +312,7 @@ InputSource Objects
 .. method:: InputSource.setCharacterStream(charfile)
 
    Set the character stream for this input source. (The stream must be a Python 1.6
-   Unicode-wrapped file-like that performs conversion to strings.)
+   Unicode-wrapped file-like that performs conversion to Unicode strings.)
 
    If there is a character stream specified, the SAX parser will ignore any byte
    stream and will not attempt to open a URI connection to the system identifier.
@@ -325,11 +328,13 @@ InputSource Objects
 The :class:`Attributes` Interface
 ---------------------------------
 
-:class:`Attributes` objects implement a portion of the :term:`mapping protocol
-<mapping>`, including the methods :meth:`~collections.abc.Mapping.copy`,
-:meth:`~collections.abc.Mapping.get`, :meth:`~object.__contains__`,
-:meth:`~collections.abc.Mapping.items`, :meth:`~collections.abc.Mapping.keys`,
-and :meth:`~collections.abc.Mapping.values`.  The following methods
+:class:`Attributes` objects implement a portion of the mapping protocol,
+including the methods :meth:`~collections.Mapping.copy`,
+:meth:`~collections.Mapping.get`,
+:meth:`~collections.Mapping.has_key`,
+:meth:`~collections.Mapping.items`,
+:meth:`~collections.Mapping.keys`,
+and :meth:`~collections.Mapping.values`.  The following methods
 are also provided:
 
 

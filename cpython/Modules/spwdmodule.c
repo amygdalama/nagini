@@ -4,6 +4,7 @@
 /* For info also see http://www.unixpapa.com/incnote/passwd.html */
 
 #include "Python.h"
+#include "structseq.h"
 
 #include <sys/types.h>
 #ifdef HAVE_SHADOW_H
@@ -26,24 +27,22 @@ You have to be root to be able to use this module.");
 #if defined(HAVE_GETSPNAM) || defined(HAVE_GETSPENT)
 
 static PyStructSequence_Field struct_spwd_type_fields[] = {
-    {"sp_namp", "login name"},
-    {"sp_pwdp", "encrypted password"},
+    {"sp_nam", "login name"},
+    {"sp_pwd", "encrypted password"},
     {"sp_lstchg", "date of last change"},
     {"sp_min", "min #days between changes"},
     {"sp_max", "max #days between changes"},
     {"sp_warn", "#days before pw expires to warn user about it"},
-    {"sp_inact", "#days after pw expires until account is disabled"},
-    {"sp_expire", "#days since 1970-01-01 when account expires"},
+    {"sp_inact", "#days after pw expires until account is blocked"},
+    {"sp_expire", "#days since 1970-01-01 until account is disabled"},
     {"sp_flag", "reserved"},
-    {"sp_nam", "login name; deprecated"}, /* Backward compatibility */
-    {"sp_pwd", "encrypted password; deprecated"}, /* Backward compatibility */
     {0}
 };
 
 PyDoc_STRVAR(struct_spwd__doc__,
 "spwd.struct_spwd: Results from getsp*() routines.\n\n\
 This object may be accessed either as a 9-tuple of\n\
-  (sp_namp,sp_pwdp,sp_lstchg,sp_min,sp_max,sp_warn,sp_inact,sp_expire,sp_flag)\n\
+  (sp_nam,sp_pwd,sp_lstchg,sp_min,sp_max,sp_warn,sp_inact,sp_expire,sp_flag)\n\
 or via the object attributes as named in the above tuple.");
 
 static PyStructSequence_Desc struct_spwd_type_desc = {
@@ -58,12 +57,11 @@ static PyTypeObject StructSpwdType;
 
 
 static void
-sets(PyObject *v, int i, const char* val)
+sets(PyObject *v, int i, char* val)
 {
-  if (val) {
-      PyObject *o = PyUnicode_DecodeFSDefault(val);
-      PyStructSequence_SET_ITEM(v, i, o);
-  } else {
+  if (val)
+      PyStructSequence_SET_ITEM(v, i, PyString_FromString(val));
+  else {
       PyStructSequence_SET_ITEM(v, i, Py_None);
       Py_INCREF(Py_None);
   }
@@ -76,7 +74,7 @@ static PyObject *mkspent(struct spwd *p)
     if (v == NULL)
         return NULL;
 
-#define SETI(i,val) PyStructSequence_SET_ITEM(v, i, PyLong_FromLong((long) val))
+#define SETI(i,val) PyStructSequence_SET_ITEM(v, i, PyInt_FromLong((long) val))
 #define SETS(i,val) sets(v, i, val)
 
     SETS(setIndex++, p->sp_namp);
@@ -88,8 +86,6 @@ static PyObject *mkspent(struct spwd *p)
     SETI(setIndex++, p->sp_inact);
     SETI(setIndex++, p->sp_expire);
     SETI(setIndex++, p->sp_flag);
-    SETS(setIndex++, p->sp_namp); /* Backward compatibility for sp_nam */
-    SETS(setIndex++, p->sp_pwdp); /* Backward compatibility for sp_pwd */
 
 #undef SETS
 #undef SETI
@@ -117,22 +113,13 @@ static PyObject* spwd_getspnam(PyObject *self, PyObject *args)
 {
     char *name;
     struct spwd *p;
-    PyObject *arg, *bytes, *retval = NULL;
-
-    if (!PyArg_ParseTuple(args, "U:getspnam", &arg))
+    if (!PyArg_ParseTuple(args, "s:getspnam", &name))
         return NULL;
-    if ((bytes = PyUnicode_EncodeFSDefault(arg)) == NULL)
-        return NULL;
-    if (PyBytes_AsStringAndSize(bytes, &name, NULL) == -1)
-        goto out;
     if ((p = getspnam(name)) == NULL) {
         PyErr_SetString(PyExc_KeyError, "getspnam(): name not found");
-        goto out;
+        return NULL;
     }
-    retval = mkspent(p);
-out:
-    Py_DECREF(bytes);
-    return retval;
+    return mkspent(p);
 }
 
 #endif /* HAVE_GETSPNAM */
@@ -180,33 +167,17 @@ static PyMethodDef spwd_methods[] = {
 };
 
 
-
-static struct PyModuleDef spwdmodule = {
-    PyModuleDef_HEAD_INIT,
-    "spwd",
-    spwd__doc__,
-    -1,
-    spwd_methods,
-    NULL,
-    NULL,
-    NULL,
-    NULL
-};
-
 PyMODINIT_FUNC
-PyInit_spwd(void)
+initspwd(void)
 {
     PyObject *m;
-    m=PyModule_Create(&spwdmodule);
+    m=Py_InitModule3("spwd", spwd_methods, spwd__doc__);
     if (m == NULL)
-        return NULL;
-    if (!initialized) {
-        if (PyStructSequence_InitType2(&StructSpwdType,
-                                       &struct_spwd_type_desc) < 0)
-            return NULL;
-    }
+        return;
+    if (!initialized)
+        PyStructSequence_InitType(&StructSpwdType,
+                                  &struct_spwd_type_desc);
     Py_INCREF((PyObject *) &StructSpwdType);
     PyModule_AddObject(m, "struct_spwd", (PyObject *) &StructSpwdType);
     initialized = 1;
-    return m;
 }

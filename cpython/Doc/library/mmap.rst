@@ -1,3 +1,4 @@
+
 :mod:`mmap` --- Memory-mapped file support
 ==========================================
 
@@ -5,13 +6,14 @@
    :synopsis: Interface to memory-mapped files for Unix and Windows.
 
 
-Memory-mapped file objects behave like both :class:`bytearray` and like
-:term:`file objects <file object>`.  You can use mmap objects in most places
-where :class:`bytearray` are expected; for example, you can use the :mod:`re`
-module to search through a memory-mapped file.  You can also change a single
-byte by doing ``obj[index] = 97``, or change a subsequence by assigning to a
-slice: ``obj[i1:i2] = b'...'``.  You can also read and write data starting at
-the current file position, and :meth:`seek` through the file to different positions.
+Memory-mapped file objects behave like both strings and like file objects.
+Unlike normal string objects, however, these are mutable.  You can use mmap
+objects in most places where strings are expected; for example, you can use
+the :mod:`re` module to search through a memory-mapped file.  Since they're
+mutable, you can change a single character by doing ``obj[index] = 'a'``, or
+change a substring by assigning to a slice: ``obj[i1:i2] = '...'``.  You can
+also read and write data starting at the current file position, and
+:meth:`seek` through the file to different positions.
 
 A memory-mapped file is created by the :class:`mmap` constructor, which is
 different on Unix and on Windows.  In either case you must provide a file
@@ -39,9 +41,15 @@ Assignment to an :const:`ACCESS_WRITE` memory map affects both memory and the
 underlying file.  Assignment to an :const:`ACCESS_COPY` memory map affects
 memory but does not update the underlying file.
 
-To map anonymous memory, -1 should be passed as the fileno along with the length.
+.. versionchanged:: 2.5
+   To map anonymous memory, -1 should be passed as the fileno along with the
+   length.
 
-.. class:: mmap(fileno, length, tagname=None, access=ACCESS_DEFAULT[, offset])
+.. versionchanged:: 2.6
+   mmap.mmap has formerly been a factory function creating mmap objects. Now
+   mmap.mmap is the class itself.
+
+.. class:: mmap(fileno, length[, tagname[, access[, offset]]])
 
    **(Windows version)** Maps *length* bytes from the file specified by the
    file handle *fileno*, and creates a mmap object.  If *length* is larger
@@ -63,7 +71,7 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
    defaults to 0.  *offset* must be a multiple of the ALLOCATIONGRANULARITY.
 
 
-.. class:: mmap(fileno, length, flags=MAP_SHARED, prot=PROT_WRITE|PROT_READ, access=ACCESS_DEFAULT[, offset])
+.. class:: mmap(fileno, length[, flags[, prot[, access[, offset]]]])
    :noindex:
 
    **(Unix version)** Maps *length* bytes from the file specified by the file
@@ -102,35 +110,23 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
 
       # write a simple example file
       with open("hello.txt", "wb") as f:
-          f.write(b"Hello Python!\n")
+          f.write("Hello Python!\n")
 
       with open("hello.txt", "r+b") as f:
           # memory-map the file, size 0 means whole file
           mm = mmap.mmap(f.fileno(), 0)
           # read content via standard file methods
-          print(mm.readline())  # prints b"Hello Python!\n"
+          print mm.readline()  # prints "Hello Python!"
           # read content via slice notation
-          print(mm[:5])  # prints b"Hello"
+          print mm[:5]  # prints "Hello"
           # update content using slice notation;
           # note that new content must have same size
-          mm[6:] = b" world!\n"
+          mm[6:] = " world!\n"
           # ... and read again using standard file methods
           mm.seek(0)
-          print(mm.readline())  # prints b"Hello  world!\n"
+          print mm.readline()  # prints "Hello  world!"
           # close the map
           mm.close()
-
-
-   :class:`mmap` can also be used as a context manager in a :keyword:`with`
-   statement.::
-
-      import mmap
-
-      with mmap.mmap(-1, 13) as mm:
-          mm.write("Hello world!")
-
-   .. versionadded:: 3.2
-      Context manager support.
 
 
    The next example demonstrates how to create an anonymous map and exchange
@@ -140,18 +136,19 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
       import os
 
       mm = mmap.mmap(-1, 13)
-      mm.write(b"Hello world!")
+      mm.write("Hello world!")
 
       pid = os.fork()
 
       if pid == 0: # In a child process
           mm.seek(0)
-          print(mm.readline())
+          print mm.readline()
 
           mm.close()
 
 
    Memory-mapped file objects support the following methods:
+
 
    .. method:: close()
 
@@ -160,22 +157,15 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
       the open file.
 
 
-   .. attribute:: closed
+   .. method:: find(string[, start[, end]])
 
-      ``True`` if the file is closed.
-
-      .. versionadded:: 3.2
-
-
-   .. method:: find(sub[, start[, end]])
-
-      Returns the lowest index in the object where the subsequence *sub* is
-      found, such that *sub* is contained in the range [*start*, *end*].
+      Returns the lowest index in the object where the substring *string* is
+      found, such that *string* is contained in the range [*start*, *end*].
       Optional arguments *start* and *end* are interpreted as in slice notation.
       Returns ``-1`` on failure.
 
 
-   .. method:: flush([offset[, size]])
+   .. method:: flush([offset, size])
 
       Flushes changes made to the in-memory copy of a file back to disk. Without
       use of this call there is no guarantee that changes are written back before
@@ -197,21 +187,17 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
       move will raise a :exc:`TypeError` exception.
 
 
-   .. method:: read([n])
+   .. method:: read(num)
 
-      Return a :class:`bytes` containing up to *n* bytes starting from the
-      current file position. If the argument is omitted, *None* or negative,
-      return all bytes from the current file position to the end of the
-      mapping. The file position is updated to point after the bytes that were
-      returned.
+      Return a string containing up to *num* bytes starting from the current
+      file position; the file position is updated to point after the bytes that
+      were returned.
 
-      .. versionchanged:: 3.3
-         Argument can be omitted or *None*.
 
    .. method:: read_byte()
 
-      Returns a byte at the current file position as an integer, and advances
-      the file position by 1.
+      Returns a string of length 1 containing the character at the current file
+      position, and advances the file position by 1.
 
 
    .. method:: readline()
@@ -227,10 +213,10 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
       raise a :exc:`TypeError` exception.
 
 
-   .. method:: rfind(sub[, start[, end]])
+   .. method:: rfind(string[, start[, end]])
 
-      Returns the highest index in the object where the subsequence *sub* is
-      found, such that *sub* is contained in the range [*start*, *end*].
+      Returns the highest index in the object where the substring *string* is
+      found, such that *string* is contained in the range [*start*, *end*].
       Optional arguments *start* and *end* are interpreted as in slice notation.
       Returns ``-1`` on failure.
 
@@ -254,9 +240,9 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
       Returns the current position of the file pointer.
 
 
-   .. method:: write(bytes)
+   .. method:: write(string)
 
-      Write the bytes in *bytes* into memory at the current position of the
+      Write the bytes in *string* into memory at the current position of the
       file pointer; the file position is updated to point after the bytes that
       were written. If the mmap was created with :const:`ACCESS_READ`, then
       writing to it will raise a :exc:`TypeError` exception.
@@ -264,7 +250,7 @@ To map anonymous memory, -1 should be passed as the fileno along with the length
 
    .. method:: write_byte(byte)
 
-      Write the integer *byte* into memory at the current
+      Write the single-character string *byte* into memory at the current
       position of the file pointer; the file position is advanced by ``1``. If
       the mmap was created with :const:`ACCESS_READ`, then writing to it will
       raise a :exc:`TypeError` exception.

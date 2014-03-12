@@ -1,156 +1,92 @@
 import pickle
-import io
-import collections
+from cStringIO import StringIO
 
-from test import support
+from test import test_support
 
-from test.pickletester import AbstractPickleTests
-from test.pickletester import AbstractPickleModuleTests
-from test.pickletester import AbstractPersistentPicklerTests
-from test.pickletester import AbstractPicklerUnpicklerObjectTests
-from test.pickletester import AbstractDispatchTableTests
-from test.pickletester import BigmemPickleTests
+from test.pickletester import (AbstractPickleTests,
+                               AbstractPickleModuleTests,
+                               AbstractPersistentPicklerTests,
+                               AbstractPicklerUnpicklerObjectTests,
+                               BigmemPickleTests)
 
-try:
-    import _pickle
-    has_c_implementation = True
-except ImportError:
-    has_c_implementation = False
+class PickleTests(AbstractPickleTests, AbstractPickleModuleTests):
 
+    def dumps(self, arg, proto=0, fast=0):
+        # Ignore fast
+        return pickle.dumps(arg, proto)
 
-class PickleTests(AbstractPickleModuleTests):
-    pass
+    def loads(self, buf):
+        # Ignore fast
+        return pickle.loads(buf)
 
+    module = pickle
+    error = KeyError
 
-class PyPicklerTests(AbstractPickleTests):
+class PicklerTests(AbstractPickleTests):
 
-    pickler = pickle._Pickler
-    unpickler = pickle._Unpickler
+    error = KeyError
 
-    def dumps(self, arg, proto=None):
-        f = io.BytesIO()
-        p = self.pickler(f, proto)
-        p.dump(arg)
-        f.seek(0)
-        return bytes(f.read())
-
-    def loads(self, buf, **kwds):
-        f = io.BytesIO(buf)
-        u = self.unpickler(f, **kwds)
-        return u.load()
-
-
-class InMemoryPickleTests(AbstractPickleTests, BigmemPickleTests):
-
-    pickler = pickle._Pickler
-    unpickler = pickle._Unpickler
-
-    def dumps(self, arg, protocol=None):
-        return pickle.dumps(arg, protocol)
-
-    def loads(self, buf, **kwds):
-        return pickle.loads(buf, **kwds)
-
-
-class PyPersPicklerTests(AbstractPersistentPicklerTests):
-
-    pickler = pickle._Pickler
-    unpickler = pickle._Unpickler
-
-    def dumps(self, arg, proto=None):
-        class PersPickler(self.pickler):
-            def persistent_id(subself, obj):
-                return self.persistent_id(obj)
-        f = io.BytesIO()
-        p = PersPickler(f, proto)
+    def dumps(self, arg, proto=0, fast=0):
+        f = StringIO()
+        p = pickle.Pickler(f, proto)
+        if fast:
+            p.fast = fast
         p.dump(arg)
         f.seek(0)
         return f.read()
 
-    def loads(self, buf, **kwds):
-        class PersUnpickler(self.unpickler):
-            def persistent_load(subself, obj):
-                return self.persistent_load(obj)
-        f = io.BytesIO(buf)
-        u = PersUnpickler(f, **kwds)
+    def loads(self, buf):
+        f = StringIO(buf)
+        u = pickle.Unpickler(f)
         return u.load()
 
+class PersPicklerTests(AbstractPersistentPicklerTests):
 
-class PyPicklerUnpicklerObjectTests(AbstractPicklerUnpicklerObjectTests):
+    def dumps(self, arg, proto=0, fast=0):
+        class PersPickler(pickle.Pickler):
+            def persistent_id(subself, obj):
+                return self.persistent_id(obj)
+        f = StringIO()
+        p = PersPickler(f, proto)
+        if fast:
+            p.fast = fast
+        p.dump(arg)
+        f.seek(0)
+        return f.read()
 
-    pickler_class = pickle._Pickler
-    unpickler_class = pickle._Unpickler
+    def loads(self, buf):
+        class PersUnpickler(pickle.Unpickler):
+            def persistent_load(subself, obj):
+                return self.persistent_load(obj)
+        f = StringIO(buf)
+        u = PersUnpickler(f)
+        return u.load()
 
+class PicklerUnpicklerObjectTests(AbstractPicklerUnpicklerObjectTests):
 
-class PyDispatchTableTests(AbstractDispatchTableTests):
+    pickler_class = pickle.Pickler
+    unpickler_class = pickle.Unpickler
 
-    pickler_class = pickle._Pickler
+class PickleBigmemPickleTests(BigmemPickleTests):
 
-    def get_dispatch_table(self):
-        return pickle.dispatch_table.copy()
+    def dumps(self, arg, proto=0, fast=0):
+        # Ignore fast
+        return pickle.dumps(arg, proto)
 
-
-class PyChainDispatchTableTests(AbstractDispatchTableTests):
-
-    pickler_class = pickle._Pickler
-
-    def get_dispatch_table(self):
-        return collections.ChainMap({}, pickle.dispatch_table)
-
-
-if has_c_implementation:
-    class CPicklerTests(PyPicklerTests):
-        pickler = _pickle.Pickler
-        unpickler = _pickle.Unpickler
-
-    class CPersPicklerTests(PyPersPicklerTests):
-        pickler = _pickle.Pickler
-        unpickler = _pickle.Unpickler
-
-    class CDumpPickle_LoadPickle(PyPicklerTests):
-        pickler = _pickle.Pickler
-        unpickler = pickle._Unpickler
-
-    class DumpPickle_CLoadPickle(PyPicklerTests):
-        pickler = pickle._Pickler
-        unpickler = _pickle.Unpickler
-
-    class CPicklerUnpicklerObjectTests(AbstractPicklerUnpicklerObjectTests):
-        pickler_class = _pickle.Pickler
-        unpickler_class = _pickle.Unpickler
-
-        def test_issue18339(self):
-            unpickler = self.unpickler_class(io.BytesIO())
-            with self.assertRaises(TypeError):
-                unpickler.memo = object
-            # used to cause a segfault
-            with self.assertRaises(ValueError):
-                unpickler.memo = {-1: None}
-            unpickler.memo = {1: None}
-
-    class CDispatchTableTests(AbstractDispatchTableTests):
-        pickler_class = pickle.Pickler
-        def get_dispatch_table(self):
-            return pickle.dispatch_table.copy()
-
-    class CChainDispatchTableTests(AbstractDispatchTableTests):
-        pickler_class = pickle.Pickler
-        def get_dispatch_table(self):
-            return collections.ChainMap({}, pickle.dispatch_table)
+    def loads(self, buf):
+        # Ignore fast
+        return pickle.loads(buf)
 
 
 def test_main():
-    tests = [PickleTests, PyPicklerTests, PyPersPicklerTests,
-             PyDispatchTableTests, PyChainDispatchTableTests]
-    if has_c_implementation:
-        tests.extend([CPicklerTests, CPersPicklerTests,
-                      CDumpPickle_LoadPickle, DumpPickle_CLoadPickle,
-                      PyPicklerUnpicklerObjectTests,
-                      CPicklerUnpicklerObjectTests,
-                      CDispatchTableTests, CChainDispatchTableTests,
-                      InMemoryPickleTests])
-    support.run_unittest(*tests)
-    support.run_doctest(pickle)
+    test_support.run_unittest(
+        PickleTests,
+        PicklerTests,
+        PersPicklerTests,
+        PicklerUnpicklerObjectTests,
+        PickleBigmemPickleTests,
+    )
+    test_support.run_doctest(pickle)
 
 if __name__ == "__main__":
     test_main()

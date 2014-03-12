@@ -1,9 +1,10 @@
+
 :mod:`zlib` --- Compression compatible with :program:`gzip`
 ===========================================================
 
 .. module:: zlib
-   :synopsis: Low-level interface to compression and decompression routines
-              compatible with gzip.
+   :synopsis: Low-level interface to compression and decompression routines compatible with
+              gzip.
 
 
 For applications that require data compression, the functions in this module
@@ -39,7 +40,7 @@ The available exception and functions in this module are:
    the algorithm is designed for use as a checksum algorithm, it is not suitable
    for use as a general hash algorithm.
 
-   Always returns an unsigned 32-bit integer.
+   This function always returns an integer object.
 
 .. note::
    To generate the same numeric value across all Python versions and
@@ -48,24 +49,31 @@ The available exception and functions in this module are:
    return value is the correct 32bit binary representation
    regardless of sign.
 
+.. versionchanged:: 2.6
+   The return value is in the range [-2**31, 2**31-1]
+   regardless of platform.  In older versions the value is
+   signed on some platforms and unsigned on others.
 
-.. function:: compress(data[, level])
+.. versionchanged:: 3.0
+   The return value is unsigned and in the range [0, 2**32-1]
+   regardless of platform.
 
-   Compresses the bytes in *data*, returning a bytes object containing compressed data.
+
+.. function:: compress(string[, level])
+
+   Compresses the data in *string*, returning a string contained compressed data.
    *level* is an integer from ``0`` to ``9`` controlling the level of compression;
    ``1`` is fastest and produces the least compression, ``9`` is slowest and
    produces the most.  ``0`` is no compression.  The default value is ``6``.
    Raises the :exc:`error` exception if any error occurs.
 
 
-.. function:: compressobj(level=-1, method=DEFLATED, wbits=15, memlevel=8, strategy=Z_DEFAULT_STRATEGY[, zdict])
+.. function:: compressobj([level[, method[, wbits[, memlevel[, strategy]]]]])
 
    Returns a compression object, to be used for compressing data streams that won't
-   fit into memory at once.
-
-   *level* is the compression level -- an integer from ``0`` to ``9``. A value
-   of ``1`` is fastest and produces the least compression, while a value of
-   ``9`` is slowest and produces the most. ``0`` is no compression. The default
+   fit into memory at once.  *level* is an integer from ``0`` to ``9`` controlling
+   the level of compression; ``1`` is fastest and produces the least compression,
+   ``9`` is slowest and produces the most.  ``0`` is no compression.  The default
    value is ``6``.
 
    *method* is the compression algorithm. Currently, the only supported value is
@@ -73,22 +81,15 @@ The available exception and functions in this module are:
 
    *wbits* is the base two logarithm of the size of the window buffer. This
    should be an integer from ``8`` to ``15``. Higher values give better
-   compression, but use more memory.
+   compression, but use more memory. The default is 15.
 
    *memlevel* controls the amount of memory used for internal compression state.
    Valid values range from ``1`` to ``9``. Higher values using more memory,
-   but are faster and produce smaller output.
+   but are faster and produce smaller output. The default is 8.
 
    *strategy* is used to tune the compression algorithm. Possible values are
-   ``Z_DEFAULT_STRATEGY``, ``Z_FILTERED``, and ``Z_HUFFMAN_ONLY``.
-
-   *zdict* is a predefined compression dictionary. This is a sequence of bytes
-   (such as a :class:`bytes` object) containing subsequences that are expected
-   to occur frequently in the data that is to be compressed. Those subsequences
-   that are expected to be most common should come at the end of the dictionary.
-
-   .. versionchanged:: 3.3
-      Added the *zdict* parameter and keyword argument support.
+   ``Z_DEFAULT_STRATEGY``, ``Z_FILTERED``, and ``Z_HUFFMAN_ONLY``. The default
+   is ``Z_DEFAULT_STRATEGY``.
 
 
 .. function:: crc32(data[, value])
@@ -105,20 +106,28 @@ The available exception and functions in this module are:
    the algorithm is designed for use as a checksum algorithm, it is not suitable
    for use as a general hash algorithm.
 
-   Always returns an unsigned 32-bit integer.
+   This function always returns an integer object.
 
-   .. note::
+.. note::
+   To generate the same numeric value across all Python versions and
+   platforms use crc32(data) & 0xffffffff.  If you are only using
+   the checksum in packed binary format this is not necessary as the
+   return value is the correct 32bit binary representation
+   regardless of sign.
 
-      To generate the same numeric value across all Python versions and
-      platforms, use ``crc32(data) & 0xffffffff``.  If you are only using
-      the checksum in packed binary format this is not necessary as the
-      return value is the correct 32-bit binary representation
-      regardless of sign.
+.. versionchanged:: 2.6
+   The return value is in the range [-2**31, 2**31-1]
+   regardless of platform.  In older versions the value would be
+   signed on some platforms and unsigned on others.
+
+.. versionchanged:: 3.0
+   The return value is unsigned and in the range [0, 2**32-1]
+   regardless of platform.
 
 
-.. function:: decompress(data[, wbits[, bufsize]])
+.. function:: decompress(string[, wbits[, bufsize]])
 
-   Decompresses the bytes in *data*, returning a bytes object containing the
+   Decompresses the data in *string*, returning a string containing the
    uncompressed data.  The *wbits* parameter controls the size of the window
    buffer, and is discussed further below.
    If *bufsize* is given, it is used as the initial size of the output
@@ -140,45 +149,30 @@ The available exception and functions in this module are:
    to :c:func:`malloc`.  The default size is 16384.
 
 
-.. function:: decompressobj(wbits=15[, zdict])
+.. function:: decompressobj([wbits])
 
    Returns a decompression object, to be used for decompressing data streams that
-   won't fit into memory at once.
-
-   The *wbits* parameter controls the size of the window buffer.
-
-   The *zdict* parameter specifies a predefined compression dictionary. If
-   provided, this must be the same dictionary as was used by the compressor that
-   produced the data that is to be decompressed.
-
-   .. note::
-
-      If *zdict* is a mutable object (such as a :class:`bytearray`), you must not
-      modify its contents between the call to :func:`decompressobj` and the first
-      call to the decompressor's ``decompress()`` method.
-
-   .. versionchanged:: 3.3
-      Added the *zdict* parameter.
-
+   won't fit into memory at once.  The *wbits* parameter controls the size of the
+   window buffer.
 
 Compression objects support the following methods:
 
 
-.. method:: Compress.compress(data)
+.. method:: Compress.compress(string)
 
-   Compress *data*, returning a bytes object containing compressed data for at least
-   part of the data in *data*.  This data should be concatenated to the output
+   Compress *string*, returning a string containing compressed data for at least
+   part of the data in *string*.  This data should be concatenated to the output
    produced by any preceding calls to the :meth:`compress` method.  Some input may
    be kept in internal buffers for later processing.
 
 
 .. method:: Compress.flush([mode])
 
-   All pending input is processed, and a bytes object containing the remaining compressed
+   All pending input is processed, and a string containing the remaining compressed
    output is returned.  *mode* can be selected from the constants
    :const:`Z_SYNC_FLUSH`,  :const:`Z_FULL_FLUSH`,  or  :const:`Z_FINISH`,
    defaulting to :const:`Z_FINISH`.  :const:`Z_SYNC_FLUSH` and
-   :const:`Z_FULL_FLUSH` allow compressing further bytestrings of data, while
+   :const:`Z_FULL_FLUSH` allow compressing further strings of data, while
    :const:`Z_FINISH` finishes the compressed stream and  prevents compressing any
    more data.  After calling :meth:`flush` with *mode* set to :const:`Z_FINISH`,
    the :meth:`compress` method cannot be called again; the only realistic action is
@@ -190,41 +184,38 @@ Compression objects support the following methods:
    Returns a copy of the compression object.  This can be used to efficiently
    compress a set of data that share a common initial prefix.
 
+   .. versionadded:: 2.5
 
-Decompression objects support the following methods and attributes:
+Decompression objects support the following methods, and two attributes:
 
 
 .. attribute:: Decompress.unused_data
 
-   A bytes object which contains any bytes past the end of the compressed data. That is,
-   this remains ``b""`` until the last byte that contains compression data is
-   available.  If the whole bytestring turned out to contain compressed data, this is
-   ``b""``, an empty bytes object.
+   A string which contains any bytes past the end of the compressed data. That is,
+   this remains ``""`` until the last byte that contains compression data is
+   available.  If the whole string turned out to contain compressed data, this is
+   ``""``, the empty string.
+
+   The only way to determine where a string of compressed data ends is by actually
+   decompressing it.  This means that when compressed data is contained part of a
+   larger file, you can only find the end of it by reading data and feeding it
+   followed by some non-empty string into a decompression object's
+   :meth:`decompress` method until the :attr:`unused_data` attribute is no longer
+   the empty string.
 
 
 .. attribute:: Decompress.unconsumed_tail
 
-   A bytes object that contains any data that was not consumed by the last
+   A string that contains any data that was not consumed by the last
    :meth:`decompress` call because it exceeded the limit for the uncompressed data
    buffer.  This data has not yet been seen by the zlib machinery, so you must feed
    it (possibly with further data concatenated to it) back to a subsequent
    :meth:`decompress` method call in order to get correct output.
 
 
-.. attribute:: Decompress.eof
+.. method:: Decompress.decompress(string[, max_length])
 
-   A boolean indicating whether the end of the compressed data stream has been
-   reached.
-
-   This makes it possible to distinguish between a properly-formed compressed
-   stream, and an incomplete or truncated one.
-
-   .. versionadded:: 3.3
-
-
-.. method:: Decompress.decompress(data[, max_length])
-
-   Decompress *data*, returning a bytes object containing the uncompressed data
+   Decompress *string*, returning a string containing the uncompressed data
    corresponding to at least part of the data in *string*.  This data should be
    concatenated to the output produced by any preceding calls to the
    :meth:`decompress` method.  Some of the input data may be preserved in internal
@@ -233,15 +224,15 @@ Decompression objects support the following methods and attributes:
    If the optional parameter *max_length* is supplied then the return value will be
    no longer than *max_length*. This may mean that not all of the compressed input
    can be processed; and unconsumed data will be stored in the attribute
-   :attr:`unconsumed_tail`. This bytestring must be passed to a subsequent call to
+   :attr:`unconsumed_tail`. This string must be passed to a subsequent call to
    :meth:`decompress` if decompression is to continue.  If *max_length* is not
-   supplied then the whole input is decompressed, and :attr:`unconsumed_tail` is
-   empty.
+   supplied then the whole input is decompressed, and :attr:`unconsumed_tail` is an
+   empty string.
 
 
 .. method:: Decompress.flush([length])
 
-   All pending input is processed, and a bytes object containing the remaining
+   All pending input is processed, and a string containing the remaining
    uncompressed output is returned.  After calling :meth:`flush`, the
    :meth:`decompress` method cannot be called again; the only realistic action is
    to delete the object.
@@ -255,23 +246,7 @@ Decompression objects support the following methods and attributes:
    of the decompressor midway through the data stream in order to speed up random
    seeks into the stream at a future point.
 
-
-Information about the version of the zlib library in use is available through
-the following constants:
-
-
-.. data:: ZLIB_VERSION
-
-   The version string of the zlib library that was used for building the module.
-   This may be different from the zlib library actually used at runtime, which
-   is available as :const:`ZLIB_RUNTIME_VERSION`.
-
-
-.. data:: ZLIB_RUNTIME_VERSION
-
-   The version string of the zlib library actually loaded by the interpreter.
-
-   .. versionadded:: 3.3
+   .. versionadded:: 2.5
 
 
 .. seealso::

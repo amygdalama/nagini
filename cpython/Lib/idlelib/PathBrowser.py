@@ -1,6 +1,6 @@
 import os
 import sys
-import importlib.machinery
+import imp
 
 from idlelib.TreeWidget import TreeItem
 from idlelib.ClassBrowser import ClassBrowser, ModuleBrowserTreeItem
@@ -44,7 +44,7 @@ class DirBrowserTreeItem(TreeItem):
     def GetSubList(self):
         try:
             names = os.listdir(self.dir or os.curdir)
-        except OSError:
+        except os.error:
             return []
         packages = []
         for name in names:
@@ -70,11 +70,9 @@ class DirBrowserTreeItem(TreeItem):
 
     def listmodules(self, allnames):
         modules = {}
-        suffixes = importlib.machinery.EXTENSION_SUFFIXES[:]
-        suffixes += importlib.machinery.SOURCE_SUFFIXES[:]
-        suffixes += importlib.machinery.BYTECODE_SUFFIXES[:]
+        suffixes = imp.get_suffixes()
         sorted = []
-        for suff in suffixes:
+        for suff, mode, flag in suffixes:
             i = -len(suff)
             for name in allnames[:]:
                 normed_name = os.path.normcase(name)

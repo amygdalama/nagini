@@ -3,7 +3,7 @@ A number of function that enhance IDLE on MacOSX when it used as a normal
 GUI application (as opposed to an X11 application).
 """
 import sys
-import tkinter
+import Tkinter
 from os import path
 
 
@@ -12,22 +12,12 @@ _appbundle = None
 def runningAsOSXApp():
     """
     Returns True if Python is running from within an app on OSX.
-    If so, the various OS X customizations will be triggered later (menu
-    fixup, et al).  (Originally, this test was supposed to condition
-    behavior on whether IDLE was running under Aqua Tk rather than
-    under X11 Tk but that does not work since a framework build
-    could be linked with X11.  For several releases, this test actually
-    differentiates between whether IDLE is running from a framework or
-    not.  As a future enhancement, it should be considered whether there
-    should be a difference based on framework and any needed X11 adaptions
-    should be made dependent on a new function that actually tests for X11.)
+    If so, assume that Python was built with Aqua Tcl/Tk rather than
+    X11 Tcl/Tk.
     """
     global _appbundle
     if _appbundle is None:
-        _appbundle = sys.platform == 'darwin'
-        if _appbundle:
-            import sysconfig
-            _appbundle = bool(sysconfig.get_config_var('PYTHONFRAMEWORK'))
+        _appbundle = (sys.platform == 'darwin' and '.app' in sys.executable)
     return _appbundle
 
 _carbonaquatk = None
@@ -82,7 +72,7 @@ def addOpenEventSupport(root, flist):
 def hideTkConsole(root):
     try:
         root.tk.call('console', 'hide')
-    except tkinter.TclError:
+    except Tkinter.TclError:
         # Some versions of the Tk framework don't have a console object
         pass
 
@@ -102,7 +92,7 @@ def overrideRootMenu(root, flist):
     #
     # Due to a (mis-)feature of TkAqua the user will also see an empty Help
     # menu.
-    from tkinter import Menu, Text, Text
+    from Tkinter import Menu, Text, Text
     from idlelib.EditorWindow import prepstr, get_accelerator
     from idlelib import Bindings
     from idlelib import WindowList
@@ -131,12 +121,6 @@ def overrideRootMenu(root, flist):
 
     def config_dialog(event=None):
         from idlelib import configDialog
-
-        # Ensure that the root object has an instance_dict attribute,
-        # mirrors code in EditorWindow (although that sets the attribute
-        # on an EditorWindow instance that is then passed as the first
-        # argument to ConfigDialog)
-        root.instance_dict = flist.inversedict
         root.instance_dict = flist.inversedict
         configDialog.ConfigDialog(root, 'Settings')
 

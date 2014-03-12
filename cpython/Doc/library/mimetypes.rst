@@ -88,7 +88,7 @@ behavior of the module.
    Specifying an empty list for *files* will prevent the system defaults from
    being applied: only the well-known values will be present from a built-in list.
 
-   .. versionchanged:: 3.2
+   .. versionchanged:: 2.7
       Previously, Windows registry settings were ignored.
 
 
@@ -260,4 +260,4 @@ than one MIME-type database; it provides an interface similar to the one of the
    If *strict* is ``True``, information will be added to the list of standard
    types, else to the list of non-standard types.
 
-   .. versionadded:: 3.2
+   .. versionadded:: 2.7

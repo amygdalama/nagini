@@ -288,12 +288,10 @@ statements shown below, and get the output as shown, to find out my
    '/usr'
 
 A few other placeholders are used in this document: :file:`{X.Y}` stands for the
-version of Python, for example ``3.2``; :file:`{abiflags}` will be replaced by
-the value of :data:`sys.abiflags` or the empty string for platforms which don't
-define ABI flags; :file:`{distname}` will be replaced by the name of the module
-distribution being installed.  Dots and capitalization are important in the
-paths; for example, a value that uses ``python3.2`` on UNIX will typically use
-``Python32`` on Windows.
+version of Python, for example ``2.7``; :file:`{distname}` will be replaced by
+the name of the module distribution being installed.  Dots and capitalization
+are important in the paths; for example, a value that uses ``python2.7`` on UNIX
+will typically use ``Python27`` on Windows.
 
 If you don't want to install modules to the standard location, or if you don't
 have permission to write there, then you need to read about alternate
@@ -351,7 +349,7 @@ Type of file    Installation directory
 modules         :file:`{userbase}/lib/python{X.Y}/site-packages`
 scripts         :file:`{userbase}/bin`
 data            :file:`{userbase}`
-C headers       :file:`{userbase}/include/python{X.Y}{abiflags}/{distname}`
+C headers       :file:`{userbase}/include/python{X.Y}/{distname}`
 =============== ===========================================================
 
 And here are the values used on Windows:
@@ -418,6 +416,9 @@ C headers       :file:`{home}/include/python/{distname}`
 
 (Mentally replace slashes with backslashes if you're on Windows.)
 
+.. versionchanged:: 2.4
+   The :option:`--home` option used to be supported only on Unix.
+
 
 .. _inst-alt-install-prefix-unix:
 
@@ -463,7 +464,7 @@ Python modules    :file:`{prefix}/lib/python{X.Y}/site-packages`
 extension modules :file:`{exec-prefix}/lib/python{X.Y}/site-packages`
 scripts           :file:`{prefix}/bin`
 data              :file:`{prefix}`
-C headers         :file:`{prefix}/include/python{X.Y}{abiflags}/{distname}`
+C headers         :file:`{prefix}/include/python{X.Y}/{distname}`
 ================= ==========================================================
 
 There is no requirement that :option:`--prefix` or :option:`--exec-prefix`
@@ -652,11 +653,6 @@ environment, such as ``$PLAT``.  (And of course, on systems that don't have
 environment variables, such as Mac OS 9, the configuration variables supplied by
 the Distutils are the only ones you can use.) See section :ref:`inst-config-files`
 for details.
-
-.. note:: When a :ref:`virtual environment <venv-def>` is activated, any options
-   that change the installation path will be ignored from all distutils configuration
-   files to prevent inadvertently installing projects outside of the virtual
-   environment.
 
 .. XXX need some Windows examples---when would custom installation schemes be
    needed on those platforms?

@@ -173,12 +173,12 @@ attributes of their own:
 
 * :attr:`__doc__` is the attribute's docstring.
 
-* ``__get__(object)`` is a method that retrieves the attribute value from
+* :meth:`__get__(object)` is a method that retrieves the attribute value from
   *object*.
 
-* ``__set__(object, value)`` sets the attribute on *object* to *value*.
+* :meth:`__set__(object, value)` sets the attribute on *object* to *value*.
 
-* ``__delete__(object, value)`` deletes the *value*  attribute of *object*.
+* :meth:`__delete__(object, value)` deletes the *value*  attribute of *object*.
 
 For example, when you write ``obj.x``, the steps that Python actually performs
 are::
@@ -288,7 +288,7 @@ Following this rule, referring to :meth:`D.save` will return :meth:`C.save`,
 which is the behaviour we're after.  This lookup rule is the same as the one
 followed by Common Lisp.  A new built-in function, :func:`super`, provides a way
 to get at a class's superclasses without having to reimplement Python's
-algorithm. The most commonly used form will be  ``super(class, obj)``, which
+algorithm. The most commonly used form will be  :func:`super(class, obj)`, which
 returns  a bound superclass object (not the actual class object).  This form
 will be used in methods to call a method in the superclass; for example,
 :class:`D`'s :meth:`save` method would look like this::
@@ -301,7 +301,7 @@ will be used in methods to call a method in the superclass; for example,
            ...
 
 :func:`super` can also return unbound superclass objects when called as
-``super(class)`` or ``super(class1, class2)``, but this probably won't
+:func:`super(class)` or :func:`super(class1, class2)`, but this probably won't
 often be useful.
 
 
@@ -314,13 +314,13 @@ code more readable by automatically mapping an attribute access such as
 ``obj.parent`` into a method call such as ``obj.get_parent``.  Python 2.2 adds
 some new ways of controlling attribute access.
 
-First, ``__getattr__(attr_name)`` is still supported by new-style classes,
+First, :meth:`__getattr__(attr_name)` is still supported by new-style classes,
 and nothing about it has changed.  As before, it will be called when an attempt
 is made to access ``obj.foo`` and no attribute named ``foo`` is found in the
 instance's dictionary.
 
 New-style classes also support a new method,
-``__getattribute__(attr_name)``.  The difference between the two methods is
+:meth:`__getattribute__(attr_name)`.  The difference between the two methods is
 that :meth:`__getattribute__` is *always* called whenever any attribute is
 accessed, while the old :meth:`__getattr__` is only called if ``foo`` isn't
 found in the instance's dictionary.
@@ -441,8 +441,8 @@ work, though it really should.
 
 In Python 2.2, iteration can be implemented separately, and :meth:`__getitem__`
 methods can be limited to classes that really do support random access.  The
-basic idea of iterators is  simple.  A new built-in function, ``iter(obj)``
-or ``iter(C, sentinel)``, is used to get an iterator. ``iter(obj)`` returns
+basic idea of iterators is  simple.  A new built-in function, :func:`iter(obj)`
+or ``iter(C, sentinel)``, is used to get an iterator. :func:`iter(obj)` returns
 an iterator for the object *obj*, while ``iter(C, sentinel)`` returns an
 iterator that will invoke the callable object *C* until it returns *sentinel* to
 signal that the iterator is done.
@@ -793,7 +793,7 @@ further details.
 
 Another change is simpler to explain. Since their introduction, Unicode strings
 have supported an :meth:`encode` method to convert the string to a selected
-encoding such as UTF-8 or Latin-1.  A symmetric ``decode([*encoding*])``
+encoding such as UTF-8 or Latin-1.  A symmetric :meth:`decode([*encoding*])`
 method has been added to 8-bit strings (though not to Unicode strings) in 2.2.
 :meth:`decode` assumes that the string is in the specified encoding and decodes
 it, returning whatever is returned by the codec.
@@ -892,13 +892,13 @@ though, since such code would have been pretty confusing to read in the first
 place.
 
 One side effect of the change is that the ``from module import *`` and
-``exec`` statements have been made illegal inside a function scope under
+:keyword:`exec` statements have been made illegal inside a function scope under
 certain conditions.  The Python reference manual has said all along that ``from
 module import *`` is only legal at the top level of a module, but the CPython
 interpreter has never enforced this before.  As part of the implementation of
 nested scopes, the compiler which turns Python source into bytecodes has to
 generate different code to access variables in a containing scope.  ``from
-module import *`` and ``exec`` make it impossible for the compiler to
+module import *`` and :keyword:`exec` make it impossible for the compiler to
 figure this out, because they add names to the local namespace that are
 unknowable at compile time. Therefore, if a function contains function
 definitions or :keyword:`lambda` expressions with free variables, the compiler
@@ -913,11 +913,11 @@ To make the preceding explanation a bit clearer, here's an example::
        def g():
            return x
 
-Line 4 containing the ``exec`` statement is a syntax error, since
-``exec`` would define a new local variable named ``x`` whose value should
+Line 4 containing the :keyword:`exec` statement is a syntax error, since
+:keyword:`exec` would define a new local variable named ``x`` whose value should
 be accessed by :func:`g`.
 
-This shouldn't be much of a limitation, since ``exec`` is rarely used in
+This shouldn't be much of a limitation, since :keyword:`exec` is rarely used in
 most Python code (and when it is used, it's often a sign of a poor design
 anyway).
 
@@ -1203,7 +1203,7 @@ Some of the more notable changes are:
   to an MBCS encoded string, as used by the Microsoft file APIs.  As MBCS is
   explicitly used by the file APIs, Python's choice of ASCII as the default
   encoding turns out to be an annoyance.  On Unix, the locale's character set is
-  used if ``locale.nl_langinfo(CODESET)`` is available.  (Windows support was
+  used if :func:`locale.nl_langinfo(CODESET)` is available.  (Windows support was
   contributed by Mark Hammond with assistance from Marc-André Lemburg. Unix
   support was added by Martin von Löwis.)
 

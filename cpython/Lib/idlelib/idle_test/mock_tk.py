@@ -4,7 +4,7 @@ A gui object is anything with a master or parent paramenter, which is typically
 required in spite of what the doc strings say.
 """
 
-class Var:
+class Var(object):
     "Use for String/Int/BooleanVar: incomplete"
     def __init__(self, master=None, value=None, name=None):
         self.master = master
@@ -15,7 +15,7 @@ class Var:
     def get(self):
         return self.value
 
-class Mbox_func:
+class Mbox_func(object):
     """Generic mock for messagebox functions, which all have the same signature.
 
     Instead of displaying a message box, the mock's call method saves the
@@ -31,7 +31,7 @@ class Mbox_func:
         self.kwds = kwds
         return self.result  # Set by tester for ask functions
 
-class Mbox:
+class Mbox(object):
     """Mock for tkinter.messagebox with an Mbox_func for each function.
 
     This module was 'tkMessageBox' in 2.x; hence the 'import as' in  3.x.
@@ -68,7 +68,7 @@ class Test(unittest.TestCase):
 
 from _tkinter import TclError
 
-class Text:
+class Text(object):
     """A semi-functional non-gui replacement for tkinter.Text text editors.
 
     The mock's data model is that a text is a list of \n-terminated lines.
@@ -114,7 +114,7 @@ class Text:
         try:
             index=index.lower()
         except AttributeError:
-            raise TclError('bad text index "%s"' % index) from None
+            raise TclError('bad text index "%s"' % index)
 
         lastline =  len(self.data) - 1  # same as number of text lines
         if index == 'insert':

@@ -10,6 +10,8 @@
 
 .. index:: single: msi
 
+.. versionadded:: 2.5
+
 The :mod:`msilib` supports the creation of Microsoft Installer (``.msi``) files.
 Because these files often contain an embedded "cabinet" file (``.cab``), it also
 exposes an API to create CAB files. Support for reading ``.cab`` files is
@@ -88,7 +90,8 @@ structures.
    record according to the schema of the table.  For optional fields,
    ``None`` can be passed.
 
-   Field values can be ints, strings, or instances of the Binary class.
+   Field values can be int or long numbers, strings, or instances of the Binary
+   class.
 
 
 .. class:: Binary(filename)
@@ -362,7 +365,7 @@ Directory Objects
    the default flags that new components get.
 
 
-   .. method:: start_component(component=None, feature=None, flags=None, keyfile=None, uuid=None)
+   .. method:: start_component([component[, feature[, flags[, keyfile[, uuid]]]]])
 
       Add an entry to the Component table, and make this component the current
       component for this directory. If no component name is given, the directory
@@ -371,7 +374,7 @@ Directory Objects
       is given, the KeyPath is left null in the Component table.
 
 
-   .. method:: add_file(file, src=None, version=None, language=None)
+   .. method:: add_file(file[, src[, version[, language]]])
 
       Add a file to the current component of the directory, starting a new one
       if there is no current component. By default, the file name in the source
@@ -380,7 +383,7 @@ Directory Objects
       and a *language* can be specified for the entry in the File table.
 
 
-   .. method:: glob(pattern, exclude=None)
+   .. method:: glob(pattern[, exclude])
 
       Add a list of files to the current component as specified in the glob
       pattern.  Individual files can be excluded in the *exclude* list.
@@ -404,7 +407,7 @@ Features
 --------
 
 
-.. class:: Feature(db, id, title, desc, display, level=1, parent=None, directory=None,  attributes=0)
+.. class:: Feature(database, id, title, desc, display[, level=1[, parent[, directory[,  attributes=0]]]])
 
    Add a new record to the ``Feature`` table, using the values *id*, *parent.id*,
    *title*, *desc*, *display*, *level*, *directory*, and *attributes*. The
@@ -440,7 +443,7 @@ for installing Python packages.
    belongs to, and *name* is the control's name.
 
 
-   .. method:: event(event, argument, condition=1, ordering=None)
+   .. method:: event(event, argument[,  condition=1[, ordering]])
 
       Make an entry into the ``ControlEvent`` table for this control.
 
@@ -461,10 +464,10 @@ for installing Python packages.
    that gets set when a radio button is selected.
 
 
-   .. method:: add(name, x, y, width, height, text, value=None)
+   .. method:: add(name, x, y, width, height, text [, value])
 
       Add a radio button named *name* to the group, at the coordinates *x*, *y*,
-      *width*, *height*, and with the label *text*. If *value* is ``None``, it
+      *width*, *height*, and with the label *text*. If *value* is omitted, it
       defaults to *name*.
 
 

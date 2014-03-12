@@ -14,29 +14,36 @@ The :mod:`pprint` module provides a capability to "pretty-print" arbitrary
 Python data structures in a form which can be used as input to the interpreter.
 If the formatted structures include objects which are not fundamental Python
 types, the representation may not be loadable.  This may be the case if objects
-such as files, sockets or classes are included, as well as many other
-objects which are not representable as Python literals.
+such as files, sockets, classes, or instances are included, as well as many
+other built-in objects which are not representable as Python constants.
 
 The formatted representation keeps objects on a single line if it can, and
 breaks them onto multiple lines if they don't fit within the allowed width.
 Construct :class:`PrettyPrinter` objects explicitly if you need to adjust the
 width constraint.
 
-Dictionaries are sorted by key before the display is computed.
+.. versionchanged:: 2.5
+   Dictionaries are sorted by key before the display is computed; before 2.5, a
+   dictionary was sorted only if its display required more than one line, although
+   that wasn't documented.
+
+.. versionchanged:: 2.6
+   Added support for :class:`set` and :class:`frozenset`.
+
 
 The :mod:`pprint` module defines one class:
 
 .. First the implementation class:
 
 
-.. class:: PrettyPrinter(indent=1, width=80, depth=None, stream=None, *, \
-                         compact=False)
+.. class:: PrettyPrinter(indent=1, width=80, depth=None, stream=None)
 
    Construct a :class:`PrettyPrinter` instance.  This constructor understands
    several keyword parameters.  An output stream may be set using the *stream*
    keyword; the only method used on the stream object is the file protocol's
    :meth:`write` method.  If not specified, the :class:`PrettyPrinter` adopts
-   ``sys.stdout``.  The
+   ``sys.stdout``.  Three additional parameters may be used to control the
+   formatted representation.  The keywords are *indent*, *depth*, and *width*.  The
    amount of indentation added for each recursive level is specified by *indent*;
    the default is one.  Other values can cause output to look a little odd, but can
    make nesting easier to spot.  The number of levels which may be printed is
@@ -45,12 +52,7 @@ The :mod:`pprint` module defines one class:
    the depth of the objects being formatted.  The desired output width is
    constrained using the *width* parameter; the default is 80 characters.  If a
    structure cannot be formatted within the constrained width, a best effort will
-   be made.  If *compact* is false (the default) each item of a long sequence
-   will be formatted on a separate line.  If *compact* is true, as many items
-   as will fit within the *width* will be formatted on each output line.
-
-   .. versionchanged:: 3.4
-      Added the *compact* parameter.
+   be made.
 
       >>> import pprint
       >>> stuff = ['spam', 'eggs', 'lumberjack', 'knights', 'ni']
@@ -63,43 +65,31 @@ The :mod:`pprint` module defines one class:
           'lumberjack',
           'knights',
           'ni']
-      >>> pp = pprint.PrettyPrinter(width=41, compact=True)
-      >>> pp.pprint(stuff)
-      [['spam', 'eggs', 'lumberjack',
-        'knights', 'ni'],
-       'spam', 'eggs', 'lumberjack', 'knights',
-       'ni']
       >>> tup = ('spam', ('eggs', ('lumberjack', ('knights', ('ni', ('dead',
       ... ('parrot', ('fresh fruit',))))))))
       >>> pp = pprint.PrettyPrinter(depth=6)
       >>> pp.pprint(tup)
       ('spam', ('eggs', ('lumberjack', ('knights', ('ni', ('dead', (...)))))))
 
+The :class:`PrettyPrinter` class supports several derivative functions:
 
-The :mod:`pprint` module also provides several shortcut functions:
+.. function:: pformat(object, indent=1, width=80, depth=None)
 
-.. function:: pformat(object, indent=1, width=80, depth=None, *, compact=False)
+   Return the formatted representation of *object* as a string.  *indent*, *width*
+   and *depth* will be passed to the :class:`PrettyPrinter` constructor as
+   formatting parameters.
 
-   Return the formatted representation of *object* as a string.  *indent*,
-   *width*, *depth* and *compact* will be passed to the :class:`PrettyPrinter`
-   constructor as formatting parameters.
-
-   .. versionchanged:: 3.4
-      Added the *compact* parameter.
+   .. versionchanged:: 2.4
+      The parameters *indent*, *width* and *depth* were added.
 
 
-.. function:: pprint(object, stream=None, indent=1, width=80, depth=None, *, \
-                     compact=False)
+.. function:: pprint(object, stream=None, indent=1, width=80, depth=None)
 
    Prints the formatted representation of *object* on *stream*, followed by a
-   newline.  If *stream* is ``None``, ``sys.stdout`` is used.  This may be used
-   in the interactive interpreter instead of the :func:`print` function for
-   inspecting values (you can even reassign ``print = pprint.pprint`` for use
-   within a scope).  *indent*, *width*, *depth* and *compact* will be passed
-   to the :class:`PrettyPrinter` constructor as formatting parameters.
-
-   .. versionchanged:: 3.4
-      Added the *compact* parameter.
+   newline.  If *stream* is ``None``, ``sys.stdout`` is used.  This may be used in
+   the interactive interpreter instead of a :keyword:`print` statement for
+   inspecting values.    *indent*, *width* and *depth* will be passed to the
+   :class:`PrettyPrinter` constructor as formatting parameters.
 
       >>> import pprint
       >>> stuff = ['spam', 'eggs', 'lumberjack', 'knights', 'ni']
@@ -111,6 +101,9 @@ The :mod:`pprint` module also provides several shortcut functions:
        'lumberjack',
        'knights',
        'ni']
+
+   .. versionchanged:: 2.4
+      The parameters *indent*, *width* and *depth* were added.
 
 
 .. function:: isreadable(object)
@@ -204,148 +197,41 @@ are converted to strings.  The default implementation uses the internals of the
    calls. The fourth argument, *level*, gives the current level; recursive calls
    should be passed a value less than that of the current call.
 
+   .. versionadded:: 2.3
 
 .. _pprint-example:
 
-Example
--------
+pprint Example
+--------------
 
-To demonstrate several uses of the :func:`pprint` function and its parameters,
-let's fetch information about a project from `PyPI <https://pypi.python.org>`_::
+This example demonstrates several uses of the :func:`pprint` function and its
+parameters.
 
-   >>> import json
    >>> import pprint
-   >>> from urllib.request import urlopen
-   >>> with urlopen('http://pypi.python.org/pypi/Twisted/json') as url:
-   ...     http_info = url.info()
-   ...     raw_data = url.read().decode(http_info.get_content_charset())
-   >>> project_info = json.loads(raw_data)
+   >>> tup = ('spam', ('eggs', ('lumberjack', ('knights', ('ni', ('dead',
+   ... ('parrot', ('fresh fruit',))))))))
+   >>> stuff = ['a' * 10, tup, ['a' * 30, 'b' * 30], ['c' * 20, 'd' * 20]]
+   >>> pprint.pprint(stuff)
+   ['aaaaaaaaaa',
+    ('spam',
+     ('eggs',
+      ('lumberjack',
+       ('knights', ('ni', ('dead', ('parrot', ('fresh fruit',)))))))),
+    ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'],
+    ['cccccccccccccccccccc', 'dddddddddddddddddddd']]
+   >>> pprint.pprint(stuff, depth=3)
+   ['aaaaaaaaaa',
+    ('spam', ('eggs', (...))),
+    ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'],
+    ['cccccccccccccccccccc', 'dddddddddddddddddddd']]
+   >>> pprint.pprint(stuff, width=60)
+   ['aaaaaaaaaa',
+    ('spam',
+     ('eggs',
+      ('lumberjack',
+       ('knights',
+        ('ni', ('dead', ('parrot', ('fresh fruit',)))))))),
+    ['aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+     'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'],
+    ['cccccccccccccccccccc', 'dddddddddddddddddddd']]
 
-In its basic form, :func:`pprint` shows the whole object::
-
-   >>> pprint.pprint(project_info)
-   {'info': {'_pypi_hidden': False,
-             '_pypi_ordering': 125,
-             'author': 'Glyph Lefkowitz',
-             'author_email': 'glyph@twistedmatrix.com',
-             'bugtrack_url': '',
-             'cheesecake_code_kwalitee_id': None,
-             'cheesecake_documentation_id': None,
-             'cheesecake_installability_id': None,
-             'classifiers': ['Programming Language :: Python :: 2.6',
-                             'Programming Language :: Python :: 2.7',
-                             'Programming Language :: Python :: 2 :: Only'],
-             'description': 'An extensible framework for Python programming, '
-                            'with special focus\r\n'
-                            'on event-based network programming and '
-                            'multiprotocol integration.',
-             'docs_url': '',
-             'download_url': 'UNKNOWN',
-             'home_page': 'http://twistedmatrix.com/',
-             'keywords': '',
-             'license': 'MIT',
-             'maintainer': '',
-             'maintainer_email': '',
-             'name': 'Twisted',
-             'package_url': 'http://pypi.python.org/pypi/Twisted',
-             'platform': 'UNKNOWN',
-             'release_url': 'http://pypi.python.org/pypi/Twisted/12.3.0',
-             'requires_python': None,
-             'stable_version': None,
-             'summary': 'An asynchronous networking framework written in Python',
-             'version': '12.3.0'},
-    'urls': [{'comment_text': '',
-              'downloads': 71844,
-              'filename': 'Twisted-12.3.0.tar.bz2',
-              'has_sig': False,
-              'md5_digest': '6e289825f3bf5591cfd670874cc0862d',
-              'packagetype': 'sdist',
-              'python_version': 'source',
-              'size': 2615733,
-              'upload_time': '2012-12-26T12:47:03',
-              'url': 'https://pypi.python.org/packages/source/T/Twisted/Twisted-12.3.0.tar.bz2'},
-             {'comment_text': '',
-              'downloads': 5224,
-              'filename': 'Twisted-12.3.0.win32-py2.7.msi',
-              'has_sig': False,
-              'md5_digest': '6b778f5201b622a5519a2aca1a2fe512',
-              'packagetype': 'bdist_msi',
-              'python_version': '2.7',
-              'size': 2916352,
-              'upload_time': '2012-12-26T12:48:15',
-              'url': 'https://pypi.python.org/packages/2.7/T/Twisted/Twisted-12.3.0.win32-py2.7.msi'}]}
-
-The result can be limited to a certain *depth* (ellipsis is used for deeper
-contents)::
-
-   >>> pprint.pprint(project_info, depth=2)
-   {'info': {'_pypi_hidden': False,
-             '_pypi_ordering': 125,
-             'author': 'Glyph Lefkowitz',
-             'author_email': 'glyph@twistedmatrix.com',
-             'bugtrack_url': '',
-             'cheesecake_code_kwalitee_id': None,
-             'cheesecake_documentation_id': None,
-             'cheesecake_installability_id': None,
-             'classifiers': [...],
-             'description': 'An extensible framework for Python programming, '
-                            'with special focus\r\n'
-                            'on event-based network programming and '
-                            'multiprotocol integration.',
-             'docs_url': '',
-             'download_url': 'UNKNOWN',
-             'home_page': 'http://twistedmatrix.com/',
-             'keywords': '',
-             'license': 'MIT',
-             'maintainer': '',
-             'maintainer_email': '',
-             'name': 'Twisted',
-             'package_url': 'http://pypi.python.org/pypi/Twisted',
-             'platform': 'UNKNOWN',
-             'release_url': 'http://pypi.python.org/pypi/Twisted/12.3.0',
-             'requires_python': None,
-             'stable_version': None,
-             'summary': 'An asynchronous networking framework written in Python',
-             'version': '12.3.0'},
-    'urls': [{...}, {...}]}
-
-Additionally, maximum character *width* can be suggested. If a long object
-cannot be split, the specified width will be exceeded::
-
-   >>> pprint.pprint(project_info, depth=2, width=50)
-   {'info': {'_pypi_hidden': False,
-             '_pypi_ordering': 125,
-             'author': 'Glyph Lefkowitz',
-             'author_email': 'glyph@twistedmatrix.com',
-             'bugtrack_url': '',
-             'cheesecake_code_kwalitee_id': None,
-             'cheesecake_documentation_id': None,
-             'cheesecake_installability_id': None,
-             'classifiers': [...],
-             'description': 'An extensible '
-                            'framework for '
-                            'Python programming, '
-                            'with special '
-                            'focus\r\n'
-                            'on event-based '
-                            'network programming '
-                            'and multiprotocol '
-                            'integration.',
-             'docs_url': '',
-             'download_url': 'UNKNOWN',
-             'home_page': 'http://twistedmatrix.com/',
-             'keywords': '',
-             'license': 'MIT',
-             'maintainer': '',
-             'maintainer_email': '',
-             'name': 'Twisted',
-             'package_url': 'http://pypi.python.org/pypi/Twisted',
-             'platform': 'UNKNOWN',
-             'release_url': 'http://pypi.python.org/pypi/Twisted/12.3.0',
-             'requires_python': None,
-             'stable_version': None,
-             'summary': 'An asynchronous '
-                        'networking framework '
-                        'written in Python',
-             'version': '12.3.0'},
-    'urls': [{...}, {...}]}

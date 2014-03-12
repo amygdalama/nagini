@@ -5,7 +5,7 @@ import sys
 import unittest
 import site
 
-from test.support import captured_stdout, run_unittest
+from test.test_support import captured_stdout, run_unittest
 
 from distutils import sysconfig
 from distutils.command.install import install
@@ -22,11 +22,10 @@ from distutils.tests import support
 def _make_ext_name(modname):
     if os.name == 'nt' and sys.executable.endswith('_d.exe'):
         modname += '_d'
-    return modname + sysconfig.get_config_var('EXT_SUFFIX')
+    return modname + sysconfig.get_config_var('SO')
 
 
 class InstallTestCase(support.TempdirManager,
-                      support.EnvironGuard,
                       support.LoggingSilencer,
                       unittest.TestCase):
 
@@ -66,8 +65,9 @@ class InstallTestCase(support.TempdirManager,
         check_path(cmd.install_scripts, os.path.join(destination, "bin"))
         check_path(cmd.install_data, destination)
 
+    @unittest.skipIf(sys.version < '2.6',
+                     'site.USER_SITE was introduced in 2.6')
     def test_user_site(self):
-        # test install with --user
         # preparing the environment for the test
         self.old_user_base = site.USER_BASE
         self.old_user_site = site.USER_SITE
@@ -93,7 +93,7 @@ class InstallTestCase(support.TempdirManager,
 
         self.addCleanup(cleanup)
 
-        for key in ('nt_user', 'unix_user'):
+        for key in ('nt_user', 'unix_user', 'os2_home'):
             self.assertIn(key, INSTALL_SCHEMES)
 
         dist = Distribution({'name': 'xx'})
@@ -175,7 +175,7 @@ class InstallTestCase(support.TempdirManager,
         project_dir, dist = self.create_dist(py_modules=['hello'],
                                              scripts=['sayhi'])
         os.chdir(project_dir)
-        self.write_file('hello.py', "def main(): print('o hai')")
+        self.write_file('hello.py', "def main(): print 'o hai'")
         self.write_file('sayhi', 'from hello import main; main()')
 
         cmd = install(dist)
@@ -192,8 +192,7 @@ class InstallTestCase(support.TempdirManager,
             f.close()
 
         found = [os.path.basename(line) for line in content.splitlines()]
-        expected = ['hello.py', 'hello.%s.pyc' % sys.implementation.cache_tag,
-                    'sayhi',
+        expected = ['hello.py', 'hello.pyc', 'sayhi',
                     'UNKNOWN-0.0.0-py%s.%s.egg-info' % sys.version_info[:2]]
         self.assertEqual(found, expected)
 

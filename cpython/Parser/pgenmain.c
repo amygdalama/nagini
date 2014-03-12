@@ -13,8 +13,6 @@
    - check for duplicate definitions of names (instead of fatal err)
 */
 
-#define PGEN
-
 #include "Python.h"
 #include "pgenheaders.h"
 #include "grammar.h"
@@ -28,8 +26,6 @@ int Py_IgnoreEnvironmentFlag;
 
 /* Forward */
 grammar *getgrammar(char *filename);
-
-void Py_Exit(int) _Py_NO_RETURN;
 
 void
 Py_Exit(int sts)
@@ -113,7 +109,6 @@ getgrammar(char *filename)
         Py_Exit(1);
     }
     g = pgen(n);
-    PyNode_Free(n);
     if (g == NULL) {
         printf("Bad grammar.\n");
         Py_Exit(1);
@@ -138,7 +133,7 @@ Py_FatalError(const char *msg)
 /* No-nonsense my_readline() for tokenizer.c */
 
 char *
-PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
+PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, char *prompt)
 {
     size_t n = 1000;
     char *p = (char *)PyMem_MALLOC(n);

@@ -8,6 +8,8 @@
 .. sectionauthor:: François Pinard
 .. sectionauthor:: Raymond Hettinger
 
+.. versionadded:: 2.3
+
 **Source code:** :source:`Lib/heapq.py`
 
 --------------
@@ -49,13 +51,13 @@ The following functions are provided:
    Pop and return the smallest item from the *heap*, maintaining the heap
    invariant.  If the heap is empty, :exc:`IndexError` is raised.
 
-
 .. function:: heappushpop(heap, item)
 
    Push *item* on the heap, then pop and return the smallest item from the
    *heap*.  The combined action runs more efficiently than :func:`heappush`
    followed by a separate call to :func:`heappop`.
 
+   .. versionadded:: 2.6
 
 .. function:: heapify(x)
 
@@ -91,8 +93,10 @@ The module also offers three general purpose functions based on heaps.
    not pull the data into memory all at once, and assumes that each of the input
    streams is already sorted (smallest to largest).
 
+   .. versionadded:: 2.6
 
-.. function:: nlargest(n, iterable, key=None)
+
+.. function:: nlargest(n, iterable[, key])
 
    Return a list with the *n* largest elements from the dataset defined by
    *iterable*.  *key*, if provided, specifies a function of one argument that is
@@ -100,14 +104,23 @@ The module also offers three general purpose functions based on heaps.
    ``key=str.lower`` Equivalent to:  ``sorted(iterable, key=key,
    reverse=True)[:n]``
 
+   .. versionadded:: 2.4
 
-.. function:: nsmallest(n, iterable, key=None)
+   .. versionchanged:: 2.5
+      Added the optional *key* argument.
+
+
+.. function:: nsmallest(n, iterable[, key])
 
    Return a list with the *n* smallest elements from the dataset defined by
    *iterable*.  *key*, if provided, specifies a function of one argument that is
    used to extract a comparison key from each element in the iterable:
    ``key=str.lower`` Equivalent to:  ``sorted(iterable, key=key)[:n]``
 
+   .. versionadded:: 2.4
+
+   .. versionchanged:: 2.5
+      Added the optional *key* argument.
 
 The latter two functions perform best for smaller values of *n*.  For larger
 values, it is more efficient to use the :func:`sorted` function.  Also, when
@@ -153,8 +166,9 @@ for a heap, and it presents several implementation challenges:
 * Sort stability:  how do you get two tasks with equal priorities to be returned
   in the order they were originally added?
 
-* Tuple comparison breaks for (priority, task) pairs if the priorities are equal
-  and the tasks do not have a default comparison order.
+* In the future with Python 3, tuple comparison breaks for (priority, task)
+  pairs if the priorities are equal and the tasks do not have a default
+  comparison order.
 
 * If the priority of a task changes, how do you move it to a new position in
   the heap?
@@ -174,7 +188,7 @@ with a dictionary pointing to an entry in the queue.
 
 Removing the entry or changing its priority is more difficult because it would
 break the heap structure invariants.  So, a possible solution is to mark the
-entry as removed and add a new entry with the revised priority::
+existing entry as removed and add a new entry with the revised priority::
 
     pq = []                         # list of entries arranged in a heap
     entry_finder = {}               # mapping of tasks to entries

@@ -4,7 +4,7 @@ from binascii import hexlify
 from ctypes import *
 
 def bin(s):
-    return hexlify(memoryview(s)).decode().upper()
+    return hexlify(memoryview(s)).upper()
 
 # Each *simple* type that supports different byte orders has an
 # __ctype_be__ attribute that specifies the same type in BIG ENDIAN
@@ -15,7 +15,7 @@ def bin(s):
 
 class Test(unittest.TestCase):
     def X_test(self):
-        print(sys.byteorder, file=sys.stderr)
+        print >> sys.stderr,  sys.byteorder
         for i in range(32):
             bits = BITS()
             setattr(bits, "i%s" % i, 1)
@@ -114,12 +114,12 @@ class Test(unittest.TestCase):
         s = c_float(math.pi)
         self.assertEqual(bin(struct.pack("f", math.pi)), bin(s))
         # Hm, what's the precision of a float compared to a double?
-        self.assertAlmostEqual(s.value, math.pi, places=6)
+        self.assertAlmostEqual(s.value, math.pi, 6)
         s = c_float.__ctype_le__(math.pi)
-        self.assertAlmostEqual(s.value, math.pi, places=6)
+        self.assertAlmostEqual(s.value, math.pi, 6)
         self.assertEqual(bin(struct.pack("<f", math.pi)), bin(s))
         s = c_float.__ctype_be__(math.pi)
-        self.assertAlmostEqual(s.value, math.pi, places=6)
+        self.assertAlmostEqual(s.value, math.pi, 6)
         self.assertEqual(bin(struct.pack(">f", math.pi)), bin(s))
 
     def test_endian_double(self):

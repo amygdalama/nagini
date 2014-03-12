@@ -1,10 +1,10 @@
 import unittest
-from test import support
-from test.support import import_module, use_resources
+from test import test_support as support
+from test.test_support import import_module, use_resources
 
 # Skip test if _thread or _tkinter wasn't built or idlelib was deleted.
-import_module('threading')  # imported by PyShell, imports _thread
-tk = import_module('tkinter')  # imports _tkinter
+import_module('threading')  # imported by idlelib.PyShell, imports _thread
+tk = import_module('Tkinter')  # imports _tkinter
 idletest = import_module('idlelib.idle_test')
 
 # If buildbot improperly sets gui resource (#18365, #18441), remove it
@@ -23,6 +23,10 @@ if use_resources and 'gui' in use_resources:
 # unittest.TestLoader().loadTestsFromModule(this_module) which calls
 # load_tests() if it finds it. (Unittest.main does the same.)
 load_tests = idletest.load_tests
+
+# pre-3.3 regrtest does not support the load_tests protocol. use test_main
+def test_main():
+    support.run_unittest(unittest.TestLoader().loadTestsFromModule(idletest))
 
 if __name__ == '__main__':
     # Until unittest supports resources, we emulate regrtest's -ugui

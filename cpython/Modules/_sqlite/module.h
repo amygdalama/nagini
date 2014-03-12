@@ -1,6 +1,6 @@
 /* module.h - definitions for the module
  *
- * Copyright (C) 2004-2010 Gerhard HÃ¤ring <gh@ghaering.de>
+ * Copyright (C) 2004-2010 Gerhard Häring <gh@ghaering.de>
  *
  * This file is part of pysqlite.
  *
@@ -37,6 +37,8 @@ extern PyObject* pysqlite_ProgrammingError;
 extern PyObject* pysqlite_IntegrityError;
 extern PyObject* pysqlite_DataError;
 extern PyObject* pysqlite_NotSupportedError;
+
+extern PyObject* pysqlite_OptimizedUnicode;
 
 /* the functions time.time() and time.sleep() */
 extern PyObject* time_time;

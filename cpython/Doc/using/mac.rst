@@ -12,20 +12,27 @@ Python on a Macintosh running Mac OS X is in principle very similar to Python on
 any other Unix platform, but there are a number of additional features such as
 the IDE and the Package Manager that are worth pointing out.
 
+The Mac-specific modules are documented in :ref:`mac-specific-services`.
+
+Python on Mac OS 9 or earlier can be quite different from Python on Unix or
+Windows, but is beyond the scope of this manual, as that platform is no longer
+supported, starting with Python 2.4. See http://www.cwi.nl/~jack/macpython for
+installers for the latest 2.3 release for Mac OS 9 and related documentation.
+
+
 .. _getting-osx:
 
 Getting and Installing MacPython
 ================================
 
 Mac OS X 10.8 comes with Python 2.7 pre-installed by Apple.  If you wish, you
-are invited to install the most recent version of Python 3 from the Python
-website (http://www.python.org).  A current "universal binary" build of Python,
-which runs natively on the Mac's new Intel and legacy PPC CPU's, is available
-there.
+are invited to install the most recent version of Python from the Python website
+(http://www.python.org).  A current "universal binary" build of Python, which
+runs natively on the Mac's new Intel and legacy PPC CPU's, is available there.
 
 What you get after installing is a number of things:
 
-* A :file:`MacPython 3.4` folder in your :file:`Applications` folder. In here
+* A :file:`MacPython 2.7` folder in your :file:`Applications` folder. In here
   you find IDLE, the development environment that is a standard part of official
   Python distributions; PythonLauncher, which handles double-clicking Python
   scripts from the Finder; and the "Build Applet" tool, which allows you to
@@ -93,7 +100,7 @@ aware of: programs that talk to the Aqua window manager (in other words,
 anything that has a GUI) need to be run in a special way. Use :program:`pythonw`
 instead of :program:`python` to start such scripts.
 
-With Python 3.4, you can use either :program:`python` or :program:`pythonw`.
+With Python 2.7, you can use either :program:`python` or :program:`pythonw`.
 
 
 Configuration
@@ -142,7 +149,7 @@ There are several options for building GUI applications on the Mac with Python.
 the foundation of most modern Mac development. Information on PyObjC is
 available from http://pyobjc.sourceforge.net.
 
-The standard Python GUI toolkit is :mod:`tkinter`, based on the cross-platform
+The standard Python GUI toolkit is :mod:`Tkinter`, based on the cross-platform
 Tk toolkit (http://www.tcl.tk). An Aqua-native version of Tk is bundled with OS
 X by Apple, and the latest version can be downloaded and installed from
 http://www.activestate.com; it can also be built from source.
@@ -158,7 +165,7 @@ http://www.riverbankcomputing.co.uk/software/pyqt/intro.
 Distributing Python Applications on the Mac
 ===========================================
 
-The "Build Applet" tool that is placed in the MacPython 3.4 folder is fine for
+The "Build Applet" tool that is placed in the MacPython 2.7 folder is fine for
 packaging small Python scripts on your own machine to run as a standard Mac
 application. This tool, however, is not robust enough to distribute Python
 applications to other users.

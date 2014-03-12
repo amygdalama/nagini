@@ -1,7 +1,7 @@
 import netrc, os, unittest, sys, textwrap
-from test import support
+from test import test_support
 
-temp_filename = support.TESTFN
+temp_filename = test_support.TESTFN
 
 class NetrcTestCase(unittest.TestCase):
 
@@ -105,18 +105,18 @@ class NetrcTestCase(unittest.TestCase):
     def test_security(self):
         # This test is incomplete since we are normally not run as root and
         # therefore can't test the file ownership being wrong.
-        d = support.TESTFN
+        d = test_support.TESTFN
         os.mkdir(d)
-        self.addCleanup(support.rmtree, d)
+        self.addCleanup(test_support.rmtree, d)
         fn = os.path.join(d, '.netrc')
         with open(fn, 'wt') as f:
             f.write("""\
                 machine foo.domain.com login bar password pass
                 default login foo password pass
                 """)
-        with support.EnvironmentVarGuard() as environ:
+        with test_support.EnvironmentVarGuard() as environ:
             environ.set('HOME', d)
-            os.chmod(fn, 0o600)
+            os.chmod(fn, 0600)
             nrc = netrc.netrc()
             self.assertEqual(nrc.hosts['foo.domain.com'],
                              ('bar', None, 'pass'))
@@ -124,7 +124,7 @@ class NetrcTestCase(unittest.TestCase):
             self.assertRaises(netrc.NetrcParseError, netrc.netrc)
 
 def test_main():
-    support.run_unittest(NetrcTestCase)
+    test_support.run_unittest(NetrcTestCase)
 
 if __name__ == "__main__":
     test_main()

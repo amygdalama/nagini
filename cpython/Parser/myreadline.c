@@ -15,6 +15,10 @@
 #include "windows.h"
 #endif /* MS_WINDOWS */
 
+#ifdef __VMS
+extern char* vms__StdioReadline(FILE *sys_stdin, FILE *sys_stdout, char *prompt);
+#endif
+
 
 PyThreadState* _PyOS_ReadlineTState;
 
@@ -25,51 +29,47 @@ static PyThread_type_lock _PyOS_ReadlineLock = NULL;
 
 int (*PyOS_InputHook)(void) = NULL;
 
+#ifdef RISCOS
+int Py_RISCOSWimpFlag;
+#endif
+
 /* This function restarts a fgets() after an EINTR error occurred
    except if PyOS_InterruptOccurred() returns true. */
 
 static int
 my_fgets(char *buf, int len, FILE *fp)
 {
-#ifdef MS_WINDOWS
-    HANDLE hInterruptEvent;
-#endif
     char *p;
-    int err;
+#ifdef MS_WINDOWS
+    int i;
+#endif
+
     while (1) {
         if (PyOS_InputHook != NULL)
             (void)(PyOS_InputHook)();
         errno = 0;
         clearerr(fp);
-        if (_PyVerify_fd(fileno(fp)))
-            p = fgets(buf, len, fp);
-        else
-            p = NULL;
+        p = fgets(buf, len, fp);
         if (p != NULL)
             return 0; /* No error */
-        err = errno;
 #ifdef MS_WINDOWS
         /* Ctrl-C anywhere on the line or Ctrl-Z if the only character
            on a line will set ERROR_OPERATION_ABORTED. Under normal
            circumstances Ctrl-C will also have caused the SIGINT handler
-           to fire which will have set the event object returned by
-           _PyOS_SigintEvent. This signal fires in another thread and
-           is not guaranteed to have occurred before this point in the
-           code.
+           to fire. This signal fires in another thread and is not
+           guaranteed to have occurred before this point in the code.
 
-           Therefore: check whether the event is set with a small timeout.
-           If it is, assume this is a Ctrl-C and reset the event. If it
-           isn't set assume that this is a Ctrl-Z on its own and drop
-           through to check for EOF.
+           Therefore: check in a small loop to see if the trigger has
+           fired, in which case assume this is a Ctrl-C event. If it
+           hasn't fired within 10ms assume that this is a Ctrl-Z on its
+           own or that the signal isn't going to fire for some other
+           reason and drop through to check for EOF.
         */
         if (GetLastError()==ERROR_OPERATION_ABORTED) {
-            hInterruptEvent = _PyOS_SigintEvent();
-            switch (WaitForSingleObjectEx(hInterruptEvent, 10, FALSE)) {
-            case WAIT_OBJECT_0:
-                ResetEvent(hInterruptEvent);
-                return 1; /* Interrupt */
-            case WAIT_FAILED:
-                return -2; /* Error */
+            for (i = 0; i < 10; i++) {
+                if (PyOS_InterruptOccurred())
+                    return 1;
+                Sleep(1);
             }
         }
 #endif /* MS_WINDOWS */
@@ -78,7 +78,7 @@ my_fgets(char *buf, int len, FILE *fp)
             return -1; /* EOF */
         }
 #ifdef EINTR
-        if (err == EINTR) {
+        if (errno == EINTR) {
             int s;
 #ifdef WITH_THREAD
             PyEval_RestoreThread(_PyOS_ReadlineTState);
@@ -89,7 +89,7 @@ my_fgets(char *buf, int len, FILE *fp)
 #endif
             if (s < 0)
                     return 1;
-        /* try again */
+	    /* try again */
             continue;
         }
 #endif
@@ -105,26 +105,31 @@ my_fgets(char *buf, int len, FILE *fp)
 /* Readline implementation using fgets() */
 
 char *
-PyOS_StdioReadline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
+PyOS_StdioReadline(FILE *sys_stdin, FILE *sys_stdout, char *prompt)
 {
     size_t n;
-    char *p, *pr;
-
+    char *p;
     n = 100;
-    p = (char *)PyMem_RawMalloc(n);
-    if (p == NULL)
+    if ((p = (char *)PyMem_MALLOC(n)) == NULL)
         return NULL;
-
     fflush(sys_stdout);
+#ifndef RISCOS
     if (prompt)
         fprintf(stderr, "%s", prompt);
+#else
+    if (prompt) {
+        if(Py_RISCOSWimpFlag)
+            fprintf(stderr, "\x0cr%s\x0c", prompt);
+        else
+            fprintf(stderr, "%s", prompt);
+    }
+#endif
     fflush(stderr);
-
     switch (my_fgets(p, (int)n, sys_stdin)) {
     case 0: /* Normal case */
         break;
     case 1: /* Interrupt */
-        PyMem_RawFree(p);
+        PyMem_FREE(p);
         return NULL;
     case -1: /* EOF */
     case -2: /* Error */
@@ -135,29 +140,17 @@ PyOS_StdioReadline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
     n = strlen(p);
     while (n > 0 && p[n-1] != '\n') {
         size_t incr = n+2;
+        p = (char *)PyMem_REALLOC(p, n + incr);
+        if (p == NULL)
+            return NULL;
         if (incr > INT_MAX) {
-            PyMem_RawFree(p);
             PyErr_SetString(PyExc_OverflowError, "input line too long");
-            return NULL;
         }
-        pr = (char *)PyMem_RawRealloc(p, n + incr);
-        if (pr == NULL) {
-            PyMem_RawFree(p);
-            PyErr_NoMemory();
-            return NULL;
-        }
-        p = pr;
         if (my_fgets(p+n, (int)incr, sys_stdin) != 0)
             break;
         n += strlen(p+n);
     }
-    pr = (char *)PyMem_RawRealloc(p, n+1);
-    if (pr == NULL) {
-        PyMem_RawFree(p);
-        PyErr_NoMemory();
-        return NULL;
-    }
-    return pr;
+    return (char *)PyMem_REALLOC(p, n+1);
 }
 
 
@@ -166,16 +159,15 @@ PyOS_StdioReadline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
 
    Note: Python expects in return a buffer allocated with PyMem_Malloc. */
 
-char *(*PyOS_ReadlineFunctionPointer)(FILE *, FILE *, const char *);
+char *(*PyOS_ReadlineFunctionPointer)(FILE *, FILE *, char *);
 
 
 /* Interface used by tokenizer.c and bltinmodule.c */
 
 char *
-PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
+PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, char *prompt)
 {
-    char *rv, *res;
-    size_t len;
+    char *rv;
 
     if (_PyOS_ReadlineTState == PyThreadState_GET()) {
         PyErr_SetString(PyExc_RuntimeError,
@@ -185,7 +177,11 @@ PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
 
 
     if (PyOS_ReadlineFunctionPointer == NULL) {
+#ifdef __VMS
+        PyOS_ReadlineFunctionPointer = vms__StdioReadline;
+#else
         PyOS_ReadlineFunctionPointer = PyOS_StdioReadline;
+#endif
     }
 
 #ifdef WITH_THREAD
@@ -218,14 +214,5 @@ PyOS_Readline(FILE *sys_stdin, FILE *sys_stdout, const char *prompt)
 
     _PyOS_ReadlineTState = NULL;
 
-    if (rv == NULL)
-        return NULL;
-
-    len = strlen(rv) + 1;
-    res = PyMem_Malloc(len);
-    if (res != NULL)
-        memcpy(res, rv, len);
-    PyMem_RawFree(rv);
-
-    return res;
+    return rv;
 }

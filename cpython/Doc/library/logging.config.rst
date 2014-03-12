@@ -76,29 +76,16 @@ in :mod:`logging` itself) and defining handlers which are declared either in
     this new subclass, and then :func:`dictConfig` could be called exactly as
     in the default, uncustomized state.
 
-   .. versionadded:: 3.2
+   .. versionadded:: 2.7
 
 .. function:: fileConfig(fname, defaults=None, disable_existing_loggers=True)
 
-   Reads the logging configuration from a :mod:`configparser`\-format file. The
-   format of the file should be as described in
-   :ref:`logging-config-fileformat`.
-   This function can be called several times from an application, allowing an
-   end user to select from various pre-canned configurations (if the developer
-   provides a mechanism to present the choices and load the chosen
-   configuration).
-
-   :param fname: A filename, or a file-like object, or an instance derived
-                 from :class:`~configparser.RawConfigParser`. If a
-                 ``RawConfigParser``-derived instance is passed, it is used as
-                 is. Otherwise, a :class:`~configparser.Configparser` is
-                 instantiated, and the configuration read by it from the
-                 object passed in ``fname``. If that has a :meth:`readline`
-                 method, it is assumed to be a file-like object and read using
-                 :meth:`~configparser.ConfigParser.read_file`; otherwise,
-                 it is assumed to be a filename and passed to
-                 :meth:`~configparser.ConfigParser.read`.
-
+   Reads the logging configuration from a :mod:`configparser`\-format file
+   named *fname*. The format of the file should be as described in
+   :ref:`logging-config-fileformat`. This function can be called several times
+   from an application, allowing an end user to select from various pre-canned
+   configurations (if the developer provides a mechanism to present the choices
+   and load the chosen configuration).
 
    :param defaults: Defaults to be passed to the ConfigParser can be specified
                     in this argument.
@@ -112,17 +99,11 @@ in :mod:`logging` itself) and defining handlers which are declared either in
                                     their ancestors are explicitly named in the
                                     logging configuration.
 
-   .. versionchanged:: 3.4
-      An instance of a subclass of :class:`~configparser.RawConfigParser` is
-      now accepted as a value for ``fname``. This facilitates:
+   .. versionchanged:: 2.6
+      The ``disable_existing_loggers`` keyword argument was added. Previously,
+      existing loggers were *always* disabled.
 
-      * Use of a configuration file where logging configuration is just part
-        of the overall application configuration.
-      * Use of a configuration read from a file, and then modified by the using
-        application (e.g. based on command-line parameters or other aspects
-        of the runtime environment) before being passed to ``fileConfig``.
-
-.. function:: listen(port=DEFAULT_LOGGING_CONFIG_PORT, verify=None)
+.. function:: listen(port=DEFAULT_LOGGING_CONFIG_PORT)
 
    Starts up a socket server on the specified port, and listens for new
    configurations. If no port is specified, the module's default
@@ -132,17 +113,6 @@ in :mod:`logging` itself) and defining handlers which are declared either in
    :meth:`~threading.Thread.start` to start the server, and which you can
    :meth:`~threading.Thread.join` when appropriate. To stop the server,
    call :func:`stopListening`.
-
-   The ``verify`` argument, if specified, should be a callable which should
-   verify whether bytes received across the socket are valid and should be
-   processed. This could be done by encrypting and/or signing what is sent
-   across the socket, such that the ``verify`` callable can perform
-   signature verification and/or decryption. The ``verify`` callable is called
-   with a single argument - the bytes received across the socket - and should
-   return the bytes to be processed, or None to indicate that the bytes should
-   be discarded. The returned bytes could be the same as the passed in bytes
-   (e.g. when only verification is done), or they could be completely different
-   (perhaps if decryption were performed).
 
    To send a configuration to the socket, read in the configuration file and
    send it to the socket as a string of bytes preceded by a four-byte length
@@ -160,12 +130,7 @@ in :mod:`logging` itself) and defining handlers which are declared either in
       :func:`listen` socket and sending a configuration which runs whatever
       code the attacker wants to have executed in the victim's process. This is
       especially easy to do if the default port is used, but not hard even if a
-      different port is used). To avoid the risk of this happening, use the
-      ``verify`` argument to :func:`listen` to prevent unrecognised
-      configurations from being applied.
-
-   .. versionchanged:: 3.4.
-      The ``verify`` argument was added.
+      different port is used).
 
 .. function:: stopListening()
 
@@ -671,6 +636,10 @@ Sections which specify handler configuration are exemplified by the following.
 The ``class`` entry indicates the handler's class (as determined by :func:`eval`
 in the ``logging`` package's namespace). The ``level`` is interpreted as for
 loggers, and ``NOTSET`` is taken to mean 'log everything'.
+
+.. versionchanged:: 2.6
+   Added support for resolving the handler’s class as a dotted module and
+   class name.
 
 The ``formatter`` entry indicates the key name of the formatter for this
 handler. If blank, a default formatter (``logging._defaultFormatter``) is used.

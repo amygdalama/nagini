@@ -8,7 +8,7 @@ import sys
 import os
 import codecs
 import operator
-import io
+import StringIO
 import tempfile
 import shutil
 import unittest
@@ -132,7 +132,7 @@ from __future__ import print_function"""
         self.assertEqual(top_fixes, [with_head, no_head])
         name_fixes = d.pop(token.NAME)
         self.assertEqual(name_fixes, [simple, no_head])
-        for fixes in d.values():
+        for fixes in d.itervalues():
             self.assertEqual(fixes, [no_head])
 
     def test_fixer_loading(self):
@@ -172,7 +172,7 @@ from __future__ import print_function"""
         results = []
         rt = MyRT(_DEFAULT_FIXERS)
         save = sys.stdin
-        sys.stdin = io.StringIO("def parrot(): pass\n\n")
+        sys.stdin = StringIO.StringIO("def parrot(): pass\n\n")
         try:
             rt.refactor_stdin()
         finally:
@@ -230,7 +230,7 @@ from __future__ import print_function"""
                 os.sep, os.path.basename(test_file))
         for message in debug_messages:
             if "Not writing changes" in message:
-                self.assertRegex(message, message_regex)
+                self.assertRegexpMatches(message, message_regex)
                 break
         else:
             self.fail("%r not matched in %r" % (message_regex, debug_messages))

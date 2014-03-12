@@ -81,7 +81,7 @@ source tree.
 
 .. warning::
 
-   ``make install`` can overwrite or masquerade the :file:`python3` binary.
+   ``make install`` can overwrite or masquerade the :file:`python` binary.
    ``make altinstall`` is therefore recommended instead of ``make install``
    since it only installs :file:`{exec_prefix}/bin/python{version}`.
 
@@ -99,7 +99,7 @@ For example, on most Linux systems, the default for both is :file:`/usr`.
 +-----------------------------------------------+------------------------------------------+
 | File/directory                                | Meaning                                  |
 +===============================================+==========================================+
-| :file:`{exec_prefix}/bin/python3`             | Recommended location of the interpreter. |
+| :file:`{exec_prefix}/bin/python`              | Recommended location of the interpreter. |
 +-----------------------------------------------+------------------------------------------+
 | :file:`{prefix}/lib/python{version}`,         | Recommended locations of the directories |
 | :file:`{exec_prefix}/lib/python{version}`     | containing the standard modules.         |
@@ -108,6 +108,10 @@ For example, on most Linux systems, the default for both is :file:`/usr`.
 | :file:`{exec_prefix}/include/python{version}` | containing the include files needed for  |
 |                                               | developing Python extensions and         |
 |                                               | embedding the interpreter.               |
++-----------------------------------------------+------------------------------------------+
+| :file:`~/.pythonrc.py`                        | User-specific initialization file loaded |
+|                                               | by the user module; not used by default  |
+|                                               | or by most applications.                 |
 +-----------------------------------------------+------------------------------------------+
 
 
@@ -122,11 +126,11 @@ e.g. with ::
 and put an appropriate Shebang line at the top of the script.  A good choice is
 usually ::
 
-   #!/usr/bin/env python3
+   #!/usr/bin/env python
 
 which searches for the Python interpreter in the whole :envvar:`PATH`.  However,
 some Unices may not have the :program:`env` command, so you may need to hardcode
-``/usr/bin/python3`` as the interpreter path.
+``/usr/bin/python`` as the interpreter path.
 
 To use shell commands in your Python scripts, look at the :mod:`subprocess` module.
 

@@ -7,6 +7,9 @@
 .. sectionauthor:: Paul Prescod <paul@prescod.net>
 .. sectionauthor:: Martin v. Löwis <martin@v.loewis.de>
 
+
+.. versionadded:: 2.0
+
 **Source code:** :source:`Lib/xml/dom/minidom.py`
 
 --------------
@@ -40,7 +43,7 @@ DOM applications typically start by parsing some XML into a DOM.  With
 The :func:`parse` function can take either a filename or an open file object.
 
 
-.. function:: parse(filename_or_file, parser=None, bufsize=None)
+.. function:: parse(filename_or_file[, parser[, bufsize]])
 
    Return a :class:`Document` from the given input. *filename_or_file* may be
    either a file name, or a file-like object. *parser*, if given, must be a SAX2
@@ -52,10 +55,10 @@ If you have XML in a string, you can use the :func:`parseString` function
 instead:
 
 
-.. function:: parseString(string, parser=None)
+.. function:: parseString(string[, parser])
 
    Return a :class:`Document` that represents the *string*. This method creates a
-   :class:`io.StringIO` object for the string and passes that on to :func:`parse`.
+   :class:`~StringIO.StringIO` object for the string and passes that on to :func:`parse`.
 
 Both functions return a :class:`Document` object representing the content of the
 document.
@@ -70,8 +73,12 @@ functions do not provide a parser implementation themselves.
 You can also create a :class:`Document` by calling a method on a "DOM
 Implementation" object.  You can get this object either by calling the
 :func:`getDOMImplementation` function in the :mod:`xml.dom` package or the
-:mod:`xml.dom.minidom` module.  Once you have a :class:`Document`, you
-can add child nodes to it to populate the DOM::
+:mod:`xml.dom.minidom` module. Using the implementation from the
+:mod:`xml.dom.minidom` module will always return a :class:`Document` instance
+from the minidom implementation, while the version from :mod:`xml.dom` may
+provide an alternate implementation (this is likely if you have the `PyXML
+package <http://pyxml.sourceforge.net/>`_ installed).  Once you have a
+:class:`Document`, you can add child nodes to it to populate the DOM::
 
    from xml.dom.minidom import getDOMImplementation
 
@@ -123,13 +130,6 @@ module documentation.  This section lists the differences between the API and
    to be called on the :class:`Document` object, but may be called on child nodes
    to discard children of that node.
 
-   You can avoid calling this method explicitly by using the :keyword:`with`
-   statement. The following code will automatically unlink *dom* when the
-   :keyword:`with` block is exited::
-
-      with xml.dom.minidom.parse(datasource) as dom:
-          ... # Work with dom.
-
 
 .. method:: Node.writexml(writer, indent="", addindent="", newl="")
 
@@ -142,27 +142,53 @@ module documentation.  This section lists the differences between the API and
    For the :class:`Document` node, an additional keyword argument *encoding* can
    be used to specify the encoding field of the XML header.
 
+   .. versionchanged:: 2.1
+      The optional keyword parameters *indent*, *addindent*, and *newl* were added to
+      support pretty output.
 
-.. method:: Node.toxml(encoding=None)
+   .. versionchanged:: 2.3
+      For the :class:`Document` node, an additional keyword argument
+      *encoding* can be used to specify the encoding field of the XML header.
 
-   Return a string or byte string containing the XML represented by
-   the DOM node.
 
-   With an explicit *encoding* [1]_ argument, the result is a byte
-   string in the specified encoding.
-   With no *encoding* argument, the result is a Unicode string, and the
-   XML declaration in the resulting string does not specify an
-   encoding. Encoding this string in an encoding other than UTF-8 is
-   likely incorrect, since UTF-8 is the default encoding of XML.
+.. method:: Node.toxml([encoding])
 
-.. method:: Node.toprettyxml(indent="", newl="", encoding="")
+   Return the XML that the DOM represents as a string.
+
+   With no argument, the XML header does not specify an encoding, and the result is
+   Unicode string if the default encoding cannot represent all characters in the
+   document. Encoding this string in an encoding other than UTF-8 is likely
+   incorrect, since UTF-8 is the default encoding of XML.
+
+   With an explicit *encoding* [1]_ argument, the result is a byte string in the
+   specified encoding. It is recommended that this argument is always specified. To
+   avoid :exc:`UnicodeError` exceptions in case of unrepresentable text data, the
+   encoding argument should be specified as "utf-8".
+
+   .. versionchanged:: 2.3
+      the *encoding* argument was introduced; see :meth:`writexml`.
+
+
+.. method:: Node.toprettyxml([indent=""[, newl=""[, encoding=""]]])
 
    Return a pretty-printed version of the document. *indent* specifies the
    indentation string and defaults to a tabulator; *newl* specifies the string
    emitted at the end of each line and defaults to ``\n``.
 
-   The *encoding* argument behaves like the corresponding argument of
-   :meth:`toxml`.
+   .. versionadded:: 2.1
+
+   .. versionchanged:: 2.3
+      the encoding argument was introduced; see :meth:`writexml`.
+
+The following standard DOM methods have special considerations with
+:mod:`xml.dom.minidom`:
+
+
+.. method:: Node.cloneNode(deep)
+
+   Although this method was present in the version of :mod:`xml.dom.minidom`
+   packaged with Python 2.0, it was seriously broken.  This has been corrected for
+   subsequent releases.
 
 
 .. _dom-example:
@@ -205,7 +231,7 @@ rules apply:
   ``boolean`` all map to Python integer objects.
 
 * The type ``DOMString`` maps to Python strings. :mod:`xml.dom.minidom` supports
-  either bytes or strings, but will normally produce strings.
+  either byte or Unicode strings, but will normally produce Unicode strings.
   Values of type ``DOMString`` may also be ``None`` where allowed to have the IDL
   ``null`` value by the DOM specification from the W3C.
 
@@ -217,18 +243,18 @@ rules apply:
   :exc:`TypeError` and :exc:`AttributeError`.
 
 * :class:`NodeList` objects are implemented using Python's built-in list type.
-  These objects provide the interface defined in the DOM specification, but with
-  earlier versions of Python they do not support the official API.  They are,
-  however, much more "Pythonic" than the interface defined in the W3C
-  recommendations.
+  Starting with Python 2.2, these objects provide the interface defined in the DOM
+  specification, but with earlier versions of Python they do not support the
+  official API.  They are, however, much more "Pythonic" than the interface
+  defined in the W3C recommendations.
 
 The following interfaces have no implementation in :mod:`xml.dom.minidom`:
 
 * :class:`DOMTimeStamp`
 
-* :class:`DocumentType`
+* :class:`DocumentType` (added in Python 2.1)
 
-* :class:`DOMImplementation`
+* :class:`DOMImplementation` (added in Python 2.1)
 
 * :class:`CharacterData`
 
@@ -247,9 +273,7 @@ utility to most DOM users.
 
 .. rubric:: Footnotes
 
-.. [#] The encoding name included in the XML output should conform to
-   the appropriate standards. For example, "UTF-8" is valid, but
-   "UTF8" is not valid in an XML document's declaration, even though
-   Python accepts it as an encoding name.
-   See http://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl
+.. [#] The encoding string included in XML output should conform to the
+   appropriate standards. For example, "UTF-8" is valid, but "UTF8" is
+   not. See http://www.w3.org/TR/2006/REC-xml11-20060816/#NT-EncodingDecl
    and http://www.iana.org/assignments/character-sets\ .

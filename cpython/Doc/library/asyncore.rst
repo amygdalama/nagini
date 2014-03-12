@@ -13,11 +13,6 @@
 
 --------------
 
-.. note::
-
-   This module exists for backwards compatibility only.  For new code we
-   recommend using :mod:`asyncio`.
-
 This module provides the basic infrastructure for writing asynchronous  socket
 service clients and servers.
 
@@ -94,7 +89,7 @@ any that have been added to the map during asynchronous service) is closed.
    | ``handle_close()``   | Implied by a read event with no data   |
    |                      | available                              |
    +----------------------+----------------------------------------+
-   | ``handle_accepted()``| Implied by a read event on a listening |
+   | ``handle_accept()``  | Implied by a read event on a listening |
    |                      | socket                                 |
    +----------------------+----------------------------------------+
 
@@ -152,21 +147,7 @@ any that have been added to the map during asynchronous service) is closed.
 
       Called on listening channels (passive openers) when a connection can be
       established with a new remote endpoint that has issued a :meth:`connect`
-      call for the local endpoint. Deprecated in version 3.2; use
-      :meth:`handle_accepted` instead.
-
-      .. deprecated:: 3.2
-
-
-   .. method:: handle_accepted(sock, addr)
-
-      Called on listening channels (passive openers) when a connection has been
-      established with a new remote endpoint that has issued a :meth:`connect`
-      call for the local endpoint.  *sock* is a *new* socket object usable to
-      send and receive data on the connection, and *addr* is the address
-      bound to the socket on the other end of the connection.
-
-      .. versionadded:: 3.2
+      call for the local endpoint.
 
 
    .. method:: readable()
@@ -189,14 +170,11 @@ any that have been added to the map during asynchronous service) is closed.
    Most of these are nearly identical to their socket partners.
 
 
-   .. method:: create_socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+   .. method:: create_socket(family, type)
 
       This is identical to the creation of a normal socket, and will use the
       same options for creation.  Refer to the :mod:`socket` documentation for
       information on creating sockets.
-
-      .. versionchanged:: 3.3
-         *family* and *type* arguments can be omitted.
 
 
    .. method:: connect(address)
@@ -213,8 +191,7 @@ any that have been added to the map during asynchronous service) is closed.
    .. method:: recv(buffer_size)
 
       Read at most *buffer_size* bytes from the socket's remote end-point.  An
-      empty bytes object implies that the channel has been closed from the
-      other end.
+      empty string implies that the channel has been closed from the other end.
 
 
    .. method:: listen(backlog)
@@ -252,7 +229,6 @@ any that have been added to the map during asynchronous service) is closed.
       flushed).  Sockets are automatically closed when they are
       garbage-collected.
 
-
 .. class:: dispatcher_with_send()
 
    A :class:`dispatcher` subclass which adds simple buffered output capability,
@@ -261,9 +237,9 @@ any that have been added to the map during asynchronous service) is closed.
 
 .. class:: file_dispatcher()
 
-   A file_dispatcher takes a file descriptor or :term:`file object` along
-   with an optional map argument and wraps it for use with the :c:func:`poll`
-   or :c:func:`loop` functions.  If provided a file object or anything with a
+   A file_dispatcher takes a file descriptor or file object along with an
+   optional map argument and wraps it for use with the :c:func:`poll` or
+   :c:func:`loop` functions.  If provided a file object or anything with a
    :c:func:`fileno` method, that method will be called and passed to the
    :class:`file_wrapper` constructor.  Availability: UNIX.
 
@@ -283,16 +259,15 @@ asyncore Example basic HTTP client
 Here is a very basic HTTP client that uses the :class:`dispatcher` class to
 implement its socket handling::
 
-   import asyncore
+   import asyncore, socket
 
    class HTTPClient(asyncore.dispatcher):
 
        def __init__(self, host, path):
            asyncore.dispatcher.__init__(self)
-           self.create_socket()
+           self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
            self.connect( (host, 80) )
-           self.buffer = bytes('GET %s HTTP/1.0\r\nHost: %s\r\n\r\n' %
-                               (path, host), 'ascii')
+           self.buffer = 'GET %s HTTP/1.0\r\n\r\n' % path
 
        def handle_connect(self):
            pass
@@ -301,7 +276,7 @@ implement its socket handling::
            self.close()
 
        def handle_read(self):
-           print(self.recv(8192))
+           print self.recv(8192)
 
        def writable(self):
            return (len(self.buffer) > 0)
@@ -311,8 +286,8 @@ implement its socket handling::
            self.buffer = self.buffer[sent:]
 
 
-    client = HTTPClient('www.python.org', '/')
-    asyncore.loop()
+   client = HTTPClient('www.python.org', '/')
+   asyncore.loop()
 
 .. _asyncore-example-2:
 
@@ -323,6 +298,7 @@ Here is a basic echo server that uses the :class:`dispatcher` class to accept
 connections and dispatches the incoming connections to a handler::
 
     import asyncore
+    import socket
 
     class EchoHandler(asyncore.dispatcher_with_send):
 
@@ -335,14 +311,17 @@ connections and dispatches the incoming connections to a handler::
 
         def __init__(self, host, port):
             asyncore.dispatcher.__init__(self)
-            self.create_socket()
+            self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
             self.set_reuse_addr()
             self.bind((host, port))
             self.listen(5)
 
-        def handle_accepted(self, sock, addr):
-            print('Incoming connection from %s' % repr(addr))
-            handler = EchoHandler(sock)
+        def handle_accept(self):
+            pair = self.accept()
+            if pair is not None:
+                sock, addr = pair
+                print 'Incoming connection from %s' % repr(addr)
+                handler = EchoHandler(sock)
 
     server = EchoServer('localhost', 8080)
     asyncore.loop()

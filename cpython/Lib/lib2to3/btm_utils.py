@@ -96,7 +96,8 @@ class MinNode(object):
     def leaves(self):
         "Generator that returns the leaves of the tree"
         for child in self.children:
-            yield from child.leaves()
+            for x in child.leaves():
+                yield x
         if not self.children:
             yield self
 
@@ -276,6 +277,7 @@ def rec_test(sequence, test_func):
     sub-iterables"""
     for x in sequence:
         if isinstance(x, (list, tuple)):
-            yield from rec_test(x, test_func)
+            for y in rec_test(x, test_func):
+                yield y
         else:
             yield test_func(x)

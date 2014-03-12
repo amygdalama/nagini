@@ -1,15 +1,14 @@
 """
 Tests for kqueue wrapper.
 """
-import errno
-import os
-import select
 import socket
-import sys
+import errno
 import time
+import select
+import sys
 import unittest
 
-from test import support
+from test import test_support
 if not hasattr(select, "kqueue"):
     raise unittest.SkipTest("test works only on BSD")
 
@@ -23,11 +22,7 @@ class TestKQueue(unittest.TestCase):
         self.assertRaises(ValueError, kq.fileno)
 
     def test_create_event(self):
-        from operator import lt, le, gt, ge
-
-        fd = os.open(os.devnull, os.O_WRONLY)
-        self.addCleanup(os.close, fd)
-
+        fd = sys.stderr.fileno()
         ev = select.kevent(fd)
         other = select.kevent(1000)
         self.assertEqual(ev.ident, fd)
@@ -38,12 +33,12 @@ class TestKQueue(unittest.TestCase):
         self.assertEqual(ev.udata, 0)
         self.assertEqual(ev, ev)
         self.assertNotEqual(ev, other)
+        self.assertEqual(cmp(ev, other), -1)
         self.assertTrue(ev < other)
         self.assertTrue(other >= ev)
-        for op in lt, le, gt, ge:
-            self.assertRaises(TypeError, op, ev, None)
-            self.assertRaises(TypeError, op, ev, 1)
-            self.assertRaises(TypeError, op, ev, "ev")
+        self.assertRaises(TypeError, cmp, ev, None)
+        self.assertRaises(TypeError, cmp, ev, 1)
+        self.assertRaises(TypeError, cmp, ev, "ev")
 
         ev = select.kevent(fd, select.KQ_FILTER_WRITE)
         self.assertEqual(ev.ident, fd)
@@ -94,7 +89,7 @@ class TestKQueue(unittest.TestCase):
         client.setblocking(False)
         try:
             client.connect(('127.0.0.1', serverSocket.getsockname()[1]))
-        except OSError as e:
+        except socket.error, e:
             self.assertEqual(e.args[0], errno.EINPROGRESS)
         else:
             #raise AssertionError("Connect should have raised EINPROGRESS")
@@ -127,8 +122,8 @@ class TestKQueue(unittest.TestCase):
             (client.fileno(), select.KQ_FILTER_WRITE),
             (server.fileno(), select.KQ_FILTER_WRITE)]))
 
-        client.send(b"Hello!")
-        server.send(b"world!!!")
+        client.send("Hello!")
+        server.send("world!!!")
 
         # We may need to call it several times
         for i in range(10):
@@ -185,35 +180,8 @@ class TestKQueue(unittest.TestCase):
         b.close()
         kq.close()
 
-    def test_close(self):
-        open_file = open(__file__, "rb")
-        self.addCleanup(open_file.close)
-        fd = open_file.fileno()
-        kqueue = select.kqueue()
-
-        # test fileno() method and closed attribute
-        self.assertIsInstance(kqueue.fileno(), int)
-        self.assertFalse(kqueue.closed)
-
-        # test close()
-        kqueue.close()
-        self.assertTrue(kqueue.closed)
-        self.assertRaises(ValueError, kqueue.fileno)
-
-        # close() can be called more than once
-        kqueue.close()
-
-        # operations must fail with ValueError("I/O operation on closed ...")
-        self.assertRaises(ValueError, kqueue.control, None, 4)
-
-    def test_fd_non_inheritable(self):
-        kqueue = select.kqueue()
-        self.addCleanup(kqueue.close)
-        self.assertEqual(os.get_inheritable(kqueue.fileno()), False)
-
-
 def test_main():
-    support.run_unittest(TestKQueue)
+    test_support.run_unittest(TestKQueue)
 
 if __name__ == "__main__":
     test_main()

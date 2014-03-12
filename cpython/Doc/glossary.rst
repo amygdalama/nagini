@@ -30,18 +30,17 @@ Glossary
       Abstract base classes complement :term:`duck-typing` by
       providing a way to define interfaces when other techniques like
       :func:`hasattr` would be clumsy or subtly wrong (for example with
-      :ref:`magic methods <special-lookup>`).  ABCs introduce virtual
+      :ref:`magic methods <new-style-special-lookup>`).  ABCs introduce virtual
       subclasses, which are classes that don't inherit from a class but are
       still recognized by :func:`isinstance` and :func:`issubclass`; see the
       :mod:`abc` module documentation.  Python comes with many built-in ABCs for
-      data structures (in the :mod:`collections.abc` module), numbers (in the
-      :mod:`numbers` module), streams (in the :mod:`io` module), import finders
-      and loaders (in the :mod:`importlib.abc` module).  You can create your own
-      ABCs with the :mod:`abc` module.
+      data structures (in the :mod:`collections` module), numbers (in the
+      :mod:`numbers` module), and streams (in the :mod:`io` module). You can
+      create your own ABCs with the :mod:`abc` module.
 
    argument
       A value passed to a :term:`function` (or :term:`method`) when calling the
-      function.  There are two kinds of argument:
+      function.  There are two types of arguments:
 
       * :dfn:`keyword argument`: an argument preceded by an identifier (e.g.
         ``name=``) in a function call or passed as a value in a dictionary
@@ -65,9 +64,9 @@ Glossary
       Syntactically, any expression can be used to represent an argument; the
       evaluated value is assigned to the local variable.
 
-      See also the :term:`parameter` glossary entry, the FAQ question on
+      See also the :term:`parameter` glossary entry and the FAQ question on
       :ref:`the difference between arguments and parameters
-      <faq-argument-vs-parameter>`, and :pep:`362`.
+      <faq-argument-vs-parameter>`.
 
    attribute
       A value associated with an object which is referenced by name using
@@ -78,20 +77,13 @@ Glossary
       Benevolent Dictator For Life, a.k.a. `Guido van Rossum
       <http://www.python.org/~guido/>`_, Python's creator.
 
-   binary file
-      A :term:`file object` able to read and write
-      :term:`bytes-like objects <bytes-like object>`.
-
-      .. seealso::
-         A :term:`text file` reads and writes :class:`str` objects.
-
    bytes-like object
-      An object that supports the :ref:`bufferobjects`, like :class:`bytes`,
-      :class:`bytearray` or :class:`memoryview`.  Bytes-like objects can
-      be used for various operations that expect binary data, such as
-      compression, saving to a binary file or sending over a socket.
-      Some operations need the binary data to be mutable, in which case
-      not all bytes-like objects can apply.
+      An object that supports the :ref:`buffer protocol <bufferobjects>`,
+      like :class:`str`, :class:`bytearray` or :class:`memoryview`.
+      Bytes-like objects can be used for various operations that expect
+      binary data, such as compression, saving to a binary file or sending
+      over a socket. Some operations need the binary data to be mutable,
+      in which case not all bytes-like objects can apply.
 
    bytecode
       Python source code is compiled into bytecode, the internal representation
@@ -112,13 +104,20 @@ Glossary
       normally contain method definitions which operate on instances of the
       class.
 
+   classic class
+      Any class which does not inherit from :class:`object`.  See
+      :term:`new-style class`.  Classic classes have been removed in Python 3.
+
    coercion
       The implicit conversion of an instance of one type to another during an
       operation which involves two arguments of the same type.  For example,
       ``int(3.15)`` converts the floating point number to the integer ``3``, but
       in ``3+4.5``, each argument is of a different type (one int, one float),
       and both must be converted to the same type before they can be added or it
-      will raise a ``TypeError``.  Without coercion, all arguments of even
+      will raise a ``TypeError``.  Coercion between two operands can be
+      performed with the ``coerce`` built-in function; thus, ``3+4.5`` is
+      equivalent to calling ``operator.add(*coerce(3, 4.5))`` and results in
+      ``operator.add(3.0, 4.5)``.  Without coercion, all arguments of even
       compatible types would have to be normalized to the same value by the
       programmer, e.g., ``float(3)+4.5`` rather than just ``3+4.5``.
 
@@ -166,21 +165,21 @@ Glossary
       :ref:`class definitions <class>` for more about decorators.
 
    descriptor
-      Any object which defines the methods :meth:`__get__`, :meth:`__set__`, or
-      :meth:`__delete__`.  When a class attribute is a descriptor, its special
-      binding behavior is triggered upon attribute lookup.  Normally, using
-      *a.b* to get, set or delete an attribute looks up the object named *b* in
-      the class dictionary for *a*, but if *b* is a descriptor, the respective
-      descriptor method gets called.  Understanding descriptors is a key to a
-      deep understanding of Python because they are the basis for many features
-      including functions, methods, properties, class methods, static methods,
-      and reference to super classes.
+      Any *new-style* object which defines the methods :meth:`__get__`,
+      :meth:`__set__`, or :meth:`__delete__`.  When a class attribute is a
+      descriptor, its special binding behavior is triggered upon attribute
+      lookup.  Normally, using *a.b* to get, set or delete an attribute looks up
+      the object named *b* in the class dictionary for *a*, but if *b* is a
+      descriptor, the respective descriptor method gets called.  Understanding
+      descriptors is a key to a deep understanding of Python because they are
+      the basis for many features including functions, methods, properties,
+      class methods, static methods, and reference to super classes.
 
       For more information about descriptors' methods, see :ref:`descriptors`.
 
    dictionary
       An associative array, where arbitrary keys are mapped to values.  The
-      keys can be any object with :meth:`__hash__` and :meth:`__eq__` methods.
+      keys can be any object with :meth:`__hash__`  and :meth:`__eq__` methods.
       Called a hash in Perl.
 
    docstring
@@ -216,8 +215,8 @@ Glossary
       names, attribute access, operators or function calls which all return a
       value.  In contrast to many other languages, not all language constructs
       are expressions.  There are also :term:`statement`\s which cannot be used
-      as expressions, such as :keyword:`if`.  Assignments are also statements,
-      not expressions.
+      as expressions, such as :keyword:`print` or :keyword:`if`.  Assignments
+      are also statements, not expressions.
 
    extension module
       A module written in C or C++, using Python's C API to interact with the
@@ -232,20 +231,18 @@ Glossary
       etc.).  File objects are also called :dfn:`file-like objects` or
       :dfn:`streams`.
 
-      There are actually three categories of file objects: raw
-      :term:`binary files <binary file>`, buffered
-      :term:`binary files <binary file>` and :term:`text files <text file>`.
-      Their interfaces are defined in the :mod:`io` module.  The canonical
-      way to create a file object is by using the :func:`open` function.
+      There are actually three categories of file objects: raw binary files,
+      buffered binary files and text files.  Their interfaces are defined in the
+      :mod:`io` module.  The canonical way to create a file object is by using
+      the :func:`open` function.
 
    file-like object
       A synonym for :term:`file object`.
 
    finder
       An object that tries to find the :term:`loader` for a module. It must
-      implement either a method named :meth:`find_loader` or a method named
-      :meth:`find_module`. See :pep:`302` and :pep:`420` for details and
-      :class:`importlib.abc.Finder` for an :term:`abstract base class`.
+      implement a method named :meth:`find_module`. See :pep:`302` for
+      details.
 
    floor division
       Mathematical division that rounds down to nearest integer.  The floor
@@ -260,23 +257,18 @@ Glossary
       the execution of the body. See also :term:`parameter`, :term:`method`,
       and the :ref:`function` section.
 
-   function annotation
-      An arbitrary metadata value associated with a function parameter or return
-      value. Its syntax is explained in section :ref:`function`.  Annotations
-      may be accessed via the :attr:`__annotations__` special attribute of a
-      function object.
-
-      Python itself does not assign any particular meaning to function
-      annotations. They are intended to be interpreted by third-party libraries
-      or tools.  See :pep:`3107`, which describes some of their potential uses.
-
    __future__
       A pseudo-module which programmers can use to enable new language features
-      which are not compatible with the current interpreter.
+      which are not compatible with the current interpreter.  For example, the
+      expression ``11/4`` currently evaluates to ``2``. If the module in which
+      it is executed had enabled *true division* by executing::
 
-      By importing the :mod:`__future__` module and evaluating its variables,
-      you can see when a new feature was first added to the language and when it
-      becomes the default::
+         from __future__ import division
+
+      the expression ``11/4`` would evaluate to ``2.75``.  By importing the
+      :mod:`__future__` module and evaluating its variables, you can see when a
+      new feature was first added to the language and when it will become the
+      default::
 
          >>> import __future__
          >>> __future__.division
@@ -310,15 +302,6 @@ Glossary
          >>> sum(i*i for i in range(10))         # sum of squares 0, 1, 4, ... 81
          285
 
-   generic function
-      A function composed of multiple functions implementing the same operation
-      for different types. Which implementation should be used during a call is
-      determined by the dispatch algorithm.
-
-      See also the :term:`single dispatch` glossary entry, the
-      :func:`functools.singledispatch` decorator, and :pep:`443`.
-
-
    GIL
       See :term:`global interpreter lock`.
 
@@ -346,8 +329,8 @@ Glossary
    hashable
       An object is *hashable* if it has a hash value which never changes during
       its lifetime (it needs a :meth:`__hash__` method), and can be compared to
-      other objects (it needs an :meth:`__eq__` method).  Hashable objects which
-      compare equal must have the same hash value.
+      other objects (it needs an :meth:`__eq__` or :meth:`__cmp__` method).
+      Hashable objects which compare equal must have the same hash value.
 
       Hashability makes an object usable as a dictionary key and a set member,
       because these data structures use the hash value internally.
@@ -370,12 +353,17 @@ Glossary
       role in places where a constant hash value is needed, for example as a key
       in a dictionary.
 
-   import path
-      A list of locations (or :term:`path entries <path entry>`) that are
-      searched by the :term:`path based finder` for modules to import. During
-      import, this list of locations usually comes from :data:`sys.path`, but
-      for subpackages it may also come from the parent package's ``__path__``
-      attribute.
+   integer division
+      Mathematical division discarding any remainder.  For example, the
+      expression ``11/4`` currently evaluates to ``2`` in contrast to the
+      ``2.75`` returned by float division.  Also called *floor division*.
+      When dividing two integers the outcome will always be another integer
+      (having the floor function applied to it). However, if one of the operands
+      is another numeric type (such as a :class:`float`), the result will be
+      coerced (see :term:`coercion`) to a common type.  For example, an integer
+      divided by a float will result in a float value, possibly with a decimal
+      fraction.  Integer division can be forced by using the ``//`` operator
+      instead of the ``/`` operator.  See also :term:`__future__`.
 
    importing
       The process by which Python code in one module is made available to
@@ -405,8 +393,8 @@ Glossary
    iterable
       An object capable of returning its members one at a time. Examples of
       iterables include all sequence types (such as :class:`list`, :class:`str`,
-      and :class:`tuple`) and some non-sequence types like :class:`dict`,
-      :term:`file objects <file object>`, and objects of any classes you define
+      and :class:`tuple`) and some non-sequence types like :class:`dict`
+      and :class:`file` and objects of any classes you define
       with an :meth:`__iter__` or :meth:`__getitem__` method.  Iterables can be
       used in a :keyword:`for` loop and in many other places where a sequence is
       needed (:func:`zip`, :func:`map`, ...).  When an iterable object is passed
@@ -420,12 +408,11 @@ Glossary
 
    iterator
       An object representing a stream of data.  Repeated calls to the iterator's
-      :meth:`~iterator.__next__` method (or passing it to the built-in function
-      :func:`next`) return successive items in the stream.  When no more data
-      are available a :exc:`StopIteration` exception is raised instead.  At this
-      point, the iterator object is exhausted and any further calls to its
-      :meth:`__next__` method just raise :exc:`StopIteration` again.  Iterators
-      are required to have an :meth:`__iter__` method that returns the iterator
+      :meth:`next` method return successive items in the stream.  When no more
+      data are available a :exc:`StopIteration` exception is raised instead.  At
+      this point, the iterator object is exhausted and any further calls to its
+      :meth:`next` method just raise :exc:`StopIteration` again.  Iterators are
+      required to have an :meth:`__iter__` method that returns the iterator
       object itself so every iterator is also iterable and may be used in most
       places where other iterables are accepted.  One notable exception is code
       which attempts multiple iteration passes.  A container object (such as a
@@ -483,7 +470,7 @@ Glossary
 
    list comprehension
       A compact way to process all or part of the elements in a sequence and
-      return a list with the results.  ``result = ['{:#04x}'.format(x) for x in
+      return a list with the results.  ``result = ["0x%02x" % x for x in
       range(256) if x % 2 == 0]`` generates a list of strings containing
       even hex numbers (0x..) in the range from 0 to 255. The :keyword:`if`
       clause is optional.  If omitted, all elements in ``range(256)`` are
@@ -492,21 +479,15 @@ Glossary
    loader
       An object that loads a module. It must define a method named
       :meth:`load_module`. A loader is typically returned by a
-      :term:`finder`. See :pep:`302` for details and
-      :class:`importlib.abc.Loader` for an :term:`abstract base class`.
+      :term:`finder`. See :pep:`302` for details.
 
    mapping
       A container object that supports arbitrary key lookups and implements the
-      methods specified in the :class:`~collections.abc.Mapping` or
-      :class:`~collections.abc.MutableMapping`
+      methods specified in the :class:`~collections.Mapping` or
+      :class:`~collections.MutableMapping`
       :ref:`abstract base classes <collections-abstract-base-classes>`.  Examples
       include :class:`dict`, :class:`collections.defaultdict`,
       :class:`collections.OrderedDict` and :class:`collections.Counter`.
-
-   meta path finder
-      A finder returned by a search of :data:`sys.meta_path`.  Meta path
-      finders are related to, but different from :term:`path entry finders
-      <path entry finder>`.
 
    metaclass
       The class of a class.  Class definitions create a class name, a class
@@ -539,10 +520,6 @@ Glossary
 
       See also :term:`package`.
 
-   module spec
-      A namespace containing the import-related information used to load a
-      module.
-
    MRO
       See :term:`method resolution order`.
 
@@ -568,35 +545,28 @@ Glossary
       dictionaries.  There are the local, global and built-in namespaces as well
       as nested namespaces in objects (in methods).  Namespaces support
       modularity by preventing naming conflicts.  For instance, the functions
-      :func:`builtins.open <.open>` and :func:`os.open` are distinguished by
-      their namespaces.  Namespaces also aid readability and maintainability by
-      making it clear which module implements a function.  For instance, writing
-      :func:`random.seed` or :func:`itertools.islice` makes it clear that those
+      :func:`__builtin__.open` and :func:`os.open` are distinguished by their
+      namespaces.  Namespaces also aid readability and maintainability by making
+      it clear which module implements a function.  For instance, writing
+      :func:`random.seed` or :func:`itertools.izip` makes it clear that those
       functions are implemented by the :mod:`random` and :mod:`itertools`
       modules, respectively.
-
-   namespace package
-      A :pep:`420` :term:`package` which serves only as a container for
-      subpackages.  Namespace packages may have no physical representation,
-      and specifically are not like a :term:`regular package` because they
-      have no ``__init__.py`` file.
-
-      See also :term:`module`.
 
    nested scope
       The ability to refer to a variable in an enclosing definition.  For
       instance, a function defined inside another function can refer to
-      variables in the outer function.  Note that nested scopes by default work
-      only for reference and not for assignment.  Local variables both read and
-      write in the innermost scope.  Likewise, global variables read and write
-      to the global namespace.  The :keyword:`nonlocal` allows writing to outer
-      scopes.
+      variables in the outer function.  Note that nested scopes work only for
+      reference and not for assignment which will always write to the innermost
+      scope.  In contrast, local variables both read and write in the innermost
+      scope.  Likewise, global variables read and write to the global namespace.
 
    new-style class
-      Old name for the flavor of classes now used for all class objects.  In
-      earlier Python versions, only new-style classes could use Python's newer,
-      versatile features like :attr:`~object.__slots__`, descriptors,
-      properties, :meth:`__getattribute__`, class methods, and static methods.
+      Any class which inherits from :class:`object`.  This includes all built-in
+      types like :class:`list` and :class:`dict`.  Only new-style classes can
+      use Python's newer, versatile features like :attr:`~object.__slots__`,
+      descriptors, properties, and :meth:`__getattribute__`.
+
+      More information can be found in :ref:`newstyle`.
 
    object
       Any data with state (attributes or value) and defined behavior
@@ -608,12 +578,10 @@ Glossary
       subpackages.  Technically, a package is a Python module with an
       ``__path__`` attribute.
 
-      See also :term:`regular package` and :term:`namespace package`.
-
    parameter
       A named entity in a :term:`function` (or method) definition that
       specifies an :term:`argument` (or in some cases, arguments) that the
-      function can accept.  There are five kinds of parameter:
+      function can accept.  There are four types of parameters:
 
       * :dfn:`positional-or-keyword`: specifies an argument that can be passed
         either :term:`positionally <argument>` or as a :term:`keyword argument
@@ -626,16 +594,6 @@ Glossary
         by position.  Python has no syntax for defining positional-only
         parameters.  However, some built-in functions have positional-only
         parameters (e.g. :func:`abs`).
-
-      .. _keyword-only_parameter:
-
-      * :dfn:`keyword-only`: specifies an argument that can be supplied only
-        by keyword.  Keyword-only parameters can be defined by including a
-        single var-positional parameter or bare ``*`` in the parameter list
-        of the function definition before them, for example *kw_only1* and
-        *kw_only2* in the following::
-
-           def func(arg, *, kw_only1, kw_only2): ...
 
       * :dfn:`var-positional`: specifies that an arbitrary sequence of
         positional arguments can be provided (in addition to any positional
@@ -656,58 +614,14 @@ Glossary
 
       See also the :term:`argument` glossary entry, the FAQ question on
       :ref:`the difference between arguments and parameters
-      <faq-argument-vs-parameter>`, the :class:`inspect.Parameter` class, the
-      :ref:`function` section, and :pep:`362`.
-
-   path entry
-      A single location on the :term:`import path` which the :term:`path
-      based finder` consults to find modules for importing.
-
-   path entry finder
-      A :term:`finder` returned by a callable on :data:`sys.path_hooks`
-      (i.e. a :term:`path entry hook`) which knows how to locate modules given
-      a :term:`path entry`.
-
-   path entry hook
-      A callable on the :data:`sys.path_hook` list which returns a :term:`path
-      entry finder` if it knows how to find modules on a specific :term:`path
-      entry`.
-
-   path based finder
-      One of the default :term:`meta path finders <meta path finder>` which
-      searches an :term:`import path` for modules.
-
-   portion
-      A set of files in a single directory (possibly stored in a zip file)
-      that contribute to a namespace package, as defined in :pep:`420`.
+      <faq-argument-vs-parameter>`, and the :ref:`function` section.
 
    positional argument
       See :term:`argument`.
 
-   provisional API
-      A provisional API is one which has been deliberately excluded from
-      the standard library's backwards compatibility guarantees.  While major
-      changes to such interfaces are not expected, as long as they are marked
-      provisional, backwards incompatible changes (up to and including removal
-      of the interface) may occur if deemed necessary by core developers.  Such
-      changes will not be made gratuitously -- they will occur only if serious
-      fundamental flaws are uncovered that were missed prior to the inclusion
-      of the API.
-
-      Even for provisional APIs, backwards incompatible changes are seen as
-      a "solution of last resort" - every attempt will still be made to find
-      a backwards compatible resolution to any identified problems.
-
-      This process allows the standard library to continue to evolve over
-      time, without locking in problematic design errors for extended periods
-      of time.  See :pep:`411` for more details.
-
-   provisional package
-      See :term:`provisional API`.
-
    Python 3000
-      Nickname for the Python 3.x release line (coined long ago when the
-      release of version 3 was something in the distant future.)  This is also
+      Nickname for the Python 3.x release line (coined long ago when the release
+      of version 3 was something in the distant future.)  This is also
       abbreviated "Py3k".
 
    Pythonic
@@ -719,38 +633,12 @@ Glossary
       people unfamiliar with Python sometimes use a numerical counter instead::
 
           for i in range(len(food)):
-              print(food[i])
+              print food[i]
 
       As opposed to the cleaner, Pythonic method::
 
          for piece in food:
-             print(piece)
-
-   qualified name
-      A dotted name showing the "path" from a module's global scope to a
-      class, function or method defined in that module, as defined in
-      :pep:`3155`.  For top-level functions and classes, the qualified name
-      is the same as the object's name::
-
-         >>> class C:
-         ...     class D:
-         ...         def meth(self):
-         ...             pass
-         ...
-         >>> C.__qualname__
-         'C'
-         >>> C.D.__qualname__
-         'C.D'
-         >>> C.D.meth.__qualname__
-         'C.D.meth'
-
-      When used to refer to modules, the *fully qualified name* means the
-      entire dotted path to the module, including any parent packages,
-      e.g. ``email.mime.text``::
-
-         >>> import email.mime.text
-         >>> email.mime.text.__name__
-         'email.mime.text'
+             print piece
 
    reference count
       The number of references to an object.  When the reference count of an
@@ -760,46 +648,29 @@ Glossary
       :func:`~sys.getrefcount` function that programmers can call to return the
       reference count for a particular object.
 
-   regular package
-      A traditional :term:`package`, such as a directory containing an
-      ``__init__.py`` file.
-
-      See also :term:`namespace package`.
-
    __slots__
-      A declaration inside a class that saves memory by pre-declaring space for
-      instance attributes and eliminating instance dictionaries.  Though
-      popular, the technique is somewhat tricky to get right and is best
-      reserved for rare cases where there are large numbers of instances in a
-      memory-critical application.
+      A declaration inside a :term:`new-style class` that saves memory by
+      pre-declaring space for instance attributes and eliminating instance
+      dictionaries.  Though popular, the technique is somewhat tricky to get
+      right and is best reserved for rare cases where there are large numbers of
+      instances in a memory-critical application.
 
    sequence
       An :term:`iterable` which supports efficient element access using integer
       indices via the :meth:`__getitem__` special method and defines a
-      :meth:`__len__` method that returns the length of the sequence.
+      :meth:`len` method that returns the length of the sequence.
       Some built-in sequence types are :class:`list`, :class:`str`,
-      :class:`tuple`, and :class:`bytes`. Note that :class:`dict` also
+      :class:`tuple`, and :class:`unicode`. Note that :class:`dict` also
       supports :meth:`__getitem__` and :meth:`__len__`, but is considered a
       mapping rather than a sequence because the lookups use arbitrary
       :term:`immutable` keys rather than integers.
-
-      The :class:`collections.abc.Sequence` abstract base class
-      defines a much richer interface that goes beyond just
-      :meth:`__getitem__` and :meth:`__len__`, adding :meth:`count`,
-      :meth:`index`, :meth:`__contains__`, and
-      :meth:`__reversed__`. Types that implement this expanded
-      interface can be registered explicitly using
-      :func:`~abc.register`.
-
-   single dispatch
-      A form of :term:`generic function` dispatch where the implementation is
-      chosen based on the type of a single argument.
 
    slice
       An object usually containing a portion of a :term:`sequence`.  A slice is
       created using the subscript notation, ``[]`` with colons between numbers
       when several are given, such as in ``variable_name[1:3:5]``.  The bracket
-      (subscript) notation uses :class:`slice` objects internally.
+      (subscript) notation uses :class:`slice` objects internally (or in older
+      versions, :meth:`__getslice__` and :meth:`__setslice__`).
 
    special method
       A method that is called implicitly by Python to execute a certain
@@ -813,20 +684,12 @@ Glossary
       as :keyword:`if`, :keyword:`while` or :keyword:`for`.
 
    struct sequence
-      A tuple with named elements. Struct sequences expose an interface similar
+      A tuple with named elements. Struct sequences expose an interface similiar
       to :term:`named tuple` in that elements can either be accessed either by
       index or as an attribute. However, they do not have any of the named tuple
       methods like :meth:`~collections.somenamedtuple._make` or
       :meth:`~collections.somenamedtuple._asdict`. Examples of struct sequences
       include :data:`sys.float_info` and the return value of :func:`os.stat`.
-
-   text file
-      A :term:`file object` able to read and write :class:`str` objects.
-      Often, a text file actually accesses a byte-oriented datastream
-      and handles the text encoding automatically.
-
-      .. seealso::
-         A :term:`binary file` reads and write :class:`bytes` objects.
 
    triple-quoted string
       A string which is bound by three instances of either a quotation mark
@@ -851,10 +714,10 @@ Glossary
       :func:`str.splitlines` for an additional use.
 
    view
-      The objects returned from :meth:`dict.keys`, :meth:`dict.values`, and
-      :meth:`dict.items` are called dictionary views.  They are lazy sequences
-      that will see changes in the underlying dictionary.  To force the
-      dictionary view to become a full list use ``list(dictview)``.  See
+      The objects returned from :meth:`dict.viewkeys`, :meth:`dict.viewvalues`,
+      and :meth:`dict.viewitems` are called dictionary views.  They are lazy
+      sequences that will see changes in the underlying dictionary.  To force
+      the dictionary view to become a full list use ``list(dictview)``.  See
       :ref:`dict-views`.
 
    virtual machine
