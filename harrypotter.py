@@ -17,7 +17,7 @@ del __builtins__.exit
 class HogwartsHouse(object):
     
     def __init__(self):
-        self.house = random.choice([Gryffindor(), Hufflepuff(), Ravenclaw(), Slytherin()])
+        pass
 
 class Gryffindor(HogwartsHouse):
 
@@ -40,22 +40,8 @@ class Slytherin(HogwartsHouse):
         pass
 
 
-def type(thing, cache={}):
-    if thing not in cache:
-        sorting_hat = HogwartsHouse()
-        cache[thing] = sorting_hat.house
-    return cache[thing]
+def type(thing):
+    return [Gryffindor(), Hufflepuff(), Ravenclaw(), Slytherin()][hash(thing) % 4]
 
 
 __builtins__.type = type
-
-
-# def trace(frame, event, arg):
-#     print frame, event, arg
-#     if event == 'call':
-#         print frame.f_globals.keys()
-#         line_text = linecache.getline(frame.f_globals["__file__"], frame.f_lineno)
-#         print line_text
-
-# sys.settrace(trace)
-
