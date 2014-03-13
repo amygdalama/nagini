@@ -22,10 +22,14 @@ requesting all changes
 adding changesets
 adding manifests
 adding file changes
+added 89634 changesets with 197780 changes to 10122 files (+2 heads)
+updating to branch default
+3835 files updated, 0 files merged, 0 files removed, 0 files unresolved
 
-
-$ hg checkout 2.7
 $ cd cpython
+$ hg checkout 2.7
+3752 files updated, 0 files merged, 913 files removed, 0 files unresolved
+
 $ ./configure
 $ make
 ```
