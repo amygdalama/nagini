@@ -93,3 +93,8 @@ import_from: ('from' ('.'* dotted_name | '.'+)
 
 ./configure --with-pydebug  # when is this necessary?
 make -s -j2
+
+./configure
+make
+
+(to remove debug messages)
