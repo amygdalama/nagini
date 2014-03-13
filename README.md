@@ -70,3 +70,5 @@ HOLY SHIT IT WORKS
               ('from' ('.'* dotted_name | '.'+)
               'accio' ('*' | '(' import_as_names ')' | import_as_names)))
 HOLY SHIT THAT WORKS TOO
+
+`export PATH=/Users/amyhanlon/projects/nagini/cpython/:$PATH`
