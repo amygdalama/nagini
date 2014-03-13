@@ -30,6 +30,16 @@ $ cd cpython
 $ hg checkout 2.7
 3752 files updated, 0 files merged, 913 files removed, 0 files unresolved
 
-$ ./configure
-$ make
+$ ./configure --with-pydebug
+$ make -s -j2
+```
+
+Got this warning message:
+
+```
+Python build finished, but the necessary bits to build these modules were not found:
+_bsddb             dl                 imageop         
+linuxaudiodev      ossaudiodev        readline        
+spwd               sunaudiodev                        
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
 ```
