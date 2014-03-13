@@ -43,3 +43,21 @@ linuxaudiodev      ossaudiodev        readline
 spwd               sunaudiodev                        
 To find the necessary bits, look in setup.py in detect_modules() for the module's name.
 ```
+
+
+tried:
+```
+import_name: import_spell dotted_as_names
+import_from: ('from' ('.'* dotted_name | '.'+)
+              import_spell ('*' | '(' import_as_names ')' | import_as_names))
+import_spell: 'import' | 'accio'
+```
+
+received error: 
+```
+>>> import numpy
+SystemError: invalid node 339 for PyAST_FromNode
+[58574 refs]
+```
+
+
