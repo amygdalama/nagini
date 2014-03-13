@@ -98,3 +98,12 @@ make -s -j2
 make
 
 (to remove debug messages)
+
+
+Good resources:
+http://docs.python.org/devguide/
+http://legacy.python.org/dev/peps/pep-0339/
+http://eli.thegreenplace.net/2010/06/30/python-internals-adding-a-new-statement-to-python/
+http://legacy.python.org/dev/peps/pep-0306/
+http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form
+
