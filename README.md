@@ -71,4 +71,11 @@ HOLY SHIT IT WORKS
               'accio' ('*' | '(' import_as_names ')' | import_as_names)))
 HOLY SHIT THAT WORKS TOO
 
-`export PATH=/Users/amyhanlon/projects/nagini/cpython/:$PATH`
+
+
+Add cpython/bin with symlink to cpython/python.exe:
+mkdir bin
+cd bin
+ln -s ../python.exe python
+
+`export PATH=/Users/amyhanlon/projects/nagini/cpython/bin:$PATH`
