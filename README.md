@@ -69,4 +69,4 @@ HOLY SHIT IT WORKS
               'import' ('*' | '(' import_as_names ')' | import_as_names)) |
               ('from' ('.'* dotted_name | '.'+)
               'accio' ('*' | '(' import_as_names ')' | import_as_names)))
-
+HOLY SHIT THAT WORKS TOO
