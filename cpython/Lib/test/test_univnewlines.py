@@ -1,10 +1,17 @@
 # Tests universal newline support for both reading and parsing files.
+
+# NOTE: this file tests the new `io` library backported from Python 3.x.
+# Similar tests for the builtin file object can be found in test_univnewlines2k.py.
+
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import io
 import _pyio as pyio
 import unittest
 import os
 import sys
-from test import support
+from test import test_support as support
 
 if not hasattr(sys.stdin, 'newlines'):
     raise unittest.SkipTest(
@@ -30,13 +37,7 @@ DATA_CRLF = "\r\n".join(DATA_TEMPLATE) + "\r\n"
 DATA_MIXED = "\n".join(DATA_TEMPLATE) + "\r"
 DATA_SPLIT = [x + "\n" for x in DATA_TEMPLATE]
 
-class CTest:
-    open = io.open
-
-class PyTest:
-    open = staticmethod(pyio.open)
-
-class TestGenericUnivNewlines:
+class TestGenericUnivNewlines(unittest.TestCase):
     # use a class variable DATA to define the data to write to the file
     # and a class variable NEWLINE to set the expected newlines value
     READMODE = 'r'
@@ -59,13 +60,13 @@ class TestGenericUnivNewlines:
         with self.open(support.TESTFN, self.READMODE) as fp:
             data = fp.read()
         self.assertEqual(data, DATA_LF)
-        self.assertEqual(repr(fp.newlines), repr(self.NEWLINE))
+        self.assertEqual(set(fp.newlines), set(self.NEWLINE))
 
     def test_readlines(self):
         with self.open(support.TESTFN, self.READMODE) as fp:
             data = fp.readlines()
         self.assertEqual(data, DATA_SPLIT)
-        self.assertEqual(repr(fp.newlines), repr(self.NEWLINE))
+        self.assertEqual(set(fp.newlines), set(self.NEWLINE))
 
     def test_readline(self):
         with self.open(support.TESTFN, self.READMODE) as fp:
@@ -75,7 +76,7 @@ class TestGenericUnivNewlines:
                 data.append(d)
                 d = fp.readline()
         self.assertEqual(data, DATA_SPLIT)
-        self.assertEqual(repr(fp.newlines), repr(self.NEWLINE))
+        self.assertEqual(set(fp.newlines), set(self.NEWLINE))
 
     def test_seek(self):
         with self.open(support.TESTFN, self.READMODE) as fp:
@@ -91,14 +92,10 @@ class TestGenericUnivNewlines:
 class TestCRNewlines(TestGenericUnivNewlines):
     NEWLINE = '\r'
     DATA = DATA_CR
-class CTestCRNewlines(CTest, TestCRNewlines, unittest.TestCase): pass
-class PyTestCRNewlines(PyTest, TestCRNewlines, unittest.TestCase): pass
 
 class TestLFNewlines(TestGenericUnivNewlines):
     NEWLINE = '\n'
     DATA = DATA_LF
-class CTestLFNewlines(CTest, TestLFNewlines, unittest.TestCase): pass
-class PyTestLFNewlines(PyTest, TestLFNewlines, unittest.TestCase): pass
 
 class TestCRLFNewlines(TestGenericUnivNewlines):
     NEWLINE = '\r\n'
@@ -110,14 +107,29 @@ class TestCRLFNewlines(TestGenericUnivNewlines):
             data = fp.readline()
             pos = fp.tell()
         self.assertEqual(repr(fp.newlines), repr(self.NEWLINE))
-class CTestCRLFNewlines(CTest, TestCRLFNewlines, unittest.TestCase): pass
-class PyTestCRLFNewlines(PyTest, TestCRLFNewlines, unittest.TestCase): pass
 
 class TestMixedNewlines(TestGenericUnivNewlines):
     NEWLINE = ('\r', '\n')
     DATA = DATA_MIXED
-class CTestMixedNewlines(CTest, TestMixedNewlines, unittest.TestCase): pass
-class PyTestMixedNewlines(PyTest, TestMixedNewlines, unittest.TestCase): pass
+
+
+def test_main():
+    base_tests = (TestCRNewlines,
+                  TestLFNewlines,
+                  TestCRLFNewlines,
+                  TestMixedNewlines)
+    tests = []
+    # Test the C and Python implementations.
+    for test in base_tests:
+        class CTest(test):
+            open = io.open
+        CTest.__name__ = str("C" + test.__name__)
+        class PyTest(test):
+            open = staticmethod(pyio.open)
+        PyTest.__name__ = str("Py" + test.__name__)
+        tests.append(CTest)
+        tests.append(PyTest)
+    support.run_unittest(*tests)
 
 if __name__ == '__main__':
-    unittest.main()
+    test_main()

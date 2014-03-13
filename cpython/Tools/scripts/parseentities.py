@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """ Utility for parsing HTML entity definitions available from:
 
       http://www.w3.org/ as e.g.
@@ -13,6 +13,7 @@
 
 """
 import re,sys
+import TextTools
 
 entityRE = re.compile('<!ENTITY +(\w+) +CDATA +"([^"]+)" +-- +((?:.|\n)+?) *-->')
 
@@ -34,8 +35,9 @@ def parse(text,pos=0,endpos=None):
 def writefile(f,defs):
 
     f.write("entitydefs = {\n")
-    items = sorted(defs.items())
-    for name, (charcode,comment) in items:
+    items = defs.items()
+    items.sort()
+    for name,(charcode,comment) in items:
         if charcode[:2] == '&#':
             code = int(charcode[2:-1])
             if code < 256:
@@ -44,7 +46,7 @@ def writefile(f,defs):
                 charcode = repr(charcode)
         else:
             charcode = repr(charcode)
-        comment = ' '.join(comment.split())
+        comment = TextTools.collapse(comment)
         f.write("    '%s':\t%s,  \t# %s\n" % (name,charcode,comment))
     f.write('\n}\n')
 

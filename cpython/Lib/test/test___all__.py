@@ -1,7 +1,15 @@
+from __future__ import print_function
+
 import unittest
-from test import support
+from test import test_support as support
 import os
 import sys
+
+# Setup bsddb warnings
+try:
+    bsddb = support.import_module('bsddb', deprecated=True)
+except unittest.SkipTest:
+    pass
 
 
 class NoAll(RuntimeError):
@@ -15,12 +23,10 @@ class AllTest(unittest.TestCase):
 
     def check_all(self, modname):
         names = {}
-        with support.check_warnings(
-            (".* (module|package)", DeprecationWarning),
-            ("", ResourceWarning),
-            quiet=True):
+        with support.check_warnings((".* (module|package)",
+                                     DeprecationWarning), quiet=True):
             try:
-                exec("import %s" % modname, names)
+                exec "import %s" % modname in names
             except:
                 # Silent fail here seems the best route since some modules
                 # may not be available or not initialize properly in all
@@ -29,20 +35,17 @@ class AllTest(unittest.TestCase):
         if not hasattr(sys.modules[modname], "__all__"):
             raise NoAll(modname)
         names = {}
-        with self.subTest(module=modname):
-            try:
-                exec("from %s import *" % modname, names)
-            except Exception as e:
-                # Include the module name in the exception string
-                self.fail("__all__ failure in {}: {}: {}".format(
-                          modname, e.__class__.__name__, e))
-            if "__builtins__" in names:
-                del names["__builtins__"]
-            keys = set(names)
-            all_list = sys.modules[modname].__all__
-            all_set = set(all_list)
-            self.assertCountEqual(all_set, all_list, "in module {}".format(modname))
-            self.assertEqual(keys, all_set, "in module {}".format(modname))
+        try:
+            exec "from %s import *" % modname in names
+        except Exception as e:
+            # Include the module name in the exception string
+            self.fail("__all__ failure in {}: {}: {}".format(
+                      modname, e.__class__.__name__, e))
+        if "__builtins__" in names:
+            del names["__builtins__"]
+        keys = set(names)
+        all = set(sys.modules[modname].__all__)
+        self.assertEqual(keys, all)
 
     def walk_modules(self, basedir, modpath):
         for fn in sorted(os.listdir(basedir)):
@@ -99,7 +102,7 @@ class AllTest(unittest.TestCase):
                 # This heuristic speeds up the process by removing, de facto,
                 # most test modules (and avoiding the auto-executing ones).
                 with open(path, "rb") as f:
-                    if b"__all__" not in f.read():
+                    if "__all__" not in f.read():
                         raise NoAll(modname)
                     self.check_all(modname)
             except NoAll:
@@ -113,5 +116,8 @@ class AllTest(unittest.TestCase):
             print('Following modules failed to be imported:', failed_imports)
 
 
+def test_main():
+    support.run_unittest(AllTest)
+
 if __name__ == "__main__":
-    unittest.main()
+    test_main()

@@ -1,18 +1,29 @@
+# changes by dscherer@cmu.edu
+#   - IOBinding.open() replaces the current window with the opened file,
+#     if the current window is both unmodified and unnamed
+#   - IOBinding.loadfile() interprets Windows, UNIX, and Macintosh
+#     end-of-line conventions, instead of relying on the standard library,
+#     which will only understand the local convention.
+
 import os
 import types
-import shlex
+import pipes
 import sys
 import codecs
 import tempfile
-import tkinter.filedialog as tkFileDialog
-import tkinter.messagebox as tkMessageBox
+import tkFileDialog
+import tkMessageBox
 import re
-from tkinter import *
-from tkinter.simpledialog import askstring
+from Tkinter import *
+from SimpleDialog import SimpleDialog
 
 from idlelib.configHandler import idleConf
 
-from codecs import BOM_UTF8
+try:
+    from codecs import BOM_UTF8
+except ImportError:
+    # only available since Python 2.3
+    BOM_UTF8 = '\xef\xbb\xbf'
 
 # Try setting the locale, so that we can find out
 # what encoding to use
@@ -23,15 +34,15 @@ except (ImportError, locale.Error):
     pass
 
 # Encoding for file names
-filesystemencoding = sys.getfilesystemencoding()  ### currently unused
+filesystemencoding = sys.getfilesystemencoding()
 
-locale_encoding = 'ascii'
+encoding = "ascii"
 if sys.platform == 'win32':
     # On Windows, we could use "mbcs". However, to give the user
     # a portable encoding name, we need to find the code page
     try:
-        locale_encoding = locale.getdefaultlocale()[1]
-        codecs.lookup(locale_encoding)
+        encoding = locale.getdefaultlocale()[1]
+        codecs.lookup(encoding)
     except LookupError:
         pass
 else:
@@ -40,70 +51,95 @@ else:
         # loaded, it may not offer nl_langinfo, or CODESET, or the
         # resulting codeset may be unknown to Python. We ignore all
         # these problems, falling back to ASCII
-        locale_encoding = locale.nl_langinfo(locale.CODESET)
-        if locale_encoding is None or locale_encoding is '':
+        encoding = locale.nl_langinfo(locale.CODESET)
+        if encoding is None or encoding is '':
             # situation occurs on Mac OS X
-            locale_encoding = 'ascii'
-        codecs.lookup(locale_encoding)
+            encoding = 'ascii'
+        codecs.lookup(encoding)
     except (NameError, AttributeError, LookupError):
-        # Try getdefaultlocale: it parses environment variables,
+        # Try getdefaultlocale well: it parses environment variables,
         # which may give a clue. Unfortunately, getdefaultlocale has
         # bugs that can cause ValueError.
         try:
-            locale_encoding = locale.getdefaultlocale()[1]
-            if locale_encoding is None or locale_encoding is '':
+            encoding = locale.getdefaultlocale()[1]
+            if encoding is None or encoding is '':
                 # situation occurs on Mac OS X
-                locale_encoding = 'ascii'
-            codecs.lookup(locale_encoding)
+                encoding = 'ascii'
+            codecs.lookup(encoding)
         except (ValueError, LookupError):
             pass
 
-locale_encoding = locale_encoding.lower()
+encoding = encoding.lower()
 
-encoding = locale_encoding  ### KBK 07Sep07  This is used all over IDLE, check!
-                            ### 'encoding' is used below in encode(), check!
+coding_re = re.compile(r'^[ \t\f]*#.*coding[:=][ \t]*([-\w.]+)')
 
-coding_re = re.compile(r'^[ \t\f]*#.*coding[:=][ \t]*([-\w.]+)', re.ASCII)
-blank_re = re.compile(r'^[ \t\f]*(?:[#\r\n]|$)', re.ASCII)
+class EncodingMessage(SimpleDialog):
+    "Inform user that an encoding declaration is needed."
+    def __init__(self, master, enc):
+        self.should_edit = False
 
-def coding_spec(data):
+        self.root = top = Toplevel(master)
+        top.bind("<Return>", self.return_event)
+        top.bind("<Escape>", self.do_ok)
+        top.protocol("WM_DELETE_WINDOW", self.wm_delete_window)
+        top.wm_title("I/O Warning")
+        top.wm_iconname("I/O Warning")
+        self.top = top
+
+        l1 = Label(top,
+            text="Non-ASCII found, yet no encoding declared. Add a line like")
+        l1.pack(side=TOP, anchor=W)
+        l2 = Entry(top, font="courier")
+        l2.insert(0, "# -*- coding: %s -*-" % enc)
+        # For some reason, the text is not selectable anymore if the
+        # widget is disabled.
+        # l2['state'] = DISABLED
+        l2.pack(side=TOP, anchor = W, fill=X)
+        l3 = Label(top, text="to your file\n"
+                   "Choose OK to save this file as %s\n"
+                   "Edit your general options to silence this warning" % enc)
+        l3.pack(side=TOP, anchor = W)
+
+        buttons = Frame(top)
+        buttons.pack(side=TOP, fill=X)
+        # Both return and cancel mean the same thing: do nothing
+        self.default = self.cancel = 0
+        b1 = Button(buttons, text="Ok", default="active",
+                    command=self.do_ok)
+        b1.pack(side=LEFT, fill=BOTH, expand=1)
+        b2 = Button(buttons, text="Edit my file",
+                    command=self.do_edit)
+        b2.pack(side=LEFT, fill=BOTH, expand=1)
+
+        self._set_transient(master)
+
+    def do_ok(self):
+        self.done(0)
+
+    def do_edit(self):
+        self.done(1)
+
+def coding_spec(str):
     """Return the encoding declaration according to PEP 263.
 
-    When checking encoded data, only the first two lines should be passed
-    in to avoid a UnicodeDecodeError if the rest of the data is not unicode.
-    The first two lines would contain the encoding specification.
-
-    Raise a LookupError if the encoding is declared but unknown.
+    Raise LookupError if the encoding is declared but unknown.
     """
-    if isinstance(data, bytes):
-        # This encoding might be wrong. However, the coding
-        # spec must be ASCII-only, so any non-ASCII characters
-        # around here will be ignored. Decoding to Latin-1 should
-        # never fail (except for memory outage)
-        lines = data.decode('iso-8859-1')
-    else:
-        lines = data
-    # consider only the first two lines
-    if '\n' in lines:
-        lst = lines.split('\n', 2)[:2]
-    elif '\r' in lines:
-        lst = lines.split('\r', 2)[:2]
-    else:
-        lst = [lines]
+    # Only consider the first two lines
+    lst = str.split("\n", 2)[:2]
     for line in lst:
         match = coding_re.match(line)
         if match is not None:
             break
-        if not blank_re.match(line):
-            return None
     else:
         return None
     name = match.group(1)
+    # Check whether the encoding is known
+    import codecs
     try:
         codecs.lookup(name)
     except LookupError:
         # The standard encoding error does not indicate the encoding
-        raise LookupError("Unknown encoding: "+name)
+        raise LookupError, "Unknown encoding "+name
     return name
 
 
@@ -207,61 +243,57 @@ class IOBinding:
 
     eol = r"(\r\n)|\n|\r"  # \r\n (Windows), \n (UNIX), or \r (Mac)
     eol_re = re.compile(eol)
-    eol_convention = os.linesep  # default
+    eol_convention = os.linesep # Default
 
     def loadfile(self, filename):
         try:
             # open the file in binary mode so that we can handle
-            # end-of-line convention ourselves.
+            #   end-of-line convention ourselves.
             with open(filename, 'rb') as f:
-                two_lines = f.readline() + f.readline()
-                f.seek(0)
-                bytes = f.read()
-        except OSError as msg:
+                chars = f.read()
+        except IOError as msg:
             tkMessageBox.showerror("I/O Error", str(msg), master=self.text)
             return False
-        chars, converted = self._decode(two_lines, bytes)
-        if chars is None:
-            tkMessageBox.showerror("Decoding Error",
-                                   "File %s\nFailed to Decode" % filename,
-                                   parent=self.text)
-            return False
+
+        chars = self.decode(chars)
         # We now convert all end-of-lines to '\n's
         firsteol = self.eol_re.search(chars)
         if firsteol:
             self.eol_convention = firsteol.group(0)
+            if isinstance(self.eol_convention, unicode):
+                # Make sure it is an ASCII string
+                self.eol_convention = self.eol_convention.encode("ascii")
             chars = self.eol_re.sub(r"\n", chars)
+
         self.text.delete("1.0", "end")
         self.set_filename(None)
         self.text.insert("1.0", chars)
         self.reset_undo()
         self.set_filename(filename)
-        if converted:
-            # We need to save the conversion results first
-            # before being able to execute the code
-            self.set_saved(False)
         self.text.mark_set("insert", "1.0")
         self.text.yview("insert")
         self.updaterecentfileslist(filename)
         return True
 
-    def _decode(self, two_lines, bytes):
-        "Create a Unicode string."
-        chars = None
+    def decode(self, chars):
+        """Create a Unicode string
+
+        If that fails, let Tcl try its best
+        """
         # Check presence of a UTF-8 signature first
-        if bytes.startswith(BOM_UTF8):
+        if chars.startswith(BOM_UTF8):
             try:
-                chars = bytes[3:].decode("utf-8")
-            except UnicodeDecodeError:
+                chars = chars[3:].decode("utf-8")
+            except UnicodeError:
                 # has UTF-8 signature, but fails to decode...
-                return None, False
+                return chars
             else:
                 # Indicates that this file originally had a BOM
-                self.fileencoding = 'BOM'
-                return chars, False
+                self.fileencoding = BOM_UTF8
+                return chars
         # Next look for coding specification
         try:
-            enc = coding_spec(two_lines)
+            enc = coding_spec(chars)
         except LookupError as name:
             tkMessageBox.showerror(
                 title="Error loading the file",
@@ -269,49 +301,24 @@ class IOBinding:
                 "installation. The file may not display correctly" % name,
                 master = self.text)
             enc = None
-        except UnicodeDecodeError:
-            return None, False
         if enc:
             try:
-                chars = str(bytes, enc)
-                self.fileencoding = enc
-                return chars, False
-            except UnicodeDecodeError:
+                return unicode(chars, enc)
+            except UnicodeError:
                 pass
-        # Try ascii:
+        # If it is ASCII, we need not to record anything
         try:
-            chars = str(bytes, 'ascii')
-            self.fileencoding = None
-            return chars, False
-        except UnicodeDecodeError:
-            pass
-        # Try utf-8:
-        try:
-            chars = str(bytes, 'utf-8')
-            self.fileencoding = 'utf-8'
-            return chars, False
-        except UnicodeDecodeError:
+            return unicode(chars, 'ascii')
+        except UnicodeError:
             pass
         # Finally, try the locale's encoding. This is deprecated;
         # the user should declare a non-ASCII encoding
         try:
-            # Wait for the editor window to appear
-            self.editwin.text.update()
-            enc = askstring(
-                "Specify file encoding",
-                "The file's encoding is invalid for Python 3.x.\n"
-                "IDLE will convert it to UTF-8.\n"
-                "What is the current encoding of the file?",
-                initialvalue = locale_encoding,
-                parent = self.editwin.text)
-
-            if enc:
-                chars = str(bytes, enc)
-                self.fileencoding = None
-            return chars, True
-        except (UnicodeDecodeError, LookupError):
+            chars = unicode(chars, encoding)
+            self.fileencoding = encoding
+        except UnicodeError:
             pass
-        return None, False  # None on failure
+        return chars
 
     def maybesave(self):
         if self.get_saved():
@@ -372,57 +379,91 @@ class IOBinding:
 
     def writefile(self, filename):
         self.fixlastline()
-        text = self.text.get("1.0", "end-1c")
+        chars = self.encode(self.text.get("1.0", "end-1c"))
         if self.eol_convention != "\n":
-            text = text.replace("\n", self.eol_convention)
-        chars = self.encode(text)
+            chars = chars.replace("\n", self.eol_convention)
         try:
             with open(filename, "wb") as f:
                 f.write(chars)
             return True
-        except OSError as msg:
+        except IOError as msg:
             tkMessageBox.showerror("I/O Error", str(msg),
                                    master=self.text)
             return False
 
     def encode(self, chars):
-        if isinstance(chars, bytes):
+        if isinstance(chars, types.StringType):
             # This is either plain ASCII, or Tk was returning mixed-encoding
             # text to us. Don't try to guess further.
             return chars
-        # Preserve a BOM that might have been present on opening
-        if self.fileencoding == 'BOM':
-            return BOM_UTF8 + chars.encode("utf-8")
         # See whether there is anything non-ASCII in it.
         # If not, no need to figure out the encoding.
         try:
             return chars.encode('ascii')
         except UnicodeError:
             pass
-        # Check if there is an encoding declared
+        # If there is an encoding declared, try this first.
         try:
-            # a string, let coding_spec slice it to the first two lines
             enc = coding_spec(chars)
             failed = None
         except LookupError as msg:
             failed = msg
             enc = None
-        else:
-            if not enc:
-                # PEP 3120: default source encoding is UTF-8
-                enc = 'utf-8'
         if enc:
             try:
                 return chars.encode(enc)
             except UnicodeError:
                 failed = "Invalid encoding '%s'" % enc
-        tkMessageBox.showerror(
-            "I/O Error",
-            "%s.\nSaving as UTF-8" % failed,
-            master = self.text)
-        # Fallback: save as UTF-8, with BOM - ignoring the incorrect
-        # declared encoding
-        return BOM_UTF8 + chars.encode("utf-8")
+        if failed:
+            tkMessageBox.showerror(
+                "I/O Error",
+                "%s. Saving as UTF-8" % failed,
+                master = self.text)
+        # If there was a UTF-8 signature, use that. This should not fail
+        if self.fileencoding == BOM_UTF8 or failed:
+            return BOM_UTF8 + chars.encode("utf-8")
+        # Try the original file encoding next, if any
+        if self.fileencoding:
+            try:
+                return chars.encode(self.fileencoding)
+            except UnicodeError:
+                tkMessageBox.showerror(
+                    "I/O Error",
+                    "Cannot save this as '%s' anymore. Saving as UTF-8" \
+                    % self.fileencoding,
+                    master = self.text)
+                return BOM_UTF8 + chars.encode("utf-8")
+        # Nothing was declared, and we had not determined an encoding
+        # on loading. Recommend an encoding line.
+        config_encoding = idleConf.GetOption("main","EditorWindow",
+                                             "encoding")
+        if config_encoding == 'utf-8':
+            # User has requested that we save files as UTF-8
+            return BOM_UTF8 + chars.encode("utf-8")
+        ask_user = True
+        try:
+            chars = chars.encode(encoding)
+            enc = encoding
+            if config_encoding == 'locale':
+                ask_user = False
+        except UnicodeError:
+            chars = BOM_UTF8 + chars.encode("utf-8")
+            enc = "utf-8"
+        if not ask_user:
+            return chars
+        dialog = EncodingMessage(self.editwin.top, enc)
+        dialog.go()
+        if dialog.num == 1:
+            # User asked us to edit the file
+            encline = "# -*- coding: %s -*-\n" % enc
+            firstline = self.text.get("1.0", "2.0")
+            if firstline.startswith("#!"):
+                # Insert encoding after #! line
+                self.text.insert("2.0", encline)
+            else:
+                self.text.insert("1.0", encline)
+            return self.encode(self.text.get("1.0", "end-1c"))
+        return chars
 
     def fixlastline(self):
         c = self.text.get("end-2c")
@@ -461,7 +502,7 @@ class IOBinding:
         else: #no printing for this platform
             printPlatform = False
         if printPlatform:  #we can try to print for this platform
-            command = command % shlex.quote(filename)
+            command = command % pipes.quote(filename)
             pipe = os.popen(command, "r")
             # things can get ugly on NT if there is no printer available.
             output = pipe.read().strip()
@@ -488,14 +529,14 @@ class IOBinding:
         ("All files", "*"),
         ]
 
-    defaultextension = '.py' if sys.platform == 'darwin' else ''
-
     def askopenfile(self):
         dir, base = self.defaultfilename("open")
         if not self.opendialog:
             self.opendialog = tkFileDialog.Open(master=self.text,
                                                 filetypes=self.filetypes)
         filename = self.opendialog.show(initialdir=dir, initialfile=base)
+        if isinstance(filename, unicode):
+            filename = filename.encode(filesystemencoding)
         return filename
 
     def defaultfilename(self, mode="open"):
@@ -506,24 +547,23 @@ class IOBinding:
         else:
             try:
                 pwd = os.getcwd()
-            except OSError:
+            except os.error:
                 pwd = ""
             return pwd, ""
 
     def asksavefile(self):
         dir, base = self.defaultfilename("save")
         if not self.savedialog:
-            self.savedialog = tkFileDialog.SaveAs(
-                    master=self.text,
-                    filetypes=self.filetypes,
-                    defaultextension=self.defaultextension)
+            self.savedialog = tkFileDialog.SaveAs(master=self.text,
+                                                  filetypes=self.filetypes)
         filename = self.savedialog.show(initialdir=dir, initialfile=base)
+        if isinstance(filename, unicode):
+            filename = filename.encode(filesystemencoding)
         return filename
 
     def updaterecentfileslist(self,filename):
         "Update recent file list on all editor windows"
-        if self.editwin.flist:
-            self.editwin.update_recent_files_list(filename)
+        self.editwin.update_recent_files_list(filename)
 
 def test():
     root = Tk()

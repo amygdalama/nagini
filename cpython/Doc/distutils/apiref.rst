@@ -120,7 +120,7 @@ setup script). Indirectly provides the  :class:`distutils.dist.Distribution` and
    args from *script* to :func:`setup`), or  the contents of the config files or
    command-line.
 
-   *script_name* is a file that will be read and run with :func:`exec`.  ``sys.argv[0]``
+   *script_name* is a file that will be run with :func:`execfile` ``sys.argv[0]``
    will be replaced with *script* for the duration of the call.  *script_args* is a
    list of strings; if supplied, ``sys.argv[1:]`` will be replaced by *script_args*
    for the duration  of the call.
@@ -167,7 +167,7 @@ the full reference.
 .. class:: Extension
 
    The Extension class describes a single C or C++extension module in a setup
-   script. It accepts the following keyword arguments in its constructor:
+   script. It accepts the following keyword arguments in its constructor
 
    .. tabularcolumns:: |l|L|l|
 
@@ -269,11 +269,6 @@ the full reference.
    |                        | ``'objc'``). Will be detected  |                           |
    |                        | from the source extensions if  |                           |
    |                        | not provided.                  |                           |
-   +------------------------+--------------------------------+---------------------------+
-   | *optional*             | specifies that a build failure | a boolean                 |
-   |                        | in the extension should not    |                           |
-   |                        | abort the build process, but   |                           |
-   |                        | simply skip the extension.     |                           |
    +------------------------+--------------------------------+---------------------------+
 
 
@@ -853,6 +848,17 @@ Windows.  It also contains the Mingw32CCompiler class which handles the mingw32
 port of GCC (same as cygwin in no-cygwin mode).
 
 
+:mod:`distutils.emxccompiler` --- OS/2 EMX Compiler
+===================================================
+
+.. module:: distutils.emxccompiler
+   :synopsis: OS/2 EMX Compiler support
+
+
+This module provides the EMXCCompiler class, a subclass of
+:class:`UnixCCompiler` that handles the EMX port of the GNU C compiler to OS/2.
+
+
 :mod:`distutils.archive_util` ---  Archiving utilities
 ======================================================
 
@@ -950,7 +956,7 @@ This module provides functions for operating on directories and trees of
 directories.
 
 
-.. function:: mkpath(name[, mode=0o777, verbose=0, dry_run=0])
+.. function:: mkpath(name[, mode=0777, verbose=0, dry_run=0])
 
    Create a directory and any missing ancestor directories.  If the directory
    already exists (or if *name* is the empty string, which means the current
@@ -961,7 +967,7 @@ directories.
    directories actually created.
 
 
-.. function:: create_tree(base_dir, files[, mode=0o777, verbose=0, dry_run=0])
+.. function:: create_tree(base_dir, files[, mode=0777, verbose=0, dry_run=0])
 
    Create all the empty directories under *base_dir* needed to put *files* there.
    *base_dir* is just the a name of a directory which doesn't necessarily exist
@@ -976,8 +982,8 @@ directories.
    Copy an entire directory tree *src* to a new location *dst*.  Both *src* and
    *dst* must be directory names.  If *src* is not a directory, raise
    :exc:`DistutilsFileError`.  If *dst* does  not exist, it is created with
-   :func:`mkpath`.  The end result of the  copy is that every file in *src* is
-   copied to *dst*, and  directories under *src* are recursively copied to *dst*.
+   :func:`mkpath`.  The end result of the copy is that every file in *src* is
+   copied to *dst*, and directories under *src* are recursively copied to *dst*.
    Return the list of files that were copied or might have been copied, using their
    output name. The return value is unaffected by *update* or *dry_run*: it is
    simply the list of all files under *src*, with the names changed to be under
@@ -995,8 +1001,9 @@ directories.
    these files is available in answer D2 of the `NFS FAQ page
    <http://nfs.sourceforge.net/#section_d>`_.
 
-   .. versionchanged:: 3.3.1
+   .. versionchanged:: 2.7.4
       NFS files are ignored.
+
 
 .. function:: remove_tree(directory[, verbose=0, dry_run=0])
 
@@ -1160,6 +1167,7 @@ other utility module.
    underscore. No { } or ( ) style quoting is available.
 
 
+
 .. function:: split_quoted(s)
 
    Split a string up according to Unix shell-like rules for quotes and backslashes.
@@ -1194,9 +1202,9 @@ other utility module.
 .. function:: byte_compile(py_files[, optimize=0, force=0, prefix=None, base_dir=None, verbose=1, dry_run=0, direct=None])
 
    Byte-compile a collection of Python source files to either :file:`.pyc` or
-   :file:`.pyo` files in a :file:`__pycache__` subdirectory (see :pep:`3147`).
-   *py_files* is a list of files to compile; any files that don't end in
-   :file:`.py` are silently skipped.  *optimize* must be one of the following:
+   :file:`.pyo` files in the same directory.  *py_files* is a list of files to
+   compile; any files that don't end in :file:`.py` are silently skipped.
+   *optimize* must be one of the following:
 
    * ``0`` - don't optimize (generate :file:`.pyc`)
    * ``1`` - normal optimization (like ``python -O``)
@@ -1220,11 +1228,6 @@ other utility module.
    use direct compilation or not (see the source for details).  The *direct* flag
    is used by the script generated in indirect mode; unless you know what you're
    doing, leave it set to ``None``.
-
-   .. versionchanged:: 3.2.3
-      Create ``.pyc`` or ``.pyo`` files with an :func:`import magic tag
-      <imp.get_tag>` in their name, in a :file:`__pycache__` subdirectory
-      instead of files without tag in the current directory.
 
 
 .. function:: rfc822_escape(header)
@@ -1311,6 +1314,7 @@ provides the following additional features:
   the "negative alias" of :option:`--verbose`, then :option:`--quiet` on the
   command line sets *verbose* to false.
 
+
 .. function:: fancy_getopt(options, negative_opt, object, args)
 
    Wrapper function. *options* is a list of ``(long_option, short_option,
@@ -1325,6 +1329,7 @@ provides the following additional features:
 .. function:: wrap_text(text, width)
 
    Wraps *text* to less than *width* wide.
+
 
 
 .. class:: FancyGetopt([option_table=None])
@@ -1884,27 +1889,6 @@ Subclasses of :class:`Command` must define the following methods.
 
 .. module:: distutils.command.build_py
    :synopsis: Build the .py/.pyc files of a package
-
-
-.. class:: build_py
-
-.. class:: build_py_2to3
-
-   Alternative implementation of build_py which also runs the
-   2to3 conversion library on each .py file that is going to be
-   installed. To use this in a setup.py file for a distribution
-   that is designed to run with both Python 2.x and 3.x, add::
-
-     try:
-        from distutils.command.build_py import build_py_2to3 as build_py
-     except ImportError:
-        from distutils.command.build_py import build_py
-
-   to your setup.py, and later::
-
-      cmdclass = {'build_py': build_py}
-
-   to the invocation of setup().
 
 
 :mod:`distutils.command.build_scripts` --- Build the scripts of a package

@@ -1,3 +1,4 @@
+
 :mod:`xml.sax` --- Support for SAX2 parsers
 ===========================================
 
@@ -7,6 +8,8 @@
 .. sectionauthor:: Fred L. Drake, Jr. <fdrake@acm.org>
 .. sectionauthor:: Martin v. Löwis <martin@v.loewis.de>
 
+
+.. versionadded:: 2.0
 
 The :mod:`xml.sax` package provides a number of modules which implement the
 Simple API for XML (SAX) interface for Python.  The package itself provides the
@@ -24,7 +27,7 @@ the SAX API.
 The convenience functions are:
 
 
-.. function:: make_parser(parser_list=[])
+.. function:: make_parser([parser_list])
 
    Create and return a SAX :class:`~xml.sax.xmlreader.XMLReader` object.  The
    first parser found will
@@ -33,7 +36,7 @@ The convenience functions are:
    in *parser_list* will be used before modules in the default list of parsers.
 
 
-.. function:: parse(filename_or_stream, handler, error_handler=handler.ErrorHandler())
+.. function:: parse(filename_or_stream, handler[, error_handler])
 
    Create a SAX parser and use it to parse a document.  The document, passed in as
    *filename_or_stream*, can be a filename or a file object.  The *handler*
@@ -44,7 +47,7 @@ The convenience functions are:
    return value; all work must be done by the *handler* passed in.
 
 
-.. function:: parseString(string, handler, error_handler=handler.ErrorHandler())
+.. function:: parseString(string, handler[, error_handler])
 
    Similar to :func:`parse`, but parses from a buffer *string* received as a
    parameter.
@@ -77,7 +80,7 @@ In addition to these classes, :mod:`xml.sax` provides the following exception
 classes.
 
 
-.. exception:: SAXException(msg, exception=None)
+.. exception:: SAXException(msg[, exception])
 
    Encapsulate an XML error or warning.  This class can contain basic error or
    warning information from either the XML parser or the application: it can be
@@ -104,7 +107,7 @@ classes.
    :class:`SAXException` interface.
 
 
-.. exception:: SAXNotRecognizedException(msg, exception=None)
+.. exception:: SAXNotRecognizedException(msg[, exception])
 
    Subclass of :exc:`SAXException` raised when a SAX
    :class:`~xml.sax.xmlreader.XMLReader` is
@@ -112,7 +115,7 @@ classes.
    extensions may use this class for similar purposes.
 
 
-.. exception:: SAXNotSupportedException(msg, exception=None)
+.. exception:: SAXNotSupportedException(msg[, exception])
 
    Subclass of :exc:`SAXException` raised when a SAX
    :class:`~xml.sax.xmlreader.XMLReader` is asked to

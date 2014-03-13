@@ -1,16 +1,10 @@
 import unittest
 import sys
 import _ast
-import types
-from test import support
+from test import test_support
+import textwrap
 
 class TestSpecifics(unittest.TestCase):
-
-    def compile_single(self, source):
-        compile(source, "<single>", "single")
-
-    def assertInvalidSingle(self, source):
-        self.assertRaises(SyntaxError, self.compile_single, source)
 
     def test_no_ending_newline(self):
         compile("hi", "<test>", "exec")
@@ -28,19 +22,31 @@ class TestSpecifics(unittest.TestCase):
     def test_debug_assignment(self):
         # catch assignments to __debug__
         self.assertRaises(SyntaxError, compile, '__debug__ = 1', '?', 'single')
-        import builtins
-        prev = builtins.__debug__
-        setattr(builtins, '__debug__', 'sure')
-        setattr(builtins, '__debug__', prev)
+        import __builtin__
+        prev = __builtin__.__debug__
+        setattr(__builtin__, '__debug__', 'sure')
+        setattr(__builtin__, '__debug__', prev)
 
     def test_argument_handling(self):
         # detect duplicate positional and keyword arguments
         self.assertRaises(SyntaxError, eval, 'lambda a,a:0')
         self.assertRaises(SyntaxError, eval, 'lambda a,a=1:0')
         self.assertRaises(SyntaxError, eval, 'lambda a=1,a=1:0')
-        self.assertRaises(SyntaxError, exec, 'def f(a, a): pass')
-        self.assertRaises(SyntaxError, exec, 'def f(a = 0, a = 1): pass')
-        self.assertRaises(SyntaxError, exec, 'def f(a): global a; a = 1')
+        try:
+            exec 'def f(a, a): pass'
+            self.fail("duplicate arguments")
+        except SyntaxError:
+            pass
+        try:
+            exec 'def f(a = 0, a = 1): pass'
+            self.fail("duplicate keyword arguments")
+        except SyntaxError:
+            pass
+        try:
+            exec 'def f(a): global a; a = 1'
+            self.fail("variable is global and local")
+        except SyntaxError:
+            pass
 
     def test_syntax_error(self):
         self.assertRaises(SyntaxError, compile, "1+*3", "filename", "exec")
@@ -49,7 +55,39 @@ class TestSpecifics(unittest.TestCase):
         self.assertRaises(SyntaxError, compile, "f(None=1)", "<string>", "exec")
 
     def test_duplicate_global_local(self):
-        self.assertRaises(SyntaxError, exec, 'def f(a): global a; a = 1')
+        try:
+            exec 'def f(a): global a; a = 1'
+            self.fail("variable is global and local")
+        except SyntaxError:
+            pass
+
+    def test_exec_functional_style(self):
+        # Exec'ing a tuple of length 2 works.
+        g = {'b': 2}
+        exec("a = b + 1", g)
+        self.assertEqual(g['a'], 3)
+
+        # As does exec'ing a tuple of length 3.
+        l = {'b': 3}
+        g = {'b': 5, 'c': 7}
+        exec("a = b + c", g, l)
+        self.assertNotIn('a', g)
+        self.assertEqual(l['a'], 10)
+
+        # Tuples not of length 2 or 3 are invalid.
+        with self.assertRaises(TypeError):
+            exec("a = b + 1",)
+
+        with self.assertRaises(TypeError):
+            exec("a = b + 1", {}, {}, {})
+
+        # Can't mix and match the two calling forms.
+        g = {'a': 3, 'b': 4}
+        l = {}
+        with self.assertRaises(TypeError):
+            exec("a = b + 1", g) in g
+        with self.assertRaises(TypeError):
+            exec("a = b + 1", g, l) in g, l
 
     def test_exec_with_general_mapping_for_locals(self):
 
@@ -66,27 +104,37 @@ class TestSpecifics(unittest.TestCase):
 
         m = M()
         g = globals()
-        exec('z = a', g, m)
+        exec 'z = a' in g, m
         self.assertEqual(m.results, ('z', 12))
         try:
-            exec('z = b', g, m)
+            exec 'z = b' in g, m
         except NameError:
             pass
         else:
             self.fail('Did not detect a KeyError')
-        exec('z = dir()', g, m)
+        exec 'z = dir()' in g, m
         self.assertEqual(m.results, ('z', list('xyz')))
-        exec('z = globals()', g, m)
+        exec 'z = globals()' in g, m
         self.assertEqual(m.results, ('z', g))
-        exec('z = locals()', g, m)
+        exec 'z = locals()' in g, m
         self.assertEqual(m.results, ('z', m))
-        self.assertRaises(TypeError, exec, 'z = b', m)
+        try:
+            exec 'z = b' in m
+        except TypeError:
+            pass
+        else:
+            self.fail('Did not validate globals as a real dict')
 
         class A:
             "Non-mapping"
             pass
         m = A()
-        self.assertRaises(TypeError, exec, 'z = a', g, m)
+        try:
+            exec 'z = a' in g, m
+        except TypeError:
+            pass
+        else:
+            self.fail('Did not validate locals as a mapping')
 
         # Verify that dict subclasses work as well
         class D(dict):
@@ -95,12 +143,11 @@ class TestSpecifics(unittest.TestCase):
                     return 12
                 return dict.__getitem__(self, key)
         d = D()
-        exec('z = a', g, d)
+        exec 'z = a' in g, d
         self.assertEqual(d['z'], 12)
 
     def test_extended_arg(self):
         longexpr = 'x = x or ' + '-x' * 2500
-        g = {}
         code = '''
 def f(x):
     %s
@@ -119,11 +166,39 @@ def f(x):
         # EXTENDED_ARG/JUMP_ABSOLUTE here
     return x
 ''' % ((longexpr,)*10)
-        exec(code, g)
-        self.assertEqual(g['f'](5), 0)
+        exec code
+        self.assertEqual(f(5), 0)
+
+    def test_complex_args(self):
+
+        with test_support.check_py3k_warnings(
+                ("tuple parameter unpacking has been removed", SyntaxWarning)):
+            exec textwrap.dedent('''
+        def comp_args((a, b)):
+            return a,b
+        self.assertEqual(comp_args((1, 2)), (1, 2))
+
+        def comp_args((a, b)=(3, 4)):
+            return a, b
+        self.assertEqual(comp_args((1, 2)), (1, 2))
+        self.assertEqual(comp_args(), (3, 4))
+
+        def comp_args(a, (b, c)):
+            return a, b, c
+        self.assertEqual(comp_args(1, (2, 3)), (1, 2, 3))
+
+        def comp_args(a=2, (b, c)=(3, 4)):
+            return a, b, c
+        self.assertEqual(comp_args(1, (2, 3)), (1, 2, 3))
+        self.assertEqual(comp_args(), (2, 3, 4))
+        ''')
 
     def test_argument_order(self):
-        self.assertRaises(SyntaxError, exec, 'def f(a=1, b): pass')
+        try:
+            exec 'def f(a=1, (b, c)): pass'
+            self.fail("non-default args after default")
+        except SyntaxError:
+            pass
 
     def test_float_literals(self):
         # testing bad float literals
@@ -148,26 +223,29 @@ if 1:
         s256 = "".join(["\n"] * 256 + ["spam"])
         co = compile(s256, 'fn', 'exec')
         self.assertEqual(co.co_firstlineno, 257)
-        self.assertEqual(co.co_lnotab, bytes())
+        self.assertEqual(co.co_lnotab, '')
 
     def test_literals_with_leading_zeroes(self):
         for arg in ["077787", "0xj", "0x.", "0e",  "090000000000000",
                     "080000000000000", "000000000000009", "000000000000008",
                     "0b42", "0BADCAFE", "0o123456789", "0b1.1", "0o4.2",
-                    "0b101j2", "0o153j2", "0b100e1", "0o777e1", "0777",
-                    "000777", "000000000000007"]:
+                    "0b101j2", "0o153j2", "0b100e1", "0o777e1", "0o8", "0o78"]:
             self.assertRaises(SyntaxError, eval, arg)
 
+        self.assertEqual(eval("0777"), 511)
+        self.assertEqual(eval("0777L"), 511)
+        self.assertEqual(eval("000777"), 511)
         self.assertEqual(eval("0xff"), 255)
+        self.assertEqual(eval("0xffL"), 255)
+        self.assertEqual(eval("0XfF"), 255)
         self.assertEqual(eval("0777."), 777)
         self.assertEqual(eval("0777.0"), 777)
         self.assertEqual(eval("000000000000000000000000000000000000000000000000000777e0"), 777)
         self.assertEqual(eval("0777e1"), 7770)
         self.assertEqual(eval("0e0"), 0)
-        self.assertEqual(eval("0000e-012"), 0)
+        self.assertEqual(eval("0000E-012"), 0)
         self.assertEqual(eval("09.5"), 9.5)
         self.assertEqual(eval("0777j"), 777j)
-        self.assertEqual(eval("000"), 0)
         self.assertEqual(eval("00j"), 0j)
         self.assertEqual(eval("00.0"), 0)
         self.assertEqual(eval("0e3"), 0)
@@ -176,33 +254,38 @@ if 1:
         self.assertEqual(eval("090000000000000e0"), 90000000000000.)
         self.assertEqual(eval("090000000000000e-0"), 90000000000000.)
         self.assertEqual(eval("090000000000000j"), 90000000000000j)
+        self.assertEqual(eval("000000000000007"), 7)
         self.assertEqual(eval("000000000000008."), 8.)
         self.assertEqual(eval("000000000000009."), 9.)
         self.assertEqual(eval("0b101010"), 42)
         self.assertEqual(eval("-0b000000000010"), -2)
         self.assertEqual(eval("0o777"), 511)
         self.assertEqual(eval("-0o0000010"), -8)
+        self.assertEqual(eval("020000000000.0"), 20000000000.0)
+        self.assertEqual(eval("037777777777e0"), 37777777777.0)
+        self.assertEqual(eval("01000000000000000000000.0"),
+                         1000000000000000000000.0)
 
     def test_unary_minus(self):
         # Verify treatment of unary minus on negative numbers SF bug #660455
-        if sys.maxsize == 2147483647:
+        if sys.maxint == 2147483647:
             # 32-bit machine
             all_one_bits = '0xffffffff'
-            self.assertEqual(eval(all_one_bits), 4294967295)
-            self.assertEqual(eval("-" + all_one_bits), -4294967295)
-        elif sys.maxsize == 9223372036854775807:
+            self.assertEqual(eval(all_one_bits), 4294967295L)
+            self.assertEqual(eval("-" + all_one_bits), -4294967295L)
+        elif sys.maxint == 9223372036854775807:
             # 64-bit machine
             all_one_bits = '0xffffffffffffffff'
-            self.assertEqual(eval(all_one_bits), 18446744073709551615)
-            self.assertEqual(eval("-" + all_one_bits), -18446744073709551615)
+            self.assertEqual(eval(all_one_bits), 18446744073709551615L)
+            self.assertEqual(eval("-" + all_one_bits), -18446744073709551615L)
         else:
             self.fail("How many bits *does* this machine have???")
-        # Verify treatment of constant folding on -(sys.maxsize+1)
-        # i.e. -2147483648 on 32 bit platforms.  Should return int.
-        self.assertIsInstance(eval("%s" % (-sys.maxsize - 1)), int)
-        self.assertIsInstance(eval("%s" % (-sys.maxsize - 2)), int)
+        # Verify treatment of constant folding on -(sys.maxint+1)
+        # i.e. -2147483648 on 32 bit platforms.  Should return int, not long.
+        self.assertIsInstance(eval("%s" % (-sys.maxint - 1)), int)
+        self.assertIsInstance(eval("%s" % (-sys.maxint - 2)), long)
 
-    if sys.maxsize == 9223372036854775807:
+    if sys.maxint == 9223372036854775807:
         def test_32_63_bit_values(self):
             a = +4294967296  # 1 << 32
             b = -4294967296  # 1 << 32
@@ -213,7 +296,7 @@ if 1:
             g = +9223372036854775807  # 1 << 63 - 1
             h = -9223372036854775807  # 1 << 63 - 1
 
-            for variable in self.test_32_63_bit_values.__code__.co_consts:
+            for variable in self.test_32_63_bit_values.func_code.co_consts:
                 if variable is not None:
                     self.assertIsInstance(variable, int)
 
@@ -242,6 +325,10 @@ if 1:
             stmt += "\n"
             self.assertRaises(SyntaxError, compile, stmt, 'tmp', 'single')
             self.assertRaises(SyntaxError, compile, stmt, 'tmp', 'exec')
+        # This is ok.
+        compile("from None import x", "tmp", "exec")
+        compile("from x import None as y", "tmp", "exec")
+        compile("import None as x", "tmp", "exec")
 
     def test_import(self):
         succeed = [
@@ -297,15 +384,15 @@ if 1:
             f2 = lambda x=2: x
             return f1, f2
         f1, f2 = f()
-        self.assertNotEqual(id(f1.__code__), id(f2.__code__))
+        self.assertNotEqual(id(f1.func_code), id(f2.func_code))
 
     def test_lambda_doc(self):
         l = lambda: "foo"
         self.assertIsNone(l.__doc__)
 
-##     def test_unicode_encoding(self):
-##         code = "# -*- coding: utf-8 -*-\npass\n"
-##         self.assertRaises(SyntaxError, compile, code, "tmp", "exec")
+    def test_unicode_encoding(self):
+        code = u"# -*- coding: utf-8 -*-\npass\n"
+        self.assertRaises(SyntaxError, compile, code, "tmp", "exec")
 
     def test_subscripts(self):
         # SF bug 1448804
@@ -379,19 +466,6 @@ if 1:
         del d[..., ...]
         self.assertNotIn((Ellipsis, Ellipsis), d)
 
-    def test_annotation_limit(self):
-        # 16 bits are available for # of annotations, but only 8 bits are
-        # available for the parameter count, hence 255
-        # is the max. Ensure the result of too many annotations is a
-        # SyntaxError.
-        s = "def f(%s): pass"
-        s %= ', '.join('a%d:%d' % (i,i) for i in range(256))
-        self.assertRaises(SyntaxError, compile, s, '?', 'exec')
-        # Test that the max # of annotations compiles.
-        s = "def f(%s): pass"
-        s %= ', '.join('a%d:%d' % (i,i) for i in range(255))
-        compile(s, '?', 'exec')
-
     def test_mangling(self):
         class A:
             def f():
@@ -400,10 +474,10 @@ if 1:
                 import __mangled_mod
                 import __package__.module
 
-        self.assertIn("_A__mangled", A.f.__code__.co_varnames)
-        self.assertIn("__not_mangled__", A.f.__code__.co_varnames)
-        self.assertIn("_A__mangled_mod", A.f.__code__.co_varnames)
-        self.assertIn("__package__", A.f.__code__.co_varnames)
+        self.assertIn("_A__mangled", A.f.func_code.co_varnames)
+        self.assertIn("__not_mangled__", A.f.func_code.co_varnames)
+        self.assertIn("_A__mangled_mod", A.f.func_code.co_varnames)
+        self.assertIn("__package__", A.f.func_code.co_varnames)
 
     def test_compile_ast(self):
         fname = __file__
@@ -413,8 +487,12 @@ if 1:
             fcontents = f.read()
         sample_code = [
             ['<assign>', 'x = 5'],
+            ['<print1>', 'print 1'],
+            ['<printv>', 'print v'],
+            ['<printTrue>', 'print True'],
+            ['<printList>', 'print []'],
             ['<ifblock>', """if True:\n    pass\n"""],
-            ['<forblock>', """for n in [1, 2, 3]:\n    print(n)\n"""],
+            ['<forblock>', """for n in [1, 2, 3]:\n    print n\n"""],
             ['<deffunc>', """def foo():\n    pass\nfoo()\n"""],
             [fname, fcontents],
         ]
@@ -429,7 +507,7 @@ if 1:
             self.assertEqual(co2.co_filename, '%s3' % fname)
 
         # raise exception when node type doesn't match with compile mode
-        co1 = compile('print(1)', '<string>', 'exec', _ast.PyCF_ONLY_AST)
+        co1 = compile('print 1', '<string>', 'exec', _ast.PyCF_ONLY_AST)
         self.assertRaises(TypeError, compile, co1, '<ast>', 'eval')
 
         # raise exception when node type is no start node
@@ -440,69 +518,9 @@ if 1:
         ast.body = [_ast.BoolOp()]
         self.assertRaises(TypeError, compile, ast, '<ast>', 'exec')
 
-    @support.cpython_only
-    def test_same_filename_used(self):
-        s = """def f(): pass\ndef g(): pass"""
-        c = compile(s, "myfile", "exec")
-        for obj in c.co_consts:
-            if isinstance(obj, types.CodeType):
-                self.assertIs(obj.co_filename, c.co_filename)
-
-    def test_single_statement(self):
-        self.compile_single("1 + 2")
-        self.compile_single("\n1 + 2")
-        self.compile_single("1 + 2\n")
-        self.compile_single("1 + 2\n\n")
-        self.compile_single("1 + 2\t\t\n")
-        self.compile_single("1 + 2\t\t\n        ")
-        self.compile_single("1 + 2 # one plus two")
-        self.compile_single("1; 2")
-        self.compile_single("import sys; sys")
-        self.compile_single("def f():\n   pass")
-        self.compile_single("while False:\n   pass")
-        self.compile_single("if x:\n   f(x)")
-        self.compile_single("if x:\n   f(x)\nelse:\n   g(x)")
-        self.compile_single("class T:\n   pass")
-
-    def test_bad_single_statement(self):
-        self.assertInvalidSingle('1\n2')
-        self.assertInvalidSingle('def f(): pass')
-        self.assertInvalidSingle('a = 13\nb = 187')
-        self.assertInvalidSingle('del x\ndel y')
-        self.assertInvalidSingle('f()\ng()')
-        self.assertInvalidSingle('f()\n# blah\nblah()')
-        self.assertInvalidSingle('f()\nxy # blah\nblah()')
-        self.assertInvalidSingle('x = 5 # comment\nx = 6\n')
-
-    @support.cpython_only
-    def test_compiler_recursion_limit(self):
-        # Expected limit is sys.getrecursionlimit() * the scaling factor
-        # in symtable.c (currently 3)
-        # We expect to fail *at* that limit, because we use up some of
-        # the stack depth limit in the test suite code
-        # So we check the expected limit and 75% of that
-        # XXX (ncoghlan): duplicating the scaling factor here is a little
-        # ugly. Perhaps it should be exposed somewhere...
-        fail_depth = sys.getrecursionlimit() * 3
-        success_depth = int(fail_depth * 0.75)
-
-        def check_limit(prefix, repeated):
-            expect_ok = prefix + repeated * success_depth
-            self.compile_single(expect_ok)
-            broken = prefix + repeated * fail_depth
-            details = "Compiling ({!r} + {!r} * {})".format(
-                         prefix, repeated, fail_depth)
-            with self.assertRaises(RuntimeError, msg=details):
-                self.compile_single(broken)
-
-        check_limit("a", "()")
-        check_limit("a", ".b")
-        check_limit("a", "[0]")
-        check_limit("a", "*a")
-
 
 def test_main():
-    support.run_unittest(TestSpecifics)
+    test_support.run_unittest(TestSpecifics)
 
 if __name__ == "__main__":
     test_main()

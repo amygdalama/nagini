@@ -6,16 +6,13 @@ Tools directory of a Python checkout or tarball, such as reindent.py.
 
 import os
 import sys
-import importlib._bootstrap
-import importlib.machinery
 import unittest
-from unittest import mock
 import shutil
 import subprocess
 import sysconfig
 import tempfile
 import textwrap
-from test import support
+from test import test_support
 from test.script_helper import assert_python_ok, temp_dir
 
 if not sysconfig.is_python_build():
@@ -48,11 +45,11 @@ class PindentTests(unittest.TestCase):
             self.assertEqual(f1.readlines(), f2.readlines())
 
     def pindent(self, source, *args):
-        with subprocess.Popen(
+        proc = subprocess.Popen(
                 (sys.executable, self.script) + args,
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                universal_newlines=True) as proc:
-            out, err = proc.communicate(source)
+                universal_newlines=True)
+        out, err = proc.communicate(source)
         self.assertIsNone(err)
         return out
 
@@ -362,103 +359,9 @@ class PindentTests(unittest.TestCase):
         self.pindent_test(clean, closed)
 
 
-class TestSundryScripts(unittest.TestCase):
-    # At least make sure the rest don't have syntax errors.  When tests are
-    # added for a script it should be added to the whitelist below.
-
-    # scripts that have independent tests.
-    whitelist = ['reindent.py', 'pdeps.py', 'gprof2html']
-    # scripts that can't be imported without running
-    blacklist = ['make_ctype.py']
-    # scripts that use windows-only modules
-    windows_only = ['win_add2path.py']
-    # blacklisted for other reasons
-    other = ['analyze_dxp.py']
-
-    skiplist = blacklist + whitelist + windows_only + other
-
-    def setUp(self):
-        cm = support.DirsOnSysPath(scriptsdir)
-        cm.__enter__()
-        self.addCleanup(cm.__exit__)
-
-    def test_sundry(self):
-        for fn in os.listdir(scriptsdir):
-            if fn.endswith('.py') and fn not in self.skiplist:
-                __import__(fn[:-3])
-
-    @unittest.skipIf(sys.platform != "win32", "Windows-only test")
-    def test_sundry_windows(self):
-        for fn in self.windows_only:
-            __import__(fn[:-3])
-
-    @unittest.skipIf(not support.threading, "test requires _thread module")
-    def test_analyze_dxp_import(self):
-        if hasattr(sys, 'getdxp'):
-            import analyze_dxp
-        else:
-            with self.assertRaises(RuntimeError):
-                import analyze_dxp
-
-
-class PdepsTests(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(self):
-        path = os.path.join(scriptsdir, 'pdeps.py')
-        spec = importlib.util.spec_from_file_location('pdeps', path)
-        self.pdeps = importlib._bootstrap._SpecMethods(spec).load()
-
-    @classmethod
-    def tearDownClass(self):
-        if 'pdeps' in sys.modules:
-            del sys.modules['pdeps']
-
-    def test_process_errors(self):
-        # Issue #14492: m_import.match(line) can be None.
-        with tempfile.TemporaryDirectory() as tmpdir:
-            fn = os.path.join(tmpdir, 'foo')
-            with open(fn, 'w') as stream:
-                stream.write("#!/this/will/fail")
-            self.pdeps.process(fn, {})
-
-    def test_inverse_attribute_error(self):
-        # Issue #14492: this used to fail with an AttributeError.
-        self.pdeps.inverse({'a': []})
-
-
-class Gprof2htmlTests(unittest.TestCase):
-
-    def setUp(self):
-        path = os.path.join(scriptsdir, 'gprof2html.py')
-        spec = importlib.util.spec_from_file_location('gprof2html', path)
-        self.gprof = importlib._bootstrap._SpecMethods(spec).load()
-        oldargv = sys.argv
-        def fixup():
-            sys.argv = oldargv
-        self.addCleanup(fixup)
-        sys.argv = []
-
-    def test_gprof(self):
-        # Issue #14508: this used to fail with an NameError.
-        with mock.patch.object(self.gprof, 'webbrowser') as wmock, \
-                tempfile.TemporaryDirectory() as tmpdir:
-            fn = os.path.join(tmpdir, 'abc')
-            open(fn, 'w').close()
-            sys.argv = ['gprof2html', fn]
-            self.gprof.main()
-        self.assertTrue(wmock.open.called)
-
-
-# Run the tests in Tools/parser/test_unparse.py
-with support.DirsOnSysPath(os.path.join(basepath, 'parser')):
-    from test_unparse import UnparseTestCase
-    from test_unparse import DirectoryTestCase
-
-
 def test_main():
-    support.run_unittest(*[obj for obj in globals().values()
-                               if isinstance(obj, type)])
+    test_support.run_unittest(*[obj for obj in globals().values()
+                                    if isinstance(obj, type)])
 
 
 if __name__ == '__main__':

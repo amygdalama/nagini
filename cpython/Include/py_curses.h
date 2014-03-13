@@ -76,7 +76,6 @@ extern "C" {
 typedef struct {
 	PyObject_HEAD
 	WINDOW *win;
-	char *encoding;
 } PyCursesWindowObject;
 
 #define PyCursesWindow_Check(v)	 (Py_TYPE(v) == &PyCursesWindow_Type)
@@ -140,14 +139,14 @@ static PyObject *PyCurses_ ## X (PyObject *self, PyObject *args) \
 static PyObject *PyCurses_ ## X (PyObject *self) \
 { \
  PyCursesInitialised \
- return PyLong_FromLong((long) X()); }
+ return PyInt_FromLong((long) X()); }
 
 
 #define NoArgReturnStringFunction(X) \
 static PyObject *PyCurses_ ## X (PyObject *self) \
 { \
   PyCursesInitialised \
-  return PyBytes_FromString(X()); }
+  return PyString_FromString(X()); }
 
 #define NoArgTrueFalseFunction(X) \
 static PyObject *PyCurses_ ## X (PyObject *self) \

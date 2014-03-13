@@ -5,7 +5,7 @@ import os
 
 from distutils.errors import DistutilsPlatformError
 from distutils.tests import support
-from test.support import run_unittest
+from test.test_support import run_unittest
 
 # A manifest with the only assembly reference being the msvcrt assembly, so
 # should have the assembly completely stripped.  Note that although the
@@ -127,11 +127,11 @@ class msvc9compilerTestCase(support.TempdirManager,
         # looking for values that should exist on all
         # windows registeries versions.
         path = r'Control Panel\Desktop'
-        v = Reg.get_value(path, 'dragfullwindows')
-        self.assertIn(v, ('0', '1', '2'))
+        v = Reg.get_value(path, u'dragfullwindows')
+        self.assertIn(v, (u'0', u'1', u'2'))
 
-        import winreg
-        HKCU = winreg.HKEY_CURRENT_USER
+        import _winreg
+        HKCU = _winreg.HKEY_CURRENT_USER
         keys = Reg.read_keys(HKCU, 'xxxx')
         self.assertEqual(keys, None)
 

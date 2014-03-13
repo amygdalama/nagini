@@ -5,7 +5,7 @@ Attributes and methods will be added as needed for tests.
 
 from idlelib.idle_test.mock_tk import Text
 
-class Editor:
+class Editor(object):
     '''Minimally imitate EditorWindow.EditorWindow class.
     '''
     def __init__(self, flist=None, filename=None, key=None, root=None):
@@ -17,7 +17,7 @@ class Editor:
         last = self.text.index('end')
         return first, last
 
-class UndoDelegator:
+class UndoDelegator(object):
     '''Minimally imitate UndoDelegator,UndoDelegator class.
     '''
     # A real undo block is only needed for user interaction.

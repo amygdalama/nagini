@@ -5,7 +5,8 @@ import sys
 import os
 import tempfile
 import shutil
-from test.support import run_unittest
+
+from test.test_support import run_unittest
 
 from distutils.core import Distribution
 from distutils.command.bdist_rpm import bdist_rpm
@@ -28,11 +29,6 @@ class BuildRpmTestCase(support.TempdirManager,
                        unittest.TestCase):
 
     def setUp(self):
-        try:
-            sys.executable.encode("UTF-8")
-        except UnicodeEncodeError:
-            raise unittest.SkipTest("sys.executable is not encodable to UTF-8")
-
         super(BuildRpmTestCase, self).setUp()
         self.old_location = os.getcwd()
         self.old_sys_argv = sys.argv, sys.argv[:]

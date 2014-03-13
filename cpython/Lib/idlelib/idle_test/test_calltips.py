@@ -1,16 +1,18 @@
 import unittest
 import idlelib.CallTips as ct
+CTi = ct.CallTips()  # needed for get_entity test in 2.7
 import textwrap
 import types
+import warnings
 
-default_tip = ct._default_callable_argspec
+default_tip = ''
 
 # Test Class TC is used in multiple get_argspec test methods
-class TC():
+class TC(object):
     'doc'
-    tip = "(ai=None, *b)"
+    tip = "(ai=None, *args)"
     def __init__(self, ai=None, *b): 'doc'
-    __init__.tip = "(self, ai=None, *b)"
+    __init__.tip = "(self, ai=None, *args)"
     def t1(self): 'doc'
     t1.tip = "(self)"
     def t2(self, ai, b=None): 'doc'
@@ -20,7 +22,7 @@ class TC():
     def t4(self, *args): 'doc'
     t4.tip = "(self, *args)"
     def t5(self, ai, b=None, *args, **kw): 'doc'
-    t5.tip = "(self, ai, b=None, *args, **kw)"
+    t5.tip = "(self, ai, b=None, *args, **kwds)"
     def t6(no, self): 'doc'
     t6.tip = "(no, self)"
     def __call__(self, ci): 'doc'
@@ -33,44 +35,45 @@ class TC():
 
 tc = TC()
 
-signature = ct.get_argspec  # 2.7 and 3.x use different functions
+signature = ct.get_arg_text  # 2.7 and 3.x use different functions
 class Get_signatureTest(unittest.TestCase):
     # The signature function must return a string, even if blank.
     # Test a variety of objects to be sure that none cause it to raise
     # (quite aside from getting as correct an answer as possible).
-    # The tests of builtins may break if inspect or the docstrings change,
+    # The tests of builtins may break if the docstrings change,
     # but a red buildbot is better than a user crash (as has happened).
     # For a simple mismatch, change the expected output to the actual.
 
     def test_builtins(self):
+        # 2.7 puts '()\n' where 3.x does not, other minor differences
 
         # Python class that inherits builtin methods
         class List(list): "List() doc"
-        # Simulate builtin with no docstring for default tip test
+        # Simulate builtin with no docstring for default argspec test
         class SB:  __call__ = None
 
         def gtest(obj, out):
             self.assertEqual(signature(obj), out)
 
-        gtest(List, List.__doc__)
+        gtest(List, '()\n' + List.__doc__)
         gtest(list.__new__,
-               'Create and return a new object.  See help(type) for accurate signature.')
+               'T.__new__(S, ...) -> a new object with type S, a subtype of T')
         gtest(list.__init__,
-               'Initialize self.  See help(type(self)) for accurate signature.')
-        append_doc =  "L.append(object) -> None -- append object to end"
+               'x.__init__(...) initializes x; see help(type(x)) for signature')
+        append_doc =  "L.append(object) -- append object to end"
         gtest(list.append, append_doc)
         gtest([].append, append_doc)
         gtest(List.append, append_doc)
 
-        gtest(types.MethodType, "method(function, instance)")
+        gtest(types.MethodType, '()\ninstancemethod(function, instance, class)')
         gtest(SB(), default_tip)
 
     def test_signature_wrap(self):
+        # This is also a test of an old-style class
         self.assertEqual(signature(textwrap.TextWrapper), '''\
 (width=70, initial_indent='', subsequent_indent='', expand_tabs=True,
     replace_whitespace=True, fix_sentence_endings=False, break_long_words=True,
-    drop_whitespace=True, break_on_hyphens=True, tabsize=8, *, max_lines=None,
-    placeholder=' [...]')''')
+    drop_whitespace=True, break_on_hyphens=True)''')
 
     def test_docline_truncation(self):
         def f(): pass
@@ -80,21 +83,16 @@ class Get_signatureTest(unittest.TestCase):
     def test_multiline_docstring(self):
         # Test fewer lines than max.
         self.assertEqual(signature(list),
-                "list() -> new empty list\n"
+                "()\nlist() -> new empty list\n"
                 "list(iterable) -> new list initialized from iterable's items")
 
-        # Test max lines
-        self.assertEqual(signature(bytes), '''\
-bytes(iterable_of_ints) -> bytes
-bytes(string, encoding[, errors]) -> bytes
-bytes(bytes_or_buffer) -> immutable copy of bytes_or_buffer
-bytes(int) -> bytes object of size given by the parameter initialized with null bytes
-bytes() -> empty bytes object''')
-
-        # Test more than max lines
-        def f(): pass
-        f.__doc__ = 'a\n' * 15
-        self.assertEqual(signature(f), '()' + '\na' * ct._MAX_LINES)
+        # Test max lines and line (currently) too long.
+        def f():
+            pass
+        s = 'a\nb\nc\nd\n'
+        f.__doc__ = s + 300 * 'e' + 'f'
+        self.assertEqual(signature(f),
+                         '()\n' + s + (ct._MAX_COLS - 3) * 'e' + '...')
 
     def test_functions(self):
         def t1(): 'doc'
@@ -105,8 +103,8 @@ bytes() -> empty bytes object''')
         t3.tip = "(a, *args)"
         def t4(*args): 'doc'
         t4.tip = "(*args)"
-        def t5(a, b=None, *args, **kw): 'doc'
-        t5.tip = "(a, b=None, *args, **kw)"
+        def t5(a, b=None, *args, **kwds): 'doc'
+        t5.tip = "(a, b=None, *args, **kwds)"
 
         for func in (t1, t2, t3, t4, t5, TC):
             self.assertEqual(signature(func), func.tip + '\ndoc')
@@ -133,28 +131,21 @@ bytes() -> empty bytes object''')
                                       (C.m2, "(**kwds)"), (c.m2, "(**kwds)"),):
             self.assertEqual(signature(meth), mtip)
 
-    def test_non_ascii_name(self):
-        # test that re works to delete a first parameter name that
-        # includes non-ascii chars, such as various forms of A.
-        uni = "(A\u0391\u0410\u05d0\u0627\u0905\u1e00\u3042, a)"
-        assert ct._first_param.sub('', uni) == '(a)'
-
     def test_no_docstring(self):
-        def nd(s):
-            pass
+        def nd(s): pass
         TC.nd = nd
         self.assertEqual(signature(nd), "(s)")
         self.assertEqual(signature(TC.nd), "(s)")
         self.assertEqual(signature(tc.nd), "()")
 
     def test_attribute_exception(self):
-        class NoCall:
+        class NoCall(object):
             def __getattr__(self, name):
                 raise BaseException
         class Call(NoCall):
             def __call__(self, ci):
                 pass
-        for meth, mtip  in ((NoCall, default_tip), (Call, default_tip),
+        for meth, mtip  in ((NoCall, '()'), (Call, '()'),
                             (NoCall(), ''), (Call(), '(ci)')):
             self.assertEqual(signature(meth), mtip)
 
@@ -163,10 +154,21 @@ bytes() -> empty bytes object''')
             self.assertEqual(signature(obj), '')
 
 class Get_entityTest(unittest.TestCase):
+    # In 3.x, get_entity changed from 'instance method' to module function
+    # since 'self' not used. Use dummy instance until change 2.7 also.
     def test_bad_entity(self):
-        self.assertIsNone(ct.get_entity('1/0'))
+        self.assertIsNone(CTi.get_entity('1/0'))
     def test_good_entity(self):
-        self.assertIs(ct.get_entity('int'), int)
+        self.assertIs(CTi.get_entity('int'), int)
+
+class Py2Test(unittest.TestCase):
+    def test_paramtuple_float(self):
+        # 18539: (a,b) becomes '.0' in code object; change that but not 0.0
+        with warnings.catch_warnings():
+            # Suppess message of py3 deprecation of parameter unpacking
+            warnings.simplefilter("ignore")
+            exec "def f((a,b), c=0.0): pass"
+        self.assertEqual(signature(f), '(<tuple>, c=0.0)')
 
 if __name__ == '__main__':
     unittest.main(verbosity=2, exit=False)

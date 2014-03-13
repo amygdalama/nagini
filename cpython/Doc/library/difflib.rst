@@ -12,11 +12,12 @@
    import sys
    from difflib import *
 
+.. versionadded:: 2.1
+
 This module provides classes and functions for comparing sequences. It
 can be used for example, for comparing files, and can produce difference
 information in various formats, including HTML and context and unified
 diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
-
 
 .. class:: SequenceMatcher
 
@@ -44,9 +45,8 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
    the purpose of sequence matching. This heuristic can be turned off by setting
    the ``autojunk`` argument to ``False`` when creating the :class:`SequenceMatcher`.
 
-   .. versionadded:: 3.2
+   .. versionadded:: 2.7.1
       The *autojunk* parameter.
-
 
 .. class:: Differ
 
@@ -84,7 +84,7 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
    The constructor for this class is:
 
 
-   .. method:: __init__(tabsize=8, wrapcolumn=None, linejunk=None, charjunk=IS_CHARACTER_JUNK)
+   .. function:: __init__(tabsize=8, wrapcolumn=None, linejunk=None, charjunk=IS_CHARACTER_JUNK)
 
       Initializes instance of :class:`HtmlDiff`.
 
@@ -100,7 +100,8 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
    The following methods are public:
 
-   .. method:: make_file(fromlines, tolines, fromdesc='', todesc='', context=False, numlines=5)
+
+   .. function:: make_file(fromlines, tolines [, fromdesc][, todesc][, context][, numlines])
 
       Compares *fromlines* and *tolines* (lists of strings) and returns a string which
       is a complete HTML file containing a table showing line by line differences with
@@ -119,7 +120,8 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
       the next difference highlight at the top of the browser without any leading
       context).
 
-   .. method:: make_table(fromlines, tolines, fromdesc='', todesc='', context=False, numlines=5)
+
+   .. function:: make_table(fromlines, tolines [, fromdesc][, todesc][, context][, numlines])
 
       Compares *fromlines* and *tolines* (lists of strings) and returns a string which
       is a complete HTML table showing line by line differences with inter-line and
@@ -131,8 +133,10 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
    :file:`Tools/scripts/diff.py` is a command-line front-end to this class and
    contains a good example of its use.
 
+   .. versionadded:: 2.4
 
-.. function:: context_diff(a, b, fromfile='', tofile='', fromfiledate='', tofiledate='', n=3, lineterm='\\n')
+
+.. function:: context_diff(a, b[, fromfile][, tofile][, fromfiledate][, tofiledate][, n][, lineterm])
 
    Compare *a* and *b* (lists of strings); return a delta (a :term:`generator`
    generating the delta lines) in context diff format.
@@ -143,8 +147,8 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
    By default, the diff control lines (those with ``***`` or ``---``) are created
    with a trailing newline.  This is helpful so that inputs created from
-   :func:`io.IOBase.readlines` result in diffs that are suitable for use with
-   :func:`io.IOBase.writelines` since both the inputs and outputs have trailing
+   :func:`file.readlines` result in diffs that are suitable for use with
+   :func:`file.writelines` since both the inputs and outputs have trailing
    newlines.
 
    For inputs that do not have trailing newlines, set the *lineterm* argument to
@@ -176,8 +180,10 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
    See :ref:`difflib-interface` for a more detailed example.
 
+   .. versionadded:: 2.3
 
-.. function:: get_close_matches(word, possibilities, n=3, cutoff=0.6)
+
+.. function:: get_close_matches(word, possibilities[, n][, cutoff])
 
    Return a list of the best "good enough" matches.  *word* is a sequence for which
    close matches are desired (typically a string), and *possibilities* is a list of
@@ -203,7 +209,7 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
       ['except']
 
 
-.. function:: ndiff(a, b, linejunk=None, charjunk=IS_CHARACTER_JUNK)
+.. function:: ndiff(a, b[, linejunk][, charjunk])
 
    Compare *a* and *b* (lists of strings); return a :class:`Differ`\ -style
    delta (a :term:`generator` generating the delta lines).
@@ -211,13 +217,14 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
    Optional keyword parameters *linejunk* and *charjunk* are for filter functions
    (or ``None``):
 
-   *linejunk*: A function that accepts a single string argument, and returns
-   true if the string is junk, or false if not. The default is ``None``. There
-   is also a module-level function :func:`IS_LINE_JUNK`, which filters out lines
-   without visible characters, except for at most one pound character (``'#'``)
-   -- however the underlying :class:`SequenceMatcher` class does a dynamic
-   analysis of which lines are so frequent as to constitute noise, and this
-   usually works better than using this function.
+   *linejunk*: A function that accepts a single string argument, and returns true
+   if the string is junk, or false if not. The default is (``None``), starting with
+   Python 2.3.  Before then, the default was the module-level function
+   :func:`IS_LINE_JUNK`, which filters out lines without visible characters, except
+   for at most one pound character (``'#'``). As of Python 2.3, the underlying
+   :class:`SequenceMatcher` class does a dynamic analysis of which lines are so
+   frequent as to constitute noise, and this usually works better than the pre-2.3
+   default.
 
    *charjunk*: A function that accepts a character (a string of length 1), and
    returns if the character is junk, or false if not. The default is module-level
@@ -228,7 +235,7 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
       >>> diff = ndiff('one\ntwo\nthree\n'.splitlines(1),
       ...              'ore\ntree\nemu\n'.splitlines(1))
-      >>> print(''.join(diff), end="")
+      >>> print ''.join(diff),
       - one
       ?  ^
       + ore
@@ -253,17 +260,17 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
       >>> diff = ndiff('one\ntwo\nthree\n'.splitlines(1),
       ...              'ore\ntree\nemu\n'.splitlines(1))
       >>> diff = list(diff) # materialize the generated delta into a list
-      >>> print(''.join(restore(diff, 1)), end="")
+      >>> print ''.join(restore(diff, 1)),
       one
       two
       three
-      >>> print(''.join(restore(diff, 2)), end="")
+      >>> print ''.join(restore(diff, 2)),
       ore
       tree
       emu
 
 
-.. function:: unified_diff(a, b, fromfile='', tofile='', fromfiledate='', tofiledate='', n=3, lineterm='\\n')
+.. function:: unified_diff(a, b[, fromfile][, tofile][, fromfiledate][, tofiledate][, n][, lineterm])
 
    Compare *a* and *b* (lists of strings); return a delta (a :term:`generator`
    generating the delta lines) in unified diff format.
@@ -275,8 +282,8 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
    By default, the diff control lines (those with ``---``, ``+++``, or ``@@``) are
    created with a trailing newline.  This is helpful so that inputs created from
-   :func:`io.IOBase.readlines` result in diffs that are suitable for use with
-   :func:`io.IOBase.writelines` since both the inputs and outputs have trailing
+   :func:`file.readlines` result in diffs that are suitable for use with
+   :func:`file.writelines` since both the inputs and outputs have trailing
    newlines.
 
    For inputs that do not have trailing newlines, set the *lineterm* argument to
@@ -287,7 +294,6 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
    *tofile*, *fromfiledate*, and *tofiledate*.  The modification times are normally
    expressed in the ISO 8601 format. If not specified, the
    strings default to blanks.
-
 
       >>> s1 = ['bacon\n', 'eggs\n', 'ham\n', 'guido\n']
       >>> s2 = ['python\n', 'eggy\n', 'hamster\n', 'guido\n']
@@ -306,12 +312,14 @@ diffs. For comparing directories and files, see also, the :mod:`filecmp` module.
 
    See :ref:`difflib-interface` for a more detailed example.
 
+   .. versionadded:: 2.3
+
 
 .. function:: IS_LINE_JUNK(line)
 
    Return true for ignorable lines.  The line *line* is ignorable if *line* is
    blank or contains a single ``'#'``, otherwise it is not ignorable.  Used as a
-   default for parameter *linejunk* in :func:`ndiff` in older versions.
+   default for parameter *linejunk* in :func:`ndiff` before Python 2.3.
 
 
 .. function:: IS_CHARACTER_JUNK(ch)
@@ -355,18 +363,8 @@ The :class:`SequenceMatcher` class has this constructor:
    The optional argument *autojunk* can be used to disable the automatic junk
    heuristic.
 
-   .. versionadded:: 3.2
+   .. versionadded:: 2.7.1
       The *autojunk* parameter.
-
-   SequenceMatcher objects get three data attributes: *bjunk* is the
-   set of elements of *b* for which *isjunk* is ``True``; *bpopular* is the set of
-   non-junk elements considered popular by the heuristic (if it is not
-   disabled); *b2j* is a dict mapping the remaining elements of *b* to a list
-   of positions where they occur. All three are reset whenever *b* is reset
-   with :meth:`set_seqs` or :meth:`set_seq2`.
-
-   .. versionadded:: 3.2
-      The *bjunk* and *bpopular* attributes.
 
    :class:`SequenceMatcher` objects have the following methods:
 
@@ -427,7 +425,8 @@ The :class:`SequenceMatcher` class has this constructor:
 
       If no blocks match, this returns ``(alo, blo, 0)``.
 
-      This method returns a :term:`named tuple` ``Match(a, b, size)``.
+      .. versionchanged:: 2.6
+         This method returns a :term:`named tuple` ``Match(a, b, size)``.
 
 
    .. method:: get_matching_blocks()
@@ -443,6 +442,10 @@ The :class:`SequenceMatcher` class has this constructor:
       triples always describe non-adjacent equal blocks.
 
       .. XXX Explain why a dummy is used!
+
+      .. versionchanged:: 2.5
+         The guarantee that adjacent triples always describe non-adjacent blocks
+         was implemented.
 
       .. doctest::
 
@@ -479,22 +482,20 @@ The :class:`SequenceMatcher` class has this constructor:
 
       For example:
 
-        >>> a = "qabxcd"
-        >>> b = "abycdf"
-        >>> s = SequenceMatcher(None, a, b)
-        >>> for tag, i1, i2, j1, j2 in s.get_opcodes():
-            print('{:7}   a[{}:{}] --> b[{}:{}] {!r:>8} --> {!r}'.format(
-                tag, i1, i2, j1, j2, a[i1:i2], b[j1:j2]))
+         >>> a = "qabxcd"
+         >>> b = "abycdf"
+         >>> s = SequenceMatcher(None, a, b)
+         >>> for tag, i1, i2, j1, j2 in s.get_opcodes():
+         ...    print ("%7s a[%d:%d] (%s) b[%d:%d] (%s)" %
+         ...           (tag, i1, i2, a[i1:i2], j1, j2, b[j1:j2]))
+          delete a[0:1] (q) b[0:0] ()
+           equal a[1:3] (ab) b[0:2] (ab)
+         replace a[3:4] (x) b[2:3] (y)
+           equal a[4:6] (cd) b[3:5] (cd)
+          insert a[6:6] () b[5:6] (f)
 
 
-        delete    a[0:1] --> b[0:0]      'q' --> ''
-        equal     a[1:3] --> b[0:2]     'ab' --> 'ab'
-        replace   a[3:4] --> b[2:3]      'x' --> 'y'
-        equal     a[4:6] --> b[3:5]     'cd' --> 'cd'
-        insert    a[6:6] --> b[5:6]       '' --> 'f'
-
-
-   .. method:: get_grouped_opcodes(n=3)
+   .. method:: get_grouped_opcodes([n])
 
       Return a :term:`generator` of groups with up to *n* lines of context.
 
@@ -503,6 +504,8 @@ The :class:`SequenceMatcher` class has this constructor:
       have no changes.
 
       The groups are returned in the same format as :meth:`get_opcodes`.
+
+      .. versionadded:: 2.3
 
 
    .. method:: ratio()
@@ -549,7 +552,7 @@ different results due to differing levels of approximation, although
 SequenceMatcher Examples
 ------------------------
 
-This example compares two strings, considering blanks to be "junk":
+This example compares two strings, considering blanks to be "junk:"
 
    >>> s = SequenceMatcher(lambda x: x == " ",
    ...                     "private Thread currentThread;",
@@ -559,14 +562,14 @@ This example compares two strings, considering blanks to be "junk":
 sequences.  As a rule of thumb, a :meth:`ratio` value over 0.6 means the
 sequences are close matches:
 
-   >>> print(round(s.ratio(), 3))
+   >>> print round(s.ratio(), 3)
    0.866
 
 If you're only interested in where the sequences match,
 :meth:`get_matching_blocks` is handy:
 
    >>> for block in s.get_matching_blocks():
-   ...     print("a[%d] and b[%d] match for %d elements" % block)
+   ...     print "a[%d] and b[%d] match for %d elements" % block
    a[0] and b[0] match for 8 elements
    a[8] and b[17] match for 21 elements
    a[29] and b[38] match for 0 elements
@@ -579,7 +582,7 @@ If you want to know how to change the first sequence into the second, use
 :meth:`get_opcodes`:
 
    >>> for opcode in s.get_opcodes():
-   ...     print("%6s a[%d:%d] b[%d:%d]" % opcode)
+   ...     print "%6s a[%d:%d] b[%d:%d]" % opcode
     equal a[0:8] b[0:8]
    insert a[8:8] b[8:17]
     equal a[8:29] b[17:38]
@@ -609,7 +612,7 @@ locality, at the occasional cost of producing a longer diff.
 The :class:`Differ` class has this constructor:
 
 
-.. class:: Differ(linejunk=None, charjunk=None)
+.. class:: Differ([linejunk[, charjunk]])
 
    Optional keyword parameters *linejunk* and *charjunk* are for filter functions
    (or ``None``):
@@ -631,9 +634,9 @@ The :class:`Differ` class has this constructor:
 
       Each sequence must contain individual single-line strings ending with
       newlines.  Such sequences can be obtained from the
-      :meth:`~io.IOBase.readlines` method of file-like objects.  The delta
+      :meth:`~file.readlines` method of file-like objects.  The delta
       generated also consists of newline-terminated strings, ready to be
-      printed as-is via the :meth:`~io.IOBase.writelines` method of a
+      printed as-is via the :meth:`~file.writelines` method of a
       file-like object.
 
 
@@ -644,7 +647,7 @@ Differ Example
 
 This example compares two texts. First we set up the texts, sequences of
 individual single-line strings ending with newlines (such sequences can also be
-obtained from the :meth:`~io.BaseIO.readlines` method of file-like objects):
+obtained from the :meth:`~file.readlines` method of file-like objects):
 
    >>> text1 = '''  1. Beautiful is better than ugly.
    ...   2. Explicit is better than implicit.
@@ -754,8 +757,8 @@ It is also contained in the Python source distribution, as
        # we're passing these as arguments to the diff function
        fromdate = time.ctime(os.stat(fromfile).st_mtime)
        todate = time.ctime(os.stat(tofile).st_mtime)
-       with open(fromfile) as fromf, open(tofile) as tof:
-           fromlines, tolines = list(fromf), list(tof)
+       fromlines = open(fromfile, 'U').readlines()
+       tolines = open(tofile, 'U').readlines()
 
        if options.u:
            diff = difflib.unified_diff(fromlines, tolines, fromfile, tofile,

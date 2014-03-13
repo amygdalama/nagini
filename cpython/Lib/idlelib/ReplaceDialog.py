@@ -1,4 +1,4 @@
-from tkinter import *
+from Tkinter import *
 
 from idlelib import SearchEngine
 from idlelib.SearchDialogBase import SearchDialogBase
@@ -73,7 +73,6 @@ class ReplaceDialog(SearchDialogBase):
                 new = None
         else:
             new = repl
-
         return new
 
     def replace_all(self, event=None):

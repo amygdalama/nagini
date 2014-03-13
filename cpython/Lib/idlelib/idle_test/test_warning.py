@@ -7,7 +7,7 @@ Make sure warnings module is left unaltered (http://bugs.python.org/issue18081).
 '''
 
 import unittest
-from test.support import captured_stderr
+from test.test_support import captured_stderr
 
 import warnings
 # Try to capture default showwarning before Idle modules are imported.

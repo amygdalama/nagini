@@ -1,15 +1,9 @@
-import io
-import unittest
-import urllib.robotparser
-from urllib.error import URLError, HTTPError
-from urllib.request import urlopen
-from test import support
+import unittest, StringIO, robotparser
+from test import test_support
+from urllib2 import urlopen, HTTPError
 
 class RobotTestCase(unittest.TestCase):
-    def __init__(self, index=None, parser=None, url=None, good=None, agent=None):
-        # workaround to make unittest discovery work (see #17066)
-        if not isinstance(index, int):
-            return
+    def __init__(self, index, parser, url, good, agent):
         unittest.TestCase.__init__(self)
         if good:
             self.str = "RobotTest(%d, good, %s)" % (index, url)
@@ -39,8 +33,8 @@ tests = unittest.TestSuite()
 def RobotTest(index, robots_txt, good_urls, bad_urls,
               agent="test_robotparser"):
 
-    lines = io.StringIO(robots_txt).readlines()
-    parser = urllib.robotparser.RobotFileParser()
+    lines = StringIO.StringIO(robots_txt).readlines()
+    parser = robotparser.RobotFileParser()
     parser.parse(lines)
     for url in good_urls:
         tests.addTest(RobotTestCase(index, parser, url, 1, agent))
@@ -250,8 +244,8 @@ RobotTest(16, doc, good, bad)
 class NetworkTestCase(unittest.TestCase):
 
     def testPasswordProtectedSite(self):
-        support.requires('network')
-        with support.transient_internet('mueblesmoraleda.com'):
+        test_support.requires('network')
+        with test_support.transient_internet('mueblesmoraleda.com'):
             url = 'http://mueblesmoraleda.com'
             robots_url = url + "/robots.txt"
             # First check the URL is usable for our purposes, since the
@@ -267,29 +261,28 @@ class NetworkTestCase(unittest.TestCase):
                 self.skipTest(
                     "%r should return a 401 or 403 HTTP error, not succeed"
                     % (robots_url))
-            parser = urllib.robotparser.RobotFileParser()
+            parser = robotparser.RobotFileParser()
             parser.set_url(url)
             try:
                 parser.read()
-            except URLError:
+            except IOError:
                 self.skipTest('%s is unavailable' % url)
             self.assertEqual(parser.can_fetch("*", robots_url), False)
 
-    @unittest.skip('does not handle the gzip encoding delivered by pydotorg')
     def testPythonOrg(self):
-        support.requires('network')
-        with support.transient_internet('www.python.org'):
-            parser = urllib.robotparser.RobotFileParser(
+        test_support.requires('network')
+        with test_support.transient_internet('www.python.org'):
+            parser = robotparser.RobotFileParser(
                 "http://www.python.org/robots.txt")
             parser.read()
             self.assertTrue(
                 parser.can_fetch("*", "http://www.python.org/robots.txt"))
 
-def load_tests(loader, suite, pattern):
-    suite = unittest.makeSuite(NetworkTestCase)
-    suite.addTest(tests)
-    return suite
+
+def test_main():
+    test_support.run_unittest(tests)
+    test_support.run_unittest(NetworkTestCase)
 
 if __name__=='__main__':
-    support.use_resources = ['network']
-    unittest.main()
+    test_support.verbose = 1
+    test_main()

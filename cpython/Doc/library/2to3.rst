@@ -99,7 +99,7 @@ alternate directory for processed output files to be written to.  The
 :option:`-n` flag is required when using this as backup files do not make sense
 when not overwriting the input files.
 
-.. versionadded:: 3.2.3
+.. versionadded:: 2.7.3
    The :option:`-o` option was added.
 
 The :option:`-W` or :option:`--write-unchanged-files` flag tells 2to3 to always
@@ -108,7 +108,7 @@ useful with :option:`-o` so that an entire Python source tree is copied with
 translation from one directory to another.
 This option implies the :option:`-w` flag as it would not make sense otherwise.
 
-.. versionadded:: 3.2.3
+.. versionadded:: 2.7.3
    The :option:`-W` flag was added.
 
 The :option:`--add-suffix` option specifies a string to append to all output
@@ -119,7 +119,7 @@ are not necessary when writing to different filenames.  Example::
 
 Will cause a converted file named ``example.py3`` to be written.
 
-.. versionadded:: 3.2.3
+.. versionadded:: 2.7.3
    The :option:`--add-suffix` option was added.
 
 To translate an entire project from one directory tree to another use::
@@ -141,39 +141,6 @@ and off individually.  They are described here in more detail.
 
    Removes usage of :func:`apply`.  For example ``apply(function, *args,
    **kwargs)`` is converted to ``function(*args, **kwargs)``.
-
-.. 2to3fixer:: asserts
-
-   Replaces deprecated :mod:`unittest` method names with the correct ones.
-
-   ================================  ==========================================
-   From                              To
-   ================================  ==========================================
-   ``failUnlessEqual(a, b)``         :meth:`assertEqual(a, b)
-                                     <unittest.TestCase.assertEqual>`
-   ``assertEquals(a, b)``            :meth:`assertEqual(a, b)
-                                     <unittest.TestCase.assertEqual>`
-   ``failIfEqual(a, b)``             :meth:`assertNotEqual(a, b)
-                                     <unittest.TestCase.assertNotEqual>`
-   ``assertNotEquals(a, b)``         :meth:`assertNotEqual(a, b)
-                                     <unittest.TestCase.assertNotEqual>`
-   ``failUnless(a)``                 :meth:`assertTrue(a)
-                                     <unittest.TestCase.assertTrue>`
-   ``assert_(a)``                    :meth:`assertTrue(a)
-                                     <unittest.TestCase.assertTrue>`
-   ``failIf(a)``                     :meth:`assertFalse(a)
-                                     <unittest.TestCase.assertFalse>`
-   ``failUnlessRaises(exc, cal)``    :meth:`assertRaises(exc, cal)
-                                     <unittest.TestCase.assertRaises>`
-   ``failUnlessAlmostEqual(a, b)``   :meth:`assertAlmostEqual(a, b)
-                                     <unittest.TestCase.assertAlmostEqual>`
-   ``assertAlmostEquals(a, b)``      :meth:`assertAlmostEqual(a, b)
-                                     <unittest.TestCase.assertAlmostEqual>`
-   ``failIfAlmostEqual(a, b)``       :meth:`assertNotAlmostEqual(a, b)
-                                     <unittest.TestCase.assertNotAlmostEqual>`
-   ``assertNotAlmostEquals(a, b)``   :meth:`assertNotAlmostEqual(a, b)
-                                     <unittest.TestCase.assertNotAlmostEqual>`
-   ================================  ==========================================
 
 .. 2to3fixer:: basestring
 
@@ -208,7 +175,7 @@ and off individually.  They are described here in more detail.
 
 .. 2to3fixer:: exec
 
-   Converts the ``exec`` statement to the :func:`exec` function.
+   Converts the :keyword:`exec` statement to the :func:`exec` function.
 
 .. 2to3fixer:: execfile
 
@@ -333,25 +300,6 @@ and off individually.  They are described here in more detail.
 
    Converts octal literals into the new syntax.
 
-.. 2to3fixer:: operator
-
-   Converts calls to various functions in the :mod:`operator` module to other,
-   but equivalent, function calls.  When needed, the appropriate ``import``
-   statements are added, e.g. ``import collections``.  The following mapping
-   are made:
-
-   ==================================  ==========================================
-   From                                To
-   ==================================  ==========================================
-   ``operator.isCallable(obj)``        ``hasattr(obj, '__call__')``
-   ``operator.sequenceIncludes(obj)``  ``operator.contains(obj)``
-   ``operator.isSequenceType(obj)``    ``isinstance(obj, collections.Sequence)``
-   ``operator.isMappingType(obj)``     ``isinstance(obj, collections.Mapping)``
-   ``operator.isNumberType(obj)``      ``isinstance(obj, numbers.Number)``
-   ``operator.repeat(obj, n)``         ``operator.mul(obj, n)``
-   ``operator.irepeat(obj, n)``        ``operator.imul(obj, n)``
-   ==================================  ==========================================
-
 .. 2to3fixer:: paren
 
    Add extra parenthesis where they are required in list comprehensions.  For
@@ -359,13 +307,13 @@ and off individually.  They are described here in more detail.
 
 .. 2to3fixer:: print
 
-   Converts the ``print`` statement to the :func:`print` function.
+   Converts the :keyword:`print` statement to the :func:`print` function.
 
 .. 2to3fixer:: raise
 
    Converts ``raise E, V`` to ``raise E(V)``, and ``raise E, V, T`` to ``raise
    E(V).with_traceback(T)``.  If ``E`` is a tuple, the translation will be
-   incorrect because substituting tuples for exceptions has been removed in 3.0.
+   incorrect because substituting tuples for exceptions has been removed in Python 3.
 
 .. 2to3fixer:: raw_input
 
@@ -374,10 +322,6 @@ and off individually.  They are described here in more detail.
 .. 2to3fixer:: reduce
 
    Handles the move of :func:`reduce` to :func:`functools.reduce`.
-
-.. 2to3fixer:: reload
-
-   Converts :func:`reload` to :func:`imp.reload`.
 
 .. 2to3fixer:: renames
 

@@ -1,7 +1,6 @@
 import os
-import io
 import sys
-from test.support import (run_unittest, TESTFN, rmtree, unlink,
+from test.test_support import (run_unittest, TESTFN, rmtree, unlink,
                                captured_stdout)
 import unittest
 
@@ -103,7 +102,6 @@ class TracedClass(object):
 class TestLineCounts(unittest.TestCase):
     """White-box testing of line-counting, via runfunc"""
     def setUp(self):
-        self.addCleanup(sys.settrace, sys.gettrace())
         self.tracer = Trace(count=1, trace=0, countfuncs=0, countcallers=0)
         self.my_py_filename = fix_ext_py(__file__)
 
@@ -165,9 +163,7 @@ class TestLineCounts(unittest.TestCase):
         firstlineno_called = get_firstlineno(traced_doubler)
         expected = {
             (self.my_py_filename, firstlineno_calling + 1): 1,
-            # List compehentions work differently in 3.x, so the count
-            # below changed compared to 2.x.
-            (self.my_py_filename, firstlineno_calling + 2): 12,
+            (self.my_py_filename, firstlineno_calling + 2): 11,
             (self.my_py_filename, firstlineno_calling + 3): 1,
             (self.my_py_filename, firstlineno_called + 1): 10,
         }
@@ -194,7 +190,6 @@ class TestRunExecCounts(unittest.TestCase):
     """A simple sanity test of line-counting, via runctx (exec)"""
     def setUp(self):
         self.my_py_filename = fix_ext_py(__file__)
-        self.addCleanup(sys.settrace, sys.gettrace())
 
     def test_exec_counts(self):
         self.tracer = Trace(count=1, trace=0, countfuncs=0, countcallers=0)
@@ -221,7 +216,6 @@ class TestRunExecCounts(unittest.TestCase):
 class TestFuncs(unittest.TestCase):
     """White-box testing of funcs tracing"""
     def setUp(self):
-        self.addCleanup(sys.settrace, sys.gettrace())
         self.tracer = Trace(count=0, trace=0, countfuncs=1)
         self.filemod = my_file_and_modname()
 
@@ -246,8 +240,6 @@ class TestFuncs(unittest.TestCase):
         }
         self.assertEqual(self.tracer.results().calledfuncs, expected)
 
-    @unittest.skipIf(hasattr(sys, 'gettrace') and sys.gettrace(),
-                     'pre-existing trace function throws off measurements')
     def test_inst_method_calling(self):
         obj = TracedClass(20)
         self.tracer.runfunc(obj.inst_method_calling, 1)
@@ -263,12 +255,9 @@ class TestFuncs(unittest.TestCase):
 class TestCallers(unittest.TestCase):
     """White-box testing of callers tracing"""
     def setUp(self):
-        self.addCleanup(sys.settrace, sys.gettrace())
         self.tracer = Trace(count=0, trace=0, countcallers=1)
         self.filemod = my_file_and_modname()
 
-    @unittest.skipIf(hasattr(sys, 'gettrace') and sys.gettrace(),
-                     'pre-existing trace function throws off measurements')
     def test_loop_caller_importing(self):
         self.tracer.runfunc(traced_func_importing_caller, 1)
 
@@ -289,9 +278,6 @@ class TestCallers(unittest.TestCase):
 
 # Created separately for issue #3821
 class TestCoverage(unittest.TestCase):
-    def setUp(self):
-        self.addCleanup(sys.settrace, sys.gettrace())
-
     def tearDown(self):
         rmtree(TESTFN)
         unlink(TESTFN)
@@ -317,13 +303,13 @@ class TestCoverage(unittest.TestCase):
         # Ignore all files, nothing should be traced nor printed
         libpath = os.path.normpath(os.path.dirname(os.__file__))
         # sys.prefix does not work when running from a checkout
-        tracer = trace.Trace(ignoredirs=[sys.base_prefix, sys.base_exec_prefix,
-                             libpath], trace=0, count=1)
+        tracer = trace.Trace(ignoredirs=[sys.prefix, sys.exec_prefix, libpath],
+                             trace=0, count=1)
         with captured_stdout() as stdout:
             self._coverage(tracer)
         if os.path.exists(TESTFN):
             files = os.listdir(TESTFN)
-            self.assertEqual(files, ['_importlib.cover'])  # Ignore __import__
+            self.assertEqual(files, [])
 
     def test_issue9936(self):
         tracer = trace.Trace(trace=0, count=1)
@@ -342,69 +328,9 @@ class TestCoverage(unittest.TestCase):
             lines, cov, module = line.split()[:3]
             coverage[module] = (int(lines), int(cov[:-1]))
         # XXX This is needed to run regrtest.py as a script
-        modname = trace._fullmodname(sys.modules[modname].__file__)
+        modname = trace.fullmodname(sys.modules[modname].__file__)
         self.assertIn(modname, coverage)
         self.assertEqual(coverage[modname], (5, 100))
-
-### Tests that don't mess with sys.settrace and can be traced
-### themselves TODO: Skip tests that do mess with sys.settrace when
-### regrtest is invoked with -T option.
-class Test_Ignore(unittest.TestCase):
-    def test_ignored(self):
-        jn = os.path.join
-        ignore = trace._Ignore(['x', 'y.z'], [jn('foo', 'bar')])
-        self.assertTrue(ignore.names('x.py', 'x'))
-        self.assertFalse(ignore.names('xy.py', 'xy'))
-        self.assertFalse(ignore.names('y.py', 'y'))
-        self.assertTrue(ignore.names(jn('foo', 'bar', 'baz.py'), 'baz'))
-        self.assertFalse(ignore.names(jn('bar', 'z.py'), 'z'))
-        # Matched before.
-        self.assertTrue(ignore.names(jn('bar', 'baz.py'), 'baz'))
-
-
-class TestDeprecatedMethods(unittest.TestCase):
-
-    def test_deprecated_usage(self):
-        sio = io.StringIO()
-        with self.assertWarns(DeprecationWarning):
-            trace.usage(sio)
-        self.assertIn('Usage:', sio.getvalue())
-
-    def test_deprecated_Ignore(self):
-        with self.assertWarns(DeprecationWarning):
-            trace.Ignore()
-
-    def test_deprecated_modname(self):
-        with self.assertWarns(DeprecationWarning):
-            self.assertEqual("spam", trace.modname("spam"))
-
-    def test_deprecated_fullmodname(self):
-        with self.assertWarns(DeprecationWarning):
-            self.assertEqual("spam", trace.fullmodname("spam"))
-
-    def test_deprecated_find_lines_from_code(self):
-        with self.assertWarns(DeprecationWarning):
-            def foo():
-                pass
-            trace.find_lines_from_code(foo.__code__, ["eggs"])
-
-    def test_deprecated_find_lines(self):
-        with self.assertWarns(DeprecationWarning):
-            def foo():
-                pass
-            trace.find_lines(foo.__code__, ["eggs"])
-
-    def test_deprecated_find_strings(self):
-        with open(TESTFN, 'w') as fd:
-            self.addCleanup(unlink, TESTFN)
-        with self.assertWarns(DeprecationWarning):
-            trace.find_strings(fd.name)
-
-    def test_deprecated_find_executable_linenos(self):
-        with open(TESTFN, 'w') as fd:
-            self.addCleanup(unlink, TESTFN)
-        with self.assertWarns(DeprecationWarning):
-            trace.find_executable_linenos(fd.name)
 
 
 def test_main():

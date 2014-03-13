@@ -1,16 +1,18 @@
 import os
-from test import support
+from test import test_support
 
 # Skip this test if _tkinter does not exist.
-support.import_module('_tkinter')
+test_support.import_module('_tkinter')
 
-# Make sure tkinter._fix runs to set up the environment
-support.import_fresh_module('tkinter')
+this_dir = os.path.dirname(os.path.abspath(__file__))
+lib_tk_test = os.path.abspath(os.path.join(this_dir, '..', 'lib-tk', 'test'))
 
-from tkinter.test import runtktests
+with test_support.DirsOnSysPath(lib_tk_test):
+    import runtktests
 
 def test_main():
-    support.run_unittest(
+    with test_support.DirsOnSysPath(lib_tk_test):
+        test_support.run_unittest(
             *runtktests.get_tests(gui=False, packages=['test_ttk']))
 
 if __name__ == '__main__':

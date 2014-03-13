@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # This file should be kept compatible with both Python 2.6 and Python >= 3.0.
 
-import itertools
+import time
 import os
-import platform
 import re
 import sys
-import time
+import hashlib
+import functools
+import itertools
 from optparse import OptionParser
 
 out = sys.stdout
@@ -24,8 +25,6 @@ def text_open(fn, mode, encoding=None):
     try:
         return open(fn, mode, encoding=encoding or TEXT_ENCODING)
     except TypeError:
-        if 'r' in mode:
-            mode += 'U' # 'U' mode is needed only in Python 2.x
         return open(fn, mode)
 
 def get_file_sizes():
@@ -308,16 +307,6 @@ def run_all_tests(options):
         "large": 2,
     }
 
-    print("Python %s" % sys.version)
-    if sys.version_info < (3, 3):
-        if sys.maxunicode > 0xffff:
-            text = "UCS-4 (wide build)"
-        else:
-            text = "UTF-16 (narrow build)"
-    else:
-        text = "PEP 393"
-    print("Unicode: %s" % text)
-    print(platform.platform())
     binary_files = list(get_binary_files())
     text_files = list(get_text_files())
     if "b" in options:
@@ -382,7 +371,7 @@ def prepare_files():
             f.write(os.urandom(size))
     # Text files
     chunk = []
-    with text_open(__file__, "r", encoding='utf8') as f:
+    with text_open(__file__, "rU", encoding='utf8') as f:
         for line in f:
             if line.startswith("# <iobench text chunk marker>"):
                 break
@@ -438,9 +427,6 @@ def main():
                       action="store", dest="newlines", default='lf',
                       help="line endings for text tests "
                            "(one of: {lf (default), cr, crlf, all})")
-    parser.add_option("-m", "--io-module",
-                      action="store", dest="io_module", default=None,
-                      help="io module to test (default: builtin open())")
     options, args = parser.parse_args()
     if args:
         parser.error("unexpected arguments")
@@ -464,9 +450,6 @@ def main():
 
     if options.encoding:
         TEXT_ENCODING = options.encoding
-
-    if options.io_module:
-        globals()['open'] = __import__(options.io_module, {}, {}, ['open']).open
 
     prepare_files()
     run_all_tests(test_options)

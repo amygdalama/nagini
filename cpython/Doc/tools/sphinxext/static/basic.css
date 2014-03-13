@@ -336,13 +336,13 @@ dl.glossary dt {
     font-style: italic;
 }
 
-.deprecated, .deprecated-removed {
+.deprecated {
     background-color: #ffe4e4;
     border: 1px solid #f66;
     padding: 7px;
 }
 
-div.deprecated p, div.deprecated-removed p {
+div.deprecated p {
     margin-bottom: 0;
 }
 

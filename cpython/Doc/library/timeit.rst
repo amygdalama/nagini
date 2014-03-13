@@ -5,6 +5,8 @@
    :synopsis: Measure the execution time of small code snippets.
 
 
+.. versionadded:: 2.3
+
 .. index::
    single: Benchmarking
    single: Performance
@@ -63,6 +65,8 @@ The module defines three convenience functions and a public class:
    Create a :class:`Timer` instance with the given statement, *setup* code and
    *timer* function and run its :meth:`.timeit` method with *number* executions.
 
+   .. versionadded:: 2.6
+
 
 .. function:: repeat(stmt='pass', setup='pass', timer=<default timer>, repeat=3, number=1000000)
 
@@ -70,13 +74,18 @@ The module defines three convenience functions and a public class:
    *timer* function and run its :meth:`.repeat` method with the given *repeat*
    count and *number* executions.
 
+   .. versionadded:: 2.6
+
 
 .. function:: default_timer()
 
-   The default timer, which is always :func:`time.perf_counter`.
-
-   .. versionchanged:: 3.3
-      :func:`time.perf_counter` is now the default timer.
+   Define a default timer, in a platform-specific manner.  On Windows,
+   :func:`time.clock` has microsecond granularity, but :func:`time.time`'s
+   granularity is 1/60th of a second.  On Unix, :func:`time.clock` has 1/100th of
+   a second granularity, and :func:`time.time` is much more precise.  On either
+   platform, :func:`default_timer` measures wall clock time, not the CPU
+   time.  This means that other processes running on the same computer may
+   interfere with the timing.
 
 
 .. class:: Timer(stmt='pass', setup='pass', timer=<timer function>)
@@ -93,10 +102,12 @@ The module defines three convenience functions and a public class:
    method.  The :meth:`.repeat` method is a convenience to call :meth:`.timeit`
    multiple times and return a list of results.
 
-   The *stmt* and *setup* parameters can also take objects that are callable
-   without arguments.  This will embed calls to them in a timer function that
-   will then be executed by :meth:`.timeit`.  Note that the timing overhead is a
-   little larger in this case because of the extra function calls.
+   .. versionchanged:: 2.6
+      The *stmt* and *setup* parameters can now also take objects that are
+      callable without arguments.  This will embed calls to them in a timer
+      function that will then be executed by :meth:`.timeit`.  Note that the
+      timing overhead is a little larger in this case because of the extra
+      function calls.
 
 
    .. method:: Timer.timeit(number=1000000)
@@ -117,7 +128,7 @@ The module defines three convenience functions and a public class:
          function being measured.  If so, GC can be re-enabled as the first
          statement in the *setup* string.  For example::
 
-            timeit.Timer('for i in range(10): oct(i)', 'gc.enable()').timeit()
+            timeit.Timer('for i in xrange(10): oct(i)', 'gc.enable()').timeit()
 
 
    .. method:: Timer.repeat(repeat=3, number=1000000)
@@ -151,11 +162,11 @@ The module defines three convenience functions and a public class:
          t = Timer(...)       # outside the try/except
          try:
              t.timeit(...)    # or t.repeat(...)
-         except Exception:
+         except:
              t.print_exc()
 
       The advantage over the standard traceback is that source lines in the
-      compiled template will be displayed.  The optional *file* argument directs
+      compiled template will be displayed. The optional *file* argument directs
       where the traceback is sent; it defaults to :data:`sys.stderr`.
 
 
@@ -184,20 +195,13 @@ Where the following options are understood:
 
    statement to be executed once initially (default ``pass``)
 
-.. cmdoption:: -p, --process
-
-   measure process time, not wallclock time, using :func:`time.process_time`
-   instead of :func:`time.perf_counter`, which is the default
-
-   .. versionadded:: 3.3
-
 .. cmdoption:: -t, --time
 
-   use :func:`time.time` (deprecated)
+   use :func:`time.time` (default on all platforms but Windows)
 
 .. cmdoption:: -c, --clock
 
-   use :func:`time.clock` (deprecated)
+   use :func:`time.clock` (default on Windows)
 
 .. cmdoption:: -v, --verbose
 
@@ -215,18 +219,21 @@ similarly.
 If :option:`-n` is not given, a suitable number of loops is calculated by trying
 successive powers of 10 until the total time is at least 0.2 seconds.
 
-:func:`default_timer` measurements can be affected by other programs running on
-the same machine, so the best thing to do when accurate timing is necessary is
-to repeat the timing a few times and use the best time.  The :option:`-r`
-option is good for this; the default of 3 repetitions is probably enough in
-most cases.  You can use :func:`time.process_time` to measure CPU time.
+:func:`default_timer` measurations can be affected by other programs running on
+the same machine, so
+the best thing to do when accurate timing is necessary is to repeat
+the timing a few times and use the best time.  The :option:`-r` option is good
+for this; the default of 3 repetitions is probably enough in most cases.  On
+Unix, you can use :func:`time.clock` to measure CPU time.
 
 .. note::
 
    There is a certain baseline overhead associated with executing a pass statement.
    The code here doesn't try to hide it, but you should be aware of it.  The
-   baseline overhead can be measured by invoking the program without arguments,
-   and it might differ between Python versions.
+   baseline overhead can be measured by invoking the program without arguments, and
+   it might differ between Python versions.  Also, to fairly compare older Python
+   versions to Python 2.3, you may want to use Python's :option:`-O` option for
+   the older versions to avoid timing ``SET_LINENO`` instructions.
 
 
 .. _timeit-examples:
@@ -267,14 +274,14 @@ to test for missing and present object attributes:
 
 .. code-block:: sh
 
-   $ python -m timeit 'try:' '  str.__bool__' 'except AttributeError:' '  pass'
+   $ python -m timeit 'try:' '  str.__nonzero__' 'except AttributeError:' '  pass'
    100000 loops, best of 3: 15.7 usec per loop
-   $ python -m timeit 'if hasattr(str, "__bool__"): pass'
+   $ python -m timeit 'if hasattr(str, "__nonzero__"): pass'
    100000 loops, best of 3: 4.26 usec per loop
 
-   $ python -m timeit 'try:' '  int.__bool__' 'except AttributeError:' '  pass'
+   $ python -m timeit 'try:' '  int.__nonzero__' 'except AttributeError:' '  pass'
    1000000 loops, best of 3: 1.43 usec per loop
-   $ python -m timeit 'if hasattr(int, "__bool__"): pass'
+   $ python -m timeit 'if hasattr(int, "__nonzero__"): pass'
    100000 loops, best of 3: 2.23 usec per loop
 
 ::
@@ -283,7 +290,7 @@ to test for missing and present object attributes:
    >>> # attribute is missing
    >>> s = """\
    ... try:
-   ...     str.__bool__
+   ...     str.__nonzero__
    ... except AttributeError:
    ...     pass
    ... """
@@ -296,7 +303,7 @@ to test for missing and present object attributes:
    >>> # attribute is present
    >>> s = """\
    ... try:
-   ...     int.__bool__
+   ...     int.__nonzero__
    ... except AttributeError:
    ...     pass
    ... """
@@ -306,13 +313,14 @@ to test for missing and present object attributes:
    >>> timeit.timeit(stmt=s, number=100000)
    0.08588060699912603
 
-
 To give the :mod:`timeit` module access to functions you define, you can pass a
 *setup* parameter which contains an import statement::
 
    def test():
        """Stupid test function"""
-       L = [i for i in range(100)]
+       L = []
+       for i in range(100):
+           L.append(i)
 
    if __name__ == '__main__':
        import timeit

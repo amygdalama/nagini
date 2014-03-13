@@ -1,3 +1,3 @@
-# Deprecated alias for xml.etree.ElementTree
+# Wrapper module for _elementtree
 
-from xml.etree.ElementTree import *
+from _elementtree import *

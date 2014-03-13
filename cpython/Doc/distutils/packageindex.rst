@@ -74,6 +74,8 @@ versions to display and hide.
 Uploading Packages
 ==================
 
+.. versionadded:: 2.5
+
 The distutils command :command:`upload` pushes the distribution files to PyPI.
 
 The command is invoked immediately after building one or more distribution

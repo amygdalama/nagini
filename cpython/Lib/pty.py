@@ -47,16 +47,27 @@ def master_open():
     return _open_terminal()
 
 def _open_terminal():
-    """Open pty master and return (master_fd, tty_name)."""
+    """Open pty master and return (master_fd, tty_name).
+    SGI and generic BSD version, for when openpty() fails."""
+    try:
+        import sgi
+    except ImportError:
+        pass
+    else:
+        try:
+            tty_name, master_fd = sgi._getpty(os.O_RDWR, 0666, 0)
+        except IOError, msg:
+            raise os.error, msg
+        return master_fd, tty_name
     for x in 'pqrstuvwxyzPQRST':
         for y in '0123456789abcdef':
             pty_name = '/dev/pty' + x + y
             try:
                 fd = os.open(pty_name, os.O_RDWR)
-            except OSError:
+            except os.error:
                 continue
             return (fd, '/dev/tty' + x + y)
-    raise OSError('out of pty devices')
+    raise os.error, 'out of pty devices'
 
 def slave_open(tty_name):
     """slave_open(tty_name) -> slave_fd
@@ -72,7 +83,7 @@ def slave_open(tty_name):
     try:
         ioctl(result, I_PUSH, "ptem")
         ioctl(result, I_PUSH, "ldterm")
-    except OSError:
+    except IOError:
         pass
     return result
 
@@ -118,7 +129,7 @@ def fork():
 
 def _writen(fd, data):
     """Write all the data to a descriptor."""
-    while data:
+    while data != '':
         n = os.write(fd, data)
         data = data[n:]
 
@@ -162,9 +173,8 @@ def spawn(argv, master_read=_read, stdin_read=_read):
         restore = 0
     try:
         _copy(master_fd, master_read, stdin_read)
-    except OSError:
+    except (IOError, OSError):
         if restore:
             tty.tcsetattr(STDIN_FILENO, tty.TCSAFLUSH, mode)
 
     os.close(master_fd)
-    return os.waitpid(pid, 0)[1]

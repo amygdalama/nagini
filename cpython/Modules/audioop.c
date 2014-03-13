@@ -1,9 +1,19 @@
 
 /* audioopmodule - Module to detect peak values in arrays */
 
-#define PY_SSIZE_T_CLEAN
-
 #include "Python.h"
+
+#if SIZEOF_INT == 4
+typedef int Py_Int32;
+typedef unsigned int Py_UInt32;
+#else
+#if SIZEOF_LONG == 4
+typedef long Py_Int32;
+typedef unsigned long Py_UInt32;
+#else
+#error "No 4-byte integral type"
+#endif
+#endif
 
 typedef short PyInt16;
 
@@ -15,8 +25,7 @@ typedef short PyInt16;
 #endif
 
 static const int maxvals[] = {0, 0x7F, 0x7FFF, 0x7FFFFF, 0x7FFFFFFF};
-/* -1 trick is needed on Windows to support -0x80000000 without a warning */
-static const int minvals[] = {0, -0x80, -0x8000, -0x800000, -0x7FFFFFFF-1};
+static const int minvals[] = {0, -0x80, -0x8000, -0x800000, -0x80000000};
 static const unsigned int masks[] = {0, 0xFF, 0xFFFF, 0xFFFFFF, 0xFFFFFFFF};
 
 static int
@@ -26,7 +35,7 @@ fbound(double val, double minval, double maxval)
         val = maxval;
     else if (val < minval + 1)
         val = minval;
-    return (int)val;
+    return val;
 }
 
 
@@ -149,6 +158,9 @@ st_14linear2ulaw(PyInt16 pcm_val)       /* 2's complement (14-bit range) */
     PyInt16         seg;
     unsigned char   uval;
 
+    /* The original sox code does this in the calling function, not here */
+    pcm_val = pcm_val >> 2;
+
     /* u-law inverts all bits */
     /* Get the sign and the magnitude of the value. */
     if (pcm_val < 0) {
@@ -243,6 +255,9 @@ st_linear2alaw(PyInt16 pcm_val) /* 2's complement (13-bit range) */
     short           seg;
     unsigned char   aval;
 
+    /* The original sox code does this in the calling function, not here */
+    pcm_val = pcm_val >> 3;
+
     /* A-law using even bit inversion */
     if (pcm_val >= 0) {
         mask = 0xD5;            /* sign (7th) bit = 1 */
@@ -287,82 +302,10 @@ static int stepsizeTable[89] = {
     15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767
 };
 
-#define GETINTX(T, cp, i)  (*(T *)((unsigned char *)(cp) + (i)))
-#define SETINTX(T, cp, i, val)  do {                    \
-        *(T *)((unsigned char *)(cp) + (i)) = (T)(val); \
-    } while (0)
+#define CHARP(cp, i) ((signed char *)(cp+i))
+#define SHORTP(cp, i) ((short *)(cp+i))
+#define LONGP(cp, i) ((Py_Int32 *)(cp+i))
 
-
-#define GETINT8(cp, i)          GETINTX(signed char, (cp), (i))
-#define GETINT16(cp, i)         GETINTX(short, (cp), (i))
-#define GETINT32(cp, i)         GETINTX(PY_INT32_T, (cp), (i))
-
-#if WORDS_BIGENDIAN
-#define GETINT24(cp, i)  (                              \
-        ((unsigned char *)(cp) + (i))[2] +              \
-        (((unsigned char *)(cp) + (i))[1] << 8) +       \
-        (((signed char *)(cp) + (i))[0] << 16) )
-#else
-#define GETINT24(cp, i)  (                              \
-        ((unsigned char *)(cp) + (i))[0] +              \
-        (((unsigned char *)(cp) + (i))[1] << 8) +       \
-        (((signed char *)(cp) + (i))[2] << 16) )
-#endif
-
-
-#define SETINT8(cp, i, val)     SETINTX(signed char, (cp), (i), (val))
-#define SETINT16(cp, i, val)    SETINTX(short, (cp), (i), (val))
-#define SETINT32(cp, i, val)    SETINTX(PY_INT32_T, (cp), (i), (val))
-
-#if WORDS_BIGENDIAN
-#define SETINT24(cp, i, val)  do {                              \
-        ((unsigned char *)(cp) + (i))[2] = (int)(val);          \
-        ((unsigned char *)(cp) + (i))[1] = (int)(val) >> 8;     \
-        ((signed char *)(cp) + (i))[0] = (int)(val) >> 16;      \
-    } while (0)
-#else
-#define SETINT24(cp, i, val)  do {                              \
-        ((unsigned char *)(cp) + (i))[0] = (int)(val);          \
-        ((unsigned char *)(cp) + (i))[1] = (int)(val) >> 8;     \
-        ((signed char *)(cp) + (i))[2] = (int)(val) >> 16;      \
-    } while (0)
-#endif
-
-
-#define GETRAWSAMPLE(size, cp, i)  (                    \
-        (size == 1) ? (int)GETINT8((cp), (i)) :         \
-        (size == 2) ? (int)GETINT16((cp), (i)) :        \
-        (size == 3) ? (int)GETINT24((cp), (i)) :        \
-                      (int)GETINT32((cp), (i)))
-
-#define SETRAWSAMPLE(size, cp, i, val)  do {    \
-        if (size == 1)                          \
-            SETINT8((cp), (i), (val));          \
-        else if (size == 2)                     \
-            SETINT16((cp), (i), (val));         \
-        else if (size == 3)                     \
-            SETINT24((cp), (i), (val));         \
-        else                                    \
-            SETINT32((cp), (i), (val));         \
-    } while(0)
-
-
-#define GETSAMPLE32(size, cp, i)  (                     \
-        (size == 1) ? (int)GETINT8((cp), (i)) << 24 :   \
-        (size == 2) ? (int)GETINT16((cp), (i)) << 16 :  \
-        (size == 3) ? (int)GETINT24((cp), (i)) << 8 :   \
-                      (int)GETINT32((cp), (i)))
-
-#define SETSAMPLE32(size, cp, i, val)  do {     \
-        if (size == 1)                          \
-            SETINT8((cp), (i), (val) >> 24);    \
-        else if (size == 2)                     \
-            SETINT16((cp), (i), (val) >> 16);   \
-        else if (size == 3)                     \
-            SETINT24((cp), (i), (val) >> 8);    \
-        else                                    \
-            SETINT32((cp), (i), (val));         \
-    } while(0)
 
 
 static PyObject *AudioopError;
@@ -370,8 +313,8 @@ static PyObject *AudioopError;
 static int
 audioop_check_size(int size)
 {
-    if (size < 1 || size > 4) {
-        PyErr_SetString(AudioopError, "Size should be 1, 2, 3 or 4");
+    if (size != 1 && size != 2 && size != 4) {
+        PyErr_SetString(AudioopError, "Size should be 1, 2 or 4");
         return 0;
     }
     else
@@ -379,7 +322,7 @@ audioop_check_size(int size)
 }
 
 static int
-audioop_check_parameters(Py_ssize_t len, int size)
+audioop_check_parameters(int len, int size)
 {
     if (!audioop_check_size(size))
         return 0;
@@ -390,159 +333,132 @@ audioop_check_parameters(Py_ssize_t len, int size)
     return 1;
 }
 
-/*[clinic input]
-output preset file
-module audioop
-[clinic start generated code]*/
-/*[clinic end generated code: output=da39a3ee5e6b4b0d input=5619f935f269199a]*/
-
-/*[clinic input]
-audioop.getsample
-
-    fragment: Py_buffer
-    width: int
-    index: Py_ssize_t
-    /
-
-Return the value of sample index from the fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_getsample_impl(PyModuleDef *module, Py_buffer *fragment, int width, Py_ssize_t index)
-/*[clinic end generated code: output=f4482497e6f6e78f input=88edbe2871393549]*/
+audioop_getsample(PyObject *self, PyObject *args)
 {
-    int val;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#ii:getsample", &cp, &len, &size, &i) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    if (index < 0 || index >= fragment->len/width) {
+    if ( i < 0 || i >= len/size ) {
         PyErr_SetString(AudioopError, "Index out of range");
-        return NULL;
+        return 0;
     }
-    val = GETRAWSAMPLE(width, fragment->buf, index*width);
-    return PyLong_FromLong(val);
+    if ( size == 1 )      val = (int)*CHARP(cp, i);
+    else if ( size == 2 ) val = (int)*SHORTP(cp, i*2);
+    else if ( size == 4 ) val = (int)*LONGP(cp, i*4);
+    return PyInt_FromLong(val);
 }
 
-/*[clinic input]
-audioop.max
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the maximum of the absolute value of all samples in a fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_max_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=85047ee1001f2305 input=32bea5ea0ac8c223]*/
+audioop_max(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
     unsigned int absval, max = 0;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:max", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i);
+    for ( i=0; i<len; i+= size) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
         if (val < 0) absval = (-val);
         else absval = val;
         if (absval > max) max = absval;
     }
-    return PyLong_FromUnsignedLong(max);
+    if (max <= INT_MAX)
+        return PyInt_FromLong(max);
+    else
+        return PyLong_FromUnsignedLong(max);
 }
 
-/*[clinic input]
-audioop.minmax
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the minimum and maximum values of all samples in the sound fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_minmax_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=ae8f5513c64fd569 input=89848e9b927a0696]*/
+audioop_minmax(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
-    /* -1 trick below is needed on Windows to support -0x80000000 without
-    a warning */
-    int min = 0x7fffffff, max = -0x7FFFFFFF-1;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
+    int min = 0x7fffffff, max = -0x80000000;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if (!PyArg_ParseTuple(args, "s#i:minmax", &cp, &len, &size))
         return NULL;
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i);
+    if (!audioop_check_parameters(len, size))
+        return NULL;
+    for (i = 0; i < len; i += size) {
+        if (size == 1) val = (int) *CHARP(cp, i);
+        else if (size == 2) val = (int) *SHORTP(cp, i);
+        else if (size == 4) val = (int) *LONGP(cp, i);
         if (val > max) max = val;
         if (val < min) min = val;
     }
     return Py_BuildValue("(ii)", min, max);
 }
 
-/*[clinic input]
-audioop.avg
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the average over all samples in the fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_avg_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=7fccd645c95f4860 input=1114493c7611334d]*/
+audioop_avg(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
-    int avg;
-    double sum = 0.0;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
+    double avg = 0.0;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:avg", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    for (i = 0; i < fragment->len; i += width)
-        sum += GETRAWSAMPLE(width, fragment->buf, i);
-    if (fragment->len == 0)
-        avg = 0;
+    for ( i=0; i<len; i+= size) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+        avg += val;
+    }
+    if ( len == 0 )
+        val = 0;
     else
-        avg = (int)floor(sum / (double)(fragment->len/width));
-    return PyLong_FromLong(avg);
+        val = (int)floor(avg / (double)(len/size));
+    return PyInt_FromLong(val);
 }
 
-/*[clinic input]
-audioop.rms
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the root-mean-square of the fragment, i.e. sqrt(sum(S_i^2)/n).
-[clinic start generated code]*/
-
 static PyObject *
-audioop_rms_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=7b398702c81b709d input=4cc57c6c94219d78]*/
+audioop_rms(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
     unsigned int res;
     double sum_squares = 0.0;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:rms", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    for (i = 0; i < fragment->len; i += width) {
-        double val = GETRAWSAMPLE(width, fragment->buf, i);
-        sum_squares += val*val;
+    for ( i=0; i<len; i+= size) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+        sum_squares += (double)val*(double)val;
     }
-    if (fragment->len == 0)
+    if ( len == 0 )
         res = 0;
     else
-        res = (unsigned int)sqrt(sum_squares / (double)(fragment->len/width));
-    return PyLong_FromUnsignedLong(res);
+        res = (unsigned int)sqrt(sum_squares / (double)(len/size));
+    if (res <= INT_MAX)
+        return PyInt_FromLong(res);
+    else
+        return PyLong_FromUnsignedLong(res);
 }
 
-static double _sum2(const short *a, const short *b, Py_ssize_t len)
+static double _sum2(short *a, short *b, int len)
 {
-    Py_ssize_t i;
+    int i;
     double sum = 0.0;
 
     for( i=0; i<len; i++) {
@@ -583,38 +499,32 @@ static double _sum2(const short *a, const short *b, Py_ssize_t len)
 ** sum_ri is calculated once, sum_aij_2 is updated each step and sum_aij_ri
 ** is completely recalculated each step.
 */
-/*[clinic input]
-audioop.findfit
-
-    fragment: Py_buffer
-    reference: Py_buffer
-    /
-
-Try to match reference as well as possible to a portion of fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_findfit_impl(PyModuleDef *module, Py_buffer *fragment, Py_buffer *reference)
-/*[clinic end generated code: output=505fd04d4244db31 input=62c305605e183c9a]*/
+audioop_findfit(PyObject *self, PyObject *args)
 {
-    const short *cp1, *cp2;
-    Py_ssize_t len1, len2;
-    Py_ssize_t j, best_j;
+    short *cp1, *cp2;
+    int len1, len2;
+    int j, best_j;
     double aj_m1, aj_lm1;
     double sum_ri_2, sum_aij_2, sum_aij_ri, result, best_result, factor;
 
-    if (fragment->len & 1 || reference->len & 1) {
+    /* Passing a short** for an 's' argument is correct only
+       if the string contents is aligned for interpretation
+       as short[]. Due to the definition of PyStringObject,
+       this is currently (Python 2.6) the case. */
+    if ( !PyArg_ParseTuple(args, "s#s#:findfit",
+                           (char**)&cp1, &len1, (char**)&cp2, &len2) )
+        return 0;
+    if ( len1 & 1 || len2 & 1 ) {
         PyErr_SetString(AudioopError, "Strings should be even-sized");
-        return NULL;
+        return 0;
     }
-    cp1 = (const short *)fragment->buf;
-    len1 = fragment->len >> 1;
-    cp2 = (const short *)reference->buf;
-    len2 = reference->len >> 1;
+    len1 >>= 1;
+    len2 >>= 1;
 
-    if (len1 < len2) {
+    if ( len1 < len2 ) {
         PyErr_SetString(AudioopError, "First sample should be longer");
-        return NULL;
+        return 0;
     }
     sum_ri_2 = _sum2(cp2, cp2, len2);
     sum_aij_2 = _sum2(cp1, cp1, len2);
@@ -625,7 +535,7 @@ audioop_findfit_impl(PyModuleDef *module, Py_buffer *fragment, Py_buffer *refere
     best_result = result;
     best_j = 0;
 
-    for ( j=1; j<=len1-len2; j++) {
+    for (j=1; j<=len1-len2; j++) {
         aj_m1 = (double)cp1[j-1];
         aj_lm1 = (double)cp1[j+len2-1];
 
@@ -644,44 +554,34 @@ audioop_findfit_impl(PyModuleDef *module, Py_buffer *fragment, Py_buffer *refere
 
     factor = _sum2(cp1+best_j, cp2, len2) / sum_ri_2;
 
-    return Py_BuildValue("(nf)", best_j, factor);
+    return Py_BuildValue("(if)", best_j, factor);
 }
 
 /*
 ** findfactor finds a factor f so that the energy in A-fB is minimal.
 ** See the comment for findfit for details.
 */
-/*[clinic input]
-audioop.findfactor
-
-    fragment: Py_buffer
-    reference: Py_buffer
-    /
-
-Return a factor F such that rms(add(fragment, mul(reference, -F))) is minimal.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_findfactor_impl(PyModuleDef *module, Py_buffer *fragment, Py_buffer *reference)
-/*[clinic end generated code: output=ddf35a1e57575ce4 input=816680301d012b21]*/
+audioop_findfactor(PyObject *self, PyObject *args)
 {
-    const short *cp1, *cp2;
-    Py_ssize_t len;
+    short *cp1, *cp2;
+    int len1, len2;
     double sum_ri_2, sum_aij_ri, result;
 
-    if (fragment->len & 1 || reference->len & 1) {
+    if ( !PyArg_ParseTuple(args, "s#s#:findfactor",
+                           (char**)&cp1, &len1, (char**)&cp2, &len2) )
+        return 0;
+    if ( len1 & 1 || len2 & 1 ) {
         PyErr_SetString(AudioopError, "Strings should be even-sized");
-        return NULL;
+        return 0;
     }
-    if (fragment->len != reference->len) {
+    if ( len1 != len2 ) {
         PyErr_SetString(AudioopError, "Samples should be same size");
-        return NULL;
+        return 0;
     }
-    cp1 = (const short *)fragment->buf;
-    cp2 = (const short *)reference->buf;
-    len = fragment->len >> 1;
-    sum_ri_2 = _sum2(cp2, cp2, len);
-    sum_aij_ri = _sum2(cp1, cp2, len);
+    len2 >>= 1;
+    sum_ri_2 = _sum2(cp2, cp2, len2);
+    sum_aij_ri = _sum2(cp1, cp2, len2);
 
     result = sum_aij_ri / sum_ri_2;
 
@@ -692,46 +592,37 @@ audioop_findfactor_impl(PyModuleDef *module, Py_buffer *fragment, Py_buffer *ref
 ** findmax returns the index of the n-sized segment of the input sample
 ** that contains the most energy.
 */
-/*[clinic input]
-audioop.findmax
-
-    fragment: Py_buffer
-    length: Py_ssize_t
-    /
-
-Search fragment for a slice of specified number of samples with maximum energy.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_findmax_impl(PyModuleDef *module, Py_buffer *fragment, Py_ssize_t length)
-/*[clinic end generated code: output=21d0c2a1e5655134 input=2f304801ed42383c]*/
+audioop_findmax(PyObject *self, PyObject *args)
 {
-    const short *cp1;
-    Py_ssize_t len1;
-    Py_ssize_t j, best_j;
+    short *cp1;
+    int len1, len2;
+    int j, best_j;
     double aj_m1, aj_lm1;
     double result, best_result;
 
-    if (fragment->len & 1) {
+    if ( !PyArg_ParseTuple(args, "s#i:findmax",
+                           (char**)&cp1, &len1, &len2) )
+        return 0;
+    if ( len1 & 1 ) {
         PyErr_SetString(AudioopError, "Strings should be even-sized");
-        return NULL;
+        return 0;
     }
-    cp1 = (const short *)fragment->buf;
-    len1 = fragment->len >> 1;
+    len1 >>= 1;
 
-    if (length < 0 || len1 < length) {
+    if ( len2 < 0 || len1 < len2 ) {
         PyErr_SetString(AudioopError, "Input sample should be longer");
-        return NULL;
+        return 0;
     }
 
-    result = _sum2(cp1, cp1, length);
+    result = _sum2(cp1, cp1, len2);
 
     best_result = result;
     best_j = 0;
 
-    for ( j=1; j<=len1-length; j++) {
+    for (j=1; j<=len1-len2; j++) {
         aj_m1 = (double)cp1[j-1];
-        aj_lm1 = (double)cp1[j+length-1];
+        aj_lm1 = (double)cp1[j+len2-1];
 
         result = result + aj_lm1*aj_lm1 - aj_m1*aj_m1;
 
@@ -742,37 +633,34 @@ audioop_findmax_impl(PyModuleDef *module, Py_buffer *fragment, Py_ssize_t length
 
     }
 
-    return PyLong_FromSsize_t(best_j);
+    return PyInt_FromLong(best_j);
 }
 
-/*[clinic input]
-audioop.avgpp
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the average peak-peak value over all samples in the fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_avgpp_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=06c8380fd6e34207 input=0b3cceeae420a7d9]*/
+audioop_avgpp(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
-    int prevval, prevextremevalid = 0, prevextreme = 0;
+    signed char *cp;
+    int len, size, val = 0, prevval = 0, prevextremevalid = 0,
+        prevextreme = 0;
+    int i;
     double sum = 0.0;
     unsigned int avg;
     int diff, prevdiff, nextreme = 0;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:avgpp", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    if (fragment->len <= width)
-        return PyLong_FromLong(0);
-    prevval = GETRAWSAMPLE(width, fragment->buf, 0);
+    if (len <= size*2)
+        return PyInt_FromLong(0);
+    if ( size == 1 )      prevval = (int)*CHARP(cp, 0);
+    else if ( size == 2 ) prevval = (int)*SHORTP(cp, 0);
+    else if ( size == 4 ) prevval = (int)*LONGP(cp, 0);
     prevdiff = 17; /* Anything != 0, 1 */
-    for (i = width; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i);
+    for ( i=size; i<len; i+= size) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
         if (val != prevval) {
             diff = val < prevval;
             if (prevdiff == !diff) {
@@ -780,12 +668,7 @@ audioop_avgpp_impl(PyModuleDef *module, Py_buffer *fragment, int width)
                 ** extreme value and remember.
                 */
                 if (prevextremevalid) {
-                    if (prevval < prevextreme)
-                        sum += (double)((unsigned int)prevextreme -
-                                        (unsigned int)prevval);
-                    else
-                        sum += (double)((unsigned int)prevval -
-                                        (unsigned int)prevextreme);
+                    sum += fabs((double)prevval - (double)prevextreme);
                     nextreme++;
                 }
                 prevextremevalid = 1;
@@ -799,36 +682,36 @@ audioop_avgpp_impl(PyModuleDef *module, Py_buffer *fragment, int width)
         avg = 0;
     else
         avg = (unsigned int)(sum / (double)nextreme);
-    return PyLong_FromUnsignedLong(avg);
+    if (avg <= INT_MAX)
+        return PyInt_FromLong(avg);
+    else
+        return PyLong_FromUnsignedLong(avg);
 }
 
-/*[clinic input]
-audioop.maxpp
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the maximum peak-peak value in the sound fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_maxpp_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=c300c0bd7e8535c0 input=671a13e1518f80a1]*/
+audioop_maxpp(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
-    int prevval, prevextremevalid = 0, prevextreme = 0;
+    signed char *cp;
+    int len, size, val = 0, prevval = 0, prevextremevalid = 0,
+        prevextreme = 0;
+    int i;
     unsigned int max = 0, extremediff;
     int diff, prevdiff;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:maxpp", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    if (fragment->len <= width)
-        return PyLong_FromLong(0);
-    prevval = GETRAWSAMPLE(width, fragment->buf, 0);
+    if (len <= size)
+        return PyInt_FromLong(0);
+    if ( size == 1 )      prevval = (int)*CHARP(cp, 0);
+    else if ( size == 2 ) prevval = (int)*SHORTP(cp, 0);
+    else if ( size == 4 ) prevval = (int)*LONGP(cp, 0);
     prevdiff = 17; /* Anything != 0, 1 */
-    for (i = width; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i);
+    for ( i=size; i<len; i+= size) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
         if (val != prevval) {
             diff = val < prevval;
             if (prevdiff == !diff) {
@@ -852,215 +735,205 @@ audioop_maxpp_impl(PyModuleDef *module, Py_buffer *fragment, int width)
             prevdiff = diff;
         }
     }
-    return PyLong_FromUnsignedLong(max);
+    if (max <= INT_MAX)
+        return PyInt_FromLong(max);
+    else
+        return PyLong_FromUnsignedLong(max);
 }
 
-/*[clinic input]
-audioop.cross
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Return the number of zero crossings in the fragment passed as an argument.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_cross_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=99e6572d7d7cdbf1 input=b1b3f15b83f6b41a]*/
+audioop_cross(PyObject *self, PyObject *args)
 {
-    Py_ssize_t i;
-    int prevval;
-    Py_ssize_t ncross;
+    signed char *cp;
+    int len, size, val = 0;
+    int i;
+    int prevval, ncross;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:cross", &cp, &len, &size) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
     ncross = -1;
     prevval = 17; /* Anything <> 0,1 */
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i) < 0;
-        if (val != prevval) ncross++;
+    for ( i=0; i<len; i+= size) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) >> 7;
+        else if ( size == 2 ) val = ((int)*SHORTP(cp, i)) >> 15;
+        else if ( size == 4 ) val = ((int)*LONGP(cp, i)) >> 31;
+        val = val & 1;
+        if ( val != prevval ) ncross++;
         prevval = val;
     }
-    return PyLong_FromSsize_t(ncross);
+    return PyInt_FromLong(ncross);
 }
 
-/*[clinic input]
-audioop.mul
-
-    fragment: Py_buffer
-    width: int
-    factor: double
-    /
-
-Return a fragment that has all samples in the original fragment multiplied by the floating-point value factor.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_mul_impl(PyModuleDef *module, Py_buffer *fragment, int width, double factor)
-/*[clinic end generated code: output=a697ebbd5852d38f input=c726667baa157d3c]*/
+audioop_mul(PyObject *self, PyObject *args)
 {
-    signed char *ncp;
-    Py_ssize_t i;
-    double maxval, minval;
+    signed char *cp, *ncp;
+    int len, size, val = 0;
+    double factor, fval, maxval, minval;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#id:mul", &cp, &len, &size, &factor ) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    maxval = (double) maxvals[width];
-    minval = (double) minvals[width];
+    maxval = (double) maxvals[size];
+    minval = (double) minvals[size];
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len; i += width) {
-        double val = GETRAWSAMPLE(width, fragment->buf, i);
-        val *= factor;
-        val = floor(fbound(val, minval, maxval));
-        SETRAWSAMPLE(width, ncp, i, (int)val);
+
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+        fval = (double)val*factor;
+        val = (int)floor(fbound(fval, minval, maxval));
+        if ( size == 1 )      *CHARP(ncp, i) = (signed char)val;
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)val;
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)val;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.tomono
-
-    fragment: Py_buffer
-    width: int
-    lfactor: double
-    rfactor: double
-    /
-
-Convert a stereo fragment to a mono fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_tomono_impl(PyModuleDef *module, Py_buffer *fragment, int width, double lfactor, double rfactor)
-/*[clinic end generated code: output=436e7710521661dd input=c4ec949b3f4dddfa]*/
+audioop_tomono(PyObject *self, PyObject *args)
 {
     signed char *cp, *ncp;
-    Py_ssize_t len, i;
-    double maxval, minval;
+    int len, size, val1 = 0, val2 = 0;
+    double fac1, fac2, fval, maxval, minval;
     PyObject *rv;
+    int i;
 
-    cp = fragment->buf;
-    len = fragment->len;
-    if (!audioop_check_parameters(len, width))
+    if ( !PyArg_ParseTuple(args, "s#idd:tomono",
+                           &cp, &len, &size, &fac1, &fac2 ) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
-    if (((len / width) & 1) != 0) {
+    if (((len / size) & 1) != 0) {
         PyErr_SetString(AudioopError, "not a whole number of frames");
         return NULL;
     }
 
-    maxval = (double) maxvals[width];
-    minval = (double) minvals[width];
+    maxval = (double) maxvals[size];
+    minval = (double) minvals[size];
 
-    rv = PyBytes_FromStringAndSize(NULL, len/2);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len/2);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    for (i = 0; i < len; i += width*2) {
-        double val1 = GETRAWSAMPLE(width, cp, i);
-        double val2 = GETRAWSAMPLE(width, cp, i + width);
-        double val = val1*lfactor + val2*rfactor;
-        val = floor(fbound(val, minval, maxval));
-        SETRAWSAMPLE(width, ncp, i/2, val);
+
+    for ( i=0; i < len; i += size*2 ) {
+        if ( size == 1 )      val1 = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val1 = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val1 = (int)*LONGP(cp, i);
+        if ( size == 1 )      val2 = (int)*CHARP(cp, i+1);
+        else if ( size == 2 ) val2 = (int)*SHORTP(cp, i+2);
+        else if ( size == 4 ) val2 = (int)*LONGP(cp, i+4);
+        fval = (double)val1*fac1 + (double)val2*fac2;
+        val1 = (int)floor(fbound(fval, minval, maxval));
+        if ( size == 1 )      *CHARP(ncp, i/2) = (signed char)val1;
+        else if ( size == 2 ) *SHORTP(ncp, i/2) = (short)val1;
+        else if ( size == 4 ) *LONGP(ncp, i/2)= (Py_Int32)val1;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.tostereo
-
-    fragment: Py_buffer
-    width: int
-    lfactor: double
-    rfactor: double
-    /
-
-Generate a stereo fragment from a mono fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_tostereo_impl(PyModuleDef *module, Py_buffer *fragment, int width, double lfactor, double rfactor)
-/*[clinic end generated code: output=6ff50681c87f4c1c input=27b6395ebfdff37a]*/
+audioop_tostereo(PyObject *self, PyObject *args)
 {
-    signed char *ncp;
-    Py_ssize_t i;
-    double maxval, minval;
+    signed char *cp, *ncp;
+    int len, size, val1, val2, val = 0;
+    double fac1, fac2, fval, maxval, minval;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#idd:tostereo",
+                           &cp, &len, &size, &fac1, &fac2 ) )
+        return 0;
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    maxval = (double) maxvals[width];
-    minval = (double) minvals[width];
+    maxval = (double) maxvals[size];
+    minval = (double) minvals[size];
 
-    if (fragment->len > PY_SSIZE_T_MAX/2) {
+    if (len > INT_MAX/2) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len*2);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len*2);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len; i += width) {
-        double val = GETRAWSAMPLE(width, fragment->buf, i);
-        int val1 = (int)floor(fbound(val*lfactor, minval, maxval));
-        int val2 = (int)floor(fbound(val*rfactor, minval, maxval));
-        SETRAWSAMPLE(width, ncp, i*2, val1);
-        SETRAWSAMPLE(width, ncp, i*2 + width, val2);
+
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = (int)*CHARP(cp, i);
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+
+        fval = (double)val*fac1;
+        val1 = (int)floor(fbound(fval, minval, maxval));
+
+        fval = (double)val*fac2;
+        val2 = (int)floor(fbound(fval, minval, maxval));
+
+        if ( size == 1 )      *CHARP(ncp, i*2) = (signed char)val1;
+        else if ( size == 2 ) *SHORTP(ncp, i*2) = (short)val1;
+        else if ( size == 4 ) *LONGP(ncp, i*2) = (Py_Int32)val1;
+
+        if ( size == 1 )      *CHARP(ncp, i*2+1) = (signed char)val2;
+        else if ( size == 2 ) *SHORTP(ncp, i*2+2) = (short)val2;
+        else if ( size == 4 ) *LONGP(ncp, i*2+4) = (Py_Int32)val2;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.add
-
-    fragment1: Py_buffer
-    fragment2: Py_buffer
-    width: int
-    /
-
-Return a fragment which is the addition of the two samples passed as parameters.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_add_impl(PyModuleDef *module, Py_buffer *fragment1, Py_buffer *fragment2, int width)
-/*[clinic end generated code: output=f9218bf9ea75c3f1 input=4a8d4bae4c1605c7]*/
+audioop_add(PyObject *self, PyObject *args)
 {
-    signed char *ncp;
-    Py_ssize_t i;
-    int minval, maxval, newval;
+    signed char *cp1, *cp2, *ncp;
+    int len1, len2, size, val1 = 0, val2 = 0, minval, maxval, newval;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_parameters(fragment1->len, width))
+    if ( !PyArg_ParseTuple(args, "s#s#i:add",
+                      &cp1, &len1, &cp2, &len2, &size ) )
+        return 0;
+    if (!audioop_check_parameters(len1, size))
         return NULL;
-    if (fragment1->len != fragment2->len) {
+    if ( len1 != len2 ) {
         PyErr_SetString(AudioopError, "Lengths should be the same");
-        return NULL;
+        return 0;
     }
 
-    maxval = maxvals[width];
-    minval = minvals[width];
+    maxval = maxvals[size];
+    minval = minvals[size];
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment1->len);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len1);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment1->len; i += width) {
-        int val1 = GETRAWSAMPLE(width, fragment1->buf, i);
-        int val2 = GETRAWSAMPLE(width, fragment2->buf, i);
+    for ( i=0; i < len1; i += size ) {
+        if ( size == 1 )      val1 = (int)*CHARP(cp1, i);
+        else if ( size == 2 ) val1 = (int)*SHORTP(cp1, i);
+        else if ( size == 4 ) val1 = (int)*LONGP(cp1, i);
 
-        if (width < 4) {
+        if ( size == 1 )      val2 = (int)*CHARP(cp2, i);
+        else if ( size == 2 ) val2 = (int)*SHORTP(cp2, i);
+        else if ( size == 4 ) val2 = (int)*LONGP(cp2, i);
+
+        if (size < 4) {
             newval = val1 + val2;
             /* truncate in case of overflow */
             if (newval > maxval)
@@ -1074,175 +947,124 @@ audioop_add_impl(PyModuleDef *module, Py_buffer *fragment1, Py_buffer *fragment2
             newval = (int)floor(fbound(fval, minval, maxval));
         }
 
-        SETRAWSAMPLE(width, ncp, i, newval);
+        if ( size == 1 )      *CHARP(ncp, i) = (signed char)newval;
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)newval;
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)newval;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.bias
-
-    fragment: Py_buffer
-    width: int
-    bias: int
-    /
-
-Return a fragment that is the original fragment with a bias added to each sample.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_bias_impl(PyModuleDef *module, Py_buffer *fragment, int width, int bias)
-/*[clinic end generated code: output=8ec80b3f5d510a51 input=2b5cce5c3bb4838c]*/
+audioop_bias(PyObject *self, PyObject *args)
 {
-    signed char *ncp;
-    Py_ssize_t i;
+    signed char *cp, *ncp;
+    int len, size;
     unsigned int val = 0, mask;
     PyObject *rv;
+    int i;
+    int bias;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#ii:bias",
+                      &cp, &len, &size , &bias) )
+        return 0;
+
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    mask = masks[width];
+    mask = masks[size];
 
-    for (i = 0; i < fragment->len; i += width) {
-        if (width == 1)
-            val = GETINTX(unsigned char, fragment->buf, i);
-        else if (width == 2)
-            val = GETINTX(unsigned short, fragment->buf, i);
-        else if (width == 3)
-            val = ((unsigned int)GETINT24(fragment->buf, i)) & 0xffffffu;
-        else {
-            assert(width == 4);
-            val = GETINTX(PY_UINT32_T, fragment->buf, i);
-        }
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = (unsigned int)(unsigned char)*CHARP(cp, i);
+        else if ( size == 2 ) val = (unsigned int)(unsigned short)*SHORTP(cp, i);
+        else if ( size == 4 ) val = (unsigned int)(Py_UInt32)*LONGP(cp, i);
 
         val += (unsigned int)bias;
         /* wrap around in case of overflow */
         val &= mask;
 
-        if (width == 1)
-            SETINTX(unsigned char, ncp, i, val);
-        else if (width == 2)
-            SETINTX(unsigned short, ncp, i, val);
-        else if (width == 3)
-            SETINT24(ncp, i, (int)val);
-        else {
-            assert(width == 4);
-            SETINTX(PY_UINT32_T, ncp, i, val);
-        }
+        if ( size == 1 )      *CHARP(ncp, i) = (signed char)(unsigned char)val;
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)(unsigned short)val;
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)(Py_UInt32)val;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.reverse
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Reverse the samples in a fragment and returns the modified fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_reverse_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=6ec3c91337f5925e input=668f890cf9f9d225]*/
+audioop_reverse(PyObject *self, PyObject *args)
 {
+    signed char *cp;
     unsigned char *ncp;
-    Py_ssize_t i;
+    int len, size, val = 0;
     PyObject *rv;
+    int i, j;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:reverse",
+                      &cp, &len, &size) )
+        return 0;
+
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len);
-    if (rv == NULL)
-        return NULL;
-    ncp = (unsigned char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len);
+    if ( rv == 0 )
+        return 0;
+    ncp = (unsigned char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETRAWSAMPLE(width, fragment->buf, i);
-        SETRAWSAMPLE(width, ncp, fragment->len - i - width, val);
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) << 24;
+        else if ( size == 2 ) val = ((int)*SHORTP(cp, i)) << 16;
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+
+        j = len - i - size;
+
+        if ( size == 1 )      *CHARP(ncp, j) = (signed char)(val >> 24);
+        else if ( size == 2 ) *SHORTP(ncp, j) = (short)(val >> 16);
+        else if ( size == 4 ) *LONGP(ncp, j) = (Py_Int32)val;
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.byteswap
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Convert big-endian samples to little-endian and vice versa.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_byteswap_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=bfe4aa584b7a3f5b input=fae7611ceffa5c82]*/
+audioop_lin2lin(PyObject *self, PyObject *args)
 {
+    signed char *cp;
     unsigned char *ncp;
-    Py_ssize_t i;
+    int len, size, size2, val = 0;
     PyObject *rv;
+    int i, j;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#ii:lin2lin",
+                      &cp, &len, &size, &size2) )
+        return 0;
+
+    if (!audioop_check_parameters(len, size))
+        return NULL;
+    if (!audioop_check_size(size2))
         return NULL;
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len);
-    if (rv == NULL)
-        return NULL;
-    ncp = (unsigned char *)PyBytes_AsString(rv);
-
-    for (i = 0; i < fragment->len; i += width) {
-        int j;
-        for (j = 0; j < width; j++)
-            ncp[i + width - 1 - j] = ((unsigned char *)fragment->buf)[i + j];
-    }
-    return rv;
-}
-
-/*[clinic input]
-audioop.lin2lin
-
-    fragment: Py_buffer
-    width: int
-    newwidth: int
-    /
-
-Convert samples between 1-, 2-, 3- and 4-byte formats.
-[clinic start generated code]*/
-
-static PyObject *
-audioop_lin2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width, int newwidth)
-/*[clinic end generated code: output=3f9468a74472a93e input=5ce08c8aa2f24d96]*/
-{
-    unsigned char *ncp;
-    Py_ssize_t i, j;
-    PyObject *rv;
-
-    if (!audioop_check_parameters(fragment->len, width))
-        return NULL;
-    if (!audioop_check_size(newwidth))
-        return NULL;
-
-    if (fragment->len/width > PY_SSIZE_T_MAX/newwidth) {
+    if (len/size > INT_MAX/size2) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
-    rv = PyBytes_FromStringAndSize(NULL, (fragment->len/width)*newwidth);
-    if (rv == NULL)
-        return NULL;
-    ncp = (unsigned char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, (len/size)*size2);
+    if ( rv == 0 )
+        return 0;
+    ncp = (unsigned char *)PyString_AsString(rv);
 
-    for (i = j = 0; i < fragment->len; i += width, j += newwidth) {
-        int val = GETSAMPLE32(width, fragment->buf, i);
-        SETSAMPLE32(newwidth, ncp, j, val);
+    for ( i=0, j=0; i < len; i += size, j += size2 ) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) << 24;
+        else if ( size == 2 ) val = ((int)*SHORTP(cp, i)) << 16;
+        else if ( size == 4 ) val = (int)*LONGP(cp, i);
+
+        if ( size2 == 1 )  *CHARP(ncp, j) = (signed char)(val >> 24);
+        else if ( size2 == 2 ) *SHORTP(ncp, j) = (short)(val >> 16);
+        else if ( size2 == 4 ) *LONGP(ncp, j) = (Py_Int32)val;
     }
     return rv;
 }
@@ -1258,39 +1080,29 @@ gcd(int a, int b)
     return a;
 }
 
-/*[clinic input]
-audioop.ratecv
-
-    fragment: Py_buffer
-    width: int
-    nchannels: int
-    inrate: int
-    outrate: int
-    state: object
-    weightA: int = 1
-    weightB: int = 0
-    /
-
-Convert the frame rate of the input fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nchannels, int inrate, int outrate, PyObject *state, int weightA, int weightB)
-/*[clinic end generated code: output=5585dddc4b5ff236 input=aff3acdc94476191]*/
+audioop_ratecv(PyObject *self, PyObject *args)
 {
     char *cp, *ncp;
-    Py_ssize_t len;
+    int len, size, nchannels, inrate, outrate, weightA, weightB;
     int chan, d, *prev_i, *cur_i, cur_o;
-    PyObject *samps, *str, *rv = NULL;
+    PyObject *state, *samps, *str, *rv = NULL;
     int bytes_per_frame;
 
-    if (!audioop_check_size(width))
+    weightA = 1;
+    weightB = 0;
+    if (!PyArg_ParseTuple(args, "s#iiiiO|ii:ratecv", &cp, &len, &size,
+                          &nchannels, &inrate, &outrate, &state,
+                          &weightA, &weightB))
+        return NULL;
+    if (!audioop_check_size(size))
         return NULL;
     if (nchannels < 1) {
         PyErr_SetString(AudioopError, "# of channels should be >= 1");
         return NULL;
     }
-    if (width > INT_MAX / nchannels) {
+    bytes_per_frame = size * nchannels;
+    if (bytes_per_frame / nchannels != size) {
         /* This overflow test is rigorously correct because
            both multiplicands are >= 1.  Use the argument names
            from the docs for the error msg. */
@@ -1298,14 +1110,12 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
                         "width * nchannels too big for a C int");
         return NULL;
     }
-    bytes_per_frame = width * nchannels;
     if (weightA < 1 || weightB < 0) {
         PyErr_SetString(AudioopError,
             "weightA should be >= 1, weightB should be >= 0");
         return NULL;
     }
-    assert(fragment->len >= 0);
-    if (fragment->len % bytes_per_frame != 0) {
+    if (len % bytes_per_frame != 0) {
         PyErr_SetString(AudioopError, "not a whole number of frames");
         return NULL;
     }
@@ -1325,16 +1135,16 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
     if ((size_t)nchannels > PY_SIZE_MAX/sizeof(int)) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
-    prev_i = (int *) PyMem_Malloc(nchannels * sizeof(int));
-    cur_i = (int *) PyMem_Malloc(nchannels * sizeof(int));
+    prev_i = (int *) malloc(nchannels * sizeof(int));
+    cur_i = (int *) malloc(nchannels * sizeof(int));
     if (prev_i == NULL || cur_i == NULL) {
         (void) PyErr_NoMemory();
         goto exit;
     }
 
-    len = fragment->len / bytes_per_frame; /* # of frames */
+    len /= bytes_per_frame; /* # of frames */
 
     if (state == Py_None) {
         d = -outrate;
@@ -1361,7 +1171,7 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
 
     /* str <- Space for the output buffer. */
     if (len == 0)
-        str = PyBytes_FromStringAndSize(NULL, 0);
+        str = PyString_FromStringAndSize(NULL, 0);
     else {
         /* There are len input frames, so we need (mathematically)
            ceiling(len*outrate/inrate) output frames, and each frame
@@ -1371,20 +1181,19 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
            case ceiling(len/inrate) * outrate. */
 
         /* compute ceiling(len/inrate) without overflow */
-        Py_ssize_t q = 1 + (len - 1) / inrate;
-        if (outrate > PY_SSIZE_T_MAX / q / bytes_per_frame)
+        int q = len > 0 ? 1 + (len - 1) / inrate : 0;
+        if (outrate > INT_MAX / q / bytes_per_frame)
             str = NULL;
         else
-            str = PyBytes_FromStringAndSize(NULL,
-                                            q * outrate * bytes_per_frame);
+            str = PyString_FromStringAndSize(NULL,
+                                             q * outrate * bytes_per_frame);
     }
     if (str == NULL) {
         PyErr_SetString(PyExc_MemoryError,
             "not enough memory for output buffer");
         goto exit;
     }
-    ncp = PyBytes_AsString(str);
-    cp = fragment->buf;
+    ncp = PyString_AsString(str);
 
     for (;;) {
         while (d < 0) {
@@ -1401,12 +1210,13 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
                     goto exit;
                 /* We have checked before that the length
                  * of the string fits into int. */
-                len = (Py_ssize_t)(ncp - PyBytes_AsString(str));
-                rv = PyBytes_FromStringAndSize
-                    (PyBytes_AsString(str), len);
-                Py_DECREF(str);
-                str = rv;
-                if (str == NULL)
+                len = (int)(ncp - PyString_AsString(str));
+                if (len == 0) {
+                    /*don't want to resize to zero length*/
+                    rv = PyString_FromStringAndSize("", 0);
+                    Py_DECREF(str);
+                    str = rv;
+                } else if (_PyString_Resize(&str, len) < 0)
                     goto exit;
                 rv = Py_BuildValue("(O(iO))", str, d, samps);
                 Py_DECREF(samps);
@@ -1415,8 +1225,13 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
             }
             for (chan = 0; chan < nchannels; chan++) {
                 prev_i[chan] = cur_i[chan];
-                cur_i[chan] = GETSAMPLE32(width, cp, 0);
-                cp += width;
+                if (size == 1)
+                    cur_i[chan] = ((int)*CHARP(cp, 0)) << 24;
+                else if (size == 2)
+                    cur_i[chan] = ((int)*SHORTP(cp, 0)) << 16;
+                else if (size == 4)
+                    cur_i[chan] = (int)*LONGP(cp, 0);
+                cp += size;
                 /* implements a simple digital filter */
                 cur_i[chan] = (int)(
                     ((double)weightA * (double)cur_i[chan] +
@@ -1431,222 +1246,205 @@ audioop_ratecv_impl(PyModuleDef *module, Py_buffer *fragment, int width, int nch
                 cur_o = (int)(((double)prev_i[chan] * (double)d +
                          (double)cur_i[chan] * (double)(outrate - d)) /
                     (double)outrate);
-                SETSAMPLE32(width, ncp, 0, cur_o);
-                ncp += width;
+                if (size == 1)
+                    *CHARP(ncp, 0) = (signed char)(cur_o >> 24);
+                else if (size == 2)
+                    *SHORTP(ncp, 0) = (short)(cur_o >> 16);
+                else if (size == 4)
+                    *LONGP(ncp, 0) = (Py_Int32)(cur_o);
+                ncp += size;
             }
             d -= inrate;
         }
     }
   exit:
-    PyMem_Free(prev_i);
-    PyMem_Free(cur_i);
+    if (prev_i != NULL)
+        free(prev_i);
+    if (cur_i != NULL)
+        free(cur_i);
     return rv;
 }
 
-/*[clinic input]
-audioop.lin2ulaw
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Convert samples in the audio fragment to u-LAW encoding.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_lin2ulaw_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=26263cc877c5e1bc input=2450d1b870b6bac2]*/
+audioop_lin2ulaw(PyObject *self, PyObject *args)
 {
+    signed char *cp;
     unsigned char *ncp;
-    Py_ssize_t i;
+    int len, size, val = 0;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:lin2ulaw",
+                           &cp, &len, &size) )
+        return 0 ;
+
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len/width);
-    if (rv == NULL)
-        return NULL;
-    ncp = (unsigned char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len/size);
+    if ( rv == 0 )
+        return 0;
+    ncp = (unsigned char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETSAMPLE32(width, fragment->buf, i);
-        *ncp++ = st_14linear2ulaw(val >> 18);
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) << 8;
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = ((int)*LONGP(cp, i)) >> 16;
+
+        *ncp++ = st_14linear2ulaw(val);
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.ulaw2lin
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Convert sound fragments in u-LAW encoding to linearly encoded sound fragments.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_ulaw2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=9864cb34e3a1d876 input=45d53ddce5be7d06]*/
+audioop_ulaw2lin(PyObject *self, PyObject *args)
 {
     unsigned char *cp;
+    unsigned char cval;
     signed char *ncp;
-    Py_ssize_t i;
+    int len, size, val;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_size(width))
+    if ( !PyArg_ParseTuple(args, "s#i:ulaw2lin",
+                           &cp, &len, &size) )
+        return 0;
+
+    if (!audioop_check_size(size))
         return NULL;
 
-    if (fragment->len > PY_SSIZE_T_MAX/width) {
+    if (len > INT_MAX/size) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len*width);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len*size);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    cp = fragment->buf;
-    for (i = 0; i < fragment->len*width; i += width) {
-        int val = st_ulaw2linear16(*cp++) << 16;
-        SETSAMPLE32(width, ncp, i, val);
+    for ( i=0; i < len*size; i += size ) {
+        cval = *cp++;
+        val = st_ulaw2linear16(cval);
+
+        if ( size == 1 )      *CHARP(ncp, i) = (signed char)(val >> 8);
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)(val);
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)(val<<16);
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.lin2alaw
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Convert samples in the audio fragment to a-LAW encoding.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_lin2alaw_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=d5bf14bd0fe6fdcd input=ffb1ef8bb39da945]*/
+audioop_lin2alaw(PyObject *self, PyObject *args)
 {
+    signed char *cp;
     unsigned char *ncp;
-    Py_ssize_t i;
+    int len, size, val = 0;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#i:lin2alaw",
+                           &cp, &len, &size) )
+        return 0;
+
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len/width);
-    if (rv == NULL)
-        return NULL;
-    ncp = (unsigned char *)PyBytes_AsString(rv);
+    rv = PyString_FromStringAndSize(NULL, len/size);
+    if ( rv == 0 )
+        return 0;
+    ncp = (unsigned char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETSAMPLE32(width, fragment->buf, i);
-        *ncp++ = st_linear2alaw(val >> 19);
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) << 8;
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = ((int)*LONGP(cp, i)) >> 16;
+
+        *ncp++ = st_linear2alaw(val);
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.alaw2lin
-
-    fragment: Py_buffer
-    width: int
-    /
-
-Convert sound fragments in a-LAW encoding to linearly encoded sound fragments.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_alaw2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width)
-/*[clinic end generated code: output=d2b604ddd036e1cd input=4140626046cd1772]*/
+audioop_alaw2lin(PyObject *self, PyObject *args)
 {
     unsigned char *cp;
+    unsigned char cval;
     signed char *ncp;
-    Py_ssize_t i;
-    int val;
+    int len, size, val;
     PyObject *rv;
+    int i;
 
-    if (!audioop_check_size(width))
+    if ( !PyArg_ParseTuple(args, "s#i:alaw2lin",
+                           &cp, &len, &size) )
+        return 0;
+
+    if (!audioop_check_size(size))
         return NULL;
 
-    if (fragment->len > PY_SSIZE_T_MAX/width) {
+    if (len > INT_MAX/size) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
-    rv = PyBytes_FromStringAndSize(NULL, fragment->len*width);
-    if (rv == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(rv);
-    cp = fragment->buf;
+    rv = PyString_FromStringAndSize(NULL, len*size);
+    if ( rv == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(rv);
 
-    for (i = 0; i < fragment->len*width; i += width) {
-        val = st_alaw2linear16(*cp++) << 16;
-        SETSAMPLE32(width, ncp, i, val);
+    for ( i=0; i < len*size; i += size ) {
+        cval = *cp++;
+        val = st_alaw2linear16(cval);
+
+        if ( size == 1 )      *CHARP(ncp, i) = (signed char)(val >> 8);
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)(val);
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)(val<<16);
     }
     return rv;
 }
 
-/*[clinic input]
-audioop.lin2adpcm
-
-    fragment: Py_buffer
-    width: int
-    state: object
-    /
-
-Convert samples to 4 bit Intel/DVI ADPCM encoding.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_lin2adpcm_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyObject *state)
-/*[clinic end generated code: output=4654c29d2731fafe input=12919d549b90c90a]*/
+audioop_lin2adpcm(PyObject *self, PyObject *args)
 {
+    signed char *cp;
     signed char *ncp;
-    Py_ssize_t i;
-    int step, valpred, delta,
+    int len, size, val = 0, step, valpred, delta,
         index, sign, vpdiff, diff;
-    PyObject *rv = NULL, *str;
-    int outputbuffer = 0, bufferstep;
+    PyObject *rv, *state, *str;
+    int i, outputbuffer = 0, bufferstep;
 
-    if (!audioop_check_parameters(fragment->len, width))
+    if ( !PyArg_ParseTuple(args, "s#iO:lin2adpcm",
+                           &cp, &len, &size, &state) )
+        return 0;
+
+    if (!audioop_check_parameters(len, size))
         return NULL;
 
-    str = PyBytes_FromStringAndSize(NULL, fragment->len/(width*2));
-    if (str == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(str);
+    str = PyString_FromStringAndSize(NULL, len/(size*2));
+    if ( str == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(str);
 
     /* Decode state, should have (value, step) */
     if ( state == Py_None ) {
         /* First time, it seems. Set defaults */
         valpred = 0;
         index = 0;
-    } else if (!PyTuple_Check(state)) {
-        PyErr_SetString(PyExc_TypeError, "state must be a tuple or None");
-        goto exit;
-    } else if (!PyArg_ParseTuple(state, "ii", &valpred, &index)) {
-        goto exit;
-    }
+    } else if ( !PyArg_ParseTuple(state, "ii", &valpred, &index) )
+        return 0;
 
     step = stepsizeTable[index];
     bufferstep = 1;
 
-    for (i = 0; i < fragment->len; i += width) {
-        int val = GETSAMPLE32(width, fragment->buf, i) >> 16;
+    for ( i=0; i < len; i += size ) {
+        if ( size == 1 )      val = ((int)*CHARP(cp, i)) << 8;
+        else if ( size == 2 ) val = (int)*SHORTP(cp, i);
+        else if ( size == 4 ) val = ((int)*LONGP(cp, i)) >> 16;
 
         /* Step 1 - compute difference with previous value */
-        if (val < valpred) {
-            diff = valpred - val;
-            sign = 8;
-        }
-        else {
-            diff = val - valpred;
-            sign = 0;
-        }
+        diff = val - valpred;
+        sign = (diff < 0) ? 8 : 0;
+        if ( sign ) diff = (-diff);
 
         /* Step 2 - Divide and clamp */
         /* Note:
@@ -1706,35 +1504,24 @@ audioop_lin2adpcm_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyOb
         bufferstep = !bufferstep;
     }
     rv = Py_BuildValue("(O(ii))", str, valpred, index);
-
-  exit:
     Py_DECREF(str);
     return rv;
 }
 
-/*[clinic input]
-audioop.adpcm2lin
-
-    fragment: Py_buffer
-    width: int
-    state: object
-    /
-
-Decode an Intel/DVI ADPCM coded fragment to a linear fragment.
-[clinic start generated code]*/
-
 static PyObject *
-audioop_adpcm2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyObject *state)
-/*[clinic end generated code: output=371965cdcc0aa69b input=f5221144f5ca9ef0]*/
+audioop_adpcm2lin(PyObject *self, PyObject *args)
 {
     signed char *cp;
     signed char *ncp;
-    Py_ssize_t i, outlen;
-    int valpred, step, delta, index, sign, vpdiff;
-    PyObject *rv, *str;
-    int inputbuffer = 0, bufferstep;
+    int len, size, valpred, step, delta, index, sign, vpdiff;
+    PyObject *rv, *str, *state;
+    int i, inputbuffer = 0, bufferstep;
 
-    if (!audioop_check_size(width))
+    if ( !PyArg_ParseTuple(args, "s#iO:adpcm2lin",
+                           &cp, &len, &size, &state) )
+        return 0;
+
+    if (!audioop_check_size(size))
         return NULL;
 
     /* Decode state, should have (value, step) */
@@ -1742,28 +1529,23 @@ audioop_adpcm2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyOb
         /* First time, it seems. Set defaults */
         valpred = 0;
         index = 0;
-    } else if (!PyTuple_Check(state)) {
-        PyErr_SetString(PyExc_TypeError, "state must be a tuple or None");
-        return NULL;
-    } else if (!PyArg_ParseTuple(state, "ii", &valpred, &index))
-        return NULL;
+    } else if ( !PyArg_ParseTuple(state, "ii", &valpred, &index) )
+        return 0;
 
-    if (fragment->len > (PY_SSIZE_T_MAX/2)/width) {
+    if (len > (INT_MAX/2)/size) {
         PyErr_SetString(PyExc_MemoryError,
                         "not enough memory for output buffer");
-        return NULL;
+        return 0;
     }
-    outlen = fragment->len*width*2;
-    str = PyBytes_FromStringAndSize(NULL, outlen);
-    if (str == NULL)
-        return NULL;
-    ncp = (signed char *)PyBytes_AsString(str);
-    cp = fragment->buf;
+    str = PyString_FromStringAndSize(NULL, len*size*2);
+    if ( str == 0 )
+        return 0;
+    ncp = (signed char *)PyString_AsString(str);
 
     step = stepsizeTable[index];
     bufferstep = 0;
 
-    for (i = 0; i < outlen; i += width) {
+    for ( i=0; i < len*size*2; i += size ) {
         /* Step 1 - get the delta value and compute next index */
         if ( bufferstep ) {
             delta = inputbuffer & 0xf;
@@ -1808,7 +1590,9 @@ audioop_adpcm2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyOb
         step = stepsizeTable[index];
 
         /* Step 6 - Output value */
-        SETSAMPLE32(width, ncp, i, valpred << 16);
+        if ( size == 1 ) *CHARP(ncp, i) = (signed char)(valpred >> 8);
+        else if ( size == 2 ) *SHORTP(ncp, i) = (short)(valpred);
+        else if ( size == 4 ) *LONGP(ncp, i) = (Py_Int32)(valpred<<16);
     }
 
     rv = Py_BuildValue("(O(ii))", str, valpred, index);
@@ -1816,63 +1600,46 @@ audioop_adpcm2lin_impl(PyModuleDef *module, Py_buffer *fragment, int width, PyOb
     return rv;
 }
 
-#include "clinic/audioop.c.h"
-
 static PyMethodDef audioop_methods[] = {
-    AUDIOOP_MAX_METHODDEF
-    AUDIOOP_MINMAX_METHODDEF
-    AUDIOOP_AVG_METHODDEF
-    AUDIOOP_MAXPP_METHODDEF
-    AUDIOOP_AVGPP_METHODDEF
-    AUDIOOP_RMS_METHODDEF
-    AUDIOOP_FINDFIT_METHODDEF
-    AUDIOOP_FINDMAX_METHODDEF
-    AUDIOOP_FINDFACTOR_METHODDEF
-    AUDIOOP_CROSS_METHODDEF
-    AUDIOOP_MUL_METHODDEF
-    AUDIOOP_ADD_METHODDEF
-    AUDIOOP_BIAS_METHODDEF
-    AUDIOOP_ULAW2LIN_METHODDEF
-    AUDIOOP_LIN2ULAW_METHODDEF
-    AUDIOOP_ALAW2LIN_METHODDEF
-    AUDIOOP_LIN2ALAW_METHODDEF
-    AUDIOOP_LIN2LIN_METHODDEF
-    AUDIOOP_ADPCM2LIN_METHODDEF
-    AUDIOOP_LIN2ADPCM_METHODDEF
-    AUDIOOP_TOMONO_METHODDEF
-    AUDIOOP_TOSTEREO_METHODDEF
-    AUDIOOP_GETSAMPLE_METHODDEF
-    AUDIOOP_REVERSE_METHODDEF
-    AUDIOOP_BYTESWAP_METHODDEF
-    AUDIOOP_RATECV_METHODDEF
+    { "max", audioop_max, METH_VARARGS },
+    { "minmax", audioop_minmax, METH_VARARGS },
+    { "avg", audioop_avg, METH_VARARGS },
+    { "maxpp", audioop_maxpp, METH_VARARGS },
+    { "avgpp", audioop_avgpp, METH_VARARGS },
+    { "rms", audioop_rms, METH_VARARGS },
+    { "findfit", audioop_findfit, METH_VARARGS },
+    { "findmax", audioop_findmax, METH_VARARGS },
+    { "findfactor", audioop_findfactor, METH_VARARGS },
+    { "cross", audioop_cross, METH_VARARGS },
+    { "mul", audioop_mul, METH_VARARGS },
+    { "add", audioop_add, METH_VARARGS },
+    { "bias", audioop_bias, METH_VARARGS },
+    { "ulaw2lin", audioop_ulaw2lin, METH_VARARGS },
+    { "lin2ulaw", audioop_lin2ulaw, METH_VARARGS },
+    { "alaw2lin", audioop_alaw2lin, METH_VARARGS },
+    { "lin2alaw", audioop_lin2alaw, METH_VARARGS },
+    { "lin2lin", audioop_lin2lin, METH_VARARGS },
+    { "adpcm2lin", audioop_adpcm2lin, METH_VARARGS },
+    { "lin2adpcm", audioop_lin2adpcm, METH_VARARGS },
+    { "tomono", audioop_tomono, METH_VARARGS },
+    { "tostereo", audioop_tostereo, METH_VARARGS },
+    { "getsample", audioop_getsample, METH_VARARGS },
+    { "reverse", audioop_reverse, METH_VARARGS },
+    { "ratecv", audioop_ratecv, METH_VARARGS },
     { 0,          0 }
 };
 
-
-static struct PyModuleDef audioopmodule = {
-    PyModuleDef_HEAD_INIT,
-    "audioop",
-    NULL,
-    -1,
-    audioop_methods,
-    NULL,
-    NULL,
-    NULL,
-    NULL
-};
-
 PyMODINIT_FUNC
-PyInit_audioop(void)
+initaudioop(void)
 {
     PyObject *m, *d;
-    m = PyModule_Create(&audioopmodule);
+    m = Py_InitModule("audioop", audioop_methods);
     if (m == NULL)
-        return NULL;
+        return;
     d = PyModule_GetDict(m);
     if (d == NULL)
-        return NULL;
+        return;
     AudioopError = PyErr_NewException("audioop.error", NULL, NULL);
     if (AudioopError != NULL)
          PyDict_SetItemString(d,"error",AudioopError);
-    return m;
 }

@@ -2,6 +2,7 @@
 
 import os
 import sys
+import StringIO
 import unittest
 
 from distutils.command.build_py import build_py
@@ -9,7 +10,7 @@ from distutils.core import Distribution
 from distutils.errors import DistutilsFileError
 
 from distutils.tests import support
-from test.support import run_unittest
+from test.test_support import run_unittest
 
 
 class BuildPyTestCase(support.TempdirManager,
@@ -52,21 +53,23 @@ class BuildPyTestCase(support.TempdirManager,
         # This makes sure the list of outputs includes byte-compiled
         # files for Python modules but not for package data files
         # (there shouldn't *be* byte-code files for those!).
+        #
         self.assertEqual(len(cmd.get_outputs()), 3)
         pkgdest = os.path.join(destination, "pkg")
         files = os.listdir(pkgdest)
-        pycache_dir = os.path.join(pkgdest, "__pycache__")
         self.assertIn("__init__.py", files)
         self.assertIn("README.txt", files)
+        # XXX even with -O, distutils writes pyc, not pyo; bug?
         if sys.dont_write_bytecode:
-            self.assertFalse(os.path.exists(pycache_dir))
+            self.assertNotIn("__init__.pyc", files)
         else:
-            pyc_files = os.listdir(pycache_dir)
-            self.assertIn("__init__.%s.pyc" % sys.implementation.cache_tag,
-                          pyc_files)
+            self.assertIn("__init__.pyc", files)
 
     def test_empty_package_dir(self):
-        # See bugs #1668596/#1720897
+        # See SF 1668596/1720897.
+        cwd = os.getcwd()
+
+        # create the distribution files.
         sources = self.mkdtemp()
         open(os.path.join(sources, "__init__.py"), "w").close()
 
@@ -75,53 +78,26 @@ class BuildPyTestCase(support.TempdirManager,
         open(os.path.join(testdir, "testfile"), "w").close()
 
         os.chdir(sources)
-        dist = Distribution({"packages": ["pkg"],
-                             "package_dir": {"pkg": ""},
-                             "package_data": {"pkg": ["doc/*"]}})
-        # script_name need not exist, it just need to be initialized
-        dist.script_name = os.path.join(sources, "setup.py")
-        dist.script_args = ["build"]
-        dist.parse_command_line()
+        old_stdout = sys.stdout
+        sys.stdout = StringIO.StringIO()
 
         try:
-            dist.run_commands()
-        except DistutilsFileError:
-            self.fail("failed package_data test when package_dir is ''")
+            dist = Distribution({"packages": ["pkg"],
+                                 "package_dir": {"pkg": ""},
+                                 "package_data": {"pkg": ["doc/*"]}})
+            # script_name need not exist, it just need to be initialized
+            dist.script_name = os.path.join(sources, "setup.py")
+            dist.script_args = ["build"]
+            dist.parse_command_line()
 
-    @unittest.skipIf(sys.dont_write_bytecode, 'byte-compile disabled')
-    def test_byte_compile(self):
-        project_dir, dist = self.create_dist(py_modules=['boiledeggs'])
-        os.chdir(project_dir)
-        self.write_file('boiledeggs.py', 'import antigravity')
-        cmd = build_py(dist)
-        cmd.compile = 1
-        cmd.build_lib = 'here'
-        cmd.finalize_options()
-        cmd.run()
-
-        found = os.listdir(cmd.build_lib)
-        self.assertEqual(sorted(found), ['__pycache__', 'boiledeggs.py'])
-        found = os.listdir(os.path.join(cmd.build_lib, '__pycache__'))
-        self.assertEqual(found,
-                         ['boiledeggs.%s.pyc' % sys.implementation.cache_tag])
-
-    @unittest.skipIf(sys.dont_write_bytecode, 'byte-compile disabled')
-    def test_byte_compile_optimized(self):
-        project_dir, dist = self.create_dist(py_modules=['boiledeggs'])
-        os.chdir(project_dir)
-        self.write_file('boiledeggs.py', 'import antigravity')
-        cmd = build_py(dist)
-        cmd.compile = 0
-        cmd.optimize = 1
-        cmd.build_lib = 'here'
-        cmd.finalize_options()
-        cmd.run()
-
-        found = os.listdir(cmd.build_lib)
-        self.assertEqual(sorted(found), ['__pycache__', 'boiledeggs.py'])
-        found = os.listdir(os.path.join(cmd.build_lib, '__pycache__'))
-        self.assertEqual(sorted(found),
-                         ['boiledeggs.%s.pyo' % sys.implementation.cache_tag])
+            try:
+                dist.run_commands()
+            except DistutilsFileError:
+                self.fail("failed package_data test when package_dir is ''")
+        finally:
+            # Restore state.
+            os.chdir(cwd)
+            sys.stdout = old_stdout
 
     def test_dir_in_package_data(self):
         """
@@ -156,7 +132,7 @@ class BuildPyTestCase(support.TempdirManager,
 
     def test_dont_write_bytecode(self):
         # makes sure byte_compile is not used
-        dist = self.create_dist()[1]
+        pkg_dir, dist = self.create_dist()
         cmd = build_py(dist)
         cmd.compile = 1
         cmd.optimize = 1
@@ -169,7 +145,6 @@ class BuildPyTestCase(support.TempdirManager,
             sys.dont_write_bytecode = old_dont_write_bytecode
 
         self.assertIn('byte-compiling is disabled', self.logs[0][1])
-
 
 def test_suite():
     return unittest.makeSuite(BuildPyTestCase)

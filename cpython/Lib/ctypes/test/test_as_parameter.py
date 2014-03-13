@@ -24,7 +24,7 @@ class BasicWrapTestCase(unittest.TestCase):
             return
         f = dll._testfunc_i_bhilfd
         f.argtypes = [c_byte, c_wchar, c_int, c_long, c_float, c_double]
-        result = f(self.wrap(1), self.wrap("x"), self.wrap(3), self.wrap(4), self.wrap(5.0), self.wrap(6.0))
+        result = f(self.wrap(1), self.wrap(u"x"), self.wrap(3), self.wrap(4), self.wrap(5.0), self.wrap(6.0))
         self.assertEqual(result, 139)
         self.assertTrue(type(result), int)
 
@@ -134,7 +134,7 @@ class BasicWrapTestCase(unittest.TestCase):
         f.argtypes = [c_longlong, MyCallback]
 
         def callback(value):
-            self.assertIsInstance(value, int)
+            self.assertIsInstance(value, (int, long))
             return value & 0x7FFFFFFF
 
         cb = MyCallback(callback)

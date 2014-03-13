@@ -6,7 +6,7 @@
 .. moduleauthor:: Steven Bethard <steven.bethard@gmail.com>
 .. sectionauthor:: Steven Bethard <steven.bethard@gmail.com>
 
-.. versionadded:: 3.2
+.. versionadded:: 2.7
 
 **Source code:** :source:`Lib/argparse.py`
 
@@ -41,7 +41,7 @@ produces either the sum or the max::
                       help='sum the integers (default: find the max)')
 
    args = parser.parse_args()
-   print(args.accumulate(args.integers))
+   print args.accumulate(args.integers)
 
 Assuming the Python code above is saved into a file called ``prog.py``, it can
 be run at the command line and provides useful help messages::
@@ -351,16 +351,16 @@ formatter_class
 ^^^^^^^^^^^^^^^
 
 :class:`ArgumentParser` objects allow the help formatting to be customized by
-specifying an alternate formatting class.  Currently, there are four such
+specifying an alternate formatting class.  Currently, there are three such
 classes:
 
 .. class:: RawDescriptionHelpFormatter
            RawTextHelpFormatter
            ArgumentDefaultsHelpFormatter
-           MetavarTypeHelpFormatter
 
-:class:`RawDescriptionHelpFormatter` and :class:`RawTextHelpFormatter` give
-more control over how textual descriptions are displayed.
+The first two allow more control over how textual descriptions are displayed,
+while the last automatically adds information about argument default values.
+
 By default, :class:`ArgumentParser` objects line-wrap the description_ and
 epilog_ texts in command-line help messages::
 
@@ -413,8 +413,8 @@ should not be line-wrapped::
 :class:`RawTextHelpFormatter` maintains whitespace for all sorts of help text,
 including argument descriptions.
 
-:class:`ArgumentDefaultsHelpFormatter` automatically adds information about
-default values to each of the argument help messages::
+The other formatter class available, :class:`ArgumentDefaultsHelpFormatter`,
+will add information about the default value of each of the arguments::
 
    >>> parser = argparse.ArgumentParser(
    ...     prog='PROG',
@@ -430,25 +430,6 @@ default values to each of the argument help messages::
    optional arguments:
     -h, --help  show this help message and exit
     --foo FOO   FOO! (default: 42)
-
-:class:`MetavarTypeHelpFormatter` uses the name of the type_ argument for each
-argument as the display name for its values (rather than using the dest_
-as the regular formatter does)::
-
-   >>> parser = argparse.ArgumentParser(
-   ...     prog='PROG',
-   ...     formatter_class=argparse.MetavarTypeHelpFormatter)
-   >>> parser.add_argument('--foo', type=int)
-   >>> parser.add_argument('bar', type=float)
-   >>> parser.print_help()
-   usage: PROG [-h] [--foo int] float
-
-   positional arguments:
-     float
-
-   optional arguments:
-     -h, --help  show this help message and exit
-     --foo int
 
 
 prefix_chars
@@ -703,15 +684,17 @@ how the command-line arguments should be handled. The supported actions are:
     >>> parser.parse_args('--foo'.split())
     Namespace(foo=42)
 
-* ``'store_true'`` and ``'store_false'`` - These store the values ``True`` and
-  ``False`` respectively.  These are special cases of ``'store_const'``.  For
-  example::
+* ``'store_true'`` and ``'store_false'`` - These are special cases of
+  ``'store_const'`` using for storing the values ``True`` and ``False``
+  respectively.  In addition, they create default values of *False* and *True*
+  respectively.  For example::
 
     >>> parser = argparse.ArgumentParser()
     >>> parser.add_argument('--foo', action='store_true')
     >>> parser.add_argument('--bar', action='store_false')
+    >>> parser.add_argument('--baz', action='store_false')
     >>> parser.parse_args('--foo --bar'.split())
-    Namespace(bar=False, foo=True)
+    Namespace(bar=False, baz=True, foo=True)
 
 * ``'append'`` - This stores a list, and appends each argument value to the
   list.  This is useful to allow an option to be specified multiple times.
@@ -732,7 +715,7 @@ how the command-line arguments should be handled. The supported actions are:
     >>> parser.add_argument('--str', dest='types', action='append_const', const=str)
     >>> parser.add_argument('--int', dest='types', action='append_const', const=int)
     >>> parser.parse_args('--str --int'.split())
-    Namespace(types=[<class 'str'>, <class 'int'>])
+    Namespace(types=[<type 'str'>, <type 'int'>])
 
 * ``'count'`` - This counts the number of times a keyword argument occurs. For
   example, this is useful for increasing verbosity levels::
@@ -780,7 +763,7 @@ An example of a custom action::
 
    >>> class FooAction(argparse.Action):
    ...     def __call__(self, parser, namespace, values, option_string=None):
-   ...         print('%r %r %r' % (namespace, values, option_string))
+   ...         print '%r %r %r' % (namespace, values, option_string)
    ...         setattr(namespace, self.dest, values)
    ...
    >>> parser = argparse.ArgumentParser()
@@ -839,11 +822,11 @@ values are:
      >>> parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
      ...                     default=sys.stdout)
      >>> parser.parse_args(['input.txt', 'output.txt'])
-     Namespace(infile=<_io.TextIOWrapper name='input.txt' encoding='UTF-8'>,
-               outfile=<_io.TextIOWrapper name='output.txt' encoding='UTF-8'>)
+     Namespace(infile=<open file 'input.txt', mode 'r' at 0x...>,
+               outfile=<open file 'output.txt', mode 'w' at 0x...>)
      >>> parser.parse_args([])
-     Namespace(infile=<_io.TextIOWrapper name='<stdin>' encoding='UTF-8'>,
-               outfile=<_io.TextIOWrapper name='<stdout>' encoding='UTF-8'>)
+     Namespace(infile=<open file '<stdin>', mode 'r' at 0x...>,
+               outfile=<open file '<stdout>', mode 'w' at 0x...>)
 
 * ``'*'``.  All command-line arguments present are gathered into a list.  Note that
   it generally doesn't make much sense to have more than one positional argument
@@ -877,7 +860,7 @@ values are:
      >>> parser.add_argument('--foo')
      >>> parser.add_argument('command')
      >>> parser.add_argument('args', nargs=argparse.REMAINDER)
-     >>> print(parser.parse_args('--foo B cmd --arg1 XX ZZ'.split()))
+     >>> print parser.parse_args('--foo B cmd --arg1 XX ZZ'.split())
      Namespace(args=['--arg1', 'XX', 'ZZ'], command='cmd', foo='B')
 
 If the ``nargs`` keyword argument is not provided, the number of arguments consumed
@@ -969,22 +952,22 @@ types and functions can be used directly as the value of the ``type`` argument::
 
    >>> parser = argparse.ArgumentParser()
    >>> parser.add_argument('foo', type=int)
-   >>> parser.add_argument('bar', type=open)
+   >>> parser.add_argument('bar', type=file)
    >>> parser.parse_args('2 temp.txt'.split())
-   Namespace(bar=<_io.TextIOWrapper name='temp.txt' encoding='UTF-8'>, foo=2)
+   Namespace(bar=<open file 'temp.txt', mode 'r' at 0x...>, foo=2)
 
 See the section on the default_ keyword argument for information on when the
 ``type`` argument is applied to default arguments.
 
 To ease the use of various types of files, the argparse module provides the
-factory FileType which takes the ``mode=``, ``bufsize=``, ``encoding=`` and
-``errors=`` arguments of the :func:`open` function.  For example,
-``FileType('w')`` can be used to create a writable file::
+factory FileType which takes the ``mode=`` and ``bufsize=`` arguments of the
+``file`` object.  For example, ``FileType('w')`` can be used to create a
+writable file::
 
    >>> parser = argparse.ArgumentParser()
    >>> parser.add_argument('bar', type=argparse.FileType('w'))
    >>> parser.parse_args(['out.txt'])
-   Namespace(bar=<_io.TextIOWrapper name='out.txt' encoding='UTF-8'>)
+   Namespace(bar=<open file 'out.txt', mode 'w' at 0x...>)
 
 ``type=`` can take any callable that takes a single string argument and returns
 the converted value::
@@ -1009,7 +992,7 @@ The choices_ keyword argument may be more convenient for type checkers that
 simply check against a range of values::
 
    >>> parser = argparse.ArgumentParser(prog='PROG')
-   >>> parser.add_argument('foo', type=int, choices=range(5, 10))
+   >>> parser.add_argument('foo', type=int, choices=xrange(5, 10))
    >>> parser.parse_args('7'.split())
    Namespace(foo=7)
    >>> parser.parse_args('11'.split())
@@ -1119,9 +1102,6 @@ specifiers include the program name, ``%(prog)s`` and most keyword arguments to
 
    optional arguments:
     -h, --help  show this help message and exit
-
-As the help string supports %-formatting, if you want a literal ``%`` to appear
-in the help string, you must escape it as ``%%``.
 
 :mod:`argparse` supports silencing the help entry for certain options, by
 setting the ``help`` value to ``argparse.SUPPRESS``::
@@ -1404,7 +1384,7 @@ interactive prompt::
 
    >>> parser = argparse.ArgumentParser()
    >>> parser.add_argument(
-   ...     'integers', metavar='int', type=int, choices=range(10),
+   ...     'integers', metavar='int', type=int, choices=xrange(10),
    ...  nargs='+', help='an integer in the range 0..9')
    >>> parser.add_argument(
    ...     '--sum', dest='accumulate', action='store_const', const=sum,
@@ -1437,7 +1417,7 @@ It may also be useful to have an :class:`ArgumentParser` assign attributes to an
 already existing object, rather than a new :class:`Namespace` object.  This can
 be achieved by specifying the ``namespace=`` keyword argument::
 
-   >>> class C:
+   >>> class C(object):
    ...     pass
    ...
    >>> c = C()
@@ -1580,16 +1560,6 @@ Sub-commands
 
        {foo,bar}   additional help
 
-   Furthermore, ``add_parser`` supports an additional ``aliases`` argument,
-   which allows multiple strings to refer to the same subparser. This example,
-   like ``svn``, aliases ``co`` as a shorthand for ``checkout``::
-
-     >>> parser = argparse.ArgumentParser()
-     >>> subparsers = parser.add_subparsers()
-     >>> checkout = subparsers.add_parser('checkout', aliases=['co'])
-     >>> checkout.add_argument('foo')
-     >>> parser.parse_args(['co', 'bar'])
-     Namespace(foo='bar')
 
    One particularly effective way of handling sub-commands is to combine the use
    of the :meth:`add_subparsers` method with calls to :meth:`set_defaults` so
@@ -1598,10 +1568,10 @@ Sub-commands
 
      >>> # sub-command functions
      >>> def foo(args):
-     ...     print(args.x * args.y)
+     ...     print args.x * args.y
      ...
      >>> def bar(args):
-     ...     print('((%s))' % args.z)
+     ...     print '((%s))' % args.z
      ...
      >>> # create the top-level parser
      >>> parser = argparse.ArgumentParser()
@@ -1648,19 +1618,17 @@ Sub-commands
 FileType objects
 ^^^^^^^^^^^^^^^^
 
-.. class:: FileType(mode='r', bufsize=-1, encoding=None, errors=None)
+.. class:: FileType(mode='r', bufsize=None)
 
    The :class:`FileType` factory creates objects that can be passed to the type
    argument of :meth:`ArgumentParser.add_argument`.  Arguments that have
-   :class:`FileType` objects as their type will open command-line arguments as
-   files with the requested modes, buffer sizes, encodings and error handling
-   (see the :func:`open` function for more details)::
+   :class:`FileType` objects as their type will open command-line arguments as files
+   with the requested modes and buffer sizes::
 
       >>> parser = argparse.ArgumentParser()
-      >>> parser.add_argument('--raw', type=argparse.FileType('wb', 0))
-      >>> parser.add_argument('out', type=argparse.FileType('w', encoding='UTF-8'))
-      >>> parser.parse_args(['--raw', 'raw.dat', 'file.txt'])
-      Namespace(out=<_io.TextIOWrapper name='file.txt' mode='w' encoding='UTF-8'>, raw=<_io.FileIO name='raw.dat' mode='wb'>)
+      >>> parser.add_argument('--output', type=argparse.FileType('wb', 0))
+      >>> parser.parse_args(['--output', 'out'])
+      Namespace(output=<open file 'out', mode 'wb' at 0x...>)
 
    FileType objects understand the pseudo-argument ``'-'`` and automatically
    convert this into ``sys.stdin`` for readable :class:`FileType` objects and
@@ -1669,10 +1637,7 @@ FileType objects
       >>> parser = argparse.ArgumentParser()
       >>> parser.add_argument('infile', type=argparse.FileType('r'))
       >>> parser.parse_args(['-'])
-      Namespace(infile=<_io.TextIOWrapper name='<stdin>' encoding='UTF-8'>)
-
-   .. versionadded:: 3.4
-      The *encodings* and *errors* keyword arguments.
+      Namespace(infile=<open file '<stdin>', mode 'r' at 0x...>)
 
 
 Argument groups
@@ -1903,7 +1868,8 @@ Exiting methods
    This method prints a usage message including the *message* to the
    standard error and terminates the program with a status code of 2.
 
-.. _upgrading-optparse-code:
+
+.. _argparse-from-optparse:
 
 Upgrading optparse code
 -----------------------

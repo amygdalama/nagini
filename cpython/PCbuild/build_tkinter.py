@@ -11,15 +11,19 @@ import sys
 here = os.path.abspath(os.path.dirname(__file__))
 par = os.path.pardir
 
-TCL = "tcl8.6.1"
-TK = "tk8.6.1"
-TIX = "tix-8.4.3.3"
+TCL = "tcl8.5.2"
+TK = "tk8.5.2"
+TIX = "tix-8.4.0.x"
 
 ROOT = os.path.abspath(os.path.join(here, par, par))
-NMAKE = ('nmake /nologo /f %s %s %s')
+# Windows 2000 compatibility: WINVER 0x0500
+# http://msdn2.microsoft.com/en-us/library/aa383745.aspx
+NMAKE = ('nmake /nologo /f %s '
+    'COMPILERFLAGS=\"-DWINVER=0x0500 -D_WIN32_WINNT=0x0500 -DNTDDI_VERSION=NTDDI_WIN2KSP4\" '
+    '%s %s')
 
 def nmake(makefile, command="", **kw):
-    defines = ' '.join(k+'='+str(v) for k, v in kw.items())
+    defines = ' '.join(k+'='+v for k, v in kw.items())
     cmd = NMAKE % (makefile, defines, command)
     print("\n\n"+cmd+"\n")
     if os.system(cmd) != 0:
@@ -28,7 +32,7 @@ def nmake(makefile, command="", **kw):
 def build(platform, clean):
     if platform == "Win32":
         dest = os.path.join(ROOT, "tcltk")
-        machine = "IX86"
+        machine = "X86"
     elif platform == "AMD64":
         dest = os.path.join(ROOT, "tcltk64")
         machine = "AMD64"
@@ -49,8 +53,8 @@ def build(platform, clean):
         os.chdir(os.path.join(ROOT, TK, "win"))
         if clean:
             nmake("makefile.vc", "clean", DEBUG=0, TCLDIR=tcldir)
-        nmake("makefile.vc", DEBUG=0, MACHINE=machine, TCLDIR=tcldir)
-        nmake("makefile.vc", "install", DEBUG=0, INSTALLDIR=dest, MACHINE=machine, TCLDIR=tcldir)
+        nmake("makefile.vc", DEBUG=0, MACHINE=machine)
+        nmake("makefile.vc", "install", DEBUG=0, INSTALLDIR=dest, MACHINE=machine)
 
     # TIX
     if 1:
@@ -59,7 +63,7 @@ def build(platform, clean):
         if clean:
             nmake("python.mak", "clean")
         nmake("python.mak", MACHINE=machine, INSTALL_DIR=dest)
-        nmake("python.mak", "install", MACHINE=machine, INSTALL_DIR=dest)
+        nmake("python.mak", "install", INSTALL_DIR=dest)
 
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in ("Win32", "AMD64"):

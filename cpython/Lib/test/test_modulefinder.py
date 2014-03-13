@@ -1,17 +1,22 @@
+import __future__
 import os
-import errno
-import importlib.machinery
-import py_compile
-import shutil
 import unittest
+import distutils.dir_util
 import tempfile
 
-from test import support
+from test import test_support
+
+try: set
+except NameError: from sets import Set as set
 
 import modulefinder
 
+# Note: To test modulefinder with Python 2.2, sets.py and
+# modulefinder.py must be available - they are not in the standard
+# library.
+
 TEST_DIR = tempfile.mkdtemp()
-TEST_PATH = [TEST_DIR, os.path.dirname(tempfile.__file__)]
+TEST_PATH = [TEST_DIR, os.path.dirname(__future__.__file__)]
 
 # Each test description is a list of 5 items:
 #
@@ -60,7 +65,7 @@ b/__init__.py
 package_test = [
     "a.module",
     ["a", "a.b", "a.c", "a.module", "mymodule", "sys"],
-    ["blahblah", "c"], [],
+    ["blahblah"], [],
     """\
 mymodule.py
 a/__init__.py
@@ -82,8 +87,8 @@ absolute_import_test = [
     "a.module",
     ["a", "a.module",
      "b", "b.x", "b.y", "b.z",
-     "__future__", "sys", "gc"],
-    ["blahblah", "z"], [],
+     "__future__", "sys", "exceptions"],
+    ["blahblah"], [],
     """\
 mymodule.py
 a/__init__.py
@@ -91,11 +96,11 @@ a/module.py
                                 from __future__ import absolute_import
                                 import sys # sys
                                 import blahblah # fails
-                                import gc # gc
+                                import exceptions # exceptions
                                 import b.x # b.x
                                 from b import y # b.y
                                 from b.z import * # b.z.*
-a/gc.py
+a/exceptions.py
 a/sys.py
                                 import mymodule
 a/b/__init__.py
@@ -118,7 +123,7 @@ relative_import_test = [
      "a.b.c", "a.b.c.moduleC",
      "a.b.c.d", "a.b.c.e",
      "a.b.x",
-     "gc"],
+     "exceptions"],
     [], [],
     """\
 mymodule.py
@@ -126,8 +131,8 @@ a/__init__.py
                                 from .b import y, z # a.b.y, a.b.z
 a/module.py
                                 from __future__ import absolute_import # __future__
-                                import gc # gc
-a/gc.py
+                                import exceptions # exceptions
+a/exceptions.py
 a/sys.py
 a/b/__init__.py
                                 from ..b import x # a.b.x
@@ -165,7 +170,7 @@ a/__init__.py
 a/another.py
 a/module.py
                                 from .b import y, z # a.b.y, a.b.z
-a/gc.py
+a/exceptions.py
 a/sys.py
 a/b/__init__.py
                                 from .c import moduleC # a.b.c.moduleC
@@ -198,36 +203,11 @@ a/module.py
                                 from . import bar
 """]
 
-relative_import_test_4 = [
-    "a.module",
-    ["a", "a.module"],
-    [],
-    [],
-    """\
-a/__init__.py
-                                def foo(): pass
-a/module.py
-                                from . import *
-"""]
-
-bytecode_test = [
-    "a",
-    ["a"],
-    [],
-    [],
-    ""
-]
-
-
 def open_file(path):
+    ##print "#", os.path.abspath(path)
     dirname = os.path.dirname(path)
-    try:
-        os.makedirs(dirname)
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            raise
+    distutils.dir_util.mkpath(dirname)
     return open(path, "w")
-
 
 def create_package(source):
     ofi = None
@@ -242,7 +222,6 @@ def create_package(source):
     finally:
         if ofi:
             ofi.close()
-
 
 class ModuleFinderTest(unittest.TestCase):
     def _do_test(self, info, report=False):
@@ -262,17 +241,19 @@ class ModuleFinderTest(unittest.TestCase):
 ##                    import traceback; traceback.print_exc()
 ##                sys.path = opath
 ##                return
-            modules = sorted(set(modules))
-            found = sorted(mf.modules)
+            modules = set(modules)
+            found = set(mf.modules.keys())
+            more = list(found - modules)
+            less = list(modules - found)
             # check if we found what we expected, not more, not less
-            self.assertEqual(found, modules)
+            self.assertEqual((more, less), ([], []))
 
             # check for missing and maybe missing modules
             bad, maybe = mf.any_missing_maybe()
             self.assertEqual(bad, missing)
             self.assertEqual(maybe, maybe_missing)
         finally:
-            shutil.rmtree(TEST_DIR)
+            distutils.dir_util.remove_tree(TEST_DIR)
 
     def test_package(self):
         self._do_test(package_test)
@@ -280,37 +261,26 @@ class ModuleFinderTest(unittest.TestCase):
     def test_maybe(self):
         self._do_test(maybe_test)
 
-    def test_maybe_new(self):
-        self._do_test(maybe_test_new)
+    if getattr(__future__, "absolute_import", None):
 
-    def test_absolute_imports(self):
-        self._do_test(absolute_import_test)
+        def test_maybe_new(self):
+            self._do_test(maybe_test_new)
 
-    def test_relative_imports(self):
-        self._do_test(relative_import_test)
+        def test_absolute_imports(self):
+            self._do_test(absolute_import_test)
 
-    def test_relative_imports_2(self):
-        self._do_test(relative_import_test_2)
+        def test_relative_imports(self):
+            self._do_test(relative_import_test)
 
-    def test_relative_imports_3(self):
-        self._do_test(relative_import_test_3)
+        def test_relative_imports_2(self):
+            self._do_test(relative_import_test_2)
 
-    def test_relative_imports_4(self):
-        self._do_test(relative_import_test_4)
-
-    def test_bytecode(self):
-        base_path = os.path.join(TEST_DIR, 'a')
-        source_path = base_path + importlib.machinery.SOURCE_SUFFIXES[0]
-        bytecode_path = base_path + importlib.machinery.BYTECODE_SUFFIXES[0]
-        with open_file(source_path) as file:
-            file.write('testing_modulefinder = True\n')
-        py_compile.compile(source_path, cfile=bytecode_path)
-        os.remove(source_path)
-        self._do_test(bytecode_test)
-
+        def test_relative_imports_3(self):
+            self._do_test(relative_import_test_3)
 
 def test_main():
-    support.run_unittest(ModuleFinderTest)
+    distutils.log.set_threshold(distutils.log.WARN)
+    test_support.run_unittest(ModuleFinderTest)
 
 if __name__ == "__main__":
     unittest.main()

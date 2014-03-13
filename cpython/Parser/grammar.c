@@ -9,6 +9,10 @@
 #include "token.h"
 #include "grammar.h"
 
+#ifdef RISCOS
+#include <unixlib.h>
+#endif
+
 extern int Py_DebugFlag;
 
 grammar *
@@ -29,7 +33,7 @@ newgrammar(int start)
 }
 
 dfa *
-adddfa(grammar *g, int type, const char *name)
+adddfa(grammar *g, int type, char *name)
 {
     dfa *d;
 
@@ -63,7 +67,7 @@ addstate(dfa *d)
     s->s_upper = 0;
     s->s_accel = NULL;
     s->s_accept = 0;
-    return Py_SAFE_DOWNCAST(s - d->d_state, Py_intptr_t, int);
+    return s - d->d_state;
 }
 
 void
@@ -85,7 +89,7 @@ addarc(dfa *d, int from, int to, int lbl)
 }
 
 int
-addlabel(labellist *ll, int type, const char *str)
+addlabel(labellist *ll, int type, char *str)
 {
     int i;
     label *lb;
@@ -105,13 +109,13 @@ addlabel(labellist *ll, int type, const char *str)
     if (Py_DebugFlag)
         printf("Label @ %8p, %d: %s\n", ll, ll->ll_nlabels,
                PyGrammar_LabelRepr(lb));
-    return Py_SAFE_DOWNCAST(lb - ll->ll_label, Py_intptr_t, int);
+    return lb - ll->ll_label;
 }
 
 /* Same, but rather dies than adds */
 
 int
-findlabel(labellist *ll, int type, const char *str)
+findlabel(labellist *ll, int type, char *str)
 {
     int i;
 

@@ -1,3 +1,4 @@
+
 .. _internet:
 
 ******************************
@@ -24,12 +25,8 @@ is currently supported on most popular platforms.  Here is an overview:
    cgitb.rst
    wsgiref.rst
    urllib.rst
-   urllib.request.rst
-   urllib.parse.rst
-   urllib.error.rst
-   urllib.robotparser.rst
-   http.rst
-   http.client.rst
+   urllib2.rst
+   httplib.rst
    ftplib.rst
    poplib.rst
    imaplib.rst
@@ -38,11 +35,13 @@ is currently supported on most popular platforms.  Here is an overview:
    smtpd.rst
    telnetlib.rst
    uuid.rst
+   urlparse.rst
    socketserver.rst
-   http.server.rst
-   http.cookies.rst
-   http.cookiejar.rst
-   xmlrpc.rst
-   xmlrpc.client.rst
-   xmlrpc.server.rst
-   ipaddress.rst
+   basehttpserver.rst
+   simplehttpserver.rst
+   cgihttpserver.rst
+   cookielib.rst
+   cookie.rst
+   xmlrpclib.rst
+   simplexmlrpcserver.rst
+   docxmlrpcserver.rst

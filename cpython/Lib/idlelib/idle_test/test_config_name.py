@@ -5,11 +5,11 @@ from idlelib import configSectionNameDialog as name_dialog_module
 
 name_dialog = name_dialog_module.GetCfgSectionNameDialog
 
-class Dummy_name_dialog:
+class Dummy_name_dialog(object):
     # Mock for testing the following methods of name_dialog
-    name_ok = name_dialog.name_ok
-    Ok = name_dialog.Ok
-    Cancel = name_dialog.Cancel
+    name_ok = name_dialog.name_ok.im_func
+    Ok = name_dialog.Ok.im_func
+    Cancel = name_dialog.Cancel.im_func
     # Attributes, constant or variable, needed for tests
     used_names = ['used']
     name = Var()

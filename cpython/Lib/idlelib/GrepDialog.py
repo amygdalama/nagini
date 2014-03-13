@@ -1,7 +1,7 @@
 import os
 import fnmatch
 import sys
-from tkinter import *
+from Tkinter import *
 from idlelib import SearchEngine
 from idlelib.SearchDialogBase import SearchDialogBase
 
@@ -77,11 +77,11 @@ class GrepDialog(SearchDialogBase):
         list.sort()
         self.close()
         pat = self.engine.getpat()
-        print("Searching %r in %s ..." % (pat, path))
+        print "Searching %r in %s ..." % (pat, path)
         hits = 0
         for fn in list:
             try:
-                with open(fn, errors='replace') as f:
+                with open(fn) as f:
                     for lineno, line in enumerate(f, 1):
                         if line[-1:] == '\n':
                             line = line[:-1]
@@ -89,8 +89,8 @@ class GrepDialog(SearchDialogBase):
                             sys.stdout.write("%s: %s: %s\n" %
                                              (fn, lineno, line))
                             hits += 1
-            except OSError as msg:
-                print(msg)
+            except IOError as msg:
+                print msg
         print(("Hits found: %s\n"
               "(Hint: right-click to open locations.)"
               % hits) if hits else "No hits.")
@@ -98,8 +98,8 @@ class GrepDialog(SearchDialogBase):
     def findfiles(self, dir, base, rec):
         try:
             names = os.listdir(dir or os.curdir)
-        except OSError as msg:
-            print(msg)
+        except os.error as msg:
+            print msg
             return []
         list = []
         subdirs = []

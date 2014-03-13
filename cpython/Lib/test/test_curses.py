@@ -16,10 +16,8 @@ import sys, tempfile, os
 # option.  If not available, nothing after this line will be executed.
 
 import unittest
-from test.support import requires, import_module
+from test.test_support import requires, import_module
 requires('curses')
-
-# If either of these don't exist, skip the tests.
 curses = import_module('curses')
 curses.panel = import_module('curses.panel')
 
@@ -27,7 +25,7 @@ curses.panel = import_module('curses.panel')
 # XXX: if newterm was supported we could use it instead of initscr and not exit
 term = os.environ.get('TERM')
 if not term or term == 'unknown':
-    raise unittest.SkipTest("$TERM=%r, calling initscr() may cause exit" % term)
+    raise unittest.SkipTest, "$TERM=%r, calling initscr() may cause exit" % term
 
 if sys.platform == "cygwin":
     raise unittest.SkipTest("cygwin's curses mostly just hangs")
@@ -77,7 +75,7 @@ def window_funcs(stdscr):
     except TypeError:
         pass
     else:
-        raise RuntimeError("Expected win.border() to raise TypeError")
+        raise RuntimeError, "Expected win.border() to raise TypeError"
 
     stdscr.clearok(1)
 
@@ -115,8 +113,8 @@ def window_funcs(stdscr):
     stdscr.notimeout(1)
     win2.overlay(win)
     win2.overwrite(win)
-    win2.overlay(win, 1, 2, 2, 1, 3, 3)
-    win2.overwrite(win, 1, 2, 2, 1, 3, 3)
+    win2.overlay(win, 1, 2, 3, 3, 2, 1)
+    win2.overwrite(win, 1, 2, 3, 3, 2, 1)
     stdscr.redrawln(1,2)
 
     stdscr.scrollok(1)
@@ -183,14 +181,14 @@ def module_funcs(stdscr):
     win = curses.newwin(5,5)
     win = curses.newwin(5,5, 1,1)
     curses.nl() ; curses.nl(1)
-    curses.putp(b'abc')
+    curses.putp('abc')
     curses.qiflush()
     curses.raw() ; curses.raw(1)
     curses.setsyx(5,5)
     curses.tigetflag('hc')
     curses.tigetnum('co')
     curses.tigetstr('cr')
-    curses.tparm(b'cr')
+    curses.tparm('cr')
     curses.typeahead(sys.__stdin__.fileno())
     curses.unctrl('a')
     curses.ungetch('a')
@@ -239,7 +237,7 @@ def unit_tests():
                          ('\x8a', '!^J'), ('\xc1', '!A'),
                          ]:
         if ascii.unctrl(ch) != expected:
-            print('curses.unctrl fails on character', repr(ch))
+            print 'curses.unctrl fails on character', repr(ch)
 
 
 def test_userptr_without_set(stdscr):
@@ -248,7 +246,7 @@ def test_userptr_without_set(stdscr):
     # try to access userptr() before calling set_userptr() -- segfaults
     try:
         p.userptr()
-        raise RuntimeError('userptr should fail since not set')
+        raise RuntimeError, 'userptr should fail since not set'
     except curses.panel.error:
         pass
 
@@ -262,7 +260,7 @@ def test_userptr_memory_leak(stdscr):
 
     p.set_userptr(None)
     if sys.getrefcount(obj) != nrefs:
-        raise RuntimeError("set_userptr leaked references")
+        raise RuntimeError, "set_userptr leaked references"
 
 def test_userptr_segfault(stdscr):
     panel = curses.panel.new_panel(stdscr)
@@ -278,58 +276,11 @@ def test_resize_term(stdscr):
         curses.resizeterm(lines - 1, cols + 1)
 
         if curses.LINES != lines - 1 or curses.COLS != cols + 1:
-            raise RuntimeError("Expected resizeterm to update LINES and COLS")
+            raise RuntimeError, "Expected resizeterm to update LINES and COLS"
 
 def test_issue6243(stdscr):
     curses.ungetch(1025)
     stdscr.getkey()
-
-def test_unget_wch(stdscr):
-    if not hasattr(curses, 'unget_wch'):
-        return
-    encoding = stdscr.encoding
-    for ch in ('a', '\xe9', '\u20ac', '\U0010FFFF'):
-        try:
-            ch.encode(encoding)
-        except UnicodeEncodeError:
-            continue
-        try:
-            curses.unget_wch(ch)
-        except Exception as err:
-            raise Exception("unget_wch(%a) failed with encoding %s: %s"
-                            % (ch, stdscr.encoding, err))
-        read = stdscr.get_wch()
-        if read != ch:
-            raise AssertionError("%r != %r" % (read, ch))
-
-        code = ord(ch)
-        curses.unget_wch(code)
-        read = stdscr.get_wch()
-        if read != ch:
-            raise AssertionError("%r != %r" % (read, ch))
-
-def test_issue10570():
-    b = curses.tparm(curses.tigetstr("cup"), 5, 3)
-    assert type(b) is bytes
-    curses.putp(b)
-
-def test_encoding(stdscr):
-    import codecs
-    encoding = stdscr.encoding
-    codecs.lookup(encoding)
-    try:
-        stdscr.encoding = 10
-    except TypeError:
-        pass
-    else:
-        raise AssertionError("TypeError not raised")
-    stdscr.encoding = encoding
-    try:
-        del stdscr.encoding
-    except TypeError:
-        pass
-    else:
-        raise AssertionError("TypeError not raised")
 
 def main(stdscr):
     curses.savetty()
@@ -341,13 +292,13 @@ def main(stdscr):
         test_userptr_segfault(stdscr)
         test_resize_term(stdscr)
         test_issue6243(stdscr)
-        test_unget_wch(stdscr)
-        test_issue10570()
-        test_encoding(stdscr)
     finally:
         curses.resetty()
 
-def test_main():
+if __name__ == '__main__':
+    curses.wrapper(main)
+    unit_tests()
+else:
     if not sys.__stdout__.isatty():
         raise unittest.SkipTest("sys.__stdout__ is not a tty")
     # testing setupterm() inside initscr/endwin
@@ -358,8 +309,4 @@ def test_main():
         main(stdscr)
     finally:
         curses.endwin()
-    unit_tests()
-
-if __name__ == '__main__':
-    curses.wrapper(main)
     unit_tests()

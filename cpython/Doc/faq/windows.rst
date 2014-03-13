@@ -10,10 +10,6 @@ Python on Windows FAQ
 
    .. contents::
 
-.. XXX need review for Python 3.
-   XXX need review for Windows Vista/Seven?
-
-
 How do I run a Python program under Windows?
 --------------------------------------------
 
@@ -66,7 +62,7 @@ return.::
 
 You should then see something like::
 
-   Python 3.3.0 (v3.3.0:bd8afb90ebf2, Sep 29 2012, 10:55:48) [MSC v.1600 32 bit (Intel)] on win32
+   Python 2.7.3 (default, Apr 10 2012, 22.71:26) [MSC v.1500 32 bit (Intel)] on win32
    Type "help", "copyright", "credits" or "license" for more information.
    >>>
 
@@ -75,7 +71,7 @@ Python statements or expressions interactively and have them executed or
 evaluated while you wait.  This is one of Python's strongest features.  Check it
 by entering a few expressions of your choice and seeing the results::
 
-    >>> print("Hello")
+    >>> print "Hello"
     Hello
     >>> "Hello" * 3
     HelloHelloHello
@@ -86,7 +82,7 @@ key down while you enter a Z, then hit the "Enter" key to get back to your
 Windows command prompt.
 
 You may also find that you have a Start-menu entry such as :menuselection:`Start
---> Programs --> Python 3.3 --> Python (command line)` that results in you
+--> Programs --> Python 2.7 --> Python (command line)` that results in you
 seeing the ``>>>`` prompt in a new window.  If so, the window will disappear
 after you enter the Ctrl-Z character; Windows is running a single "python"
 command in the window, and closes it when you terminate the interpreter.
@@ -123,19 +119,19 @@ then the command ::
    dir C:\py*
 
 will probably tell you where it is installed; the usual location is something
-like ``C:\Python33``.  Otherwise you will be reduced to a search of your whole
+like ``C:\Python27``.  Otherwise you will be reduced to a search of your whole
 disk ... use :menuselection:`Tools --> Find` or hit the :guilabel:`Search`
 button and look for "python.exe".  Supposing you discover that Python is
-installed in the ``C:\Python33`` directory (the default at the time of writing),
+installed in the ``C:\Python27`` directory (the default at the time of writing),
 you should make sure that entering the command ::
 
-   c:\Python33\python
+   c:\Python27\python
 
 starts up the interpreter as above (and don't forget you'll need a "CTRL-Z" and
 an "Enter" to get out of it). Once you have verified the directory, you can
 add it to the system path to make it easier to start Python by just running
 the ``python`` command. This is currently an option in the installer as of
-CPython 3.3.
+CPython 2.7.
 
 More information about environment variables can be found on the
 :ref:`Using Python on Windows <setting-envvars>` page.
@@ -170,20 +166,18 @@ offender.
 How do I make an executable from a Python script?
 -------------------------------------------------
 
-See http://cx-freeze.sourceforge.net/ for a distutils extension that allows you
+See http://www.py2exe.org/ for a distutils extension that allows you
 to create console and GUI executables from Python code.
-`py2exe <http://www.py2exe.org/>`_, the most popular extension for building
-Python 2.x-based executables, does not yet support Python 3 but a version that
-does is in development.
-
 
 Is a ``*.pyd`` file the same as a DLL?
 --------------------------------------
 
+.. XXX update for py3k (PyInit_foo)
+
 Yes, .pyd files are dll's, but there are a few differences.  If you have a DLL
-named ``foo.pyd``, then it must have a function ``PyInit_foo()``.  You can then
+named ``foo.pyd``, then it must have a function ``initfoo()``.  You can then
 write Python "import foo", and Python will search for foo.pyd (as well as
-foo.py, foo.pyc) and if it finds it, will attempt to call ``PyInit_foo()`` to
+foo.py, foo.pyc) and if it finds it, will attempt to call ``initfoo()`` to
 initialize it.  You do not link your .exe with foo.lib, as that would cause
 Windows to require the DLL to be present.
 
@@ -204,7 +198,7 @@ Embedding the Python interpreter in a Windows app can be summarized as follows:
    be a DLL to handle importing modules that are themselves DLL's.  (This is the
    first key undocumented fact.)  Instead, link to :file:`python{NN}.dll`; it is
    typically installed in ``C:\Windows\System``.  *NN* is the Python version, a
-   number such as "33" for Python 3.3.
+   number such as "27" for Python 2.7.
 
    You can link to Python in two different ways.  Load-time linking means
    linking against :file:`python{NN}.lib`, while run-time linking means linking

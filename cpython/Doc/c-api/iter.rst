@@ -5,7 +5,10 @@
 Iterator Protocol
 =================
 
+.. versionadded:: 2.2
+
 There are two functions specifically for working with iterators.
+
 
 .. c:function:: int PyIter_Check(PyObject *o)
 

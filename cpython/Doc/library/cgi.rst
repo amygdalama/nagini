@@ -49,16 +49,16 @@ line.  The first section contains a number of headers, telling the client what
 kind of data is following.  Python code to generate a minimal header section
 looks like this::
 
-   print("Content-Type: text/html")    # HTML is following
-   print()                             # blank line, end of headers
+   print "Content-Type: text/html"     # HTML is following
+   print                               # blank line, end of headers
 
 The second section is usually HTML, which allows the client software to display
 nicely formatted text with header, in-line images, etc. Here's Python code that
 prints a simple piece of HTML::
 
-   print("<TITLE>CGI script output</TITLE>")
-   print("<H1>This is my first CGI script</H1>")
-   print("Hello, world!")
+   print "<TITLE>CGI script output</TITLE>"
+   print "<H1>This is my first CGI script</H1>"
+   print "Hello, world!"
 
 
 .. _using-the-cgi-module:
@@ -66,7 +66,9 @@ prints a simple piece of HTML::
 Using the cgi module
 --------------------
 
-Begin by writing ``import cgi``.
+Begin by writing ``import cgi``.  Do not use ``from cgi import *`` --- the
+module defines all sorts of names for its own use or for backward compatibility
+that you don't want in your namespace.
 
 When you write a new script, consider adding these lines::
 
@@ -86,14 +88,12 @@ produced by :mod:`cgitb` provide information that can save you a lot of time in
 tracking down bugs.  You can always remove the ``cgitb`` line later when you
 have tested your script and are confident that it works correctly.
 
-To get at submitted form data, use the :class:`FieldStorage` class. If the form
-contains non-ASCII characters, use the *encoding* keyword parameter set to the
-value of the encoding defined for the document. It is usually contained in the
-META tag in the HEAD section of the HTML document or by the
-:mailheader:`Content-Type` header).  This reads the form contents from the
-standard input or the environment (depending on the value of various
-environment variables set according to the CGI standard).  Since it may consume
-standard input, it should be instantiated only once.
+To get at submitted form data, it's best to use the :class:`FieldStorage` class.
+The other classes defined in this module are provided mostly for backward
+compatibility. Instantiate it exactly once, without arguments.  This reads the
+form contents from standard input or the environment (depending on the value of
+various environment variables set according to the CGI standard).  Since it may
+consume standard input, it should be instantiated only once.
 
 The :class:`FieldStorage` instance can be indexed like a Python dictionary.
 It allows membership testing with the :keyword:`in` operator, and also supports
@@ -110,11 +110,11 @@ string::
 
    form = cgi.FieldStorage()
    if "name" not in form or "addr" not in form:
-       print("<H1>Error</H1>")
-       print("Please fill in the name and addr fields.")
+       print "<H1>Error</H1>"
+       print "Please fill in the name and addr fields."
        return
-   print("<p>name:", form["name"].value)
-   print("<p>addr:", form["addr"].value)
+   print "<p>name:", form["name"].value
+   print "<p>addr:", form["addr"].value
    ...further form processing here...
 
 Here the fields, accessed through ``form[key]``, are themselves instances of
@@ -138,21 +138,18 @@ separated by commas::
    usernames = ",".join(value)
 
 If a field represents an uploaded file, accessing the value via the
-:attr:`~FieldStorage.value` attribute or the :meth:`~FieldStorage.getvalue`
-method reads the entire file in memory as bytes.  This may not be what you
-want.  You can test for an uploaded file by testing either the
+:attr:`~FieldStorage.value` attribute or the :func:`~FieldStorage.getvalue`
+method reads the entire file in memory as a string.  This may not be what you
+want. You can test for an uploaded file by testing either the
 :attr:`~FieldStorage.filename` attribute or the :attr:`~FieldStorage.file`
-attribute.  You can then read the data from the :attr:`!file`
-attribute before it is automatically closed as part of the garbage collection of
-the :class:`FieldStorage` instance
-(the :func:`~io.RawIOBase.read` and :func:`~io.IOBase.readline` methods will
-return bytes)::
+attribute.  You can then read the data at leisure from the :attr:`!file`
+attribute::
 
    fileitem = form["userfile"]
    if fileitem.file:
        # It's an uploaded file; count lines
        linecount = 0
-       while True:
+       while 1:
            line = fileitem.file.readline()
            if not line: break
            linecount = linecount + 1
@@ -178,13 +175,10 @@ actually be instances of the class :class:`MiniFieldStorage`.  In this case, the
 A form submitted via POST that also has a query string will contain both
 :class:`FieldStorage` and :class:`MiniFieldStorage` items.
 
-.. versionchanged:: 3.4
-   The :attr:`~FieldStorage.file` attribute is automatically closed upon the
-   garbage collection of the creating :class:`FieldStorage` instance.
-
-
 Higher Level Interface
 ----------------------
+
+.. versionadded:: 2.2
 
 The previous section explains how to read CGI form data using the
 :class:`FieldStorage` class.  This section describes a higher level interface
@@ -236,7 +230,7 @@ A more convenient approach is to use the methods :meth:`~FieldStorage.getfirst`
 and :meth:`~FieldStorage.getlist` provided by this higher level interface.
 
 
-.. method:: FieldStorage.getfirst(name, default=None)
+.. method:: FieldStorage.getfirst(name[, default])
 
    This method always returns only one value associated with form field *name*.
    The method returns only the first value in case that more values were posted
@@ -262,6 +256,26 @@ Using these methods you can write nice compact code::
        do_something(item)
 
 
+Old classes
+-----------
+
+.. deprecated:: 2.6
+
+   These classes, present in earlier versions of the :mod:`cgi` module, are
+   still supported for backward compatibility.  New applications should use the
+   :class:`FieldStorage` class.
+
+:class:`SvFormContentDict` stores single value form content as dictionary; it
+assumes each field name occurs in the form only once.
+
+:class:`FormContentDict` stores multiple value form content as a dictionary (the
+form items are lists of values).  Useful if your form contains multiple fields
+with the same name.
+
+Other classes (:class:`FormContent`, :class:`InterpFormContentDict`) are present
+for backwards compatibility with really old applications only.
+
+
 .. _functions-in-cgi-module:
 
 Functions
@@ -271,22 +285,22 @@ These are useful if you want more control, or if you want to employ some of the
 algorithms implemented in this module in other circumstances.
 
 
-.. function:: parse(fp=None, environ=os.environ, keep_blank_values=False, strict_parsing=False)
+.. function:: parse(fp[, environ[, keep_blank_values[, strict_parsing]]])
 
    Parse a query in the environment or from a file (the file defaults to
-   ``sys.stdin``).  The *keep_blank_values* and *strict_parsing* parameters are
-   passed to :func:`urllib.parse.parse_qs` unchanged.
+   ``sys.stdin`` and environment defaults to ``os.environ``).  The *keep_blank_values* and *strict_parsing* parameters are
+   passed to :func:`urlparse.parse_qs` unchanged.
 
 
-.. function:: parse_qs(qs, keep_blank_values=False, strict_parsing=False)
+.. function:: parse_qs(qs[, keep_blank_values[, strict_parsing]])
 
-   This function is deprecated in this module. Use :func:`urllib.parse.parse_qs`
-   instead. It is maintained here only for backward compatibility.
+   This function is deprecated in this module. Use :func:`urlparse.parse_qs`
+   instead. It is maintained here only for backward compatiblity.
 
-.. function:: parse_qsl(qs, keep_blank_values=False, strict_parsing=False)
+.. function:: parse_qsl(qs[, keep_blank_values[, strict_parsing]])
 
-   This function is deprecated in this module. Use :func:`urllib.parse.parse_qs`
-   instead. It is maintained here only for backward compatibility.
+   This function is deprecated in this module. Use :func:`urlparse.parse_qsl`
+   instead. It is maintained here only for backward compatiblity.
 
 .. function:: parse_multipart(fp, pdict)
 
@@ -294,7 +308,7 @@ algorithms implemented in this module in other circumstances.
    Arguments are *fp* for the input file and *pdict* for a dictionary containing
    other parameters in the :mailheader:`Content-Type` header.
 
-   Returns a dictionary just like :func:`urllib.parse.parse_qs` keys are the field names, each
+   Returns a dictionary just like :func:`urlparse.parse_qs` keys are the field names, each
    value is a list of values for that field.  This is easy to use but not much good
    if you are expecting megabytes to be uploaded --- in that case, use the
    :class:`FieldStorage` class instead which is much more flexible.
@@ -335,7 +349,7 @@ algorithms implemented in this module in other circumstances.
    Print a list of useful (used by CGI) environment variables in HTML.
 
 
-.. function:: escape(s, quote=False)
+.. function:: escape(s[, quote])
 
    Convert the characters ``'&'``, ``'<'`` and ``'>'`` in string *s* to HTML-safe
    sequences.  Use this if you need to display text that might contain such
@@ -344,9 +358,9 @@ algorithms implemented in this module in other circumstances.
    attribute value delimited by double quotes, as in ``<a href="...">``.  Note
    that single quotes are never translated.
 
-   .. deprecated:: 3.2
-      This function is unsafe because *quote* is false by default, and therefore
-      deprecated.  Use :func:`html.escape` instead.
+   If the value to be quoted might include single- or double-quote characters,
+   or both, consider using the :func:`~xml.sax.saxutils.quoteattr` function in the
+   :mod:`xml.sax.saxutils` module instead.
 
 
 .. _cgi-security:
@@ -377,7 +391,7 @@ administrator to find the directory where CGI scripts should be installed;
 usually this is in a directory :file:`cgi-bin` in the server tree.
 
 Make sure that your script is readable and executable by "others"; the Unix file
-mode should be ``0o755`` octal (use ``chmod 0755 filename``).  Make sure that the
+mode should be ``0755`` octal (use ``chmod 0755 filename``).  Make sure that the
 first line of the script contains ``#!`` starting in column 1 followed by the
 pathname of the Python interpreter, for instance::
 
@@ -386,8 +400,8 @@ pathname of the Python interpreter, for instance::
 Make sure the Python interpreter exists and is executable by "others".
 
 Make sure that any files your script needs to read or write are readable or
-writable, respectively, by "others" --- their mode should be ``0o644`` for
-readable and ``0o666`` for writable.  This is because, for security reasons, the
+writable, respectively, by "others" --- their mode should be ``0644`` for
+readable and ``0666`` for writable.  This is because, for security reasons, the
 HTTP server executes your script as user "nobody", without any special
 privileges.  It can only read (write, execute) files that everybody can read
 (write, execute).  The current directory at execution time is also different (it
@@ -480,8 +494,8 @@ you can use an even more robust approach (which only uses built-in modules)::
 
    import sys
    sys.stderr = sys.stdout
-   print("Content-Type: text/plain")
-   print()
+   print "Content-Type: text/plain"
+   print
    ...your code here...
 
 This relies on the Python interpreter to print the traceback.  The content type
@@ -524,8 +538,8 @@ Common problems and solutions
 
 .. rubric:: Footnotes
 
-.. [#] Note that some recent versions of the HTML specification do state what
-   order the field values should be supplied in, but knowing whether a request
-   was received from a conforming browser, or even from a browser at all, is
-   tedious and error-prone.
+.. [#] Note that some recent versions of the HTML specification do state what order the
+   field values should be supplied in, but knowing whether a request was
+   received from a conforming browser, or even from a browser at all, is tedious
+   and error-prone.
 

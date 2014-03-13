@@ -35,9 +35,9 @@ s_reset(stack *s)
 #define s_empty(s) ((s)->s_top == &(s)->s_base[MAXSTACK])
 
 static int
-s_push(stack *s, dfa *d, node *parent)
+s_push(register stack *s, dfa *d, node *parent)
 {
-    stackentry *top;
+    register stackentry *top;
     if (s->s_top == s->s_base) {
         fprintf(stderr, "s_push: parser stack overflow\n");
         return E_NOMEM;
@@ -52,7 +52,7 @@ s_push(stack *s, dfa *d, node *parent)
 #ifdef Py_DEBUG
 
 static void
-s_pop(stack *s)
+s_pop(register stack *s)
 {
     if (s_empty(s))
         Py_FatalError("s_pop: parser stack underflow -- FATAL");
@@ -105,7 +105,7 @@ PyParser_Delete(parser_state *ps)
 /* PARSER STACK OPERATIONS */
 
 static int
-shift(stack *s, int type, char *str, int newstate, int lineno, int col_offset)
+shift(register stack *s, int type, char *str, int newstate, int lineno, int col_offset)
 {
     int err;
     assert(!s_empty(s));
@@ -117,10 +117,10 @@ shift(stack *s, int type, char *str, int newstate, int lineno, int col_offset)
 }
 
 static int
-push(stack *s, int type, dfa *d, int newstate, int lineno, int col_offset)
+push(register stack *s, int type, dfa *d, int newstate, int lineno, int col_offset)
 {
     int err;
-    node *n;
+    register node *n;
     n = s->s_top->s_parent;
     assert(!s_empty(s));
     err = PyNode_AddChild(n, type, (char *)NULL, lineno, col_offset);
@@ -134,30 +134,25 @@ push(stack *s, int type, dfa *d, int newstate, int lineno, int col_offset)
 /* PARSER PROPER */
 
 static int
-classify(parser_state *ps, int type, const char *str)
+classify(parser_state *ps, int type, char *str)
 {
     grammar *g = ps->p_grammar;
-    int n = g->g_ll.ll_nlabels;
+    register int n = g->g_ll.ll_nlabels;
 
     if (type == NAME) {
-        const char *s = str;
-        label *l = g->g_ll.ll_label;
-        int i;
+        register char *s = str;
+        register label *l = g->g_ll.ll_label;
+        register int i;
         for (i = n; i > 0; i--, l++) {
             if (l->lb_type != NAME || l->lb_str == NULL ||
                 l->lb_str[0] != s[0] ||
                 strcmp(l->lb_str, s) != 0)
                 continue;
 #ifdef PY_PARSER_REQUIRES_FUTURE_KEYWORD
-#if 0
-            /* Leaving this in as an example */
-            if (!(ps->p_flags & CO_FUTURE_WITH_STATEMENT)) {
-                if (s[0] == 'w' && strcmp(s, "with") == 0)
-                    break; /* not a keyword yet */
-                else if (s[0] == 'a' && strcmp(s, "as") == 0)
-                    break; /* not a keyword yet */
+            if (ps->p_flags & CO_FUTURE_PRINT_FUNCTION &&
+                s[0] == 'p' && strcmp(s, "print") == 0) {
+                break; /* no longer a keyword */
             }
-#endif
 #endif
             D(printf("It's a keyword\n"));
             return n - i;
@@ -165,8 +160,8 @@ classify(parser_state *ps, int type, const char *str)
     }
 
     {
-        label *l = g->g_ll.ll_label;
-        int i;
+        register label *l = g->g_ll.ll_label;
+        register int i;
         for (i = n; i > 0; i--, l++) {
             if (l->lb_type == type && l->lb_str == NULL) {
                 D(printf("It's a token we know\n"));
@@ -180,8 +175,6 @@ classify(parser_state *ps, int type, const char *str)
 }
 
 #ifdef PY_PARSER_REQUIRES_FUTURE_KEYWORD
-#if 0
-/* Leaving this in as an example */
 static void
 future_hack(parser_state *ps)
 {
@@ -221,14 +214,13 @@ future_hack(parser_state *ps)
         }
     }
 }
-#endif
 #endif /* future keyword */
 
 int
-PyParser_AddToken(parser_state *ps, int type, char *str,
+PyParser_AddToken(register parser_state *ps, register int type, char *str,
                   int lineno, int col_offset, int *expected_ret)
 {
-    int ilabel;
+    register int ilabel;
     int err;
 
     D(printf("Token %s/'%s' ... ", _PyParser_TokenNames[type], str));
@@ -241,15 +233,15 @@ PyParser_AddToken(parser_state *ps, int type, char *str,
     /* Loop until the token is shifted or an error occurred */
     for (;;) {
         /* Fetch the current dfa and state */
-        dfa *d = ps->p_stack.s_top->s_dfa;
-        state *s = &d->d_state[ps->p_stack.s_top->s_state];
+        register dfa *d = ps->p_stack.s_top->s_dfa;
+        register state *s = &d->d_state[ps->p_stack.s_top->s_state];
 
         D(printf(" DFA '%s', state %d:",
             d->d_name, ps->p_stack.s_top->s_state));
 
         /* Check accelerator */
         if (s->s_lower <= ilabel && ilabel < s->s_upper) {
-            int x = s->s_accel[ilabel - s->s_lower];
+            register int x = s->s_accel[ilabel - s->s_lower];
             if (x != -1) {
                 if (x & (1<<7)) {
                     /* Push non-terminal */
@@ -282,12 +274,10 @@ PyParser_AddToken(parser_state *ps, int type, char *str,
                              d->d_name,
                              ps->p_stack.s_top->s_state));
 #ifdef PY_PARSER_REQUIRES_FUTURE_KEYWORD
-#if 0
                     if (d->d_name[0] == 'i' &&
                         strcmp(d->d_name,
                            "import_stmt") == 0)
                         future_hack(ps);
-#endif
 #endif
                     s_pop(&ps->p_stack);
                     if (s_empty(&ps->p_stack)) {
@@ -302,11 +292,9 @@ PyParser_AddToken(parser_state *ps, int type, char *str,
 
         if (s->s_accept) {
 #ifdef PY_PARSER_REQUIRES_FUTURE_KEYWORD
-#if 0
             if (d->d_name[0] == 'i' &&
                 strcmp(d->d_name, "import_stmt") == 0)
                 future_hack(ps);
-#endif
 #endif
             /* Pop this dfa and try again */
             s_pop(&ps->p_stack);

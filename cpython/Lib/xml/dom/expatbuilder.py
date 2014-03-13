@@ -33,6 +33,8 @@ from xml.parsers import expat
 from xml.dom.minidom import _append_child, _set_attribute_node
 from xml.dom.NodeFilter import NodeFilter
 
+from xml.dom.minicompat import *
+
 TEXT_NODE = Node.TEXT_NODE
 CDATA_SECTION_NODE = Node.CDATA_SECTION_NODE
 DOCUMENT_NODE = Node.DOCUMENT_NODE
@@ -281,23 +283,27 @@ class ExpatBuilder:
         elif childNodes and childNodes[-1].nodeType == TEXT_NODE:
             node = childNodes[-1]
             value = node.data + data
-            node.data = value
+            d = node.__dict__
+            d['data'] = d['nodeValue'] = value
             return
         else:
             node = minidom.Text()
-            node.data = data
-            node.ownerDocument = self.document
+            d = node.__dict__
+            d['data'] = d['nodeValue'] = data
+            d['ownerDocument'] = self.document
         _append_child(self.curNode, node)
 
     def character_data_handler(self, data):
         childNodes = self.curNode.childNodes
         if childNodes and childNodes[-1].nodeType == TEXT_NODE:
             node = childNodes[-1]
-            node.data = node.data + data
+            d = node.__dict__
+            d['data'] = d['nodeValue'] = node.data + data
             return
         node = minidom.Text()
-        node.data = node.data + data
-        node.ownerDocument = self.document
+        d = node.__dict__
+        d['data'] = d['nodeValue'] = node.data + data
+        d['ownerDocument'] = self.document
         _append_child(self.curNode, node)
 
     def entity_decl_handler(self, entityName, is_parameter_entity, value,
@@ -357,8 +363,11 @@ class ExpatBuilder:
                 a = minidom.Attr(attributes[i], EMPTY_NAMESPACE,
                                  None, EMPTY_PREFIX)
                 value = attributes[i+1]
-                a.value = value
-                a.ownerDocument = self.document
+                d = a.childNodes[0].__dict__
+                d['data'] = d['nodeValue'] = value
+                d = a.__dict__
+                d['value'] = d['nodeValue'] = value
+                d['ownerDocument'] = self.document
                 _set_attribute_node(node, a)
 
         if node is not self.document.documentElement:
@@ -467,8 +476,8 @@ class FilterVisibilityController(object):
             if val == FILTER_INTERRUPT:
                 raise ParseEscape
             if val not in _ALLOWED_FILTER_RETURNS:
-                raise ValueError(
-                      "startContainer() returned illegal value: " + repr(val))
+                raise ValueError, \
+                      "startContainer() returned illegal value: " + repr(val)
             return val
         else:
             return FILTER_ACCEPT
@@ -487,8 +496,8 @@ class FilterVisibilityController(object):
                 # node is handled by the caller
                 return FILTER_REJECT
             if val not in _ALLOWED_FILTER_RETURNS:
-                raise ValueError(
-                      "acceptNode() returned illegal value: " + repr(val))
+                raise ValueError, \
+                      "acceptNode() returned illegal value: " + repr(val)
             return val
         else:
             return FILTER_ACCEPT
@@ -752,13 +761,15 @@ class Namespaces:
                 else:
                     a = minidom.Attr("xmlns", XMLNS_NAMESPACE,
                                      "xmlns", EMPTY_PREFIX)
-                a.value = uri
-                a.ownerDocument = self.document
+                d = a.childNodes[0].__dict__
+                d['data'] = d['nodeValue'] = uri
+                d = a.__dict__
+                d['value'] = d['nodeValue'] = uri
+                d['ownerDocument'] = self.document
                 _set_attribute_node(node, a)
             del self._ns_ordered_prefixes[:]
 
         if attributes:
-            node._ensure_attributes()
             _attrs = node._attrs
             _attrsNS = node._attrsNS
             for i in range(0, len(attributes), 2):
@@ -774,9 +785,12 @@ class Namespaces:
                                      aname, EMPTY_PREFIX)
                     _attrs[aname] = a
                     _attrsNS[(EMPTY_NAMESPACE, aname)] = a
-                a.ownerDocument = self.document
-                a.value = value
-                a.ownerElement = node
+                d = a.childNodes[0].__dict__
+                d['data'] = d['nodeValue'] = value
+                d = a.__dict__
+                d['ownerDocument'] = self.document
+                d['value'] = d['nodeValue'] = value
+                d['ownerElement'] = node
 
     if __debug__:
         # This only adds some asserts to the original
@@ -904,9 +918,12 @@ def parse(file, namespaces=True):
     else:
         builder = ExpatBuilder()
 
-    if isinstance(file, str):
-        with open(file, 'rb') as fp:
+    if isinstance(file, StringTypes):
+        fp = open(file, 'rb')
+        try:
             result = builder.parseFile(fp)
+        finally:
+            fp.close()
     else:
         result = builder.parseFile(file)
     return result
@@ -935,9 +952,12 @@ def parseFragment(file, context, namespaces=True):
     else:
         builder = FragmentBuilder(context)
 
-    if isinstance(file, str):
-        with open(file, 'rb') as fp:
+    if isinstance(file, StringTypes):
+        fp = open(file, 'rb')
+        try:
             result = builder.parseFile(fp)
+        finally:
+            fp.close()
     else:
         result = builder.parseFile(file)
     return result

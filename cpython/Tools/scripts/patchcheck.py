@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import re
 import sys
 import shutil
@@ -26,11 +26,11 @@ def status(message, modal=False, info=None):
             sys.stdout.flush()
             result = fxn(*args, **kwargs)
             if not modal and not info:
-                print("done")
+                print "done"
             elif info:
-                print(info(result))
+                print info(result)
             else:
-                print("yes" if result else "NO")
+                print "yes" if result else "NO"
             return result
         return call_fxn
     return decorated_fxn
@@ -39,25 +39,43 @@ def status(message, modal=False, info=None):
 def mq_patches_applied():
     """Check if there are any applied MQ patches."""
     cmd = 'hg qapplied'
-    with subprocess.Popen(cmd.split(),
+    st = subprocess.Popen(cmd.split(),
                           stdout=subprocess.PIPE,
-                          stderr=subprocess.PIPE) as st:
+                          stderr=subprocess.PIPE)
+    try:
         bstdout, _ = st.communicate()
         return st.returncode == 0 and bstdout
+    finally:
+        st.stdout.close()
+        st.stderr.close()
 
 
 @status("Getting the list of files that have been added/changed",
         info=lambda x: n_files_str(len(x)))
 def changed_files():
-    """Get the list of changed or added files from Mercurial."""
-    if not os.path.isdir(os.path.join(SRCDIR, '.hg')):
+    """Get the list of changed or added files from the VCS."""
+    if os.path.isdir(os.path.join(SRCDIR, '.hg')):
+        vcs = 'hg'
+        cmd = 'hg status --added --modified --no-status'
+        if mq_patches_applied():
+            cmd += ' --rev qparent'
+    elif os.path.isdir('.svn'):
+        vcs = 'svn'
+        cmd = 'svn status --quiet --non-interactive --ignore-externals'
+    else:
         sys.exit('need a checkout to get modified files')
 
-    cmd = 'hg status --added --modified --no-status'
-    if mq_patches_applied():
-        cmd += ' --rev qparent'
-    with subprocess.Popen(cmd.split(), stdout=subprocess.PIPE) as st:
-        return [x.decode().rstrip() for x in st.stdout]
+    st = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
+    try:
+        st.wait()
+        if vcs == 'hg':
+            return [x.decode().rstrip() for x in st.stdout]
+        else:
+            output = (x.decode().rstrip().rsplit(None, 1)[-1]
+                      for x in st.stdout if x[0] in 'AM')
+        return set(path for path in output if os.path.isfile(path))
+    finally:
+        st.stdout.close()
 
 
 def report_modified_files(file_paths):
@@ -75,8 +93,10 @@ def report_modified_files(file_paths):
 def normalize_whitespace(file_paths):
     """Make sure that the whitespace for .py files have been normalized."""
     reindent.makebackup = False  # No need to create backups.
-    fixed = [path for path in file_paths if path.endswith('.py') and
-             reindent.check(os.path.join(SRCDIR, path))]
+    fixed = []
+    for path in (x for x in file_paths if x.endswith('.py')):
+        if reindent.check(os.path.join(SRCDIR, path)):
+            fixed.append(path)
     return fixed
 
 
@@ -111,7 +131,7 @@ def normalize_docs_whitespace(file_paths):
                     f.writelines(new_lines)
                 fixed.append(path)
         except Exception as err:
-            print('Cannot fix %s: %s' % (path, err))
+            print 'Cannot fix %s: %s' % (path, err)
     return fixed
 
 
@@ -132,21 +152,6 @@ def reported_news(file_paths):
     """Check if Misc/NEWS has been changed."""
     return os.path.join('Misc', 'NEWS') in file_paths
 
-@status("configure regenerated", modal=True, info=str)
-def regenerated_configure(file_paths):
-    """Check if configure has been regenerated."""
-    if 'configure.ac' in file_paths:
-        return "yes" if 'configure' in file_paths else "no"
-    else:
-        return "not needed"
-
-@status("pyconfig.h.in regenerated", modal=True, info=str)
-def regenerated_pyconfig_h_in(file_paths):
-    """Check if pyconfig.h.in has been regenerated."""
-    if 'configure.ac' in file_paths:
-        return "yes" if 'pyconfig.h.in' in file_paths else "no"
-    else:
-        return "not needed"
 
 def main():
     file_paths = changed_files()
@@ -167,16 +172,12 @@ def main():
     credit_given(misc_files)
     # Misc/NEWS changed.
     reported_news(misc_files)
-    # Regenerated configure, if necessary.
-    regenerated_configure(file_paths)
-    # Regenerated pyconfig.h.in, if necessary.
-    regenerated_pyconfig_h_in(file_paths)
 
     # Test suite run and passed.
     if python_files or c_files:
         end = " and check for refleaks?" if c_files else "?"
-        print()
-        print("Did you run the test suite" + end)
+        print
+        print "Did you run the test suite" + end
 
 
 if __name__ == '__main__':

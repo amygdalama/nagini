@@ -8,10 +8,12 @@ used from a setup script as
    setup (...)
 """
 
+__revision__ = "$Id$"
+
 # Distutils version
 #
 # Updated automatically by the Python release process.
 #
 #--start constants--
-__version__ = "3.4.0rc1"
+__version__ = "2.7.6"
 #--end constants--

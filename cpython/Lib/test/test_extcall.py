@@ -1,24 +1,25 @@
+# -*- coding: utf-8 -*-
 
 """Doctest for method/function calls.
 
 We're going the use these types for extra testing
 
-    >>> from collections import UserList
-    >>> from collections import UserDict
+    >>> from UserList import UserList
+    >>> from UserDict import UserDict
 
 We're defining four helper functions
 
     >>> def e(a,b):
-    ...     print(a, b)
+    ...     print a, b
 
     >>> def f(*a, **k):
-    ...     print(a, support.sortdict(k))
+    ...     print a, test_support.sortdict(k)
 
     >>> def g(x, *y, **z):
-    ...     print(x, y, support.sortdict(z))
+    ...     print x, y, test_support.sortdict(z)
 
     >>> def h(j=1, a=2, h=3):
-    ...     print(j, a, h)
+    ...     print j, a, h
 
 Argument list examples
 
@@ -66,17 +67,17 @@ Verify clearing of SF bug #733667
     >>> g()
     Traceback (most recent call last):
       ...
-    TypeError: g() missing 1 required positional argument: 'x'
+    TypeError: g() takes at least 1 argument (0 given)
 
     >>> g(*())
     Traceback (most recent call last):
       ...
-    TypeError: g() missing 1 required positional argument: 'x'
+    TypeError: g() takes at least 1 argument (0 given)
 
     >>> g(*(), **{})
     Traceback (most recent call last):
       ...
-    TypeError: g() missing 1 required positional argument: 'x'
+    TypeError: g() takes at least 1 argument (0 given)
 
     >>> g(1)
     1 () {}
@@ -92,7 +93,7 @@ Verify clearing of SF bug #733667
     >>> g(*Nothing())
     Traceback (most recent call last):
       ...
-    TypeError: g() argument after * must be a sequence, not Nothing
+    TypeError: g() argument after * must be a sequence, not instance
 
     >>> class Nothing:
     ...     def __len__(self): return 5
@@ -101,7 +102,7 @@ Verify clearing of SF bug #733667
     >>> g(*Nothing())
     Traceback (most recent call last):
       ...
-    TypeError: g() argument after * must be a sequence, not Nothing
+    TypeError: g() argument after * must be a sequence, not instance
 
     >>> class Nothing():
     ...     def __len__(self): return 5
@@ -116,7 +117,7 @@ Verify clearing of SF bug #733667
     >>> class Nothing:
     ...     def __init__(self): self.c = 0
     ...     def __iter__(self): return self
-    ...     def __next__(self):
+    ...     def next(self):
     ...         if self.c == 4:
     ...             raise StopIteration
     ...         c = self.c
@@ -151,7 +152,7 @@ What about willful misconduct?
     >>> g(1, 2, 3, **{'x': 4, 'y': 5})
     Traceback (most recent call last):
       ...
-    TypeError: g() got multiple values for argument 'x'
+    TypeError: g() got multiple values for keyword argument 'x'
 
     >>> f(**{1:2})
     Traceback (most recent call last):
@@ -207,7 +208,7 @@ Another helper function
 
 
     >>> d = {}
-    >>> for i in range(512):
+    >>> for i in xrange(512):
     ...     key = 'k%d' % i
     ...     d[key] = i
     >>> a, b = f2(1, *(2,3), **d)
@@ -224,9 +225,16 @@ Another helper function
     >>> Foo.method(x, *(1, 2))
     3
     >>> Foo.method(*(1, 2, 3))
-    5
+    Traceback (most recent call last):
+      ...
+    TypeError: unbound method method() must be called with Foo instance as \
+first argument (got int instance instead)
+
     >>> Foo.method(1, *[2, 3])
-    5
+    Traceback (most recent call last):
+      ...
+    TypeError: unbound method method() must be called with Foo instance as \
+first argument (got int instance instead)
 
 A PyCFunction that takes only positional parameters should allow an
 empty keyword dictionary to pass without a complaint, but raise a
@@ -259,91 +267,53 @@ the function call setup. See <http://bugs.python.org/issue2016>.
 
     >>> x = {Name("a"):1, Name("b"):2}
     >>> def f(a, b):
-    ...     print(a,b)
+    ...     print a,b
     >>> f(**x)
     1 2
 
-Too many arguments:
+A obscure message:
 
-    >>> def f(): pass
-    >>> f(1)
+    >>> def f(a, b):
+    ...    pass
+    >>> f(b=1)
     Traceback (most recent call last):
       ...
-    TypeError: f() takes 0 positional arguments but 1 was given
-    >>> def f(a): pass
-    >>> f(1, 2)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() takes 1 positional argument but 2 were given
-    >>> def f(a, b=1): pass
-    >>> f(1, 2, 3)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() takes from 1 to 2 positional arguments but 3 were given
-    >>> def f(*, kw): pass
-    >>> f(1, kw=3)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() takes 0 positional arguments but 1 positional argument (and 1 keyword-only argument) were given
-    >>> def f(*, kw, b): pass
-    >>> f(1, 2, 3, b=3, kw=3)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() takes 0 positional arguments but 3 positional arguments (and 2 keyword-only arguments) were given
-    >>> def f(a, b=2, *, kw): pass
-    >>> f(2, 3, 4, kw=4)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() takes from 1 to 2 positional arguments but 3 positional arguments (and 1 keyword-only argument) were given
+    TypeError: f() takes exactly 2 arguments (1 given)
 
-Too few and missing arguments:
+The number of arguments passed in includes keywords:
 
-    >>> def f(a): pass
-    >>> f()
+    >>> def f(a):
+    ...    pass
+    >>> f(6, a=4, *(1, 2, 3))
     Traceback (most recent call last):
       ...
-    TypeError: f() missing 1 required positional argument: 'a'
-    >>> def f(a, b): pass
-    >>> f()
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 2 required positional arguments: 'a' and 'b'
-    >>> def f(a, b, c): pass
-    >>> f()
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 3 required positional arguments: 'a', 'b', and 'c'
-    >>> def f(a, b, c, d, e): pass
-    >>> f()
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 5 required positional arguments: 'a', 'b', 'c', 'd', and 'e'
-    >>> def f(a, b=4, c=5, d=5): pass
-    >>> f(c=12, b=9)
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 1 required positional argument: 'a'
-
-Same with keyword only args:
-
-    >>> def f(*, w): pass
-    >>> f()
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 1 required keyword-only argument: 'w'
-    >>> def f(*, a, b, c, d, e): pass
-    >>> f()
-    Traceback (most recent call last):
-      ...
-    TypeError: f() missing 5 required keyword-only arguments: 'a', 'b', 'c', 'd', and 'e'
-
+    TypeError: f() takes exactly 1 argument (5 given)
 """
 
+import unittest
 import sys
-from test import support
+from test import test_support
+
+
+class ExtCallTest(unittest.TestCase):
+
+    def test_unicode_keywords(self):
+        def f(a):
+            return a
+        self.assertEqual(f(**{u'a': 4}), 4)
+        self.assertRaises(TypeError, f, **{u'stören': 4})
+        self.assertRaises(TypeError, f, **{u'someLongString':2})
+        try:
+            f(a=4, **{u'a': 4})
+        except TypeError:
+            pass
+        else:
+            self.fail("duplicate arguments didn't raise")
+
 
 def test_main():
-    support.run_doctest(sys.modules[__name__], True)
+    test_support.run_doctest(sys.modules[__name__], True)
+    test_support.run_unittest(ExtCallTest)
 
 if __name__ == '__main__':
     test_main()

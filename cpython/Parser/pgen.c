@@ -283,7 +283,6 @@ compile_atom(labellist *ll, nfa *nf, node *n, int *pa, int *pb)
 
     REQ(n, ATOM);
     i = n->n_nchildren;
-    (void)i; /* Don't warn about set but unused */
     REQN(i, 1);
     n = n->n_child;
     if (n->n_type == LPAR) {

@@ -103,10 +103,10 @@ simple CGI program::
     import cgitb
     cgitb.enable()
 
-    print("Content-Type: text/plain;charset=utf-8")
-    print()
+    print "Content-Type: text/plain;charset=utf-8"
+    print
 
-    print("Hello World!")
+    print "Hello World!"
 
 Depending on your web server configuration, you may need to save this code with
 a ``.py`` or ``.cgi`` extension.  Additionally, this file may also need to be
@@ -292,8 +292,8 @@ following WSGI-application::
     #!/usr/bin/env python
     # -*- coding: UTF-8 -*-
 
+    from cgi import escape
     import sys, os
-    from html import escape
     from flup.server.fcgi import WSGIServer
 
     def app(environ, start_response):
@@ -302,8 +302,7 @@ following WSGI-application::
         yield '<h1>FastCGI Environment</h1>'
         yield '<table>'
         for k, v in sorted(environ.items()):
-             yield '<tr><th>{0}</th><td>{1}</td></tr>'.format(
-                 escape(k), escape(v))
+             yield '<tr><th>%s</th><td>%s</td></tr>' % (escape(k), escape(v))
         yield '</table>'
 
     WSGIServer(app).run()
@@ -498,11 +497,16 @@ templates exist.  Templates are, in the simplest case, just HTML files with
 placeholders.  The HTML is sent to the user's browser after filling in the
 placeholders.
 
-Python already includes a way to build simple templates::
+Python already includes two ways to build simple templates::
 
-    # a simple template
-    template = "<html><body><h1>Hello {who}!</h1></body></html>"
-    print(template.format(who="Reader"))
+    >>> template = "<html><body><h1>Hello %s!</h1></body></html>"
+    >>> print template % "Reader"
+    <html><body><h1>Hello Reader!</h1></body></html>
+
+    >>> from string import Template
+    >>> template = Template("<html><body><h1>Hello ${name}</h1></body></html>")
+    >>> print template.substitute(dict(name='Dinsdale'))
+    <html><body><h1>Hello Dinsdale!</h1></body></html>
 
 To generate complex HTML based on non-trivial model data, conditional
 and looping constructs like Python's *for* and *if* are generally needed.
