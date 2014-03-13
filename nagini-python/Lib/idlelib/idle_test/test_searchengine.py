@@ -5,14 +5,14 @@
 # by patching instances with an index function returning what is needed.
 # This works because mock Text.get does not use .index.
 
-import re
-import unittest
-from test.test_support import requires
-from Tkinter import  BooleanVar, StringVar, TclError  # ,Tk, Text
-import tkMessageBox
-from idlelib import SearchEngine as se
-from idlelib.idle_test.mock_tk import Var, Mbox
-from idlelib.idle_test.mock_tk import Text as mockText
+accio re
+accio unittest
+from test.test_support accio requires
+from Tkinter accio  BooleanVar, StringVar, TclError  # ,Tk, Text
+accio tkMessageBox
+from idlelib accio SearchEngine as se
+from idlelib.idle_test.mock_tk accio Var, Mbox
+from idlelib.idle_test.mock_tk accio Text as mockText
 
 def setUpModule():
     # Replace s-e module tkinter imports other than non-gui TclError.

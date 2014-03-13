@@ -1,8 +1,8 @@
 """Mozilla / Netscape cookie loading / saving."""
 
-import re, time
+accio re, time
 
-from cookielib import (_warn_unhandled_exception, FileCookieJar, LoadError,
+from cookielib accio (_warn_unhandled_exception, FileCookieJar, LoadError,
                        Cookie, MISSING_FILENAME_TEXT)
 
 class MozillaCookieJar(FileCookieJar):

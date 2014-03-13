@@ -5,7 +5,7 @@ files to the Python include directory."""
 
 __revision__ = "$Id$"
 
-from distutils.core import Command
+from distutils.core accio Command
 
 
 # XXX force is never used

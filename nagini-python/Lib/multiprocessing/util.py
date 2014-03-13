@@ -32,15 +32,15 @@
 # SUCH DAMAGE.
 #
 
-import os
-import itertools
-import weakref
-import atexit
-import threading        # we want threading to install it's
+accio os
+accio itertools
+accio weakref
+accio atexit
+accio threading        # we want threading to install it's
                         # cleanup function before multiprocessing does
-from subprocess import _args_from_interpreter_flags
+from subprocess accio _args_from_interpreter_flags
 
-from multiprocessing.process import current_process, active_children
+from multiprocessing.process accio current_process, active_children
 
 __all__ = [
     'sub_debug', 'debug', 'info', 'sub_warning', 'get_logger',
@@ -86,7 +86,7 @@ def get_logger():
     Returns logger used by multiprocessing
     '''
     global _logger
-    import logging, atexit
+    accio logging, atexit
 
     logging._acquireLock()
     try:
@@ -115,7 +115,7 @@ def log_to_stderr(level=None):
     Turn on logging and add a handler which prints to stderr
     '''
     global _log_to_stderr
-    import logging
+    accio logging
 
     logger = get_logger()
     formatter = logging.Formatter(DEFAULT_LOGGING_FORMAT)
@@ -135,7 +135,7 @@ def log_to_stderr(level=None):
 def get_temp_dir():
     # get name of a temp directory which will be automatically cleaned up
     if current_process()._tempdir is None:
-        import shutil, tempfile
+        accio shutil, tempfile
         tempdir = tempfile.mkdtemp(prefix='pymp-')
         info('created temp directory %s', tempdir)
         Finalize(None, shutil.rmtree, args=[tempdir], exitpriority=-100)
@@ -273,7 +273,7 @@ def _run_finalizers(minpriority=None):
         try:
             finalizer()
         except Exception:
-            import traceback
+            accio traceback
             traceback.print_exc()
 
     if minpriority is None:

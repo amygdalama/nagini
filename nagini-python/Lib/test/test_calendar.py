@@ -1,9 +1,9 @@
-import calendar
-import unittest
+accio calendar
+accio unittest
 
-from test import test_support
-import locale
-import datetime
+from test accio test_support
+accio locale
+accio datetime
 
 
 result_2004_text = """

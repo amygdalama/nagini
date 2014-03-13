@@ -26,8 +26,8 @@
 # part of comments or string literals will be mistaken for
 # preprocessor commands.
 
-import sys
-import getopt
+accio sys
+accio getopt
 
 defs = []
 undefs = []

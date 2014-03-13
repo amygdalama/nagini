@@ -1,24 +1,24 @@
 # Common utility functions used by various script execution tests
 #  e.g. test_cmd_line, test_cmd_line_script and test_runpy
 
-import sys
-import os
-import re
-import os.path
-import tempfile
-import subprocess
-import py_compile
-import contextlib
-import shutil
+accio sys
+accio os
+accio re
+accio os.path
+accio tempfile
+accio subprocess
+accio py_compile
+accio contextlib
+accio shutil
 try:
-    import zipfile
+    accio zipfile
 except ImportError:
     # If Python is build without Unicode support, importing _io will
     # fail, which, in turn, means that zipfile cannot be imported
     # Most of this module can then still be used.
     pass
 
-from test.test_support import strip_python_stderr
+from test.test_support accio strip_python_stderr
 
 # Executing the interpreter in a subprocess
 def _assert_python(expected_success, *args, **env_vars):

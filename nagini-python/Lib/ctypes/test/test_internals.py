@@ -1,7 +1,7 @@
 # This tests the internal _objects attribute
-import unittest
-from ctypes import *
-from sys import getrefcount as grc
+accio unittest
+from ctypes accio *
+from sys accio getrefcount as grc
 
 # XXX This test must be reviewed for correctness!!!
 

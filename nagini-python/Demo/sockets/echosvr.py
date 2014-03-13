@@ -4,8 +4,8 @@
 #
 # This is the simplest possible server, servicing a single request only.
 
-import sys
-from socket import *
+accio sys
+from socket accio *
 
 # The standard echo port isn't very useful, it requires root permissions!
 # ECHO_PORT = 7

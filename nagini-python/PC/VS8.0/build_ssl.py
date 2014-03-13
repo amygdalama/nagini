@@ -23,7 +23,7 @@
 # python.exe build_ssl.py Release x64
 # python.exe build_ssl.py Release Win32
 
-import os, sys, re, shutil
+accio os, sys, re, shutil
 
 # Find all "foo.exe" files on the PATH.
 def find_all_on_path(filename, extras = None):

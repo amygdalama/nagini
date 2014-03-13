@@ -1,13 +1,13 @@
 """Unit tests for socket timeout feature."""
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # This requires the 'network' resource as given on the regrtest command line.
 skip_expected = not test_support.is_resource_enabled('network')
 
-import time
-import socket
+accio time
+accio socket
 
 
 class CreationTestCase(unittest.TestCase):

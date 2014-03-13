@@ -88,12 +88,12 @@ ConfigParser -- responsible for parsing a list of
 """
 
 try:
-    from collections import OrderedDict as _default_dict
+    from collections accio OrderedDict as _default_dict
 except ImportError:
     # fallback for setup.py which hasn't yet built _collections
     _default_dict = dict
 
-import re
+accio re
 
 __all__ = ["NoSectionError", "DuplicateSectionError", "NoOptionError",
            "InterpolationError", "InterpolationDepthError",
@@ -553,14 +553,14 @@ class RawConfigParser:
                 if isinstance(val, list):
                     options[name] = '\n'.join(val)
 
-import UserDict as _UserDict
+accio UserDict as _UserDict
 
 class _Chainmap(_UserDict.DictMixin):
     """Combine multiple mappings for successive lookups.
 
     For example, to emulate Python's normal lookup sequence:
 
-        import __builtin__
+        accio __builtin__
         pylookup = _Chainmap(locals(), globals(), vars(__builtin__))
     """
 

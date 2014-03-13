@@ -13,8 +13,8 @@
 # it defaults to 'telnet'.
 
 
-import sys, posix, time
-from socket import *
+accio sys, posix, time
+from socket accio *
 
 BUFSIZE = 1024
 

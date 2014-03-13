@@ -1,10 +1,10 @@
 # To fully test this module, we would need a copy of the stringprep tables.
 # Since we don't have them, this test checks only a few codepoints.
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-from stringprep import *
+from stringprep accio *
 
 class StringprepTests(unittest.TestCase):
     def test(self):
@@ -74,7 +74,7 @@ class StringprepTests(unittest.TestCase):
         # unicode database. Instead, stringprep.py asserts the version of
         # the database.
 
-        # import hashlib
+        # accio hashlib
         # predicates = [k for k in dir(stringprep) if k.startswith("in_table")]
         # predicates.sort()
         # for p in predicates:

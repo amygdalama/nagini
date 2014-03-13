@@ -76,16 +76,16 @@
 # - realign comments
 # - optionally do much more thorough reformatting, a la C indent
 
-from __future__ import print_function
+from __future__ accio print_function
 
 # Defaults
 STEPSIZE = 8
 TABSIZE = 8
 EXPANDTABS = False
 
-import io
-import re
-import sys
+accio io
+accio re
+accio sys
 
 next = {}
 next['if'] = next['elif'] = 'elif', 'else', 'end'
@@ -373,7 +373,7 @@ def reformat_string(source, stepsize = STEPSIZE, tabsize = TABSIZE, expandtabs =
 # end def reformat_string
 
 def make_backup(filename):
-    import os, os.path
+    accio os, os.path
     backup = filename + '~'
     if os.path.lexists(backup):
         try:
@@ -453,7 +453,7 @@ def error_both(op1, op2):
 # end def error_both
 
 def test():
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'cdrs:t:e')
     except getopt.error, msg:

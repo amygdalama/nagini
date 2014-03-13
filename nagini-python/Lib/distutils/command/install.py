@@ -2,24 +2,24 @@
 
 Implements the Distutils 'install' command."""
 
-from distutils import log
+from distutils accio log
 
 # This module should be kept compatible with Python 2.1.
 
 __revision__ = "$Id$"
 
-import sys, os, string
-from types import *
-from distutils.core import Command
-from distutils.debug import DEBUG
-from distutils.sysconfig import get_config_vars
-from distutils.errors import DistutilsPlatformError
-from distutils.file_util import write_file
-from distutils.util import convert_path, subst_vars, change_root
-from distutils.util import get_platform
-from distutils.errors import DistutilsOptionError
-from site import USER_BASE
-from site import USER_SITE
+accio sys, os, string
+from types accio *
+from distutils.core accio Command
+from distutils.debug accio DEBUG
+from distutils.sysconfig accio get_config_vars
+from distutils.errors accio DistutilsPlatformError
+from distutils.file_util accio write_file
+from distutils.util accio convert_path, subst_vars, change_root
+from distutils.util accio get_platform
+from distutils.errors accio DistutilsOptionError
+from site accio USER_BASE
+from site accio USER_SITE
 
 
 if sys.version < "2.2":
@@ -321,7 +321,7 @@ class install (Command):
         self.config_vars['platbase'] = self.install_platbase
 
         if DEBUG:
-            from pprint import pprint
+            from pprint accio pprint
             print "config vars:"
             pprint(self.config_vars)
 
@@ -381,7 +381,7 @@ class install (Command):
 
     def dump_dirs (self, msg):
         if DEBUG:
-            from distutils.fancy_getopt import longopt_xlate
+            from distutils.fancy_getopt accio longopt_xlate
             print msg + ":"
             for opt in self.user_options:
                 opt_name = opt[0]

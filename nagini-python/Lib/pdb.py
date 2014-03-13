@@ -4,15 +4,15 @@
 
 # (See pdb.doc for documentation.)
 
-import sys
-import linecache
-import cmd
-import bdb
-from repr import Repr
-import os
-import re
-import pprint
-import traceback
+accio sys
+accio linecache
+accio cmd
+accio bdb
+from repr accio Repr
+accio os
+accio re
+accio pprint
+accio traceback
 
 
 class Restart(Exception):
@@ -69,7 +69,7 @@ class Pdb(bdb.Bdb, cmd.Cmd):
         self._wait_for_mainpyfile = 0
         # Try to load readline if it exists
         try:
-            import readline
+            accio readline
         except ImportError:
             pass
 
@@ -672,7 +672,7 @@ class Pdb(bdb.Bdb, cmd.Cmd):
         """Restart program by raising an exception to be caught in the main
         debugger loop.  If arguments were given, set them in sys.argv."""
         if arg:
-            import shlex
+            accio shlex
             argv0 = sys.argv[0:1]
             sys.argv = shlex.split(arg)
             sys.argv[:0] = argv0
@@ -1214,7 +1214,7 @@ see no sign that the breakpoint was reached.
         #
         # So we clear up the __main__ and set several special variables
         # (this gets rid of pdb's globals and cleans old variables on restarts).
-        import __main__
+        accio __main__
         __main__.__dict__.clear()
         __main__.__dict__.update({"__name__"    : "__main__",
                                   "__file__"    : filename,
@@ -1272,7 +1272,7 @@ def pm():
 
 # Main program for testing
 
-TESTCMD = 'import x; x.main()'
+TESTCMD = 'accio x; x.main()'
 
 def test():
     run(TESTCMD)
@@ -1334,5 +1334,5 @@ def main():
 
 # When invoked as main program, invoke the debugger on a script
 if __name__ == '__main__':
-    import pdb
+    accio pdb
     pdb.main()

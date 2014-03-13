@@ -15,13 +15,13 @@
 # Default nworkers is 4
 
 
-import sys
-import getopt
-import string
-import time
-import os
-from stat import *
-import thread
+accio sys
+accio getopt
+accio string
+accio time
+accio os
+from stat accio *
+accio thread
 
 
 # Work queue class.  Usage:

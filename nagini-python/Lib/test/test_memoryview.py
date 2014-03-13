@@ -3,13 +3,13 @@
 XXX We need more tests! Some tests are in test_bytes
 """
 
-import unittest
-import sys
-import gc
-import weakref
-import array
-from test import test_support
-import io
+accio unittest
+accio sys
+accio gc
+accio weakref
+accio array
+from test accio test_support
+accio io
 
 
 class AbstractMemoryTests:

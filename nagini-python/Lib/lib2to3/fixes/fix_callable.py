@@ -4,11 +4,11 @@
 """Fixer for callable().
 
 This converts callable(obj) into isinstance(obj, collections.Callable), adding a
-collections import if needed."""
+collections accio if needed."""
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import Call, Name, String, Attr, touch_import
+from lib2to3 accio fixer_base
+from lib2to3.fixer_util accio Call, Name, String, Attr, touch_import
 
 class FixCallable(fixer_base.BaseFix):
     BM_compatible = True

@@ -3,9 +3,9 @@
 # Remote python client.
 # Execute Python commands remotely and send output back.
 
-import sys
-import string
-from socket import *
+accio sys
+accio string
+from socket accio *
 
 PORT = 4127
 BUFSIZE = 1024

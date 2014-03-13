@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
-import sys
-import unittest
-import ttk
+accio sys
+accio unittest
+accio ttk
 
 class MockTclObj(object):
     typename = 'test'
@@ -394,7 +394,7 @@ class InternalFunctionsTest(unittest.TestCase):
             ('name', 'no_minus', 'value'))
         self.assertRaises(ValueError, ttk._list_from_layouttuple,
             ('something', '-children')) # no children
-        import Tkinter
+        accio Tkinter
         if not Tkinter._default_root or Tkinter._default_root.wantobjects():
             self.assertRaises(ValueError, ttk._list_from_layouttuple,
                 ('something', '-children', 'value')) # invalid children
@@ -456,5 +456,5 @@ class TclObjsToPyTest(unittest.TestCase):
 tests_nogui = (InternalFunctionsTest, TclObjsToPyTest)
 
 if __name__ == "__main__":
-    from test.test_support import run_unittest
+    from test.test_support accio run_unittest
     run_unittest(*tests_nogui)

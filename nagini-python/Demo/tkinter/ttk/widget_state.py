@@ -1,5 +1,5 @@
 """Sample demo showing widget states and some font styling."""
-import ttk
+accio ttk
 
 states = ['active', 'disabled', 'focus', 'pressed', 'selected',
           'background', 'readonly', 'alternate', 'invalid']

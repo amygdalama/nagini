@@ -2,17 +2,17 @@
 want unix-style arguments.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the argvemulator module is removed.", stacklevel=2)
 
-import sys
-import traceback
-from Carbon import AE
-from Carbon.AppleEvents import *
-from Carbon import Evt
-from Carbon import File
-from Carbon.Events import *
-import aetools
+accio sys
+accio traceback
+from Carbon accio AE
+from Carbon.AppleEvents accio *
+from Carbon accio Evt
+from Carbon accio File
+from Carbon.Events accio *
+accio aetools
 
 class ArgvCollector:
 
@@ -82,7 +82,7 @@ class ArgvCollector:
                 sys.argv.append(pathname)
         except  Exception, e:
             print "argvemulator.py warning: can't unpack an open document event"
-            import traceback
+            accio traceback
             traceback.print_exc()
 
         self._quit()

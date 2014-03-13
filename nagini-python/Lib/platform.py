@@ -81,7 +81,7 @@
 #    0.2.2 - added 'wince' to syscmd_ver() supported platforms
 #    0.2.1 - added cache logic and changed the platform string format
 #    0.2.0 - changed the API to use functions instead of module globals
-#            since some action take too long to be run on module import
+#            since some action take too long to be run on module accio
 #    0.1.0 - first release
 #
 #    You can always get the latest version of this module at:
@@ -113,7 +113,7 @@ __copyright__ = """
 
 __version__ = '1.0.7'
 
-import sys,string,os,re
+accio sys,string,os,re
 
 ### Globals & Constants
 
@@ -382,7 +382,7 @@ class _popen:
 
         if mode != 'r':
             raise ValueError,'popen()-emulation only supports read mode'
-        import tempfile
+        accio tempfile
         self.tmpfile = tmpfile = tempfile.mktemp()
         os.system(cmd + ' > %s' % tmpfile)
         self.pipe = open(tmpfile,'rb')
@@ -427,7 +427,7 @@ def popen(cmd, mode='r', bufsize=None):
         # On NT win32pipe should work; on Win9x it hangs due to bugs
         # in the MS C lib (see MS KnowledgeBase article Q150956)
         try:
-            import win32pipe
+            accio win32pipe
         except ImportError:
             pass
         else:
@@ -540,10 +540,10 @@ def _win32_getvalue(key,name,default=''):
     """
     try:
         # Use win32api if available
-        from win32api import RegQueryValueEx
+        from win32api accio RegQueryValueEx
     except ImportError:
         # On Python 2.0 and later, emulate using _winreg
-        import _winreg
+        accio _winreg
         RegQueryValueEx = _winreg.QueryValueEx
     try:
         return RegQueryValueEx(key,name)
@@ -579,10 +579,10 @@ def win32_ver(release='',version='',csd='',ptype=''):
 
     # Import the needed APIs
     try:
-        import win32api
-        from win32api import RegQueryValueEx, RegOpenKeyEx, \
+        accio win32api
+        from win32api accio RegQueryValueEx, RegOpenKeyEx, \
              RegCloseKey, GetVersionEx
-        from win32con import HKEY_LOCAL_MACHINE, VER_PLATFORM_WIN32_NT, \
+        from win32con accio HKEY_LOCAL_MACHINE, VER_PLATFORM_WIN32_NT, \
              VER_PLATFORM_WIN32_WINDOWS, VER_NT_WORKSTATION
     except ImportError:
         # Emulate the win32api module using Python APIs
@@ -594,7 +594,7 @@ def win32_ver(release='',version='',csd='',ptype=''):
         else:
             # Emulation using _winreg (added in Python 2.0) and
             # sys.getwindowsversion() (added in Python 2.3)
-            import _winreg
+            accio _winreg
             GetVersionEx = sys.getwindowsversion
             RegQueryValueEx = _winreg.QueryValueEx
             RegOpenKeyEx = _winreg.OpenKeyEx
@@ -717,8 +717,8 @@ def win32_ver(release='',version='',csd='',ptype=''):
 
 def _mac_ver_lookup(selectors,default=None):
 
-    from gestalt import gestalt
-    import MacOS
+    from gestalt accio gestalt
+    accio MacOS
     l = []
     append = l.append
     for selector in selectors:
@@ -742,8 +742,8 @@ def _mac_ver_gestalt():
     """
     # Check whether the version info module is available
     try:
-        import gestalt
-        import MacOS
+        accio gestalt
+        accio MacOS
     except ImportError:
         return None
     # Get the infos
@@ -779,7 +779,7 @@ def _mac_ver_xml():
         return None
 
     try:
-        import plistlib
+        accio plistlib
     except ImportError:
         return None
 
@@ -821,7 +821,7 @@ def mac_ver(release='',versioninfo=('','',''),machine=''):
 
 def _java_getprop(name,default):
 
-    from java.lang import System
+    from java.lang accio System
     try:
         value = System.getProperty(name)
         if value is None:
@@ -844,7 +844,7 @@ def java_ver(release='',vendor='',vminfo=('','',''),osinfo=('','','')):
     """
     # Import the needed APIs
     try:
-        import java.lang
+        accio java.lang
     except ImportError:
         return release,vendor,vminfo,osinfo
 
@@ -960,7 +960,7 @@ def _node(default=''):
     """ Helper to determine the node name of this machine.
     """
     try:
-        import socket
+        accio socket
     except ImportError:
         # No sockets...
         return default
@@ -1026,7 +1026,7 @@ def _syscmd_file(target,default=''):
 
     """
 
-    # We do the import here to avoid a bootstrap issue.
+    # We do the accio here to avoid a bootstrap issue.
     # See c73b90b6dadd changeset.
     #
     # [..]
@@ -1036,14 +1036,14 @@ def _syscmd_file(target,default=''):
     #        libpython2.7.a -lsocket -lnsl -ldl    -lm
     # Traceback (most recent call last):
     #  File "./setup.py", line 8, in <module>
-    #    from platform import machine as platform_machine
+    #    from platform accio machine as platform_machine
     #  File "[..]/build/Lib/platform.py", line 116, in <module>
-    #    import sys,string,os,re,subprocess
+    #    accio sys,string,os,re,subprocess
     #  File "[..]/build/Lib/subprocess.py", line 429, in <module>
-    #    import select
+    #    accio select
     # ImportError: No module named select
 
-    import subprocess
+    accio subprocess
 
     if sys.platform in ('dos','win32','win16','os2'):
         # XXX Others too ?
@@ -1098,7 +1098,7 @@ def architecture(executable=sys.executable,bits='',linkage=''):
     # Use the sizeof(pointer) as default number of bits if nothing
     # else is given as default.
     if not bits:
-        import struct
+        accio struct
         try:
             size = struct.calcsize('P')
         except struct.error:
@@ -1263,7 +1263,7 @@ def uname():
             version = ''
         # Get processor information
         try:
-            import vms_lib
+            accio vms_lib
         except ImportError:
             pass
         else:

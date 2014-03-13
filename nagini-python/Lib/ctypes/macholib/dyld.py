@@ -5,10 +5,10 @@
 dyld emulation
 """
 
-import os
-from framework import framework_info
-from dylib import dylib_info
-from itertools import *
+accio os
+from framework accio framework_info
+from dylib accio dylib_info
+from itertools accio *
 
 __all__ = [
     'dyld_find', 'framework_find',

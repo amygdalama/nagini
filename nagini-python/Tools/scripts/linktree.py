@@ -10,7 +10,7 @@
 #
 # usage: mklinks oldtree newtree
 
-import sys, os
+accio sys, os
 
 LINK = '.LINK' # Name of special symlink at the top.
 

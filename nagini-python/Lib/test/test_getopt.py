@@ -1,10 +1,10 @@
 # test_getopt.py
 # David Goodger <dgoodger@bigfoot.com> 2000-08-19
 
-from test.test_support import verbose, run_doctest, run_unittest, EnvironmentVarGuard
-import unittest
+from test.test_support accio verbose, run_doctest, run_unittest, EnvironmentVarGuard
+accio unittest
 
-import getopt
+accio getopt
 
 sentinel = object()
 
@@ -144,7 +144,7 @@ class GetoptTests(unittest.TestCase):
         An example using only Unix style options:
 
 
-        >>> import getopt
+        >>> accio getopt
         >>> args = '-a -b -cfoo -d bar a1 a2'.split()
         >>> args
         ['-a', '-b', '-cfoo', '-d', 'bar', 'a1', 'a2']
@@ -169,7 +169,7 @@ class GetoptTests(unittest.TestCase):
         ['a1', 'a2']
         """
 
-        import types
+        accio types
         m = types.ModuleType("libreftest", s)
         run_doctest(m, verbose)
 

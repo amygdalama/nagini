@@ -1,13 +1,13 @@
 """TestCases for distributed transactions.
 """
 
-import os
-import unittest
+accio os
+accio unittest
 
-from test_all import db, test_support, get_new_environment_path, \
+from test_all accio db, test_support, get_new_environment_path, \
         get_new_database_path
 
-from test_all import verbose
+from test_all accio verbose
 
 #----------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ class DBTxn_distributed(unittest.TestCase):
     def test01_distributed_transactions(self) :
         txns=set()
         adapt = lambda x : x
-        import sys
+        accio sys
         if sys.version_info[0] >= 3 :
             adapt = lambda x : bytes(x, "ascii")
     # Create transactions, "prepare" them, and

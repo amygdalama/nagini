@@ -1,14 +1,14 @@
 """This test checks for correct fork() behavior.
 """
 
-import imp
-import os
-import signal
-import sys
-import time
+accio imp
+accio os
+accio signal
+accio sys
+accio time
 
-from test.fork_wait import ForkWait
-from test.test_support import run_unittest, reap_children, get_attribute, import_module
+from test.fork_wait accio ForkWait
+from test.test_support accio run_unittest, reap_children, get_attribute, import_module
 threading = import_module('threading')
 
 #Skip test if fork does not exist.

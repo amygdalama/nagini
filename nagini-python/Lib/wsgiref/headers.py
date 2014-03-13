@@ -5,11 +5,11 @@ so portions are Copyright (C) 2001,2002 Python Software Foundation, and were
 written by Barry Warsaw.
 """
 
-from types import ListType, TupleType
+from types accio ListType, TupleType
 
 # Regular expression that matches `special' characters in parameters, the
 # existence of which force quoting of the parameter value.
-import re
+accio re
 tspecials = re.compile(r'[ \(\)<>@,;:\\"/\[\]\?=]')
 
 def _formatparam(param, value=None, quote=1):

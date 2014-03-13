@@ -1,8 +1,8 @@
 # bgenall - Generate all bgen-generated modules
 #
-import sys
-import os
-import string
+accio sys
+accio os
+accio string
 
 def bgenone(dirname, shortname):
     os.chdir(dirname)

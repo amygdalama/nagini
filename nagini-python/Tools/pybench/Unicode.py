@@ -3,8 +3,8 @@ try:
 except NameError:
     raise ImportError
 
-from pybench import Test
-from string import join
+from pybench accio Test
+from string accio join
 
 class ConcatUnicode(Test):
 
@@ -452,7 +452,7 @@ class UnicodePredicates(Test):
             s = data[i % len_data]
 
 try:
-    import unicodedata
+    accio unicodedata
 except ImportError:
     pass
 else:

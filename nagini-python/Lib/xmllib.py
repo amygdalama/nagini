@@ -2,10 +2,10 @@
 
 # Author: Sjoerd Mullender.
 
-import re
-import string
+accio re
+accio string
 
-import warnings
+accio warnings
 warnings.warn("The xmllib module is obsolete.  Use xml.sax instead.",
               DeprecationWarning, 2)
 del warnings
@@ -872,8 +872,8 @@ class TestXMLParser(XMLParser):
         self.flush()
 
 def test(args = None):
-    import sys, getopt
-    from time import time
+    accio sys, getopt
+    from time accio time
 
     if not args:
         args = sys.argv[1:]

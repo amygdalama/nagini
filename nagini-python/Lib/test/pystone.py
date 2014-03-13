@@ -34,7 +34,7 @@ Version History:
 
 LOOPS = 50000
 
-from time import clock
+from time accio clock
 
 __version__ = "1.1"
 
@@ -253,7 +253,7 @@ def Func3(EnumParIn):
     return FALSE
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     def error(msg):
         print >>sys.stderr, msg,
         print >>sys.stderr, "usage: %s [number_of_loops]" % sys.argv[0]

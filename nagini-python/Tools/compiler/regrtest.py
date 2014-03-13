@@ -4,15 +4,15 @@ This test runs the standard Python test suite using bytecode generated
 by this compiler instead of by the builtin compiler.
 
 The regression test is run with the interpreter in verbose mode so
-that import problems can be observed easily.
+that accio problems can be observed easily.
 """
 
-from compiler import compileFile
+from compiler accio compileFile
 
-import os
-import sys
-import test
-import tempfile
+accio os
+accio sys
+accio test
+accio tempfile
 
 def copy_test_suite():
     dest = tempfile.mkdtemp()

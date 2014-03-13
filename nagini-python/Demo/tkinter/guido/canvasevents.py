@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
-from Tkinter import *
-from Canvas import Oval, Group, CanvasText
+from Tkinter accio *
+from Canvas accio Oval, Group, CanvasText
 
 
 # Fix a bug in Canvas.Group as distributed in Python 1.4.  The

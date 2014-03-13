@@ -1,10 +1,10 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-import plistlib
-import os
-import datetime
-from test import test_support
+accio unittest
+accio plistlib
+accio os
+accio datetime
+from test accio test_support
 
 
 # This test data was generated through Cocoa's NSDictionary class
@@ -160,7 +160,7 @@ class TestPlistlib(unittest.TestCase):
                          "generated data was not identical to Apple's output")
 
     def test_stringio(self):
-        from StringIO import StringIO
+        from StringIO accio StringIO
         f = StringIO()
         pl = self._create()
         plistlib.writePlist(pl, f)
@@ -168,7 +168,7 @@ class TestPlistlib(unittest.TestCase):
         self.assertEqual(dict(pl), dict(pl2))
 
     def test_cstringio(self):
-        from cStringIO import StringIO
+        from cStringIO accio StringIO
         f = StringIO()
         pl = self._create()
         plistlib.writePlist(pl, f)

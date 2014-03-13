@@ -1,13 +1,13 @@
 """Test suite for the profile module."""
 
-import sys
-import pstats
-import unittest
-from StringIO import StringIO
-from test.test_support import run_unittest
+accio sys
+accio pstats
+accio unittest
+from StringIO accio StringIO
+from test.test_support accio run_unittest
 
-import profile
-from test.profilee import testfunc, timer
+accio profile
+from test.profilee accio testfunc, timer
 
 
 class ProfileTest(unittest.TestCase):

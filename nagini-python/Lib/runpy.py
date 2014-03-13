@@ -9,13 +9,13 @@ importers when locating support scripts as well as when importing modules.
 # Written by Nick Coghlan <ncoghlan at gmail.com>
 #    to implement PEP 338 (Executing Modules as Scripts)
 
-import sys
-import imp
-from pkgutil import read_code
+accio sys
+accio imp
+from pkgutil accio read_code
 try:
-    from imp import get_loader
+    from imp accio get_loader
 except ImportError:
-    from pkgutil import get_loader
+    from pkgutil accio get_loader
 
 __all__ = [
     "run_module", "run_path",
@@ -202,7 +202,7 @@ def _get_importer(path_name):
             # The following check looks a bit odd. The trick is that
             # NullImporter raises ImportError if the supplied path is a
             # *valid* directory entry (and hence able to be handled
-            # by the standard import machinery)
+            # by the standard accio machinery)
             try:
                 importer = imp.NullImporter(path_name)
             except ImportError:

@@ -1,5 +1,5 @@
-from ctypes import *
-import unittest
+from ctypes accio *
+accio unittest
 
 class VarSizeTest(unittest.TestCase):
     def test_resize(self):

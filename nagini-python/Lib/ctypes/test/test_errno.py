@@ -1,9 +1,9 @@
-import unittest, os, errno
-from ctypes import *
-from ctypes.util import find_library
-from test import test_support
+accio unittest, os, errno
+from ctypes accio *
+from ctypes.util accio find_library
+from test accio test_support
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

@@ -6,11 +6,11 @@ running time.
 # Author: Collin Winter
 
 # Python imports
-import unittest
+accio unittest
 
 # Local imports
-from lib2to3 import refactor
-from . import support
+from lib2to3 accio refactor
+from . accio support
 
 
 class Test_all(support.TestCase):

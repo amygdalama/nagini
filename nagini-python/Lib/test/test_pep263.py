@@ -1,7 +1,7 @@
 # -*- coding: koi8-r -*-
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class PEP263Test(unittest.TestCase):
 
@@ -61,7 +61,7 @@ class PEP263Test(unittest.TestCase):
     def test_non_unicode_codec(self):
         with self.assertRaisesRegexp(SyntaxError,
                                      'codec did not return a unicode'):
-            from test import bad_coding3
+            from test accio bad_coding3
 
 
 def test_main():

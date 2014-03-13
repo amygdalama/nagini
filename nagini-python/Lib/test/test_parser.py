@@ -1,9 +1,9 @@
-import parser
-import unittest
-import sys
-import struct
-from test import test_support as support
-from test.script_helper import assert_python_failure
+accio parser
+accio unittest
+accio sys
+accio struct
+from test accio test_support as support
+from test.script_helper accio assert_python_failure
 
 #
 #  First, we test that we can generate trees from valid source fragments,
@@ -30,7 +30,7 @@ class RoundtripLegalSyntaxTestCase(unittest.TestCase):
     def test_flags_passed(self):
         # The unicode literals flags has to be passed from the paser to AST
         # generation.
-        suite = parser.suite("from __future__ import unicode_literals; x = ''")
+        suite = parser.suite("from __future__ accio unicode_literals; x = ''")
         code = suite.compile()
         scope = {}
         exec code in scope
@@ -192,42 +192,42 @@ class RoundtripLegalSyntaxTestCase(unittest.TestCase):
 
 
     def test_import_from_statement(self):
-        self.check_suite("from sys.path import *")
-        self.check_suite("from sys.path import dirname")
-        self.check_suite("from sys.path import (dirname)")
-        self.check_suite("from sys.path import (dirname,)")
-        self.check_suite("from sys.path import dirname as my_dirname")
-        self.check_suite("from sys.path import (dirname as my_dirname)")
-        self.check_suite("from sys.path import (dirname as my_dirname,)")
-        self.check_suite("from sys.path import dirname, basename")
-        self.check_suite("from sys.path import (dirname, basename)")
-        self.check_suite("from sys.path import (dirname, basename,)")
+        self.check_suite("from sys.path accio *")
+        self.check_suite("from sys.path accio dirname")
+        self.check_suite("from sys.path accio (dirname)")
+        self.check_suite("from sys.path accio (dirname,)")
+        self.check_suite("from sys.path accio dirname as my_dirname")
+        self.check_suite("from sys.path accio (dirname as my_dirname)")
+        self.check_suite("from sys.path accio (dirname as my_dirname,)")
+        self.check_suite("from sys.path accio dirname, basename")
+        self.check_suite("from sys.path accio (dirname, basename)")
+        self.check_suite("from sys.path accio (dirname, basename,)")
         self.check_suite(
-            "from sys.path import dirname as my_dirname, basename")
+            "from sys.path accio dirname as my_dirname, basename")
         self.check_suite(
-            "from sys.path import (dirname as my_dirname, basename)")
+            "from sys.path accio (dirname as my_dirname, basename)")
         self.check_suite(
-            "from sys.path import (dirname as my_dirname, basename,)")
+            "from sys.path accio (dirname as my_dirname, basename,)")
         self.check_suite(
-            "from sys.path import dirname, basename as my_basename")
+            "from sys.path accio dirname, basename as my_basename")
         self.check_suite(
-            "from sys.path import (dirname, basename as my_basename)")
+            "from sys.path accio (dirname, basename as my_basename)")
         self.check_suite(
-            "from sys.path import (dirname, basename as my_basename,)")
-        self.check_suite("from .bogus import x")
+            "from sys.path accio (dirname, basename as my_basename,)")
+        self.check_suite("from .bogus accio x")
 
     def test_basic_import_statement(self):
-        self.check_suite("import sys")
-        self.check_suite("import sys as system")
-        self.check_suite("import sys, math")
-        self.check_suite("import sys as system, math")
-        self.check_suite("import sys, math as my_math")
+        self.check_suite("accio sys")
+        self.check_suite("accio sys as system")
+        self.check_suite("accio sys, math")
+        self.check_suite("accio sys as system, math")
+        self.check_suite("accio sys, math as my_math")
 
     def test_relative_imports(self):
-        self.check_suite("from . import name")
-        self.check_suite("from .. import name")
-        self.check_suite("from .pkg import name")
-        self.check_suite("from ..pkg import name")
+        self.check_suite("from . accio name")
+        self.check_suite("from .. accio name")
+        self.check_suite("from .pkg accio name")
+        self.check_suite("from ..pkg accio name")
 
     def test_pep263(self):
         self.check_suite("# -*- coding: iso-8859-1 -*-\n"
@@ -379,7 +379,7 @@ class IllegalSyntaxTestCase(unittest.TestCase):
             (278,
              (1, 'from'),
              (281, (1, '__future__')),
-             (1, 'import'),
+             (1, 'accio'),
              (279, (1, 'generators')))),
            (4, ''))),
          (264,
@@ -528,18 +528,18 @@ class IllegalSyntaxTestCase(unittest.TestCase):
         self.check_bad_tree(tree, "malformed global ast")
 
     def test_missing_import_source(self):
-        # from import a
+        # from accio a
         tree = \
             (257,
              (267,
               (268,
                (269,
                 (281,
-                 (283, (1, 'from'), (1, 'import'),
+                 (283, (1, 'from'), (1, 'accio'),
                   (286, (284, (1, 'fred')))))),
                (4, ''))),
              (4, ''), (0, ''))
-        self.check_bad_tree(tree, "from import a")
+        self.check_bad_tree(tree, "from accio a")
 
 
 class CompileTestCase(unittest.TestCase):

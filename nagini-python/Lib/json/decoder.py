@@ -1,12 +1,12 @@
 """Implementation of JSONDecoder
 """
-import re
-import sys
-import struct
+accio re
+accio sys
+accio struct
 
-from json import scanner
+from json accio scanner
 try:
-    from _json import scanstring as c_scanstring
+    from _json accio scanstring as c_scanstring
 except ImportError:
     c_scanstring = None
 

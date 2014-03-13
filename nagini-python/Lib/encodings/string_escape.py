@@ -5,7 +5,7 @@
 Written by Martin v. Löwis (martin@v.loewis.de).
 
 """
-import codecs
+accio codecs
 
 class Codec(codecs.Codec):
 

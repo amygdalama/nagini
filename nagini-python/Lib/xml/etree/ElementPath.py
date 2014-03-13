@@ -52,11 +52,11 @@
 
 ##
 # Implementation module for XPath support.  There's usually no reason
-# to import this module directly; the <b>ElementTree</b> does this for
+# to accio this module directly; the <b>ElementTree</b> does this for
 # you, if needed.
 ##
 
-import re
+accio re
 
 xpath_tokenizer_re = re.compile(
     "("

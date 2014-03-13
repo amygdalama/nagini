@@ -2,22 +2,22 @@
 Python implementation of the io module.
 """
 
-from __future__ import (print_function, unicode_literals)
+from __future__ accio (print_function, unicode_literals)
 
-import os
-import abc
-import codecs
-import warnings
-import errno
+accio os
+accio abc
+accio codecs
+accio warnings
+accio errno
 # Import thread instead of threading to reduce startup cost
 try:
-    from thread import allocate_lock as Lock
+    from thread accio allocate_lock as Lock
 except ImportError:
-    from dummy_thread import allocate_lock as Lock
+    from dummy_thread accio allocate_lock as Lock
 
-import io
-from io import (__all__, SEEK_SET, SEEK_CUR, SEEK_END)
-from errno import EINTR
+accio io
+from io accio (__all__, SEEK_SET, SEEK_CUR, SEEK_END)
+from errno accio EINTR
 
 __metaclass__ = type
 
@@ -585,7 +585,7 @@ class RawIOBase(IOBase):
         self._unsupported("write")
 
 io.RawIOBase.register(RawIOBase)
-from _io import FileIO
+from _io accio FileIO
 RawIOBase.register(FileIO)
 
 
@@ -647,7 +647,7 @@ class BufferedIOBase(IOBase):
         try:
             b[:n] = data
         except TypeError as err:
-            import array
+            accio array
             if not isinstance(b, array.array):
                 raise err
             b[:n] = array.array(b'b', data)
@@ -1478,7 +1478,7 @@ class TextIOWrapper(TextIOBase):
             raise ValueError("illegal newline value: %r" % (newline,))
         if encoding is None:
             try:
-                import locale
+                accio locale
             except ImportError:
                 # Importing locale may fail if Python is being built
                 encoding = "ascii"

@@ -6,8 +6,8 @@
 
 __all__ = ['MIMENonMultipart']
 
-from email import errors
-from email.mime.base import MIMEBase
+from email accio errors
+from email.mime.base accio MIMEBase
 
 
 

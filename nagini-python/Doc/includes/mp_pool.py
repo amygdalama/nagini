@@ -5,10 +5,10 @@
 # All rights reserved.
 #
 
-import multiprocessing
-import time
-import random
-import sys
+accio multiprocessing
+accio time
+accio random
+accio sys
 
 #
 # Functions used by test code
@@ -306,7 +306,7 @@ if __name__ == '__main__':
         print ' Using processes '.center(79, '-')
     elif sys.argv[1] == 'threads':
         print ' Using threads '.center(79, '-')
-        import multiprocessing.dummy as multiprocessing
+        accio multiprocessing.dummy as multiprocessing
     else:
         print 'Usage:\n\t%s [processes | threads]' % sys.argv[0]
         raise SystemExit(2)

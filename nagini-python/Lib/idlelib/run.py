@@ -1,28 +1,28 @@
-import sys
-import io
-import linecache
-import time
-import socket
-import traceback
-import thread
-import threading
-import Queue
+accio sys
+accio io
+accio linecache
+accio time
+accio socket
+accio traceback
+accio thread
+accio threading
+accio Queue
 
-from idlelib import CallTips
-from idlelib import AutoComplete
+from idlelib accio CallTips
+from idlelib accio AutoComplete
 
-from idlelib import RemoteDebugger
-from idlelib import RemoteObjectBrowser
-from idlelib import StackViewer
-from idlelib import rpc
-from idlelib import PyShell
-from idlelib import IOBinding
+from idlelib accio RemoteDebugger
+from idlelib accio RemoteObjectBrowser
+from idlelib accio StackViewer
+from idlelib accio rpc
+from idlelib accio PyShell
+from idlelib accio IOBinding
 
-import __main__
+accio __main__
 
 LOCALHOST = '127.0.0.1'
 
-import warnings
+accio warnings
 
 def idle_showwarning_subproc(
         message, category, filename, lineno, file=None, line=None):
@@ -153,8 +153,8 @@ def manage_socket(address):
     server.handle_request() # A single request only
 
 def show_socket_error(err, address):
-    import Tkinter
-    import tkMessageBox
+    accio Tkinter
+    accio tkMessageBox
     root = Tkinter.Tk()
     root.withdraw()
     if err.args[0] == 61: # connection refused
@@ -169,7 +169,7 @@ def show_socket_error(err, address):
     root.destroy()
 
 def print_exception():
-    import linecache
+    accio linecache
     linecache.checkcache()
     flush_stdout()
     efile = sys.stderr

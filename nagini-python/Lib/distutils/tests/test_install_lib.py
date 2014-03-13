@@ -1,13 +1,13 @@
 """Tests for distutils.command.install_data."""
-import os
-import sys
-import unittest
+accio os
+accio sys
+accio unittest
 
-from distutils.command.install_lib import install_lib
-from distutils.extension import Extension
-from distutils.tests import support
-from distutils.errors import DistutilsOptionError
-from test.test_support import run_unittest
+from distutils.command.install_lib accio install_lib
+from distutils.extension accio Extension
+from distutils.tests accio support
+from distutils.errors accio DistutilsOptionError
+from test.test_support accio run_unittest
 
 class InstallLibTestCase(support.TempdirManager,
                          support.LoggingSilencer,

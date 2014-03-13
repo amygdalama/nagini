@@ -1,11 +1,11 @@
 """Interface to the compiler's internal symbol tables"""
 
-import _symtable
-from _symtable import (USE, DEF_GLOBAL, DEF_LOCAL, DEF_PARAM,
+accio _symtable
+from _symtable accio (USE, DEF_GLOBAL, DEF_LOCAL, DEF_PARAM,
      DEF_IMPORT, DEF_BOUND, OPT_IMPORT_STAR, OPT_EXEC, OPT_BARE_EXEC,
      SCOPE_OFF, SCOPE_MASK, FREE, GLOBAL_IMPLICIT, GLOBAL_EXPLICIT, CELL, LOCAL)
 
-import weakref
+accio weakref
 
 __all__ = ["symtable", "SymbolTable", "Class", "Function", "Symbol"]
 
@@ -88,7 +88,7 @@ class SymbolTable(object):
         return bool(self._table.optimized & (OPT_EXEC | OPT_BARE_EXEC))
 
     def has_import_star(self):
-        """Return true if the scope uses import *"""
+        """Return true if the scope uses accio *"""
         return bool(self._table.optimized & OPT_IMPORT_STAR)
 
     def get_identifiers(self):
@@ -231,7 +231,7 @@ class Symbol(object):
         return self.__namespaces[0]
 
 if __name__ == "__main__":
-    import os, sys
+    accio os, sys
     src = open(sys.argv[0]).read()
     mod = symtable(src, os.path.split(sys.argv[0])[1], "exec")
     for ident in mod.get_identifiers():

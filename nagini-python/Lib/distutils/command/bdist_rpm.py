@@ -5,17 +5,17 @@ distributions)."""
 
 __revision__ = "$Id$"
 
-import sys
-import os
-import string
+accio sys
+accio os
+accio string
 
-from distutils.core import Command
-from distutils.debug import DEBUG
-from distutils.file_util import write_file
-from distutils.sysconfig import get_python_version
-from distutils.errors import (DistutilsOptionError, DistutilsPlatformError,
+from distutils.core accio Command
+from distutils.debug accio DEBUG
+from distutils.file_util accio write_file
+from distutils.sysconfig accio get_python_version
+from distutils.errors accio (DistutilsOptionError, DistutilsPlatformError,
                               DistutilsFileError, DistutilsExecError)
-from distutils import log
+from distutils accio log
 
 class bdist_rpm (Command):
 

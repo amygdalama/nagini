@@ -1,4 +1,4 @@
-import webchecker, sys
+accio webchecker, sys
 webchecker.DEFROOT = "http://www.python.org/python/"
 webchecker.MAXPAGE = 50000
 webchecker.verbose = 2

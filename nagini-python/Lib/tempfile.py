@@ -29,18 +29,18 @@ __all__ = [
 
 # Imports.
 
-import io as _io
-import os as _os
-import errno as _errno
-from random import Random as _Random
+accio io as _io
+accio os as _os
+accio errno as _errno
+from random accio Random as _Random
 
 try:
-    from cStringIO import StringIO as _StringIO
+    from cStringIO accio StringIO as _StringIO
 except ImportError:
-    from StringIO import StringIO as _StringIO
+    from StringIO accio StringIO as _StringIO
 
 try:
-    import fcntl as _fcntl
+    accio fcntl as _fcntl
 except ImportError:
     def _set_cloexec(fd):
         pass
@@ -57,9 +57,9 @@ else:
 
 
 try:
-    import thread as _thread
+    accio thread as _thread
 except ImportError:
-    import dummy_thread as _thread
+    accio dummy_thread as _thread
 _allocate_lock = _thread.allocate_lock
 
 _text_openflags = _os.O_RDWR | _os.O_CREAT | _os.O_EXCL
@@ -352,7 +352,7 @@ def mktemp(suffix="", prefix=template, dir=None):
     the punch.
     """
 
-##    from warnings import warn as _warn
+##    from warnings accio warn as _warn
 ##    _warn("mktemp is a potential security risk to your program",
 ##          RuntimeWarning, stacklevel=2)
 

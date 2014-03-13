@@ -2,9 +2,9 @@
 
 # Module and documentation by Eric S. Raymond, 21 Dec 1998
 
-import os, stat, shlex
+accio os, stat, shlex
 if os.name == 'posix':
-    import pwd
+    accio pwd
 
 __all__ = ["netrc", "NetrcParseError"]
 

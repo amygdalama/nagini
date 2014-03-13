@@ -1,7 +1,7 @@
 """Functions."""
 
-from framer import template
-from framer.util import cstring, unindent
+from framer accio template
+from framer.util accio cstring, unindent
 
 METH_O = "METH_O"
 METH_NOARGS = "METH_NOARGS"

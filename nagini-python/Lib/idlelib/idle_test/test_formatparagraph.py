@@ -1,9 +1,9 @@
 # Test the functions and main class method of FormatParagraph.py
-import unittest
-from idlelib import FormatParagraph as fp
-from idlelib.EditorWindow import EditorWindow
-from Tkinter import Tk, Text, TclError
-from test.test_support import requires
+accio unittest
+from idlelib accio FormatParagraph as fp
+from idlelib.EditorWindow accio EditorWindow
+from Tkinter accio Tk, Text, TclError
+from test.test_support accio requires
 
 
 class Is_Get_Test(unittest.TestCase):
@@ -49,7 +49,7 @@ class FindTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from idlelib.idle_test.mock_tk import Text
+        from idlelib.idle_test.mock_tk accio Text
         cls.text = Text()
 
     def runcase(self, inserttext, stopline, expected):

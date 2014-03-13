@@ -2,14 +2,14 @@
 Package generated from /Applications/Utilities/Terminal.app
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the Terminal module is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import Text_Suite
-import Terminal_Suite
+accio Standard_Suite
+accio Text_Suite
+accio Terminal_Suite
 
 
 _code_to_module = {
@@ -26,9 +26,9 @@ _code_to_fullname = {
     'trmx' : ('Terminal.Terminal_Suite', 'Terminal_Suite'),
 }
 
-from Standard_Suite import *
-from Text_Suite import *
-from Terminal_Suite import *
+from Standard_Suite accio *
+from Text_Suite accio *
+from Terminal_Suite accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -42,7 +42,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

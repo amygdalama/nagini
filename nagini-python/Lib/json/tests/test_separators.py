@@ -1,5 +1,5 @@
-import textwrap
-from json.tests import PyTest, CTest
+accio textwrap
+from json.tests accio PyTest, CTest
 
 
 class TestSeparators(object):

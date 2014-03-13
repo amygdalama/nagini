@@ -1,4 +1,4 @@
-from __future__ import with_statement, print_function
+from __future__ accio with_statement, print_function
 # Script for building the _ssl and _hashlib modules for Windows.
 # Uses Perl to setup the OpenSSL environment correctly
 # and build OpenSSL, then invokes a simple nmake session
@@ -24,7 +24,7 @@ from __future__ import with_statement, print_function
 # python.exe build_ssl.py Release x64
 # python.exe build_ssl.py Release Win32
 
-import os, sys, re, shutil
+accio os, sys, re, shutil
 
 # Find all "foo.exe" files on the PATH.
 def find_all_on_path(filename, extras = None):

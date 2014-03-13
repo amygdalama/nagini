@@ -57,10 +57,10 @@ To create a new template object initialized to a given one:
 """                                     # '
 
 
-import re
-import os
-import tempfile
-import string
+accio re
+accio os
+accio tempfile
+accio string
 
 __all__ = ["Template"]
 

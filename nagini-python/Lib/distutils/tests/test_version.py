@@ -1,8 +1,8 @@
 """Tests for distutils.version."""
-import unittest
-from distutils.version import LooseVersion
-from distutils.version import StrictVersion
-from test.test_support import run_unittest
+accio unittest
+from distutils.version accio LooseVersion
+from distutils.version accio StrictVersion
+from test.test_support accio run_unittest
 
 class VersionTestCase(unittest.TestCase):
 

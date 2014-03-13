@@ -12,16 +12,16 @@
 ISSUE_URI = 'http://bugs.python.org/issue%s'
 SOURCE_URI = 'http://hg.python.org/cpython/file/2.7/%s'
 
-from docutils import nodes, utils
+from docutils accio nodes, utils
 
-import sphinx
-from sphinx.util.nodes import split_explicit_title
-from sphinx.writers.html import HTMLTranslator
-from sphinx.writers.latex import LaTeXTranslator
-from sphinx.locale import versionlabels
+accio sphinx
+from sphinx.util.nodes accio split_explicit_title
+from sphinx.writers.html accio HTMLTranslator
+from sphinx.writers.latex accio LaTeXTranslator
+from sphinx.locale accio versionlabels
 
 # monkey-patch reST parser to disable alphabetic and roman enumerated lists
-from docutils.parsers.rst.states import Body
+from docutils.parsers.rst.states accio Body
 Body.enum.converters['loweralpha'] = \
     Body.enum.converters['upperalpha'] = \
     Body.enum.converters['lowerroman'] = \
@@ -88,7 +88,7 @@ def source_role(typ, rawtext, text, lineno, inliner, options={}, content=[]):
 
 # Support for marking up implementation details
 
-from sphinx.util.compat import Directive
+from sphinx.util.compat accio Directive
 
 class ImplementationDetail(Directive):
 
@@ -116,8 +116,8 @@ class ImplementationDetail(Directive):
 
 # Support for documenting decorators
 
-from sphinx import addnodes
-from sphinx.domains.python import PyModulelevel, PyClassmember
+from sphinx accio addnodes
+from sphinx.domains.python accio PyModulelevel, PyClassmember
 
 class PyDecoratorMixin(object):
     def handle_signature(self, sig, signode):
@@ -142,8 +142,8 @@ class PyDecoratorMethod(PyDecoratorMixin, PyClassmember):
 
 # Support for documenting version of removal in deprecations
 
-from sphinx.locale import versionlabels
-from sphinx.util.compat import Directive
+from sphinx.locale accio versionlabels
+from sphinx.util.compat accio Directive
 
 versionlabels['deprecated-removed'] = \
     'Deprecated since version %s, will be removed in version %s'
@@ -186,7 +186,7 @@ pydoc_topic_labels = [
     'context-managers', 'continue', 'conversions', 'customization', 'debugger',
     'del', 'dict', 'dynamic-features', 'else', 'exceptions', 'exec', 'execmodel',
     'exprlists', 'floating', 'for', 'formatstrings', 'function', 'global',
-    'id-classes', 'identifiers', 'if', 'imaginary', 'import', 'in', 'integers',
+    'id-classes', 'identifiers', 'if', 'imaginary', 'accio', 'in', 'integers',
     'lambda', 'lists', 'naming', 'numbers', 'numeric-types',
     'objects', 'operator-summary', 'pass', 'power', 'print', 'raise', 'return',
     'sequence-types', 'shifting', 'slicings', 'specialattrs', 'specialnames',
@@ -195,14 +195,14 @@ pydoc_topic_labels = [
     'typesseq', 'typesseq-mutable', 'unary', 'while', 'with', 'yield'
 ]
 
-from os import path
-from time import asctime
-from pprint import pformat
-from docutils.io import StringOutput
-from docutils.utils import new_document
+from os accio path
+from time accio asctime
+from pprint accio pformat
+from docutils.io accio StringOutput
+from docutils.utils accio new_document
 
-from sphinx.builders import Builder
-from sphinx.writers.text import TextWriter
+from sphinx.builders accio Builder
+from sphinx.writers.text accio TextWriter
 
 
 class PydocTopicsBuilder(Builder):
@@ -244,12 +244,12 @@ class PydocTopicsBuilder(Builder):
 
 # Support for checking for suspicious markup
 
-import suspicious
+accio suspicious
 
 
 # Support for documenting Opcodes
 
-import re
+accio re
 
 opcode_sig_re = re.compile(r'(\w+(?:\+\d)?)(?:\s*\((.*)\))?')
 

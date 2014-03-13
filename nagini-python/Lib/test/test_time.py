@@ -1,7 +1,7 @@
-from test import test_support
-import time
-import unittest
-import sys
+from test accio test_support
+accio time
+accio unittest
+accio sys
 
 
 class TimeTestCase(unittest.TestCase):
@@ -137,7 +137,7 @@ class TimeTestCase(unittest.TestCase):
         "time module has no attribute tzset")
     def test_tzset(self):
 
-        from os import environ
+        from os accio environ
 
         # Epoch time of midnight Dec 25th 2002. Never DST in northern
         # hemisphere.

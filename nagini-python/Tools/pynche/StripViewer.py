@@ -24,8 +24,8 @@ select the color under the cursor while you drag it, but be forewarned that
 this can be slow.
 """
 
-from Tkinter import *
-import ColorDB
+from Tkinter accio *
+accio ColorDB
 
 # Load this script into the Tcl interpreter and call it in
 # StripWidget.set_color().  This is about as fast as it can be with the

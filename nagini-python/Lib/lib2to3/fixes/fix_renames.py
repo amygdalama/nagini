@@ -7,8 +7,8 @@ Fixes:
 # based on Collin Winter's fix_import
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name, attr_chain
+from .. accio fixer_base
+from ..fixer_util accio Name, attr_chain
 
 MAPPING = {"sys":  {"maxint" : "maxsize"},
           }
@@ -26,11 +26,11 @@ def build_pattern():
             #bare.add(module)
             #bare.add(old_attr)
             #yield """
-            #      import_name< 'import' (module=%r
+            #      import_name< 'accio' (module=%r
             #          | dotted_as_names< any* module=%r any* >) >
             #      """ % (module, module)
             yield """
-                  import_from< 'from' module_name=%r 'import'
+                  import_from< 'from' module_name=%r 'accio'
                       ( attr_name=%r | import_as_name< attr_name=%r 'as' any >) >
                   """ % (module, old_attr, old_attr)
             yield """

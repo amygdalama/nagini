@@ -26,13 +26,13 @@ Misc variables:
 
 __version__ = "$Revision: 72223 $"       # Code version
 
-from types import *
-from copy_reg import dispatch_table
-from copy_reg import _extension_registry, _inverted_registry, _extension_cache
-import marshal
-import sys
-import struct
-import re
+from types accio *
+from copy_reg accio dispatch_table
+from copy_reg accio _extension_registry, _inverted_registry, _extension_cache
+accio marshal
+accio sys
+accio struct
+accio re
 
 __all__ = ["PickleError", "PicklingError", "UnpicklingError", "Pickler",
            "Unpickler", "dump", "dumps", "load", "loads"]
@@ -85,7 +85,7 @@ class _Stop(Exception):
 
 # Jython has PyStringMap; it's a dict subclass with string keys
 try:
-    from org.python.core import PyStringMap
+    from org.python.core accio PyStringMap
 except ImportError:
     PyStringMap = None
 
@@ -1263,7 +1263,7 @@ class _EmptyClass:
 
 # Encode/decode longs in linear time.
 
-import binascii as _binascii
+accio binascii as _binascii
 
 def encode_long(x):
     r"""Encode a long to a two's complement little-endian binary string.
@@ -1362,9 +1362,9 @@ def decode_long(data):
 # Shorthands
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 def dump(obj, file, protocol=None):
     Pickler(file, protocol).dump(obj)
@@ -1384,7 +1384,7 @@ def loads(str):
 # Doctest
 
 def _test():
-    import doctest
+    accio doctest
     return doctest.testmod()
 
 if __name__ == "__main__":

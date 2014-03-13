@@ -1,12 +1,12 @@
 """A flow graph representation for Python bytecode"""
 
-import dis
-import types
-import sys
+accio dis
+accio types
+accio sys
 
-from compiler import misc
+from compiler accio misc
 from compiler.consts \
-     import CO_OPTIMIZED, CO_NEWLOCALS, CO_VARARGS, CO_VARKEYWORDS
+     accio CO_OPTIMIZED, CO_NEWLOCALS, CO_VARARGS, CO_VARKEYWORDS
 
 class FlowGraph:
     def __init__(self):

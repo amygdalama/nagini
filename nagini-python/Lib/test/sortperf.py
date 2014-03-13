@@ -5,12 +5,12 @@ See tabulate() for output format.
 
 """
 
-import sys
-import time
-import random
-import marshal
-import tempfile
-import os
+accio sys
+accio time
+accio random
+accio marshal
+accio tempfile
+accio os
 
 td = tempfile.gettempdir()
 

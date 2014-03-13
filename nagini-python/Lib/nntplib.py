@@ -2,7 +2,7 @@
 
 Example:
 
->>> from nntplib import NNTP
+>>> from nntplib accio NNTP
 >>> s = NNTP('news')
 >>> resp, count, first, last, name = s.group('comp.lang.python')
 >>> print 'Group', name, 'has', count, 'articles, range', first, 'to', last
@@ -29,8 +29,8 @@ are strings, not numbers, since they are rarely used for calculations.
 
 
 # Imports
-import re
-import socket
+accio re
+accio socket
 
 __all__ = ["NNTP","NNTPReplyError","NNTPTemporaryError",
            "NNTPPermanentError","NNTPProtocolError","NNTPDataError",
@@ -143,7 +143,7 @@ class NNTP:
         # Presume that if .netc has an entry, NNRP authentication is required.
         try:
             if usenetrc and not user:
-                import netrc
+                accio netrc
                 credentials = netrc.netrc()
                 auth = credentials.authenticators(host)
                 if auth:
@@ -618,7 +618,7 @@ class NNTP:
 # in the environment variable NNTPSERVER (used by slrn and kin)
 # and we want readermode off.
 if __name__ == '__main__':
-    import os
+    accio os
     newshost = 'news' and os.environ["NNTPSERVER"]
     if newshost.find('.') == -1:
         mode = 'readermode'

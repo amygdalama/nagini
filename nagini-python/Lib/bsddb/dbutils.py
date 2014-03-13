@@ -21,18 +21,18 @@
 
 
 #
-# import the time.sleep function in a namespace safe way to allow
-# "from bsddb.dbutils import *"
+# accio the time.sleep function in a namespace safe way to allow
+# "from bsddb.dbutils accio *"
 #
-from time import sleep as _sleep
+from time accio sleep as _sleep
 
-import sys
+accio sys
 absolute_import = (sys.version_info[0] >= 3)
 if absolute_import :
     # Because this syntaxis is not valid before Python 2.5
-    exec("from . import db")
+    exec("from . accio db")
 else :
-    import db
+    accio db
 
 # always sleep at least N seconds between retrys
 _deadlock_MinSleepTime = 1.0/128

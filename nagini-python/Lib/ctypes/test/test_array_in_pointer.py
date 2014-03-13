@@ -1,7 +1,7 @@
-import unittest
-from ctypes import *
-from binascii import hexlify
-import re
+accio unittest
+from ctypes accio *
+from binascii accio hexlify
+accio re
 
 def dump(obj):
     # helper function to dump memory contents in hex, with a hyphen

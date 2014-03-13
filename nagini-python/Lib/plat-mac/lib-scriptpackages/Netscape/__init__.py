@@ -2,18 +2,18 @@
 Package generated from /Volumes/Sap/Applications (Mac OS 9)/Netscape Communicator\xe2\x84\xa2 Folder/Netscape Communicator\xe2\x84\xa2
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the Netscape package is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import Standard_URL_suite
-import Mozilla_suite
-import Text
-import WorldWideWeb_suite
-import PowerPlant
-import Required_suite
+accio Standard_Suite
+accio Standard_URL_suite
+accio Mozilla_suite
+accio Text
+accio WorldWideWeb_suite
+accio PowerPlant
+accio Required_suite
 
 
 _code_to_module = {
@@ -38,13 +38,13 @@ _code_to_fullname = {
     'reqd' : ('Netscape.Required_suite', 'Required_suite'),
 }
 
-from Standard_Suite import *
-from Standard_URL_suite import *
-from Mozilla_suite import *
-from Text import *
-from WorldWideWeb_suite import *
-from PowerPlant import *
-from Required_suite import *
+from Standard_Suite accio *
+from Standard_URL_suite accio *
+from Mozilla_suite accio *
+from Text accio *
+from WorldWideWeb_suite accio *
+from PowerPlant accio *
+from Required_suite accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -58,7 +58,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

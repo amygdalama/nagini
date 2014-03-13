@@ -1,4 +1,4 @@
-import sys
-from .main import main
+accio sys
+from .main accio main
 
 sys.exit(main("lib2to3.fixes"))

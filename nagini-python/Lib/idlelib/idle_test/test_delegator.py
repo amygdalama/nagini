@@ -1,5 +1,5 @@
-import unittest
-from idlelib.Delegator import Delegator
+accio unittest
+from idlelib.Delegator accio Delegator
 
 class DelegatorTest(unittest.TestCase):
 

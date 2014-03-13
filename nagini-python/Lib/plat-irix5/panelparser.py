@@ -4,7 +4,7 @@
 # (which is written in Scheme so it can't help writing S-expressions).
 #
 # See notes at end of file.
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the panelparser module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 

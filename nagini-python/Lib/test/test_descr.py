@@ -1,12 +1,12 @@
-import __builtin__
-import gc
-import sys
-import types
-import unittest
-import weakref
+accio __builtin__
+accio gc
+accio sys
+accio types
+accio unittest
+accio weakref
 
-from copy import deepcopy
-from test import test_support
+from copy accio deepcopy
+from test accio test_support
 
 
 class OperatorsTest(unittest.TestCase):
@@ -303,10 +303,10 @@ class OperatorsTest(unittest.TestCase):
     @test_support.impl_detail("the module 'xxsubtype' is internal")
     def test_spam_lists(self):
         # Testing spamlist operations...
-        import copy, xxsubtype as spam
+        accio copy, xxsubtype as spam
 
         def spamlist(l, memo=None):
-            import xxsubtype as spam
+            accio xxsubtype as spam
             return spam.spamlist(l)
 
         # This is an ugly hack:
@@ -347,9 +347,9 @@ class OperatorsTest(unittest.TestCase):
     @test_support.impl_detail("the module 'xxsubtype' is internal")
     def test_spam_dicts(self):
         # Testing spamdict operations...
-        import copy, xxsubtype as spam
+        accio copy, xxsubtype as spam
         def spamdict(d, memo=None):
-            import xxsubtype as spam
+            accio xxsubtype as spam
             sd = spam.spamdict()
             for k, v in d.items():
                 sd[k] = v
@@ -1209,7 +1209,7 @@ order (MRO) for bases """
     def test_slots_descriptor(self):
         # Issue2115: slot descriptors did not correctly check
         # the type of the given object
-        import abc
+        accio abc
         class MyABC:
             __metaclass__ = abc.ABCMeta
             __slots__ = "a"
@@ -1417,7 +1417,7 @@ order (MRO) for bases """
     @test_support.impl_detail("the module 'xxsubtype' is internal")
     def test_classmethods_in_c(self):
         # Testing C-based class methods...
-        import xxsubtype as spam
+        accio xxsubtype as spam
         a = (1, 2, 3)
         d = {'abc': 123}
         x, a1, d1 = spam.spamlist.classmeth(*a, **d)
@@ -1465,7 +1465,7 @@ order (MRO) for bases """
     @test_support.impl_detail("the module 'xxsubtype' is internal")
     def test_staticmethods_in_c(self):
         # Testing C-based static methods...
-        import xxsubtype as spam
+        accio xxsubtype as spam
         a = (1, 2, 3)
         d = {"abc": 123}
         x, a1, d1 = spam.spamlist.staticmeth(*a, **d)
@@ -1988,7 +1988,7 @@ order (MRO) for bases """
 
     def test_weakrefs(self):
         # Testing weak references...
-        import weakref
+        accio weakref
         class C(object):
             pass
         c = C()
@@ -2096,7 +2096,7 @@ order (MRO) for bases """
     def test_testcapi_no_segfault(self):
         # this segfaulted in 2.5b2
         try:
-            import _testcapi
+            accio _testcapi
         except ImportError:
             pass
         else:
@@ -3244,7 +3244,7 @@ order (MRO) for bases """
 
     def test_pickles(self):
         # Testing pickling and copying new-style classes and objects...
-        import pickle, cPickle
+        accio pickle, cPickle
 
         def sorteditems(d):
             L = d.items()
@@ -3331,7 +3331,7 @@ order (MRO) for bases """
                 self.assertEqual(u.foo, v.foo)
 
         # Testing copy.deepcopy()
-        import copy
+        accio copy
         for cls in C, C1, C2:
             cls2 = copy.deepcopy(cls)
             self.assertIs(cls2, cls)
@@ -3348,7 +3348,7 @@ order (MRO) for bases """
 
     def test_pickle_slots(self):
         # Testing pickling of classes with __slots__ ...
-        import pickle, cPickle
+        accio pickle, cPickle
         # Pickling of classes with __slots__ but without __getstate__ should fail
         global B, C, D, E
         class B(object):
@@ -3544,7 +3544,7 @@ order (MRO) for bases """
     def test_buffer_inheritance(self):
         # Testing that buffer interface is inherited ...
 
-        import binascii
+        accio binascii
         # SF bug [#470040] ParseTuple t# vs subclasses.
 
         class MyStr(str):
@@ -3574,8 +3574,8 @@ order (MRO) for bases """
 
     def test_str_of_str_subclass(self):
         # Testing __str__ defined in subclass of str ...
-        import binascii
-        import cStringIO
+        accio binascii
+        accio cStringIO
 
         class octetstring(str):
             def __str__(self):
@@ -3720,7 +3720,7 @@ order (MRO) for bases """
 
     def test_unintialized_modules(self):
         # Testing uninitialized module objects...
-        from types import ModuleType as M
+        from types accio ModuleType as M
         m = M.__new__(M)
         str(m)
         self.assertNotHasAttr(m, "__name__")
@@ -3779,7 +3779,7 @@ order (MRO) for bases """
 
     def test_copy_setstate(self):
         # Testing that copy.*copy() correctly uses __setstate__...
-        import copy
+        accio copy
         class C(object):
             def __init__(self, foo=None):
                 self.foo = foo
@@ -4342,7 +4342,7 @@ order (MRO) for bases """
     def test_weakref_segfault(self):
         # Testing weakref segfault...
         # SF 742911
-        import weakref
+        accio weakref
 
         class Provoker:
             def __init__(self, referrent):
@@ -4455,7 +4455,7 @@ order (MRO) for bases """
     def test_not_implemented(self):
         # Testing NotImplemented...
         # all binary methods should be able to return a NotImplemented
-        import operator
+        accio operator
 
         def specialmethod(self, other):
             return NotImplemented

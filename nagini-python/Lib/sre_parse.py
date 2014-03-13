@@ -12,9 +12,9 @@
 
 # XXX: show string offset and offending character for all errors
 
-import sys
+accio sys
 
-from sre_constants import *
+from sre_constants accio *
 
 SPECIAL_CHARS = ".\\[{()*+?^$|"
 REPEAT_CHARS = "*+?{"

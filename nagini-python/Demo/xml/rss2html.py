@@ -3,10 +3,10 @@ A demo that reads in an RSS XML document and emits an HTML file containing
 a list of the individual items in the feed.
 """
 
-import sys
-import codecs
+accio sys
+accio codecs
 
-from xml.sax import make_parser, handler
+from xml.sax accio make_parser, handler
 
 # --- Templates
 

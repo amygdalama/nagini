@@ -18,8 +18,8 @@ Actions are bound to events by resources (e.g. keyword argument
 command) or with the method bind.
 
 Example (Hello, World):
-import Tkinter
-from Tkconstants import *
+accio Tkinter
+from Tkconstants accio *
 tk = Tkinter.Tk()
 frame = Tkinter.Frame(tk, relief=RIDGE, borderwidth=2)
 frame.pack(fill=BOTH,expand=1)
@@ -32,16 +32,16 @@ tk.mainloop()
 
 __version__ = "$Revision: 81008 $"
 
-import sys
+accio sys
 if sys.platform == "win32":
     # Attempt to configure Tcl/Tk without requiring PATH
-    import FixTk
-import _tkinter # If this fails your Python may not be configured for Tk
+    accio FixTk
+accio _tkinter # If this fails your Python may not be configured for Tk
 tkinter = _tkinter # b/w compat for export
 TclError = _tkinter.TclError
-from types import *
-from Tkconstants import *
-import re
+from types accio *
+from Tkconstants accio *
+accio re
 
 wantobjects = 1
 
@@ -1232,7 +1232,7 @@ class Misc:
         return (e,)
     def _report_exception(self):
         """Internal function."""
-        import sys
+        accio sys
         exc, val, tb = sys.exc_type, sys.exc_value, sys.exc_traceback
         root = self._root()
         root.report_callback_exception(exc, val, tb)
@@ -1755,7 +1755,7 @@ class Tk(Misc, Wm):
         # ensure that self.tk is always _something_.
         self.tk = None
         if baseName is None:
-            import os
+            accio os
             baseName = os.path.basename(sys.argv[0])
             baseName, ext = os.path.splitext(baseName)
             if ext not in ('.py', '.pyc', '.pyo'):
@@ -1815,7 +1815,7 @@ class Tk(Misc, Wm):
         """Internal function. It reads BASENAME.tcl and CLASSNAME.tcl into
         the Tcl Interpreter and calls execfile on BASENAME.py and CLASSNAME.py if
         such a file exists in the home directory."""
-        import os
+        accio os
         if 'HOME' in os.environ: home = os.environ['HOME']
         else: home = os.curdir
         class_tcl = os.path.join(home, '.%s.tcl' % className)
@@ -1823,7 +1823,7 @@ class Tk(Misc, Wm):
         base_tcl = os.path.join(home, '.%s.tcl' % baseName)
         base_py = os.path.join(home, '.%s.py' % baseName)
         dir = {'self': self}
-        exec 'from Tkinter import *' in dir
+        exec 'from Tkinter accio *' in dir
         if os.path.isfile(class_tcl):
             self.tk.call('source', class_tcl)
         if os.path.isfile(class_py):
@@ -1834,7 +1834,7 @@ class Tk(Misc, Wm):
             execfile(base_py, dir)
     def report_callback_exception(self, exc, val, tb):
         """Internal function. It reports exception on sys.stderr."""
-        import traceback, sys
+        accio traceback, sys
         sys.stderr.write("Exception in Tkinter callback\n")
         sys.last_type = exc
         sys.last_value = val

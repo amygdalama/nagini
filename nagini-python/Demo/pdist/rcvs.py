@@ -32,12 +32,12 @@
 # - Authenticated RPC?
 
 
-from cvslib import CVS, File
-import md5
-import os
-import string
-import sys
-from cmdfw import CommandFrameWork
+from cvslib accio CVS, File
+accio md5
+accio os
+accio string
+accio sys
+from cmdfw accio CommandFrameWork
 
 
 DEF_LOCAL = 1                           # Default -l
@@ -171,7 +171,7 @@ class MyFile(File):
         sum = md5.new(data).digest()
         if self.lsum == sum:
             return
-        import tempfile
+        accio tempfile
         tf = tempfile.NamedTemporaryFile()
         tf.write(data)
         tf.flush()
@@ -392,7 +392,7 @@ class rcvs(CommandFrameWork):
         self.opts = opts
 
     def ready(self):
-        import rcsclient
+        accio rcsclient
         self.proxy = rcsclient.openrcsclient(self.opts)
         self.cvs.setproxy(self.proxy)
         self.cvs.getentries()

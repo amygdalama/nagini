@@ -7,7 +7,7 @@
 class Dbm:
 
     def __init__(self, filename, mode, perm):
-        import dbm
+        accio dbm
         self.db = dbm.open(filename, mode, perm)
 
     def __repr__(self):

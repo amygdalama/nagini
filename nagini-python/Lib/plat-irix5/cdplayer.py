@@ -3,7 +3,7 @@
 #
 # Usage is as follows:
 #
-# import readcd
+# accio readcd
 # r = readcd.Readcd()
 # c = Cdplayer(r.gettrackinfo())
 #
@@ -13,7 +13,7 @@
 # It is also possible to set the above mentioned variables to new values.
 # You can then use c.write() to write out the changed values to the
 # .cdplayerrc file.
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the cdplayer module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
@@ -21,7 +21,7 @@ cdplayerrc = '.cdplayerrc'
 
 class Cdplayer:
     def __init__(self, tracklist):
-        import string
+        accio string
         self.artist = ''
         self.title = ''
         if type(tracklist) == type(''):
@@ -38,11 +38,11 @@ class Cdplayer:
             self.id = self.id + string.zfill(length[0], 2) + \
                       string.zfill(length[1], 2)
         try:
-            import posix
+            accio posix
             f = open(posix.environ['HOME'] + '/' + cdplayerrc, 'r')
         except IOError:
             return
-        import re
+        accio re
         reg = re.compile(r'^([^:]*):\t(.*)')
         s = self.id + '.'
         l = len(s)
@@ -67,7 +67,7 @@ class Cdplayer:
         f.close()
 
     def write(self):
-        import posix
+        accio posix
         filename = posix.environ['HOME'] + '/' + cdplayerrc
         try:
             old = open(filename, 'r')

@@ -1,7 +1,7 @@
 
-import unittest
-from test import test_support
-import textwrap
+accio unittest
+from test accio test_support
+accio textwrap
 
 class ComplexArgsTestCase(unittest.TestCase):
 

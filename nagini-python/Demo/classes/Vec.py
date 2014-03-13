@@ -62,7 +62,7 @@ class Vec:
 
 
 def test():
-    import doctest
+    accio doctest
     doctest.testmod()
 
 test()

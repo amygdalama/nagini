@@ -6,20 +6,20 @@ parts of the grammar we've changed, we also make sure we can parse the
 test_grammar.py files from both Python 2 and Python 3.
 """
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
 # Testing imports
-from . import support
-from .support import driver, test_dir
+from . accio support
+from .support accio driver, test_dir
 
 # Python imports
-import os
-import sys
+accio os
+accio sys
 
 # Local imports
-from lib2to3.pgen2 import tokenize
-from ..pgen2.parse import ParseError
-from lib2to3.pygram import python_symbols as syms
+from lib2to3.pgen2 accio tokenize
+from ..pgen2.parse accio ParseError
+from lib2to3.pygram accio python_symbols as syms
 
 
 class TestDriver(support.TestCase):

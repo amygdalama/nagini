@@ -5,10 +5,10 @@ optional port number (defaults to 8000), then tries to serve files.
 Mime types are guessed from the file names, 404 errors are raised
 if the file is not found. Used for the make serve target in Doc.
 '''
-import sys
-import os
-import mimetypes
-from wsgiref import simple_server, util
+accio sys
+accio os
+accio mimetypes
+from wsgiref accio simple_server, util
 
 def app(environ, respond):
 

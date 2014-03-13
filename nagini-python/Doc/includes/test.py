@@ -2,7 +2,7 @@
 
 Noddy 1:
 
->>> import noddy
+>>> accio noddy
 >>> n1 = noddy.Noddy()
 >>> n2 = noddy.Noddy()
 >>> del n1
@@ -11,7 +11,7 @@ Noddy 1:
 
 Noddy 2
 
->>> import noddy2
+>>> accio noddy2
 >>> n1 = noddy2.Noddy('jim', 'fulton', 42)
 >>> n1.first
 'jim'
@@ -81,7 +81,7 @@ TypeError: an integer is required
 
 Noddy 3
 
->>> import noddy3
+>>> accio noddy3
 >>> n1 = noddy3.Noddy('jim', 'fulton', 42)
 >>> n1 = noddy3.Noddy('jim', 'fulton', 42)
 >>> n1.name()
@@ -109,7 +109,7 @@ TypeError: an integer is required
 
 Noddy 4
 
->>> import noddy4
+>>> accio noddy4
 >>> n1 = noddy4.Noddy('jim', 'fulton', 42)
 >>> n1.first
 'jim'
@@ -180,7 +180,7 @@ TypeError: an integer is required
 
 Test cyclic gc(?)
 
->>> import gc
+>>> accio gc
 >>> gc.disable()
 
 >>> x = []
@@ -201,13 +201,13 @@ Test cyclic gc(?)
 >>> gc.enable()
 """
 
-import os
-import sys
-from distutils.util import get_platform
+accio os
+accio sys
+from distutils.util accio get_platform
 PLAT_SPEC = "%s-%s" % (get_platform(), sys.version[0:3])
 src = os.path.join("build", "lib.%s" % PLAT_SPEC)
 sys.path.append(src)
 
 if __name__ == "__main__":
-    import doctest, __main__
+    accio doctest, __main__
     doctest.testmod(__main__)

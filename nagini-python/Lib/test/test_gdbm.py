@@ -1,6 +1,6 @@
-import unittest
-import os
-from test.test_support import TESTFN, run_unittest, unlink, import_module
+accio unittest
+accio os
+from test.test_support accio TESTFN, run_unittest, unlink, import_module
 gdbm = import_module('gdbm')
 
 

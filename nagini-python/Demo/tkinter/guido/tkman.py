@@ -2,12 +2,12 @@
 
 # Tk man page browser -- currently only shows the Tcl/Tk man pages
 
-import sys
-import os
-import string
-import re
-from Tkinter import *
-from ManPage import ManPage
+accio sys
+accio os
+accio string
+accio re
+from Tkinter accio *
+from ManPage accio ManPage
 
 MANNDIRLIST = ['/depot/sundry/man/mann','/usr/local/man/mann']
 MAN3DIRLIST = ['/depot/sundry/man/man3','/usr/local/man/man3']

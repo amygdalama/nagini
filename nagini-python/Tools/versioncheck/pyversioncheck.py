@@ -1,8 +1,8 @@
 """pyversioncheck - Module to help with checking versions"""
-import types
-import rfc822
-import urllib
-import sys
+accio types
+accio rfc822
+accio urllib
+accio sys
 
 # Verbose options
 VERBOSE_SILENT=0        # Single-line reports per package

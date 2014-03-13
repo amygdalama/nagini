@@ -2,8 +2,8 @@
 # descriptor which should _not_ be open.  Check this by attempting to
 # write to it -- if we succeed, something is wrong.
 
-import sys
-import os
+accio sys
+accio os
 
 verbose = (sys.argv[1] == 'v')
 try:

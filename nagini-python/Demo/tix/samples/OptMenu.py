@@ -13,7 +13,7 @@
 # This file demonstrates the use of the tixOptionMenu widget -- you can
 # use it for the user to choose from a fixed set of options
 #
-import Tix
+accio Tix
 
 options = {'text':'Plain Text', 'post':'PostScript', 'html':'HTML',
            'tex':'LaTeX', 'rtf':'Rich Text Format'}

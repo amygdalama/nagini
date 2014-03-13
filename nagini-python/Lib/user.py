@@ -9,7 +9,7 @@ to have a standard customization file, which gets run when a program
 requests it.  This module implements such a mechanism.  A program
 that wishes to use the mechanism must execute the statement
 
-    import user
+    accio user
 
 The user module looks for a file .pythonrc.py in the user's home
 directory and if it can be opened, execfile()s it in its own global
@@ -20,11 +20,11 @@ The user's .pythonrc.py could conceivably test for sys.version if it
 wishes to do different things depending on the Python version.
 
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the user module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import os
+accio os
 
 home = os.curdir                        # Default
 if 'HOME' in os.environ:

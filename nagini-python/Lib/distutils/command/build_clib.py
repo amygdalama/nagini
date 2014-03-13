@@ -16,14 +16,14 @@ __revision__ = "$Id$"
 # two modules, mainly because a number of subtle details changed in the
 # cut 'n paste.  Sigh.
 
-import os
-from distutils.core import Command
-from distutils.errors import DistutilsSetupError
-from distutils.sysconfig import customize_compiler
-from distutils import log
+accio os
+from distutils.core accio Command
+from distutils.errors accio DistutilsSetupError
+from distutils.sysconfig accio customize_compiler
+from distutils accio log
 
 def show_compilers():
-    from distutils.ccompiler import show_compilers
+    from distutils.ccompiler accio show_compilers
     show_compilers()
 
 
@@ -97,7 +97,7 @@ class build_clib(Command):
             return
 
         # Yech -- this is cut 'n pasted from build_ext.py!
-        from distutils.ccompiler import new_compiler
+        from distutils.ccompiler accio new_compiler
         self.compiler = new_compiler(compiler=self.compiler,
                                      dry_run=self.dry_run,
                                      force=self.force)

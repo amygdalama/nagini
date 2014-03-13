@@ -14,10 +14,10 @@ MYGROUP_4 = '225.0.0.250'
 MYGROUP_6 = 'ff15:7079:7468:6f6e:6465:6d6f:6d63:6173'
 MYTTL = 1 # Increase to reach other networks
 
-import time
-import struct
-import socket
-import sys
+accio time
+accio struct
+accio socket
+accio sys
 
 def main():
     group = MYGROUP_6 if "-6" in sys.argv[1:] else MYGROUP_4

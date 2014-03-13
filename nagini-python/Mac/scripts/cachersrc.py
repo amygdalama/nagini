@@ -4,10 +4,10 @@
 # These are needed on OSX: the .rsrc files are in reality AppleSingle-encoded
 # files. We decode the resources into a datafork-based resource file.
 
-import macresource
-import os
-import sys
-import getopt
+accio macresource
+accio os
+accio sys
+accio getopt
 
 class NoArgsError(Exception):
     pass

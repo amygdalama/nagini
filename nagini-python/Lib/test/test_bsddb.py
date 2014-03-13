@@ -1,9 +1,9 @@
 """Test script for the bsddb C module by Roger E. Masse
    Adapted to unittest format and expanded scope by Raymond Hettinger
 """
-import os, sys
-import unittest
-from test import test_support
+accio os, sys
+accio unittest
+from test accio test_support
 
 # Skip test if _bsddb wasn't built.
 test_support.import_module('_bsddb')

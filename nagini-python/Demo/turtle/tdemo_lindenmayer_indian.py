@@ -25,7 +25,7 @@ Cultures
 # Mini Lindenmayer tool
 ###############################
 
-from turtle import *
+from turtle accio *
 
 def replace( seq, replacementRules, n ):
     for i in range(n):
@@ -76,7 +76,7 @@ def main():
     down()
     draw(drawing, snake_rules)
 
-    from time import sleep
+    from time accio sleep
     sleep(3)
 
     ################################
@@ -88,7 +88,7 @@ def main():
         circle(10,90)
 
     def B():
-        from math import sqrt
+        from math accio sqrt
         color("black")
         l = 5/sqrt(2)
         forward(l)

@@ -70,16 +70,16 @@ __version__ = "0.3"
 
 __all__ = ["HTTPServer", "BaseHTTPRequestHandler"]
 
-import sys
-import time
-import socket # For gethostbyaddr()
-from warnings import filterwarnings, catch_warnings
+accio sys
+accio time
+accio socket # For gethostbyaddr()
+from warnings accio filterwarnings, catch_warnings
 with catch_warnings():
     if sys.py3kwarning:
         filterwarnings("ignore", ".*mimetools has been removed",
                         DeprecationWarning)
-    import mimetools
-import SocketServer
+    accio mimetools
+accio SocketServer
 
 # Default error message template
 DEFAULT_ERROR_MESSAGE = """\

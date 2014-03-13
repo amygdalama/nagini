@@ -1,11 +1,11 @@
 """Statistics analyzer for HotShot."""
 
-import profile
-import pstats
+accio profile
+accio pstats
 
-import hotshot.log
+accio hotshot.log
 
-from hotshot.log import ENTER, EXIT
+from hotshot.log accio ENTER, EXIT
 
 
 def load(filename):

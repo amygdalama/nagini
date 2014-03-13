@@ -1,7 +1,7 @@
-import unittest
-from test import test_support
-import os
-import subprocess
+accio unittest
+from test accio test_support
+accio os
+accio subprocess
 
 MacOS = test_support.import_module('MacOS')
 

@@ -1,19 +1,19 @@
 """Test largefile support on system where this makes sense.
 """
 
-from __future__ import print_function
+from __future__ accio print_function
 
-import os
-import stat
-import sys
-import unittest
-from test.test_support import run_unittest, TESTFN, verbose, requires, \
+accio os
+accio stat
+accio sys
+accio unittest
+from test.test_support accio run_unittest, TESTFN, verbose, requires, \
                               unlink
-import io  # C implementation of io
-import _pyio as pyio # Python implementation of io
+accio io  # C implementation of io
+accio _pyio as pyio # Python implementation of io
 
 try:
-    import signal
+    accio signal
     # The default handler for SIGXFSZ is to abort the process.
     # By ignoring it, system calls exceeding the file size resource
     # limit will raise IOError instead of crashing the interpreter.

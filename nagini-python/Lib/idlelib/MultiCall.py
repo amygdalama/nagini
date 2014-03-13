@@ -29,11 +29,11 @@ The order by which events are called is defined by these rules:
 Each function will be called at most once for each event.
 """
 
-import sys
-import string
-import re
-import Tkinter
-from idlelib import macosxSupport
+accio sys
+accio string
+accio re
+accio Tkinter
+from idlelib accio macosxSupport
 
 # the event type constants, which define the meaning of mc_type
 MC_KEYPRESS=0; MC_KEYRELEASE=1; MC_BUTTONPRESS=2; MC_BUTTONRELEASE=3;

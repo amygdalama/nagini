@@ -18,27 +18,27 @@ This module uses DLOG resources 260 and on.
 Based upon STDWIN dialogs with the same names and functions.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the EasyDialogs module is removed.", stacklevel=2)
 
-from Carbon.Dlg import GetNewDialog, SetDialogItemText, GetDialogItemText, ModalDialog
-from Carbon import Qd
-from Carbon import QuickDraw
-from Carbon import Dialogs
-from Carbon import Windows
-from Carbon import Dlg,Win,Evt,Events # sdm7g
-from Carbon import Ctl
-from Carbon import Controls
-from Carbon import Menu
-from Carbon import AE
-import Nav
-import MacOS
-import string
-from Carbon.ControlAccessor import *    # Also import Controls constants
-import Carbon.File
-import macresource
-import os
-import sys
+from Carbon.Dlg accio GetNewDialog, SetDialogItemText, GetDialogItemText, ModalDialog
+from Carbon accio Qd
+from Carbon accio QuickDraw
+from Carbon accio Dialogs
+from Carbon accio Windows
+from Carbon accio Dlg,Win,Evt,Events # sdm7g
+from Carbon accio Ctl
+from Carbon accio Controls
+from Carbon accio Menu
+from Carbon accio AE
+accio Nav
+accio MacOS
+accio string
+from Carbon.ControlAccessor accio *    # Also accio Controls constants
+accio Carbon.File
+accio macresource
+accio os
+accio sys
 
 __all__ = ['Message', 'AskString', 'AskPassword', 'AskYesNoCancel',
     'GetArgv', 'AskFileForOpen', 'AskFileForSave', 'AskFolder',
@@ -580,9 +580,9 @@ def GetArgv(optionlist=None, commandlist=None, addoldfile=1, addnewfile=1, addfo
         del d
 
 def _process_Nav_args(dftflags, **args):
-    import Carbon.AppleEvents
-    import Carbon.AE
-    import Carbon.File
+    accio Carbon.AppleEvents
+    accio Carbon.AE
+    accio Carbon.File
     for k in args.keys():
         if args[k] is None:
             del args[k]
@@ -792,7 +792,7 @@ def AskFolder(
 
 
 def test():
-    import time
+    accio time
 
     Message("Testing EasyDialogs.")
     optionlist = (('v', 'Verbose'), ('verbose', 'Verbose as long option'),

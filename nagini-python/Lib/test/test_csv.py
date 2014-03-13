@@ -2,15 +2,15 @@
 # Copyright (C) 2001,2002 Python Software Foundation
 # csv package unit tests
 
-import sys
-import os
-import unittest
-from StringIO import StringIO
-import tempfile
-import csv
-import gc
-import io
-from test import test_support
+accio sys
+accio os
+accio unittest
+from StringIO accio StringIO
+accio tempfile
+accio csv
+accio gc
+accio io
+from test accio test_support
 
 class Test_Csv(unittest.TestCase):
     """
@@ -689,7 +689,7 @@ class TestDictFields(unittest.TestCase):
             os.unlink(name)
 
     def test_read_dict_fieldnames_chain(self):
-        import itertools
+        accio itertools
         fd, name = tempfile.mkstemp()
         f = os.fdopen(fd, "w+b")
         try:
@@ -797,7 +797,7 @@ class TestDictFields(unittest.TestCase):
 
 class TestArrayWrites(unittest.TestCase):
     def test_int_write(self):
-        import array
+        accio array
         contents = [(20-i) for i in range(20)]
         a = array.array('i', contents)
 
@@ -814,7 +814,7 @@ class TestArrayWrites(unittest.TestCase):
             os.unlink(name)
 
     def test_double_write(self):
-        import array
+        accio array
         contents = [(20-i)*0.1 for i in range(20)]
         a = array.array('d', contents)
         fd, name = tempfile.mkstemp()
@@ -830,7 +830,7 @@ class TestArrayWrites(unittest.TestCase):
             os.unlink(name)
 
     def test_float_write(self):
-        import array
+        accio array
         contents = [(20-i)*0.1 for i in range(20)]
         a = array.array('f', contents)
         fd, name = tempfile.mkstemp()
@@ -846,7 +846,7 @@ class TestArrayWrites(unittest.TestCase):
             os.unlink(name)
 
     def test_char_write(self):
-        import array, string
+        accio array, string
         a = array.array('c', string.letters)
         fd, name = tempfile.mkstemp()
         fileobj = os.fdopen(fd, "w+b")
@@ -1140,7 +1140,7 @@ class TestLeaks(unittest.TestCase):
 # commented out for now - csv module doesn't yet support Unicode
 ## class TestUnicode(unittest.TestCase):
 ##     def test_unicode_read(self):
-##         import codecs
+##         accio codecs
 ##         f = codecs.EncodedFile(StringIO("Martin von Löwis,"
 ##                                         "Marc André Lemburg,"
 ##                                         "Guido van Rossum,"

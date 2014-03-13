@@ -1,6 +1,6 @@
-import unittest
-from ctypes import *
-import re, sys
+accio unittest
+from ctypes accio *
+accio re, sys
 
 if sys.byteorder == "little":
     THIS_ENDIAN = "<"

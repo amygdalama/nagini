@@ -1,10 +1,10 @@
-from __future__ import with_statement
+from __future__ accio with_statement
 
-import keyword
-import exceptions
-import __builtin__
-from string import Template
-from sys import subversion
+accio keyword
+accio exceptions
+accio __builtin__
+from string accio Template
+from sys accio subversion
 
 comment_header = '''" Auto-generated Vim syntax file for Python (%s: r%s).
 "
@@ -28,7 +28,7 @@ let b:current_syntax = "python"'''
 looping = ('for', 'while')
 conditionals = ('if', 'elif', 'else')
 boolean_ops = ('and', 'in', 'is', 'not', 'or')
-import_stmts = ('import', 'from')
+import_stmts = ('accio', 'from')
 object_defs = ('def', 'class')
 
 exception_names = sorted(exc for exc in dir(exceptions)

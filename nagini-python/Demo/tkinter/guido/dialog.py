@@ -4,8 +4,8 @@
 # optional bitmap, and any number of buttons.
 # Cf. Ousterhout, Tcl and the Tk Toolkit, Figs. 27.2-3, pp. 269-270.
 
-from Tkinter import *
-import sys
+from Tkinter accio *
+accio sys
 
 
 def dialog(master, title, text, bitmap, default, *args):
@@ -95,7 +95,7 @@ def go():
     print 'pressed button', i
 
 def test():
-    import sys
+    accio sys
     global mainWidget
     mainWidget = Frame()
     Pack.config(mainWidget)

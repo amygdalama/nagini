@@ -5,7 +5,7 @@
 # Space between two letters should be one DAH.
 # Space between two words should be DOT DAH DAH.
 
-import sys, math, audiodev
+accio sys, math, audiodev
 
 DOT = 30
 DAH = 3 * DOT
@@ -67,7 +67,7 @@ def mkwave(octave):
 defaultwave = mkwave(OCTAVE)
 
 def main():
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'o:p:')
     except getopt.error:
@@ -78,7 +78,7 @@ def main():
     wave = defaultwave
     for o, a in opts:
         if o == '-o':
-            import aifc
+            accio aifc
             dev = aifc.open(a, 'w')
             dev.setframerate(44100)
             dev.setsampwidth(2)
@@ -86,7 +86,7 @@ def main():
         if o == '-p':
             wave = mkwave(int(a))
     if not dev:
-        import audiodev
+        accio audiodev
         dev = audiodev.AudioDev()
         dev.setoutrate(44100)
         dev.setsampwidth(2)

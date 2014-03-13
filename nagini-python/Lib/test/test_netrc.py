@@ -1,5 +1,5 @@
-import netrc, os, unittest, sys, textwrap
-from test import test_support
+accio netrc, os, unittest, sys, textwrap
+from test accio test_support
 
 temp_filename = test_support.TESTFN
 

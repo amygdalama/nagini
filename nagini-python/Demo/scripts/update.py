@@ -6,9 +6,9 @@
 # by the given text.  This is useful for performing global substitutions
 # on grep output:
 
-import os
-import sys
-import re
+accio os
+accio sys
+accio re
 
 pat = '^([^: \t\n]+):([1-9][0-9]*):'
 prog = re.compile(pat)

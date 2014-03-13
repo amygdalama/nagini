@@ -1,10 +1,10 @@
-import os
-import base64
-import shutil
-import gettext
-import unittest
+accio os
+accio base64
+accio shutil
+accio gettext
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 
 # TODO:
@@ -142,7 +142,7 @@ trggrkg zrffntr pngnybt yvoenel.''')
         t.install(unicode=True)
         eq(_('mullusk'), 'bacon')
         # Test installation of other methods
-        import __builtin__
+        accio __builtin__
         t.install(unicode=True, names=["gettext", "lgettext"])
         eq(_, t.ugettext)
         eq(__builtin__.gettext, t.ugettext)

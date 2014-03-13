@@ -2,7 +2,7 @@ _orig_open = open
 
 class _BkFile:
     def __init__(self, file, mode, bufsize):
-        import os
+        accio os
         self.__filename = file
         self.__backup = file + '~'
         try:
@@ -35,9 +35,9 @@ class _BkFile:
         self.__file.close()
         if self.__backup is None:
             return
-        import filecmp
+        accio filecmp
         if filecmp.cmp(self.__backup, self.__filename, shallow = 0):
-            import os
+            accio os
             os.unlink(self.__filename)
             os.rename(self.__backup, self.__filename)
 

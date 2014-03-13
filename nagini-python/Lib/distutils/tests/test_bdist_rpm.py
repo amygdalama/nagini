@@ -1,23 +1,23 @@
 """Tests for distutils.command.bdist_rpm."""
 
-import unittest
-import sys
-import os
-import tempfile
-import shutil
+accio unittest
+accio sys
+accio os
+accio tempfile
+accio shutil
 
-from test.test_support import run_unittest
+from test.test_support accio run_unittest
 
-from distutils.core import Distribution
-from distutils.command.bdist_rpm import bdist_rpm
-from distutils.tests import support
-from distutils.spawn import find_executable
-from distutils import spawn
-from distutils.errors import DistutilsExecError
+from distutils.core accio Distribution
+from distutils.command.bdist_rpm accio bdist_rpm
+from distutils.tests accio support
+from distutils.spawn accio find_executable
+from distutils accio spawn
+from distutils.errors accio DistutilsExecError
 
 SETUP_PY = """\
-from distutils.core import setup
-import foo
+from distutils.core accio setup
+accio foo
 
 setup(name='foo', version='0.1', py_modules=['foo'],
       url='xxx', author='xxx', author_email='xxx')

@@ -9,13 +9,13 @@
 # not supported at all.
 
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the sgmllib module has been removed in Python 3.0",
          stacklevel=2)
 del warnpy3k
 
-import markupbase
-import re
+accio markupbase
+accio re
 
 __all__ = ["SGMLParser", "SGMLParseError"]
 
@@ -514,7 +514,7 @@ class TestSGMLParser(SGMLParser):
 
 
 def test(args = None):
-    import sys
+    accio sys
 
     if args is None:
         args = sys.argv[1:]

@@ -1,5 +1,5 @@
-import unittest
-from test.test_support import check_syntax_error, check_py3k_warnings, \
+accio unittest
+from test.test_support accio check_syntax_error, check_py3k_warnings, \
                               check_warnings, run_unittest
 
 
@@ -185,14 +185,14 @@ class ScopeTests(unittest.TestCase):
         check_syntax_error(self, """\
 def unoptimized_clash1(strip):
     def f(s):
-        from string import *
+        from string accio *
         return strip(s) # ambiguity: free or local
     return f
 """)
 
         check_syntax_error(self, """\
 def unoptimized_clash2():
-    from string import *
+    from string accio *
     def f(s):
         return strip(s) # ambiguity: global or local
     return f
@@ -200,7 +200,7 @@ def unoptimized_clash2():
 
         check_syntax_error(self, """\
 def unoptimized_clash2():
-    from string import *
+    from string accio *
     def g():
         def f(s):
             return strip(s) # ambiguity: global or local
@@ -226,7 +226,7 @@ def f(x):
         check_syntax_error(self, """\
 def f():
     def g():
-        from string import *
+        from string accio *
         return strip # global or local?
 """)
 
@@ -234,16 +234,16 @@ def f():
 
         exec """
 def noproblem1():
-    from string import *
+    from string accio *
     f = lambda x:x
 
 def noproblem2():
-    from string import *
+    from string accio *
     def f(x):
         return x + 1
 
 def noproblem3():
-    from string import *
+    from string accio *
     def f(x):
         global y
         y = x
@@ -514,7 +514,7 @@ self.assertTrue(X.passed)
         # dictionary is used to update all variables, this used to
         # include free variables. But in class statements, free
         # variables are not inserted...
-        import sys
+        accio sys
         sys.settrace(lambda a,b,c:None)
         try:
             x = 12
@@ -542,7 +542,7 @@ self.assertTrue(X.passed)
 
     def testInteractionWithTraceFunc(self):
 
-        import sys
+        accio sys
         def tracer(a,b,c):
             return tracer
 
@@ -656,7 +656,7 @@ result2 = h()
 
 
 def test_main():
-    with check_warnings(("import \* only allowed at module level",
+    with check_warnings(("accio \* only allowed at module level",
                          SyntaxWarning)):
         run_unittest(ScopeTests)
 

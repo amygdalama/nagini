@@ -7,7 +7,7 @@
 
 """#"
 
-import codecs
+accio codecs
 
 ### Codec APIs
 
@@ -114,5 +114,5 @@ def rot13(infile, outfile):
     outfile.write(infile.read().encode('rot-13'))
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     rot13(sys.stdin, sys.stdout)

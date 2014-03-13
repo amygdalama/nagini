@@ -8,11 +8,11 @@ Classes:
 
 """
 
-from Tkinter import *
-from Dialog import Dialog
+from Tkinter accio *
+from Dialog accio Dialog
 
-import os
-import fnmatch
+accio os
+accio fnmatch
 
 
 dialogstates = {}

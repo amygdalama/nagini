@@ -5,8 +5,8 @@
 # Usage: udpecho -s [port]            (to start a server)
 # or:    udpecho -c host [port] <file (client)
 
-import sys
-from socket import *
+accio sys
+from socket accio *
 
 ECHO_PORT = 50000 + 7
 BUFSIZE = 1024

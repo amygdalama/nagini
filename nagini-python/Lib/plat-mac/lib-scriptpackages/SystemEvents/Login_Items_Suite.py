@@ -5,8 +5,8 @@ Generated from /System/Library/CoreServices/System Events.app
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'logi'
 
@@ -40,7 +40,7 @@ class _Prop_path(aetools.NProperty):
     want = 'utxt'
 
 login_items = login_item
-import Standard_Suite
+accio Standard_Suite
 login_item._superclassnames = ['item']
 login_item._privpropdict = {
     '_3c_Inheritance_3e_' : _Prop__3c_Inheritance_3e_,

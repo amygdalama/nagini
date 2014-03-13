@@ -6,10 +6,10 @@
 ### BUG: This suite doesn't currently test the mime functionality of
 ###      mhlib.  It should.
 
-import unittest
-from test.test_support import run_unittest, TESTFN, import_module
-import os, StringIO
-import sys
+accio unittest
+from test.test_support accio run_unittest, TESTFN, import_module
+accio os, StringIO
+accio sys
 mhlib = import_module('mhlib', deprecated=True)
 
 if (sys.platform.startswith("win") or sys.platform=="riscos" or

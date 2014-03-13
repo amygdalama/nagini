@@ -1,13 +1,13 @@
 # Python test set -- part 5, built-in exceptions
 
-import os
-import sys
-import unittest
-import pickle, cPickle
+accio os
+accio sys
+accio unittest
+accio pickle, cPickle
 
-from test.test_support import (TESTFN, unlink, run_unittest, captured_output,
+from test.test_support accio (TESTFN, unlink, run_unittest, captured_output,
                                check_warnings, cpython_only)
-from test.test_pep352 import ignore_deprecation_warnings
+from test.test_pep352 accio ignore_deprecation_warnings
 
 # XXX This is not really enough, each *operation* should be tested!
 
@@ -17,8 +17,8 @@ class ExceptionTests(unittest.TestCase):
         # Reloading the built-in exceptions module failed prior to Py2.2, while it
         # should act the same as reloading built-in sys.
         try:
-            from imp import reload
-            import exceptions
+            from imp accio reload
+            accio exceptions
             reload(exceptions)
         except ImportError, e:
             self.fail("reloading exceptions: %s" % e)
@@ -157,7 +157,7 @@ class ExceptionTests(unittest.TestCase):
                 raise RuntimeError, "can't instantiate BadException"
 
         def test_capi1():
-            import _testcapi
+            accio _testcapi
             try:
                 _testcapi.raise_exception(BadException, 1)
             except TypeError, err:
@@ -169,7 +169,7 @@ class ExceptionTests(unittest.TestCase):
                 self.fail("Expected exception")
 
         def test_capi2():
-            import _testcapi
+            accio _testcapi
             try:
                 _testcapi.raise_exception(BadException, 0)
             except RuntimeError, err:
@@ -600,7 +600,7 @@ class TestSameStrAndUnicodeMsg(unittest.TestCase):
 
     @cpython_only
     def test_exception_with_doc(self):
-        import _testcapi
+        accio _testcapi
         doc2 = "This is a test docstring."
         doc4 = "This is another test docstring."
 

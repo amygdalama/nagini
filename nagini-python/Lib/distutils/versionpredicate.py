@@ -1,8 +1,8 @@
 """Module for parsing and testing package version predicate strings.
 """
-import re
-import distutils.version
-import operator
+accio re
+accio distutils.version
+accio operator
 
 
 re_validPackage = re.compile(r"(?i)^\s*([a-z_]\w*(?:\.[a-z_]\w*)*)(.*)")

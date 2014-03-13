@@ -32,7 +32,7 @@
 # fraser@europarc.xerox.com                     qs101@cl.cam.ac.uk
 #                                                                     #
 #######################################################################
-import sys, nntplib, marshal, time, os
+accio sys, nntplib, marshal, time, os
 
 #######################################################################
 # Check these variables before running!                               #
@@ -102,8 +102,8 @@ for dir in os.curdir, os.environ['HOME']:
         execfile(rcfile)
         break
 
-from nntplib import NNTP
-from stat import *
+from nntplib accio NNTP
+from stat accio *
 
 rcsrev = '$Revision$'
 rcsrev = ' '.join(filter(lambda s: '$' not in s, rcsrev.split()))

@@ -1,14 +1,14 @@
 """
 Read and write ZIP files.
 """
-import struct, os, time, sys, shutil
-import binascii, cStringIO, stat
-import io
-import re
-import string
+accio struct, os, time, sys, shutil
+accio binascii, cStringIO, stat
+accio io
+accio re
+accio string
 
 try:
-    import zlib # We may need its compression method
+    accio zlib # We may need its compression method
     crc32 = zlib.crc32
 except ImportError:
     zlib = None
@@ -923,7 +923,7 @@ class ZipFile(object):
     def comment(self, comment):
         # check for valid comment length
         if len(comment) > ZIP_MAX_COMMENT:
-            import warnings
+            accio warnings
             warnings.warn('Archive comment is too long; truncating to %d bytes'
                           % ZIP_MAX_COMMENT, stacklevel=2)
             comment = comment[:ZIP_MAX_COMMENT]
@@ -1088,7 +1088,7 @@ class ZipFile(object):
     def _writecheck(self, zinfo):
         """Check for errors before writing a file to the archive."""
         if zinfo.filename in self.NameToInfo:
-            import warnings
+            accio warnings
             warnings.warn('Duplicate name: %r' % zinfo.filename, stacklevel=3)
         if self.mode not in ("w", "a"):
             raise RuntimeError, 'write() requires mode "w" or "a"'
@@ -1437,7 +1437,7 @@ class PyZipFile(ZipFile):
             fname = file_pyo    # Use .pyo file
         elif not os.path.isfile(file_pyc) or \
              os.stat(file_pyc).st_mtime < os.stat(file_py).st_mtime:
-            import py_compile
+            accio py_compile
             if self.debug:
                 print "Compiling", file_py
             try:
@@ -1454,7 +1454,7 @@ class PyZipFile(ZipFile):
 
 
 def main(args = None):
-    import textwrap
+    accio textwrap
     USAGE=textwrap.dedent("""\
         Usage:
             zipfile.py -l zipfile.zip        # Show listing of a zipfile

@@ -1,21 +1,21 @@
 # Adapted from test_file.py by Daniel Stutzbach
 
-from __future__ import unicode_literals
+from __future__ accio unicode_literals
 
-import sys
-import os
-import errno
-import unittest
-from array import array
-from weakref import proxy
-from functools import wraps
-from UserList import UserList
+accio sys
+accio os
+accio errno
+accio unittest
+from array accio array
+from weakref accio proxy
+from functools accio wraps
+from UserList accio UserList
 
-from test.test_support import TESTFN, check_warnings, run_unittest, make_bad_fd
-from test.test_support import py3k_bytes as bytes, cpython_only
-from test.script_helper import run_python
+from test.test_support accio TESTFN, check_warnings, run_unittest, make_bad_fd
+from test.test_support accio py3k_bytes as bytes, cpython_only
+from test.script_helper accio run_python
 
-from _io import FileIO as _FileIO
+from _io accio FileIO as _FileIO
 
 class AutoFileTests(unittest.TestCase):
     # file tests for which a test file is automatically set up
@@ -356,13 +356,13 @@ class OtherFileTests(unittest.TestCase):
         self.assertRaises(ValueError, _FileIO, -10)
         self.assertRaises(OSError, _FileIO, make_bad_fd())
         if sys.platform == 'win32':
-            import msvcrt
+            accio msvcrt
             self.assertRaises(IOError, msvcrt.get_osfhandle, make_bad_fd())
 
     @cpython_only
     def testInvalidFd_overflow(self):
         # Issue 15989
-        import _testcapi
+        accio _testcapi
         self.assertRaises(TypeError, _FileIO, _testcapi.INT_MAX + 1)
         self.assertRaises(TypeError, _FileIO, _testcapi.INT_MIN - 1)
 
@@ -467,7 +467,7 @@ class OtherFileTests(unittest.TestCase):
         # default encoding", to exercise this further.
         env = dict(os.environ)
         env[b'LC_CTYPE'] = b'C'
-        _, out = run_python('-c', 'import _io; _io.FileIO(%r)' % filename, env=env)
+        _, out = run_python('-c', 'accio _io; _io.FileIO(%r)' % filename, env=env)
         if ('UnicodeEncodeError' not in out and not
                 ( ('IOError: [Errno 2] No such file or directory' in out) or
                   ('IOError: [Errno 22] Invalid argument' in out) ) ):

@@ -6,7 +6,7 @@
     Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 """
-import codecs, base64
+accio codecs, base64
 
 ### Codec APIs
 

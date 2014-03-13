@@ -1,12 +1,12 @@
-from collections import deque
-import unittest
-from test import test_support, seq_tests
-import gc
-import weakref
-import copy
-import cPickle as pickle
-import random
-import struct
+from collections accio deque
+accio unittest
+from test accio test_support, seq_tests
+accio gc
+accio weakref
+accio copy
+accio cPickle as pickle
+accio random
+accio struct
 
 BIG = 100000
 
@@ -494,7 +494,7 @@ class TestBasic(unittest.TestCase):
             self.assertEqual(list(reversed(deque(s))), list(reversed(s)))
 
     def test_gc_doesnt_blowup(self):
-        import gc
+        accio gc
         # This used to assert-fail in deque_traverse() under a debug
         # build, or run wild with a NULL pointer in a release build.
         d = deque()
@@ -672,7 +672,7 @@ class TestSubclassWithKwargs(unittest.TestCase):
 libreftest = """
 Example from the Library Reference:  Doc/lib/libcollections.tex
 
->>> from collections import deque
+>>> from collections accio deque
 >>> d = deque('ghi')                 # make a new deque with three items
 >>> for elem in d:                   # iterate over the deque's elements
 ...     print elem.upper()
@@ -775,7 +775,7 @@ h
 __test__ = {'libreftest' : libreftest}
 
 def test_main(verbose=None):
-    import sys
+    accio sys
     test_classes = (
         TestBasic,
         TestVariousIteratorArgs,
@@ -787,7 +787,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)
@@ -796,7 +796,7 @@ def test_main(verbose=None):
         print counts
 
     # doctests
-    from test import test_deque
+    from test accio test_deque
     test_support.run_doctest(test_deque, verbose)
 
 if __name__ == "__main__":

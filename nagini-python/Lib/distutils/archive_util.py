@@ -5,22 +5,22 @@ that sort of thing)."""
 
 __revision__ = "$Id$"
 
-import os
-from warnings import warn
-import sys
+accio os
+from warnings accio warn
+accio sys
 
-from distutils.errors import DistutilsExecError
-from distutils.spawn import spawn
-from distutils.dir_util import mkpath
-from distutils import log
+from distutils.errors accio DistutilsExecError
+from distutils.spawn accio spawn
+from distutils.dir_util accio mkpath
+from distutils accio log
 
 try:
-    from pwd import getpwnam
+    from pwd accio getpwnam
 except ImportError:
     getpwnam = None
 
 try:
-    from grp import getgrnam
+    from grp accio getgrnam
 except ImportError:
     getgrnam = None
 
@@ -81,7 +81,7 @@ def make_tarball(base_name, base_dir, compress="gzip", verbose=0, dry_run=0,
     mkpath(os.path.dirname(archive_name), dry_run=dry_run)
 
     # creating the tarball
-    import tarfile  # late import so Python build itself doesn't break
+    accio tarfile  # late accio so Python build itself doesn't break
 
     log.info('Creating tar archive')
 
@@ -128,7 +128,7 @@ def make_zipfile(base_name, base_dir, verbose=0, dry_run=0):
     file.
     """
     try:
-        import zipfile
+        accio zipfile
     except ImportError:
         zipfile = None
 
@@ -151,7 +151,7 @@ def make_zipfile(base_name, base_dir, verbose=0, dry_run=0):
             # external 'zip' command" and "zip failed".
             raise DistutilsExecError, \
                   ("unable to create zip file '%s': "
-                   "could neither import the 'zipfile' module nor "
+                   "could neither accio the 'zipfile' module nor "
                    "find a standalone zip utility") % zip_filename
 
     else:

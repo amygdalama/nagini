@@ -1,9 +1,9 @@
 # Some simple queue module tests, plus some failure conditions
 # to ensure the Queue locks remain stable.
-import Queue
-import time
-import unittest
-from test import test_support
+accio Queue
+accio time
+accio unittest
+from test accio test_support
 threading = test_support.import_module('threading')
 
 QUEUE_SIZE = 5

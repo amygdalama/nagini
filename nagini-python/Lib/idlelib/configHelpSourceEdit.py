@@ -1,11 +1,11 @@
 "Dialog to specify or edit the parameters for a user configured help source."
 
-import os
-import sys
+accio os
+accio sys
 
-from Tkinter import *
-import tkMessageBox
-import tkFileDialog
+from Tkinter accio *
+accio tkMessageBox
+accio tkFileDialog
 
 class GetHelpSourceDialog(Toplevel):
     def __init__(self, parent, title, menuItem='', filePath=''):

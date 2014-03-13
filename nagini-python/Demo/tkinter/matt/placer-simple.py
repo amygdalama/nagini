@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # This is a program that tests the placer geom manager
 

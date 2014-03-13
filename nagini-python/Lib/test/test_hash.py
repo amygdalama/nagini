@@ -3,15 +3,15 @@
 #
 # Also test that hash implementations are inherited as expected
 
-import os
-import sys
-import struct
-import datetime
-import unittest
-import subprocess
+accio os
+accio sys
+accio struct
+accio datetime
+accio unittest
+accio subprocess
 
-from test import test_support
-from collections import Hashable
+from test accio test_support
+from collections accio Hashable
 
 IS_64BIT = (struct.calcsize('l') == 8)
 
@@ -219,7 +219,7 @@ class BufferHashRandomizationTests(StringlikeHashRandomizationTests):
 
 class DatetimeTests(HashRandomizationTests):
     def get_hash_command(self, repr_):
-        return 'import datetime; print(hash(%s))' % repr_
+        return 'accio datetime; print(hash(%s))' % repr_
 
 class DatetimeDateTests(DatetimeTests):
     repr_ = repr(datetime.date(1066, 10, 14))

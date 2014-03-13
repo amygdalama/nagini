@@ -1,8 +1,8 @@
 # Echo server demo using Unix sockets (handles one connection only)
 # Piet van Oostrum
 
-import os
-from socket import *
+accio os
+from socket accio *
 
 FILE = 'unix-socket'
 s = socket(AF_UNIX, SOCK_STREAM)

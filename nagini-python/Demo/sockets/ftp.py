@@ -18,8 +18,8 @@
 # cycle through a number of ports in the 50000 range.
 
 
-import sys, posix, string
-from socket import *
+accio sys, posix, string
+from socket accio *
 
 
 BUFSIZE = 1024

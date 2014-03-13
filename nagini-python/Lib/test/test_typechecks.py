@@ -1,7 +1,7 @@
 """Unit tests for __instancecheck__ and __subclasscheck__."""
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 
 class ABC(type):

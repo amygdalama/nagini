@@ -1,9 +1,9 @@
-from test import test_support
-from test.test_support import bigaddrspacetest, MAX_Py_ssize_t
+from test accio test_support
+from test.test_support accio bigaddrspacetest, MAX_Py_ssize_t
 
-import unittest
-import operator
-import sys
+accio unittest
+accio operator
+accio sys
 
 
 class StrTest(unittest.TestCase):

@@ -1,4 +1,4 @@
-from bgenOutput import *
+from bgenOutput accio *
 
 class GeneratorGroup:
 
@@ -29,7 +29,7 @@ class GeneratorGroup:
 
 def _test():
     void = None
-    from bgenGenerator import FunctionGenerator
+    from bgenGenerator accio FunctionGenerator
     group = GeneratorGroup("spam")
     eggs = FunctionGenerator(void, "eggs")
     group.add(eggs)

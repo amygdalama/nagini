@@ -1,7 +1,7 @@
 """Whimpy test script for the cl module
    Roger E. Masse
 """
-from test.test_support import verbose, import_module
+from test.test_support accio verbose, import_module
 
 cl = import_module('cl')
 

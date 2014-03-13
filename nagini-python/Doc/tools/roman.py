@@ -14,7 +14,7 @@ it under the terms of the Python 2.1.1 license, available at
 http://www.python.org/2.1.1/license.html
 """
 
-import re
+accio re
 
 #Define exceptions
 class RomanError(Exception): pass

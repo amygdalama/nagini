@@ -1,13 +1,13 @@
 
-import unittest, struct
-import os
-from test import test_support
-import math
-from math import isinf, isnan, copysign, ldexp
-import operator
-import random
-import fractions
-import sys
+accio unittest, struct
+accio os
+from test accio test_support
+accio math
+from math accio isinf, isnan, copysign, ldexp
+accio operator
+accio random
+accio fractions
+accio sys
 
 INF = float("inf")
 NAN = float("nan")
@@ -99,7 +99,7 @@ class GeneralFloatCases(unittest.TestCase):
         # set locale to something that doesn't use '.' for the decimal point
         # float must not accept the locale specific decimal point but
         # it still has to accept the normal python syntax
-        import locale
+        accio locale
         if not locale.localeconv()['decimal_point'] == ',':
             self.skipTest('decimal_point is not ","')
 
@@ -1373,7 +1373,7 @@ class HexFloatTestCase(unittest.TestCase):
             self.identical(-x, roundtrip(-x))
 
         # fromHex(toHex(x)) should exactly recover x, for any non-NaN float x.
-        import random
+        accio random
         for i in xrange(10000):
             e = random.randrange(-1200, 1200)
             m = random.random()

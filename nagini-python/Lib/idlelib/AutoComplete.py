@@ -3,11 +3,11 @@
 This extension can complete either attribute names of file names. It can pop
 a window with all available names, for the user to select from.
 """
-import os
-import sys
-import string
+accio os
+accio sys
+accio string
 
-from idlelib.configHandler import idleConf
+from idlelib.configHandler accio idleConf
 
 # This string includes all chars that may be in a file name (without a path
 # separator)
@@ -18,10 +18,10 @@ ID_CHARS = string.ascii_letters + string.digits + "_"
 # These constants represent the two different types of completions
 COMPLETE_ATTRIBUTES, COMPLETE_FILES = range(1, 2+1)
 
-from idlelib import AutoCompleteWindow
-from idlelib.HyperParser import HyperParser
+from idlelib accio AutoCompleteWindow
+from idlelib.HyperParser accio HyperParser
 
-import __main__
+accio __main__
 
 SEPS = os.sep
 if os.altsep:  # e.g. '/' on Windows...

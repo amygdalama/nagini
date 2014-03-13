@@ -1,8 +1,8 @@
-from test import test_support
-import unittest
+from test accio test_support
+accio unittest
 
-import sys, cStringIO, subprocess
-import quopri
+accio sys, cStringIO, subprocess
+accio quopri
 
 
 

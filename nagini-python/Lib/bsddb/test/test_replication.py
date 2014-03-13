@@ -1,11 +1,11 @@
 """TestCases for distributed transactions.
 """
 
-import os
-import time
-import unittest
+accio os
+accio time
+accio unittest
 
-from test_all import db, test_support, have_threads, verbose, \
+from test_all accio db, test_support, have_threads, verbose, \
         get_new_environment_path, get_new_database_path
 
 
@@ -164,7 +164,7 @@ class DBReplicationManager(DBReplication) :
         # The timeout is necessary in BDB 4.5, since DB_EVENT_REP_STARTUPDONE
         # is not generated if the master has no new transactions.
         # This is solved in BDB 4.6 (#15542).
-        import time
+        accio time
         timeout = time.time()+60
         while (time.time()<timeout) and not (self.confirmed_master and self.client_startupdone) :
             time.sleep(0.02)
@@ -176,7 +176,7 @@ class DBReplicationManager(DBReplication) :
         # (but not all of it always, see below).  So we just note the
         # timeout on stderr and keep soldering on.
         if time.time()>timeout:
-            import sys
+            accio sys
             print >> sys.stderr, ("XXX: timeout happened before"
                 "startup was confirmed - see issue 3892")
             startup_timeout = True
@@ -206,7 +206,7 @@ class DBReplicationManager(DBReplication) :
         self.dbMaster.open("test", db.DB_HASH, db.DB_CREATE, 0666, txn=txn)
         txn.commit()
 
-        import time,os.path
+        accio time,os.path
         timeout=time.time()+10
         while (time.time()<timeout) and \
           not (os.path.exists(os.path.join(self.homeDirClient,"test"))) :
@@ -230,7 +230,7 @@ class DBReplicationManager(DBReplication) :
         txn=self.dbenvMaster.txn_begin()
         self.dbMaster.put("ABC", "123", txn=txn)
         txn.commit()
-        import time
+        accio time
         timeout=time.time()+10
         v=None
         while (time.time()<timeout) and (v is None) :
@@ -277,7 +277,7 @@ class DBBaseReplication(DBReplication) :
         self.dbenvMaster.set_event_notify(confirmed_master)
         self.dbenvClient.set_event_notify(client_startupdone)
 
-        import Queue
+        accio Queue
         self.m2c = Queue.Queue()
         self.c2m = Queue.Queue()
 
@@ -310,10 +310,10 @@ class DBBaseReplication(DBReplication) :
             return self.thread_do(self.dbenvClient, self.m2c, 13,
                     self.client_doing_election, False)
 
-        from threading import Thread
+        from threading accio Thread
         t_m=Thread(target=thread_master)
         t_c=Thread(target=thread_client)
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             t_m.setDaemon(True)
             t_c.setDaemon(True)
@@ -376,7 +376,7 @@ class DBBaseReplication(DBReplication) :
         # The timeout is necessary in BDB 4.5, since DB_EVENT_REP_STARTUPDONE
         # is not generated if the master has no new transactions.
         # This is solved in BDB 4.6 (#15542).
-        import time
+        accio time
         timeout = time.time()+60
         while (time.time()<timeout) and not (self.confirmed_master and
                 self.client_startupdone) :
@@ -388,7 +388,7 @@ class DBBaseReplication(DBReplication) :
         self.dbMaster.open("test", db.DB_HASH, db.DB_CREATE, 0666, txn=txn)
         txn.commit()
 
-        import time,os.path
+        accio time,os.path
         timeout=time.time()+10
         while (time.time()<timeout) and \
           not (os.path.exists(os.path.join(self.homeDirClient,"test"))) :
@@ -415,7 +415,7 @@ class DBBaseReplication(DBReplication) :
         txn=self.dbenvMaster.txn_begin()
         self.dbMaster.put("ABC", "123", txn=txn)
         txn.commit()
-        import time
+        accio time
         timeout=time.time()+10
         v=None
         while (time.time()<timeout) and (v is None) :
@@ -474,10 +474,10 @@ class DBBaseReplication(DBReplication) :
                                 except db.DBRepUnavailError :
                                     pass
                         if not election_status[0] and not self.confirmed_master :
-                            from threading import Thread
+                            from threading accio Thread
                             election_status[0] = True
                             t=Thread(target=elect)
-                            import sys
+                            accio sys
                             if sys.version_info[0] < 3 :
                                 t.setDaemon(True)
                             else :

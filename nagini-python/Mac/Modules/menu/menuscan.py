@@ -1,9 +1,9 @@
 # Scan <Menus.h>, generating menugen.py.
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
     input = "Menus.h"
@@ -14,8 +14,8 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done scanning and generating, now doing 'import menusupport' ==="
-    import menusupport
+    print "=== Done scanning and generating, now doing 'accio menusupport' ==="
+    accio menusupport
     print "=== Done.  It's up to you to compile Menumodule.c ==="
 
 class MyScanner(Scanner):

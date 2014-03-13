@@ -1,4 +1,4 @@
-from msilib import Table
+from msilib accio Table
 
 _Validation = Table('_Validation')
 _Validation.add_field(1,'Table',11552)
@@ -643,7 +643,7 @@ _Validation_records = [
 (u'Binary',u'Name',u'N',None, None, None, None, u'Identifier',None, u'Unique key identifying the binary data.',),
 (u'Binary',u'Data',u'N',None, None, None, None, u'Binary',None, u'The unformatted binary data.',),
 (u'BindImage',u'File_',u'N',None, None, u'File',1,u'Identifier',None, u'The index into the File table. This must be an executable file.',),
-(u'BindImage',u'Path',u'Y',None, None, None, None, u'Paths',None, u'A list of ;  delimited paths that represent the paths to be searched for the import DLLS. The list is usually a list of properties each enclosed within square brackets [] .',),
+(u'BindImage',u'Path',u'Y',None, None, None, None, u'Paths',None, u'A list of ;  delimited paths that represent the paths to be searched for the accio DLLS. The list is usually a list of properties each enclosed within square brackets [] .',),
 (u'File',u'Sequence',u'N',1,32767,None, None, None, None, u'Sequence with respect to the media images; order must track cabinet order.',),
 (u'File',u'Attributes',u'Y',0,32767,None, None, None, None, u'Integer containing bit flags representing file attributes (with the decimal value of each bit position in parentheses)',),
 (u'File',u'File',u'N',None, None, None, None, u'Identifier',None, u'Primary key, non-localized token, must match identifier in cabinet.  For uncompressed files, this field is ignored.',),

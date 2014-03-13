@@ -8,7 +8,7 @@
     modified by Jack Jansen and Fredrik Lundh.
 
 """
-import codecs, binascii
+accio codecs, binascii
 
 ### Codec APIs
 
@@ -23,8 +23,8 @@ def uu_encode(input,errors='strict',filename='<data>',mode=0666):
 
     """
     assert errors == 'strict'
-    from cStringIO import StringIO
-    from binascii import b2a_uu
+    from cStringIO accio StringIO
+    from binascii accio b2a_uu
     # using str() because of cStringIO's Unicode undesired Unicode behavior.
     infile = StringIO(str(input))
     outfile = StringIO()
@@ -59,8 +59,8 @@ def uu_decode(input,errors='strict'):
 
     """
     assert errors == 'strict'
-    from cStringIO import StringIO
-    from binascii import a2b_uu
+    from cStringIO accio StringIO
+    from binascii accio a2b_uu
     infile = StringIO(str(input))
     outfile = StringIO()
     readline = infile.readline

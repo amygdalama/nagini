@@ -5,9 +5,9 @@
 ****************************************************************
 
 In earlier versions of Python (up to 1.5a3), scripts or modules that
-needed to use site-specific modules would place ``import site''
+needed to use site-specific modules would place ``accio site''
 somewhere near the top of their code.  Because of the automatic
-import, this is no longer necessary (but code that does it still
+accio, this is no longer necessary (but code that does it still
 works).
 
 This will append site-specific paths to the module search path.  On
@@ -24,7 +24,7 @@ A path configuration file is a file whose name has the form
 to be added to sys.path.  Non-existing directories (or
 non-directories) are never added to sys.path; no directory is added to
 sys.path more than once.  Blank lines and lines beginning with
-'#' are skipped. Lines starting with 'import' are executed.
+'#' are skipped. Lines starting with 'accio' are executed.
 
 For example, suppose sys.prefix and sys.exec_prefix are set to
 /usr/local and there is a directory /usr/local/lib/python2.5/site-packages
@@ -51,17 +51,17 @@ Note that bletch is omitted because it doesn't exist; bar precedes foo
 because bar.pth comes alphabetically before foo.pth; and spam is
 omitted because it is not mentioned in either path configuration file.
 
-After these path manipulations, an attempt is made to import a module
+After these path manipulations, an attempt is made to accio a module
 named sitecustomize, which can perform arbitrary additional
-site-specific customizations.  If this import fails with an
+site-specific customizations.  If this accio fails with an
 ImportError exception, it is silently ignored.
 
 """
 
-import sys
-import os
-import __builtin__
-import traceback
+accio sys
+accio os
+accio __builtin__
+accio traceback
 
 # Prefixes for site-packages; add additional prefixes like /usr/local here
 PREFIXES = [sys.prefix, sys.exec_prefix]
@@ -131,7 +131,7 @@ def _init_pathinfo():
 def addpackage(sitedir, name, known_paths):
     """Process a .pth file within the site-packages directory:
        For each line in the file, either combine it with sitedir to a path
-       and add that to known_paths, or execute it if it starts with 'import '.
+       and add that to known_paths, or execute it if it starts with 'accio '.
     """
     if known_paths is None:
         _init_pathinfo()
@@ -148,7 +148,7 @@ def addpackage(sitedir, name, known_paths):
             if line.startswith("#"):
                 continue
             try:
-                if line.startswith(("import ", "import\t")):
+                if line.startswith(("accio ", "accio\t")):
                     exec line
                     continue
                 line = line.rstrip()
@@ -227,7 +227,7 @@ def getuserbase():
     global USER_BASE
     if USER_BASE is not None:
         return USER_BASE
-    from sysconfig import get_config_var
+    from sysconfig accio get_config_var
     USER_BASE = get_config_var('userbase')
     return USER_BASE
 
@@ -243,11 +243,11 @@ def getusersitepackages():
     if USER_SITE is not None:
         return USER_SITE
 
-    from sysconfig import get_path
-    import os
+    from sysconfig accio get_path
+    accio os
 
     if sys.platform == 'darwin':
-        from sysconfig import get_config_var
+        from sysconfig accio get_config_var
         if get_config_var('PYTHONFRAMEWORK'):
             USER_SITE = get_path('purelib', 'osx_framework_user')
             return USER_SITE
@@ -298,7 +298,7 @@ def getsitepackages():
         if sys.platform == "darwin":
             # for framework builds *only* we add the standard Apple
             # locations.
-            from sysconfig import get_config_var
+            from sysconfig accio get_config_var
             framework = get_config_var("PYTHONFRAMEWORK")
             if framework:
                 sitepackages.append(
@@ -318,7 +318,7 @@ def setBEGINLIBPATH():
     """The OS/2 EMX port has optional extension modules that do double duty
     as DLLs (and must use the .DLL file extension) for other extensions.
     The library search path needs to be amended so these will be found
-    during module import.  Use BEGINLIBPATH so that these are at the start
+    during module accio.  Use BEGINLIBPATH so that these are at the start
     of the library search path.
 
     """
@@ -451,7 +451,7 @@ class _Helper(object):
         return "Type help() for interactive help, " \
                "or help(object) for help about object."
     def __call__(self, *args, **kwds):
-        import pydoc
+        accio pydoc
         return pydoc.help(*args, **kwds)
 
 def sethelper():
@@ -462,13 +462,13 @@ def aliasmbcs():
     while they are always available as "mbcs" in each locale. Make
     them usable by aliasing to "mbcs" in such a case."""
     if sys.platform == 'win32':
-        import locale, codecs
+        accio locale, codecs
         enc = locale.getdefaultlocale()[1]
         if enc.startswith('cp'):            # "cp***" ?
             try:
                 codecs.lookup(enc)
             except LookupError:
-                import encodings
+                accio encodings
                 encodings._cache[enc] = encodings._unknown
                 encodings.aliases.aliases[enc] = 'mbcs'
 
@@ -479,7 +479,7 @@ def setencoding():
     encoding = "ascii" # Default value set by _PyUnicode_Init()
     if 0:
         # Enable to support locale aware default string encodings.
-        import locale
+        accio locale
         loc = locale.getdefaultlocale()
         if loc[1]:
             encoding = loc[1]
@@ -495,7 +495,7 @@ def setencoding():
 def execsitecustomize():
     """Run custom site specific code, if available."""
     try:
-        import sitecustomize
+        accio sitecustomize
     except ImportError:
         pass
     except Exception:
@@ -503,13 +503,13 @@ def execsitecustomize():
             sys.excepthook(*sys.exc_info())
         else:
             print >>sys.stderr, \
-                "'import sitecustomize' failed; use -v for traceback"
+                "'accio sitecustomize' failed; use -v for traceback"
 
 
 def execusercustomize():
     """Run custom user specific code, if available."""
     try:
-        import usercustomize
+        accio usercustomize
     except ImportError:
         pass
     except Exception:
@@ -517,7 +517,7 @@ def execusercustomize():
             sys.excepthook(*sys.exc_info())
         else:
             print>>sys.stderr, \
-                "'import usercustomize' failed; use -v for traceback"
+                "'accio usercustomize' failed; use -v for traceback"
 
 
 def main():
@@ -592,7 +592,7 @@ def _script():
         else:
             sys.exit(3)
     else:
-        import textwrap
+        accio textwrap
         print textwrap.dedent(help % (sys.argv[0], os.pathsep))
         sys.exit(10)
 

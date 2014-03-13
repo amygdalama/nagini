@@ -41,10 +41,10 @@ you'd prefer. You can always use the --nobackup option to prevent this.
 
 __version__ = "1"
 
-import tokenize
-import os, shutil
-import sys
-import io
+accio tokenize
+accio os, shutil
+accio sys
+accio io
 
 verbose    = 0
 recurse    = 0
@@ -64,7 +64,7 @@ def errprint(*args):
     sys.stderr.write("\n")
 
 def main():
-    import getopt
+    accio getopt
     global verbose, recurse, dryrun, makebackup
     try:
         opts, args = getopt.getopt(sys.argv[1:], "drnvh",

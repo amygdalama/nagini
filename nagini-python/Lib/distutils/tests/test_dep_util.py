@@ -1,12 +1,12 @@
 """Tests for distutils.dep_util."""
-import unittest
-import os
-import time
+accio unittest
+accio os
+accio time
 
-from distutils.dep_util import newer, newer_pairwise, newer_group
-from distutils.errors import DistutilsFileError
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.dep_util accio newer, newer_pairwise, newer_group
+from distutils.errors accio DistutilsFileError
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 class DepUtilTestCase(support.TempdirManager, unittest.TestCase):
 

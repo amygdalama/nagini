@@ -18,7 +18,7 @@
 # integer values; one lets you select floating point values and the last
 # one lets you select a few names.
 
-import Tix
+accio Tix
 
 TCL_ALL_EVENTS          = 0
 

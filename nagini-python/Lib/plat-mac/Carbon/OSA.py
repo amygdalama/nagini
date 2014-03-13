@@ -1,1 +1,1 @@
-from _OSA import *
+from _OSA accio *

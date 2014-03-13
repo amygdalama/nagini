@@ -5,9 +5,9 @@
 # Inspired by similar code by Jeff Epler and Fredrik Lundh.
 
 
-import sys
-import traceback
-from codeop import CommandCompiler, compile_command
+accio sys
+accio traceback
+from codeop accio CommandCompiler, compile_command
 
 __all__ = ["InteractiveInterpreter", "InteractiveConsole", "interact",
            "compile_command"]
@@ -285,7 +285,7 @@ def interact(banner=None, readfunc=None, local=None):
     """Closely emulate the interactive Python interpreter.
 
     This is a backwards compatible interface to the InteractiveConsole
-    class.  When readfunc is not specified, it attempts to import the
+    class.  When readfunc is not specified, it attempts to accio the
     readline module to enable GNU readline if it is available.
 
     Arguments (all optional, all default to None):
@@ -300,7 +300,7 @@ def interact(banner=None, readfunc=None, local=None):
         console.raw_input = readfunc
     else:
         try:
-            import readline
+            accio readline
         except ImportError:
             pass
     console.interact(banner)

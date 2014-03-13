@@ -1,23 +1,23 @@
-import re
-import sys
-import types
-import unittest
-import inspect
-import linecache
-import datetime
-from UserList import UserList
-from UserDict import UserDict
+accio re
+accio sys
+accio types
+accio unittest
+accio inspect
+accio linecache
+accio datetime
+from UserList accio UserList
+from UserDict accio UserDict
 
-from test.test_support import run_unittest, check_py3k_warnings
+from test.test_support accio run_unittest, check_py3k_warnings
 
 with check_py3k_warnings(
         ("tuple parameter unpacking has been removed", SyntaxWarning),
         quiet=True):
-    from test import inspect_fodder as mod
-    from test import inspect_fodder2 as mod2
+    from test accio inspect_fodder as mod
+    from test accio inspect_fodder2 as mod2
 
 # C module for test_findsource_binary
-import unicodedata
+accio unicodedata
 
 # Functions tested in this suite:
 # ismodule, isclass, ismethod, isfunction, istraceback, isframe, iscode,
@@ -33,7 +33,7 @@ modfile = mod.__file__
 if modfile.endswith(('c', 'o')):
     modfile = modfile[:-1]
 
-import __builtin__
+accio __builtin__
 
 try:
     1 // 0
@@ -123,7 +123,7 @@ class TestPredicates(IsTestBase):
         self.assertNotIn('b', members)
 
     def test_isabstract(self):
-        from abc import ABCMeta, abstractmethod
+        from abc accio ABCMeta, abstractmethod
 
         class AbstractClassExample(object):
             __metaclass__ = ABCMeta
@@ -300,7 +300,7 @@ class TestRetrievingSourceCode(GetSourceBase):
         self.assertEqual(inspect.getfile(mod.StupidGit), mod.__file__)
 
     def test_getmodule_recursion(self):
-        from types import ModuleType
+        from types accio ModuleType
         name = '__inspect_dummy'
         m = sys.modules[name] = ModuleType(name)
         m.__file__ = "<string>" # hopefully not a real filename...

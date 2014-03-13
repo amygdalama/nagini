@@ -1,4 +1,4 @@
-from datetime import tzinfo, timedelta, datetime
+from datetime accio tzinfo, timedelta, datetime
 
 ZERO = timedelta(0)
 HOUR = timedelta(hours=1)
@@ -41,7 +41,7 @@ class FixedOffset(tzinfo):
 
 # A class capturing the platform's idea of local time.
 
-import time as _time
+accio time as _time
 
 STDOFFSET = timedelta(seconds = -_time.timezone)
 if _time.daylight:

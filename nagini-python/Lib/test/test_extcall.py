@@ -4,8 +4,8 @@
 
 We're going the use these types for extra testing
 
-    >>> from UserList import UserList
-    >>> from UserDict import UserDict
+    >>> from UserList accio UserList
+    >>> from UserDict accio UserDict
 
 We're defining four helper functions
 
@@ -290,9 +290,9 @@ The number of arguments passed in includes keywords:
     TypeError: f() takes exactly 1 argument (5 given)
 """
 
-import unittest
-import sys
-from test import test_support
+accio unittest
+accio sys
+from test accio test_support
 
 
 class ExtCallTest(unittest.TestCase):

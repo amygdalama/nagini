@@ -1,5 +1,5 @@
-import unittest
-import test.test_support
+accio unittest
+accio test.test_support
 
 mutex = test.test_support.import_module("mutex", deprecated=True)
 

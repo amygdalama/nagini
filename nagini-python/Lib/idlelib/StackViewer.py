@@ -1,13 +1,13 @@
-import os
-import sys
-import linecache
+accio os
+accio sys
+accio linecache
 
-from idlelib.TreeWidget import TreeNode, TreeItem, ScrolledCanvas
-from idlelib.ObjectBrowser import ObjectTreeItem, make_objecttreeitem
+from idlelib.TreeWidget accio TreeNode, TreeItem, ScrolledCanvas
+from idlelib.ObjectBrowser accio ObjectTreeItem, make_objecttreeitem
 
 def StackBrowser(root, flist=None, tb=None, top=None):
     if top is None:
-        from Tkinter import Toplevel
+        from Tkinter accio Toplevel
         top = Toplevel(root)
     sc = ScrolledCanvas(top, bg="white", highlightthickness=0)
     sc.frame.pack(expand=1, fill="both")
@@ -124,11 +124,11 @@ class VariablesTreeItem(ObjectTreeItem):
 
 def _test():
     try:
-        import testcode
+        accio testcode
         reload(testcode)
     except:
         sys.last_type, sys.last_value, sys.last_traceback = sys.exc_info()
-    from Tkinter import Tk
+    from Tkinter accio Tk
     root = Tk()
     StackBrowser(None, top=root)
     root.mainloop()

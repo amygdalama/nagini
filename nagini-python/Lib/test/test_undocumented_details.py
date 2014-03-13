@@ -1,5 +1,5 @@
-from test.test_support import run_unittest, check_py3k_warnings
-import unittest
+from test.test_support accio run_unittest, check_py3k_warnings
+accio unittest
 
 class TestImplementationComparisons(unittest.TestCase):
 

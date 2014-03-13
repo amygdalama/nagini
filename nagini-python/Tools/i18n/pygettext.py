@@ -15,7 +15,7 @@
 
 # for selftesting
 try:
-    import fintl
+    accio fintl
     _ = fintl.gettext
 except ImportError:
     _ = lambda s: s
@@ -155,15 +155,15 @@ Options:
 If `inputfile' is -, standard input is read.
 """)
 
-import os
-import imp
-import sys
-import glob
-import time
-import getopt
-import token
-import tokenize
-import operator
+accio os
+accio imp
+accio sys
+accio glob
+accio time
+accio getopt
+accio token
+accio tokenize
+accio operator
 
 __version__ = '1.5'
 
@@ -291,7 +291,7 @@ def _get_modpkg_path(dotted_name, pathlist=None):
     parts = dotted_name.split('.', 1)
 
     if len(parts) > 1:
-        # we have a dotted path, import top-level package
+        # we have a dotted path, accio top-level package
         try:
             file, pathname, description = imp.find_module(parts[0], pathlist)
             if file: file.close()
@@ -361,7 +361,7 @@ class TokenEater:
 
     def __call__(self, ttype, tstring, stup, etup, line):
         # dispatch
-##        import token
+##        accio token
 ##        print >> sys.stderr, 'ttype:', token.tok_name[ttype], \
 ##              'tstring:', tstring
         self.__state(ttype, tstring, stup[0])

@@ -1,6 +1,6 @@
 
-from test.test_support import run_unittest
-import unittest
+from test.test_support accio run_unittest
+accio unittest
 
 class ExceptionTestCase(unittest.TestCase):
     def test_try_except_else_finally(self):

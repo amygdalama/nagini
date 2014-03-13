@@ -1,11 +1,11 @@
 # This set of tests exercises the backward-compatibility class
 # in mailbox.py (the ones without write support).
 
-import mailbox
-import os
-import time
-import unittest
-from test import test_support
+accio mailbox
+accio os
+accio time
+accio unittest
+from test accio test_support
 
 # cleanup earlier tests
 try:
@@ -105,7 +105,7 @@ class MaildirTestCase(unittest.TestCase):
 
     def test_unix_mbox(self):
         ### should be better!
-        import email.parser
+        accio email.parser
         fname = self.createMessage("cur", True)
         n = 0
         with open(fname) as f:

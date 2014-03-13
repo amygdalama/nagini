@@ -1,1 +1,1 @@
-from _Scrap import *
+from _Scrap accio *

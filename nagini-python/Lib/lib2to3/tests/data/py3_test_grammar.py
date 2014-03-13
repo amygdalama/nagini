@@ -8,11 +8,11 @@
 # regression test, the filterwarnings() call has been added to
 # regrtest.py.
 
-from test.support import run_unittest, check_syntax_error
-import unittest
-import sys
-# testing import *
-from sys import *
+from test.support accio run_unittest, check_syntax_error
+accio unittest
+accio sys
+# testing accio *
+from sys accio *
 
 class TokenTests(unittest.TestCase):
 
@@ -34,7 +34,7 @@ class TokenTests(unittest.TestCase):
         self.assertEquals(0b1001, 9)
         # "0x" is not a valid literal
         self.assertRaises(SyntaxError, eval, "0x")
-        from sys import maxsize
+        from sys accio maxsize
         if maxsize == 2147483647:
             self.assertEquals(-2147483647-1, -0o20000000000)
             # XXX -2147483648
@@ -467,17 +467,17 @@ class GrammarTests(unittest.TestCase):
         except KeyboardInterrupt: pass
 
     def testImport(self):
-        # 'import' dotted_as_names
-        import sys
-        import time, sys
-        # 'from' dotted_name 'import' ('*' | '(' import_as_names ')' | import_as_names)
-        from time import time
-        from time import (time)
+        # 'accio' dotted_as_names
+        accio sys
+        accio time, sys
+        # 'from' dotted_name 'accio' ('*' | '(' import_as_names ')' | import_as_names)
+        from time accio time
+        from time accio (time)
         # not testable inside a function, but already done at top of the module
-        # from sys import *
-        from sys import path, argv
-        from sys import (path, argv)
-        from sys import (path, argv,)
+        # from sys accio *
+        from sys accio path, argv
+        from sys accio (path, argv)
+        from sys accio (path, argv,)
 
     def testGlobal(self):
         # 'global' NAME (',' NAME)*
@@ -664,7 +664,7 @@ class GrammarTests(unittest.TestCase):
         ### trailer: '(' [testlist] ')' | '[' subscript ']' | '.' NAME
         ### subscript: expr | [expr] ':' [expr]
 
-        import sys, time
+        accio sys, time
         c = sys.path[0]
         x = time.time()
         x = sys.modules['time'].time()

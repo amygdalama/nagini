@@ -1,8 +1,8 @@
-import difflib
-from test.test_support import run_unittest, findfile
-import unittest
-import doctest
-import sys
+accio difflib
+from test.test_support accio run_unittest, findfile
+accio unittest
+accio doctest
+accio sys
 
 
 class TestWithAscii(unittest.TestCase):

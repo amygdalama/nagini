@@ -3,12 +3,12 @@
 This module has intimate knowledge of the format of .pyc files.
 """
 
-import __builtin__
-import imp
-import marshal
-import os
-import sys
-import traceback
+accio __builtin__
+accio imp
+accio marshal
+accio os
+accio sys
+accio traceback
 
 MAGIC = imp.get_magic()
 

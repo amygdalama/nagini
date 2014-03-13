@@ -1,11 +1,11 @@
 """Tests for distutils.unixccompiler."""
-import os
-import sys
-import unittest
-from test.test_support import EnvironmentVarGuard, run_unittest
+accio os
+accio sys
+accio unittest
+from test.test_support accio EnvironmentVarGuard, run_unittest
 
-from distutils import sysconfig
-from distutils.unixccompiler import UnixCCompiler
+from distutils accio sysconfig
+from distutils.unixccompiler accio UnixCCompiler
 
 class UnixCCompilerTestCase(unittest.TestCase):
 

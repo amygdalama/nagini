@@ -17,18 +17,18 @@
 #
 _cvsid = '$Id$'
 
-import re
-import sys
-import copy
-import random
-import struct
+accio re
+accio sys
+accio copy
+accio random
+accio struct
 
 
 if sys.version_info[0] >= 3 :
-    import pickle
+    accio pickle
 else :
     if sys.version_info < (2, 6) :
-        import cPickle as pickle
+        accio cPickle as pickle
     else :
         # When we drop support for python 2.4
         # we could use: (in 2.5 we need a __future__ statement)
@@ -40,24 +40,24 @@ else :
         # We can not use "with" as is, because it would be invalid syntax
         # in python 2.4 and (with no __future__) 2.5.
         # Here we simulate "with" following PEP 343 :
-        import warnings
+        accio warnings
         w = warnings.catch_warnings()
         w.__enter__()
         try :
             warnings.filterwarnings('ignore',
                 message='the cPickle module has been removed in Python 3.0',
                 category=DeprecationWarning)
-            import cPickle as pickle
+            accio cPickle as pickle
         finally :
             w.__exit__()
         del w
 
 try:
     # For Pythons w/distutils pybsddb
-    from bsddb3 import db
+    from bsddb3 accio db
 except ImportError:
     # For Python 2.3
-    from bsddb import db
+    from bsddb accio db
 
 class TableDBError(StandardError):
     pass

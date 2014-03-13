@@ -5,17 +5,17 @@ exe-program."""
 
 __revision__ = "$Id$"
 
-import sys
-import os
-import string
+accio sys
+accio os
+accio string
 
-from sysconfig import get_python_version
+from sysconfig accio get_python_version
 
-from distutils.core import Command
-from distutils.dir_util import remove_tree
-from distutils.errors import DistutilsOptionError, DistutilsPlatformError
-from distutils import log
-from distutils.util import get_platform
+from distutils.core accio Command
+from distutils.dir_util accio remove_tree
+from distutils.errors accio DistutilsOptionError, DistutilsPlatformError
+from distutils accio log
+from distutils.util accio get_platform
 
 class bdist_wininst (Command):
 
@@ -180,7 +180,7 @@ class bdist_wininst (Command):
 
         # And make an archive relative to the root of the
         # pseudo-installation tree.
-        from tempfile import mktemp
+        from tempfile accio mktemp
         archive_basename = mktemp()
         fullname = self.distribution.get_fullname()
         arcname = self.make_archive(archive_basename, "zip",
@@ -242,8 +242,8 @@ class bdist_wininst (Command):
 
         title = self.title or self.distribution.get_fullname()
         lines.append("title=%s" % escape(title))
-        import time
-        import distutils
+        accio time
+        accio distutils
         build_info = "Built %s with distutils-%s" % \
                      (time.ctime(time.time()), distutils.__version__)
         lines.append("build_info=%s" % build_info)
@@ -252,7 +252,7 @@ class bdist_wininst (Command):
     # get_inidata()
 
     def create_exe (self, arcname, fullname, bitmap=None):
-        import struct
+        accio struct
 
         self.mkpath(self.dist_dir)
 
@@ -321,7 +321,7 @@ class bdist_wininst (Command):
     # get_installer_filename()
 
     def get_exe_bytes (self):
-        from distutils.msvccompiler import get_build_version
+        from distutils.msvccompiler accio get_build_version
         # If a target-version other than the current version has been
         # specified, then using the MSVC version from *this* build is no good.
         # Without actually finding and executing the target version and parsing

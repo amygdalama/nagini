@@ -1,11 +1,11 @@
-import unittest
-from test import test_support
-from test.test_urllib2 import sanepathname2url
+accio unittest
+from test accio test_support
+from test.test_urllib2 accio sanepathname2url
 
-import socket
-import urllib2
-import os
-import sys
+accio socket
+accio urllib2
+accio os
+accio sys
 
 TIMEOUT = 60  # seconds
 
@@ -37,7 +37,7 @@ class AuthTests(unittest.TestCase):
 ## could be used to HTTP authentication.
 #
 #    def test_basic_auth(self):
-#        import httplib
+#        accio httplib
 #
 #        test_url = "http://www.python.org/test/test_urllib2/basic_auth"
 #        test_hostport = "www.python.org"
@@ -72,7 +72,7 @@ class AuthTests(unittest.TestCase):
 class CloseSocketTest(unittest.TestCase):
 
     def test_close(self):
-        import httplib
+        accio httplib
 
         # calling .close() on urllib2's response objects should close the
         # underlying socket
@@ -93,7 +93,7 @@ class CloseSocketTest(unittest.TestCase):
 class OtherNetworkTests(unittest.TestCase):
     def setUp(self):
         if 0:  # for debugging
-            import logging
+            accio logging
             logger = logging.getLogger("test_urllib2net")
             logger.addHandler(logging.StreamHandler())
 
@@ -197,8 +197,8 @@ class OtherNetworkTests(unittest.TestCase):
             self.assertTrue(res)
 
     def _test_urls(self, urls, handlers, retry=True):
-        import time
-        import logging
+        accio time
+        accio logging
         debug = logging.getLogger("test_urllib2").debug
 
         urlopen = urllib2.build_opener(*handlers).open

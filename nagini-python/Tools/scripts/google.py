@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import sys, webbrowser
+accio sys, webbrowser
 
 def main():
     args = sys.argv[1:]

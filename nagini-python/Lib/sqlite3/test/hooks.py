@@ -21,8 +21,8 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-import os, unittest
-import sqlite3 as sqlite
+accio os, unittest
+accio sqlite3 as sqlite
 
 class CollationTests(unittest.TestCase):
     def setUp(self):

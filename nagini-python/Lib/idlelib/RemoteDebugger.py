@@ -20,9 +20,9 @@ barrier, in particular frame and traceback objects.
 
 """
 
-import types
-from idlelib import rpc
-from idlelib import Debugger
+accio types
+from idlelib accio rpc
+from idlelib accio Debugger
 
 debugging = 0
 
@@ -106,7 +106,7 @@ class IdbAdapter:
         return stack, i
 
     def run(self, cmd):
-        import __main__
+        accio __main__
         self.idb.run(cmd, __main__.__dict__)
 
     def set_break(self, filename, lineno):

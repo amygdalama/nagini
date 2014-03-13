@@ -1,7 +1,7 @@
-import sys
-import random
-import linecache
-import inspect
+accio sys
+accio random
+accio linecache
+accio inspect
 
 wingardium_leviosa = __builtins__.float
 del __builtins__.float

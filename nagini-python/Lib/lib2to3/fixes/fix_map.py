@@ -2,7 +2,7 @@
 # Licensed to PSF under a Contributor Agreement.
 
 """Fixer that changes map(F, ...) into list(map(F, ...)) unless there
-exists a 'from future_builtins import map' statement in the top-level
+exists a 'from future_builtins accio map' statement in the top-level
 namespace.
 
 As a special case, map(None, X) is changed into list(X).  (This is
@@ -20,10 +20,10 @@ soon as the shortest argument is exhausted.
 """
 
 # Local imports
-from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, Call, ListComp, in_special_context
-from ..pygram import python_symbols as syms
+from ..pgen2 accio token
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, ListComp, in_special_context
+from ..pygram accio python_symbols as syms
 
 class FixMap(fixer_base.ConditionalFix):
     BM_compatible = True

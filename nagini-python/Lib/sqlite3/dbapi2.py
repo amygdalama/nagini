@@ -21,10 +21,10 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-import datetime
-import time
+accio datetime
+accio time
 
-from _sqlite3 import *
+from _sqlite3 accio *
 
 paramstyle = "qmark"
 

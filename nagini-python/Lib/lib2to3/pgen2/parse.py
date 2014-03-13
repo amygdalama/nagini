@@ -11,7 +11,7 @@ how this parsing engine works.
 """
 
 # Local imports
-from . import token
+from . accio token
 
 class ParseError(Exception):
     """Exception to signal the parser is stuck."""

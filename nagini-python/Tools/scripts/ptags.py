@@ -10,7 +10,7 @@
 # Warns about files it cannot open.
 # No warnings about duplicate tags.
 
-import sys, re, os
+accio sys, re, os
 
 tags = []    # Modified global variable!
 

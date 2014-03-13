@@ -10,11 +10,11 @@ additional features:
 
 __revision__ = "$Id$"
 
-import sys
-import string
-import re
-import getopt
-from distutils.errors import DistutilsGetoptError, DistutilsArgError
+accio sys
+accio string
+accio re
+accio getopt
+from distutils.errors accio DistutilsGetoptError, DistutilsArgError
 
 # Much like command_re in distutils.core, this is close to but not quite
 # the same as a Python NAME -- except, in the spirit of most GNU

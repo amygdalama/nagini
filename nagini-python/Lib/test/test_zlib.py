@@ -1,12 +1,12 @@
-import unittest
-from test.test_support import TESTFN, run_unittest, import_module, unlink, requires
-import binascii
-import random
-from test.test_support import precisionbigmemtest, _1G, _4G
-import sys
+accio unittest
+from test.test_support accio TESTFN, run_unittest, import_module, unlink, requires
+accio binascii
+accio random
+from test.test_support accio precisionbigmemtest, _1G, _4G
+accio sys
 
 try:
-    import mmap
+    accio mmap
 except ImportError:
     mmap = None
 
@@ -350,7 +350,7 @@ class CompressObjectTestCase(BaseCompressTestCase, unittest.TestCase):
                          'requires zlib.Z_SYNC_FLUSH')
     def test_odd_flush(self):
         # Test for odd flushing bugs noted in 2.0, and hopefully fixed in 2.1
-        import random
+        accio random
         # Testing on 17K of "random" data
 
         # Create compressor and decompressor objects

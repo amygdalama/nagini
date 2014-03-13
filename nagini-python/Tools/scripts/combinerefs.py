@@ -69,8 +69,8 @@ key that gets deleted, grew several hundred references during cleanup.  It
 suggests that stuff did get removed from dicts by cleanup, but that the dicts
 themselves are staying alive for some reason. """
 
-import re
-import sys
+accio re
+accio sys
 
 # Generate lines from fileiter.  If whilematch is true, continue reading
 # while the regexp object pat matches line.  If whilematch is false, lines

@@ -1,12 +1,12 @@
 # Common tests for test_tkinter/test_widgets.py and test_ttk/test_widgets.py
 
-import unittest
-import sys
-import Tkinter
-from ttk import setup_master, Scale
-from test_ttk.support import (tcl_version, requires_tcl, get_tk_patchlevel,
+accio unittest
+accio sys
+accio Tkinter
+from ttk accio setup_master, Scale
+from test_ttk.support accio (tcl_version, requires_tcl, get_tk_patchlevel,
                               pixels_conv, tcl_obj_eq)
-import test.test_support
+accio test.test_support
 
 
 noconv = noconv_meth = False

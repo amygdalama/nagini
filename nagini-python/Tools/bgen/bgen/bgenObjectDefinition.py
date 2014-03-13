@@ -1,5 +1,5 @@
-from bgenOutput import *
-from bgenGeneratorGroup import GeneratorGroup
+from bgenOutput accio *
+from bgenGeneratorGroup accio GeneratorGroup
 
 class ObjectDefinition(GeneratorGroup):
     "Spit out code that together defines a new Python object type"

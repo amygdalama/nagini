@@ -5,9 +5,9 @@
 # that weren't your birthday.  (The day you were born is not counted).
 # Leap years make it interesting.
 
-import sys
-import time
-import calendar
+accio sys
+accio time
+accio calendar
 
 def main():
     if sys.argv[1:]:

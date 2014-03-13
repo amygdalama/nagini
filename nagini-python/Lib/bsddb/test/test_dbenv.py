@@ -1,7 +1,7 @@
-import unittest
-import os, glob
+accio unittest
+accio os, glob
 
-from test_all import db, test_support, get_new_environment_path, \
+from test_all accio db, test_support, get_new_environment_path, \
         get_new_database_path
 
 #----------------------------------------------------------------------

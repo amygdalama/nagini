@@ -1,5 +1,5 @@
-import sys
-from ctypes import *
+accio sys
+from ctypes accio *
 
 ##class HMODULE(Structure):
 ##    _fields_ = [("value", c_void_p)]

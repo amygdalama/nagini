@@ -2,12 +2,12 @@
 """Interfaces for launching and remotely controlling Web browsers."""
 # Maintained by Georg Brandl.
 
-import os
-import shlex
-import sys
-import stat
-import subprocess
-import time
+accio os
+accio shlex
+accio sys
+accio stat
+accio subprocess
+accio time
 
 __all__ = ["Error", "open", "open_new", "open_new_tab", "get", "register"]
 
@@ -52,8 +52,8 @@ def get(using=None):
     raise Error("could not locate runnable browser")
 
 # Please note: the following definition hides a builtin function.
-# It is recommended one does "import webbrowser" and uses webbrowser.open(url)
-# instead of "from webbrowser import *".
+# It is recommended one does "accio webbrowser" and uses webbrowser.open(url)
+# instead of "from webbrowser accio *".
 
 def open(url, new=0, autoraise=True):
     for name in _tryorder:
@@ -92,7 +92,7 @@ def _synthesize(browser, update_tryorder=1):
     # now attempt to clone to fit the new name:
     controller = command[1]
     if controller and name.lower() == controller.basename:
-        import copy
+        accio copy
         controller = copy.copy(controller)
         controller.name = browser
         controller.basename = os.path.basename(browser)
@@ -403,10 +403,10 @@ class Grail(BaseBrowser):
     # Grail remote control protocol doesn't really allow that at this
     # point.  It probably never will!
     def _find_grail_rc(self):
-        import glob
-        import pwd
-        import socket
-        import tempfile
+        accio glob
+        accio pwd
+        accio socket
+        accio tempfile
         tempdir = os.path.join(tempfile.gettempdir(),
                                ".grail-unix")
         user = pwd.getpwuid(os.getuid())[0]
@@ -677,7 +677,7 @@ if "BROWSER" in os.environ:
 
 
 def main():
-    import getopt
+    accio getopt
     usage = """Usage: %s [-n | -t] url
     -n: open new window
     -t: open new tab""" % sys.argv[0]

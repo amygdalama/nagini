@@ -62,8 +62,8 @@
 # Complex for +,-,cmp
 # Polar   for *,/,pow
 
-import math
-import sys
+accio math
+accio sys
 
 twopi = math.pi*2.0
 halfpi = math.pi/2.0

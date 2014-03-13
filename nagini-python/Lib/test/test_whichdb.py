@@ -2,11 +2,11 @@
    based on test_anydbm.py
 """
 
-import os
-import test.test_support
-import unittest
-import whichdb
-import glob
+accio os
+accio test.test_support
+accio unittest
+accio whichdb
+accio glob
 
 _fname = test.test_support.TESTFN
 

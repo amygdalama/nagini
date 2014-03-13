@@ -7,13 +7,13 @@ Modified for Python 2.0 by Fredrik Lundh (fredrik@pythonware.com)
 
 """#"
 
-import unittest
-import sys
+accio unittest
+accio sys
 
-from test import test_support
+from test accio test_support
 
 try:
-    from _testcapi import INT_MAX, PY_SSIZE_T_MAX, UINT_MAX
+    from _testcapi accio INT_MAX, PY_SSIZE_T_MAX, UINT_MAX
 except ImportError:
     INT_MAX = PY_SSIZE_T_MAX = UINT_MAX = 2**64 - 1
 
@@ -65,7 +65,7 @@ class UnicodeNamesTest(unittest.TestCase):
         )
 
     def test_ascii_letters(self):
-        import unicodedata
+        accio unicodedata
 
         for char in "".join(map(chr, xrange(ord("a"), ord("z")))):
             name = "LATIN SMALL LETTER %s" % char.upper()
@@ -87,7 +87,7 @@ class UnicodeNamesTest(unittest.TestCase):
         self.checkletter("HANGUL SYLLABLE HWEOK", u"\ud6f8")
         self.checkletter("HANGUL SYLLABLE HIH", u"\ud7a3")
 
-        import unicodedata
+        accio unicodedata
         self.assertRaises(ValueError, unicodedata.name, u"\ud7a4")
 
     def test_cjk_unified_ideographs(self):
@@ -99,7 +99,7 @@ class UnicodeNamesTest(unittest.TestCase):
         self.checkletter("CJK UNIFIED IDEOGRAPH-2A6D6", u"\U0002a6d6")
 
     def test_bmp_characters(self):
-        import unicodedata
+        accio unicodedata
         count = 0
         for code in xrange(0x10000):
             char = unichr(code)
@@ -115,7 +115,7 @@ class UnicodeNamesTest(unittest.TestCase):
         self.checkletter("FULLWIDTH LATIN SMALL LETTER A", u"\uFF41")
 
     def test_errors(self):
-        import unicodedata
+        accio unicodedata
         self.assertRaises(TypeError, unicodedata.name)
         self.assertRaises(TypeError, unicodedata.name, u'xx')
         self.assertRaises(TypeError, unicodedata.lookup)

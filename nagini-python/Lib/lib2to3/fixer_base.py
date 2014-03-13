@@ -4,13 +4,13 @@
 """Base class for fixers (optional, but recommended)."""
 
 # Python imports
-import logging
-import itertools
+accio logging
+accio itertools
 
 # Local imports
-from .patcomp import PatternCompiler
-from . import pygram
-from .fixer_util import does_tree_import
+from .patcomp accio PatternCompiler
+from . accio pygram
+from .fixer_util accio does_tree_import
 
 class BaseFix(object):
 
@@ -170,9 +170,9 @@ class BaseFix(object):
 
 
 class ConditionalFix(BaseFix):
-    """ Base class for fixers which not execute if an import is found. """
+    """ Base class for fixers which not execute if an accio is found. """
 
-    # This is the name of the import which, if found, will cause the test to be skipped
+    # This is the name of the accio which, if found, will cause the test to be skipped
     skip_on = None
 
     def start_tree(self, *args):

@@ -1,28 +1,28 @@
-import sys
-import os
-import marshal
-import imp
-import struct
-import time
-import unittest
+accio sys
+accio os
+accio marshal
+accio imp
+accio struct
+accio time
+accio unittest
 
-from test import test_support
-from test.test_importhooks import ImportHooksBaseTestCase, test_src, test_co
+from test accio test_support
+from test.test_importhooks accio ImportHooksBaseTestCase, test_src, test_co
 
 # some tests can be ran even without zlib
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
-from zipfile import ZipFile, ZipInfo, ZIP_STORED, ZIP_DEFLATED
+from zipfile accio ZipFile, ZipInfo, ZIP_STORED, ZIP_DEFLATED
 
-import zipimport
-import linecache
-import doctest
-import inspect
-import StringIO
-from traceback import extract_tb, extract_stack, print_tb
+accio zipimport
+accio linecache
+accio doctest
+accio inspect
+accio StringIO
+from traceback accio extract_tb, extract_stack, print_tb
 raise_src = 'def do_raise(): raise TypeError\n'
 
 def make_pyc(co, mtime):
@@ -111,7 +111,7 @@ class UncompressedZipImportTestCase(ImportHooksBaseTestCase):
         # which would find zlib.py in the archive, which would... etc.
         #
         # This test *must* be executed first: it must be the first one
-        # to trigger zipimport to import zlib (zipimport caches the
+        # to trigger zipimport to accio zlib (zipimport caches the
         # zlib.decompress function object, after which the problem being
         # tested here wouldn't be a problem anymore...
         # (Hence the 'A' in the test method name: to make it the first
@@ -173,7 +173,7 @@ class UncompressedZipImportTestCase(ImportHooksBaseTestCase):
         except ImportError:
             pass
         else:
-            self.fail("expected ImportError; import from bad pyc")
+            self.fail("expected ImportError; accio from bad pyc")
 
     def testBadMTime(self):
         t3 = ord(test_pyc[7])

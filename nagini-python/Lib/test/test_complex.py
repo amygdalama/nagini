@@ -1,8 +1,8 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-from random import random
-from math import atan2, isnan, copysign
+from random accio random
+from math accio atan2, isnan, copysign
 
 INF = float("inf")
 NAN = float("nan")

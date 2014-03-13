@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # this program creates a canvas and puts a single polygon on the canvas
 

@@ -29,11 +29,11 @@ __author__ = 'Ka-Ping Yee <ping@lfw.org>'
 __credits__ = \
     'GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro'
 
-import string, re
-from codecs import BOM_UTF8, lookup
-from lib2to3.pgen2.token import *
+accio string, re
+from codecs accio BOM_UTF8, lookup
+from lib2to3.pgen2.token accio *
 
-from . import token
+from . accio token
 __all__ = [x for x in dir(token) if x[0] != '_'] + ["tokenize",
            "generate_tokens", "untokenize"]
 del token
@@ -494,6 +494,6 @@ def generate_tokens(readline):
     yield (ENDMARKER, '', (lnum, 0), (lnum, 0), '')
 
 if __name__ == '__main__':                     # testing
-    import sys
+    accio sys
     if len(sys.argv) > 1: tokenize(open(sys.argv[1]).readline)
     else: tokenize(sys.stdin.readline)

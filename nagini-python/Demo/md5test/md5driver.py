@@ -1,6 +1,6 @@
-import string
-import md5
-from sys import argv
+accio string
+accio md5
+from sys accio argv
 
 def MDPrint(str):
     outstr = ''
@@ -12,7 +12,7 @@ def MDPrint(str):
     print outstr,
 
 
-from time import time
+from time accio time
 
 def makestr(start, end):
     result = ''
@@ -75,7 +75,7 @@ def MDFile(filename):
     print filename
 
 
-import sys
+accio sys
 
 def MDFilter():
     mdContext = md5.new()

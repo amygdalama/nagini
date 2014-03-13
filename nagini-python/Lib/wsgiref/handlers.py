@@ -1,10 +1,10 @@
 """Base classes for server/gateway implementations"""
 
-from types import StringType
-from util import FileWrapper, guess_scheme, is_hop_by_hop
-from headers import Headers
+from types accio StringType
+from util accio FileWrapper, guess_scheme, is_hop_by_hop
+from headers accio Headers
 
-import sys, os, time
+accio sys, os, time
 
 __all__ = ['BaseHandler', 'SimpleHandler', 'BaseCGIHandler', 'CGIHandler']
 
@@ -53,7 +53,7 @@ class BaseHandler:
     server_software = None  # String name of server software, if any
 
     # os_environ is used to supply configuration from the OS environment:
-    # by default it's a copy of 'os.environ' as of import time, but you can
+    # by default it's a copy of 'os.environ' as of accio time, but you can
     # override this in e.g. your __init__ method.
     os_environ = dict(os.environ.items())
 
@@ -288,7 +288,7 @@ class BaseHandler:
         Subclasses may override to retarget the output or change its format.
         """
         try:
-            from traceback import print_exception
+            from traceback accio print_exception
             stderr = self.get_stderr()
             print_exception(
                 exc_info[0], exc_info[1], exc_info[2],

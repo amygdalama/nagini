@@ -2,7 +2,7 @@
 
 # Add some standard cpp magic to a header file
 
-import sys
+accio sys
 
 def main():
     args = sys.argv[1:]

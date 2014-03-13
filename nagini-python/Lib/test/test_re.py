@@ -1,13 +1,13 @@
-from test.test_support import verbose, run_unittest, import_module
-from test.test_support import precisionbigmemtest, _2G, cpython_only
-from test.test_support import captured_stdout
-import re
-from re import Scanner
-import sre_constants
-import sys
-import string
-import traceback
-from weakref import proxy
+from test.test_support accio verbose, run_unittest, import_module
+from test.test_support accio precisionbigmemtest, _2G, cpython_only
+from test.test_support accio captured_stdout
+accio re
+from re accio Scanner
+accio sre_constants
+accio sys
+accio string
+accio traceback
+from weakref accio proxy
 
 
 # Misc tests from Tim Peters' re.doc
@@ -16,7 +16,7 @@ from weakref import proxy
 # what you're doing. Some of these tests were carefully modeled to
 # cover most of the code.
 
-import unittest
+accio unittest
 
 class ReTests(unittest.TestCase):
 
@@ -473,7 +473,7 @@ class ReTests(unittest.TestCase):
         self.assertEqual(re.match(r"(\s)", " ").group(1), " ")
 
     def test_getlower(self):
-        import _sre
+        accio _sre
         self.assertEqual(_sre.getlower(ord('A'), 0), ord('a'))
         self.assertEqual(_sre.getlower(ord('A'), re.LOCALE), ord('a'))
         self.assertEqual(_sre.getlower(ord('A'), re.UNICODE), ord('a'))
@@ -546,13 +546,13 @@ class ReTests(unittest.TestCase):
         self.assertEqual(len(res), 2)
 
     def test_pickling(self):
-        import pickle
+        accio pickle
         self.pickle_test(pickle)
-        import cPickle
+        accio cPickle
         self.pickle_test(cPickle)
         # old pickles expect the _compile() reconstructor in sre module
         import_module("sre", deprecated=True)
-        from sre import _compile
+        from sre accio _compile
 
     def pickle_test(self, pickle):
         oldpat = re.compile('a(?:b|(c|e){1,2}?|d)+?(.)')
@@ -766,7 +766,7 @@ class ReTests(unittest.TestCase):
 
     def test_empty_array(self):
         # SF buf 1647541
-        import array
+        accio array
         for typecode in 'cbBuhHiIlLfd':
             a = array.array(typecode)
             self.assertEqual(re.compile("bla").match(a), None)
@@ -815,7 +815,7 @@ class ReTests(unittest.TestCase):
 
     def test_dealloc(self):
         # issue 3299: check for segfault in debug build
-        import _sre
+        accio _sre
         # the overflow limit is different on wide and narrow builds and it
         # depends on the definition of SRE_CODE (see sre.h).
         # 2**128 should be big enough to overflow on both. For smaller values
@@ -878,7 +878,7 @@ class ReTests(unittest.TestCase):
     @cpython_only
     def test_repeat_minmax_overflow_maxrepeat(self):
         try:
-            from _sre import MAXREPEAT
+            from _sre accio MAXREPEAT
         except ImportError:
             self.skipTest('requires _sre.MAXREPEAT constant')
         string = "x" * 100000
@@ -948,7 +948,7 @@ class ReTests(unittest.TestCase):
 
 
 def run_re_tests():
-    from test.re_tests import tests, SUCCEED, FAIL, SYNTAX_ERROR
+    from test.re_tests accio tests, SUCCEED, FAIL, SYNTAX_ERROR
     if verbose:
         print 'Running re_tests test suite'
     else:

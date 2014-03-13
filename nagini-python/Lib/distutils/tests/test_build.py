@@ -1,12 +1,12 @@
 """Tests for distutils.command.build."""
-import unittest
-import os
-import sys
-from test.test_support import run_unittest
+accio unittest
+accio os
+accio sys
+from test.test_support accio run_unittest
 
-from distutils.command.build import build
-from distutils.tests import support
-from sysconfig import get_platform
+from distutils.command.build accio build
+from distutils.tests accio support
+from sysconfig accio get_platform
 
 class BuildTestCase(support.TempdirManager,
                     support.LoggingSilencer,

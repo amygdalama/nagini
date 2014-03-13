@@ -21,8 +21,8 @@
 
 __version__ = 'SPARK-0.7 (pre-alpha-5)'
 
-import re
-import string
+accio re
+accio string
 
 def _namelist(instance):
     namelist, namedict, classlist = [], {}, [instance.__class__]

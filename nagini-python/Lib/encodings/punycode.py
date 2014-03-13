@@ -4,7 +4,7 @@
 Written by Martin v. Löwis.
 """
 
-import codecs
+accio codecs
 
 ##################### Encoding #####################################
 

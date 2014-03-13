@@ -6,23 +6,23 @@
 # $Id$
 #
 
-import sys
-import os
-import re
-import copy
-import types
-import unittest
+accio sys
+accio os
+accio re
+accio copy
+accio types
+accio unittest
 
-from StringIO import StringIO
-from test import test_support
+from StringIO accio StringIO
+from test accio test_support
 
 
-from optparse import make_option, Option, \
+from optparse accio make_option, Option, \
      TitledHelpFormatter, OptionParser, OptionGroup, \
      SUPPRESS_USAGE, OptionError, OptionConflictError, \
      BadOptionError, OptionValueError, Values
-from optparse import _match_abbrev
-from optparse import _parse_num
+from optparse accio _match_abbrev
+from optparse accio _parse_num
 
 retype = type(re.compile(''))
 

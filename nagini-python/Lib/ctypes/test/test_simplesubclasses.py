@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 class MyInt(c_int):
     def __cmp__(self, other):

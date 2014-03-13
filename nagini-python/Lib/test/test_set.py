@@ -1,14 +1,14 @@
 
-import unittest
-from test import test_support
-import gc
-import weakref
-import operator
-import copy
-import pickle
-from random import randrange, shuffle
-import sys
-import collections
+accio unittest
+from test accio test_support
+accio gc
+accio weakref
+accio operator
+accio copy
+accio pickle
+from random accio randrange, shuffle
+accio sys
+accio collections
 
 class PassThru(Exception):
     pass
@@ -1593,7 +1593,7 @@ class S:
     def next(self):
         raise StopIteration
 
-from itertools import chain, imap
+from itertools accio chain, imap
 def L(seqn):
     'Test multiple tiers of iterators'
     return chain(imap(lambda x:x, R(Ig(G(seqn)))))
@@ -1820,7 +1820,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

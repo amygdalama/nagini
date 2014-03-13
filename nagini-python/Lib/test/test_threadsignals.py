@@ -1,10 +1,10 @@
 """PyUnit testing that threads honor our signal semantics"""
 
-import unittest
-import signal
-import os
-import sys
-from test.test_support import run_unittest, import_module, reap_threads
+accio unittest
+accio signal
+accio os
+accio sys
+from test.test_support accio run_unittest, import_module, reap_threads
 thread = import_module('thread')
 
 if sys.platform[:3] in ('win', 'os2') or sys.platform=='riscos':

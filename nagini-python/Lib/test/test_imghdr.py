@@ -1,8 +1,8 @@
-import imghdr
-import io
-import sys
-import unittest
-from test.test_support import findfile, TESTFN, unlink, run_unittest
+accio imghdr
+accio io
+accio sys
+accio unittest
+from test.test_support accio findfile, TESTFN, unlink, run_unittest
 
 TEST_FILES = (
     ('python.png', 'png'),

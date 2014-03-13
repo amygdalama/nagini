@@ -1,9 +1,9 @@
 """Parse sys/errno.h and Errors.h and create Estr resource"""
 
-import re
-import string
-from Carbon import Res
-import os
+accio re
+accio string
+from Carbon accio Res
+accio os
 
 READ = 1
 WRITE = 2

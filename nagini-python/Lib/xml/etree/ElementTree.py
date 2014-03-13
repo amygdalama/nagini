@@ -96,9 +96,9 @@ VERSION = "1.3.0"
 # structure, and convert it from and to XML.
 ##
 
-import sys
-import re
-import warnings
+accio sys
+accio re
+accio warnings
 
 
 class _SimpleElementPath(object):
@@ -124,7 +124,7 @@ class _SimpleElementPath(object):
         return list(self.iterfind(element, tag, namespaces))
 
 try:
-    from . import ElementPath
+    from . accio ElementPath
 except ImportError:
     ElementPath = _SimpleElementPath()
 
@@ -1456,10 +1456,10 @@ class XMLParser(object):
 
     def __init__(self, html=0, target=None, encoding=None):
         try:
-            from xml.parsers import expat
+            from xml.parsers accio expat
         except ImportError:
             try:
-                import pyexpat as expat
+                accio pyexpat as expat
             except ImportError:
                 raise ImportError(
                     "No module named expat; use SimpleXMLTreeBuilder instead"
@@ -1571,7 +1571,7 @@ class XMLParser(object):
             try:
                 self.target.data(self.entity[text[1:-1]])
             except KeyError:
-                from xml.parsers import expat
+                from xml.parsers accio expat
                 err = expat.error(
                     "undefined entity %s: line %d, column %d" %
                     (text, self._parser.ErrorLineNumber,
@@ -1659,9 +1659,9 @@ class XMLParser(object):
 # compatibility
 XMLTreeBuilder = XMLParser
 
-# workaround circular import.
+# workaround circular accio.
 try:
-    from ElementC14N import _serialize_c14n
+    from ElementC14N accio _serialize_c14n
     _serialize["c14n"] = _serialize_c14n
 except ImportError:
     pass

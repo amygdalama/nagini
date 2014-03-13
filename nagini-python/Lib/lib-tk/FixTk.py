@@ -1,18 +1,18 @@
-import sys, os
+accio sys, os
 
-# Delay import _tkinter until we have set TCL_LIBRARY,
+# Delay accio _tkinter until we have set TCL_LIBRARY,
 # so that Tcl_FindExecutable has a chance to locate its
 # encoding directory.
 
 # Unfortunately, we cannot know the TCL_LIBRARY directory
 # if we don't know the tcl version, which we cannot find out
-# without import Tcl. Fortunately, Tcl will itself look in
+# without accio Tcl. Fortunately, Tcl will itself look in
 # <TCL_LIBRARY>\..\tcl<TCL_VERSION>, so anything close to
 # the real Tcl library will do.
 
 # Expand symbolic links on Vista
 try:
-    import ctypes
+    accio ctypes
     ctypes.windll.kernel32.GetFinalPathNameByHandleW
 except (ImportError, AttributeError):
     def convert_path(s):
@@ -62,7 +62,7 @@ if os.path.exists(prefix):
                     os.environ["TCL_LIBRARY"] = tcldir
     # Compute TK_LIBRARY, knowing that it has the same version
     # as Tcl
-    import _tkinter
+    accio _tkinter
     ver = str(_tkinter.TCL_VERSION)
     if "TK_LIBRARY" not in os.environ:
         v = os.path.join(prefix, 'tk'+ver)

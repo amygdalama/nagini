@@ -1,4 +1,4 @@
-import sys, os
+accio sys, os
 
 # Template used then the program is a GUI program
 WINMAINTEMPLATE = """

@@ -1,6 +1,6 @@
 """Miscellaneous WSGI-related Utilities"""
 
-import posixpath
+accio posixpath
 
 __all__ = [
     'FileWrapper', 'guess_scheme', 'application_uri', 'request_uri',
@@ -43,7 +43,7 @@ def guess_scheme(environ):
 def application_uri(environ):
     """Return the application's base URI (no PATH_INFO or QUERY_STRING)"""
     url = environ['wsgi.url_scheme']+'://'
-    from urllib import quote
+    from urllib accio quote
 
     if environ.get('HTTP_HOST'):
         url += environ['HTTP_HOST']
@@ -63,7 +63,7 @@ def application_uri(environ):
 def request_uri(environ, include_query=1):
     """Return the full request URI, optionally including the query string"""
     url = application_uri(environ)
-    from urllib import quote
+    from urllib accio quote
     path_info = quote(environ.get('PATH_INFO',''),safe='/;=,')
     if not environ.get('SCRIPT_NAME'):
         url += path_info[1:]
@@ -142,7 +142,7 @@ def setup_testing_defaults(environ):
     environ.setdefault('wsgi.multithread', 0)
     environ.setdefault('wsgi.multiprocess', 0)
 
-    from StringIO import StringIO
+    from StringIO accio StringIO
     environ.setdefault('wsgi.input', StringIO(""))
     environ.setdefault('wsgi.errors', StringIO())
     environ.setdefault('wsgi.url_scheme',guess_scheme(environ))

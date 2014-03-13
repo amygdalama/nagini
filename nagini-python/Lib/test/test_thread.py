@@ -1,13 +1,13 @@
-import os
-import unittest
-import random
-from test import test_support
+accio os
+accio unittest
+accio random
+from test accio test_support
 thread = test_support.import_module('thread')
-import time
-import sys
-import weakref
+accio time
+accio sys
+accio weakref
 
-from test import lock_tests
+from test accio lock_tests
 
 NUMTASKS = 10
 NUMTRIPS = 3

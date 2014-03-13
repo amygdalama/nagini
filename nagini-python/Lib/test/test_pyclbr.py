@@ -2,11 +2,11 @@
    Test cases for pyclbr.py
    Nick Mathewson
 '''
-from test.test_support import run_unittest, import_module
-import sys
-from types import ClassType, FunctionType, MethodType, BuiltinFunctionType
-import pyclbr
-from unittest import TestCase
+from test.test_support accio run_unittest, import_module
+accio sys
+from types accio ClassType, FunctionType, MethodType, BuiltinFunctionType
+accio pyclbr
+from unittest accio TestCase
 
 StaticMethodType = type(staticmethod(lambda: None))
 ClassMethodType = type(classmethod(lambda c: None))
@@ -15,7 +15,7 @@ ClassMethodType = type(classmethod(lambda c: None))
 import_module('commands', deprecated=True)
 
 # This next line triggers an error on old versions of pyclbr.
-from commands import getstatus
+from commands accio getstatus
 
 # Here we test the python class browser code.
 #
@@ -166,7 +166,7 @@ class PyclbrTest(TestCase):
         cm = self.checkModule
 
         # These were once about the 10 longest modules
-        cm('random', ignore=('Random',))  # from _random import Random as CoreGenerator
+        cm('random', ignore=('Random',))  # from _random accio Random as CoreGenerator
         cm('cgi', ignore=('log',))      # set with = in module
         cm('urllib', ignore=('_CFNumberToInt32',
                              '_CStringFromCFString',
@@ -180,7 +180,7 @@ class PyclbrTest(TestCase):
         cm('pickle')
         cm('aifc', ignore=('openfp',))  # set with = in module
         cm('Cookie')
-        cm('sre_parse', ignore=('dump',)) # from sre_constants import *
+        cm('sre_parse', ignore=('dump',)) # from sre_constants accio *
         cm('pdb')
         cm('pydoc')
 

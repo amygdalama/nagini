@@ -3,11 +3,11 @@
 # NOTE: This module was an experiment and is now obsolete.
 # It's best to use the Tkinter.Canvas class directly.
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the Canvas module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-from Tkinter import Canvas, _cnfmerge, _flatten
+from Tkinter accio Canvas, _cnfmerge, _flatten
 
 
 class CanvasItem:

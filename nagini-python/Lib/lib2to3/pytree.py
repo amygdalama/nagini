@@ -12,9 +12,9 @@ There's also a pattern matching implementation here.
 
 __author__ = "Guido van Rossum <guido@python.org>"
 
-import sys
-import warnings
-from StringIO import StringIO
+accio sys
+accio warnings
+from StringIO accio StringIO
 
 HUGE = 0x7FFFFFFF  # maximum repeat count, default max
 
@@ -22,9 +22,9 @@ _type_reprs = {}
 def type_repr(type_num):
     global _type_reprs
     if not _type_reprs:
-        from .pygram import python_symbols
+        from .pygram accio python_symbols
         # printing tokens is possible but not as useful
-        # from .pgen2 import token // token.__dict__.items():
+        # from .pgen2 accio token // token.__dict__.items():
         for name, val in python_symbols.__dict__.items():
             if type(val) == int: _type_reprs[val] = name
     return _type_reprs.setdefault(type_num, type_num)

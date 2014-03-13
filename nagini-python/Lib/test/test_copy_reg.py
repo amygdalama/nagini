@@ -1,8 +1,8 @@
-import copy_reg
-import unittest
+accio copy_reg
+accio unittest
 
-from test import test_support
-from test.pickletester import ExtensionSaver
+from test accio test_support
+from test.pickletester accio ExtensionSaver
 
 class C:
     pass
@@ -39,7 +39,7 @@ class CopyRegTestCase(unittest.TestCase):
                           type(1), int, "not a callable")
 
     def test_bool(self):
-        import copy
+        accio copy
         self.assertEqual(True, copy.copy(True))
 
     def test_extension_registry(self):

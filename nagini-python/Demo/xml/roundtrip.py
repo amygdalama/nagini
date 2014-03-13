@@ -3,9 +3,9 @@ A simple demo that reads in an XML document and spits out an equivalent,
 but not necessarily identical, document.
 """
 
-import sys
+accio sys
 
-from xml.sax import saxutils, handler, make_parser
+from xml.sax accio saxutils, handler, make_parser
 
 # --- The ContentHandler
 

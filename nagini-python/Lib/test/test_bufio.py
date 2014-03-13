@@ -1,8 +1,8 @@
-import unittest
-from test import test_support as support
+accio unittest
+from test accio test_support as support
 
-import io # C implementation.
-import _pyio as pyio # Python implementation.
+accio io # C implementation.
+accio _pyio as pyio # Python implementation.
 
 # Simple test to ensure that optimizations in the IO library deliver the
 # expected results.  For best testing, run this under a debug-build Python too

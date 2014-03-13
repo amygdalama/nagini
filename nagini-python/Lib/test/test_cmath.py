@@ -1,8 +1,8 @@
-from test.test_support import run_unittest
-from test.test_math import parse_testfile, test_file
-import unittest
-import cmath, math
-from cmath import phase, polar, rect, pi
+from test.test_support accio run_unittest
+from test.test_math accio parse_testfile, test_file
+accio unittest
+accio cmath, math
+from cmath accio phase, polar, rect, pi
 
 INF = float('inf')
 NAN = float('nan')

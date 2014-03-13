@@ -4,10 +4,10 @@
 #
 # check in files for which rcsdiff returns nonzero exit status
 
-import sys
-import os
-from stat import *
-import fnmatch
+accio sys
+accio os
+from stat accio *
+accio fnmatch
 
 EXECMAGIC = '\001\140\000\010'
 

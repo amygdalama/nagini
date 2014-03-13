@@ -1,6 +1,6 @@
 # This file is used to verify that 2to3 falls back to a slower, iterative pattern matching
 # scheme in the event that the faster recursive system fails due to infinite recursion.
-from ctypes import *
+from ctypes accio *
 STRING = c_char_p
 
 

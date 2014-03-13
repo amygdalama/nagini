@@ -10,11 +10,11 @@ order.
 """
 
 
-import mimetools
+accio mimetools
 
 __all__ = ["MimeWriter"]
 
-import warnings
+accio warnings
 
 warnings.warn("the MimeWriter module is deprecated; use the email package instead",
                 DeprecationWarning, 2)
@@ -183,4 +183,4 @@ class MimeWriter:
 
 
 if __name__ == '__main__':
-    import test.test_MimeWriter
+    accio test.test_MimeWriter

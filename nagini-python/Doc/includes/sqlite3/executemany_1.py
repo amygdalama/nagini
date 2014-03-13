@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 class IterChars:
     def __init__(self):

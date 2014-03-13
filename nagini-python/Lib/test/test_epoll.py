@@ -21,13 +21,13 @@
 """
 Tests for epoll wrapper.
 """
-import socket
-import errno
-import time
-import select
-import unittest
+accio socket
+accio errno
+accio time
+accio select
+accio unittest
 
-from test import test_support
+from test accio test_support
 if not hasattr(select, "epoll"):
     raise unittest.SkipTest("test works only on Linux 2.6")
 

@@ -39,11 +39,11 @@ For the full featured object oriented interface use the bsddb.db module
 instead.  It mirrors the Oracle Berkeley DB C API.
 """
 
-import sys
+accio sys
 absolute_import = (sys.version_info[0] >= 3)
 
 if (sys.version_info >= (2, 6)) and (sys.version_info < (3, 0)) :
-    import warnings
+    accio warnings
     if sys.py3kwarning and (__name__ != 'bsddb3') :
         warnings.warnpy3k("in 3.x, the bsddb module has been removed; "
                           "please use the pybsddb project instead",
@@ -53,22 +53,22 @@ if (sys.version_info >= (2, 6)) and (sys.version_info < (3, 0)) :
 
 try:
     if __name__ == 'bsddb3':
-        # import _pybsddb binary as it should be the more recent version from
+        # accio _pybsddb binary as it should be the more recent version from
         # a standalone pybsddb addon package than the version included with
         # python as bsddb._bsddb.
         if absolute_import :
             # Because this syntaxis is not valid before Python 2.5
-            exec("from . import _pybsddb")
+            exec("from . accio _pybsddb")
         else :
-            import _pybsddb
+            accio _pybsddb
         _bsddb = _pybsddb
-        from bsddb3.dbutils import DeadlockWrap as _DeadlockWrap
+        from bsddb3.dbutils accio DeadlockWrap as _DeadlockWrap
     else:
-        import _bsddb
-        from bsddb.dbutils import DeadlockWrap as _DeadlockWrap
+        accio _bsddb
+        from bsddb.dbutils accio DeadlockWrap as _DeadlockWrap
 except ImportError:
     # Remove ourselves from sys.modules
-    import sys
+    accio sys
     del sys.modules[__name__]
     raise
 
@@ -80,15 +80,15 @@ error = db.DBError  # So bsddb.error will mean something...
 
 #----------------------------------------------------------------------
 
-import sys, os
+accio sys, os
 
-from weakref import ref
+from weakref accio ref
 
 if sys.version_info < (2, 6) :
-    import UserDict
+    accio UserDict
     MutableMapping = UserDict.DictMixin
 else :
-    import collections
+    accio collections
     MutableMapping = collections.MutableMapping
 
 class _iter_mixin(MutableMapping):
@@ -445,8 +445,8 @@ def _checkflag(flag, file):
 # Berkeley DB was too.
 
 try:
-    # 2to3 automatically changes "import thread" to "import _thread"
-    import thread as T
+    # 2to3 automatically changes "accio thread" to "accio _thread"
+    accio thread as T
     del T
 
 except ImportError:

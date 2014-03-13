@@ -22,11 +22,11 @@ Options:
     -v:         Verbose.  Trace the matching of //begin and //end blocks.
 """
 
-import re
-import sys
-import getopt
-from itertools import izip, count, islice
-import glob
+accio re
+accio sys
+accio getopt
+from itertools accio izip, count, islice
+accio glob
 
 cmdstr = r"""
     \section \module \declaremodule \modulesynopsis \moduleauthor

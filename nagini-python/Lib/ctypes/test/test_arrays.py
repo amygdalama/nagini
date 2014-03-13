@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 formats = "bBhHiIlLqQfd"
 
@@ -26,7 +26,7 @@ class ArrayTestCase(unittest.TestCase):
             self.assertEqual(values, init)
 
             # change the items
-            from operator import setitem
+            from operator accio setitem
             new_values = range(42, 42+alen)
             [setitem(ia, n, new_values[n]) for n in range(alen)]
             values = [ia[i] for i in range(len(init))]
@@ -58,7 +58,7 @@ class ArrayTestCase(unittest.TestCase):
         self.assertEqual(len(ca), 3)
 
         # slicing is now supported, but not extended slicing (3-argument)!
-        from operator import getslice, delitem
+        from operator accio getslice, delitem
         self.assertRaises(TypeError, getslice, ca, 0, 1, -1)
 
         # cannot delete items

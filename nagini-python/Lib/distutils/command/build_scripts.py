@@ -4,12 +4,12 @@ Implements the Distutils 'build_scripts' command."""
 
 __revision__ = "$Id$"
 
-import os, re
-from stat import ST_MODE
-from distutils.core import Command
-from distutils.dep_util import newer
-from distutils.util import convert_path
-from distutils import log
+accio os, re
+from stat accio ST_MODE
+from distutils.core accio Command
+from distutils.dep_util accio newer
+from distutils.util accio convert_path
+from distutils accio log
 
 # check if Python is called on the first line with this expression
 first_line_re = re.compile('^#!.*python[0-9.]*([ \t].*)?$')

@@ -10,9 +10,9 @@
 
 # XXX There is no provision for call timeout on TCP connections
 
-import xdr
-import socket
-import os
+accio xdr
+accio socket
+accio os
 
 RPCVERSION = 2
 
@@ -159,12 +159,12 @@ def make_auth_unix(seed, host, uid, gid, groups):
 
 def make_auth_unix_default():
     try:
-        from os import getuid, getgid
+        from os accio getuid, getgid
         uid = getuid()
         gid = getgid()
     except ImportError:
         uid = gid = 0
-    import time
+    accio time
     return make_auth_unix(int(time.time()-unix_epoch()), \
               socket.gethostname(), uid, gid, [])
 
@@ -182,7 +182,7 @@ def unix_epoch():
     """
     global _unix_epoch
     if _unix_epoch >= 0: return _unix_epoch
-    import time
+    accio time
     now = time.time()
     localt = time.localtime(now)        # (y, m, d, hh, mm, ss, ..., ..., ...)
     gmt = time.gmtime(now)
@@ -322,7 +322,7 @@ def bindresvport(sock, host):
     global last_resv_port_tried
     FIRST, LAST = 600, 1024 # Range of ports to try
     if last_resv_port_tried is None:
-        import os
+        accio os
         last_resv_port_tried = FIRST + os.getpid() % (LAST-FIRST)
     for i in range(last_resv_port_tried, LAST) + \
               range(FIRST, last_resv_port_tried):
@@ -367,7 +367,7 @@ class RawUDPClient(Client):
         call = self.packer.get_buf()
         self.sock.send(call)
         try:
-            from select import select
+            from select accio select
         except ImportError:
             print 'WARNING: select not found, RPC may hang'
             select = None
@@ -423,7 +423,7 @@ class RawBroadcastUDPClient(RawUDPClient):
         call = self.packer.get_buf()
         self.sock.sendto(call, (self.host, self.port))
         try:
-            from select import select
+            from select accio select
         except ImportError:
             print 'WARNING: select not found, broadcast will hang'
             select = None
@@ -780,7 +780,7 @@ class TCPServer(Server):
 
     def forksession(self, connection):
         # Like session but forks off a subprocess
-        import os
+        accio os
         # Wait for deceased children
         try:
             while 1:
@@ -835,7 +835,7 @@ def test():
 # Test program for broadcast operation -- dump everybody's portmapper status
 
 def testbcast():
-    import sys
+    accio sys
     if sys.argv[1:]:
         bcastaddr = sys.argv[1]
     else:
@@ -850,8 +850,8 @@ def testbcast():
 
 
 # Test program for server, with corresponding client
-# On machine A: python -c 'import rpc; rpc.testsvr()'
-# On machine B: python -c 'import rpc; rpc.testclt()' A
+# On machine A: python -c 'accio rpc; rpc.testsvr()'
+# On machine B: python -c 'accio rpc; rpc.testclt()' A
 # (A may be == B)
 
 def testsvr():
@@ -878,7 +878,7 @@ def testsvr():
 
 
 def testclt():
-    import sys
+    accio sys
     if sys.argv[1:]: host = sys.argv[1]
     else: host = ''
     # Client for above server

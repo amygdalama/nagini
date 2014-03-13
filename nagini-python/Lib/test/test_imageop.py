@@ -3,10 +3,10 @@
    Roger E. Masse
 """
 
-from test.test_support import verbose, unlink, import_module, run_unittest
+from test.test_support accio verbose, unlink, import_module, run_unittest
 
 imageop = import_module('imageop', deprecated=True)
-import uu, os, unittest
+accio uu, os, unittest
 
 
 SIZES = (1, 2, 3, 4)
@@ -68,7 +68,7 @@ def test_main():
     run_unittest(InputValidationTests)
 
     try:
-        import imgfile
+        accio imgfile
     except ImportError:
         return
 
@@ -178,7 +178,7 @@ def getimage(name):
     """return a tuple consisting of
        image (in 'imgfile' format) width and height
     """
-    import imgfile
+    accio imgfile
     try:
         sizes = imgfile.getsizes(name)
     except imgfile.error:
@@ -192,8 +192,8 @@ def getimage(name):
 
 def get_qualified_path(name):
     """ return a more qualified path to name"""
-    import sys
-    import os
+    accio sys
+    accio os
     path = sys.path
     try:
         path = [os.path.dirname(__file__)] + path

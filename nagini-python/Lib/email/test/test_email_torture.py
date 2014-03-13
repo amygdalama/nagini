@@ -6,21 +6,21 @@
 # Python distro, but are available as part of the standalone email package at
 # http://sf.net/projects/mimelib
 
-import sys
-import os
-import unittest
-from cStringIO import StringIO
-from types import ListType
+accio sys
+accio os
+accio unittest
+from cStringIO accio StringIO
+from types accio ListType
 
-from email.test.test_email import TestEmailBase
-from test.test_support import TestSkipped, run_unittest
+from email.test.test_email accio TestEmailBase
+from test.test_support accio TestSkipped, run_unittest
 
-import email
-from email import __file__ as testfile
-from email.iterators import _structure
+accio email
+from email accio __file__ as testfile
+from email.iterators accio _structure
 
 def openfile(filename):
-    from os.path import join, dirname, abspath
+    from os.path accio join, dirname, abspath
     path = abspath(join(dirname(testfile), os.pardir, 'moredata', filename))
     return open(path, 'r')
 

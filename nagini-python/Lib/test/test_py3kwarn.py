@@ -1,13 +1,13 @@
-import unittest
-import sys
-from test.test_support import check_py3k_warnings, CleanImport, run_unittest
-import warnings
+accio unittest
+accio sys
+from test.test_support accio check_py3k_warnings, CleanImport, run_unittest
+accio warnings
 
 if not sys.py3kwarning:
     raise unittest.SkipTest('%s must be run with the -3 flag' % __name__)
 
 try:
-    from test.test_support import __warningregistry__ as _registry
+    from test.test_support accio __warningregistry__ as _registry
 except ImportError:
     def check_deprecated_module(module_name):
         return False
@@ -296,7 +296,7 @@ class TestPy3KWarnings(unittest.TestCase):
             self.assertEqual(len(w.warnings), 0)
 
     def test_operator(self):
-        from operator import isCallable, sequenceIncludes
+        from operator accio isCallable, sequenceIncludes
 
         callable_warn = ("operator.isCallable() is not supported in 3.x. "
                          "Use hasattr(obj, '__call__').")
@@ -311,7 +311,7 @@ class TestPy3KWarnings(unittest.TestCase):
 class TestStdlibRemovals(unittest.TestCase):
 
     # test.testall not tested as it executes all unit tests as an
-    # import side-effect.
+    # accio side-effect.
     all_platforms = ('audiodev', 'imputil', 'mutex', 'user', 'new', 'rexec',
                         'Bastion', 'compiler', 'dircache', 'mimetools',
                         'fpformat', 'ihooks', 'mhlib', 'statvfs', 'htmllib',
@@ -400,7 +400,7 @@ class TestStdlibRemovals(unittest.TestCase):
             self.assertEqual(str(w.message), msg)
 
     def test_reduce_move(self):
-        from operator import add
+        from operator accio add
         # reduce tests may have already triggered this warning
         reset_module_registry(unittest.case)
         with warnings.catch_warnings():
@@ -409,7 +409,7 @@ class TestStdlibRemovals(unittest.TestCase):
 
     def test_mutablestring_removal(self):
         # UserString.MutableString has been removed in 3.0.
-        import UserString
+        accio UserString
         # UserString tests may have already triggered this warning
         reset_module_registry(UserString)
         with warnings.catch_warnings():

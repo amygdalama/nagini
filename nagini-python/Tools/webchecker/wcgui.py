@@ -58,11 +58,11 @@ XXX The multipanel user interface is clumsy.
 # ' Emacs bait
 
 
-import sys
-import getopt
-from Tkinter import *
-import tktools
-import webchecker
+accio sys
+accio getopt
+from Tkinter accio *
+accio tktools
+accio webchecker
 
 def main():
     try:

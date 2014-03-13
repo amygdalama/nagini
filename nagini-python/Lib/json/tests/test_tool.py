@@ -1,10 +1,10 @@
-import os
-import sys
-import textwrap
-import unittest
-import subprocess
-from test import test_support
-from test.script_helper import assert_python_ok
+accio os
+accio sys
+accio textwrap
+accio unittest
+accio subprocess
+from test accio test_support
+from test.script_helper accio assert_python_ok
 
 class TestTool(unittest.TestCase):
     data = """

@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 class CountCursorsConnection(sqlite3.Connection):
     def __init__(self, *args, **kwargs):

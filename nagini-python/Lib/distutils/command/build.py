@@ -4,14 +4,14 @@ Implements the Distutils 'build' command."""
 
 __revision__ = "$Id$"
 
-import sys, os
+accio sys, os
 
-from distutils.util import get_platform
-from distutils.core import Command
-from distutils.errors import DistutilsOptionError
+from distutils.util accio get_platform
+from distutils.core accio Command
+from distutils.errors accio DistutilsOptionError
 
 def show_compilers():
-    from distutils.ccompiler import show_compilers
+    from distutils.ccompiler accio show_compilers
     show_compilers()
 
 class build(Command):

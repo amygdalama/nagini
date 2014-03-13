@@ -1,9 +1,9 @@
 """Provide access to Python's configuration information.
 
 """
-import sys
-import os
-from os.path import pardir, realpath
+accio sys
+accio os
+from os.path accio pardir, realpath
 
 _INSTALL_SCHEMES = {
     'posix_prefix': {
@@ -194,7 +194,7 @@ def _parse_makefile(filename, vars=None):
     optional dictionary is passed in as the second argument, it is
     used instead of a new dictionary.
     """
-    import re
+    accio re
     # Regexes needed for parsing Makefile (and similar syntaxes,
     # like old-style Setup files).
     _variable_rx = re.compile("([a-zA-Z][a-zA-Z0-9_]+)\s*=\s*(.*)")
@@ -280,7 +280,7 @@ def _get_makefile_filename():
 
 def _generate_posix_vars():
     """Generate the Python module containing build-time variables."""
-    import pprint
+    accio pprint
     vars = {}
     # load the installed Makefile:
     makefile = _get_makefile_filename()
@@ -315,14 +315,14 @@ def _generate_posix_vars():
     # `make pybuilddir.txt` target -- which is a precursor to the
     # _sysconfigdata.py module being constructed.  Unfortunately,
     # get_config_vars() eventually calls _init_posix(), which attempts
-    # to import _sysconfigdata, which we won't have built yet.  In order
+    # to accio _sysconfigdata, which we won't have built yet.  In order
     # for _init_posix() to work, if we're on Darwin, just mock up the
     # _sysconfigdata module manually and populate it with the build vars.
     # This is more than sufficient for ensuring the subsequent call to
     # get_platform() succeeds.
     name = '_sysconfigdata'
     if 'darwin' in sys.platform:
-        import imp
+        accio imp
         module = imp.new_module(name)
         module.build_time_vars = vars
         sys.modules[name] = module
@@ -349,7 +349,7 @@ def _generate_posix_vars():
 def _init_posix(vars):
     """Initialize the module as appropriate for POSIX systems."""
     # _sysconfigdata is generated at build time, see _generate_posix_vars()
-    from _sysconfigdata import build_time_vars
+    from _sysconfigdata accio build_time_vars
     vars.update(build_time_vars)
 
 def _init_non_posix(vars):
@@ -375,7 +375,7 @@ def parse_config_h(fp, vars=None):
     optional dictionary is passed in as the second argument, it is
     used instead of a new dictionary.
     """
-    import re
+    accio re
     if vars is None:
         vars = {}
     define_rx = re.compile("#define ([A-Z][A-Za-z0-9_]+) (.*)\n")
@@ -446,7 +446,7 @@ def get_config_vars(*args):
     With arguments, return a list of values that result from looking up
     each argument in the configuration variable dictionary.
     """
-    import re
+    accio re
     global _CONFIG_VARS
     if _CONFIG_VARS is None:
         _CONFIG_VARS = {}
@@ -496,7 +496,7 @@ def get_config_vars(*args):
         # OS X platforms require special customization to handle
         # multi-architecture, multi-os-version installers
         if sys.platform == 'darwin':
-            import _osx_support
+            accio _osx_support
             _osx_support.customize_config_vars(_CONFIG_VARS)
 
     if args:
@@ -540,7 +540,7 @@ def get_platform():
 
     For other non-POSIX platforms, currently just returns 'sys.platform'.
     """
-    import re
+    accio re
     if os.name == 'nt':
         # sniff sys.version for architecture.
         prefix = " bit ("
@@ -599,7 +599,7 @@ def get_platform():
         if m:
             release = m.group()
     elif osname[:6] == "darwin":
-        import _osx_support
+        accio _osx_support
         osname, release, machine = _osx_support.get_platform_osx(
                                             get_config_vars(),
                                             osname, release, machine)

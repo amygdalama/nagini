@@ -3,10 +3,10 @@
    Uses the mechanism of the python binhex module
    Based on an original test by Roger E. Masse.
 """
-import binhex
-import os
-import unittest
-from test import test_support
+accio binhex
+accio os
+accio unittest
+from test accio test_support
 
 
 class BinHexTestCase(unittest.TestCase):

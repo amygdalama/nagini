@@ -6,11 +6,11 @@ and building lists of files.
 
 __revision__ = "$Id$"
 
-import os, re
-import fnmatch
-from distutils.util import convert_path
-from distutils.errors import DistutilsTemplateError, DistutilsInternalError
-from distutils import log
+accio os, re
+accio fnmatch
+from distutils.util accio convert_path
+from distutils.errors accio DistutilsTemplateError, DistutilsInternalError
+from distutils accio log
 
 class FileList:
     """A list of files built by on exploring the filesystem and filtered by
@@ -43,7 +43,7 @@ class FileList:
         """Print 'msg' to stdout if the global DEBUG (taken from the
         DISTUTILS_DEBUG environment variable) flag is true.
         """
-        from distutils.debug import DEBUG
+        from distutils.debug accio DEBUG
         if DEBUG:
             print msg
 
@@ -257,7 +257,7 @@ def findall(dir = os.curdir):
     """Find all files under 'dir' and return the list of full filenames
     (relative to 'dir').
     """
-    from stat import ST_MODE, S_ISREG, S_ISDIR, S_ISLNK
+    from stat accio ST_MODE, S_ISREG, S_ISDIR, S_ISLNK
 
     list = []
     stack = [dir]

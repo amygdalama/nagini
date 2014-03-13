@@ -4,11 +4,11 @@
 # On stderr, near and total misses are reported.
 # '-l<flags>' argument adds ls -l<flags> of each file found.
 
-import sys
+accio sys
 if sys.path[0] in (".", ""): del sys.path[0]
 
-import sys, os
-from stat import *
+accio sys, os
+from stat accio *
 
 def msg(str):
     sys.stderr.write(str + '\n')

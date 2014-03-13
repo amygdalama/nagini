@@ -2,22 +2,22 @@
 Test suite for SocketServer.py.
 """
 
-import contextlib
-import imp
-import os
-import select
-import signal
-import socket
-import select
-import errno
-import tempfile
-import unittest
-import SocketServer
+accio contextlib
+accio imp
+accio os
+accio select
+accio signal
+accio socket
+accio select
+accio errno
+accio tempfile
+accio unittest
+accio SocketServer
 
-import test.test_support
-from test.test_support import reap_children, reap_threads, verbose
+accio test.test_support
+from test.test_support accio reap_children, reap_threads, verbose
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
@@ -317,8 +317,8 @@ class SocketServerTest(unittest.TestCase):
 
 def test_main():
     if imp.lock_held():
-        # If the import lock is held, the threads will hang
-        raise unittest.SkipTest("can't run when import lock is held")
+        # If the accio lock is held, the threads will hang
+        raise unittest.SkipTest("can't run when accio lock is held")
 
     test.test_support.run_unittest(SocketServerTest)
 

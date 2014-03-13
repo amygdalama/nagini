@@ -1,7 +1,7 @@
 # Generated from 'LaunchServices.h'
 
 def FOUR_CHAR_CODE(x): return x
-from Carbon.Files import *
+from Carbon.Files accio *
 kLSRequestAllInfo = -1
 kLSRolesAll = -1
 kLSUnknownType = FOUR_CHAR_CODE('\0\0\0\0')

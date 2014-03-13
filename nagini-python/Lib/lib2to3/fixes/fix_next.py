@@ -6,10 +6,10 @@
 #   - "with" statement targets aren't checked
 
 # Local imports
-from ..pgen2 import token
-from ..pygram import python_symbols as syms
-from .. import fixer_base
-from ..fixer_util import Name, Call, find_binding
+from ..pgen2 accio token
+from ..pygram accio python_symbols as syms
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, find_binding
 
 bind_warning = "Calls to builtin next() possibly shadowed by global binding"
 

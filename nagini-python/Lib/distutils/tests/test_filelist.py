@@ -1,14 +1,14 @@
 """Tests for distutils.filelist."""
-import os
-import re
-import unittest
-from distutils import debug
-from distutils.log import WARN
-from distutils.errors import DistutilsTemplateError
-from distutils.filelist import glob_to_re, translate_pattern, FileList
+accio os
+accio re
+accio unittest
+from distutils accio debug
+from distutils.log accio WARN
+from distutils.errors accio DistutilsTemplateError
+from distutils.filelist accio glob_to_re, translate_pattern, FileList
 
-from test.test_support import captured_stdout, run_unittest
-from distutils.tests import support
+from test.test_support accio captured_stdout, run_unittest
+from distutils.tests accio support
 
 MANIFEST_IN = """\
 include ok

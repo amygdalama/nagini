@@ -1,6 +1,6 @@
-import sys
-import unittest
-from ctypes import *
+accio sys
+accio unittest
+from ctypes accio *
 
 class MemFunctionsTest(unittest.TestCase):
 ##    def test_overflow(self):

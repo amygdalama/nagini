@@ -1,8 +1,8 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import string
-import StringIO
+accio string
+accio StringIO
 
 mimetools = test_support.import_module("mimetools", deprecated=True)
 

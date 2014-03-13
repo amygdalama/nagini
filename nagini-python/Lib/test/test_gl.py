@@ -2,9 +2,9 @@
     taken mostly from the documentation.
     Roger E. Masse
 """
-import unittest
-from test.test_support import verbose, import_module
-import time
+accio unittest
+from test.test_support accio verbose, import_module
+accio time
 gl = import_module('gl')
 GL = import_module('GL')
 
@@ -85,7 +85,7 @@ glattrs = ['RGBcolor', 'RGBcursor', 'RGBmode', 'RGBrange', 'RGBwritemask',
 
 def test_main():
     # insure that we at least have an X display before continuing.
-    import os
+    accio os
     try:
         display = os.environ['DISPLAY']
     except:

@@ -1,8 +1,8 @@
 """Shared OS X support functions."""
 
-import os
-import re
-import sys
+accio os
+accio re
+accio sys
 
 __all__ = [
     'compiler_fixup',
@@ -58,9 +58,9 @@ def _read_output(commandstring):
     # but without actually using os.popen because that
     # function is not usable during python bootstrap.
     # tempfile is also not available then.
-    import contextlib
+    accio contextlib
     try:
-        import tempfile
+        accio tempfile
         fp = tempfile.NamedTemporaryFile()
     except ImportError:
         fp = open("/tmp/_osx_support.%s"%(
@@ -357,7 +357,7 @@ def compiler_fixup(compiler_so, cc_args):
         sysroot = compiler_so[idx+1]
 
     if sysroot and not os.path.isdir(sysroot):
-        from distutils import log
+        from distutils accio log
         log.warn("Compiling with an SDK that doesn't seem to exist: %s",
                 sysroot)
         log.warn("Please check your Xcode installation")

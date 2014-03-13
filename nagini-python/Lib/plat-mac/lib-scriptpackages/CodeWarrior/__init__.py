@@ -2,15 +2,15 @@
 Package generated from /Volumes/Sap/Applications (Mac OS 9)/Metrowerks CodeWarrior 7.0/Metrowerks CodeWarrior/CodeWarrior IDE 4.2.5
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the CodeWarrior package is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import CodeWarrior_suite
-import Standard_Suite
-import Metrowerks_Shell_Suite
-import Required
+accio CodeWarrior_suite
+accio Standard_Suite
+accio Metrowerks_Shell_Suite
+accio Required
 
 
 _code_to_module = {
@@ -29,10 +29,10 @@ _code_to_fullname = {
     'reqd' : ('CodeWarrior.Required', 'Required'),
 }
 
-from CodeWarrior_suite import *
-from Standard_Suite import *
-from Metrowerks_Shell_Suite import *
-from Required import *
+from CodeWarrior_suite accio *
+from Standard_Suite accio *
+from Metrowerks_Shell_Suite accio *
+from Required accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -46,7 +46,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

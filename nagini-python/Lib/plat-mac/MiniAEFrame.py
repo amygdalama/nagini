@@ -6,22 +6,22 @@ There are two classes:
         only suitable for the simplest of AppleEvent servers.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the MiniAEFrame module is removed.", stacklevel=2)
 
-import traceback
-import MacOS
-from Carbon import AE
-from Carbon.AppleEvents import *
-from Carbon import Evt
-from Carbon.Events import *
-from Carbon import Menu
-from Carbon import Win
-from Carbon.Windows import *
-from Carbon import Qd
+accio traceback
+accio MacOS
+from Carbon accio AE
+from Carbon.AppleEvents accio *
+from Carbon accio Evt
+from Carbon.Events accio *
+from Carbon accio Menu
+from Carbon accio Win
+from Carbon.Windows accio *
+from Carbon accio Qd
 
-import aetools
-import EasyDialogs
+accio aetools
+accio EasyDialogs
 
 kHighLevelEvent = 23                # Not defined anywhere for Python yet?
 

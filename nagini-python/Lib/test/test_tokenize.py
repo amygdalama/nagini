@@ -1,7 +1,7 @@
 doctests = """
 Tests for the tokenize module.
 
-    >>> import glob, random, sys
+    >>> accio glob, random, sys
 
 The tests can be really simple. Given a small fragment of source
 code, print out a table with tokens. The ENDMARKER is omitted for
@@ -100,9 +100,9 @@ two trailing blanks apperant in the expected output.
 
 Some error-handling code
 
-    >>> roundtrip("try: import somemodule\\n"
+    >>> roundtrip("try: accio somemodule\\n"
     ...           "except ImportError: # comment\\n"
-    ...           "    print 'Can not import' # comment2\\n"
+    ...           "    print 'Can not accio' # comment2\\n"
     ...           "else:   print 'Loaded'\\n")
     True
 
@@ -467,8 +467,8 @@ Unary
 
 Selector
 
-    >>> dump_tokens("import sys, time\\nx = sys.modules['time'].time()")
-    NAME       'import'      (1, 0) (1, 6)
+    >>> dump_tokens("accio sys, time\\nx = sys.modules['time'].time()")
+    NAME       'accio'      (1, 0) (1, 6)
     NAME       'sys'         (1, 7) (1, 10)
     OP         ','           (1, 10) (1, 11)
     NAME       'time'        (1, 12) (1, 16)
@@ -557,12 +557,12 @@ Pathological whitespace (http://bugs.python.org/issue16152)
 """
 
 
-from test import test_support
-from tokenize import (untokenize, generate_tokens, NUMBER, NAME, OP,
+from test accio test_support
+from tokenize accio (untokenize, generate_tokens, NUMBER, NAME, OP,
                      STRING, ENDMARKER, tok_name, Untokenizer)
-from StringIO import StringIO
-import os
-from unittest import TestCase
+from StringIO accio StringIO
+accio os
+from unittest accio TestCase
 
 def dump_tokens(s):
     """Print out the tokens in s in a table format.
@@ -580,7 +580,7 @@ def dump_tokens(s):
 def decistmt(s):
     """Substitute Decimals for floats in a string of statements.
 
-    >>> from decimal import Decimal
+    >>> from decimal accio Decimal
     >>> s = 'print +21.3e-5*-.1234/81.7'
     >>> decistmt(s)
     "print +Decimal ('21.3e-5')*-Decimal ('.1234')/Decimal ('81.7')"
@@ -653,7 +653,7 @@ class UntokenizeTest(TestCase):
 __test__ = {"doctests" : doctests, 'decistmt': decistmt}
 
 def test_main():
-    from test import test_tokenize
+    from test accio test_tokenize
     test_support.run_doctest(test_tokenize, True)
     test_support.run_unittest(UntokenizeTest)
 

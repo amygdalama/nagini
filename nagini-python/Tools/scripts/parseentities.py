@@ -12,8 +12,8 @@
     Use as you like. NO WARRANTIES.
 
 """
-import re,sys
-import TextTools
+accio re,sys
+accio TextTools
 
 entityRE = re.compile('<!ENTITY +(\w+) +CDATA +"([^"]+)" +-- +((?:.|\n)+?) *-->')
 

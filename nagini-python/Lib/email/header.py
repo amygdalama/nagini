@@ -10,14 +10,14 @@ __all__ = [
     'make_header',
     ]
 
-import re
-import binascii
+accio re
+accio binascii
 
-import email.quoprimime
-import email.base64mime
+accio email.quoprimime
+accio email.base64mime
 
-from email.errors import HeaderParseError
-from email.charset import Charset
+from email.errors accio HeaderParseError
+from email.charset accio Charset
 
 NL = '\n'
 SPACE = ' '

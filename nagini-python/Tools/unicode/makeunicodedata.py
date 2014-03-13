@@ -24,7 +24,7 @@
 # written by Fredrik Lundh (fredrik@pythonware.com)
 #
 
-import sys
+accio sys
 
 SCRIPT = sys.argv[0]
 VERSION = "2.6"

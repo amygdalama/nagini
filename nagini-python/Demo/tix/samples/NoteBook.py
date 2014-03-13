@@ -13,7 +13,7 @@
 # This file demonstrates the use of the tixNoteBook widget, which allows
 # you to lay out your interface using a "notebook" metaphore
 #
-import Tix
+accio Tix
 
 def RunSample(w):
     global root

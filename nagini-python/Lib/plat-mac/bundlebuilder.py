@@ -19,7 +19,7 @@ The module contains a main program that can be used in two ways:
 Where "buildapp.py" is a user-supplied setup.py-like script following
 this model:
 
-  from bundlebuilder import buildapp
+  from bundlebuilder accio buildapp
   buildapp(<lots-of-keyword-args>)
 
 """
@@ -28,17 +28,17 @@ this model:
 __all__ = ["BundleBuilder", "BundleBuilderError", "AppBuilder", "buildapp"]
 
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the bundlebuilder module is removed.", stacklevel=2)
 
-import sys
-import os, errno, shutil
-import imp, marshal
-import re
-from copy import deepcopy
-import getopt
-from plistlib import Plist
-from types import FunctionType as function
+accio sys
+accio os, errno, shutil
+accio imp, marshal
+accio re
+from copy accio deepcopy
+accio getopt
+from plistlib accio Plist
+from types accio FunctionType as function
 
 class BundleBuilderError(Exception): pass
 
@@ -240,7 +240,7 @@ USE_ZIPIMPORT = "zipimport" in sys.builtin_module_names
 # For standalone apps, we have our own minimal site.py. We don't need
 # all the cruft of the real site.py.
 SITE_PY = """\
-import sys
+accio sys
 if not %(semi_standalone)s:
     del sys.path[1:]  # sys.path[0] is Contents/Resources/
 """
@@ -260,7 +260,7 @@ def getPycData(fullname, code, ispkg):
 #
 EXT_LOADER = """\
 def __load():
-    import imp, sys, os
+    accio imp, sys, os
     for p in sys.path:
         path = os.path.join(p, "%(filename)s")
         if os.path.exists(path):
@@ -294,7 +294,7 @@ STRIP_EXEC = "/usr/bin/strip"
 BOOTSTRAP_SCRIPT = """\
 #!%(hashbang)s
 
-import sys, os
+accio sys, os
 execdir = os.path.dirname(sys.argv[0])
 executable = os.path.join(execdir, "%(executable)s")
 resdir = os.path.join(os.path.dirname(execdir), "Resources")
@@ -326,7 +326,7 @@ os.execve(executable, sys.argv, os.environ)
 # Optional wrapper that converts "dropped files" into sys.argv values.
 #
 ARGV_EMULATOR = """\
-import argvemulator, os
+accio argvemulator, os
 
 argvemulator.ArgvCollector().mainloop()
 execfile(os.path.join(os.path.split(__file__)[0], "%(realmainprogram)s"))
@@ -567,7 +567,7 @@ class AppBuilder(BundleBuilder):
 
         if self.use_zipimport:
             # Create a zip file containing all modules as pyc.
-            import zipfile
+            accio zipfile
             relpath = pathjoin("Contents", "Resources", ZIP_ARCHIVE)
             abspath = pathjoin(self.bundlepath, relpath)
             zf = zipfile.ZipFile(abspath, "w", zipfile.ZIP_DEFLATED)
@@ -602,7 +602,7 @@ class AppBuilder(BundleBuilder):
             self.message("Error: can't strip binaries: no strip program at "
                 "%s" % STRIP_EXEC, 0)
         else:
-            import stat
+            accio stat
             self.message("Stripping binaries", 1)
             def walk(top):
                 for name in os.listdir(top):
@@ -629,7 +629,7 @@ class AppBuilder(BundleBuilder):
 
     def findDependencies(self):
         self.message("Finding module dependencies", 1)
-        import modulefinder
+        accio modulefinder
         mf = modulefinder.ModuleFinder(excludes=self.excludeModules)
         if self.use_zipimport:
             # zipimport imports zlib, must add it manually
@@ -707,8 +707,8 @@ class AppBuilder(BundleBuilder):
             self.message("    (Note that these could be false alarms -- "
                          "it's not always", 1)
             self.message("    possible to distinguish between \"from package "
-                         "import submodule\" ", 1)
-            self.message("    and \"from package import name\")", 1)
+                         "accio submodule\" ", 1)
+            self.message("    and \"from package accio name\")", 1)
             for name in maybe:
                 self.message("  ? " + name, 1)
         if missing:
@@ -718,7 +718,7 @@ class AppBuilder(BundleBuilder):
 
     def report(self):
         # XXX something decent
-        import pprint
+        accio pprint
         pprint.pprint(self.__dict__)
         if self.standalone or self.semi_standalone:
             self.reportMissing()

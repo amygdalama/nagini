@@ -41,23 +41,23 @@ __credits__ = "Gustavo Niemeyer, Niels Gustäbel, Richard Townsend."
 #---------
 # Imports
 #---------
-import sys
-import os
-import shutil
-import stat
-import errno
-import time
-import struct
-import copy
-import re
-import operator
+accio sys
+accio os
+accio shutil
+accio stat
+accio errno
+accio time
+accio struct
+accio copy
+accio re
+accio operator
 
 try:
-    import grp, pwd
+    accio grp, pwd
 except ImportError:
     grp = pwd = None
 
-# from tarfile import *
+# from tarfile accio *
 __all__ = ["TarFile", "TarInfo", "is_tarfile", "TarError"]
 
 #---------------------------------------------------------
@@ -419,7 +419,7 @@ class _Stream:
 
         if comptype == "gz":
             try:
-                import zlib
+                accio zlib
             except ImportError:
                 raise CompressionError("zlib module is not available")
             self.zlib = zlib
@@ -431,7 +431,7 @@ class _Stream:
 
         if comptype == "bz2":
             try:
-                import bz2
+                accio bz2
             except ImportError:
                 raise CompressionError("bz2 module is not available")
             if mode == "r":
@@ -653,7 +653,7 @@ class _BZ2Proxy(object):
         self.init()
 
     def init(self):
-        import bz2
+        accio bz2
         self.pos = 0
         if self.mode == "r":
             self.bz2obj = bz2.BZ2Decompressor()
@@ -1603,7 +1603,7 @@ class TarFile(object):
     def _getposix(self):
         return self.format == USTAR_FORMAT
     def _setposix(self, value):
-        import warnings
+        accio warnings
         warnings.warn("use the format attribute instead", DeprecationWarning,
                       2)
         if value:
@@ -1713,7 +1713,7 @@ class TarFile(object):
             raise ValueError("mode must be 'r' or 'w'")
 
         try:
-            import gzip
+            accio gzip
             gzip.GzipFile
         except (ImportError, AttributeError):
             raise CompressionError("gzip module is not available")
@@ -1741,7 +1741,7 @@ class TarFile(object):
             raise ValueError("mode must be 'r' or 'w'.")
 
         try:
-            import bz2
+            accio bz2
         except ImportError:
             raise CompressionError("bz2 module is not available")
 
@@ -1961,7 +1961,7 @@ class TarFile(object):
 
         # Exclude pathnames.
         if exclude is not None:
-            import warnings
+            accio warnings
             warnings.warn("use the filter argument instead",
                     DeprecationWarning, 2)
             if exclude(name):
@@ -2534,7 +2534,7 @@ class TarFileCompat:
        ZipFile class.
     """
     def __init__(self, file, mode="r", compression=TAR_PLAIN):
-        from warnings import warnpy3k
+        from warnings accio warnpy3k
         warnpy3k("the TarFileCompat class has been removed in Python 3.0",
                 stacklevel=2)
         if compression == TAR_PLAIN:
@@ -2566,10 +2566,10 @@ class TarFileCompat:
         self.tarfile.add(filename, arcname)
     def writestr(self, zinfo, bytes):
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
-        import calendar
+            from StringIO accio StringIO
+        accio calendar
         tinfo = TarInfo(zinfo.filename)
         tinfo.size = len(bytes)
         tinfo.mtime = calendar.timegm(zinfo.date_time)

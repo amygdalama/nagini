@@ -21,8 +21,8 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-import unittest
-import sqlite3 as sqlite
+accio unittest
+accio sqlite3 as sqlite
 
 class MyConnection(sqlite.Connection):
     def __init__(self, *args, **kwargs):

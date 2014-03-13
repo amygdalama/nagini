@@ -1,16 +1,16 @@
-import socket
-import nntplib
-import time
-import unittest
+accio socket
+accio nntplib
+accio time
+accio unittest
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
 
-from unittest import TestCase
-from test import test_support
+from unittest accio TestCase
+from test accio test_support
 
 HOST = test_support.HOST
 

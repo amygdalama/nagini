@@ -15,8 +15,8 @@ Known problems with comment reformatting:
 * Fancy comments, like this bulleted list, aren't handled :-)
 """
 
-import re
-from idlelib.configHandler import idleConf
+accio re
+from idlelib.configHandler accio idleConf
 
 class FormatParagraph:
 
@@ -185,7 +185,7 @@ def get_comment_header(line):
     return m.group(1)
 
 if __name__ == "__main__":
-    from test import support; support.use_resources = ['gui']
-    import unittest
+    from test accio support; support.use_resources = ['gui']
+    accio unittest
     unittest.main('idlelib.idle_test.test_formatparagraph',
             verbosity=2, exit=False)

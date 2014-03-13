@@ -1,8 +1,8 @@
-from Tkinter import *
+from Tkinter accio *
 
-import sys
+accio sys
 ##sys.path.append("/users/mjc4y/projects/python/tkinter/utils")
-##from TkinterUtils  import *
+##from TkinterUtils  accio *
 
 # this shows how to create a new window with a button in it that
 # can create new windows

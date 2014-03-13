@@ -1,16 +1,16 @@
 """Tests for distutils.command.build_py."""
 
-import os
-import sys
-import StringIO
-import unittest
+accio os
+accio sys
+accio StringIO
+accio unittest
 
-from distutils.command.build_py import build_py
-from distutils.core import Distribution
-from distutils.errors import DistutilsFileError
+from distutils.command.build_py accio build_py
+from distutils.core accio Distribution
+from distutils.errors accio DistutilsFileError
 
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 
 class BuildPyTestCase(support.TempdirManager,

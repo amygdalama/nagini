@@ -7,16 +7,16 @@
 
 TIMEOUT = 10
 
-import threading
+accio threading
 
-import tempfile
-import os.path
+accio tempfile
+accio os.path
 
 errors = []
 
 # This class merely runs a function in its own thread T.  The thread importing
-# this module holds the import lock, so if the function called by T tries
-# to do its own imports it will block waiting for this module's import
+# this module holds the accio lock, so if the function called by T tries
+# to do its own imports it will block waiting for this module's accio
 # to complete.
 class Worker(threading.Thread):
     def __init__(self, function, args):

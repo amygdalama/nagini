@@ -3,9 +3,9 @@
 Test script for doctest.
 """
 
-import sys
-from test import test_support
-import doctest
+accio sys
+from test accio test_support
+accio doctest
 
 # NOTE: There are some additional tests relating to interaction with
 #       zipimport in the test_zipimport_support test module.
@@ -425,7 +425,7 @@ will return a single test (for that function's docstring):
 
 We'll simulate a __file__ attr that ends in pyc:
 
-    >>> import test.test_doctest
+    >>> accio test.test_doctest
     >>> old = test.test_doctest.__file__
     >>> test.test_doctest.__file__ = 'test_doctest.pyc'
 
@@ -511,7 +511,7 @@ docstring, and will recursively explore its contents, including
 functions, classes, and the `__test__` dictionary, if it exists:
 
     >>> # A module
-    >>> import types
+    >>> accio types
     >>> m = types.ModuleType('some_module')
     >>> def triple(val):
     ...     '''
@@ -534,7 +534,7 @@ functions, classes, and the `__test__` dictionary, if it exists:
     >>> finder = doctest.DocTestFinder()
     >>> # Use module=test.test_doctest, to prevent doctest from
     >>> # ignoring the objects since they weren't defined in m.
-    >>> import test.test_doctest
+    >>> accio test.test_doctest
     >>> tests = finder.find(m, module=test.test_doctest)
     >>> for t in tests:
     ...     print '%2s  %s' % (len(t.examples), t.name)
@@ -557,7 +557,7 @@ Duplicate Removal
 If a single object is listed twice (under different names), then tests
 will only be generated for it once:
 
-    >>> from test import doctest_aliases
+    >>> from test accio doctest_aliases
     >>> assert doctest_aliases.TwoNames.f
     >>> assert doctest_aliases.TwoNames.g
     >>> tests = excl_empty_finder.find(doctest_aliases)
@@ -930,7 +930,7 @@ the exception is in the output, but this will fail under Python 2:
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from httplib import HTTPException
+    ...     >>> from httplib accio HTTPException
     ...     >>> raise HTTPException('message')
     ...     Traceback (most recent call last):
     ...     httplib.HTTPException: message
@@ -957,7 +957,7 @@ Python 3.
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from httplib import HTTPException
+    ...     >>> from httplib accio HTTPException
     ...     >>> raise HTTPException('message')
     ...     Traceback (most recent call last):
     ...     HTTPException: message
@@ -971,7 +971,7 @@ However, with IGNORE_EXCEPTION_DETAIL, the module name of the exception
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from httplib import HTTPException
+    ...     >>> from httplib accio HTTPException
     ...     >>> raise HTTPException('message') #doctest: +IGNORE_EXCEPTION_DETAIL
     ...     Traceback (most recent call last):
     ...     HTTPException: message
@@ -986,7 +986,7 @@ be used when exceptions have changed module.
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from httplib import HTTPException
+    ...     >>> from httplib accio HTTPException
     ...     >>> raise HTTPException('message') #doctest: +IGNORE_EXCEPTION_DETAIL
     ...     Traceback (most recent call last):
     ...     foo.bar.HTTPException: message
@@ -1024,7 +1024,7 @@ IGNORE_EXCEPTION_DETAIL to normalize the modules between Python 2 and 3:
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from Queue import Empty
+    ...     >>> from Queue accio Empty
     ...     >>> raise Empty() #doctest: +IGNORE_EXCEPTION_DETAIL
     ...     Traceback (most recent call last):
     ...     foo.bar.Empty
@@ -1037,7 +1037,7 @@ Note that a trailing colon doesn't matter either:
 
     >>> def f(x):
     ...     r'''
-    ...     >>> from Queue import Empty
+    ...     >>> from Queue accio Empty
     ...     >>> raise Empty() #doctest: +IGNORE_EXCEPTION_DETAIL
     ...     Traceback (most recent call last):
     ...     foo.bar.Empty:
@@ -1070,7 +1070,7 @@ unexpected exception:
     def displayhook(): r"""
 Test that changing sys.displayhook doesn't matter for doctest.
 
-    >>> import sys
+    >>> accio sys
     >>> orig_displayhook = sys.displayhook
     >>> def my_displayhook(x):
     ...     print('hi!')
@@ -1247,14 +1247,14 @@ checked (e.g., because its output is random, or depends on resources
 which would be unavailable.)  The SKIP flag can also be used for
 'commenting out' broken examples.
 
-    >>> import unavailable_resource           # doctest: +SKIP
+    >>> accio unavailable_resource           # doctest: +SKIP
     >>> unavailable_resource.do_something()   # doctest: +SKIP
     >>> unavailable_resource.blow_up()        # doctest: +SKIP
     Traceback (most recent call last):
         ...
     UncheckedBlowUpError:  Nobody checks me.
 
-    >>> import random
+    >>> accio random
     >>> print random.random() # doctest: +SKIP
     0.721216923889
 
@@ -1732,7 +1732,7 @@ test with that name in that module, and converts it to a script. The
 example code is converted to regular Python code.  The surrounding
 words and expected output are converted to comments:
 
-    >>> import test.test_doctest
+    >>> accio test.test_doctest
     >>> name = 'test.test_doctest.sample_func'
     >>> print doctest.testsource(test.test_doctest, name)
     # Blah blah
@@ -1776,7 +1776,7 @@ Create a docstring that we want to debug:
 
 Create some fake stdin input, to feed to the debugger:
 
-    >>> import tempfile
+    >>> accio tempfile
     >>> real_stdin = sys.stdin
     >>> sys.stdin = _FakeInput(['next', 'print x', 'continue'])
 
@@ -1810,7 +1810,7 @@ def test_pdb_set_trace():
       ... >>> raise Exception('clé')
       ... Traceback (most recent call last):
       ... Exception: clé
-      ... >>> import pdb; pdb.set_trace()
+      ... >>> accio pdb; pdb.set_trace()
       ... '''
       >>> parser = doctest.DocTestParser()
       >>> test = parser.get_doctest(doc, {}, "foo-bär@baz", "foo-bär@baz.py", 0)
@@ -1819,7 +1819,7 @@ def test_pdb_set_trace():
     To demonstrate this, we'll create a fake standard input that
     captures our debugger input:
 
-      >>> import tempfile
+      >>> accio tempfile
       >>> real_stdin = sys.stdin
       >>> sys.stdin = _FakeInput([
       ...    'print x',  # print data defined by the example
@@ -1830,7 +1830,7 @@ def test_pdb_set_trace():
       ... finally: sys.stdin = real_stdin
       --Return--
       > <doctest foo-bär@baz[2]>(1)<module>()->None
-      -> import pdb; pdb.set_trace()
+      -> accio pdb; pdb.set_trace()
       (Pdb) print x
       42
       (Pdb) continue
@@ -1840,7 +1840,7 @@ def test_pdb_set_trace():
 
       >>> def calls_set_trace():
       ...    y=2
-      ...    import pdb; pdb.set_trace()
+      ...    accio pdb; pdb.set_trace()
 
       >>> doc = '''
       ... >>> x=1
@@ -1861,7 +1861,7 @@ def test_pdb_set_trace():
       ...     sys.stdin = real_stdin
       --Return--
       > <doctest test.test_doctest.test_pdb_set_trace[8]>(3)calls_set_trace()->None
-      -> import pdb; pdb.set_trace()
+      -> accio pdb; pdb.set_trace()
       (Pdb) print y
       2
       (Pdb) up
@@ -1880,7 +1880,7 @@ def test_pdb_set_trace():
       ... ...     g(x*2)
       ... >>> def g(x):
       ... ...     print x+3
-      ... ...     import pdb; pdb.set_trace()
+      ... ...     accio pdb; pdb.set_trace()
       ... >>> f(3)
       ... '''
       >>> test = parser.get_doctest(doc, globals(), "foo-bär@baz", "foo-bär@baz.py", 0)
@@ -1898,11 +1898,11 @@ def test_pdb_set_trace():
       ... # doctest: +NORMALIZE_WHITESPACE
       --Return--
       > <doctest foo-bär@baz[1]>(3)g()->None
-      -> import pdb; pdb.set_trace()
+      -> accio pdb; pdb.set_trace()
       (Pdb) list
         1     def g(x):
         2         print x+3
-        3  ->     import pdb; pdb.set_trace()
+        3  ->     accio pdb; pdb.set_trace()
       [EOF]
       (Pdb) next
       --Return--
@@ -1936,7 +1936,7 @@ def test_pdb_set_trace_nested():
     >>> class C(object):
     ...     def calls_set_trace(self):
     ...         y = 1
-    ...         import pdb; pdb.set_trace()
+    ...         accio pdb; pdb.set_trace()
     ...         self.f1()
     ...         y = 2
     ...     def f1(self):
@@ -2021,8 +2021,8 @@ def test_DocTestSuite():
        We create a Suite by providing a module.  A module can be provided
        by passing a module object:
 
-         >>> import unittest
-         >>> import test.sample_doctest
+         >>> accio unittest
+         >>> accio test.sample_doctest
          >>> suite = doctest.DocTestSuite(test.sample_doctest)
          >>> suite.run(unittest.TestResult())
          <unittest.result.TestResult run=9 errors=0 failures=4>
@@ -2091,11 +2091,11 @@ def test_DocTestSuite():
        You can supply setUp and tearDown functions:
 
          >>> def setUp(t):
-         ...     import test.test_doctest
+         ...     accio test.test_doctest
          ...     test.test_doctest.sillySetup = True
 
          >>> def tearDown(t):
-         ...     import test.test_doctest
+         ...     accio test.test_doctest
          ...     del test.test_doctest.sillySetup
 
        Here, we installed a silly variable that the test expects:
@@ -2107,7 +2107,7 @@ def test_DocTestSuite():
 
        But the tearDown restores sanity:
 
-         >>> import test.test_doctest
+         >>> accio test.test_doctest
          >>> test.test_doctest.sillySetup
          Traceback (most recent call last):
          ...
@@ -2135,7 +2135,7 @@ def test_DocFileSuite():
        We create a suite by providing the names of one or more text
        files that include examples:
 
-         >>> import unittest
+         >>> accio unittest
          >>> suite = doctest.DocFileSuite('test_doctest.txt',
          ...                              'test_doctest2.txt',
          ...                              'test_doctest4.txt')
@@ -2146,7 +2146,7 @@ def test_DocFileSuite():
        calling module.  A package keyword argument can be provided to
        specify a different relative location.
 
-         >>> import unittest
+         >>> accio unittest
          >>> suite = doctest.DocFileSuite('test_doctest.txt',
          ...                              'test_doctest2.txt',
          ...                              'test_doctest4.txt',
@@ -2157,7 +2157,7 @@ def test_DocFileSuite():
        Support for using a package's __loader__.get_data() is also
        provided.
 
-         >>> import unittest, pkgutil, test
+         >>> accio unittest, pkgutil, test
          >>> added_loader = False
          >>> if not hasattr(test, '__loader__'):
          ...     test.__loader__ = pkgutil.get_loader(test)
@@ -2183,7 +2183,7 @@ def test_DocFileSuite():
        If DocFileSuite is used from an interactive session, then files
        are resolved relative to the directory of sys.argv[0]:
 
-         >>> import types, os.path, test.test_doctest
+         >>> accio types, os.path, test.test_doctest
          >>> save_argv = sys.argv
          >>> sys.argv = [test.test_doctest.__file__]
          >>> suite = doctest.DocFileSuite('test_doctest.txt',
@@ -2235,11 +2235,11 @@ def test_DocFileSuite():
        And, you can provide setUp and tearDown functions:
 
          >>> def setUp(t):
-         ...     import test.test_doctest
+         ...     accio test.test_doctest
          ...     test.test_doctest.sillySetup = True
 
          >>> def tearDown(t):
-         ...     import test.test_doctest
+         ...     accio test.test_doctest
          ...     del test.test_doctest.sillySetup
 
        Here, we installed a silly variable that the test expects:
@@ -2253,7 +2253,7 @@ def test_DocFileSuite():
 
        But the tearDown restores sanity:
 
-         >>> import test.test_doctest
+         >>> accio test.test_doctest
          >>> test.test_doctest.sillySetup
          Traceback (most recent call last):
          ...
@@ -2315,7 +2315,7 @@ def test_unittest_reportflags():
 
       >>> suite = doctest.DocFileSuite('test_doctest.txt',
       ...                          optionflags=doctest.DONT_ACCEPT_BLANKLINE)
-      >>> import unittest
+      >>> accio unittest
       >>> result = suite.run(unittest.TestResult())
       >>> print result.failures[0][1] # doctest: +ELLIPSIS
       Traceback ...
@@ -2574,7 +2574,7 @@ bothering with the current sys.stdout encoding.
 # be rewritten) someday.
 
 def old_test1(): r"""
->>> from doctest import Tester
+>>> from doctest accio Tester
 >>> t = Tester(globs={'x': 42}, verbose=0)
 >>> t.runstring(r'''
 ...      >>> x = x * 2
@@ -2611,7 +2611,7 @@ TestResults(failed=1, attempted=4)
 """
 
 def old_test2(): r"""
-        >>> from doctest import Tester
+        >>> from doctest accio Tester
         >>> t = Tester(globs={}, verbose=1)
         >>> test = r'''
         ...    # just an example
@@ -2635,7 +2635,7 @@ def old_test2(): r"""
 """
 
 def old_test3(): r"""
-        >>> from doctest import Tester
+        >>> from doctest accio Tester
         >>> t = Tester(globs={}, verbose=0)
         >>> def _f():
         ...     '''Trivial docstring example.
@@ -2648,7 +2648,7 @@ def old_test3(): r"""
 """
 
 def old_test4(): """
-        >>> import types
+        >>> accio types
         >>> m1 = types.ModuleType('_m1')
         >>> m2 = types.ModuleType('_m2')
         >>> test_data = \"""
@@ -2671,7 +2671,7 @@ def old_test4(): """
 
         Tests that objects outside m1 are excluded:
 
-        >>> from doctest import Tester
+        >>> from doctest accio Tester
         >>> t = Tester(globs={}, verbose=0)
         >>> t.rundict(m1.__dict__, "rundict_test", m1)  # f2 and g2 and h2 skipped
         TestResults(failed=0, attempted=4)
@@ -2697,7 +2697,7 @@ def test_main():
     # Check the doctest cases in doctest itself:
     test_support.run_doctest(doctest, verbosity=True)
 
-    from test import test_doctest
+    from test accio test_doctest
 
     # Ignore all warnings about the use of class Tester in this module.
     deprecations = []
@@ -2710,7 +2710,7 @@ def test_main():
         # Check the doctest cases defined here:
         test_support.run_doctest(test_doctest, verbosity=True)
 
-import sys
+accio sys
 def test_coverage(coverdir):
     trace = test_support.import_module('trace')
     tracer = trace.Trace(ignoredirs=[sys.prefix, sys.exec_prefix,],

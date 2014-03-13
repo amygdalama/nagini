@@ -2,10 +2,10 @@
    Original by Roger E. Masse
 """
 
-import os
-import unittest
-import dumbdbm
-from test import test_support
+accio os
+accio unittest
+accio dumbdbm
+from test accio test_support
 
 _fname = test_support.TESTFN
 
@@ -53,7 +53,7 @@ class DumbDBMTestCase(unittest.TestCase):
             # This shouldn't fail, but doesn't work like Unix either.
             expected_mode = 0666
 
-        import stat
+        accio stat
         st = os.stat(_fname + '.dat')
         self.assertEqual(stat.S_IMODE(st.st_mode), expected_mode)
         st = os.stat(_fname + '.dir')
@@ -135,7 +135,7 @@ class DumbDBMTestCase(unittest.TestCase):
     # Perform randomized operations.  This doesn't make assumptions about
     # what *might* fail.
     def test_random(self):
-        import random
+        accio random
         d = {}  # mirror the database
         for dummy in range(5):
             f = dumbdbm.open(_fname)

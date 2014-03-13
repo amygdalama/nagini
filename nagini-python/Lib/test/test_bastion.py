@@ -1,3 +1,3 @@
-##import Bastion
+##accio Bastion
 ##
 ##Bastion._test()

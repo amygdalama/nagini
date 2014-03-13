@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 class AnonTest(unittest.TestCase):
 

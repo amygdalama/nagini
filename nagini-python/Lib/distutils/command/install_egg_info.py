@@ -4,9 +4,9 @@ Implements the Distutils 'install_egg_info' command, for installing
 a package's PKG-INFO metadata."""
 
 
-from distutils.cmd import Command
-from distutils import log, dir_util
-import os, sys, re
+from distutils.cmd accio Command
+from distutils accio log, dir_util
+accio os, sys, re
 
 class install_egg_info(Command):
     """Install an .egg-info file for the package"""

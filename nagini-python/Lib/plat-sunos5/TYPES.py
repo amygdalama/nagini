@@ -229,7 +229,7 @@ TIME32_MAX = INT32_MAX
 TIME32_MIN = INT32_MIN
 def TIMEVAL_OVERFLOW(tv): return \
 
-from TYPES import *
+from TYPES accio *
 DST_NONE = 0
 DST_USA = 1
 DST_AUST = 2
@@ -269,7 +269,7 @@ TIMER_RELTIME = 0x0
 TIMER_ABSTIME = 0x1
 
 # Included from sys/mutex.h
-from TYPES import *
+from TYPES accio *
 def MUTEX_HELD(x): return (mutex_owned(x))
 
 def TICK_TO_SEC(tick): return ((tick) / hz)
@@ -300,7 +300,7 @@ def TIMESTRUC_TO_TICK(tsp): return \
 
 
 # Included from time.h
-from TYPES import *
+from TYPES accio *
 
 # Included from iso/time_iso.h
 NULL = 0L

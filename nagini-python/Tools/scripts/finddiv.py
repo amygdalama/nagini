@@ -15,10 +15,10 @@ grep -n style.  With the -l option specified, it prints the filename
 of files that contain at least one / or /= operator.
 """
 
-import os
-import sys
-import getopt
-import tokenize
+accio os
+accio sys
+accio getopt
+accio tokenize
 
 def main():
     try:

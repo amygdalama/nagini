@@ -1,11 +1,11 @@
-from DocXMLRPCServer import DocXMLRPCServer
-import httplib
-import sys
-from test import test_support
+from DocXMLRPCServer accio DocXMLRPCServer
+accio httplib
+accio sys
+from test accio test_support
 threading = test_support.import_module('threading')
-import time
-import socket
-import unittest
+accio time
+accio socket
+accio unittest
 
 PORT = None
 

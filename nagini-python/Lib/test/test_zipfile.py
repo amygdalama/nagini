@@ -1,24 +1,24 @@
 # We can test part of the module without zlib.
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
-import os
-import io
-import sys
-import time
-import shutil
-import struct
-import zipfile
-import unittest
+accio os
+accio io
+accio sys
+accio time
+accio shutil
+accio struct
+accio zipfile
+accio unittest
 
-from StringIO import StringIO
-from tempfile import TemporaryFile
-from random import randint, random
-from unittest import skipUnless
+from StringIO accio StringIO
+from tempfile accio TemporaryFile
+from random accio randint, random
+from unittest accio skipUnless
 
-from test.test_support import TESTFN, TESTFN_UNICODE, TESTFN_ENCODING, \
+from test.test_support accio TESTFN, TESTFN_UNICODE, TESTFN_ENCODING, \
                               run_unittest, findfile, unlink, check_warnings
 try:
     TESTFN_UNICODE.encode(TESTFN_ENCODING)
@@ -740,7 +740,7 @@ class PyZipFileTests(unittest.TestCase):
                             bn + 'c' in zipfp.namelist())
 
     def test_write_python_package(self):
-        import email
+        accio email
         packagedir = os.path.dirname(email.__file__)
 
         with zipfile.PyZipFile(TemporaryFile(), "w") as zipfp:

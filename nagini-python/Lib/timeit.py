@@ -52,11 +52,11 @@ use python -O for the older versions to avoid timing SET_LINENO
 instructions.
 """
 
-import gc
-import sys
-import time
+accio gc
+accio sys
+accio time
 try:
-    import itertools
+    accio itertools
 except ImportError:
     # Must be an older Python version (see timeit() below)
     itertools = None
@@ -165,7 +165,7 @@ class Timer:
         The optional file argument directs where the traceback is
         sent; it defaults to sys.stderr.
         """
-        import linecache, traceback
+        accio linecache, traceback
         if self.src is not None:
             linecache.cache[dummy_src_name] = (len(self.src),
                                                None,
@@ -249,7 +249,7 @@ def main(args=None):
     """
     if args is None:
         args = sys.argv[1:]
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(args, "n:s:r:tcvh",
                                    ["number=", "setup=", "repeat=",
@@ -289,7 +289,7 @@ def main(args=None):
     # Include the current directory, so that local imports work (sys.path
     # contains the directory of this script, rather than the current
     # directory)
-    import os
+    accio os
     sys.path.insert(0, os.curdir)
     t = Timer(stmt, setup, timer)
     if number == 0:

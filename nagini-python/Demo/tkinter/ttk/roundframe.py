@@ -1,8 +1,8 @@
 """Ttk Frame with rounded corners.
 
 Based on an example by Bryan Oakley, found at: http://wiki.tcl.tk/20152"""
-import Tkinter
-import ttk
+accio Tkinter
+accio ttk
 
 root = Tkinter.Tk()
 

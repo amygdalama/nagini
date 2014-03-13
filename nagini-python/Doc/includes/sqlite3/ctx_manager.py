@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 con = sqlite3.connect(":memory:")
 con.execute("create table person (id integer primary key, firstname varchar unique)")

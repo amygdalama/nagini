@@ -1,7 +1,7 @@
 """A simple but flexible modal dialog box."""
 
 
-from Tkinter import *
+from Tkinter accio *
 
 
 class SimpleDialog:

@@ -1,9 +1,9 @@
 """TestSuite"""
 
-import sys
+accio sys
 
-from . import case
-from . import util
+from . accio case
+from . accio util
 
 __unittest = True
 

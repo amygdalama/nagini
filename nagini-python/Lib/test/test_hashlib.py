@@ -6,25 +6,25 @@
 #  Licensed to PSF under a Contributor Agreement.
 #
 
-import array
-import hashlib
-import itertools
-import sys
+accio array
+accio hashlib
+accio itertools
+accio sys
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
-import unittest
-import warnings
-from test import test_support
-from test.test_support import _4G, precisionbigmemtest
+accio unittest
+accio warnings
+from test accio test_support
+from test.test_support accio _4G, precisionbigmemtest
 
 # Were we compiled --with-pydebug or with #define Py_DEBUG?
 COMPILED_WITH_PYDEBUG = hasattr(sys, 'gettotalrefcount')
 
 
 def hexstr(s):
-    import string
+    accio string
     h = string.hexdigits
     r = ''
     for c in s:
@@ -43,7 +43,7 @@ class HashLibTestCase(unittest.TestCase):
     def _conditional_import_module(self, module_name):
         """Import a module and return a reference to it or None on failure."""
         try:
-            exec('import '+module_name)
+            exec('accio '+module_name)
         except ImportError, error:
             if self._warn_on_extension_import:
                 warnings.warn('Did a C extension fail to compile? %s' % error)
@@ -116,10 +116,10 @@ class HashLibTestCase(unittest.TestCase):
                 '__get_builtin_constructor']
         self.assertRaises(ValueError, get_builtin_constructor, 'test')
         try:
-            import _md5
+            accio _md5
         except ImportError:
             pass
-        # This forces an ImportError for "import _md5" statements
+        # This forces an ImportError for "accio _md5" statements
         sys.modules['_md5'] = None
         try:
             self.assertRaises(ValueError, get_builtin_constructor, 'md5')

@@ -1,10 +1,10 @@
 """
 Path operations common to more than one OS
-Do not use directly.  The OS specific modules import the appropriate
+Do not use directly.  The OS specific modules accio the appropriate
 functions from this module themselves.
 """
-import os
-import stat
+accio os
+accio stat
 
 __all__ = ['commonprefix', 'exists', 'getatime', 'getctime', 'getmtime',
            'getsize', 'isdir', 'isfile']

@@ -7,11 +7,11 @@ Usage: nocoding.py dir1 [dir2...]
 
 __author__ = "Oleg Broytmann, Georg Brandl"
 
-import sys, os, re, getopt
+accio sys, os, re, getopt
 
 # our pysource module finds Python source files
 try:
-    import pysource
+    accio pysource
 except ImportError:
     # emulate the module with a simple os.walk
     class pysource:

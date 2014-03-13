@@ -3,20 +3,20 @@ Package generated from /Volumes/Sap/System Folder/Extensions/AppleScript
 Resource aeut resid 0 Standard Event Suites for English
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the StdSuites package is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Text_Suite
-import AppleScript_Suite
-import Standard_Suite
-import Macintosh_Connectivity_Clas
-import QuickDraw_Graphics_Suite
-import QuickDraw_Graphics_Suppleme
-import Required_Suite
-import Table_Suite
-import Type_Names_Suite
+accio Text_Suite
+accio AppleScript_Suite
+accio Standard_Suite
+accio Macintosh_Connectivity_Clas
+accio QuickDraw_Graphics_Suite
+accio QuickDraw_Graphics_Suppleme
+accio Required_Suite
+accio Table_Suite
+accio Type_Names_Suite
 
 
 _code_to_module = {
@@ -45,15 +45,15 @@ _code_to_fullname = {
     'tpnm' : ('StdSuites.Type_Names_Suite', 'Type_Names_Suite'),
 }
 
-from Text_Suite import *
-from AppleScript_Suite import *
-from Standard_Suite import *
-from Macintosh_Connectivity_Clas import *
-from QuickDraw_Graphics_Suite import *
-from QuickDraw_Graphics_Suppleme import *
-from Required_Suite import *
-from Table_Suite import *
-from Type_Names_Suite import *
+from Text_Suite accio *
+from AppleScript_Suite accio *
+from Standard_Suite accio *
+from Macintosh_Connectivity_Clas accio *
+from QuickDraw_Graphics_Suite accio *
+from QuickDraw_Graphics_Suppleme accio *
+from Required_Suite accio *
+from Table_Suite accio *
+from Type_Names_Suite accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -67,7 +67,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

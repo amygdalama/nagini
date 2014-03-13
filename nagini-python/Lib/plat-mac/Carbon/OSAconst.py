@@ -1,7 +1,7 @@
 # Generated from 'OSA.h'
 
 def FOUR_CHAR_CODE(x): return x
-from Carbon.AppleEvents import *
+from Carbon.AppleEvents accio *
 kAEUseStandardDispatch = -1
 kOSAComponentType = FOUR_CHAR_CODE('osa ')
 kOSAGenericScriptingComponentSubtype = FOUR_CHAR_CODE('scpt')

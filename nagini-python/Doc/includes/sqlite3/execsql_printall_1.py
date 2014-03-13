@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 # Create a connection to the database file "mydb":
 con = sqlite3.connect("mydb")

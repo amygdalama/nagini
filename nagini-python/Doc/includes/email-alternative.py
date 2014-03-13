@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-import smtplib
+accio smtplib
 
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email.mime.multipart accio MIMEMultipart
+from email.mime.text accio MIMEText
 
 # me == my email address
 # you == recipient's email address

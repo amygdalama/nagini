@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # Format du output in a tree shape
 
-import os, sys, errno
+accio os, sys, errno
 
 def main():
     p = os.popen('du ' + ' '.join(sys.argv[1:]), 'r')

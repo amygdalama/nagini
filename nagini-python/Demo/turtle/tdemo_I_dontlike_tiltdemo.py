@@ -12,8 +12,8 @@ We can remove it, if you don't like it.
       Without using reset() ;-)
  ---------------------------------------
 """
-from turtle import *
-import time
+from turtle accio *
+accio time
 
 def main():
     reset()

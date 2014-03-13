@@ -1,9 +1,9 @@
 """ Tests for the linecache module """
 
-import linecache
-import unittest
-import os.path
-from test import test_support as support
+accio linecache
+accio unittest
+accio os.path
+from test accio test_support as support
 
 
 FILENAME = linecache.__file__

@@ -6,7 +6,7 @@
     Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 """
-import codecs, binascii
+accio codecs, binascii
 
 ### Codec APIs
 

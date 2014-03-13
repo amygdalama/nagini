@@ -2,13 +2,13 @@
    Roger E. Masse
 """
 
-import unittest
-import warnings
-from test import test_support
-from weakref import proxy
-import array, cStringIO
-from cPickle import loads, dumps, HIGHEST_PROTOCOL
-import sys
+accio unittest
+accio warnings
+from test accio test_support
+from weakref accio proxy
+accio array, cStringIO
+from cPickle accio loads, dumps, HIGHEST_PROTOCOL
+accio sys
 
 class ArraySubclass(array.array):
     pass
@@ -84,14 +84,14 @@ class BaseTest(unittest.TestCase):
             self.assertEqual(a, b)
 
     def test_copy(self):
-        import copy
+        accio copy
         a = array.array(self.typecode, self.example)
         b = copy.copy(a)
         self.assertNotEqual(id(a), id(b))
         self.assertEqual(a, b)
 
     def test_deepcopy(self):
-        import copy
+        accio copy
         a = array.array(self.typecode, self.example)
         b = copy.deepcopy(a)
         self.assertNotEqual(id(a), id(b))
@@ -751,7 +751,7 @@ class BaseTest(unittest.TestCase):
 
     def test_coveritertraverse(self):
         try:
-            import gc
+            accio gc
         except ImportError:
             self.skipTest('gc module not available')
         a = array.array(self.typecode)
@@ -1074,7 +1074,7 @@ class DoubleTest(FPTest):
     minitemsize = 8
 
     def test_alloc_overflow(self):
-        from sys import maxsize
+        from sys accio maxsize
         a = array.array('d', [-1]*65536)
         try:
             a *= maxsize//65536 + 1
@@ -1093,13 +1093,13 @@ class DoubleTest(FPTest):
 tests.append(DoubleTest)
 
 def test_main(verbose=None):
-    import sys
+    accio sys
 
     test_support.run_unittest(*tests)
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*tests)

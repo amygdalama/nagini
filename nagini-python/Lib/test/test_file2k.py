@@ -1,21 +1,21 @@
-import sys
-import os
-import unittest
-import itertools
-import select
-import signal
-import subprocess
-import time
-from array import array
-from weakref import proxy
+accio sys
+accio os
+accio unittest
+accio itertools
+accio select
+accio signal
+accio subprocess
+accio time
+from array accio array
+from weakref accio proxy
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
-from test import test_support
-from test.test_support import TESTFN, run_unittest
-from UserList import UserList
+from test accio test_support
+from test.test_support accio TESTFN, run_unittest
+from UserList accio UserList
 
 class AutoFileTests(unittest.TestCase):
     # file tests for which a test file is automatically set up
@@ -650,7 +650,7 @@ class TestFileSignalEINTR(unittest.TestCase):
         assert len(data_to_write) < 512, 'data_to_write must fit in pipe buf.'
 
         child_code = (
-             'import os, signal, sys ;'
+             'accio os, signal, sys ;'
              'signal.signal('
                      'signal.SIGINT, lambda s, f: sys.stderr.write("$\\n")) ;'
              + infile_setup_code + ' ;' +
@@ -794,7 +794,7 @@ class StdoutTests(unittest.TestCase):
             sys.stdout = save_stdout
 
     def test_unicode(self):
-        import subprocess
+        accio subprocess
 
         def get_message(encoding, *code):
             code = '\n'.join(code)
@@ -808,7 +808,7 @@ class StdoutTests(unittest.TestCase):
 
         def check_message(text, encoding, expected):
             stdout = get_message(encoding,
-                "import sys",
+                "accio sys",
                 "sys.stdout.write(%r)" % text,
                 "sys.stdout.flush()")
             self.assertEqual(stdout, expected)
@@ -826,7 +826,7 @@ class StdoutTests(unittest.TestCase):
         # test the buffer API
         for objtype in ('buffer', 'bytearray'):
             stdout = get_message('ascii',
-                'import sys',
+                'accio sys',
                 r'sys.stdout.write(%s("\xe9"))' % objtype,
                 'sys.stdout.flush()')
             self.assertEqual(stdout, "\xe9")

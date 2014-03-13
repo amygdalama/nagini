@@ -6,8 +6,8 @@ variable to enable remote operation.)
 
 """
 
-import string
-import os
+accio string
+accio os
 
 # These defaults don't belong here -- they should be taken from the
 # environment or from a hidden file in the current directory
@@ -17,7 +17,7 @@ PORT = 4127
 VERBOSE = 1
 LOCAL = 0
 
-import client
+accio client
 
 
 class RCSProxyClient(client.SecureClient):
@@ -28,7 +28,7 @@ class RCSProxyClient(client.SecureClient):
 
 def openrcsclient(opts = []):
     "open an RCSProxy client based on a list of options returned by getopt"
-    import RCSProxy
+    accio RCSProxy
     host = HOST
     port = PORT
     verbose = VERBOSE
@@ -53,7 +53,7 @@ def openrcsclient(opts = []):
         if o == '-L':
             local = 1
     if local:
-        import RCSProxy
+        accio RCSProxy
         x = RCSProxy.RCSProxyLocal()
     else:
         address = (host, port)

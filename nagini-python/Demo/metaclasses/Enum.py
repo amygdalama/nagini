@@ -4,7 +4,7 @@ XXX This is very much a work in progress.
 
 """
 
-import string
+accio string
 
 class EnumMetaClass:
     """Metaclass for enumeration.

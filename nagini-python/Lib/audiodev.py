@@ -1,5 +1,5 @@
 """Classes for manipulating audio devices (currently only for Sun and SGI)"""
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the audiodev module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
@@ -18,7 +18,7 @@ class Play_Audio_sgi:
     frameratelist = nchannelslist = sampwidthlist = None
 
     def initclass(self):
-        import AL
+        accio AL
         self.frameratelist = [
                   (48000, AL.RATE_48000),
                   (44100, AL.RATE_44100),
@@ -41,7 +41,7 @@ class Play_Audio_sgi:
         self.classinited = 1
 
     def __init__(self):
-        import al, AL
+        accio al, AL
         if not self.classinited:
             self.initclass()
         self.oldparams = []
@@ -58,14 +58,14 @@ class Play_Audio_sgi:
         if self.port:
             self.stop()
         if self.oldparams:
-            import al, AL
+            accio al, AL
             al.setparams(AL.DEFAULT_DEVICE, self.oldparams)
             self.oldparams = []
 
     def wait(self):
         if not self.port:
             return
-        import time
+        accio time
         while self.port.getfilled() > 0:
             time.sleep(0.1)
         self.stop()
@@ -75,7 +75,7 @@ class Play_Audio_sgi:
             self.port.closeport()
             self.port = None
         if self.oldparams:
-            import al, AL
+            accio al, AL
             al.setparams(AL.DEFAULT_DEVICE, self.oldparams)
             self.oldparams = []
 
@@ -96,7 +96,7 @@ class Play_Audio_sgi:
                 break
         else:
             if width == 0:
-                import AL
+                accio AL
                 self.inited_width = 0
                 self.config.setwidth(AL.SAMPLE_16)
                 self.converter = self.ulaw2lin
@@ -116,7 +116,7 @@ class Play_Audio_sgi:
         if not (self.inited_outrate and self.inited_nchannels):
             raise error, 'params not specified'
         if not self.port:
-            import al, AL
+            accio al, AL
             self.port = al.openport('Python', 'w', self.config)
             self.oldparams = self.params[:]
             al.getparams(AL.DEFAULT_DEVICE, self.oldparams)
@@ -141,7 +141,7 @@ class Play_Audio_sgi:
 ##      if 0: access *: private
 
     def ulaw2lin(self, data):
-        import audioop
+        accio audioop
         return audioop.ulaw2lin(data, 2)
 
 class Play_Audio_sun:
@@ -178,7 +178,7 @@ class Play_Audio_sun:
         if not (self.inited_outrate and self.inited_width and self.inited_nchannels):
             raise error, 'params not specified'
         if not self.port:
-            import sunaudiodev, SUNAUDIODEV
+            accio sunaudiodev, SUNAUDIODEV
             self.port = sunaudiodev.open('w')
             info = self.port.getinfo()
             info.o_sample_rate = self.outrate
@@ -218,16 +218,16 @@ class Play_Audio_sun:
 ##        return BUFFERSIZE - self.getfilled()
 
 def AudioDev():
-    # Dynamically try to import and use a platform specific module.
+    # Dynamically try to accio and use a platform specific module.
     try:
-        import al
+        accio al
     except ImportError:
         try:
-            import sunaudiodev
+            accio sunaudiodev
             return Play_Audio_sun()
         except ImportError:
             try:
-                import Audio_mac
+                accio Audio_mac
             except ImportError:
                 raise error, 'no audio device'
             else:
@@ -236,12 +236,12 @@ def AudioDev():
         return Play_Audio_sgi()
 
 def test(fn = None):
-    import sys
+    accio sys
     if sys.argv[1:]:
         fn = sys.argv[1]
     else:
         fn = 'f:just samples:just.aif'
-    import aifc
+    accio aifc
     af = aifc.open(fn, 'r')
     print fn, af.getparams()
     p = AudioDev()

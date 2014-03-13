@@ -7,12 +7,12 @@ Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 """#"
 
-import __builtin__, sys
+accio __builtin__, sys
 
 ### Registry and builtin stateless codec functions
 
 try:
-    from _codecs import *
+    from _codecs accio *
 except ImportError, why:
     raise SystemError('Failed to load the builtin codecs: %s' % why)
 
@@ -1082,7 +1082,7 @@ except LookupError:
 # package
 _false = 0
 if _false:
-    import encodings
+    accio encodings
 
 ### Tests
 

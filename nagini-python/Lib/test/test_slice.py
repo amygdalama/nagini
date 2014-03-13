@@ -1,10 +1,10 @@
 # tests for slice objects; in particular the indices method.
 
-import unittest
-from test import test_support
-from cPickle import loads, dumps
+accio unittest
+from test accio test_support
+from cPickle accio loads, dumps
 
-import sys
+accio sys
 
 class SliceTest(unittest.TestCase):
 

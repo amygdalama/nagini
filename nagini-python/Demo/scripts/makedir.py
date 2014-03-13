@@ -5,7 +5,7 @@
 # as it is a directory).
 # Errors are not treated specially -- you just get a Python exception.
 
-import sys, os
+accio sys, os
 
 def main():
     for p in sys.argv[1:]:

@@ -7,10 +7,10 @@ Copyright (c) 2008 by Christian Heimes <christian@cheimes.de>
 Licensed to PSF under a Contributor Agreement.
 """
 
-import sys
-import site
-import os
-import _winreg
+accio sys
+accio site
+accio os
+accio _winreg
 
 HKCU = _winreg.HKEY_CURRENT_USER
 ENV = "Environment"

@@ -3,25 +3,25 @@
 if __name__ != 'test.test_support':
     raise ImportError('test_support must be imported from the test package')
 
-import contextlib
-import errno
-import functools
-import gc
-import socket
-import sys
-import os
-import platform
-import shutil
-import warnings
-import unittest
-import importlib
-import UserDict
-import re
-import time
-import struct
-import sysconfig
+accio contextlib
+accio errno
+accio functools
+accio gc
+accio socket
+accio sys
+accio os
+accio platform
+accio shutil
+accio warnings
+accio unittest
+accio importlib
+accio UserDict
+accio re
+accio time
+accio struct
+accio sysconfig
 try:
-    import thread
+    accio thread
 except ImportError:
     thread = None
 
@@ -87,7 +87,7 @@ def _save_and_remove_module(name, orig_modules):
     """Helper function to save and remove a module from sys.modules
 
        Raise ImportError if the module can't be imported."""
-    # try to import the module and raise an error if it can't be imported
+    # try to accio the module and raise an error if it can't be imported
     if name not in sys.modules:
         __import__(name)
         del sys.modules[name]
@@ -111,13 +111,13 @@ def _save_and_block_module(name, orig_modules):
 
 def import_fresh_module(name, fresh=(), blocked=(), deprecated=False):
     """Imports and returns a module, deliberately bypassing the sys.modules cache
-    and importing a fresh copy of the module. Once the import is complete,
+    and importing a fresh copy of the module. Once the accio is complete,
     the sys.modules cache is restored to its original state.
 
-    Modules named in fresh are also imported anew if needed by the import.
+    Modules named in fresh are also imported anew if needed by the accio.
     If one of these modules can't be imported, None is returned.
 
-    Importing of modules named in blocked is prevented while the fresh import
+    Importing of modules named in blocked is prevented while the fresh accio
     takes place.
 
     If deprecated is True, any module or package deprecation messages
@@ -273,8 +273,8 @@ def forget(modname):
 # On some platforms, should not run gui test even if it is allowed
 # in `use_resources'.
 if sys.platform.startswith('win'):
-    import ctypes
-    import ctypes.wintypes
+    accio ctypes
+    accio ctypes.wintypes
     def _is_gui_available():
         UOI_FLAGS = 1
         WSF_VISIBLE = 0x0001
@@ -641,7 +641,7 @@ def check_syntax_error(testcase, statement):
                           '<test string>', 'exec')
 
 def open_urlresource(url, check=None):
-    import urlparse, urllib2
+    accio urlparse, urllib2
 
     filename = urlparse.urlparse(url)[2].split('/')[-1] # '/': it's URL!
 
@@ -792,10 +792,10 @@ def check_py3k_warnings(*filters, **kwargs):
 
 
 class CleanImport(object):
-    """Context manager to force import to return a new module reference.
+    """Context manager to force accio to return a new module reference.
 
     This is useful for testing module-level behaviours, such as
-    the emission of a DeprecationWarning on import.
+    the emission of a DeprecationWarning on accio.
 
     Use like this:
 
@@ -811,7 +811,7 @@ class CleanImport(object):
                 # It is possible that module_name is just an alias for
                 # another module (e.g. stub for modules renamed in 3.x).
                 # In that case, we also need delete the real module to clear
-                # the import cache.
+                # the accio cache.
                 if module.__name__ != module_name:
                     del sys.modules[module.__name__]
                 del sys.modules[module_name]
@@ -991,7 +991,7 @@ def transient_internet(resource_name, timeout=30.0, errnos=()):
 def captured_output(stream_name):
     """Return a context manager used by captured_stdout and captured_stdin
     that temporarily replaces the sys stream *stream_name* with a StringIO."""
-    import StringIO
+    accio StringIO
     orig_stdout = getattr(sys, stream_name)
     setattr(sys, stream_name, StringIO.StringIO())
     try:
@@ -1047,7 +1047,7 @@ _TPFLAGS_HAVE_GC = 1<<14
 _TPFLAGS_HEAPTYPE = 1<<9
 
 def check_sizeof(test, o, size):
-    import _testcapi
+    accio _testcapi
     result = sys.getsizeof(o)
     # add GC header size
     if ((type(o) == type) and (o.__flags__ & _TPFLAGS_HEAPTYPE) or\
@@ -1066,7 +1066,7 @@ def run_with_locale(catstr, *locales):
     def decorator(func):
         def inner(*args, **kwds):
             try:
-                import locale
+                accio locale
                 category = getattr(locale, catstr)
                 orig_locale = locale.setlocale(category)
             except AttributeError:
@@ -1318,7 +1318,7 @@ def run_doctest(module, verbosity=None):
     usual behavior is used (it searches sys.argv for -v).
     """
 
-    import doctest
+    accio doctest
 
     if verbosity is None:
         verbosity = verbose
@@ -1450,7 +1450,7 @@ def py3k_bytes(b):
 def args_from_interpreter_flags():
     """Return a list of command-line arguments reproducing the current
     settings in sys.flags."""
-    import subprocess
+    accio subprocess
     return subprocess._args_from_interpreter_flags()
 
 def strip_python_stderr(stderr):

@@ -1,9 +1,9 @@
-import pickle
-from cStringIO import StringIO
+accio pickle
+from cStringIO accio StringIO
 
-from test import test_support
+from test accio test_support
 
-from test.pickletester import (AbstractPickleTests,
+from test.pickletester accio (AbstractPickleTests,
                                AbstractPickleModuleTests,
                                AbstractPersistentPicklerTests,
                                AbstractPicklerUnpicklerObjectTests,

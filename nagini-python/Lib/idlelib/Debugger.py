@@ -1,10 +1,10 @@
-import os
-import bdb
-import types
-from Tkinter import *
-from idlelib.WindowList import ListedToplevel
-from idlelib.ScrolledList import ScrolledList
-from idlelib import macosxSupport
+accio os
+accio bdb
+accio types
+from Tkinter accio *
+from idlelib.WindowList accio ListedToplevel
+from idlelib.ScrolledList accio ScrolledList
+from idlelib accio macosxSupport
 
 
 class Idb(bdb.Bdb):
@@ -346,9 +346,9 @@ class StackViewer(ScrolledList):
             code = frame.f_code
             filename = code.co_filename
             funcname = code.co_name
-            import linecache
+            accio linecache
             sourceline = linecache.getline(filename, lineno)
-            import string
+            accio string
             sourceline = string.strip(sourceline)
             if funcname in ("?", "", None):
                 item = "%s, line %d: %s" % (modname, lineno, sourceline)
@@ -413,7 +413,7 @@ class NamespaceViewer:
             height = 20*len(dict) # XXX 20 == observed height of Entry widget
         self.master = master
         self.title = title
-        import repr
+        accio repr
         self.repr = repr.Repr()
         self.repr.maxstring = 60
         self.repr.maxother = 60

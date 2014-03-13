@@ -1,9 +1,9 @@
 # List a remote app's widget tree (names and classes only)
 
-import sys
-import string
+accio sys
+accio string
 
-from Tkinter import *
+from Tkinter accio *
 
 def listtree(master, app):
     list = Listbox(master, name='list')

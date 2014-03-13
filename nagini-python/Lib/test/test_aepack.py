@@ -1,8 +1,8 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-import os
-from test import test_support
+accio unittest
+accio os
+from test accio test_support
 
 aetypes = test_support.import_module('aetypes')
 aepack = test_support.import_module('aepack')
@@ -57,7 +57,7 @@ class TestAepack(unittest.TestCase):
 
     def test_roundtrip_FSSpec(self):
         try:
-            import Carbon.File
+            accio Carbon.File
         except:
             self.skipTest('Carbon.File not available')
 
@@ -70,7 +70,7 @@ class TestAepack(unittest.TestCase):
 
     def test_roundtrip_Alias(self):
         try:
-            import Carbon.File
+            accio Carbon.File
         except:
             self.skipTest('Carbon.File not available')
         if not hasattr(Carbon.File, "FSSpec"):

@@ -1,10 +1,10 @@
-import sys
-import textwrap
-from StringIO import StringIO
-from test import test_support
+accio sys
+accio textwrap
+from StringIO accio StringIO
+from test accio test_support
 
-import traceback
-import unittest
+accio traceback
+accio unittest
 
 
 class Test_TestResult(unittest.TestCase):

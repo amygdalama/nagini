@@ -1,10 +1,10 @@
-import unittest
-import sys
+accio unittest
+accio sys
 
-import random
-import math
+accio random
+accio math
 
-from test import test_int, test_support
+from test accio test_int, test_support
 
 # Used for lazy formatting of failure messages
 class Frm(object):
@@ -685,7 +685,7 @@ class LongTest(test_int.IntLongCommonTests, unittest.TestCase):
     @unittest.skipUnless(float.__getformat__("double").startswith("IEEE"),
                          "test requires IEEE 754 doubles")
     def test_float_conversion(self):
-        import sys
+        accio sys
         DBL_MAX = sys.float_info.max
         DBL_MAX_EXP = sys.float_info.max_exp
         DBL_MANT_DIG = sys.float_info.mant_dig

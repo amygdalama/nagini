@@ -1,10 +1,10 @@
-import urlparse
-import urllib2
-import BaseHTTPServer
-import unittest
-import hashlib
+accio urlparse
+accio urllib2
+accio BaseHTTPServer
+accio unittest
+accio hashlib
 
-from test import test_support
+from test accio test_support
 
 mimetools = test_support.import_module('mimetools', deprecated=True)
 threading = test_support.import_module('threading')

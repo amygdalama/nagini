@@ -1,8 +1,8 @@
 """mac_image - Helper routines (hacks) for images"""
-import imgformat
-from Carbon import Qd
-import struct
-import MacOS
+accio imgformat
+from Carbon accio Qd
+accio struct
+accio MacOS
 
 _fmt_to_mac = {
         imgformat.macrgb16 : (16, 16, 3, 5),

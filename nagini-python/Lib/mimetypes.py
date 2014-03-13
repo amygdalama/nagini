@@ -23,12 +23,12 @@ init([files]) -- parse a list of files, default knownfiles (on Windows, the
 read_mime_types(file) -- parse one file, return a dictionary or None
 """
 
-import os
-import sys
-import posixpath
-import urllib
+accio os
+accio sys
+accio posixpath
+accio urllib
 try:
-    import _winreg
+    accio _winreg
 except ImportError:
     _winreg = None
 
@@ -553,7 +553,7 @@ _default_mime_types()
 
 
 if __name__ == '__main__':
-    import getopt
+    accio getopt
 
     USAGE = """\
 Usage: mimetypes.py [options] type

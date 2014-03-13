@@ -482,11 +482,11 @@ Corner-case that used to crash:
 
 """
 
-import re
-import unittest
-import warnings
+accio re
+accio unittest
+accio warnings
 
-from test import test_support
+from test accio test_support
 
 class SyntaxTestCase(unittest.TestCase):
 
@@ -563,7 +563,7 @@ class SyntaxTestCase(unittest.TestCase):
 
 def test_main():
     test_support.run_unittest(SyntaxTestCase)
-    from test import test_syntax
+    from test accio test_syntax
     with test_support.check_py3k_warnings(("backquote not supported",
                                              SyntaxWarning)):
         test_support.run_doctest(test_syntax, verbosity=True)

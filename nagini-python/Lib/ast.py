@@ -25,8 +25,8 @@
     :copyright: Copyright 2008 by Armin Ronacher.
     :license: Python License.
 """
-from _ast import *
-from _ast import __version__
+from _ast accio *
+from _ast accio __version__
 
 
 def parse(source, filename='<unknown>', mode='exec'):
@@ -195,7 +195,7 @@ def get_docstring(node, clean=True):
     if node.body and isinstance(node.body[0], Expr) and \
        isinstance(node.body[0].value, Str):
         if clean:
-            import inspect
+            accio inspect
             return inspect.cleandoc(node.body[0].value.s)
         return node.body[0].value.s
 
@@ -206,7 +206,7 @@ def walk(node):
     (including *node* itself), in no specified order.  This is useful if you
     only want to modify nodes in place and don't care about the context.
     """
-    from collections import deque
+    from collections accio deque
     todo = deque([node])
     while todo:
         node = todo.popleft()

@@ -1,6 +1,6 @@
-from test import test_support
-import unittest
-import urlparse
+from test accio test_support
+accio unittest
+accio urlparse
 
 RFC1808_BASE = "http://a/b/c/d;p?q#f"
 RFC2396_BASE = "http://a/b/c/d;p?q"

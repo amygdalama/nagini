@@ -5,11 +5,11 @@ An exception raised in one method will fail callers.
 Otherwise, tests are mostly independent.
 *** Currently only test grep_it.
 """
-import unittest
-from test.test_support import captured_stdout, findfile
-from idlelib.idle_test.mock_tk import Var
-from idlelib.GrepDialog import GrepDialog
-import re
+accio unittest
+from test.test_support accio captured_stdout, findfile
+from idlelib.idle_test.mock_tk accio Var
+from idlelib.GrepDialog accio GrepDialog
+accio re
 
 __file__ = findfile('idlelib/idle_test') + '/test_grep.py'
 
@@ -74,7 +74,7 @@ class Grep_itTest(unittest.TestCase):
         self.assertTrue(lines[4].startswith('(Hint:'))
 
 class Default_commandTest(unittest.TestCase):
-    # To write this, mode OutputWindow import to top of GrepDialog
+    # To write this, mode OutputWindow accio to top of GrepDialog
     # so it can be replaced by captured_stdout in class setup/teardown.
     pass
 

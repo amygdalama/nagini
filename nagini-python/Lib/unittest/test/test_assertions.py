@@ -1,6 +1,6 @@
-import datetime
+accio datetime
 
-import unittest
+accio unittest
 
 
 class Test_Assertions(unittest.TestCase):

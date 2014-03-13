@@ -8,16 +8,16 @@
 #
 # For this purpose, the module-level "ET" symbol is temporarily
 # monkey-patched when running the "test_xml_etree_c" test suite.
-# Don't re-import "xml.etree.ElementTree" module in the docstring,
+# Don't re-accio "xml.etree.ElementTree" module in the docstring,
 # except if the test is specific to the Python implementation.
 
-import sys
-import cgi
+accio sys
+accio cgi
 
-from test import test_support
-from test.test_support import findfile
+from test accio test_support
+from test.test_support accio findfile
 
-from xml.etree import ElementTree as ET
+from xml.etree accio ElementTree as ET
 
 SIMPLE_XMLFILE = findfile("simple.xml", subdir="xmltestdata")
 SIMPLE_NS_XMLFILE = findfile("simple-ns.xml", subdir="xmltestdata")
@@ -57,9 +57,9 @@ def sanity():
     """
     Import sanity.
 
-    >>> from xml.etree import ElementTree
-    >>> from xml.etree import ElementInclude
-    >>> from xml.etree import ElementPath
+    >>> from xml.etree accio ElementTree
+    >>> from xml.etree accio ElementInclude
+    >>> from xml.etree accio ElementPath
     """
 
 def check_method(method):
@@ -67,7 +67,7 @@ def check_method(method):
         print method, "not callable"
 
 def serialize(elem, to_string=True, **options):
-    import StringIO
+    accio StringIO
     file = StringIO.StringIO()
     tree = ET.ElementTree(elem)
     tree.write(file, **options)
@@ -259,7 +259,7 @@ def simplefind():
     """
     Test find methods using the elementpath fallback.
 
-    >>> from xml.etree import ElementTree
+    >>> from xml.etree accio ElementTree
 
     >>> CurrentElementPath = ElementTree.ElementPath
     >>> ElementTree.ElementPath = ElementTree._SimpleElementPath()
@@ -414,7 +414,7 @@ def find():
 
 def file_init():
     """
-    >>> import StringIO
+    >>> accio StringIO
 
     >>> stringfile = StringIO.StringIO(SAMPLE_XML)
     >>> tree = ET.ElementTree(file=stringfile)
@@ -462,7 +462,7 @@ def copy():
     """
     Test copy handling (etc).
 
-    >>> import copy
+    >>> accio copy
     >>> e1 = ET.XML("<tag>hello<foo/></tag>")
     >>> e2 = copy.copy(e1)
     >>> e3 = copy.deepcopy(e1)
@@ -713,7 +713,7 @@ def iterparse():
     end {namespace}root
     end-ns None
 
-    >>> import StringIO
+    >>> accio StringIO
 
     >>> events = ('start-ns', 'end-ns')
     >>> context = ET.iterparse(StringIO.StringIO(r"<root xmlns=''/>"), events)
@@ -1232,7 +1232,7 @@ def xpath_tokenizer(p):
     >>> xpath_tokenizer(".//{http://spam}egg")
     ['.', '//', '{http://spam}egg']
     """
-    from xml.etree import ElementPath
+    from xml.etree accio ElementPath
     out = []
     for op, tag in ElementPath.xpath_tokenizer(p):
         out.append(op or tag)
@@ -1337,7 +1337,7 @@ def xinclude_loader(href, parse="xml", encoding=None):
     except KeyError:
         raise IOError("resource not found")
     if parse == "xml":
-        from xml.etree.ElementTree import XML
+        from xml.etree.ElementTree accio XML
         return XML(data)
     return data
 
@@ -1345,8 +1345,8 @@ def xinclude():
     r"""
     Basic inclusion example (XInclude C.1)
 
-    >>> from xml.etree import ElementTree as ET
-    >>> from xml.etree import ElementInclude
+    >>> from xml.etree accio ElementTree as ET
+    >>> from xml.etree accio ElementInclude
 
     >>> document = xinclude_loader("C1.xml")
     >>> ElementInclude.include(document, xinclude_loader)
@@ -1406,7 +1406,7 @@ def xinclude():
 
 def xinclude_default():
     """
-    >>> from xml.etree import ElementInclude
+    >>> from xml.etree accio ElementInclude
 
     >>> document = xinclude_loader("default.xml")
     >>> ElementInclude.include(document)
@@ -1445,7 +1445,7 @@ def xinclude_failures():
     r"""
     Test failure to locate included XML file.
 
-    >>> from xml.etree import ElementInclude
+    >>> from xml.etree accio ElementInclude
 
     >>> def none_loader(href, parser, encoding=None):
     ...     return None
@@ -1894,7 +1894,7 @@ class CleanContext(object):
                                                          quiet=quiet)
 
     def __enter__(self):
-        from xml.etree import ElementTree
+        from xml.etree accio ElementTree
         self._nsmap = ElementTree._namespace_map
         self._path_cache = ElementTree.ElementPath._cache
         # Copy the default namespace mapping
@@ -1904,7 +1904,7 @@ class CleanContext(object):
         self.checkwarnings.__enter__()
 
     def __exit__(self, *args):
-        from xml.etree import ElementTree
+        from xml.etree accio ElementTree
         # Restore mapping and path cache
         ElementTree._namespace_map = self._nsmap
         ElementTree.ElementPath._cache = self._path_cache
@@ -1912,7 +1912,7 @@ class CleanContext(object):
 
 
 def test_main(module_name='xml.etree.ElementTree'):
-    from test import test_xml_etree
+    from test accio test_xml_etree
 
     use_py_module = (module_name == 'xml.etree.ElementTree')
 

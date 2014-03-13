@@ -1,6 +1,6 @@
 """A more or less complete user-defined wrapper around list objects."""
 
-import collections
+accio collections
 
 class UserList(collections.MutableSequence):
     def __init__(self, initlist=None):

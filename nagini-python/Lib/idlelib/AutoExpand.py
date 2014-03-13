@@ -1,5 +1,5 @@
-import string
-import re
+accio string
+accio re
 
 ###$ event <<expand-word>>
 ###$ win <Alt-slash>

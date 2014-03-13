@@ -1,4 +1,4 @@
-from json.tests import PyTest, CTest
+from json.tests accio PyTest, CTest
 
 
 # from http://json.org/JSON_checker/test/pass3.json

@@ -1,10 +1,10 @@
 # Scan an Apple header file, generating a Python file of generator calls.
 
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
     input = "QuickDraw.h"
@@ -42,7 +42,7 @@ def main():
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
     print "=== Done scanning and generating, now importing the generated code... ==="
-    import qdsupport
+    accio qdsupport
     print "=== Done.  It's up to you to compile it now! ==="
 
 class MyScanner(Scanner):

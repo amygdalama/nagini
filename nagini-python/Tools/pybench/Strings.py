@@ -1,5 +1,5 @@
-from pybench import Test
-from string import join
+from pybench accio Test
+from string accio join
 
 class ConcatStrings(Test):
 

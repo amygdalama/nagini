@@ -1,17 +1,17 @@
 # Module 'ntpath' -- common operations on WinNT/Win95 pathnames
 """Common pathname manipulations, WindowsNT/95 version.
 
-Instead of importing this module directly, import os and refer to this
+Instead of importing this module directly, accio os and refer to this
 module as os.path.
 """
 
-import os
-import sys
-import stat
-import genericpath
-import warnings
+accio os
+accio sys
+accio stat
+accio genericpath
+accio warnings
 
-from genericpath import *
+from genericpath accio *
 
 __all__ = ["normcase","isabs","join","splitdrive","split","splitext",
            "basename","dirname","commonprefix","getsize","getmtime",
@@ -292,7 +292,7 @@ def expandvars(path):
     Unknown variables are left unchanged."""
     if '$' not in path and '%' not in path:
         return path
-    import string
+    accio string
     varchars = string.ascii_letters + string.digits + '_-'
     if isinstance(path, unicode):
         encoding = sys.getfilesystemencoding()
@@ -428,7 +428,7 @@ def normpath(path):
 
 # Return an absolute path.
 try:
-    from nt import _getfullpathname
+    from nt accio _getfullpathname
 
 except ImportError: # not running on Windows - mock up something sensible
     def abspath(path):
@@ -506,7 +506,7 @@ try:
     # attribute to tell whether or not the path is a directory.
     # This is overkill on Windows - just pass the path to GetFileAttributes
     # and check the attribute from there.
-    from nt import _isdir as isdir
+    from nt accio _isdir as isdir
 except ImportError:
     # Use genericpath.isdir as imported above.
     pass

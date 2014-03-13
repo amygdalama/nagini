@@ -18,7 +18,7 @@ hexdigits -- a string containing all characters considered hexadecimal digits
 octdigits -- a string containing all characters considered octal digits
 
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the stringold module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
@@ -418,7 +418,7 @@ def replace(s, old, new, maxsplit=0):
 try:
     ''.upper
 except AttributeError:
-    from stringold import *
+    from stringold accio *
 
 # Try importing optional built-in module "strop" -- if it exists,
 # it redefines some string operations that are 100-1000 times faster.
@@ -426,7 +426,7 @@ except AttributeError:
 # that match <ctype.h>'s definitions.
 
 try:
-    from strop import maketrans, lowercase, uppercase, whitespace
+    from strop accio maketrans, lowercase, uppercase, whitespace
     letters = lowercase + uppercase
 except ImportError:
     pass                                          # Use the original versions

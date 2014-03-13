@@ -1,6 +1,6 @@
-import sys, itertools, unittest
-from test import test_support
-import ast
+accio sys, itertools, unittest
+from test accio test_support
+accio ast
 
 def to_tuple(t):
     if t is None or isinstance(t, (basestring, int, long, complex)):
@@ -63,9 +63,9 @@ exec_tests = [
     # Assert
     "assert v",
     # Import
-    "import sys",
+    "accio sys",
     # ImportFrom
-    "from sys import v",
+    "from sys accio v",
     # Exec
     "exec 'v'",
     # Global
@@ -228,11 +228,11 @@ class AST_Tests(unittest.TestCase):
         self.assertEqual(slc.step.id, "None")
 
     def test_from_import(self):
-        im = ast.parse("from . import y").body[0]
+        im = ast.parse("from . accio y").body[0]
         self.assertIsNone(im.module)
 
     def test_non_interned_future_from_ast(self):
-        mod = ast.parse("from __future__ import division")
+        mod = ast.parse("from __future__ accio division")
         self.assertIsInstance(mod.body[0], ast.ImportFrom)
         mod.body[0].module = " __future__ ".strip()
         compile(mod, "<test>", "exec")
@@ -354,10 +354,10 @@ class AST_Tests(unittest.TestCase):
         self.assertEqual(x._fields, ())
 
     def test_pickling(self):
-        import pickle
+        accio pickle
         mods = [pickle]
         try:
-            import cPickle
+            accio cPickle
             mods.append(cPickle)
         except ImportError:
             pass

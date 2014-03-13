@@ -5,12 +5,12 @@ Generated from /Volumes/Sap/System Folder/Extensions/AppleScript
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'core'
 
-from _builtinSuites.builtin_Suite import *
+from _builtinSuites.builtin_Suite accio *
 class Standard_Suite_Events(builtin_Suite_Events):
 
     _argmap_class_info = {

@@ -23,10 +23,10 @@ CAVEATS:
 # Author: Collin Winter
 
 # Local imports
-from .. import pytree
-from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, Call, Attr, ArgList, is_tuple
+from .. accio pytree
+from ..pgen2 accio token
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, Attr, ArgList, is_tuple
 
 class FixRaise(fixer_base.BaseFix):
 

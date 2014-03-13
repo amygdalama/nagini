@@ -40,7 +40,7 @@
 #
 
 
-from tkCommonDialog import Dialog
+from tkCommonDialog accio Dialog
 
 class _Dialog(Dialog):
 
@@ -54,7 +54,7 @@ class _Dialog(Dialog):
     def _fixresult(self, widget, result):
         if result:
             # keep directory and filename until next time
-            import os
+            accio os
             # convert Tcl path objects to strings
             try:
                 result = result.string
@@ -81,7 +81,7 @@ class Open(_Dialog):
             # multiple results:
             result = tuple([getattr(r, "string", r) for r in result])
             if result:
-                import os
+                accio os
                 path, file = os.path.split(result[0])
                 self.options["initialdir"] = path
                 # don't set initialfile or filename, as we have multiple of these
@@ -187,11 +187,11 @@ if __name__ == "__main__":
 
     # Start off with UTF-8
     enc = "utf-8"
-    import sys
+    accio sys
 
     # See whether CODESET is defined
     try:
-        import locale
+        accio locale
         locale.setlocale(locale.LC_ALL,'')
         enc = locale.nl_langinfo(locale.CODESET)
     except (ImportError, AttributeError):

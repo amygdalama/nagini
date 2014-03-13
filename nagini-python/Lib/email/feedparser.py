@@ -21,10 +21,10 @@ object's .defects attribute.
 
 __all__ = ['FeedParser']
 
-import re
+accio re
 
-from email import errors
-from email import message
+from email accio errors
+from email accio message
 
 NLCRE = re.compile('\r\n|\r|\n')
 NLCRE_bol = re.compile('(\r\n|\r|\n)')

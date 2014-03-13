@@ -6,11 +6,11 @@ files and (possibly) corresponding work files.
 """
 
 
-import fnmatch
-import os
-import re
-import string
-import tempfile
+accio fnmatch
+accio os
+accio re
+accio string
+accio tempfile
 
 
 class RCS:

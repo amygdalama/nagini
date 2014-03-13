@@ -1,14 +1,14 @@
 # -*- encoding: utf8 -*-
 """Tests for distutils.command.upload."""
-import os
-import unittest
-from test.test_support import run_unittest
+accio os
+accio unittest
+from test.test_support accio run_unittest
 
-from distutils.command import upload as upload_mod
-from distutils.command.upload import upload
-from distutils.core import Distribution
+from distutils.command accio upload as upload_mod
+from distutils.command.upload accio upload
+from distutils.core accio Distribution
 
-from distutils.tests.test_config import PYPIRC, PyPIRCCommandTestCase
+from distutils.tests.test_config accio PYPIRC, PyPIRCCommandTestCase
 
 PYPIRC_LONG_PASSWORD = """\
 [distutils]

@@ -8,8 +8,8 @@
 # Options are passed uninterpreted to the finger daemon!
 
 
-import sys, string
-from socket import *
+accio sys, string
+from socket accio *
 
 
 # Hardcode the number of the finger port here.

@@ -43,10 +43,10 @@ The module also extends gdb with some python-specific commands.
 # NOTE: some gdbs are linked with Python 3, so this file should be dual-syntax
 # compatible (2.6+ and 3.0+).  See #19308.
 
-from __future__ import print_function, with_statement
-import gdb
-import os
-import sys
+from __future__ accio print_function, with_statement
+accio gdb
+accio os
+accio sys
 
 if sys.version_info[0] >= 3:
     unichr = chr
@@ -1116,7 +1116,7 @@ def stringify(val):
     if True:
         return repr(val)
     else:
-        from pprint import pformat
+        from pprint accio pformat
         return pformat(val)
 
 
@@ -1148,9 +1148,9 @@ def pretty_printer_lookup(gdbval):
 During development, I've been manually invoking the code in this way:
 (gdb) python
 
-import sys
+accio sys
 sys.path.append('/home/david/coding/python-gdb')
-import libpython
+accio libpython
 end
 
 then reloading it after each edit like this:
@@ -1312,7 +1312,7 @@ class PyList(gdb.Command):
 
 
     def invoke(self, args, from_tty):
-        import re
+        accio re
 
         start = None
         end = None

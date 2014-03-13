@@ -1,12 +1,12 @@
 # !/usr/bin/env python
 """Guess which db package to use to open a db file."""
 
-import os
-import struct
-import sys
+accio os
+accio struct
+accio sys
 
 try:
-    import dbm
+    accio dbm
     _dbmerror = dbm.error
 except ImportError:
     dbm = None

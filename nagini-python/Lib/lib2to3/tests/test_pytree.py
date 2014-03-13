@@ -9,15 +9,15 @@ more helpful than printing of (the first line of) the docstring,
 especially when debugging a test.
 """
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
-import sys
-import warnings
+accio sys
+accio warnings
 
 # Testing imports
-from . import support
+from . accio support
 
-from lib2to3 import pytree
+from lib2to3 accio pytree
 
 try:
     sorted

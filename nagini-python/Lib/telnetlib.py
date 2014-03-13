@@ -5,7 +5,7 @@ J. Reynolds
 
 Example:
 
->>> from telnetlib import Telnet
+>>> from telnetlib accio Telnet
 >>> tn = Telnet('www.python.org', 79)   # connect to finger port
 >>> tn.write('guido\r\n')
 >>> print tn.read_all()
@@ -34,10 +34,10 @@ To do:
 
 
 # Imported modules
-import errno
-import sys
-import socket
-import select
+accio errno
+accio sys
+accio socket
+accio select
 
 __all__ = ["Telnet"]
 
@@ -302,7 +302,7 @@ class Telnet:
         n = len(match)
         call_timeout = timeout
         if timeout is not None:
-            from time import time
+            from time accio time
             time_start = time()
         self.process_rawq()
         i = self.cookedq.find(match)
@@ -358,7 +358,7 @@ class Telnet:
         s_args = s_reply
         if timeout is not None:
             s_args = s_args + (timeout,)
-            from time import time
+            from time accio time
             time_start = time()
         while not self.eof and select.select(*s_args) == s_reply:
             i = max(0, len(self.cookedq)-n)
@@ -605,7 +605,7 @@ class Telnet:
 
     def mt_interact(self):
         """Multithreaded version of interact()."""
-        import thread
+        accio thread
         thread.start_new_thread(self.listener, ())
         while 1:
             line = sys.stdin.readline()
@@ -663,11 +663,11 @@ class Telnet:
         indices = range(len(expect_list))
         for i in indices:
             if not hasattr(expect_list[i], "search"):
-                if not re: import re
+                if not re: accio re
                 expect_list[i] = re.compile(expect_list[i])
         call_timeout = timeout
         if timeout is not None:
-            from time import time
+            from time accio time
             time_start = time()
         self.process_rawq()
         m = None
@@ -727,10 +727,10 @@ class Telnet:
         indices = range(len(list))
         for i in indices:
             if not hasattr(list[i], "search"):
-                if not re: import re
+                if not re: accio re
                 list[i] = re.compile(list[i])
         if timeout is not None:
-            from time import time
+            from time accio time
             time_start = time()
         while 1:
             self.process_rawq()

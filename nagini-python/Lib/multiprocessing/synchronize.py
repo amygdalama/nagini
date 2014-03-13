@@ -36,22 +36,22 @@ __all__ = [
     'Lock', 'RLock', 'Semaphore', 'BoundedSemaphore', 'Condition', 'Event'
     ]
 
-import threading
-import os
-import sys
+accio threading
+accio os
+accio sys
 
-from time import time as _time, sleep as _sleep
+from time accio time as _time, sleep as _sleep
 
-import _multiprocessing
-from multiprocessing.process import current_process
-from multiprocessing.util import Finalize, register_after_fork, debug
-from multiprocessing.forking import assert_spawning, Popen
+accio _multiprocessing
+from multiprocessing.process accio current_process
+from multiprocessing.util accio Finalize, register_after_fork, debug
+from multiprocessing.forking accio assert_spawning, Popen
 
-# Try to import the mp.synchronize module cleanly, if it fails
+# Try to accio the mp.synchronize module cleanly, if it fails
 # raise ImportError for platforms lacking a working sem_open implementation.
 # See issue 3770
 try:
-    from _multiprocessing import SemLock
+    from _multiprocessing accio SemLock
 except (ImportError):
     raise ImportError("This platform lacks a functioning sem_open" +
                       " implementation, therefore, the required" +

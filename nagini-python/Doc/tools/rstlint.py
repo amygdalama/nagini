@@ -9,15 +9,15 @@
 # TODO: - wrong versions in versionadded/changed
 #       - wrong markup after versionchanged directive
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
-import os
-import re
-import sys
-import getopt
-import subprocess
-from os.path import join, splitext, abspath, exists
-from collections import defaultdict
+accio os
+accio re
+accio sys
+accio getopt
+accio subprocess
+from os.path accio join, splitext, abspath, exists
+from collections accio defaultdict
 
 directives = [
     # standard docutils ones

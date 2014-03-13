@@ -1,20 +1,20 @@
 """Tests for sysconfig."""
 
-import unittest
-import sys
-import os
-import shutil
-import subprocess
-from copy import copy, deepcopy
+accio unittest
+accio sys
+accio os
+accio shutil
+accio subprocess
+from copy accio copy, deepcopy
 
-from test.test_support import run_unittest, TESTFN, unlink, get_attribute
+from test.test_support accio run_unittest, TESTFN, unlink, get_attribute
 
-import sysconfig
-from sysconfig import (get_paths, get_platform, get_config_vars,
+accio sysconfig
+from sysconfig accio (get_paths, get_platform, get_config_vars,
                        get_path, get_path_names, _INSTALL_SCHEMES,
                        _get_default_scheme, _expand_vars,
                        get_scheme_names, get_config_var)
-import _osx_support
+accio _osx_support
 
 class TestSysConfig(unittest.TestCase):
 
@@ -248,7 +248,7 @@ class TestSysConfig(unittest.TestCase):
         symlink = get_attribute(os, "symlink")
         def get(python):
             cmd = [python, '-c',
-                   'import sysconfig; print sysconfig.get_platform()']
+                   'accio sysconfig; print sysconfig.get_platform()']
             p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
             return p.communicate()
         real = os.path.realpath(sys.executable)
@@ -289,7 +289,7 @@ class TestSysConfig(unittest.TestCase):
         with open('/dev/null', 'w') as devnull_fp:
             p = subprocess.Popen([
                     sys.executable, '-c',
-                   'import sysconfig; print(sysconfig.get_platform())',
+                   'accio sysconfig; print(sysconfig.get_platform())',
                 ],
                 stdout=subprocess.PIPE,
                 stderr=devnull_fp,
@@ -309,7 +309,7 @@ class TestSysConfig(unittest.TestCase):
 
         p = subprocess.Popen([
                 sys.executable, '-c',
-                'import sysconfig; print(sysconfig.get_platform())',
+                'accio sysconfig; print(sysconfig.get_platform())',
             ],
             stdout=subprocess.PIPE,
             stderr=open('/dev/null'),

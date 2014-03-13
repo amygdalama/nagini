@@ -383,12 +383,12 @@ From the Iterators list, about the types of these things.
 <type 'generator'>
 >>> [s for s in dir(i) if not s.startswith('_')]
 ['close', 'gi_code', 'gi_frame', 'gi_running', 'next', 'send', 'throw']
->>> from test.test_support import HAVE_DOCSTRINGS
+>>> from test.test_support accio HAVE_DOCSTRINGS
 >>> print(i.next.__doc__ if HAVE_DOCSTRINGS else 'x.next() -> the next value, or raise StopIteration')
 x.next() -> the next value, or raise StopIteration
 >>> iter(i) is i
 True
->>> import types
+>>> accio types
 >>> isinstance(i, types.GeneratorType)
 True
 
@@ -444,7 +444,7 @@ Subject: Re: PEP 255: Simple Generators
 >>> sets = [disjointSet(name) for name in names]
 >>> roots = sets[:]
 
->>> import random
+>>> accio random
 >>> gen = random.WichmannHill(42)
 >>> while 1:
 ...     for s in sets:
@@ -671,7 +671,7 @@ all and thereby wasting memory.
 Thanks to itertools.tee, it is now clear "how to get the internal uses of
 m235 to share a single generator".
 
->>> from itertools import tee
+>>> from itertools accio tee
 >>> def m235():
 ...     def _m235():
 ...         yield 1
@@ -1475,7 +1475,7 @@ Solution 2
 weakref_tests = """\
 Generators are weakly referencable:
 
->>> import weakref
+>>> accio weakref
 >>> def gen():
 ...     yield 'foo!'
 ...
@@ -1600,7 +1600,7 @@ Now check some throw() conditions:
 ...             print (yield)
 ...         except ValueError,v:
 ...             print "caught ValueError (%s)" % (v),
->>> import sys
+>>> accio sys
 >>> g = f()
 >>> g.next()
 
@@ -1743,7 +1743,7 @@ RuntimeError: generator ignored GeneratorExit
 
 Our ill-behaved code should be invoked during GC:
 
->>> import sys, StringIO
+>>> accio sys, StringIO
 >>> old, sys.stderr = sys.stderr, StringIO.StringIO()
 >>> g = f()
 >>> g.next()
@@ -1813,7 +1813,7 @@ Prior to adding cycle-GC support to itertools.tee, this code would leak
 references. We add it to the standard suite so the routine refleak-tests
 would trigger if it starts being uncleanable again.
 
->>> import itertools
+>>> accio itertools
 >>> def leak():
 ...     class gen:
 ...         def __iter__(self):
@@ -1854,7 +1854,7 @@ explicitly, without generators. We do have to redirect stderr to avoid
 printing warnings and to doublecheck that we actually tested what we wanted
 to test.
 
->>> import sys, StringIO
+>>> accio sys, StringIO
 >>> old = sys.stderr
 >>> try:
 ...     sys.stderr = StringIO.StringIO()
@@ -1899,7 +1899,7 @@ __test__ = {"tut":      tutorial_tests,
 # Note that doctest and regrtest both look in sys.argv for a "-v" argument,
 # so this works as expected in both ways of running regrtest.
 def test_main(verbose=None):
-    from test import test_support, test_generators
+    from test accio test_support, test_generators
     test_support.run_doctest(test_generators, verbose)
 
 # This part isn't needed for regrtest, but for running the test directly.

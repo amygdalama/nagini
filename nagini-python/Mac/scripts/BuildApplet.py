@@ -7,17 +7,17 @@ resource named __main__ containing the compiled, marshalled script.
 """
 
 
-import sys
+accio sys
 sys.stdout = sys.stderr
 
-import os
-import MacOS
+accio os
+accio MacOS
 try:
-    import EasyDialogs
+    accio EasyDialogs
 except ImportError:
     EasyDialogs = None
-import buildtools
-import getopt
+accio buildtools
+accio getopt
 
 if not sys.executable.startswith(sys.exec_prefix):
     # Oh, the joys of using a python script to bootstrap applicatin bundles

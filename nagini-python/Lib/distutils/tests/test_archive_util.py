@@ -2,36 +2,36 @@
 """Tests for distutils.archive_util."""
 __revision__ = "$Id$"
 
-import unittest
-import os
-import sys
-import tarfile
-from os.path import splitdrive
-import warnings
+accio unittest
+accio os
+accio sys
+accio tarfile
+from os.path accio splitdrive
+accio warnings
 
-from distutils.archive_util import (check_archive_formats, make_tarball,
+from distutils.archive_util accio (check_archive_formats, make_tarball,
                                     make_zipfile, make_archive,
                                     ARCHIVE_FORMATS)
-from distutils.spawn import find_executable, spawn
-from distutils.tests import support
-from test.test_support import check_warnings, run_unittest
+from distutils.spawn accio find_executable, spawn
+from distutils.tests accio support
+from test.test_support accio check_warnings, run_unittest
 
 try:
-    import grp
-    import pwd
+    accio grp
+    accio pwd
     UID_GID_SUPPORT = True
 except ImportError:
     UID_GID_SUPPORT = False
 
 try:
-    import zipfile
+    accio zipfile
     ZIP_SUPPORT = True
 except ImportError:
     ZIP_SUPPORT = find_executable('zip')
 
 # some tests will fail if zlib is not available
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 

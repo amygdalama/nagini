@@ -1,9 +1,9 @@
 """An XML Reader is the SAX 2 name for an XML parser. XML Parsers
 should be based on this code. """
 
-import handler
+accio handler
 
-from _exceptions import SAXNotSupportedException, SAXNotRecognizedException
+from _exceptions accio SAXNotSupportedException, SAXNotRecognizedException
 
 
 # ===== XMLREADER =====
@@ -113,7 +113,7 @@ class IncrementalParser(XMLReader):
         XMLReader.__init__(self)
 
     def parse(self, source):
-        import saxutils
+        accio saxutils
         source = saxutils.prepare_input_source(source)
 
         self.prepareParser(source)

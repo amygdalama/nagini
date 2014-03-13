@@ -1,9 +1,9 @@
-import os
-import sys
-import imp
+accio os
+accio sys
+accio imp
 
-from idlelib.TreeWidget import TreeItem
-from idlelib.ClassBrowser import ClassBrowser, ModuleBrowserTreeItem
+from idlelib.TreeWidget accio TreeItem
+from idlelib.ClassBrowser accio ClassBrowser, ModuleBrowserTreeItem
 
 class PathBrowser(ClassBrowser):
 
@@ -86,11 +86,11 @@ class DirBrowserTreeItem(TreeItem):
         return sorted
 
 def main():
-    from idlelib import PyShell
+    from idlelib accio PyShell
     PathBrowser(PyShell.flist)
     if sys.stdin is sys.__stdin__:
         mainloop()
 
 if __name__ == "__main__":
-    from unittest import main
+    from unittest accio main
     main('idlelib.idle_test.test_pathbrowser', verbosity=2, exit=False)

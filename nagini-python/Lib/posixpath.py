@@ -1,6 +1,6 @@
 """Common operations on Posix pathnames.
 
-Instead of importing this module directly, import os and refer to
+Instead of importing this module directly, accio os and refer to
 this module as os.path.  The "os.path" name is an alias for this
 module on Posix systems; on other systems (e.g. Mac, Windows),
 os.path provides the same operations in a manner specific to that
@@ -10,12 +10,12 @@ Some of this can actually be useful on non-Posix systems too, e.g.
 for manipulation of the pathname component of URLs.
 """
 
-import os
-import sys
-import stat
-import genericpath
-import warnings
-from genericpath import *
+accio os
+accio sys
+accio stat
+accio genericpath
+accio warnings
+from genericpath accio *
 
 try:
     _unicode = unicode
@@ -265,12 +265,12 @@ def expanduser(path):
         i = len(path)
     if i == 1:
         if 'HOME' not in os.environ:
-            import pwd
+            accio pwd
             userhome = pwd.getpwuid(os.getuid()).pw_dir
         else:
             userhome = os.environ['HOME']
     else:
-        import pwd
+        accio pwd
         try:
             pwent = pwd.getpwnam(path[1:i])
         except KeyError:
@@ -295,13 +295,13 @@ def expandvars(path):
         return path
     if isinstance(path, _unicode):
         if not _varprog:
-            import re
+            accio re
             _varprog = re.compile(r'\$(\w+|\{[^}]*\})')
         varprog = _varprog
         encoding = sys.getfilesystemencoding()
     else:
         if not _uvarprog:
-            import re
+            accio re
             _uvarprog = re.compile(_unicode(r'\$(\w+|\{[^}]*\})'), re.UNICODE)
         varprog = _uvarprog
         encoding = None

@@ -1,4 +1,4 @@
-import os
+accio os
 
 __revision__ = "$Id$"
 

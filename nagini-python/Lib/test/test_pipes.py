@@ -1,8 +1,8 @@
-import pipes
-import os
-import string
-import unittest
-from test.test_support import TESTFN, run_unittest, unlink, reap_children
+accio pipes
+accio os
+accio string
+accio unittest
+from test.test_support accio TESTFN, run_unittest, unlink, reap_children
 
 if os.name != 'posix':
     raise unittest.SkipTest('pipes module only works on posix')

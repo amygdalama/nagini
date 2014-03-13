@@ -16,8 +16,8 @@
 # installation directory for an application.
 #
 
-import Tix, os, copy
-from Tkconstants import *
+accio Tix, os, copy
+from Tkconstants accio *
 
 TCL_ALL_EVENTS          = 0
 

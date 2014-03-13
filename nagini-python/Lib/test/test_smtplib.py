@@ -1,18 +1,18 @@
-import asyncore
-import email.utils
-import socket
-import smtpd
-import smtplib
-import StringIO
-import sys
-import time
-import select
+accio asyncore
+accio email.utils
+accio socket
+accio smtpd
+accio smtplib
+accio StringIO
+accio sys
+accio time
+accio select
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

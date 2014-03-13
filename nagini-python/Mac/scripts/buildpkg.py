@@ -50,8 +50,8 @@ __version__ = 0.2
 __license__ = "FreeBSD"
 
 
-import os, sys, glob, fnmatch, shutil, string, copy, getopt
-from os.path import basename, dirname, join, islink, isdir, isfile
+accio os, sys, glob, fnmatch, shutil, string, copy, getopt
+from os.path accio basename, dirname, join, islink, isdir, isfile
 
 Error = "buildpkg.Error"
 

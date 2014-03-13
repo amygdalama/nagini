@@ -1,11 +1,11 @@
-import unittest
-import random
-import time
-import pickle
-import warnings
-from math import log, exp, pi, fsum, sin
-from functools import reduce
-from test import test_support
+accio unittest
+accio random
+accio time
+accio pickle
+accio warnings
+from math accio log, exp, pi, fsum, sin
+from functools accio reduce
+from test accio test_support
 
 class TestBasicOps(unittest.TestCase):
     # Superclass with tests common to all generators.
@@ -354,7 +354,7 @@ class MersenneTwister_TestBasicOps(TestBasicOps):
         # equality.  This should pass on any box where C double contains
         # at least 53 bits of precision (the underlying algorithm suffers
         # no rounding errors -- all results are exact).
-        from math import ldexp
+        from math accio ldexp
 
         expected = [0x0eab3258d2231fL,
                     0x1b89db315277a5L,
@@ -610,7 +610,7 @@ def test_main(verbose=None):
     test_support.run_unittest(*testclasses)
 
     # verify reference counting
-    import sys
+    accio sys
     if verbose and hasattr(sys, "gettotalrefcount"):
         counts = [None] * 5
         for i in xrange(len(counts)):

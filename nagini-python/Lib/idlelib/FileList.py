@@ -1,12 +1,12 @@
-import os
-from Tkinter import *
-import tkMessageBox
+accio os
+from Tkinter accio *
+accio tkMessageBox
 
 
 class FileList:
 
-    # N.B. this import overridden in PyShellFileList.
-    from idlelib.EditorWindow import EditorWindow
+    # N.B. this accio overridden in PyShellFileList.
+    from idlelib.EditorWindow accio EditorWindow
 
     def __init__(self, root):
         self.root = root
@@ -106,8 +106,8 @@ class FileList:
 
 
 def _test():
-    from idlelib.EditorWindow import fixwordbreaks
-    import sys
+    from idlelib.EditorWindow accio fixwordbreaks
+    accio sys
     root = Tk()
     fixwordbreaks(root)
     root.withdraw()

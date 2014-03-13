@@ -5,12 +5,12 @@ Generated from /System/Library/CoreServices/System Events.app
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'tpnm'
 
-from StdSuites.Type_Names_Suite import *
+from StdSuites.Type_Names_Suite accio *
 class Hidden_Suite_Events(Type_Names_Suite_Events):
 
     def do_script(self, _object, _attributes={}, **_arguments):

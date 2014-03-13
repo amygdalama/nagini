@@ -15,7 +15,7 @@
 # for example.
 #
 
-import Tix
+accio Tix
 
 def RunSample(w):
     # Create the label on the top of the dialog box

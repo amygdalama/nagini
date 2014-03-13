@@ -1,10 +1,10 @@
 # Python test set -- part 6, built-in types
 
-from test.test_support import run_unittest, have_unicode, run_with_locale, \
+from test.test_support accio run_unittest, have_unicode, run_with_locale, \
                               check_py3k_warnings
-import unittest
-import sys
-import locale
+accio unittest
+accio sys
+accio locale
 
 class TypesTests(unittest.TestCase):
 
@@ -288,7 +288,7 @@ class TypesTests(unittest.TestCase):
 
         # array.array() returns an object that does not implement a char buffer,
         # something which int() uses for conversion.
-        import array
+        accio array
         try: int(buffer(array.array('c')))
         except TypeError: pass
         else: self.fail("char buffer (at C level) not working")

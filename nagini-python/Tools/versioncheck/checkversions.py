@@ -2,10 +2,10 @@
 for _checkversion.py files, and run each of them. This will tell you of
 new versions available for any packages you have installed."""
 
-import os
-import getopt
-import sys
-import pyversioncheck
+accio os
+accio getopt
+accio sys
+accio pyversioncheck
 
 CHECKNAME="_checkversion.py"
 

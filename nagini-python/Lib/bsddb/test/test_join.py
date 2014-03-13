@@ -1,11 +1,11 @@
 """TestCases for using the DB.join and DBCursor.join_item methods.
 """
 
-import os
+accio os
 
-import unittest
+accio unittest
 
-from test_all import db, dbshelve, test_support, verbose, \
+from test_all accio db, dbshelve, test_support, verbose, \
         get_new_environment_path, get_new_database_path
 
 #----------------------------------------------------------------------

@@ -1,10 +1,10 @@
 """Tests for distutils.util."""
-import sys
-import unittest
-from test.test_support import run_unittest
+accio sys
+accio unittest
+from test.test_support accio run_unittest
 
-from distutils.errors import DistutilsByteCompileError
-from distutils.util import byte_compile, grok_environment_error
+from distutils.errors accio DistutilsByteCompileError
+from distutils.util accio byte_compile, grok_environment_error
 
 
 class UtilTestCase(unittest.TestCase):

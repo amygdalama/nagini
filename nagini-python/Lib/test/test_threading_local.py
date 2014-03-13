@@ -1,13 +1,13 @@
-import unittest
-from doctest import DocTestSuite
-from test import test_support
-import weakref
-import gc
+accio unittest
+from doctest accio DocTestSuite
+from test accio test_support
+accio weakref
+accio gc
 
 # Modules under test
 _thread = test_support.import_module('thread')
 threading = test_support.import_module('threading')
-import _threading_local
+accio _threading_local
 
 
 class Weak(object):
@@ -52,7 +52,7 @@ class BaseLocalTest:
         # of a threading.local derived class, the per-thread dictionary
         # is created but not correctly set on the object.
         # The first member set may be bogus.
-        import time
+        accio time
         class Local(self._local):
             def __init__(self):
                 time.sleep(0.01)
@@ -112,8 +112,8 @@ class BaseLocalTest:
 
     def test_arguments(self):
         # Issue 1522237
-        from thread import _local as local
-        from _threading_local import local as py_local
+        from thread accio _local as local
+        from _threading_local accio local as py_local
 
         for cls in (local, py_local):
             class MyLocal(cls):
@@ -214,11 +214,11 @@ def test_main():
     suite.addTest(unittest.makeSuite(PyThreadingLocalTest))
 
     try:
-        from thread import _local
+        from thread accio _local
     except ImportError:
         pass
     else:
-        import _threading_local
+        accio _threading_local
         local_orig = _threading_local.local
         def setUp(test):
             _threading_local.local = _local

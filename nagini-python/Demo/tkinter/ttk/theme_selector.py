@@ -4,8 +4,8 @@ This is an improvement from the other theme selector (themes_combo.py)
 since now you can notice theme changes in Ttk Combobox, Ttk Frame,
 Ttk Label and Ttk Button.
 """
-import Tkinter
-import ttk
+accio Tkinter
+accio ttk
 
 class App(ttk.Frame):
     def __init__(self):

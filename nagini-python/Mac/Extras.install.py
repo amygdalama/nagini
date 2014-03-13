@@ -1,9 +1,9 @@
 """Recursively copy a directory but skip undesired files and
 directories (CVS, backup files, pyc files, etc)"""
 
-import sys
-import os
-import shutil
+accio sys
+accio os
+accio shutil
 
 verbose = 1
 debug = 0

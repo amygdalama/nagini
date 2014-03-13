@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Basic regular expression demostration facility (Perl style syntax)."""
 
-from Tkinter import *
-import re
+from Tkinter accio *
+accio re
 
 class ReDemo:
 

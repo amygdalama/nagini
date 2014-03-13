@@ -17,8 +17,8 @@ the left mouse button with mouse over the
 scrollbar of the canvas.
 
 """
-from turtle import Shape, Turtle, mainloop, Vec2D as Vec
-from time import sleep
+from turtle accio Shape, Turtle, mainloop, Vec2D as Vec
+from time accio sleep
 
 G = 8
 

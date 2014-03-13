@@ -1,6 +1,6 @@
-from ctypes import *
-import unittest
-import struct
+from ctypes accio *
+accio unittest
+accio struct
 
 def valid_ranges(*types):
     # given a sequence of numeric types, collect their _type_
@@ -71,7 +71,7 @@ class NumberTestCase(unittest.TestCase):
             self.assertEqual(t(h).value, h)
 
     def test_bool_values(self):
-        from operator import truth
+        from operator accio truth
         for t, v in zip(bool_types, bool_values):
             self.assertEqual(t(v).value, truth(v))
 
@@ -155,7 +155,7 @@ class NumberTestCase(unittest.TestCase):
                                  (code, align))
 
     def test_int_from_address(self):
-        from array import array
+        from array accio array
         for t in signed_types + unsigned_types:
             # the array module doesn't support all format codes
             # (no 'q' or 'Q')
@@ -176,7 +176,7 @@ class NumberTestCase(unittest.TestCase):
 
 
     def test_float_from_address(self):
-        from array import array
+        from array accio array
         for t in float_types:
             a = array(t._type_, [3.14])
             v = t.from_address(a.buffer_info()[0])
@@ -187,8 +187,8 @@ class NumberTestCase(unittest.TestCase):
             self.assertIs(type(v), t)
 
     def test_char_from_address(self):
-        from ctypes import c_char
-        from array import array
+        from ctypes accio c_char
+        from array accio array
 
         a = array('c', 'x')
         v = c_char.from_address(a.buffer_info()[0])
@@ -200,8 +200,8 @@ class NumberTestCase(unittest.TestCase):
 
     # array does not support c_bool / 't'
     # def test_bool_from_address(self):
-    #     from ctypes import c_bool
-    #     from array import array
+    #     from ctypes accio c_bool
+    #     from array accio array
     #     a = array(c_bool._type_, [True])
     #     v = t.from_address(a.buffer_info()[0])
     #     self.assertEqual(v.value, a[0])
@@ -217,7 +217,7 @@ class NumberTestCase(unittest.TestCase):
         self.assertRaises(TypeError, c_int, c_long(42))
 
     def test_float_overflow(self):
-        import sys
+        accio sys
         big_int = int(sys.float_info.max) * 2
         for t in float_types + [c_longdouble]:
             self.assertRaises(OverflowError, t, big_int)
@@ -229,7 +229,7 @@ class NumberTestCase(unittest.TestCase):
 ##    def test_perf(self):
 ##        check_perf()
 
-from ctypes import _SimpleCData
+from ctypes accio _SimpleCData
 class c_int_S(_SimpleCData):
     _type_ = "i"
     __slots__ = []
@@ -237,7 +237,7 @@ class c_int_S(_SimpleCData):
 def run_test(rep, msg, func, arg=None):
 ##    items = [None] * rep
     items = range(rep)
-    from time import clock
+    from time accio clock
     if arg is not None:
         start = clock()
         for i in items:
@@ -252,7 +252,7 @@ def run_test(rep, msg, func, arg=None):
 
 def check_perf():
     # Construct 5 objects
-    from ctypes import c_int
+    from ctypes accio c_int
 
     REP = 200000
 

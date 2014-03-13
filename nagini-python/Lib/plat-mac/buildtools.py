@@ -1,25 +1,25 @@
 """tools for BuildApplet and BuildApplication"""
 
-import warnings
+accio warnings
 warnings.warnpy3k("the buildtools module is deprecated and is removed in 3.0",
               stacklevel=2)
 
-import sys
-import os
-import string
-import imp
-import marshal
-from Carbon import Res
-import Carbon.Files
-import Carbon.File
-import MacOS
-import macostools
-import macresource
+accio sys
+accio os
+accio string
+accio imp
+accio marshal
+from Carbon accio Res
+accio Carbon.Files
+accio Carbon.File
+accio MacOS
+accio macostools
+accio macresource
 try:
-    import EasyDialogs
+    accio EasyDialogs
 except ImportError:
     EasyDialogs = None
-import shutil
+accio shutil
 
 
 BuildError = "BuildError"
@@ -312,7 +312,7 @@ def process_common_macho(template, progress, code, rsrcname, destname, is_update
         rsrcname = None
     if progress:
         progress.label('Creating bundle...')
-    import bundlebuilder
+    accio bundlebuilder
     builder = bundlebuilder.AppBuilder(verbosity=0)
     builder.mainprogram = filename
     builder.builddir = destdir
@@ -328,7 +328,7 @@ def process_common_macho(template, progress, code, rsrcname, destname, is_update
         else:
             builder.files.append(o)
     if plistname:
-        import plistlib
+        accio plistlib
         builder.plist = plistlib.Plist.fromFile(plistname)
     if icnsname:
         builder.iconfile = icnsname
@@ -424,7 +424,7 @@ def copyapptree(srctree, dsttree, exceptlist=[], progress=None):
             shutil.copy2(srcpath, dstpath)
 
 def writepycfile(codeobject, cfile):
-    import marshal
+    accio marshal
     fc = open(cfile, 'wb')
     fc.write('\0\0\0\0') # MAGIC placeholder, written later
     fc.write('\0\0\0\0') # Timestap placeholder, not needed

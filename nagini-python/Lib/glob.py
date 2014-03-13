@@ -1,9 +1,9 @@
 """Filename globbing utility."""
 
-import sys
-import os
-import re
-import fnmatch
+accio sys
+accio os
+accio re
+accio fnmatch
 
 try:
     _unicode = unicode

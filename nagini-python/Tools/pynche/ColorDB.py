@@ -20,10 +20,10 @@ color formats, and for calculating other color values.
 
 """
 
-import sys
-import re
-from types import *
-import operator
+accio sys
+accio re
+from types accio *
+accio operator
 
 class BadColor(Exception):
     pass
@@ -263,7 +263,7 @@ if __name__ == '__main__':
     r, g, b = (145, 238, 144)                     # nearest to lightgreen
     r, g, b = (255, 251, 250)                     # snow
     print 'finding nearest to', target, '...'
-    import time
+    accio time
     t0 = time.time()
     nearest = colordb.nearest(r, g, b)
     t1 = time.time()

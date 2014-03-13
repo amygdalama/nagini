@@ -25,13 +25,13 @@ the repr() of the original object.  This is precomputed when the
 bastion is created.
 
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the Bastion module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
 __all__ = ["BastionClass", "Bastion"]
 
-from types import MethodType
+from types accio MethodType
 
 
 class BastionClass:
@@ -169,7 +169,7 @@ def _test():
     \n"""
     exec testcode
     print '='*20, "Using rexec:", '='*20
-    import rexec
+    accio rexec
     r = rexec.RExec()
     m = r.add_module('__main__')
     m.b = b

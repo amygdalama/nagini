@@ -2,10 +2,10 @@
 # Check that all ".pyc" files exist and are up-to-date
 # Uses module 'os'
 
-import sys
-import os
-from stat import ST_MTIME
-import imp
+accio sys
+accio os
+from stat accio ST_MTIME
+accio imp
 
 def main():
     silent = 0

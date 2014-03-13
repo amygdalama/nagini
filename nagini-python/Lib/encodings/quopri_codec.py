@@ -3,11 +3,11 @@
 Like base64 and rot13, this returns Python strings, not Unicode.
 """
 
-import codecs, quopri
+accio codecs, quopri
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 def quopri_encode(input, errors='strict'):
     """Encode the input, returning a tuple (output object, length consumed).

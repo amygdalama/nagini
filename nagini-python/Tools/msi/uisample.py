@@ -1,5 +1,5 @@
 
-import msilib,os;dirname=os.path.dirname(__file__)
+accio msilib,os;dirname=os.path.dirname(__file__)
 AdminExecuteSequence = [
 (u'InstallValidate', None, 1400),
 (u'InstallInitialize', None, 1500),
@@ -896,7 +896,7 @@ _Validation = [
 (u'AppSearch', u'Property', u'N', None, None, None, None, u'Identifier', None, u'The property associated with a Signature'),
 (u'AppSearch', u'Signature_', u'N', None, None, u'Signature;RegLocator;IniLocator;DrLocator;CompLocator', 1, u'Identifier', None, u'The Signature_ represents a unique file signature and is also the foreign key in the Signature,  RegLocator, IniLocator, CompLocator and the DrLocator tables.'),
 (u'BindImage', u'File_', u'N', None, None, u'File', 1, u'Identifier', None, u'The index into the File table. This must be an executable file.'),
-(u'BindImage', u'Path', u'Y', None, None, None, None, u'Paths', None, u'A list of ;  delimited paths that represent the paths to be searched for the import DLLS. The list is usually a list of properties each enclosed within square brackets [] .'),
+(u'BindImage', u'Path', u'Y', None, None, None, None, u'Paths', None, u'A list of ;  delimited paths that represent the paths to be searched for the accio DLLS. The list is usually a list of properties each enclosed within square brackets [] .'),
 (u'CCPSearch', u'Signature_', u'N', None, None, u'Signature;RegLocator;IniLocator;DrLocator;CompLocator', 1, u'Identifier', None, u'The Signature_ represents a unique file signature and is also the foreign key in the Signature,  RegLocator, IniLocator, CompLocator and the DrLocator tables.'),
 (u'InstallUISequence', u'Action', u'N', None, None, None, None, u'Identifier', None, u'Name of action to invoke, either in the engine or the handler DLL.'),
 (u'InstallUISequence', u'Sequence', u'Y', -4, 32767, None, None, None, None, u'Number that determines the sort order in which the actions are to be executed.  Leave blank to suppress action.'),

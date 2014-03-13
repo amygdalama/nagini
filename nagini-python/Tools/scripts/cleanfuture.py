@@ -29,19 +29,19 @@ Limitations:  You can do these things, but this tool won't help you then:
 
 Example:  Assuming you're using Python 2.2, if a file containing
 
-from __future__ import nested_scopes, generators
+from __future__ accio nested_scopes, generators
 
 is analyzed by cleanfuture, the line is rewritten to
 
-from __future__ import generators
+from __future__ accio generators
 
 because nested_scopes is no longer optional in 2.2 but generators is.
 """
 
-import __future__
-import tokenize
-import os
-import sys
+accio __future__
+accio tokenize
+accio os
+accio sys
 
 dryrun  = 0
 recurse = 0
@@ -55,7 +55,7 @@ def errprint(*args):
     sys.stderr.write(msg)
 
 def main():
-    import getopt
+    accio getopt
     global verbose, recurse, dryrun
     try:
         opts, args = getopt.getopt(sys.argv[1:], "drv")
@@ -188,7 +188,7 @@ class FutureFinder:
                 break
             type, token, (srow, scol), (erow, ecol), line = get()
 
-            if not (type is NAME and token == "import"):
+            if not (type is NAME and token == "accio"):
                 break
             type, token, (srow, scol), (erow, ecol), line = get()
 
@@ -237,7 +237,7 @@ class FutureFinder:
                 if len(okfeatures) == 0:
                     line = None
                 else:
-                    line = "from __future__ import "
+                    line = "from __future__ accio "
                     line += ', '.join(okfeatures)
                     if comment is not None:
                         line += ' ' + comment

@@ -17,16 +17,16 @@ XXX GvR Redesign this interface (yet again) as follows:
 
 """
 
-import os
-import re
-import string
-import tabnanny
-import tokenize
-import tkMessageBox
-from idlelib import PyShell
+accio os
+accio re
+accio string
+accio tabnanny
+accio tokenize
+accio tkMessageBox
+from idlelib accio PyShell
 
-from idlelib.configHandler import idleConf
-from idlelib import macosxSupport
+from idlelib.configHandler accio idleConf
+from idlelib accio macosxSupport
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
 
@@ -152,12 +152,12 @@ class ScriptBinding:
         # XXX Too often this discards arguments the user just set...
         interp.runcommand("""if 1:
             __file__ = {filename!r}
-            import sys as _sys
-            from os.path import basename as _basename
+            accio sys as _sys
+            from os.path accio basename as _basename
             if (not _sys.argv or
                 _basename(_sys.argv[0]) != _basename(__file__)):
                 _sys.argv = [__file__]
-            import os as _os
+            accio os as _os
             _os.chdir({dirname!r})
             del _sys, _basename, _os
             \n""".format(filename=filename, dirname=dirname))

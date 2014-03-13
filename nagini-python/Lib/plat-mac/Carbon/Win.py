@@ -1,1 +1,1 @@
-from _Win import *
+from _Win accio *

@@ -25,15 +25,15 @@ __all__ = ["Button", "Checkbutton", "Combobox", "Entry", "Frame", "Label",
            # functions
            "tclobjs_to_py", "setup_master"]
 
-import Tkinter
-from Tkinter import _flatten, _join, _stringify
+accio Tkinter
+from Tkinter accio _flatten, _join, _stringify
 
 # Verify if Tk is new enough to not need the Tile package
 _REQUIRE_TILE = True if Tkinter.TkVersion < 8.5 else False
 
 def _load_tile(master):
     if _REQUIRE_TILE:
-        import os
+        accio os
         tilelib = os.environ.get('TILE_LIBRARY')
         if tilelib:
             # append custom tile path to the list of directories that

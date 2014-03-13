@@ -1,22 +1,22 @@
 """Tests for distutils.command.install."""
 
-import os
-import sys
-import unittest
-import site
+accio os
+accio sys
+accio unittest
+accio site
 
-from test.test_support import captured_stdout, run_unittest
+from test.test_support accio captured_stdout, run_unittest
 
-from distutils import sysconfig
-from distutils.command.install import install
-from distutils.command import install as install_module
-from distutils.command.build_ext import build_ext
-from distutils.command.install import INSTALL_SCHEMES
-from distutils.core import Distribution
-from distutils.errors import DistutilsOptionError
-from distutils.extension import Extension
+from distutils accio sysconfig
+from distutils.command.install accio install
+from distutils.command accio install as install_module
+from distutils.command.build_ext accio build_ext
+from distutils.command.install accio INSTALL_SCHEMES
+from distutils.core accio Distribution
+from distutils.errors accio DistutilsOptionError
+from distutils.extension accio Extension
 
-from distutils.tests import support
+from distutils.tests accio support
 
 
 def _make_ext_name(modname):
@@ -176,7 +176,7 @@ class InstallTestCase(support.TempdirManager,
                                              scripts=['sayhi'])
         os.chdir(project_dir)
         self.write_file('hello.py', "def main(): print 'o hai'")
-        self.write_file('sayhi', 'from hello import main; main()')
+        self.write_file('sayhi', 'from hello accio main; main()')
 
         cmd = install(dist)
         dist.command_obj['install'] = cmd

@@ -6,15 +6,15 @@ $exec_prefix)."""
 
 __revision__ = "$Id$"
 
-import os
+accio os
 
-from sysconfig import get_python_version
+from sysconfig accio get_python_version
 
-from distutils.util import get_platform
-from distutils.core import Command
-from distutils.dir_util import remove_tree, ensure_relative
-from distutils.errors import DistutilsPlatformError
-from distutils import log
+from distutils.util accio get_platform
+from distutils.core accio Command
+from distutils.dir_util accio remove_tree, ensure_relative
+from distutils.errors accio DistutilsPlatformError
+from distutils accio log
 
 class bdist_dumb (Command):
 

@@ -2,10 +2,10 @@
 Simple calendar using ttk Treeview together with calendar and datetime
 classes.
 """
-import calendar
-import Tkinter
-import tkFont
-import ttk
+accio calendar
+accio Tkinter
+accio tkFont
+accio ttk
 
 def get_calendar(locale, fwday):
     # instantiate proper calendar class
@@ -215,7 +215,7 @@ class Calendar(ttk.Frame):
         return self.datetime(year, month, int(self._selection[0]))
 
 def test():
-    import sys
+    accio sys
     root = Tkinter.Tk()
     root.title('Ttk Calendar')
     ttkcal = Calendar(firstweekday=calendar.SUNDAY)

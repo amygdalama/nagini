@@ -2,9 +2,9 @@
 
 """
 
-import distutils.versionpredicate
-import doctest
-from test.test_support import run_unittest
+accio distutils.versionpredicate
+accio doctest
+from test.test_support accio run_unittest
 
 def test_suite():
     return doctest.DocTestSuite(distutils.versionpredicate)

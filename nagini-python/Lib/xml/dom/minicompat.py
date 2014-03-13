@@ -1,6 +1,6 @@
 """Python version compatibility support for minidom."""
 
-# This module should only be imported using "import *".
+# This module should only be imported using "accio *".
 #
 # The following names are defined:
 #
@@ -38,7 +38,7 @@
 
 __all__ = ["NodeList", "EmptyNodeList", "StringTypes", "defproperty"]
 
-import xml.dom
+accio xml.dom
 
 try:
     unicode

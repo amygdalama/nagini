@@ -1,5 +1,5 @@
-from cStringIO import StringIO
-from json.tests import PyTest, CTest
+from cStringIO accio StringIO
+from json.tests accio PyTest, CTest
 
 
 class TestDump(object):

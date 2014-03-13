@@ -1,4 +1,4 @@
-import msilib,os;dirname=os.path.dirname(__file__)
+accio msilib,os;dirname=os.path.dirname(__file__)
 
 ActionText = [
 (u'InstallValidate', u'Validating install', None),

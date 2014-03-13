@@ -1,8 +1,8 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import UserDict, random, string
-import gc, weakref
+accio UserDict, random, string
+accio gc, weakref
 
 
 class DictTest(unittest.TestCase):
@@ -681,7 +681,7 @@ class DictTest(unittest.TestCase):
         self._tracked(MyDict())
 
 
-from test import mapping_tests
+from test accio mapping_tests
 
 class GeneralMappingTests(mapping_tests.BasicTestMappingProtocol):
     type2test = dict

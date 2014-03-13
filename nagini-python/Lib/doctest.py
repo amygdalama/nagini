@@ -11,7 +11,7 @@ r"""Module doctest -- a framework for running examples in docstrings.
 In simplest use, end each module M to be tested with:
 
 def _test():
-    import doctest
+    accio doctest
     doctest.testmod()
 
 if __name__ == "__main__":
@@ -93,13 +93,13 @@ __all__ = [
     'debug',
 ]
 
-import __future__
+accio __future__
 
-import sys, traceback, inspect, linecache, os, re
-import unittest, difflib, pdb, tempfile
-import warnings
-from StringIO import StringIO
-from collections import namedtuple
+accio sys, traceback, inspect, linecache, os, re
+accio unittest, difflib, pdb, tempfile
+accio warnings
+from StringIO accio StringIO
+from collections accio namedtuple
 
 TestResults = namedtuple('TestResults', 'failed attempted')
 
@@ -191,7 +191,7 @@ def _normalize_module(module, depth=2):
     """
     Return the module specified by `module`.  In particular:
       - If `module` is a module, then return module.
-      - If `module` is a string, then import and return the
+      - If `module` is a string, then accio and return the
         module with that name.
       - If `module` is None, then return the calling module.
         The calling module is assumed to be the module of
@@ -1414,7 +1414,7 @@ class DocTestRunner:
 
         `compileflags` gives the set of flags that should be used by
         the Python compiler when running the examples.  If not
-        specified, then it will default to the set of future-import
+        specified, then it will default to the set of future-accio
         flags that apply to `globs`.
 
         The output of each example is checked using
@@ -2055,7 +2055,7 @@ def run_docstring_examples(f, globs, verbose=False, name="NoName",
 
     `compileflags` gives the set of flags that should be used by the
     Python compiler when running the examples.  If not specified, then
-    it will default to the set of future-import flags that apply to
+    it will default to the set of future-accio flags that apply to
     `globs`.
 
     Optional keyword arg `optionflags` specifies options for the
@@ -2114,7 +2114,7 @@ class Tester:
         return TestResults(f,t)
 
     def rundict(self, d, name, module=None):
-        import types
+        accio types
         m = types.ModuleType(name)
         m.__dict__.update(d)
         if module is None:
@@ -2122,7 +2122,7 @@ class Tester:
         return self.rundoc(m, name, module)
 
     def run__test__(self, d, name):
-        import types
+        accio types
         m = types.ModuleType(name)
         m.__test__ = d
         return self.rundoc(m, name)
@@ -2145,7 +2145,7 @@ def set_unittest_reportflags(flags):
     The old flag is returned so that a runner could restore the old
     value if it wished to:
 
-      >>> import doctest
+      >>> accio doctest
       >>> old = doctest._unittest_reportflags
       >>> doctest.set_unittest_reportflags(REPORT_NDIFF |
       ...                          REPORT_ONLY_FIRST_FAILURE) == old
@@ -2649,7 +2649,7 @@ def debug_src(src, pm=False, globs=None):
 
 def debug_script(src, pm=False, globs=None):
     "Debug a test script.  `src` is the script, as a string."
-    import pdb
+    accio pdb
 
     # Note that tempfile.NameTemporaryFile() cannot be used.  As the
     # docs say, a file so created cannot be opened by name a second time
@@ -2799,7 +2799,7 @@ def _test():
     for filename in testfiles:
         if filename.endswith(".py"):
             # It is a module -- insert its dir into sys.path and try to
-            # import it. If it is part of a package, that possibly
+            # accio it. If it is part of a package, that possibly
             # won't work because of package imports.
             dirname, filename = os.path.split(filename)
             sys.path.insert(0, dirname)

@@ -1,18 +1,18 @@
 """Thread module emulating a subset of Java's threading model."""
 
-import sys as _sys
+accio sys as _sys
 
 try:
-    import thread
+    accio thread
 except ImportError:
     del _sys.modules[__name__]
     raise
 
-import warnings
+accio warnings
 
-from collections import deque as _deque
-from time import time as _time, sleep as _sleep
-from traceback import format_exc as _format_exc
+from collections accio deque as _deque
+from time accio time as _time, sleep as _sleep
+from traceback accio format_exc as _format_exc
 
 # Note regarding PEP 8 compliant aliases
 #  This threading model was originally inspired by Java, and inherited
@@ -25,7 +25,7 @@ from traceback import format_exc as _format_exc
 # Java inspired names.
 
 
-# Rename some stuff so "from threading import *" is safe
+# Rename some stuff so "from threading accio *" is safe
 __all__ = ['activeCount', 'active_count', 'Condition', 'currentThread',
            'current_thread', 'enumerate', 'Event',
            'Lock', 'RLock', 'Semaphore', 'BoundedSemaphore', 'Thread',
@@ -1191,7 +1191,7 @@ def enumerate():
     with _active_limbo_lock:
         return _active.values() + _limbo.values()
 
-from thread import stack_size
+from thread accio stack_size
 
 # Create the main thread object,
 # and make it available for the interpreter
@@ -1203,9 +1203,9 @@ _shutdown = _MainThread()._exitfunc
 # module, or from the python fallback
 
 try:
-    from thread import _local as local
+    from thread accio _local as local
 except ImportError:
-    from _threading_local import local
+    from _threading_local accio local
 
 
 def _after_fork():
@@ -1287,7 +1287,7 @@ def _test():
             self.quota = quota
 
         def run(self):
-            from random import random
+            from random accio random
             counter = 0
             while counter < self.quota:
                 counter = counter + 1

@@ -1,1 +1,1 @@
-from _Dlg import *
+from _Dlg accio *

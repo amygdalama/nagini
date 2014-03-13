@@ -1,16 +1,16 @@
 """Support code for distutils test cases."""
-import os
-import sys
-import shutil
-import tempfile
-import unittest
-import sysconfig
-from copy import deepcopy
-import warnings
+accio os
+accio sys
+accio shutil
+accio tempfile
+accio unittest
+accio sysconfig
+from copy accio deepcopy
+accio warnings
 
-from distutils import log
-from distutils.log import DEBUG, INFO, WARN, ERROR, FATAL
-from distutils.core import Distribution
+from distutils accio log
+from distutils.log accio DEBUG, INFO, WARN, ERROR, FATAL
+from distutils.core accio Distribution
 
 
 def capture_warnings(func):

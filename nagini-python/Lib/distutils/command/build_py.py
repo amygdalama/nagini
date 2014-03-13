@@ -4,14 +4,14 @@ Implements the Distutils 'build_py' command."""
 
 __revision__ = "$Id$"
 
-import os
-import sys
-from glob import glob
+accio os
+accio sys
+from glob accio glob
 
-from distutils.core import Command
-from distutils.errors import DistutilsOptionError, DistutilsFileError
-from distutils.util import convert_path
-from distutils import log
+from distutils.core accio Command
+from distutils.errors accio DistutilsOptionError, DistutilsFileError
+from distutils.util accio convert_path
+from distutils accio log
 
 class build_py(Command):
 
@@ -377,7 +377,7 @@ class build_py(Command):
             self.warn('byte-compiling is disabled, skipping.')
             return
 
-        from distutils.util import byte_compile
+        from distutils.util accio byte_compile
         prefix = self.build_lib
         if prefix[-1] != os.sep:
             prefix = prefix + os.sep

@@ -6,11 +6,11 @@ lives, like test_tkinter.
 Extensions also should live in packages following the same rule as above.
 """
 
-import os
-import sys
-import unittest
-import importlib
-import test.test_support
+accio os
+accio sys
+accio unittest
+accio importlib
+accio test.test_support
 
 this_dir_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -29,8 +29,8 @@ def check_tk_availability():
             # process not running under the same user id as the current console
             # user.  To avoid that, raise an exception if the window manager
             # connection is not available.
-            from ctypes import cdll, c_int, pointer, Structure
-            from ctypes.util import find_library
+            from ctypes accio cdll, c_int, pointer, Structure
+            from ctypes.util accio find_library
 
             app_services = cdll.LoadLibrary(find_library("ApplicationServices"))
 
@@ -46,7 +46,7 @@ def check_tk_availability():
                       (app_services.SetFrontProcess(psn_p) < 0) ):
                     _tk_unavailable = "cannot run without OS X gui process"
         else:   # not OS X
-            import Tkinter
+            accio Tkinter
             try:
                 Tkinter.Button()
             except Tkinter.TclError as msg:
@@ -64,7 +64,7 @@ def is_package(path):
     return False
 
 def get_tests_modules(basepath=this_dir_path, gui=True, packages=None):
-    """This will import and yield modules whose names start with test_
+    """This will accio and yield modules whose names start with test_
     and are inside packages found in the path starting at basepath.
 
     If packages is specified it should contain package names that want

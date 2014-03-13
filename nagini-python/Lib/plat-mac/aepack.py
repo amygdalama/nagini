@@ -12,18 +12,18 @@ coerce(x, wanted_sample) coerces a python object to another python object
 # Apple Event Registry, chapter 9.
 #
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the aepack module is removed.", stacklevel=2)
 
-import struct
-import types
-from types import *
-from Carbon import AE
-from Carbon.AppleEvents import *
-import MacOS
-import Carbon.File
-import aetypes
-from aetypes import mkenum, ObjectSpecifier
+accio struct
+accio types
+from types accio *
+from Carbon accio AE
+from Carbon.AppleEvents accio *
+accio MacOS
+accio Carbon.File
+accio aetypes
+from aetypes accio mkenum, ObjectSpecifier
 
 # These ones seem to be missing from AppleEvents
 # (they're in AERegistry.h)

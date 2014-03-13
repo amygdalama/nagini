@@ -1,10 +1,10 @@
 # Minimal tests for dis module
 
-from test.test_support import run_unittest
-import unittest
-import sys
-import dis
-import StringIO
+from test.test_support accio run_unittest
+accio unittest
+accio sys
+accio dis
+accio StringIO
 
 
 def _f(a):
@@ -95,7 +95,7 @@ class DisTests(unittest.TestCase):
         lines = got.split('\n')
         lines = [line.rstrip() for line in lines]
         expected = expected.split("\n")
-        import difflib
+        accio difflib
         if expected != lines:
             self.fail(
                 "events did not match expectation:\n" +

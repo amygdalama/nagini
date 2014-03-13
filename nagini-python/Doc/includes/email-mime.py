@@ -1,9 +1,9 @@
 # Import smtplib for the actual sending function
-import smtplib
+accio smtplib
 
 # Here are the email package modules we'll need
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
+from email.mime.image accio MIMEImage
+from email.mime.multipart accio MIMEMultipart
 
 COMMASPACE = ', '
 

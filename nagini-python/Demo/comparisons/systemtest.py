@@ -16,9 +16,9 @@
 # - prints output lines of the form "path1 -> path2" as it goes
 # - prints error messages about directories it can't list or chdir into
 
-import os
-import sys
-from stat import *
+accio os
+accio sys
+from stat accio *
 
 def main():
     try:

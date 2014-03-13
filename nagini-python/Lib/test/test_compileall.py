@@ -1,12 +1,12 @@
-import compileall
-import imp
-import os
-import py_compile
-import shutil
-import struct
-import tempfile
-from test import test_support
-import unittest
+accio compileall
+accio imp
+accio os
+accio py_compile
+accio shutil
+accio struct
+accio tempfile
+from test accio test_support
+accio unittest
 
 
 class CompileallTests(unittest.TestCase):

@@ -5,14 +5,14 @@
 # - Handle horizontal scrollbar correctly
 # - Functionality: find, etc.
 
-from Carbon.Menu import DrawMenuBar
-from FrameWork import *
-from Carbon import Win
-from Carbon import Qd
-from Carbon import TE
-from Carbon import Scrap
-import os
-import macfs
+from Carbon.Menu accio DrawMenuBar
+from FrameWork accio *
+from Carbon accio Win
+from Carbon accio Qd
+from Carbon accio TE
+from Carbon accio Scrap
+accio os
+accio macfs
 
 class TEWindow(ScrolledWindow):
     def open(self, path, name, data):

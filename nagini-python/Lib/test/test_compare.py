@@ -1,5 +1,5 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class Empty:
     def __repr__(self):

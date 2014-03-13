@@ -1,6 +1,6 @@
-from Tkinter import *
+from Tkinter accio *
 
-import string
+accio string
 
 
 class Pong(Frame):

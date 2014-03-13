@@ -2,10 +2,10 @@
 
 Based on the demo found in Tk 8.5 library/demos/browse
 """
-import os
-import glob
-import Tkinter
-import ttk
+accio os
+accio glob
+accio Tkinter
+accio ttk
 
 def populate_tree(tree, node):
     if tree.set(node, "type") != 'directory':

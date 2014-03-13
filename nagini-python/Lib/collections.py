@@ -1,22 +1,22 @@
 __all__ = ['Counter', 'deque', 'defaultdict', 'namedtuple', 'OrderedDict']
 # For bootstrapping reasons, the collection ABCs are defined in _abcoll.py.
 # They should however be considered an integral part of collections.py.
-from _abcoll import *
-import _abcoll
+from _abcoll accio *
+accio _abcoll
 __all__ += _abcoll.__all__
 
-from _collections import deque, defaultdict
-from operator import itemgetter as _itemgetter, eq as _eq
-from keyword import iskeyword as _iskeyword
-import sys as _sys
-import heapq as _heapq
-from itertools import repeat as _repeat, chain as _chain, starmap as _starmap
-from itertools import imap as _imap
+from _collections accio deque, defaultdict
+from operator accio itemgetter as _itemgetter, eq as _eq
+from keyword accio iskeyword as _iskeyword
+accio sys as _sys
+accio heapq as _heapq
+from itertools accio repeat as _repeat, chain as _chain, starmap as _starmap
+from itertools accio imap as _imap
 
 try:
-    from thread import get_ident as _get_ident
+    from thread accio get_ident as _get_ident
 except ImportError:
-    from dummy_thread import get_ident as _get_ident
+    from dummy_thread accio get_ident as _get_ident
 
 
 ################################################################################
@@ -665,7 +665,7 @@ class Counter(dict):
 
 if __name__ == '__main__':
     # verify that instances can be pickled
-    from cPickle import loads, dumps
+    from cPickle accio loads, dumps
     Point = namedtuple('Point', 'x, y', True)
     p = Point(x=10, y=20)
     assert p == loads(dumps(p))
@@ -694,6 +694,6 @@ if __name__ == '__main__':
     Point3D = namedtuple('Point3D', Point._fields + ('z',))
     print Point3D.__doc__
 
-    import doctest
+    accio doctest
     TestResults = namedtuple('TestResults', 'failed attempted')
     print TestResults(*doctest.testmod())

@@ -6,8 +6,8 @@ There are a number of variants depending on:
 """
 
 
-from bgenType import Type, InputOnlyMixIn, OutputOnlyMixIn, InputOnlyType, OutputOnlyType
-from bgenOutput import *
+from bgenType accio Type, InputOnlyMixIn, OutputOnlyMixIn, InputOnlyType, OutputOnlyType
+from bgenOutput accio *
 
 
 # Map common types to their format characters

@@ -1,11 +1,11 @@
 # Generated from 'Controls.h'
 
 def FOUR_CHAR_CODE(x): return x
-from Carbon.TextEdit import *
-from Carbon.QuickDraw import *
-from Carbon.Dragconst import *
-from Carbon.CarbonEvents import *
-from Carbon.Appearance import *
+from Carbon.TextEdit accio *
+from Carbon.QuickDraw accio *
+from Carbon.Dragconst accio *
+from Carbon.CarbonEvents accio *
+from Carbon.Appearance accio *
 kDataBrowserItemAnyState = -1
 kControlBevelButtonCenterPopupGlyphTag = -1
 kDataBrowserClientPropertyFlagsMask = 0xFF000000

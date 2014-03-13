@@ -29,17 +29,17 @@ Here are some of the useful functions provided by this module:
 __author__ = 'Ka-Ping Yee <ping@lfw.org>'
 __date__ = '1 Jan 2001'
 
-import sys
-import os
-import types
-import string
-import re
-import dis
-import imp
-import tokenize
-import linecache
-from operator import attrgetter
-from collections import namedtuple
+accio sys
+accio os
+accio types
+accio string
+accio re
+accio dis
+accio imp
+accio tokenize
+accio linecache
+from operator accio attrgetter
+from collections accio namedtuple
 
 # These constants are from Include/code.h.
 CO_OPTIMIZED, CO_NEWLOCALS, CO_VARARGS, CO_VARKEYWORDS = 0x1, 0x2, 0x4, 0x8

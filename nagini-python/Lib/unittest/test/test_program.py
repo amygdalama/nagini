@@ -1,8 +1,8 @@
-from cStringIO import StringIO
+from cStringIO accio StringIO
 
-import os
-import sys
-import unittest
+accio os
+accio sys
+accio unittest
 
 
 class Test_TestProgram(unittest.TestCase):

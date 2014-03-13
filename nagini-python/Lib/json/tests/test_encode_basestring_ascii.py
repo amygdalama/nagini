@@ -1,5 +1,5 @@
-from collections import OrderedDict
-from json.tests import PyTest, CTest
+from collections accio OrderedDict
+from json.tests accio PyTest, CTest
 
 
 CASES = [

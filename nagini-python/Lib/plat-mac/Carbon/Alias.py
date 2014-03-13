@@ -1,1 +1,1 @@
-from _Alias import *
+from _Alias accio *

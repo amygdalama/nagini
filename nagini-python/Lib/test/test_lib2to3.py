@@ -1,9 +1,9 @@
 # Skipping test_parser and test_all_fixers
 # because of running
-from lib2to3.tests import (test_fixers, test_pytree, test_util, test_refactor,
+from lib2to3.tests accio (test_fixers, test_pytree, test_util, test_refactor,
                            test_parser, test_main as test_main_)
-import unittest
-from test.test_support import run_unittest
+accio unittest
+from test.test_support accio run_unittest
 
 def suite():
     tests = unittest.TestSuite()

@@ -10,18 +10,18 @@ __version__ = "0.6"
 
 __all__ = ["SimpleHTTPRequestHandler"]
 
-import os
-import posixpath
-import BaseHTTPServer
-import urllib
-import cgi
-import sys
-import shutil
-import mimetypes
+accio os
+accio posixpath
+accio BaseHTTPServer
+accio urllib
+accio cgi
+accio sys
+accio shutil
+accio mimetypes
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 
 class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):

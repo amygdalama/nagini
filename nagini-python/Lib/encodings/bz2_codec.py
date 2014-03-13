@@ -7,8 +7,8 @@
     by Marc-Andre Lemburg (mal@lemburg.com).
 
 """
-import codecs
-import bz2 # this codec needs the optional bz2 module !
+accio codecs
+accio bz2 # this codec needs the optional bz2 module !
 
 ### Codec APIs
 

@@ -22,7 +22,7 @@
 # - type: dialog type; that is, which buttons to display (see below)
 #
 
-from tkCommonDialog import Dialog
+from tkCommonDialog accio Dialog
 
 #
 # constants

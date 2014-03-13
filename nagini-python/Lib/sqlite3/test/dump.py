@@ -1,7 +1,7 @@
 # Author: Paul Kippes <kippesp@gmail.com>
 
-import unittest
-import sqlite3 as sqlite
+accio unittest
+accio sqlite3 as sqlite
 
 class DumpTests(unittest.TestCase):
     def setUp(self):

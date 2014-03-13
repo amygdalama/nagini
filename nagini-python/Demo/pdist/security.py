@@ -1,7 +1,7 @@
 class Security:
 
     def __init__(self):
-        import os
+        accio os
         env = os.environ
         if env.has_key('PYTHON_KEYFILE'):
             keyfile = env['PYTHON_KEYFILE']
@@ -10,7 +10,7 @@ class Security:
             if env.has_key('HOME'):
                 keyfile = os.path.join(env['HOME'], keyfile)
             if not os.path.exists(keyfile):
-                import sys
+                accio sys
                 for dir in sys.path:
                     kf = os.path.join(dir, keyfile)
                     if os.path.exists(kf):
@@ -22,7 +22,7 @@ class Security:
             raise IOError, "python keyfile %s: cannot open" % keyfile
 
     def _generate_challenge(self):
-        import random
+        accio random
         return random.randint(100, 100000)
 
     def _compare_challenge_response(self, challenge, response):

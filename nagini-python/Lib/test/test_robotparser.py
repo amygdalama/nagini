@@ -1,6 +1,6 @@
-import unittest, StringIO, robotparser
-from test import test_support
-from urllib2 import urlopen, HTTPError
+accio unittest, StringIO, robotparser
+from test accio test_support
+from urllib2 accio urlopen, HTTPError
 
 class RobotTestCase(unittest.TestCase):
     def __init__(self, index, parser, url, good, agent):

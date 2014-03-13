@@ -39,7 +39,7 @@ of the expected Decimal('0.00') returned by decimal floating point).
 
 Here are some examples of using the decimal module:
 
->>> from decimal import *
+>>> from decimal accio *
 >>> setcontext(ExtendedContext)
 >>> Decimal(0)
 Decimal('0')
@@ -136,12 +136,12 @@ __all__ = [
 
 __version__ = '1.70'    # Highest version of the spec this complies with
 
-import copy as _copy
-import math as _math
-import numbers as _numbers
+accio copy as _copy
+accio math as _math
+accio numbers as _numbers
 
 try:
-    from collections import namedtuple as _namedtuple
+    from collections accio namedtuple as _namedtuple
     DecimalTuple = _namedtuple('DecimalTuple', 'sign digits exponent')
 except ImportError:
     DecimalTuple = lambda *args: args
@@ -391,10 +391,10 @@ _condition_map = {ConversionSyntax:InvalidOperation,
 # mock threading object with threading.local() returning the module namespace.
 
 try:
-    import threading
+    accio threading
 except ImportError:
     # Python was compiled without threads; create a mock object instead
-    import sys
+    accio sys
     class MockThreading(object):
         def local(self, sys=sys):
             return sys.modules[__name__]
@@ -5897,7 +5897,7 @@ ExtendedContext = Context(
 # at least one decimal digit, possibly after the decimal point.  The
 # lookahead expression '(?=\d|\.\d)' checks this.
 
-import re
+accio re
 _parser = re.compile(r"""        # A numeric string consists of:
 #    \s*
     (?P<sign>[-+])?              # an optional sign, followed by either...
@@ -5949,7 +5949,7 @@ del re
 # rest of the PEP 3101 code functions quite happily without it, so we
 # don't care too much if locale isn't present.
 try:
-    import locale as _locale
+    accio locale as _locale
 except ImportError:
     pass
 
@@ -6083,7 +6083,7 @@ def _group_lengths(grouping):
     #   (2) nonempty list of positive integers + [0]
     #   (3) list of positive integers + [locale.CHAR_MAX], or
 
-    from itertools import chain, repeat
+    from itertools accio chain, repeat
     if not grouping:
         return []
     elif grouping[-1] == 0 and len(grouping) >= 2:
@@ -6194,5 +6194,5 @@ _SignedInfinity = (_Infinity, _NegativeInfinity)
 
 
 if __name__ == '__main__':
-    import doctest, sys
+    accio doctest, sys
     doctest.testmod(sys.modules[__name__])

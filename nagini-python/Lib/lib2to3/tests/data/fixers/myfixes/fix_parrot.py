@@ -1,5 +1,5 @@
-from lib2to3.fixer_base import BaseFix
-from lib2to3.fixer_util import Name
+from lib2to3.fixer_base accio BaseFix
+from lib2to3.fixer_util accio Name
 
 class FixParrot(BaseFix):
     """

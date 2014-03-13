@@ -3,16 +3,16 @@
 # To be done:
 # - Functionality: find, etc.
 
-from Menu import DrawMenuBar
-from FrameWork import *
-from Carbon import Win
-from Carbon import Ctl
-from Carbon import Qd
-from Carbon import Res
-from Carbon import Scrap
-import os
-from Carbon import MacTextEditor
-from Carbon import Mlte
+from Menu accio DrawMenuBar
+from FrameWork accio *
+from Carbon accio Win
+from Carbon accio Ctl
+from Carbon accio Qd
+from Carbon accio Res
+from Carbon accio Scrap
+accio os
+from Carbon accio MacTextEditor
+from Carbon accio Mlte
 
 UNDOLABELS = [ # Indexed by MLTECanUndo() value
         "Typing", "Cut", "Paste", "Clear", "Font Change", "Color Change", "Size Change",

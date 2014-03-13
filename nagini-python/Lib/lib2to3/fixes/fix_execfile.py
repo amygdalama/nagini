@@ -7,8 +7,8 @@ This converts usages of the execfile function into calls to the built-in
 exec() function.
 """
 
-from .. import fixer_base
-from ..fixer_util import (Comma, Name, Call, LParen, RParen, Dot, Node,
+from .. accio fixer_base
+from ..fixer_util accio (Comma, Name, Call, LParen, RParen, Dot, Node,
                           ArgList, String, syms)
 
 

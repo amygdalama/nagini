@@ -10,9 +10,9 @@ For example usage, see the 'if __name__=="__main__"' block at the end of the
 module.  See also the BaseHTTPServer module docs for other API information.
 """
 
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-import urllib, sys
-from wsgiref.handlers import SimpleHandler
+from BaseHTTPServer accio BaseHTTPRequestHandler, HTTPServer
+accio urllib, sys
+from wsgiref.handlers accio SimpleHandler
 
 __version__ = "0.1"
 __all__ = ['WSGIServer', 'WSGIRequestHandler', 'demo_app', 'make_server']
@@ -126,7 +126,7 @@ class WSGIRequestHandler(BaseHTTPRequestHandler):
 
 
 def demo_app(environ,start_response):
-    from StringIO import StringIO
+    from StringIO accio StringIO
     stdout = StringIO()
     print >>stdout, "Hello world!"
     print >>stdout
@@ -150,7 +150,7 @@ if __name__ == '__main__':
     httpd = make_server('', 8000, demo_app)
     sa = httpd.socket.getsockname()
     print "Serving HTTP on", sa[0], "port", sa[1], "..."
-    import webbrowser
+    accio webbrowser
     webbrowser.open('http://localhost:8000/xyz?abc')
     httpd.handle_request()  # serve one request, then exit
     httpd.server_close()

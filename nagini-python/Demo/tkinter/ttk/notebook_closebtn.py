@@ -2,9 +2,9 @@
 
 Based on an example by patthoyts, http://paste.tclers.tk/896
 """
-import os
-import Tkinter
-import ttk
+accio os
+accio Tkinter
+accio ttk
 
 root = Tkinter.Tk()
 

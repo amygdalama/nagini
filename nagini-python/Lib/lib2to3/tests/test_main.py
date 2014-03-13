@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-import sys
-import codecs
-import logging
-import os
-import re
-import shutil
-import StringIO
-import sys
-import tempfile
-import unittest
+accio sys
+accio codecs
+accio logging
+accio os
+accio re
+accio shutil
+accio StringIO
+accio sys
+accio tempfile
+accio unittest
 
-from lib2to3 import main
+from lib2to3 accio main
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -22,7 +22,7 @@ class TestMain(unittest.TestCase):
     if not hasattr(unittest.TestCase, 'assertNotRegex'):
         # This method was only introduced in 3.2.
         def assertNotRegex(self, text, regexp, msg=None):
-            import re
+            accio re
             if not hasattr(regexp, 'search'):
                 regexp = re.compile(regexp)
             if regexp.search(text):

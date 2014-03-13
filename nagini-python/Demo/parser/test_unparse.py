@@ -1,11 +1,11 @@
-import unittest
-from test import test_support
-import cStringIO
-import sys
-import os
-import tokenize
-import ast
-import unparse
+accio unittest
+from test accio test_support
+accio cStringIO
+accio sys
+accio os
+accio tokenize
+accio ast
+accio unparse
 
 def read_pyfile(filename):
     """Read and return the contents of a Python source file (as a
@@ -33,9 +33,9 @@ def g():
 """
 
 relative_import = """\
-from . import fred
-from .. import barney
-from .australia import shrimp as prawns
+from . accio fred
+from .. accio barney
+from .australia accio shrimp as prawns
 """
 
 class_decorator = """\

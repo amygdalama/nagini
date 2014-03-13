@@ -28,7 +28,7 @@ test_urlparse.py provides a good indicator of parsing behavior.
 
 """
 
-import re
+accio re
 
 __all__ = ["urlparse", "urlunparse", "urljoin", "urldefrag",
            "urlsplit", "urlunsplit", "parse_qs", "parse_qsl"]
@@ -116,7 +116,7 @@ class ResultMixin(object):
                     return port
         return None
 
-from collections import namedtuple
+from collections accio namedtuple
 
 class SplitResult(namedtuple('SplitResult', 'scheme netloc path query fragment'), ResultMixin):
 

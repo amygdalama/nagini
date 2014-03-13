@@ -23,7 +23,7 @@ entry in the master tree are synchronized.  This means:
 
 """
 
-import os, sys, stat, getopt
+accio os, sys, stat, getopt
 
 # Interactivity options
 default_answer = "ask"

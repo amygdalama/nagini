@@ -5,20 +5,20 @@ for the Distutils compiler abstraction model."""
 
 __revision__ = "$Id$"
 
-import sys
-import os
-import re
+accio sys
+accio os
+accio re
 
-from distutils.errors import (CompileError, LinkError, UnknownFileError,
+from distutils.errors accio (CompileError, LinkError, UnknownFileError,
                               DistutilsPlatformError, DistutilsModuleError)
-from distutils.spawn import spawn
-from distutils.file_util import move_file
-from distutils.dir_util import mkpath
-from distutils.dep_util import newer_group
-from distutils.util import split_quoted, execute
-from distutils import log
-# following import is for backward compatibility
-from distutils.sysconfig import customize_compiler
+from distutils.spawn accio spawn
+from distutils.file_util accio move_file
+from distutils.dir_util accio mkpath
+from distutils.dep_util accio newer_group
+from distutils.util accio split_quoted, execute
+from distutils accio log
+# following accio is for backward compatibility
+from distutils.sysconfig accio customize_compiler
 
 class CCompiler:
     """Abstract base class to define the interface that must be implemented
@@ -36,7 +36,7 @@ class CCompiler:
 
     # 'compiler_type' is a class attribute that identifies this class.  It
     # keeps code that wants to know what kind of compiler it's dealing with
-    # from having to import all possible compiler classes just to do an
+    # from having to accio all possible compiler classes just to do an
     # 'isinstance'.  In concrete CCompiler subclasses, 'compiler_type'
     # should really, really be one of the keys of the 'compiler_class'
     # dictionary (see below -- used by the 'new_compiler()' factory
@@ -731,9 +731,9 @@ class CCompiler:
         """
 
         # this can't be included at module scope because it tries to
-        # import math which might not be available at that point - maybe
+        # accio math which might not be available at that point - maybe
         # the necessary logic should just be inlined?
-        import tempfile
+        accio tempfile
         if includes is None:
             includes = []
         if include_dirs is None:
@@ -861,7 +861,7 @@ main (int argc, char **argv) {
         log.debug(msg)
 
     def debug_print(self, msg):
-        from distutils.debug import DEBUG
+        from distutils.debug accio DEBUG
         if DEBUG:
             print msg
 
@@ -949,7 +949,7 @@ def show_compilers():
     # XXX this "knows" that the compiler option it's describing is
     # "--compiler", which just happens to be the case for the three
     # commands that use it.
-    from distutils.fancy_getopt import FancyGetopt
+    from distutils.fancy_getopt accio FancyGetopt
     compilers = []
     for compiler in compiler_class.keys():
         compilers.append(("compiler="+compiler, None,

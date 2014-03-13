@@ -1,11 +1,11 @@
-import imp
-import os
-import py_compile
-import shutil
-import tempfile
-import unittest
+accio imp
+accio os
+accio py_compile
+accio shutil
+accio tempfile
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 class PyCompileTests(unittest.TestCase):
 

@@ -1,12 +1,12 @@
 """Unit tests for contextlib.py, and other context managers."""
 
-import sys
-import tempfile
-import unittest
-from contextlib import *  # Tests __all__
-from test import test_support
+accio sys
+accio tempfile
+accio unittest
+from contextlib accio *  # Tests __all__
+from test accio test_support
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

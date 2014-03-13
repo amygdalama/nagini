@@ -41,11 +41,11 @@ enumerate(iter('abc')).
 
 """
 
-import unittest
-from test import test_support
-from itertools import repeat
-from collections import deque
-from __builtin__ import len as _len
+accio unittest
+from test accio test_support
+from itertools accio repeat
+from collections accio deque
+from __builtin__ accio len as _len
 
 n = 10
 

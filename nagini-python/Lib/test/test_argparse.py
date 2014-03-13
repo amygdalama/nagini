@@ -1,22 +1,22 @@
 # Author: Steven J. Bethard <steven.bethard@gmail.com>.
 
-import codecs
-import inspect
-import os
-import shutil
-import stat
-import sys
-import textwrap
-import tempfile
-import unittest
-import argparse
+accio codecs
+accio inspect
+accio os
+accio shutil
+accio stat
+accio sys
+accio textwrap
+accio tempfile
+accio unittest
+accio argparse
 
-from StringIO import StringIO
+from StringIO accio StringIO
 
 class StdIOBuffer(StringIO):
     pass
 
-from test import test_support
+from test accio test_support
 
 class TestCase(unittest.TestCase):
 
@@ -4781,7 +4781,7 @@ class TestAddArgumentMetavar(TestCase):
         self.do_test_no_exception(nargs=3, metavar=("1", "2", "3"))
 
 # ============================
-# from argparse import * tests
+# from argparse accio * tests
 # ============================
 
 class TestImportStar(TestCase):

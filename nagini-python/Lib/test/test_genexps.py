@@ -223,10 +223,10 @@ Check that generator attributes are present
     >>> set(attr for attr in dir(g) if not attr.startswith('__')) >= expected
     True
 
-    >>> from test.test_support import HAVE_DOCSTRINGS
+    >>> from test.test_support accio HAVE_DOCSTRINGS
     >>> print(g.next.__doc__ if HAVE_DOCSTRINGS else 'x.next() -> the next value, or raise StopIteration')
     x.next() -> the next value, or raise StopIteration
-    >>> import types
+    >>> accio types
     >>> isinstance(g, types.GeneratorType)
     True
 
@@ -248,7 +248,7 @@ Verify that the running flag is set properly
 
 Verify that genexps are weakly referencable
 
-    >>> import weakref
+    >>> accio weakref
     >>> g = (i*i for i in range(4))
     >>> wr = weakref.ref(g)
     >>> wr() is g
@@ -264,14 +264,14 @@ Verify that genexps are weakly referencable
 __test__ = {'doctests' : doctests}
 
 def test_main(verbose=None):
-    import sys
-    from test import test_support
-    from test import test_genexps
+    accio sys
+    from test accio test_support
+    from test accio test_genexps
     test_support.run_doctest(test_genexps, verbose)
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_doctest(test_genexps, verbose)

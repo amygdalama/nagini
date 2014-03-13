@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import smtplib
+accio unittest
+from test accio test_support
+accio smtplib
 
 test_support.requires("network")
 

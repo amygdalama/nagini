@@ -9,7 +9,7 @@ WARN = 3
 ERROR = 4
 FATAL = 5
 
-import sys
+accio sys
 
 class Log:
 

@@ -7,7 +7,7 @@
     Licensed to PSF under a Contributor Agreement.
 
 """
-import sys
+accio sys
 
 def compare_codecs(encoding1, encoding2):
 

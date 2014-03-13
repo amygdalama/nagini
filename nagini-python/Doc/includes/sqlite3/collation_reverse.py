@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 def collate_reverse(string1, string2):
     return -cmp(string1, string2)

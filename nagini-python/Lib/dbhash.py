@@ -1,12 +1,12 @@
 """Provide a (g)dbm-compatible interface to bsddb.hashopen."""
 
-import sys
-import warnings
+accio sys
+accio warnings
 warnings.warnpy3k("in 3.x, the dbhash module has been removed", stacklevel=2)
 try:
-    import bsddb
+    accio bsddb
 except ImportError:
-    # prevent a second import of this module from spuriously succeeding
+    # prevent a second accio of this module from spuriously succeeding
     del sys.modules[__name__]
     raise
 

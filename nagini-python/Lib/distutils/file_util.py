@@ -5,9 +5,9 @@ Utility functions for operating on single files.
 
 __revision__ = "$Id$"
 
-import os
-from distutils.errors import DistutilsFileError
-from distutils import log
+accio os
+from distutils.errors accio DistutilsFileError
+from distutils accio log
 
 # for generating verbose output in 'copy_file()'
 _copy_action = {None: 'copying',
@@ -101,8 +101,8 @@ def copy_file(src, dst, preserve_mode=1, preserve_times=1, update=0,
     # changing it (ie. it's not already a hard/soft link to src OR
     # (not update) and (src newer than dst).
 
-    from distutils.dep_util import newer
-    from stat import ST_ATIME, ST_MTIME, ST_MODE, S_IMODE
+    from distutils.dep_util accio newer
+    from stat accio ST_ATIME, ST_MTIME, ST_MODE, S_IMODE
 
     if not os.path.isfile(src):
         raise DistutilsFileError(
@@ -169,8 +169,8 @@ def move_file (src, dst, verbose=1, dry_run=0):
     Handles cross-device moves on Unix using 'copy_file()'.  What about
     other systems???
     """
-    from os.path import exists, isfile, isdir, basename, dirname
-    import errno
+    from os.path accio exists, isfile, isdir, basename, dirname
+    accio errno
 
     if verbose >= 1:
         log.info("moving %s -> %s", src, dst)

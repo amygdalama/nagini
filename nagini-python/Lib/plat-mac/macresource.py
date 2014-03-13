@@ -1,13 +1,13 @@
 """macresource - Locate and open the resources needed for a script."""
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the macresource module is removed.", stacklevel=2)
 
-from Carbon import Res
-import os
-import sys
-import MacOS
-import macostools
+from Carbon accio Res
+accio os
+accio sys
+accio MacOS
+accio macostools
 
 class ArgumentError(TypeError): pass
 class ResourceFileNotFoundError(ImportError): pass
@@ -126,10 +126,10 @@ def _decode(pathname, verbose=0):
         os.access(os.path.dirname(pathname), os.W_OK|os.X_OK):
         # The destination directory isn't writeable. Create the file in
         # a temporary directory
-        import tempfile
+        accio tempfile
         fd, newpathname = tempfile.mkstemp(".rsrc")
     if verbose:
         print 'Decoding', pathname, 'to', newpathname
-    import applesingle
+    accio applesingle
     applesingle.decode(pathname, newpathname, resonly=1)
     return newpathname

@@ -1,13 +1,13 @@
 """Tests for distutils.ccompiler."""
-import os
-import unittest
-from test.test_support import captured_stdout
+accio os
+accio unittest
+from test.test_support accio captured_stdout
 
-from distutils.ccompiler import (gen_lib_options, CCompiler,
+from distutils.ccompiler accio (gen_lib_options, CCompiler,
                                  get_default_compiler)
-from distutils.sysconfig import customize_compiler
-from distutils import debug
-from distutils.tests import support
+from distutils.sysconfig accio customize_compiler
+from distutils accio debug
+from distutils.tests accio support
 
 class FakeCompiler(object):
     def library_dir_option(self, dir):

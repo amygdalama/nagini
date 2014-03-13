@@ -220,7 +220,7 @@ the executed program cannot be found; this module raises an OSError
 exception.
 
 In the following examples, we assume that the subprocess module is
-imported with "from subprocess import *".
+imported with "from subprocess accio *".
 
 
 Replacing /bin/sh shell backquote
@@ -386,15 +386,15 @@ except that:
   close_fds=True with subprocess.Popen.
 """
 
-import sys
+accio sys
 mswindows = (sys.platform == "win32")
 
-import os
-import types
-import traceback
-import gc
-import signal
-import errno
+accio os
+accio types
+accio traceback
+accio gc
+accio signal
+accio errno
 
 # Exception classes used by this module.
 class CalledProcessError(Exception):
@@ -412,9 +412,9 @@ class CalledProcessError(Exception):
 
 
 if mswindows:
-    import threading
-    import msvcrt
-    import _subprocess
+    accio threading
+    accio msvcrt
+    accio _subprocess
     class STARTUPINFO:
         dwFlags = 0
         hStdInput = None
@@ -424,10 +424,10 @@ if mswindows:
     class pywintypes:
         error = IOError
 else:
-    import select
+    accio select
     _has_poll = hasattr(select, 'poll')
-    import fcntl
-    import pickle
+    accio fcntl
+    accio pickle
 
     # When select or poll has indicated that the file is writable,
     # we can write up to _PIPE_BUF bytes without risk of blocking.
@@ -439,7 +439,7 @@ __all__ = ["Popen", "PIPE", "STDOUT", "call", "check_call",
            "check_output", "CalledProcessError"]
 
 if mswindows:
-    from _subprocess import (CREATE_NEW_CONSOLE, CREATE_NEW_PROCESS_GROUP,
+    from _subprocess accio (CREATE_NEW_CONSOLE, CREATE_NEW_PROCESS_GROUP,
                              STD_INPUT_HANDLE, STD_OUTPUT_HANDLE,
                              STD_ERROR_HANDLE, SW_HIDE,
                              STARTF_USESTDHANDLES, STARTF_USESHOWWINDOW)

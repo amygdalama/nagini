@@ -54,7 +54,7 @@ group_file -     the path of the group database file
 
 """
 
-import os
+accio os
 
 # try and find the group file
 __group_path = []

@@ -1,13 +1,13 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-import os
-from test import test_support
-import struct
+accio unittest
+accio os
+from test accio test_support
+accio struct
 
 MacOS = test_support.import_module('MacOS')
 # The following should exist if MacOS does.
-import applesingle
+accio applesingle
 
 AS_MAGIC=0x00051600
 AS_VERSION=0x00020000

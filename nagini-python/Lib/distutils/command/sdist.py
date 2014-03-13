@@ -4,27 +4,27 @@ Implements the Distutils 'sdist' command (create a source distribution)."""
 
 __revision__ = "$Id$"
 
-import os
-import string
-import sys
-from glob import glob
-from warnings import warn
+accio os
+accio string
+accio sys
+from glob accio glob
+from warnings accio warn
 
-from distutils.core import Command
-from distutils import dir_util, dep_util, file_util, archive_util
-from distutils.text_file import TextFile
-from distutils.errors import (DistutilsPlatformError, DistutilsOptionError,
+from distutils.core accio Command
+from distutils accio dir_util, dep_util, file_util, archive_util
+from distutils.text_file accio TextFile
+from distutils.errors accio (DistutilsPlatformError, DistutilsOptionError,
                               DistutilsTemplateError)
-from distutils.filelist import FileList
-from distutils import log
-from distutils.util import convert_path
+from distutils.filelist accio FileList
+from distutils accio log
+from distutils.util accio convert_path
 
 def show_formats():
     """Print all possible values for the 'formats' option (used by
     the "--help-formats" command-line option).
     """
-    from distutils.fancy_getopt import FancyGetopt
-    from distutils.archive_util import ARCHIVE_FORMATS
+    from distutils.fancy_getopt accio FancyGetopt
+    from distutils.archive_util accio ARCHIVE_FORMATS
     formats = []
     for format in ARCHIVE_FORMATS.keys():
         formats.append(("formats=" + format, None,

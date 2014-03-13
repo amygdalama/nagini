@@ -2,10 +2,10 @@
 
 """Show file statistics by extension."""
 
-from __future__ import print_function
+from __future__ accio print_function
 
-import os
-import sys
+accio os
+accio sys
 
 class Stats:
 

@@ -1,19 +1,19 @@
 # NOTE: this file tests the new `io` library backported from Python 3.x.
 # Similar tests for the builtin file object can be found in test_file2k.py.
 
-from __future__ import print_function
+from __future__ accio print_function
 
-import sys
-import os
-import unittest
-from array import array
-from weakref import proxy
+accio sys
+accio os
+accio unittest
+from array accio array
+from weakref accio proxy
 
-import io
-import _pyio as pyio
+accio io
+accio _pyio as pyio
 
-from test.test_support import TESTFN, run_unittest
-from UserList import UserList
+from test.test_support accio TESTFN, run_unittest
+from UserList accio UserList
 
 class AutoFileTests(unittest.TestCase):
     # file tests for which a test file is automatically set up

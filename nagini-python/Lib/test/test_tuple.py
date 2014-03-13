@@ -1,6 +1,6 @@
-from test import test_support, seq_tests
+from test accio test_support, seq_tests
 
-import gc
+accio gc
 
 class TupleTest(seq_tests.CommonTest):
     type2test = tuple

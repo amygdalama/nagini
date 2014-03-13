@@ -1,7 +1,7 @@
 """Tests for binary operators on subtypes of built-in types."""
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 def gcd(a, b):
     """Greatest common divisor using Euclid's algorithm."""
@@ -314,7 +314,7 @@ class RatTestCase(unittest.TestCase):
     # XXX Ran out of steam; TO DO: divmod, div, future division
 
 future_test = """
-from __future__ import division
+from __future__ accio division
 self.assertEqual(Rat(10, 3) / Rat(5, 7), Rat(14, 3))
 self.assertEqual(Rat(10, 3) / 3, Rat(10, 9))
 self.assertEqual(2 / Rat(5), Rat(2, 5))

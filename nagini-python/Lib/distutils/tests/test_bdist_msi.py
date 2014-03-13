@@ -1,8 +1,8 @@
 """Tests for distutils.command.bdist_msi."""
-import sys
-import unittest
-from test.test_support import run_unittest
-from distutils.tests import support
+accio sys
+accio unittest
+from test.test_support accio run_unittest
+from distutils.tests accio support
 
 
 @unittest.skipUnless(sys.platform == 'win32', 'these tests require Windows')
@@ -12,7 +12,7 @@ class BDistMSITestCase(support.TempdirManager,
 
     def test_minimal(self):
         # minimal test XXX need more tests
-        from distutils.command.bdist_msi import bdist_msi
+        from distutils.command.bdist_msi accio bdist_msi
         project_dir, dist = self.create_dist()
         cmd = bdist_msi(dist)
         cmd.ensure_finalized()

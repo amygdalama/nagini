@@ -3,12 +3,12 @@
 
 # In 2.6, this gives us the behavior we want.  In 3.0, it has
 #  no function, but it still must parse correctly.
-from __future__ import print_function
+from __future__ accio print_function
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-from StringIO import StringIO
+from StringIO accio StringIO
 
 NotDefined = object()
 

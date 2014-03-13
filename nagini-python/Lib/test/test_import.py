@@ -1,20 +1,20 @@
-import errno
-import imp
-import marshal
-import os
-import py_compile
-import random
-import stat
-import struct
-import sys
-import unittest
-import textwrap
-import shutil
+accio errno
+accio imp
+accio marshal
+accio os
+accio py_compile
+accio random
+accio stat
+accio struct
+accio sys
+accio unittest
+accio textwrap
+accio shutil
 
-from test.test_support import (unlink, TESTFN, unload, run_unittest, rmtree,
+from test.test_support accio (unlink, TESTFN, unload, run_unittest, rmtree,
                                is_jython, check_warnings, EnvironmentVarGuard)
-from test import symlink_support
-from test import script_helper
+from test accio symlink_support
+from test accio script_helper
 
 def _files(name):
     return (name + os.extsep + "py",
@@ -43,19 +43,19 @@ class ImportTests(unittest.TestCase):
     setUp = tearDown
 
     def test_case_sensitivity(self):
-        # Brief digression to test that import is case-sensitive:  if we got
+        # Brief digression to test that accio is case-sensitive:  if we got
         # this far, we know for sure that "random" exists.
         try:
-            import RAnDoM
+            accio RAnDoM
         except ImportError:
             pass
         else:
-            self.fail("import of RAnDoM should have failed (case mismatch)")
+            self.fail("accio of RAnDoM should have failed (case mismatch)")
 
     def test_double_const(self):
         # Another brief digression to test the accuracy of manifest float
         # constants.
-        from test import double_const  # don't blink -- that *was* the test
+        from test accio double_const  # don't blink -- that *was* the test
 
     def test_import(self):
         def test_with_extension(ext):
@@ -68,7 +68,7 @@ class ImportTests(unittest.TestCase):
                 pyc = TESTFN + os.extsep + "pyc"
 
             with open(source, "w") as f:
-                print >> f, ("# This tests Python's ability to import a", ext,
+                print >> f, ("# This tests Python's ability to accio a", ext,
                              "file.")
                 a = random.randrange(1000)
                 b = random.randrange(1000)
@@ -78,7 +78,7 @@ class ImportTests(unittest.TestCase):
             try:
                 mod = __import__(TESTFN)
             except ImportError, err:
-                self.fail("import from %s failed: %s" % (ext, err))
+                self.fail("accio from %s failed: %s" % (ext, err))
             else:
                 self.assertEqual(mod.a, a,
                     "module loaded (%s) but contents invalid" % mod)
@@ -91,7 +91,7 @@ class ImportTests(unittest.TestCase):
                 if not sys.dont_write_bytecode:
                     imp.reload(mod)
             except ImportError, err:
-                self.fail("import from .pyc/.pyo failed: %s" % err)
+                self.fail("accio from .pyc/.pyo failed: %s" % err)
             finally:
                 unlink(pyc)
                 unlink(pyo)
@@ -145,7 +145,7 @@ class ImportTests(unittest.TestCase):
         sys.path.insert(0, os.curdir)
         fname = TESTFN + os.extsep + "py"
         try:
-            # Write a Python file, make it read-only and import it
+            # Write a Python file, make it read-only and accio it
             with open(fname, 'w') as f:
                 f.write("x = 'original'\n")
             # Tweak the mtime of the source to ensure pyc gets updated later
@@ -177,7 +177,7 @@ class ImportTests(unittest.TestCase):
 
         # XXX (ncoghlan): It would be nice to use test_support.CleanImport
         # here, but that breaks because the os module registers some
-        # handlers in copy_reg on import. Since CleanImport doesn't
+        # handlers in copy_reg on accio. Since CleanImport doesn't
         # revert that registration, the module is left in a broken
         # state after reversion. Reinitialising the module contents
         # and just reverting os.environ to its previous state is an OK
@@ -211,7 +211,7 @@ class ImportTests(unittest.TestCase):
         sys.path.append('')
 
         # This used to crash.
-        exec 'import ' + module
+        exec 'accio ' + module
 
         # Cleanup.
         del sys.path[-1]
@@ -223,7 +223,7 @@ class ImportTests(unittest.TestCase):
         with open(source, "w") as f:
             print >> f, "a = 1 // 0"
 
-        # New in 2.4, we shouldn't be able to import that no matter how often
+        # New in 2.4, we shouldn't be able to accio that no matter how often
         # we try.
         sys.path.insert(0, os.curdir)
         try:
@@ -282,19 +282,19 @@ class ImportTests(unittest.TestCase):
 
         sys.path.insert(0, os.path.dirname(__file__))
         try:
-            import infinite_reload
+            accio infinite_reload
         finally:
             del sys.path[0]
 
     def test_import_name_binding(self):
-        # import x.y.z binds x in the current namespace.
-        import test as x
-        import test.test_support
+        # accio x.y.z binds x in the current namespace.
+        accio test as x
+        accio test.test_support
         self.assertIs(x, test, x.__name__)
         self.assertTrue(hasattr(test.test_support, "__file__"))
 
-        # import x.y.z as w binds z as w.
-        import test.test_support as y
+        # accio x.y.z as w binds z as w.
+        accio test.test_support as y
         self.assertIs(y, test.test_support, y.__name__)
 
     def test_import_initless_directory_warning(self):
@@ -313,10 +313,10 @@ class ImportTests(unittest.TestCase):
     def test_import_in_del_does_not_crash(self):
         # Issue 4236
         testfn = script_helper.make_script('', TESTFN, textwrap.dedent("""\
-            import sys
+            accio sys
             class C:
                def __del__(self):
-                  import imp
+                  accio imp
             sys.argv.insert(0, C())
             """))
         try:
@@ -364,7 +364,7 @@ class ImportTests(unittest.TestCase):
             # Jan 1, 2012; Jul 1, 2012.
             mtimes = 1325376000, 1341100800
 
-            # Different names to avoid running into import caching.
+            # Different names to avoid running into accio caching.
             tails = "spam", "eggs"
             for mtime, tail in zip(mtimes, tails):
                 module = TESTFN + tail
@@ -405,7 +405,7 @@ class PycRewritingTests(unittest.TestCase):
 
     module_name = "unlikely_module_name"
     module_source = """
-import sys
+accio sys
 code_filename = sys._getframe().f_code.co_filename
 module_filename = __file__
 constant = 1
@@ -515,7 +515,7 @@ class PathsTests(unittest.TestCase):
             f.write("testdata = 'test_trailing_slash'")
         # Create the UNC path, like \\myhost\c$\foo\bar.
         path = os.path.abspath(self.path)
-        import socket
+        accio socket
         hn = socket.gethostname()
         drive = path[0]
         unc = "\\\\%s\\%s$"%(hn, drive)
@@ -543,16 +543,16 @@ class RelativeImportTests(unittest.TestCase):
     setUp = tearDown
 
     def test_relimport_star(self):
-        # This will import * from .test_import.
-        from . import relimport
+        # This will accio * from .test_import.
+        from . accio relimport
         self.assertTrue(hasattr(relimport, "RelativeImportTests"))
 
     def test_issue3221(self):
         # Regression test for http://bugs.python.org/issue3221.
         def check_absolute():
-            exec "from os import path" in ns
+            exec "from os accio path" in ns
         def check_relative():
-            exec "from . import relimport" in ns
+            exec "from . accio relimport" in ns
 
         # Check both OK with __package__ and __name__ correct
         ns = dict(__package__='test', __name__='test.notarealmodule')
@@ -582,13 +582,13 @@ class RelativeImportTests(unittest.TestCase):
         self.assertRaises(ValueError, check_relative)
 
     def test_absolute_import_without_future(self):
-        # If explicit relative import syntax is used, then do not try
-        # to perform an absolute import in the face of failure.
+        # If explicit relative accio syntax is used, then do not try
+        # to perform an absolute accio in the face of failure.
         # Issue #7902.
         with self.assertRaises(ImportError):
-            from .os import sep
-            self.fail("explicit relative import triggered an "
-                      "implicit absolute import")
+            from .os accio sep
+            self.fail("explicit relative accio triggered an "
+                      "implicit absolute accio")
 
 
 class TestSymbolicallyLinkedPackage(unittest.TestCase):
@@ -629,7 +629,7 @@ class TestSymbolicallyLinkedPackage(unittest.TestCase):
         # make sure sample can only be imported from the current directory.
         sys.path[:] = ['.']
 
-        # and try to import the package
+        # and try to accio the package
         __import__(self.package_name)
 
     def tearDown(self):
@@ -646,5 +646,5 @@ def test_main(verbose=None):
 
 if __name__ == '__main__':
     # Test needs to be a package, so we can do relative imports.
-    from test.test_import import test_main
+    from test.test_import accio test_main
     test_main()

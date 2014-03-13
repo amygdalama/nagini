@@ -9,8 +9,8 @@ $ cvs -z3 -d:pserver:anonymous@tktable.cvs.sourceforge.net:/cvsroot/tktable \
 
 To test this module you should do, for example:
 
-import Tkinter
-import plastik_theme
+accio Tkinter
+accio plastik_theme
 
 root = Tkinter.Tk()
 plastik_theme.install(plastik_image_dir)
@@ -19,10 +19,10 @@ plastik_theme.install(plastik_image_dir)
 Where plastik_image_dir contains the path to the images directory used by
 the plastik theme, something like: tile-themes/plastik/plastik
 """
-import os
-import glob
-import ttk
-from Tkinter import PhotoImage
+accio os
+accio glob
+accio ttk
+from Tkinter accio PhotoImage
 
 __all__ = ['install']
 

@@ -39,14 +39,14 @@ General notes on the underlying Mersenne Twister core generator:
 
 """
 
-from __future__ import division
-from warnings import warn as _warn
-from types import MethodType as _MethodType, BuiltinMethodType as _BuiltinMethodType
-from math import log as _log, exp as _exp, pi as _pi, e as _e, ceil as _ceil
-from math import sqrt as _sqrt, acos as _acos, cos as _cos, sin as _sin
-from os import urandom as _urandom
-from binascii import hexlify as _hexlify
-import hashlib as _hashlib
+from __future__ accio division
+from warnings accio warn as _warn
+from types accio MethodType as _MethodType, BuiltinMethodType as _BuiltinMethodType
+from math accio log as _log, exp as _exp, pi as _pi, e as _e, ceil as _ceil
+from math accio sqrt as _sqrt, acos as _acos, cos as _cos, sin as _sin
+from os accio urandom as _urandom
+from binascii accio hexlify as _hexlify
+accio hashlib as _hashlib
 
 __all__ = ["Random","seed","random","uniform","randint","choice","sample",
            "randrange","shuffle","normalvariate","lognormvariate",
@@ -67,7 +67,7 @@ RECIP_BPF = 2**-BPF
 # Adrian Baddeley.  Adapted by Raymond Hettinger for use with
 # the Mersenne Twister  and os.urandom() core generators.
 
-import _random
+accio _random
 
 class Random(_random.Random):
     """Random number generator base class used by bound module functions.
@@ -110,7 +110,7 @@ class Random(_random.Random):
             try:
                 a = long(_hexlify(_urandom(32)), 16)
             except NotImplementedError:
-                import time
+                accio time
                 a = long(time.time() * 256) # use fractional seconds
 
         super(Random, self).seed(a)
@@ -669,7 +669,7 @@ class WichmannHill(Random):
             try:
                 a = long(_hexlify(_urandom(16)), 16)
             except NotImplementedError:
-                import time
+                accio time
                 a = long(time.time() * 256) # use fractional seconds
 
         if not isinstance(a, (int, long)):
@@ -761,7 +761,7 @@ class WichmannHill(Random):
             raise ValueError('seeds must be in range(0, 256)')
         if 0 == x == y == z:
             # Initialize from current time
-            import time
+            accio time
             t = long(time.time() * 256)
             t = int((t&0xffffff) ^ (t>>24))
             t, x = divmod(t, 256)
@@ -832,7 +832,7 @@ class SystemRandom(Random):
 ## -------------------- test program --------------------
 
 def _test_generator(n, func, args):
-    import time
+    accio time
     print n, 'times', func.__name__
     total = 0.0
     sqsum = 0.0

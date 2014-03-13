@@ -2,7 +2,7 @@
 
 Typical use is:
 
-    import fileinput
+    accio fileinput
     for line in fileinput.input():
         process(line)
 
@@ -79,7 +79,7 @@ XXX Possible additions:
 
 """
 
-import sys, os
+accio sys, os
 
 __all__ = ["input","close","nextfile","filename","lineno","filelineno",
            "isfirstline","isstdin","FileInput"]
@@ -377,17 +377,17 @@ class FileInput:
 def hook_compressed(filename, mode):
     ext = os.path.splitext(filename)[1]
     if ext == '.gz':
-        import gzip
+        accio gzip
         return gzip.open(filename, mode)
     elif ext == '.bz2':
-        import bz2
+        accio bz2
         return bz2.BZ2File(filename, mode)
     else:
         return open(filename, mode)
 
 
 def hook_encoded(encoding):
-    import io
+    accio io
     def openhook(filename, mode):
         mode = mode.replace('U', '').replace('b', '') or 'r'
         return io.open(filename, mode, encoding=encoding, newline='')
@@ -395,7 +395,7 @@ def hook_encoded(encoding):
 
 
 def _test():
-    import getopt
+    accio getopt
     inplace = 0
     backup = 0
     opts, args = getopt.getopt(sys.argv[1:], "ib:")

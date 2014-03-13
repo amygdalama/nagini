@@ -3,7 +3,7 @@
 The main package for the Python Module Distribution Utilities.  Normally
 used from a setup script as
 
-   from distutils.core import setup
+   from distutils.core accio setup
 
    setup (...)
 """

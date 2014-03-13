@@ -20,27 +20,27 @@ __all__ = [
     'unquote',
     ]
 
-import os
-import re
-import time
-import base64
-import random
-import socket
-import urllib
-import warnings
+accio os
+accio re
+accio time
+accio base64
+accio random
+accio socket
+accio urllib
+accio warnings
 
-from email._parseaddr import quote
-from email._parseaddr import AddressList as _AddressList
-from email._parseaddr import mktime_tz
+from email._parseaddr accio quote
+from email._parseaddr accio AddressList as _AddressList
+from email._parseaddr accio mktime_tz
 
 # We need wormarounds for bugs in these methods in older Pythons (see below)
-from email._parseaddr import parsedate as _parsedate
-from email._parseaddr import parsedate_tz as _parsedate_tz
+from email._parseaddr accio parsedate as _parsedate
+from email._parseaddr accio parsedate_tz as _parsedate_tz
 
-from quopri import decodestring as _qdecode
+from quopri accio decodestring as _qdecode
 
 # Intrapackage imports
-from email.encoders import _bencode, _qencode
+from email.encoders accio _bencode, _qencode
 
 COMMASPACE = ', '
 EMPTYSTRING = ''
@@ -246,7 +246,7 @@ def encode_rfc2231(s, charset=None, language=None):
     charset is given but not language, the string is encoded using the empty
     string for language.
     """
-    import urllib
+    accio urllib
     s = urllib.quote(s, safe='')
     if charset is None and language is None:
         return s

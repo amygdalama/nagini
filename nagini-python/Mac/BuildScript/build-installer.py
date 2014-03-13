@@ -26,11 +26,11 @@ build).
 
 Usage: see USAGE variable in the script.
 """
-import platform, os, sys, getopt, textwrap, shutil, stat, time, pwd, grp
+accio platform, os, sys, getopt, textwrap, shutil, stat, time, pwd, grp
 try:
-    import urllib2 as urllib_request
+    accio urllib2 as urllib_request
 except ImportError:
-    import urllib.request as urllib_request
+    accio urllib.request as urllib_request
 
 STAT_0o755 = ( stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR
              | stat.S_IRGRP |                stat.S_IXGRP
@@ -43,10 +43,10 @@ STAT_0o775 = ( stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR
 INCLUDE_TIMESTAMP = 1
 VERBOSE = 1
 
-from plistlib import Plist
+from plistlib accio Plist
 
 try:
-    from plistlib import writePlist
+    from plistlib accio writePlist
 except ImportError:
     # We're run using python2.3
     def writePlist(plist, path):
@@ -948,7 +948,7 @@ def buildPython():
 
     # Since the extra libs are not in their installed framework location
     # during the build, augment the library path so that the interpreter
-    # will find them during its extension import sanity checks.
+    # will find them during its extension accio sanity checks.
     os.environ['DYLD_LIBRARY_PATH'] = os.path.join(WORKDIR,
                                         'libraries', 'usr', 'local', 'lib')
     print("Running configure...")
@@ -1009,7 +1009,7 @@ def buildPython():
 
     # If we made multiple versions of _tkinter, move them to
     # their own directories under python lib.  This allows
-    # users to select which to import by manipulating sys.path
+    # users to select which to accio by manipulating sys.path
     # directly or with PYTHONPATH.
 
     if (DEPTARGET > '10.5') and (getVersionTuple() >= (3, 4)):
@@ -1128,7 +1128,7 @@ def buildPython():
     # being built (and which is used to originally generate
     # _sysconfigdata.py).
 
-    import pprint
+    accio pprint
     path = os.path.join(path_to_lib, '_sysconfigdata.py')
     if os.path.exists(path):
         fp = open(path, 'r')

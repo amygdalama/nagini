@@ -2,9 +2,9 @@
 # Author: Andre Roberge
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Call, Name
-from .. import patcomp
+from .. accio fixer_base
+from ..fixer_util accio Call, Name
+from .. accio patcomp
 
 
 context = patcomp.compile_pattern("power< 'eval' trailer< '(' any ')' > >")

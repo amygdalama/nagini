@@ -13,7 +13,7 @@ __all__ = [
     'quote',
     ]
 
-import time, calendar
+accio time, calendar
 
 SPACE = ' '
 EMPTYSTRING = ''

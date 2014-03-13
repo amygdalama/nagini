@@ -1,10 +1,10 @@
-import FrameWork
-import EasyDialogs
-from Carbon import Res
-from Carbon import Dlg
-import socket
-import string
-import macresource
+accio FrameWork
+accio EasyDialogs
+from Carbon accio Res
+from Carbon accio Dlg
+accio socket
+accio string
+accio macresource
 #
 # Definitions for our resources
 ID_MAIN=512

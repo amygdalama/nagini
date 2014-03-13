@@ -56,7 +56,7 @@ def whathdr(filename):
 tests = []
 
 def test_aifc(h, f):
-    import aifc
+    accio aifc
     if h[:4] != 'FORM':
         return None
     if h[8:12] == 'AIFC':
@@ -189,7 +189,7 @@ def get_short_le(s):
 #--------------------#
 
 def test():
-    import sys
+    accio sys
     recursive = 0
     if sys.argv[1:] and sys.argv[1] == '-r':
         del sys.argv[1:2]
@@ -204,14 +204,14 @@ def test():
         sys.exit(1)
 
 def testall(list, recursive, toplevel):
-    import sys
-    import os
+    accio sys
+    accio os
     for filename in list:
         if os.path.isdir(filename):
             print filename + '/:',
             if recursive or toplevel:
                 print 'recursing down:'
-                import glob
+                accio glob
                 names = glob.glob(os.path.join(filename, '*'))
                 testall(names, recursive, 0)
             else:

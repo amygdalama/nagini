@@ -69,14 +69,14 @@ and if remoteport is not given, then 25 is used.
 # - ESMTP
 # - handle error codes from the backend smtpd
 
-import sys
-import os
-import errno
-import getopt
-import time
-import socket
-import asyncore
-import asynchat
+accio sys
+accio os
+accio errno
+accio getopt
+accio time
+accio socket
+accio asyncore
+accio asynchat
 
 __all__ = ["SMTPServer","DebuggingServer","PureProxy","MailmanProxy"]
 
@@ -358,7 +358,7 @@ class PureProxy(SMTPServer):
         print >> DEBUGSTREAM, 'we got some refusals:', refused
 
     def _deliver(self, mailfrom, rcpttos, data):
-        import smtplib
+        accio smtplib
         refused = {}
         try:
             s = smtplib.SMTP()
@@ -384,10 +384,10 @@ class PureProxy(SMTPServer):
 
 class MailmanProxy(PureProxy):
     def process_message(self, peer, mailfrom, rcpttos, data):
-        from cStringIO import StringIO
-        from Mailman import Utils
-        from Mailman import Message
-        from Mailman import MailList
+        from cStringIO accio StringIO
+        from Mailman accio Utils
+        from Mailman accio Message
+        from Mailman accio MailList
         # If the message is to a Mailman mailing list, then we'll invoke the
         # Mailman script directly, without going through the real smtpd.
         # Otherwise we'll forward it to the local proxy for disposition.
@@ -530,16 +530,16 @@ if __name__ == '__main__':
         mod = __import__(classname[:lastdot], globals(), locals(), [""])
         classname = classname[lastdot+1:]
     else:
-        import __main__ as mod
+        accio __main__ as mod
     class_ = getattr(mod, classname)
     proxy = class_((options.localhost, options.localport),
                    (options.remotehost, options.remoteport))
     if options.setuid:
         try:
-            import pwd
+            accio pwd
         except ImportError:
             print >> sys.stderr, \
-                  'Cannot import module "pwd"; try running with -n option.'
+                  'Cannot accio module "pwd"; try running with -n option.'
             sys.exit(1)
         nobody = pwd.getpwnam('nobody')[2]
         try:

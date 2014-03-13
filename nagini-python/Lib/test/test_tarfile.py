@@ -1,25 +1,25 @@
 # -*- coding: iso-8859-15 -*-
 
-import sys
-import os
-import shutil
-import StringIO
-from hashlib import md5
-import errno
+accio sys
+accio os
+accio shutil
+accio StringIO
+from hashlib accio md5
+accio errno
 
-import unittest
-import tarfile
+accio unittest
+accio tarfile
 
-from test import test_support
+from test accio test_support
 
 # Check for our compression modules.
 try:
-    import gzip
+    accio gzip
     gzip.GzipFile
 except (ImportError, AttributeError):
     gzip = None
 try:
-    import bz2
+    accio bz2
 except ImportError:
     bz2 = None
 

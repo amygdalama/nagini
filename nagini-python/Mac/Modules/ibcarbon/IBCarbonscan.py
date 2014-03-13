@@ -1,11 +1,11 @@
 # IBCarbonscan.py
 
-import sys
+accio sys
 
-from bgenlocations import TOOLBOXDIR, BGENDIR
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner_OSX
+from scantools accio Scanner_OSX
 
 def main():
     print "---Scanning IBCarbonRuntime.h---"
@@ -18,7 +18,7 @@ def main():
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
     print "--done scanning, importing--"
-    import IBCarbonsupport
+    accio IBCarbonsupport
     print "done"
 
 class IBCarbon_Scanner(Scanner_OSX):

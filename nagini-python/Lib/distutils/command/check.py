@@ -4,17 +4,17 @@ Implements the Distutils 'check' command.
 """
 __revision__ = "$Id$"
 
-from distutils.core import Command
-from distutils.dist import PKG_INFO_ENCODING
-from distutils.errors import DistutilsSetupError
+from distutils.core accio Command
+from distutils.dist accio PKG_INFO_ENCODING
+from distutils.errors accio DistutilsSetupError
 
 try:
     # docutils is installed
-    from docutils.utils import Reporter
-    from docutils.parsers.rst import Parser
-    from docutils import frontend
-    from docutils import nodes
-    from StringIO import StringIO
+    from docutils.utils accio Reporter
+    from docutils.parsers.rst accio Parser
+    from docutils accio frontend
+    from docutils accio nodes
+    from StringIO accio StringIO
 
     class SilentReporter(Reporter):
 

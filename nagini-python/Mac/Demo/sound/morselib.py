@@ -61,7 +61,7 @@ morsetab = {
 }
 
 def morsecode(s):
-    from string import lower
+    from string accio lower
     m = ''
     for c in s:
         c = lower(c)
@@ -119,7 +119,7 @@ class BaseMorse:
         self.sendascii(s)
 
 
-import Audio_mac
+accio Audio_mac
 class MyAudio(Audio_mac.Play_Audio_mac):
     def _callback(self, *args):
         if hasattr(self, 'usercallback'): self.usercallback()
@@ -139,7 +139,7 @@ class MacMorse(BaseMorse):
         sinewave = ''
         n = int(FRAMERATE / BASEFREQ)
         octave = OCTAVE
-        from math import sin, pi
+        from math accio sin, pi
         for i in range(n):
             val = int(sin(2 * pi * i * octave / n) * 0x7fff)
             sample = chr((val >> 8) & 255) + chr(val & 255)

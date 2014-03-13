@@ -1,8 +1,8 @@
-import unittest
-import sys
-import _ast
-from test import test_support
-import textwrap
+accio unittest
+accio sys
+accio _ast
+from test accio test_support
+accio textwrap
 
 class TestSpecifics(unittest.TestCase):
 
@@ -22,7 +22,7 @@ class TestSpecifics(unittest.TestCase):
     def test_debug_assignment(self):
         # catch assignments to __debug__
         self.assertRaises(SyntaxError, compile, '__debug__ = 1', '?', 'single')
-        import __builtin__
+        accio __builtin__
         prev = __builtin__.__debug__
         setattr(__builtin__, '__debug__', 'sure')
         setattr(__builtin__, '__debug__', prev)
@@ -316,61 +316,61 @@ if 1:
             '(a, None) = 0, 0',
             'for None in range(10): pass',
             'def f(None): pass',
-            'import None',
-            'import x as None',
-            'from x import None',
-            'from x import y as None'
+            'accio None',
+            'accio x as None',
+            'from x accio None',
+            'from x accio y as None'
         ]
         for stmt in stmts:
             stmt += "\n"
             self.assertRaises(SyntaxError, compile, stmt, 'tmp', 'single')
             self.assertRaises(SyntaxError, compile, stmt, 'tmp', 'exec')
         # This is ok.
-        compile("from None import x", "tmp", "exec")
-        compile("from x import None as y", "tmp", "exec")
-        compile("import None as x", "tmp", "exec")
+        compile("from None accio x", "tmp", "exec")
+        compile("from x accio None as y", "tmp", "exec")
+        compile("accio None as x", "tmp", "exec")
 
     def test_import(self):
         succeed = [
-            'import sys',
-            'import os, sys',
-            'import os as bar',
-            'import os.path as bar',
-            'from __future__ import nested_scopes, generators',
-            'from __future__ import (nested_scopes,\ngenerators)',
-            'from __future__ import (nested_scopes,\ngenerators,)',
-            'from sys import stdin, stderr, stdout',
-            'from sys import (stdin, stderr,\nstdout)',
-            'from sys import (stdin, stderr,\nstdout,)',
-            'from sys import (stdin\n, stderr, stdout)',
-            'from sys import (stdin\n, stderr, stdout,)',
-            'from sys import stdin as si, stdout as so, stderr as se',
-            'from sys import (stdin as si, stdout as so, stderr as se)',
-            'from sys import (stdin as si, stdout as so, stderr as se,)',
+            'accio sys',
+            'accio os, sys',
+            'accio os as bar',
+            'accio os.path as bar',
+            'from __future__ accio nested_scopes, generators',
+            'from __future__ accio (nested_scopes,\ngenerators)',
+            'from __future__ accio (nested_scopes,\ngenerators,)',
+            'from sys accio stdin, stderr, stdout',
+            'from sys accio (stdin, stderr,\nstdout)',
+            'from sys accio (stdin, stderr,\nstdout,)',
+            'from sys accio (stdin\n, stderr, stdout)',
+            'from sys accio (stdin\n, stderr, stdout,)',
+            'from sys accio stdin as si, stdout as so, stderr as se',
+            'from sys accio (stdin as si, stdout as so, stderr as se)',
+            'from sys accio (stdin as si, stdout as so, stderr as se,)',
             ]
         fail = [
-            'import (os, sys)',
-            'import (os), (sys)',
-            'import ((os), (sys))',
-            'import (sys',
-            'import sys)',
-            'import (os,)',
-            'import os As bar',
-            'import os.path a bar',
-            'from sys import stdin As stdout',
-            'from sys import stdin a stdout',
-            'from (sys) import stdin',
-            'from __future__ import (nested_scopes',
-            'from __future__ import nested_scopes)',
-            'from __future__ import nested_scopes,\ngenerators',
-            'from sys import (stdin',
-            'from sys import stdin)',
-            'from sys import stdin, stdout,\nstderr',
-            'from sys import stdin si',
-            'from sys import stdin,'
-            'from sys import (*)',
-            'from sys import (stdin,, stdout, stderr)',
-            'from sys import (stdin, stdout),',
+            'accio (os, sys)',
+            'accio (os), (sys)',
+            'accio ((os), (sys))',
+            'accio (sys',
+            'accio sys)',
+            'accio (os,)',
+            'accio os As bar',
+            'accio os.path a bar',
+            'from sys accio stdin As stdout',
+            'from sys accio stdin a stdout',
+            'from (sys) accio stdin',
+            'from __future__ accio (nested_scopes',
+            'from __future__ accio nested_scopes)',
+            'from __future__ accio nested_scopes,\ngenerators',
+            'from sys accio (stdin',
+            'from sys accio stdin)',
+            'from sys accio stdin, stdout,\nstderr',
+            'from sys accio stdin si',
+            'from sys accio stdin,'
+            'from sys accio (*)',
+            'from sys accio (stdin,, stdout, stderr)',
+            'from sys accio (stdin, stdout),',
             ]
         for stmt in succeed:
             compile(stmt, 'tmp', 'exec')
@@ -471,8 +471,8 @@ if 1:
             def f():
                 __mangled = 1
                 __not_mangled__ = 2
-                import __mangled_mod
-                import __package__.module
+                accio __mangled_mod
+                accio __package__.module
 
         self.assertIn("_A__mangled", A.f.func_code.co_varnames)
         self.assertIn("__not_mangled__", A.f.func_code.co_varnames)

@@ -22,9 +22,9 @@ to 0, this animation runs in "line per line"
 mode as fast as possible.
 """
 
-import math
-from turtle import Turtle, mainloop
-from time import clock
+accio math
+from turtle accio Turtle, mainloop
+from time accio clock
 
 # wrapper for any additional drawing routines
 # that need to know about each other

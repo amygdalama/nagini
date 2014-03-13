@@ -6,7 +6,7 @@ This script demonstrates use of the visitor interface of the compiler
 package.
 """
 
-import compiler
+accio compiler
 
 class MethodFinder:
     """Print the names of all the methods
@@ -33,6 +33,6 @@ def main(files):
         compiler.walk(ast, mf)
 
 if __name__ == "__main__":
-    import sys
+    accio sys
 
     main(sys.argv[1:])

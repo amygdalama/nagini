@@ -1,6 +1,6 @@
 ###
-import Tix as tk
-from pprint import pprint
+accio Tix as tk
+from pprint accio pprint
 
 r= tk.Tk()
 r.title("test")

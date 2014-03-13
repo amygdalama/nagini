@@ -1,6 +1,6 @@
 """Rudimentary parser for C struct definitions."""
 
-import re
+accio re
 
 PyObject_HEAD = "PyObject_HEAD"
 PyObject_VAR_HEAD = "PyObject_VAR_HEAD"

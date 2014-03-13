@@ -1,4 +1,4 @@
-import string
+accio string
 
 def f():
     a = 0

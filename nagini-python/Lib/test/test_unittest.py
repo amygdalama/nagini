@@ -1,6 +1,6 @@
-import unittest.test
+accio unittest.test
 
-from test import test_support
+from test accio test_support
 
 
 def test_main():

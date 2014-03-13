@@ -10,9 +10,9 @@
 
 """Internal support module for sre"""
 
-import _sre, sys
-import sre_parse
-from sre_constants import *
+accio _sre, sys
+accio sre_parse
+from sre_constants accio *
 
 assert _sre.MAGIC == MAGIC, "SRE module mismatch"
 
@@ -300,7 +300,7 @@ def _mk_bitmap(bits):
 
 def _optimize_unicode(charset, fixup):
     try:
-        import array
+        accio array
     except ImportError:
         return charset
     charmap = [0]*65536

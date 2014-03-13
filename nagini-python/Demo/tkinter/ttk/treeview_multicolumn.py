@@ -1,7 +1,7 @@
 """Demo based on the demo mclist included with tk source distribution."""
-import Tkinter
-import tkFont
-import ttk
+accio Tkinter
+accio tkFont
+accio ttk
 
 tree_columns = ("country", "capital", "currency")
 tree_data = [
@@ -93,11 +93,11 @@ def main():
     root.wm_title("Multi-Column List")
     root.wm_iconname("mclist")
 
-    import plastik_theme
+    accio plastik_theme
     try:
         plastik_theme.install('~/tile-themes/plastik/plastik')
     except Exception:
-        import warnings
+        accio warnings
         warnings.warn("plastik theme being used without images")
 
     app = App()

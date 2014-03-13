@@ -6,9 +6,9 @@
 # (See mountclient.py for some hints on how to write RPC clients in
 # Python in general)
 
-import rpc
-from rpc import UDPClient, TCPClient
-from mountclient import FHSIZE, MountPacker, MountUnpacker
+accio rpc
+from rpc accio UDPClient, TCPClient
+from mountclient accio FHSIZE, MountPacker, MountUnpacker
 
 NFS_PROGRAM = 100003
 NFS_VERSION = 2
@@ -177,12 +177,12 @@ class NFSClient(UDPClient):
 
 
 def test():
-    import sys
+    accio sys
     if sys.argv[1:]: host = sys.argv[1]
     else: host = ''
     if sys.argv[2:]: filesys = sys.argv[2]
     else: filesys = None
-    from mountclient import UDPMountClient, TCPMountClient
+    from mountclient accio UDPMountClient, TCPMountClient
     mcl = TCPMountClient(host)
     if filesys is None:
         list = mcl.Export()

@@ -23,13 +23,13 @@ __version__ = "0.4"
 
 __all__ = ["CGIHTTPRequestHandler"]
 
-import os
-import sys
-import urllib
-import BaseHTTPServer
-import SimpleHTTPServer
-import select
-import copy
+accio os
+accio sys
+accio urllib
+accio BaseHTTPServer
+accio SimpleHTTPServer
+accio select
+accio copy
 
 
 class CGIHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
@@ -177,7 +177,7 @@ class CGIHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         if authorization:
             authorization = authorization.split()
             if len(authorization) == 2:
-                import base64, binascii
+                accio base64, binascii
                 env['AUTH_TYPE'] = authorization[0]
                 if authorization[0].lower() == "basic":
                     try:
@@ -256,7 +256,7 @@ class CGIHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
         else:
             # Non Unix - use subprocess
-            import subprocess
+            accio subprocess
             cmdline = [scriptfile]
             if self.is_python(scriptfile):
                 interp = sys.executable
@@ -349,7 +349,7 @@ def nobody_uid():
     if nobody:
         return nobody
     try:
-        import pwd
+        accio pwd
     except ImportError:
         return -1
     try:

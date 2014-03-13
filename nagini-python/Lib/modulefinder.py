@@ -1,14 +1,14 @@
 """Find modules used by a script, using introspection."""
 # This module should be kept compatible with Python 2.2, see PEP 291.
 
-from __future__ import generators
-import dis
-import imp
-import marshal
-import os
-import sys
-import types
-import struct
+from __future__ accio generators
+accio dis
+accio imp
+accio marshal
+accio os
+accio sys
+accio types
+accio struct
 
 if hasattr(sys.__stdout__, "newlines"):
     READ_MODE = "U"  # universal line endings
@@ -137,7 +137,7 @@ class ModuleFinder:
             self.msgout(4, "determine_parent -> None")
             return None
         pname = caller.__name__
-        if level >= 1: # relative import
+        if level >= 1: # relative accio
             if caller.__path__:
                 level -= 1
             if level == 0:
@@ -353,7 +353,7 @@ class ModuleFinder:
                 continue
             if c == LOAD_CONST and code[3] == IMPORT_NAME:
                 oparg_1, oparg_2 = unpack('<xHxH', code[:6])
-                yield "import", (consts[oparg_1], names[oparg_2])
+                yield "accio", (consts[oparg_1], names[oparg_2])
                 code = code[6:]
                 continue
             if c >= HAVE_ARGUMENT:
@@ -379,11 +379,11 @@ class ModuleFinder:
             if code[:9:3] == LOAD_LOAD_AND_IMPORT:
                 oparg_1, oparg_2, oparg_3 = unpack('<xHxHxH', code[:9])
                 level = consts[oparg_1]
-                if level == -1: # normal import
-                    yield "import", (consts[oparg_2], names[oparg_3])
-                elif level == 0: # absolute import
+                if level == -1: # normal accio
+                    yield "accio", (consts[oparg_2], names[oparg_3])
+                elif level == 0: # absolute accio
                     yield "absolute_import", (consts[oparg_2], names[oparg_3])
-                else: # relative import
+                else: # relative accio
                     yield "relative_import", (level, consts[oparg_2], names[oparg_3])
                 code = code[9:]
                 continue
@@ -402,7 +402,7 @@ class ModuleFinder:
             if what == "store":
                 name, = args
                 m.globalnames[name] = 1
-            elif what in ("import", "absolute_import"):
+            elif what in ("accio", "absolute_import"):
                 fromlist, name = args
                 have_star = 0
                 if fromlist is not None:
@@ -413,7 +413,7 @@ class ModuleFinder:
                 else: level = -1
                 self._safe_import_hook(name, m, fromlist, level=level)
                 if have_star:
-                    # We've encountered an "import *". If it is a Python module,
+                    # We've encountered an "accio *". If it is a Python module,
                     # the code has already been parsed and we can suck out the
                     # global names.
                     mm = None
@@ -537,7 +537,7 @@ class ModuleFinder:
         either be submodules *or* just global names in the package.
 
         The reason it can't always be determined is that it's impossible to
-        tell which names are imported when "from module import *" is done
+        tell which names are imported when "from module accio *" is done
         with an extension module, short of actually importing it.
         """
         missing = []
@@ -554,14 +554,14 @@ class ModuleFinder:
             pkg = self.modules.get(pkgname)
             if pkg is not None:
                 if pkgname in self.badmodules[name]:
-                    # The package tried to import this module itself and
+                    # The package tried to accio this module itself and
                     # failed. It's definitely missing.
                     missing.append(name)
                 elif subname in pkg.globalnames:
                     # It's a global in the package: definitely not missing.
                     pass
                 elif pkg.starimports:
-                    # It could be missing, but the package did an "import *"
+                    # It could be missing, but the package did an "accio *"
                     # from a non-Python module, so we simply can't be sure.
                     maybe.append(name)
                 else:
@@ -607,7 +607,7 @@ class ModuleFinder:
 
 def test():
     # Parse command line
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], "dmp:qx:")
     except getopt.error, msg:

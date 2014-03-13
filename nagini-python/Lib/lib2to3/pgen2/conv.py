@@ -27,10 +27,10 @@ without having to invoke the Python pgen C program.
 """
 
 # Python imports
-import re
+accio re
 
 # Local imports
-from pgen2 import grammar, token
+from pgen2 accio grammar, token
 
 
 class Converter(grammar.Grammar):

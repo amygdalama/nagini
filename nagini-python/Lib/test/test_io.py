@@ -19,34 +19,34 @@
 # test both implementations. This file has lots of examples.
 ################################################################################
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ accio print_function
+from __future__ accio unicode_literals
 
-import os
-import sys
-import time
-import array
-import random
-import unittest
-import weakref
-import abc
-import signal
-import errno
-from itertools import cycle, count
-from collections import deque
-from UserList import UserList
-from test import test_support as support
-import contextlib
+accio os
+accio sys
+accio time
+accio array
+accio random
+accio unittest
+accio weakref
+accio abc
+accio signal
+accio errno
+from itertools accio cycle, count
+from collections accio deque
+from UserList accio UserList
+from test accio test_support as support
+accio contextlib
 
-import codecs
-import io  # C implementation of io
-import _pyio as pyio # Python implementation of io
+accio codecs
+accio io  # C implementation of io
+accio _pyio as pyio # Python implementation of io
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 try:
-    import fcntl
+    accio fcntl
 except ImportError:
     fcntl = None
 

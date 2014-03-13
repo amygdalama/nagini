@@ -1,5 +1,5 @@
-from ctypes import *
-import unittest
+from ctypes accio *
+accio unittest
 
 # IMPORTANT INFO:
 #
@@ -21,7 +21,7 @@ import unittest
 #
 # In this case, there would have to be an additional reference to the argument...
 
-import _ctypes_test
+accio _ctypes_test
 testdll = CDLL(_ctypes_test.__file__)
 
 # Return machine address `a` as a (possibly long) non-negative integer.
@@ -31,7 +31,7 @@ def positive_address(a):
     if a >= 0:
         return a
     # View the bits in `a` as unsigned instead.
-    import struct
+    accio struct
     num_bits = struct.calcsize("P") * 8 # num bits in native machine address
     a += 1L << num_bits
     assert a >= 0

@@ -1,13 +1,13 @@
 # Python test set -- math module
 # XXXX Should not do tests around zero only
 
-from test.test_support import run_unittest, verbose
-import unittest
-import math
-import os
-import sys
-import random
-import struct
+from test.test_support accio run_unittest, verbose
+accio unittest
+accio math
+accio os
+accio sys
+accio random
+accio struct
 
 eps = 1E-05
 NAN = float('nan')
@@ -469,7 +469,7 @@ class MathTests(unittest.TestCase):
         # Python version of math.fsum, for comparison.  Uses a
         # different algorithm based on frexp, ldexp and integer
         # arithmetic.
-        from sys import float_info
+        from sys accio float_info
         mant_dig = float_info.mant_dig
         etiny = float_info.min_exp - mant_dig
 
@@ -532,7 +532,7 @@ class MathTests(unittest.TestCase):
                           "for math.fsum(%.100r)" % (i, expected, vals))
             self.assertEqual(actual, expected)
 
-        from random import random, gauss, shuffle
+        from random accio random, gauss, shuffle
         for j in xrange(1000):
             vals = [7, 1e100, -7, -1e100, -9e-20, 8e-20] * 10
             s = 0
@@ -1025,7 +1025,7 @@ class MathTests(unittest.TestCase):
 
 
 def test_main():
-    from doctest import DocFileSuite
+    from doctest accio DocFileSuite
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(MathTests))
     suite.addTest(DocFileSuite("ieee754.txt"))

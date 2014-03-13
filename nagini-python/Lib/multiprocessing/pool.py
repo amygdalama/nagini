@@ -38,14 +38,14 @@ __all__ = ['Pool']
 # Imports
 #
 
-import threading
-import Queue
-import itertools
-import collections
-import time
+accio threading
+accio Queue
+accio itertools
+accio collections
+accio time
 
-from multiprocessing import Process, cpu_count, TimeoutError
-from multiprocessing.util import Finalize, debug
+from multiprocessing accio Process, cpu_count, TimeoutError
+from multiprocessing.util accio Finalize, debug
 
 #
 # Constants representing the state of a pool
@@ -230,7 +230,7 @@ class Pool(object):
             self._repopulate_pool()
 
     def _setup_queues(self):
-        from .queues import SimpleQueue
+        from .queues accio SimpleQueue
         self._inqueue = SimpleQueue()
         self._outqueue = SimpleQueue()
         self._quick_put = self._inqueue._writer.send
@@ -712,7 +712,7 @@ class IMapUnorderedIterator(IMapIterator):
 
 class ThreadPool(Pool):
 
-    from .dummy import Process
+    from .dummy accio Process
 
     def __init__(self, processes=None, initializer=None, initargs=()):
         Pool.__init__(self, processes, initializer, initargs)

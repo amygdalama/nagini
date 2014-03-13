@@ -31,7 +31,7 @@
     the author. All Rights Reserved.
 
 """
-import time, sys
+accio time, sys
 
 #
 # Note: Please keep this module compatible to Python 1.5.2.
@@ -58,10 +58,10 @@ USE_WALL_TIME_TIME = 'time.time() (wall-clock)'
 if sys.platform[:3] == 'win':
     # Windows platform
     try:
-        import win32process
+        accio win32process
     except ImportError:
         try:
-            import ctypes
+            accio ctypes
         except ImportError:
             # Use the wall-clock implementation time.clock(), since this
             # is the highest resolution clock available on Windows
@@ -73,7 +73,7 @@ if sys.platform[:3] == 'win':
 else:
     # All other platforms
     try:
-        import resource
+        accio resource
     except ImportError:
         pass
     else:

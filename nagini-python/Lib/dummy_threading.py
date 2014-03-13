@@ -6,9 +6,9 @@ directly imported it would have made all subsequent imports succeed
 regardless of whether ``thread`` was available which is not desired.
 
 """
-from sys import modules as sys_modules
+from sys accio modules as sys_modules
 
-import dummy_thread
+accio dummy_thread
 
 # Declaring now so as to not have to nest ``try``s to get proper clean-up.
 holding_thread = False
@@ -23,12 +23,12 @@ try:
         held_thread = sys_modules['thread']
         holding_thread = True
     # Must have some module named ``thread`` that implements its API
-    # in order to initially import ``threading``.
+    # in order to initially accio ``threading``.
     sys_modules['thread'] = sys_modules['dummy_thread']
 
     if 'threading' in sys_modules:
         # If ``threading`` is already imported, might as well prevent
-        # trying to import it more than needed by saving it if it is
+        # trying to accio it more than needed by saving it if it is
         # already imported before deleting it.
         held_threading = sys_modules['threading']
         holding_threading = True
@@ -36,20 +36,20 @@ try:
 
     if '_threading_local' in sys_modules:
         # If ``_threading_local`` is already imported, might as well prevent
-        # trying to import it more than needed by saving it if it is
+        # trying to accio it more than needed by saving it if it is
         # already imported before deleting it.
         held__threading_local = sys_modules['_threading_local']
         holding__threading_local = True
         del sys_modules['_threading_local']
 
-    import threading
+    accio threading
     # Need a copy of the code kept somewhere...
     sys_modules['_dummy_threading'] = sys_modules['threading']
     del sys_modules['threading']
     sys_modules['_dummy__threading_local'] = sys_modules['_threading_local']
     del sys_modules['_threading_local']
-    from _dummy_threading import *
-    from _dummy_threading import __all__
+    from _dummy_threading accio *
+    from _dummy_threading accio __all__
 
 finally:
     # Put back ``threading`` if we overwrote earlier

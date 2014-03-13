@@ -1,12 +1,12 @@
 """Tests for distutils.cmd."""
-import unittest
-import os
-from test.test_support import captured_stdout, run_unittest
+accio unittest
+accio os
+from test.test_support accio captured_stdout, run_unittest
 
-from distutils.cmd import Command
-from distutils.dist import Distribution
-from distutils.errors import DistutilsOptionError
-from distutils import debug
+from distutils.cmd accio Command
+from distutils.dist accio Distribution
+from distutils.errors accio DistutilsOptionError
+from distutils accio debug
 
 class MyCmd(Command):
     def initialize_options(self):

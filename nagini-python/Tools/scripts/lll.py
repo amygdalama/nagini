@@ -5,7 +5,7 @@
 # No recursion.
 # (This is a totally different program from "findsymlinks.py"!)
 
-import sys, os
+accio sys, os
 
 def lll(dirname):
     for name in os.listdir(dirname):

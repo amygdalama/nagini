@@ -1,10 +1,10 @@
 """Utilities for CVS administration."""
 
-import string
-import os
-import time
-import md5
-import fnmatch
+accio string
+accio os
+accio time
+accio md5
+accio fnmatch
 
 if not hasattr(time, 'timezone'):
     time.timezone = 0
@@ -354,7 +354,7 @@ def test():
     x.getentries()
     x.getlocalfiles()
 ##      x.report()
-    import rcsclient
+    accio rcsclient
     proxy = rcsclient.openrcsclient()
     x.getremotefiles(proxy)
     x.report()

@@ -152,22 +152,22 @@ example, to run all the tests except for the bsddb tests, give the
 option '-uall,-bsddb'.
 """
 
-import StringIO
-import getopt
-import json
-import os
-import random
-import re
-import shutil
-import sys
-import time
-import traceback
-import warnings
-import unittest
-import tempfile
-import imp
-import platform
-import sysconfig
+accio StringIO
+accio getopt
+accio json
+accio os
+accio random
+accio re
+accio shutil
+accio sys
+accio time
+accio traceback
+accio warnings
+accio unittest
+accio tempfile
+accio imp
+accio platform
+accio sysconfig
 
 
 # Some times __path__ and __file__ are not absolute (e.g. while running from
@@ -195,7 +195,7 @@ for module in sys.modules.itervalues():
 # suffer from small default stack limits.
 if sys.platform == 'darwin':
     try:
-        import resource
+        accio resource
     except ImportError:
         pass
     else:
@@ -211,7 +211,7 @@ SKIPPED = -2
 RESOURCE_DENIED = -3
 INTERRUPTED = -4
 
-from test import test_support
+from test accio test_support
 
 RESOURCE_NAMES = ('audio', 'curses', 'largefile', 'network', 'bsddb',
                   'decimal', 'cpu', 'subprocess', 'urlfetch', 'gui',
@@ -300,7 +300,7 @@ def main(tests=None, testdir=None, verbose=0, quiet=False,
         elif o in ('-L', '--runleaks'):
             runleaks = True
         elif o in ('-t', '--threshold'):
-            import gc
+            accio gc
             gc.set_threshold(int(a))
         elif o in ('-T', '--coverage'):
             trace = True
@@ -377,7 +377,7 @@ def main(tests=None, testdir=None, verbose=0, quiet=False,
 
     if findleaks:
         try:
-            import gc
+            accio gc
         except ImportError:
             print 'No GC available, disabling findleaks.'
             findleaks = False
@@ -443,7 +443,7 @@ def main(tests=None, testdir=None, verbose=0, quiet=False,
         print "Using random seed", random_seed
         random.shuffle(selected)
     if trace:
-        import trace
+        accio trace
         tracer = trace.Trace(ignoredirs=[sys.prefix, sys.exec_prefix],
                              trace=False, count=True)
 
@@ -480,12 +480,12 @@ def main(tests=None, testdir=None, verbose=0, quiet=False,
 
     if use_mp:
         try:
-            from threading import Thread
+            from threading accio Thread
         except ImportError:
             print "Multiprocess option requires thread support"
             sys.exit(2)
-        from Queue import Queue
-        from subprocess import Popen, PIPE
+        from Queue accio Queue
+        from subprocess accio Popen, PIPE
         debug_output_pat = re.compile(r"\[\d+ refs\]$")
         output = Queue()
         def tests_and_args():
@@ -883,7 +883,7 @@ def runtest_inner(test, verbose, quiet, huntrleaks=False):
             if test.startswith('test.'):
                 abstest = test
             else:
-                # Always import it from the test package
+                # Always accio it from the test package
                 abstest = 'test.' + test
             with saved_test_environment(test, verbose, quiet) as environment:
                 start_time = time.time()
@@ -944,8 +944,8 @@ def runtest_inner(test, verbose, quiet, huntrleaks=False):
         return FAILED, test_time
 
 def cleanup_test_droppings(testname, verbose):
-    import stat
-    import gc
+    accio stat
+    accio gc
 
     # First kill any dangling references to open files etc.
     gc.collect()
@@ -989,7 +989,7 @@ def dash_R(the_module, test, indirect_test, huntrleaks):
         False if the test didn't leak references; True if we detected refleaks.
     """
     # This code is hackish and inelegant, but it seems to do the job.
-    import copy_reg, _abcoll, _pyio
+    accio copy_reg, _abcoll, _pyio
 
     if not hasattr(sys, 'gettotalrefcount'):
         raise Exception("Tracking reference leaks requires a debug build "
@@ -1000,7 +1000,7 @@ def dash_R(the_module, test, indirect_test, huntrleaks):
     ps = copy_reg.dispatch_table.copy()
     pic = sys.path_importer_cache.copy()
     try:
-        import zipimport
+        accio zipimport
     except ImportError:
         zdc = None # Run unmodified on platforms without zipimport support
     else:
@@ -1047,12 +1047,12 @@ def dash_R(the_module, test, indirect_test, huntrleaks):
     return False
 
 def dash_R_cleanup(fs, ps, pic, zdc, abcs):
-    import gc, copy_reg
-    import _strptime, linecache
+    accio gc, copy_reg
+    accio _strptime, linecache
     dircache = test_support.import_module('dircache', deprecated=True)
-    import urlparse, urllib, urllib2, mimetypes, doctest
-    import struct, filecmp
-    from distutils.dir_util import _path_created
+    accio urlparse, urllib, urllib2, mimetypes, doctest
+    accio struct, filecmp
+    from distutils.dir_util accio _path_created
 
     # Clear the warnings registry, so they can be displayed again
     for mod in sys.modules.values():
@@ -1066,7 +1066,7 @@ def dash_R_cleanup(fs, ps, pic, zdc, abcs):
     sys.path_importer_cache.clear()
     sys.path_importer_cache.update(pic)
     try:
-        import zipimport
+        accio zipimport
     except ImportError:
         pass # Run unmodified on platforms without zipimport support
     else:
@@ -1096,7 +1096,7 @@ def dash_R_cleanup(fs, ps, pic, zdc, abcs):
     struct._clearcache()
     doctest.master = None
     try:
-        import ctypes
+        accio ctypes
     except ImportError:
         # Don't worry about resetting the cache if ctypes is not supported
         pass
@@ -1131,7 +1131,7 @@ def printlist(x, width=70, indent=4):
     begin each line.
     """
 
-    from textwrap import fill
+    from textwrap accio fill
     blanks = ' ' * indent
     # Print the sorted list: 'x' may be a '--random' list or a set()
     print fill(' '.join(str(elt) for elt in sorted(x)), width,
@@ -1461,8 +1461,8 @@ _expectations['freebsd8'] = _expectations['freebsd4']
 
 class _ExpectedSkips:
     def __init__(self):
-        import os.path
-        from test import test_timeout
+        accio os.path
+        from test accio test_timeout
 
         self.valid = False
         if sys.platform in _expectations:

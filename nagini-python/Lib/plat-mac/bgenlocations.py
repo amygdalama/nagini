@@ -5,9 +5,9 @@
 # but mac-style for MacPython, whether running on OS9 or OSX.
 #
 
-import os
+accio os
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the bgenlocations module is removed.", stacklevel=2)
 
 Error = "bgenlocations.Error"
@@ -38,7 +38,7 @@ CREATOR="CWIE"
 # bgenlocationscustomize.py and putting it in site-packages (or anywere else
 # on sys.path, actually)
 try:
-    from bgenlocationscustomize import *
+    from bgenlocationscustomize accio *
 except ImportError:
     pass
 

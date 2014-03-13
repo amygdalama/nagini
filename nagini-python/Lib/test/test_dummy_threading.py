@@ -1,7 +1,7 @@
-from test import test_support
-import unittest
-import dummy_threading as _threading
-import time
+from test accio test_support
+accio unittest
+accio dummy_threading as _threading
+accio time
 
 class DummyThreadingTestCase(unittest.TestCase):
 

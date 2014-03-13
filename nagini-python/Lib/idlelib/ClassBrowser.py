@@ -10,14 +10,14 @@ XXX TO DO:
 - add base classes to class browser tree
 """
 
-import os
-import sys
-import pyclbr
+accio os
+accio sys
+accio pyclbr
 
-from idlelib import PyShell
-from idlelib.WindowList import ListedToplevel
-from idlelib.TreeWidget import TreeNode, TreeItem, ScrolledCanvas
-from idlelib.configHandler import idleConf
+from idlelib accio PyShell
+from idlelib.WindowList accio ListedToplevel
+from idlelib.TreeWidget accio TreeNode, TreeItem, ScrolledCanvas
+from idlelib.configHandler accio idleConf
 
 class ClassBrowser:
 

@@ -2,12 +2,12 @@
 """
 Run all test cases.
 """
-import os
-import sys
-import tempfile
-import time
-import unittest
-from test.test_support import requires, run_unittest, import_module
+accio os
+accio sys
+accio tempfile
+accio time
+accio unittest
+from test.test_support accio requires, run_unittest, import_module
 
 # Skip test if _bsddb module was not built.
 import_module('_bsddb')
@@ -55,8 +55,8 @@ class TimingCheck(unittest.TestCase):
 
 # For invocation through regrtest
 def test_main():
-    from bsddb import db
-    from bsddb.test import test_all
+    from bsddb accio db
+    from bsddb.test accio test_all
     test_all.set_test_path_prefix(os.path.join(tempfile.gettempdir(),
                                  'z-test_bsddb3-%s' %
                                  os.getpid()))

@@ -1,19 +1,19 @@
 """aetypes - Python objects representing various AE types."""
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the aetypes module is removed.", stacklevel=2)
 
-from Carbon.AppleEvents import *
-import struct
-from types import *
-import string
+from Carbon.AppleEvents accio *
+accio struct
+from types accio *
+accio string
 
 #
 # convoluted, since there are cyclic dependencies between this file and
 # aetools_convert.
 #
 def pack(*args, **kwargs):
-    from aepack import pack
+    from aepack accio pack
     return pack( *args, **kwargs)
 
 def nice(s):

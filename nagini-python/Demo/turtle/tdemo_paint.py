@@ -15,7 +15,7 @@ A simple  eventdriven paint program
           To exit press STOP button
  -------------------------------------------
 """
-from turtle import *
+from turtle accio *
 
 def switchupdown(x=0, y=0):
     if pen()["pendown"]:

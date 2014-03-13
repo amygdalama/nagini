@@ -3,11 +3,11 @@
 # BuildApplet will use it as the main executable in the .app bundle if
 # we are not running in a framework build.
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the appletrunner module is removed.", stacklevel=2)
 
-import os
-import sys
+accio os
+accio sys
 for name in ["__rawmain__.py", "__rawmain__.pyc", "__main__.py", "__main__.pyc"]:
     realmain = os.path.join(os.path.dirname(os.path.dirname(sys.argv[0])),
                       "Resources", name)

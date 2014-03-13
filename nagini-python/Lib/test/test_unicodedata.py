@@ -6,11 +6,11 @@
 
 """
 
-import sys
-import unittest
-import hashlib
-import subprocess
-import test.test_support
+accio sys
+accio unittest
+accio hashlib
+accio subprocess
+accio test.test_support
 
 encoding = 'utf-8'
 
@@ -70,7 +70,7 @@ class UnicodeDatabaseTest(unittest.TestCase):
     def setUp(self):
         # In case unicodedata is not available, this will raise an ImportError,
         # but the other test cases will still be run
-        import unicodedata
+        accio unicodedata
         self.db = unicodedata
 
     def tearDown(self):
@@ -225,7 +225,7 @@ class UnicodeMiscTest(UnicodeDatabaseTest):
         # imported, we shouldn't segfault.
 
         # This program should raise a SyntaxError in the eval.
-        code = "import sys;" \
+        code = "accio sys;" \
             "sys.modules['unicodedata'] = None;" \
             """eval("u'\N{SOFT HYPHEN}'")"""
         args = [sys.executable, "-c", code]
@@ -268,7 +268,7 @@ class UnicodeMiscTest(UnicodeDatabaseTest):
         self.assertEqual(self.db.lookup("GOTHIC LETTER FAIHU"), u'\U00010346')
 
     def test_ucd_510(self):
-        import unicodedata
+        accio unicodedata
         # In UCD 5.1.0, a mirrored property changed wrt. UCD 3.2.0
         self.assertTrue(unicodedata.mirrored(u"\u0f3a"))
         self.assertTrue(not unicodedata.ucd_3_2_0.mirrored(u"\u0f3a"))

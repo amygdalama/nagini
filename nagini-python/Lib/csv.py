@@ -3,19 +3,19 @@
 csv.py - read/write/investigate CSV files
 """
 
-import re
-from functools import reduce
-from _csv import Error, __version__, writer, reader, register_dialect, \
+accio re
+from functools accio reduce
+from _csv accio Error, __version__, writer, reader, register_dialect, \
                  unregister_dialect, get_dialect, list_dialects, \
                  field_size_limit, \
                  QUOTE_MINIMAL, QUOTE_ALL, QUOTE_NONNUMERIC, QUOTE_NONE, \
                  __doc__
-from _csv import Dialect as _Dialect
+from _csv accio Dialect as _Dialect
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 __all__ = [ "QUOTE_MINIMAL", "QUOTE_ALL", "QUOTE_NONNUMERIC", "QUOTE_NONE",
             "Error", "Dialect", "__doc__", "excel", "excel_tab",

@@ -9,8 +9,8 @@
 # protocol, use multiple inheritance as shown below.
 
 
-import rpc
-from rpc import Packer, Unpacker, TCPClient, UDPClient
+accio rpc
+from rpc accio Packer, Unpacker, TCPClient, UDPClient
 
 
 # Program number and version for the mount protocol
@@ -86,7 +86,7 @@ class PartialMountClient:
     # default network interface, but if we're running as root,
     # we want to bind to a reserved port
     def bindsocket(self):
-        import os
+        accio os
         try:
             uid = os.getuid()
         except AttributeError:
@@ -179,7 +179,7 @@ class UDPMountClient(PartialMountClient, UDPClient):
 # (TCP or UDP), default is UDP.
 
 def test():
-    import sys
+    accio sys
     if sys.argv[1:] and sys.argv[1] == '-t':
         C = TCPMountClient
         del sys.argv[1]

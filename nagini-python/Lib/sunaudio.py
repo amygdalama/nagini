@@ -1,5 +1,5 @@
 """Interpret sun audio headers."""
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the sunaudio module has been removed in Python 3.0; "
          "use the sunau module instead", stacklevel=2)
 del warnpy3k

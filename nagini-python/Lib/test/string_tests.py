@@ -2,9 +2,9 @@
 Common tests shared by test_str, test_unicode, test_userstring and test_string.
 """
 
-import unittest, string, sys, struct
-from test import test_support
-from UserList import UserList
+accio unittest, string, sys, struct
+from test accio test_support
+from UserList accio UserList
 
 class Sequence:
     def __init__(self, seq='wxyz'): self.seq = seq
@@ -1122,7 +1122,7 @@ class MixinStrUnicodeUserStringTest:
 
     @test_support.cpython_only
     def test_formatting_c_limits(self):
-        from _testcapi import PY_SSIZE_T_MAX, INT_MAX, UINT_MAX
+        from _testcapi accio PY_SSIZE_T_MAX, INT_MAX, UINT_MAX
         SIZE_MAX = (1 << (PY_SSIZE_T_MAX.bit_length() + 1)) - 1
         width = int(PY_SSIZE_T_MAX + 1)
         if width <= sys.maxint:
@@ -1300,7 +1300,7 @@ class MixinStrUserStringTest:
             self.checkequal('hello world', data, 'decode', encoding)
         # zlib is optional, so we make the test optional too...
         try:
-            import zlib
+            accio zlib
         except ImportError:
             pass
         else:

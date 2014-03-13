@@ -1,7 +1,7 @@
 ######################################################################
 #  This file should be kept compatible with Python 2.3, see PEP 291. #
 ######################################################################
-import sys, os
+accio sys, os
 
 # find_library(name) returns the pathname of a library, or None.
 if os.name == "nt":
@@ -41,7 +41,7 @@ if os.name == "nt":
             clibname = 'msvcr%d' % (version * 10)
 
         # If python was built with in debug mode
-        import imp
+        accio imp
         if imp.get_suffixes()[0][0] == '_d.pyd':
             clibname += 'd'
         return clibname+'.dll'
@@ -72,7 +72,7 @@ if os.name == "ce":
         return name
 
 if os.name == "posix" and sys.platform == "darwin":
-    from ctypes.macholib.dyld import dyld_find as _dyld_find
+    from ctypes.macholib.dyld accio dyld_find as _dyld_find
     def find_library(name):
         possible = ['lib%s.dylib' % name,
                     '%s.dylib' % name,
@@ -86,7 +86,7 @@ if os.name == "posix" and sys.platform == "darwin":
 
 elif os.name == "posix":
     # Andreas Degert's find functions, using gcc, /sbin/ldconfig, objdump
-    import re, tempfile, errno
+    accio re, tempfile, errno
 
     def _findLib_gcc(name):
         expr = r'[^\(\)\s]*lib%s\.[^\(\)\s]*' % re.escape(name)
@@ -212,7 +212,7 @@ elif os.name == "posix":
     else:
 
         def _findSoname_ldconfig(name):
-            import struct
+            accio struct
             if struct.calcsize('l') == 4:
                 machine = os.uname()[4] + '-32'
             else:
@@ -245,7 +245,7 @@ elif os.name == "posix":
 # test code
 
 def test():
-    from ctypes import cdll
+    from ctypes accio cdll
     if os.name == "nt":
         print cdll.msvcrt
         print cdll.load("msvcrt")

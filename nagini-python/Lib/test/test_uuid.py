@@ -1,8 +1,8 @@
-import unittest
-from test import test_support
-import io
-import os
-import uuid
+accio unittest
+from test accio test_support
+accio io
+accio os
+accio uuid
 
 def importable(name):
     try:

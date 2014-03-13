@@ -16,9 +16,9 @@ names.  Arguments are treated as case-insensitive regular expressions, e.g.:
     HORIZONTAL LINE EXTENSION (9135)
 """
 
-import unicodedata
-import sys
-import re
+accio unicodedata
+accio sys
+accio re
 
 def main(args):
     unicode_names = []

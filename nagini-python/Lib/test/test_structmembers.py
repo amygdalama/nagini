@@ -1,9 +1,9 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # Skip this test if the _testcapi module isn't available.
 test_support.import_module('_testcapi')
-from _testcapi import _test_structmembersType, \
+from _testcapi accio _test_structmembersType, \
     CHAR_MAX, CHAR_MIN, UCHAR_MAX, \
     SHRT_MAX, SHRT_MIN, USHRT_MAX, \
     INT_MAX, INT_MIN, UINT_MAX, \

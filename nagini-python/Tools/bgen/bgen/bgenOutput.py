@@ -23,7 +23,7 @@ def SetOutputFile(file = None, needclose = 0):
         _File = None
         tmp.close()
     if file is None:
-        import sys
+        accio sys
         file = sys.stdout
     _File = file
     _NeedClose = file and needclose

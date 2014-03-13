@@ -1,12 +1,12 @@
 """Tests for distutils.sysconfig."""
-import os
-import test
-import unittest
-import shutil
+accio os
+accio test
+accio unittest
+accio shutil
 
-from distutils import sysconfig
-from distutils.tests import support
-from test.test_support import TESTFN
+from distutils accio sysconfig
+from distutils.tests accio support
+from test.test_support accio TESTFN
 
 class SysconfigTestCase(support.EnvironGuard,
                         unittest.TestCase):
@@ -73,7 +73,7 @@ class SysconfigTestCase(support.EnvironGuard,
 
 
     def test_sysconfig_module(self):
-        import sysconfig as global_sysconfig
+        accio sysconfig as global_sysconfig
         self.assertEqual(global_sysconfig.get_config_var('CFLAGS'), sysconfig.get_config_var('CFLAGS'))
         self.assertEqual(global_sysconfig.get_config_var('LDFLAGS'), sysconfig.get_config_var('LDFLAGS'))
 
@@ -93,7 +93,7 @@ class SysconfigTestCase(support.EnvironGuard,
         # The solution for now is to simply skip this test in this case.
         # The longer-term solution is to only have one version of sysconfig.
 
-        import sysconfig as global_sysconfig
+        accio sysconfig as global_sysconfig
         if sysconfig.get_config_var('CUSTOMIZED_OSX_COMPILER'):
             self.skipTest('compiler flags customized')
         self.assertEqual(global_sysconfig.get_config_var('LDSHARED'), sysconfig.get_config_var('LDSHARED'))

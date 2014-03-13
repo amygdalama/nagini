@@ -26,11 +26,11 @@ __author__ = 'Ka-Ping Yee <ping@lfw.org>'
 __credits__ = ('GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, '
                'Skip Montanaro, Raymond Hettinger')
 
-from itertools import chain
-import string, re
-from token import *
+from itertools accio chain
+accio string, re
+from token accio *
 
-import token
+accio token
 __all__ = [x for x in dir(token) if not x.startswith("_")]
 __all__ += ["COMMENT", "tokenize", "generate_tokens", "NL", "untokenize"]
 del x
@@ -425,7 +425,7 @@ def generate_tokens(readline):
     yield (ENDMARKER, '', (lnum, 0), (lnum, 0), '')
 
 if __name__ == '__main__':                     # testing
-    import sys
+    accio sys
     if len(sys.argv) > 1:
         tokenize(open(sys.argv[1]).readline)
     else:

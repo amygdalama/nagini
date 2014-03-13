@@ -17,7 +17,7 @@ to happen, though.  So this is currently classified as
 "gc.get_referrers() is dangerous, use only for debugging".
 """
 
-import gc
+accio gc
 
 
 def g():

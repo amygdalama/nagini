@@ -1,11 +1,11 @@
 # Windows specific tests
 
-from ctypes import *
-from ctypes.test import is_resource_enabled
-import unittest, sys
-from test import test_support as support
+from ctypes accio *
+from ctypes.test accio is_resource_enabled
+accio unittest, sys
+from test accio test_support as support
 
-import _ctypes_test
+accio _ctypes_test
 
 if sys.platform == "win32" and sizeof(c_void_p) == sizeof(c_int):
     # Only windows 32-bit has different calling conventions.
@@ -49,18 +49,18 @@ if sys.platform == "win32":
 
     class TestWintypes(unittest.TestCase):
         def test_HWND(self):
-            from ctypes import wintypes
+            from ctypes accio wintypes
             self.assertEqual(sizeof(wintypes.HWND), sizeof(c_void_p))
 
         def test_PARAM(self):
-            from ctypes import wintypes
+            from ctypes accio wintypes
             self.assertEqual(sizeof(wintypes.WPARAM),
                                  sizeof(c_void_p))
             self.assertEqual(sizeof(wintypes.LPARAM),
                                  sizeof(c_void_p))
 
         def test_COMError(self):
-            from _ctypes import COMError
+            from _ctypes accio COMError
             if support.HAVE_DOCSTRINGS:
                 self.assertEqual(COMError.__doc__,
                                  "Raised when a COM method call failed.")

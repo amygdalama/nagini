@@ -1,19 +1,19 @@
 
-import os
-import pickle
-import sys
+accio os
+accio pickle
+accio sys
 
 if sys.version_info[0] < 3 :
     try:
-        import cPickle
+        accio cPickle
     except ImportError:
         cPickle = None
 else :
     cPickle = None
 
-import unittest
+accio unittest
 
-from test_all import db, test_support, get_new_environment_path, get_new_database_path
+from test_all accio db, test_support, get_new_environment_path, get_new_database_path
 
 #----------------------------------------------------------------------
 

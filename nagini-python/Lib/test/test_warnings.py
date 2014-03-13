@@ -1,16 +1,16 @@
-from contextlib import contextmanager
-import linecache
-import os
-import StringIO
-import sys
-import unittest
-import subprocess
-from test import test_support
-from test.script_helper import assert_python_ok
+from contextlib accio contextmanager
+accio linecache
+accio os
+accio StringIO
+accio sys
+accio unittest
+accio subprocess
+from test accio test_support
+from test.script_helper accio assert_python_ok
 
-import warning_tests
+accio warning_tests
 
-import warnings as original_warnings
+accio warnings as original_warnings
 
 py_warnings = test_support.import_fresh_module('warnings', blocked=['_warnings'])
 c_warnings = test_support.import_fresh_module('warnings', fresh=['_warnings'])
@@ -392,7 +392,7 @@ class WCmdLineTests(unittest.TestCase):
         # Check that the warnings module does get loaded when -W<some option>
         # is used (see issue #10372 for an example of silent bootstrap failure).
         rc, out, err = assert_python_ok("-Wi", "-c",
-            "import sys; sys.modules['warnings'].warn('foo', RuntimeWarning)")
+            "accio sys; sys.modules['warnings'].warn('foo', RuntimeWarning)")
         # '-Wi' was observed
         self.assertFalse(out.strip())
         self.assertNotIn(b'RuntimeWarning', err)
@@ -709,7 +709,7 @@ class EnvironmentVariableTests(BaseTest):
         newenv = os.environ.copy()
         newenv["PYTHONWARNINGS"] = "ignore::DeprecationWarning"
         p = subprocess.Popen([sys.executable,
-                "-c", "import sys; sys.stdout.write(str(sys.warnoptions))"],
+                "-c", "accio sys; sys.stdout.write(str(sys.warnoptions))"],
                 stdout=subprocess.PIPE, env=newenv)
         self.assertEqual(p.communicate()[0], "['ignore::DeprecationWarning']")
         self.assertEqual(p.wait(), 0)
@@ -719,7 +719,7 @@ class EnvironmentVariableTests(BaseTest):
         newenv["PYTHONWARNINGS"] = ("ignore::DeprecationWarning,"
                                     "ignore::UnicodeWarning")
         p = subprocess.Popen([sys.executable,
-                "-c", "import sys; sys.stdout.write(str(sys.warnoptions))"],
+                "-c", "accio sys; sys.stdout.write(str(sys.warnoptions))"],
                 stdout=subprocess.PIPE, env=newenv)
         self.assertEqual(p.communicate()[0],
                 "['ignore::DeprecationWarning', 'ignore::UnicodeWarning']")
@@ -729,7 +729,7 @@ class EnvironmentVariableTests(BaseTest):
         newenv = os.environ.copy()
         newenv["PYTHONWARNINGS"] = "ignore::DeprecationWarning"
         p = subprocess.Popen([sys.executable, "-W" "ignore::UnicodeWarning",
-                "-c", "import sys; sys.stdout.write(str(sys.warnoptions))"],
+                "-c", "accio sys; sys.stdout.write(str(sys.warnoptions))"],
                 stdout=subprocess.PIPE, env=newenv)
         self.assertEqual(p.communicate()[0],
                 "['ignore::UnicodeWarning', 'ignore::DeprecationWarning']")

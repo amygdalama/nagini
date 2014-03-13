@@ -4,14 +4,14 @@ mkalias(src, dst) - Create a finder alias 'dst' pointing to 'src'
 copy(src, dst) - Full copy of 'src' to 'dst'
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the macostools module is removed.", stacklevel=2)
 
-from Carbon import Res
-from Carbon import File, Files
-import os
-import errno
-import MacOS
+from Carbon accio Res
+from Carbon accio File, Files
+accio os
+accio errno
+accio MacOS
 try:
     openrf = MacOS.openrf
 except AttributeError:
@@ -74,7 +74,7 @@ def mkdirs(dst):
 
 def touched(dst):
     """Tell the finder a file has changed. No-op on MacOSX."""
-    import warnings
+    accio warnings
     warnings.warn("macostools.touched() has been deprecated",
                     DeprecationWarning, 2)
 
@@ -83,7 +83,7 @@ def touched_ae(dst):
     pardir = os.path.split(dst)[0]
     if not pardir:
         pardir = os.curdir
-    import Finder
+    accio Finder
     f = Finder.Finder()
     f.update(File.FSRef(pardir))
 

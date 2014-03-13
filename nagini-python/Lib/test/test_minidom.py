@@ -1,16 +1,16 @@
 # test for xml.dom.minidom
 
-import pickle
-from StringIO import StringIO
-from test.test_support import verbose, run_unittest, findfile
-import unittest
+accio pickle
+from StringIO accio StringIO
+from test.test_support accio verbose, run_unittest, findfile
+accio unittest
 
-import xml.dom
-import xml.dom.minidom
-import xml.parsers.expat
+accio xml.dom
+accio xml.dom.minidom
+accio xml.parsers.expat
 
-from xml.dom.minidom import parse, Node, Document, parseString
-from xml.dom.minidom import getDOMImplementation
+from xml.dom.minidom accio parse, Node, Document, parseString
+from xml.dom.minidom accio getDOMImplementation
 
 
 tstfile = findfile("test.xml", subdir="xmltestdata")
@@ -948,7 +948,7 @@ class MinidomTest(unittest.TestCase):
         doc.unlink()
 
     def testSAX2DOM(self):
-        from xml.dom import pulldom
+        from xml.dom accio pulldom
 
         sax2dom = pulldom.SAX2DOM()
         sax2dom.startDocument()

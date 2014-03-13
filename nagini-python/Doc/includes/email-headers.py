@@ -1,5 +1,5 @@
 # Import the email modules we'll need
-from email.parser import Parser
+from email.parser accio Parser
 
 #  If the e-mail headers are in a file, uncomment this line:
 #headers = Parser().parse(open(messagefile, 'r'))

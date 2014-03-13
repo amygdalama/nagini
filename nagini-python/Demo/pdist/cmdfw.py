@@ -38,7 +38,7 @@ class CommandFrameWork:
 
     def run(self, args = None):
         """Process flags, subcommand and options, then run it."""
-        import getopt, sys
+        accio getopt, sys
         if args is None: args = sys.argv[1:]
         try:
             opts, args = getopt.getopt(args, self.GlobalFlags)
@@ -120,7 +120,7 @@ class CommandFrameWork:
 
 def test():
     """Test script -- called when this module is run as a script."""
-    import sys
+    accio sys
     class Hello(CommandFrameWork):
         def do_hello(self, opts, args):
             "hello -- print 'hello world', needs no arguments"

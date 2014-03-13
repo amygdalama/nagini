@@ -19,10 +19,10 @@
 # e.g.: nm -o /lib/libc.a | objgraph
 
 
-import sys
-import os
-import getopt
-import re
+accio sys
+accio os
+accio getopt
+accio re
 
 # Types of symbols.
 #

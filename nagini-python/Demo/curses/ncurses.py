@@ -5,8 +5,8 @@
 # (n)curses exerciser in Python, an interactive test for the curses
 # module. Currently, only the panel demos are ported.
 
-import curses
-from curses import panel
+accio curses
+from curses accio panel
 
 def wGetchar(win = None):
     if win is None: win = stdscr

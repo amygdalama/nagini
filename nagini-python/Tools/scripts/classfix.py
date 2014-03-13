@@ -29,10 +29,10 @@
 # NB: by changing only the function fixline() you can turn this
 # into a program for a different change to Python programs...
 
-import sys
-import re
-import os
-from stat import *
+accio sys
+accio re
+accio os
+from stat accio *
 
 err = sys.stderr.write
 dbg = err

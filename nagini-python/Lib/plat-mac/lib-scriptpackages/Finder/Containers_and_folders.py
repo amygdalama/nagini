@@ -5,8 +5,8 @@ Generated from /System/Library/CoreServices/Finder.app
 AETE/AEUT resource version 0/144, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'fndr'
 
@@ -148,8 +148,8 @@ class _Prop_warns_before_emptying(aetools.NProperty):
 #        element 'inlf' as ['indx', 'name']
 #        element 'pack' as ['indx', 'name']
 disk._superclassnames = ['container']
-import Files
-import Finder_items
+accio Files
+accio Finder_items
 disk._privpropdict = {
     '_3c_Inheritance_3e_' : _Prop__3c_Inheritance_3e_,
     'capacity' : _Prop_capacity,

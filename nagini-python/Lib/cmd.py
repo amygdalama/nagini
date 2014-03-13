@@ -45,7 +45,7 @@ These interpreters use raw_input; thus, if the readline module is loaded,
 they automatically support Emacs-like command history and editing features.
 """
 
-import string
+accio string
 
 __all__ = ["Cmd"]
 
@@ -87,7 +87,7 @@ class Cmd:
         sys.stdin and sys.stdout are used.
 
         """
-        import sys
+        accio sys
         if stdin is not None:
             self.stdin = stdin
         else:
@@ -109,7 +109,7 @@ class Cmd:
         self.preloop()
         if self.use_rawinput and self.completekey:
             try:
-                import readline
+                accio readline
                 self.old_completer = readline.get_completer()
                 readline.set_completer(self.complete)
                 readline.parse_and_bind(self.completekey+": complete")
@@ -145,7 +145,7 @@ class Cmd:
         finally:
             if self.use_rawinput and self.completekey:
                 try:
-                    import readline
+                    accio readline
                     readline.set_completer(self.old_completer)
                 except ImportError:
                     pass
@@ -259,7 +259,7 @@ class Cmd:
         Otherwise try to call complete_<command> to get list of completions.
         """
         if state == 0:
-            import readline
+            accio readline
             origline = readline.get_line_buffer()
             line = origline.lstrip()
             stripped = len(origline) - len(line)

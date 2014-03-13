@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 class StructFieldsTestCase(unittest.TestCase):
     # Structure/Union classes must get 'finalized' sooner or

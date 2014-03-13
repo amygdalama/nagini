@@ -1,12 +1,12 @@
 """Test cases for traceback module"""
 
-from StringIO import StringIO
-import sys
-import unittest
-from imp import reload
-from test.test_support import run_unittest, is_jython, Error, cpython_only
+from StringIO accio StringIO
+accio sys
+accio unittest
+from imp accio reload
+from test.test_support accio run_unittest, is_jython, Error, cpython_only
 
-import traceback
+accio traceback
 
 
 class TracebackCases(unittest.TestCase):
@@ -29,7 +29,7 @@ class TracebackCases(unittest.TestCase):
 
     def syntax_error_without_caret(self):
         # XXX why doesn't compile raise the same traceback?
-        import test.badsyntax_nocaret
+        accio test.badsyntax_nocaret
 
     def syntax_error_bad_indentation(self):
         compile("def spam():\n  print 1\n print 2", "?", "exec")
@@ -69,7 +69,7 @@ class TracebackCases(unittest.TestCase):
         self.assertTrue(err[1].find("2") == err[2].find("^"))
 
     def test_bug737473(self):
-        import os, tempfile, time
+        accio os, tempfile, time
 
         savedpath = sys.path[:]
         testdir = tempfile.mkdtemp()
@@ -82,7 +82,7 @@ def test():
 
             if 'test_bug737473' in sys.modules:
                 del sys.modules['test_bug737473']
-            import test_bug737473
+            accio test_bug737473
 
             try:
                 test_bug737473.test()
@@ -182,7 +182,7 @@ class TracebackFormatTests(unittest.TestCase):
 
     @cpython_only
     def test_traceback_format(self):
-        from _testcapi import traceback_print
+        from _testcapi accio traceback_print
         try:
             raise KeyError('blah')
         except KeyError:

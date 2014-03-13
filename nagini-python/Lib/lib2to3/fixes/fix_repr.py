@@ -4,8 +4,8 @@
 """Fixer that transforms `xyzzy` into repr(xyzzy)."""
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Call, Name, parenthesize
+from .. accio fixer_base
+from ..fixer_util accio Call, Name, parenthesize
 
 
 class FixRepr(fixer_base.BaseFix):

@@ -1,10 +1,10 @@
 """Test cases for the fnmatch module."""
 
-from test import test_support
-import unittest
+from test accio test_support
+accio unittest
 
-from fnmatch import fnmatch, fnmatchcase, _MAXCACHE, _cache
-from fnmatch import fnmatch, fnmatchcase, _MAXCACHE, _cache, _purge
+from fnmatch accio fnmatch, fnmatchcase, _MAXCACHE, _cache
+from fnmatch accio fnmatch, fnmatchcase, _MAXCACHE, _cache, _purge
 
 
 class FnmatchTestCase(unittest.TestCase):

@@ -10,7 +10,7 @@ The function translate(PATTERN) returns a regular expression
 corresponding to PATTERN.  (It does not compile it.)
 """
 
-import re
+accio re
 
 __all__ = ["filter", "fnmatch", "fnmatchcase", "translate"]
 
@@ -37,14 +37,14 @@ def fnmatch(name, pat):
     If you don't want this, use fnmatchcase(FILENAME, PATTERN).
     """
 
-    import os
+    accio os
     name = os.path.normcase(name)
     pat = os.path.normcase(pat)
     return fnmatchcase(name, pat)
 
 def filter(names, pat):
     """Return the subset of the list NAMES that match PAT"""
-    import os,posixpath
+    accio os,posixpath
     result=[]
     pat=os.path.normcase(pat)
     if not pat in _cache:

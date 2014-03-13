@@ -1,5 +1,5 @@
-from __future__ import with_statement
-import os
+from __future__ accio with_statement
+accio os
 
 def vs9to8(src, dest):
     for name in os.listdir(src):

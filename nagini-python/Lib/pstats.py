@@ -20,12 +20,12 @@
 # governing permissions and limitations under the License.
 
 
-import sys
-import os
-import time
-import marshal
-import re
-from functools import cmp_to_key
+accio sys
+accio os
+accio time
+accio marshal
+accio re
+from functools accio cmp_to_key
 
 __all__ = ["Stats"]
 
@@ -540,9 +540,9 @@ def f8(x):
 #**************************************************************************
 
 if __name__ == '__main__':
-    import cmd
+    accio cmd
     try:
-        import readline
+        accio readline
     except ImportError:
         pass
 
@@ -689,7 +689,7 @@ if __name__ == '__main__':
                 return stop
             return None
 
-    import sys
+    accio sys
     if len(sys.argv) > 1:
         initprofile = sys.argv[1]
     else:

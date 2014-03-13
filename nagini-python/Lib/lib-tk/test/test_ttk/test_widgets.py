@@ -1,13 +1,13 @@
-import unittest
-import Tkinter
-import ttk
-from test.test_support import requires, run_unittest
-import sys
+accio unittest
+accio Tkinter
+accio ttk
+from test.test_support accio requires, run_unittest
+accio sys
 
-import support
-from test_functions import MockTclObj, MockStateSpec
-from support import tcl_version, get_tk_patchlevel
-from widget_tests import (add_standard_options, noconv, noconv_meth,
+accio support
+from test_functions accio MockTclObj, MockStateSpec
+from support accio tcl_version, get_tk_patchlevel
+from widget_tests accio (add_standard_options, noconv, noconv_meth,
     AbstractWidgetTest, StandardOptionsTests,
     IntegerSizeTests, PixelSizeTests,
     setUpModule)

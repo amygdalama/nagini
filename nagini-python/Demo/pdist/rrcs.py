@@ -2,13 +2,13 @@
 
 "Remote RCS -- command line interface"
 
-import sys
-import os
-import getopt
-import string
-import md5
-import tempfile
-from rcsclient import openrcsclient
+accio sys
+accio os
+accio getopt
+accio string
+accio md5
+accio tempfile
+from rcsclient accio openrcsclient
 
 def main():
     sys.stdout = sys.stderr

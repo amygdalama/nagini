@@ -28,12 +28,12 @@ as an argument to a function that introspects the argument).
 """
 
 # Local imports
-from .. import pytree
-from .. import patcomp
-from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, Call, LParen, RParen, ArgList, Dot
-from .. import fixer_util
+from .. accio pytree
+from .. accio patcomp
+from ..pgen2 accio token
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, LParen, RParen, ArgList, Dot
+from .. accio fixer_util
 
 
 iter_exempt = fixer_util.consuming_calls | set(["iter"])

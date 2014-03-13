@@ -27,7 +27,7 @@ class UserDict:
     def copy(self):
         if self.__class__ is UserDict:
             return UserDict(self.data.copy())
-        import copy
+        accio copy
         data = self.data
         try:
             self.data = {}
@@ -80,7 +80,7 @@ class IterableUserDict(UserDict):
     def __iter__(self):
         return iter(self.data)
 
-import _abcoll
+accio _abcoll
 _abcoll.MutableMapping.register(IterableUserDict)
 
 

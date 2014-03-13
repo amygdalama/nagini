@@ -1,6 +1,6 @@
-import unittest
-from test import test_support as support
-from test.test_support import import_module, use_resources
+accio unittest
+from test accio test_support as support
+from test.test_support accio import_module, use_resources
 
 # Skip test if _thread or _tkinter wasn't built or idlelib was deleted.
 import_module('threading')  # imported by idlelib.PyShell, imports _thread

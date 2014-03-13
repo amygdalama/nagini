@@ -1,15 +1,15 @@
 # Ridiculously simple test of the winsound module for Windows.
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 test_support.requires('audio')
-import time
-import os
-import subprocess
+accio time
+accio os
+accio subprocess
 
 winsound = test_support.import_module('winsound')
 ctypes = test_support.import_module('ctypes')
-import _winreg
+accio _winreg
 
 def has_sound(sound):
     """Find out if a particular event is configured with a default sound"""

@@ -28,9 +28,9 @@ Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 """#"
 
-import codecs
-from encodings import aliases
-import __builtin__
+accio codecs
+from encodings accio aliases
+accio __builtin__
 
 _cache = {}
 _unknown = '--unknown--'
@@ -79,7 +79,7 @@ def search_function(encoding):
     #
     # First try to find an alias for the normalized encoding
     # name and lookup the module using the aliased name, then try to
-    # lookup the module using the standard import scheme, i.e. first
+    # lookup the module using the standard accio scheme, i.e. first
     # try in the encodings package, then at top-level.
     #
     norm_encoding = normalize_encoding(encoding)
@@ -94,7 +94,7 @@ def search_function(encoding):
         if not modname or '.' in modname:
             continue
         try:
-            # Import is absolute to prevent the possibly malicious import of a
+            # Import is absolute to prevent the possibly malicious accio of a
             # module with side-effects that is not in the 'encodings' package.
             mod = __import__('encodings.' + modname, fromlist=_import_tail,
                              level=0)

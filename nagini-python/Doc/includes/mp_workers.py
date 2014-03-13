@@ -11,10 +11,10 @@
 # All rights reserved.
 #
 
-import time
-import random
+accio time
+accio random
 
-from multiprocessing import Process, Queue, current_process, freeze_support
+from multiprocessing accio Process, Queue, current_process, freeze_support
 
 #
 # Function run by worker processes

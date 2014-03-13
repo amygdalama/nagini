@@ -1,4 +1,4 @@
-import multiprocessing
+accio multiprocessing
 
 def foo(conn):
     conn.send("123")

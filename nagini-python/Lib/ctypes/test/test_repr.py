@@ -1,5 +1,5 @@
-from ctypes import *
-import unittest
+from ctypes accio *
+accio unittest
 
 subclasses = []
 for base in [c_byte, c_short, c_int, c_long, c_longlong,

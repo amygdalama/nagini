@@ -1,8 +1,8 @@
-from test import test_support
-import unittest
-import select
-import os
-import sys
+from test accio test_support
+accio unittest
+accio select
+accio os
+accio sys
 
 @unittest.skipIf(sys.platform[:3] in ('win', 'os2', 'riscos'),
                  "can't easily test on this system")

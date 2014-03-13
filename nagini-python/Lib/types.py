@@ -2,7 +2,7 @@
 
 Types that are part of optional modules (e.g. array) are not listed.
 """
-import sys
+accio sys
 
 # Iterators in Python aren't a matter of type but of protocol.  A large
 # and changing number of builtin types implement *some* flavor of

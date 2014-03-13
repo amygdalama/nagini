@@ -129,15 +129,15 @@ BaseServer:
 __version__ = "0.4"
 
 
-import socket
-import select
-import sys
-import os
-import errno
+accio socket
+accio select
+accio sys
+accio os
+accio errno
 try:
-    import threading
+    accio threading
 except ImportError:
-    import dummy_threading as threading
+    accio dummy_threading as threading
 
 __all__ = ["TCPServer","UDPServer","ForkingUDPServer","ForkingTCPServer",
            "ThreadingUDPServer","ThreadingTCPServer","BaseRequestHandler",
@@ -350,7 +350,7 @@ class BaseServer:
         print '-'*40
         print 'Exception happened during processing of request from',
         print client_address
-        import traceback
+        accio traceback
         traceback.print_exc() # XXX But this goes to stderr!
         print '-'*40
 
@@ -720,9 +720,9 @@ class DatagramRequestHandler(BaseRequestHandler):
 
     def setup(self):
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         self.packet, self.socket = self.request
         self.rfile = StringIO(self.packet)
         self.wfile = StringIO()

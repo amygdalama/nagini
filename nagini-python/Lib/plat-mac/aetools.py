@@ -21,19 +21,19 @@ files: the pack stuff from aepack, the objects from aetypes.
 """
 
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the aetools module is removed.", stacklevel=2)
 
-from types import *
-from Carbon import AE
-from Carbon import Evt
-from Carbon import AppleEvents
-import MacOS
-import sys
-import time
+from types accio *
+from Carbon accio AE
+from Carbon accio Evt
+from Carbon accio AppleEvents
+accio MacOS
+accio sys
+accio time
 
-from aetypes import *
-from aepack import packkey, pack, unpack, coerce, AEDescType
+from aetypes accio *
+from aepack accio packkey, pack, unpack, coerce, AEDescType
 
 Error = 'aetools.Error'
 

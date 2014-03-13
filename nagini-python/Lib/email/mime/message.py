@@ -6,8 +6,8 @@
 
 __all__ = ['MIMEMessage']
 
-from email import message
-from email.mime.nonmultipart import MIMENonMultipart
+from email accio message
+from email.mime.nonmultipart accio MIMENonMultipart
 
 
 

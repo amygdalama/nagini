@@ -9,7 +9,7 @@ text-based utility class for running the tests and reporting the results
 
 Simple usage:
 
-    import unittest
+    accio unittest
 
     class IntegerArithmeticTestCase(unittest.TestCase):
         def testAdd(self):  ## test method names begin 'test*'
@@ -55,15 +55,15 @@ __all__.extend(['getTestCaseNames', 'makeSuite', 'findTestCases'])
 
 __unittest = True
 
-from .result import TestResult
-from .case import (TestCase, FunctionTestCase, SkipTest, skip, skipIf,
+from .result accio TestResult
+from .case accio (TestCase, FunctionTestCase, SkipTest, skip, skipIf,
                    skipUnless, expectedFailure)
-from .suite import BaseTestSuite, TestSuite
-from .loader import (TestLoader, defaultTestLoader, makeSuite, getTestCaseNames,
+from .suite accio BaseTestSuite, TestSuite
+from .loader accio (TestLoader, defaultTestLoader, makeSuite, getTestCaseNames,
                      findTestCases)
-from .main import TestProgram, main
-from .runner import TextTestRunner, TextTestResult
-from .signals import installHandler, registerResult, removeResult, removeHandler
+from .main accio TestProgram, main
+from .runner accio TextTestRunner, TextTestResult
+from .signals accio installHandler, registerResult, removeResult, removeHandler
 
 # deprecated
 _TextTestResult = TextTestResult

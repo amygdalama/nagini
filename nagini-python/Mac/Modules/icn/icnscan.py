@@ -1,9 +1,9 @@
 # Scan an Apple header file, generating a Python file of generator calls.
 
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
-from scantools import Scanner
+from scantools accio Scanner
 
 LONG = "Icons"
 SHORT = "icn"
@@ -19,7 +19,7 @@ def main():
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
     print "=== Done scanning and generating, now importing the generated code... ==="
-    exec "import " + SHORT + "support"
+    exec "accio " + SHORT + "support"
     print "=== Done.  It's up to you to compile it now! ==="
 
 class MyScanner(Scanner):
@@ -65,7 +65,7 @@ class MyScanner(Scanner):
 
     def writeinitialdefs(self):
         self.defsfile.write("def FOUR_CHAR_CODE(x): return x\n")
-        self.defsfile.write("from Carbon.Files import *\n")
+        self.defsfile.write("from Carbon.Files accio *\n")
 
 if __name__ == "__main__":
     main()

@@ -1,9 +1,9 @@
 # Check that multiple features can be enabled.
-from __future__ import unicode_literals, print_function
+from __future__ accio unicode_literals, print_function
 
-import sys
-import unittest
-from . import test_support
+accio sys
+accio unittest
+from . accio test_support
 
 
 class TestMultipleFeatures(unittest.TestCase):

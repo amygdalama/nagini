@@ -5,13 +5,13 @@
 # emulation, by BuildApplet and friends.
 #
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the appletrawmain module is removed.", stacklevel=2)
 
-import argvemulator
-import os
-import sys
-import marshal
+accio argvemulator
+accio os
+accio sys
+accio marshal
 
 #
 # Make sure we have an argv[0], and make _dir point to the Resources
@@ -28,7 +28,7 @@ else:
 #
 # Add the Resources directory to the path. This is where files installed
 # by BuildApplet.py with the --extra option show up, and if those files are
-# modules this sys.path modification is necessary to be able to import them.
+# modules this sys.path modification is necessary to be able to accio them.
 #
 sys.path.insert(0, _dir)
 #

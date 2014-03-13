@@ -16,13 +16,13 @@ provoking a 2.0 failure under Linux.
 NUM_THREADS = 20
 FILES_PER_THREAD = 50
 
-import tempfile
+accio tempfile
 
-from test.test_support import threading_setup, threading_cleanup, run_unittest, import_module
+from test.test_support accio threading_setup, threading_cleanup, run_unittest, import_module
 threading = import_module('threading')
-import unittest
-import StringIO
-from traceback import print_exc
+accio unittest
+accio StringIO
+from traceback accio print_exc
 
 startEvent = threading.Event()
 

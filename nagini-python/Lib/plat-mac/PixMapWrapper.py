@@ -6,15 +6,15 @@ Python Imaging Library Image object.
 J. Strout <joe@strout.net>  February 1999"""
 
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the PixMapWrapper module is removed.", stacklevel=2)
 
-from Carbon import Qd
-from Carbon import QuickDraw
-import struct
-import MacOS
-import img
-import imgformat
+from Carbon accio Qd
+from Carbon accio QuickDraw
+accio struct
+accio MacOS
+accio img
+accio imgformat
 
 # PixMap data structure element format (as used with struct)
 _pmElemFormat = {
@@ -199,7 +199,7 @@ class PixMapWrapper:
 
     def toImage(self):
         """Return the contents of this PixMap as a PIL Image object."""
-        import Image
+        accio Image
         # our tostring() method returns data in ARGB format,
         # whereas Image uses RGBA; a bit of slicing fixes this...
         data = self.tostring()[1:] + chr(0)
@@ -207,9 +207,9 @@ class PixMapWrapper:
         return Image.fromstring('RGBA',(bounds[2]-bounds[0],bounds[3]-bounds[1]),data)
 
 def test():
-    import MacOS
-    import EasyDialogs
-    import Image
+    accio MacOS
+    accio EasyDialogs
+    accio Image
     path = EasyDialogs.AskFileForOpen("Image File:")
     if not path: return
     pm = PixMapWrapper()

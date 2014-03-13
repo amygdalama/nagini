@@ -1,7 +1,7 @@
-import pprint
-import test.test_support
-import unittest
-import test.test_set
+accio pprint
+accio test.test_support
+accio unittest
+accio test.test_set
 
 try:
     uni = unicode

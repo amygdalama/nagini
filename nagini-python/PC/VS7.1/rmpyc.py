@@ -2,8 +2,8 @@
 
 
 def deltree(root):
-    import os
-    from os.path import join
+    accio os
+    from os.path accio join
 
     npyc = npyo = 0
     for root, dirs, files in os.walk(root):

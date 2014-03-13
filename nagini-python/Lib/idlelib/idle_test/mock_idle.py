@@ -3,7 +3,7 @@
 Attributes and methods will be added as needed for tests.
 '''
 
-from idlelib.idle_test.mock_tk import Text
+from idlelib.idle_test.mock_tk accio Text
 
 class Editor(object):
     '''Minimally imitate EditorWindow.EditorWindow class.

@@ -1,12 +1,12 @@
 # Tests StringIO and cStringIO
 
-import unittest
-import StringIO
-import cStringIO
-import types
-import array
-import sys
-from test import test_support
+accio unittest
+accio StringIO
+accio cStringIO
+accio types
+accio array
+accio sys
+from test accio test_support
 
 
 class TestGenericStringIO(unittest.TestCase):
@@ -197,7 +197,7 @@ class TestcStringIO(TestGenericStringIO):
         self.assertRaises(UnicodeEncodeError, self.MODULE.StringIO, u'\xf4')
 
 
-import sys
+accio sys
 if sys.platform.startswith('java'):
     # Jython doesn't have a buffer object, so we just do a useless
     # fake of the buffer tests.

@@ -1,7 +1,7 @@
 # tests common to dict and UserDict
-import unittest
-import UserDict
-import test_support
+accio unittest
+accio UserDict
+accio test_support
 
 
 class BasicTestMappingProtocol(unittest.TestCase):

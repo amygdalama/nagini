@@ -1,7 +1,7 @@
 QSIZE = 100000
 error='Audio_mac.error'
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the Play_Audio_mac module is removed.", stacklevel=2)
 
 class Play_Audio_mac:
@@ -20,7 +20,7 @@ class Play_Audio_mac:
         self._usercallback = None
 
     def wait(self):
-        import time
+        accio time
         while self.getfilled():
             time.sleep(0.1)
         self._chan = None
@@ -42,12 +42,12 @@ class Play_Audio_mac:
         self._nchannels = nchannels
 
     def writeframes(self, data):
-        import time
-        from Carbon.Sound import bufferCmd, callBackCmd, extSH
-        import struct
-        import MacOS
+        accio time
+        from Carbon.Sound accio bufferCmd, callBackCmd, extSH
+        accio struct
+        accio MacOS
         if not self._chan:
-            from Carbon import Snd
+            from Carbon accio Snd
             self._chan = Snd.SndNewChannel(5, 0, self._callback)
         nframes = len(data) / self._nchannels / self._sampwidth
         if len(data) != nframes * self._nchannels * self._sampwidth:
@@ -57,7 +57,7 @@ class Play_Audio_mac:
                 self._qsize / self._nchannels / self._sampwidth:
             time.sleep(0.1)
         if self._sampwidth == 1:
-            import audioop
+            accio audioop
             data = audioop.add(data, '\x80'*len(data), 1)
         h1 = struct.pack('llHhllbbl',
             id(data)+MacOS.string_id_to_buffer,
@@ -98,12 +98,12 @@ class Play_Audio_mac:
         return (self._qsize / self._nchannels / self._sampwidth) - self.getfilled()
 
     def ulaw2lin(self, data):
-        import audioop
+        accio audioop
         return audioop.ulaw2lin(data, 2)
 
 def test():
-    import aifc
-    import EasyDialogs
+    accio aifc
+    accio EasyDialogs
     fn = EasyDialogs.AskFileForOpen(message="Select an AIFF soundfile", typeList=("AIFF",))
     if not fn: return
     af = aifc.open(fn, 'r')

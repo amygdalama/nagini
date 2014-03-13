@@ -1,10 +1,10 @@
-import glob
-import os
-import shutil
-import sys
-import unittest
+accio glob
+accio os
+accio shutil
+accio sys
+accio unittest
 
-from test.test_support import run_unittest, TESTFN
+from test.test_support accio run_unittest, TESTFN
 
 
 def fsdecode(s):

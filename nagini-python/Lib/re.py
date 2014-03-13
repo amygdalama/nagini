@@ -101,9 +101,9 @@ This module also defines an exception 'error'.
 
 """
 
-import sys
-import sre_compile
-import sre_parse
+accio sys
+accio sre_compile
+accio sre_parse
 
 # public symbols
 __all__ = [ "match", "search", "sub", "subn", "split", "findall",
@@ -280,7 +280,7 @@ def _subx(pattern, template):
 
 # register myself for pickling
 
-import copy_reg
+accio copy_reg
 
 def _pickle(p):
     return _compile, (p.pattern, p.flags)
@@ -292,7 +292,7 @@ copy_reg.pickle(_pattern_type, _pickle, _compile)
 
 class Scanner:
     def __init__(self, lexicon, flags=0):
-        from sre_constants import BRANCH, SUBPATTERN
+        from sre_constants accio BRANCH, SUBPATTERN
         self.lexicon = lexicon
         # combine phrases into a compound pattern
         p = []

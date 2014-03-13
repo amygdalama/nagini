@@ -1,9 +1,9 @@
 """High-perfomance logging profiler, mostly written in C."""
 
-import _hotshot
-from _hotshot import ProfilerError
+accio _hotshot
+from _hotshot accio ProfilerError
 
-from warnings import warnpy3k as _warnpy3k
+from warnings accio warnpy3k as _warnpy3k
 _warnpy3k("The 'hotshot' module is not supported in 3.x, "
           "use the 'profile' module instead.", stacklevel=2)
 
@@ -53,7 +53,7 @@ class Profile:
         The globals from the __main__ module are used as both the
         globals and locals for the script.
         """
-        import __main__
+        accio __main__
         dict = __main__.__dict__
         return self.runctx(cmd, dict, dict)
 

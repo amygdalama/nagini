@@ -5,8 +5,8 @@ Copyright (c) 2007 by Christian Heimes <christian@cheimes.de>
 Licensed to PSF under a Contributor Agreement.
 """
 
-import os
-import sys
+accio os
+accio sys
 
 here = os.path.abspath(os.path.dirname(__file__))
 par = os.path.pardir

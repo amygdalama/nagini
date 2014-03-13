@@ -1,7 +1,7 @@
-import signal
-import weakref
+accio signal
+accio weakref
 
-from functools import wraps
+from functools accio wraps
 
 __unittest = True
 

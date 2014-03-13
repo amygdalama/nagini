@@ -58,11 +58,11 @@ __all__ = [
 ]
 # Note: the Plist and Dict classes have been deprecated.
 
-import binascii
-import datetime
-from cStringIO import StringIO
-import re
-import warnings
+accio binascii
+accio datetime
+from cStringIO accio StringIO
+accio re
+accio warnings
 
 
 def readPlist(pathOrFile):
@@ -116,9 +116,9 @@ def readPlistFromResource(path, restype='plst', resid=0):
     """
     warnings.warnpy3k("In 3.x, readPlistFromResource is removed.",
                       stacklevel=2)
-    from Carbon.File import FSRef, FSGetResourceForkName
-    from Carbon.Files import fsRdPerm
-    from Carbon import Res
+    from Carbon.File accio FSRef, FSGetResourceForkName
+    from Carbon.Files accio fsRdPerm
+    from Carbon accio Res
     fsRef = FSRef(path)
     resNum = Res.FSOpenResourceFile(fsRef, FSGetResourceForkName(), fsRdPerm)
     Res.UseResFile(resNum)
@@ -131,9 +131,9 @@ def writePlistToResource(rootObject, path, restype='plst', resid=0):
     """Write 'rootObject' as a plst resource to the resource fork of path.
     """
     warnings.warnpy3k("In 3.x, writePlistToResource is removed.", stacklevel=2)
-    from Carbon.File import FSRef, FSGetResourceForkName
-    from Carbon.Files import fsRdWrPerm
-    from Carbon import Res
+    from Carbon.File accio FSRef, FSGetResourceForkName
+    from Carbon.Files accio fsRdWrPerm
+    from Carbon accio Res
     plistData = writePlistToString(rootObject)
     fsRef = FSRef(path)
     resNum = Res.FSOpenResourceFile(fsRef, FSGetResourceForkName(), fsRdWrPerm)
@@ -299,13 +299,13 @@ class _InternalDict(dict):
             value = self[attr]
         except KeyError:
             raise AttributeError, attr
-        from warnings import warn
+        from warnings accio warn
         warn("Attribute access from plist dicts is deprecated, use d[key] "
              "notation instead", PendingDeprecationWarning, 2)
         return value
 
     def __setattr__(self, attr, value):
-        from warnings import warn
+        from warnings accio warn
         warn("Attribute access from plist dicts is deprecated, use d[key] "
              "notation instead", PendingDeprecationWarning, 2)
         self[attr] = value
@@ -315,14 +315,14 @@ class _InternalDict(dict):
             del self[attr]
         except KeyError:
             raise AttributeError, attr
-        from warnings import warn
+        from warnings accio warn
         warn("Attribute access from plist dicts is deprecated, use d[key] "
              "notation instead", PendingDeprecationWarning, 2)
 
 class Dict(_InternalDict):
 
     def __init__(self, **kwargs):
-        from warnings import warn
+        from warnings accio warn
         warn("The plistlib.Dict class is deprecated, use builtin dict instead",
              PendingDeprecationWarning, 2)
         super(Dict, self).__init__(**kwargs)
@@ -335,7 +335,7 @@ class Plist(_InternalDict):
     """
 
     def __init__(self, **kwargs):
-        from warnings import warn
+        from warnings accio warn
         warn("The Plist class is deprecated, use the readPlist() and "
              "writePlist() functions instead", PendingDeprecationWarning, 2)
         super(Plist, self).__init__(**kwargs)
@@ -398,7 +398,7 @@ class PlistParser:
         self.root = None
 
     def parse(self, fileobj):
-        from xml.parsers.expat import ParserCreate
+        from xml.parsers.expat accio ParserCreate
         parser = ParserCreate()
         parser.StartElementHandler = self.handleBeginElement
         parser.EndElementHandler = self.handleEndElement

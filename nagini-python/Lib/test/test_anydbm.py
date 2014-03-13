@@ -2,10 +2,10 @@
    based on testdumbdbm.py
 """
 
-import os
-import unittest
-import glob
-from test import test_support
+accio os
+accio unittest
+accio glob
+from test accio test_support
 
 _fname = test_support.TESTFN
 

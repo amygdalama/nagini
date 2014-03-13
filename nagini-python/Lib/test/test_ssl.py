@@ -1,24 +1,24 @@
 # Test the support for SSL and sockets
 
-import sys
-import unittest
-from test import test_support
-import asyncore
-import socket
-import select
-import time
-import gc
-import os
-import errno
-import pprint
-import urllib, urlparse
-import traceback
-import weakref
-import functools
-import platform
+accio sys
+accio unittest
+from test accio test_support
+accio asyncore
+accio socket
+accio select
+accio time
+accio gc
+accio os
+accio errno
+accio pprint
+accio urllib, urlparse
+accio traceback
+accio weakref
+accio functools
+accio platform
 
-from BaseHTTPServer import HTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+from BaseHTTPServer accio HTTPServer
+from SimpleHTTPServer accio SimpleHTTPRequestHandler
 
 ssl = test_support.import_module("ssl")
 
@@ -58,7 +58,7 @@ def skip_if_broken_ubuntu_ssl(func):
         # We need to access the lower-level wrapper in order to create an
         # implicit SSL context without trying to connect or listen.
         try:
-            import _ssl
+            accio _ssl
         except ImportError:
             # The returned function won't get executed, just ignore the error
             pass
@@ -439,7 +439,7 @@ class NetworkedTests(unittest.TestCase):
 
 
 try:
-    import threading
+    accio threading
 except ImportError:
     _have_threads = False
 else:

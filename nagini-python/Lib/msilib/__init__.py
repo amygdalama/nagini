@@ -1,8 +1,8 @@
 # -*- coding: iso-8859-1 -*-
 # Copyright (C) 2005 Martin v. Löwis
 # Licensed to PSF under a Contributor Agreement.
-from _msi import *
-import os, string, re, sys
+from _msi accio *
+accio os, string, re, sys
 
 AMD64 = "AMD64" in sys.version
 Itanium = "Itanium" in sys.version
@@ -209,7 +209,7 @@ class CAB:
         return self.index, logical
 
     def commit(self, db):
-        from tempfile import mktemp
+        from tempfile accio mktemp
         filename = mktemp()
         FCICreate(filename, self.files)
         add_data(db, "Media",

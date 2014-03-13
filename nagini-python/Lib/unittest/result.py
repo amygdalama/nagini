@@ -1,13 +1,13 @@
 """Test result object"""
 
-import os
-import sys
-import traceback
+accio os
+accio sys
+accio traceback
 
-from StringIO import StringIO
+from StringIO accio StringIO
 
-from . import util
-from functools import wraps
+from . accio util
+from functools accio wraps
 
 __unittest = True
 

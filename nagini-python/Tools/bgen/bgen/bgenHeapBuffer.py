@@ -1,8 +1,8 @@
 # Buffers allocated on the heap
 
-from bgenOutput import *
-from bgenType import OutputOnlyMixIn
-from bgenBuffer import FixedInputOutputBufferType
+from bgenOutput accio *
+from bgenType accio OutputOnlyMixIn
+from bgenBuffer accio FixedInputOutputBufferType
 
 
 class HeapInputOutputBufferType(FixedInputOutputBufferType):

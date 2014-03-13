@@ -1,8 +1,8 @@
-import pickle
-import pickletools
-from test import test_support
-from test.pickletester import AbstractPickleTests
-from test.pickletester import AbstractPickleModuleTests
+accio pickle
+accio pickletools
+from test accio test_support
+from test.pickletester accio AbstractPickleTests
+from test.pickletester accio AbstractPickleModuleTests
 
 class OptimizedPickleTests(AbstractPickleTests, AbstractPickleModuleTests):
 

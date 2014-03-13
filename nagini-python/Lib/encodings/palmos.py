@@ -4,7 +4,7 @@ Written by Sjoerd Mullender (sjoerd@acm.org); based on iso8859_15.py.
 
 """#"
 
-import codecs
+accio codecs
 
 ### Codec APIs
 

@@ -1,11 +1,11 @@
 """Unittest main program"""
 
-import sys
-import os
-import types
+accio sys
+accio os
+accio types
 
-from . import loader, runner
-from .signals import installHandler
+from . accio loader, runner
+from .signals accio installHandler
 
 __unittest = True
 
@@ -113,7 +113,7 @@ class TestProgram(object):
             self._do_discovery(argv[2:])
             return
 
-        import getopt
+        accio getopt
         long_opts = ['help', 'verbose', 'quiet', 'failfast', 'catch', 'buffer']
         try:
             options, args = getopt.getopt(argv[1:], 'hHvqfcb', long_opts)
@@ -163,7 +163,7 @@ class TestProgram(object):
 
         # handle command line args for test discovery
         self.progName = '%s discover' % self.progName
-        import optparse
+        accio optparse
         parser = optparse.OptionParser()
         parser.prog = self.progName
         parser.add_option('-v', '--verbose', dest='verbose', default=False,

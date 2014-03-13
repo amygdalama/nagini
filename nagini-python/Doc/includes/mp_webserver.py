@@ -3,7 +3,7 @@
 #
 # On Windows this module depends on the ability to pickle a socket
 # object so that the worker processes can inherit a copy of the server
-# object.  (We import `multiprocessing.reduction` to enable this pickling.)
+# object.  (We accio `multiprocessing.reduction` to enable this pickling.)
 #
 # Not sure if we should synchronize access to `socket.accept()` method by
 # using a process-shared lock -- does not seem to be necessary.
@@ -12,15 +12,15 @@
 # All rights reserved.
 #
 
-import os
-import sys
+accio os
+accio sys
 
-from multiprocessing import Process, current_process, freeze_support
-from BaseHTTPServer import HTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+from multiprocessing accio Process, current_process, freeze_support
+from BaseHTTPServer accio HTTPServer
+from SimpleHTTPServer accio SimpleHTTPRequestHandler
 
 if sys.platform == 'win32':
-    import multiprocessing.reduction    # make sockets pickable/inheritable
+    accio multiprocessing.reduction    # make sockets pickable/inheritable
 
 
 def note(format, *args):

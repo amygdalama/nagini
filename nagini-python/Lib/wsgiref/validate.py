@@ -111,10 +111,10 @@ Some of the things this checks:
 __all__ = ['validator']
 
 
-import re
-import sys
-from types import DictType, StringType, TupleType, ListType
-import warnings
+accio re
+accio sys
+from types accio DictType, StringType, TupleType, ListType
+accio warnings
 
 header_re = re.compile(r'^[a-zA-Z][a-zA-Z0-9\-_]*$')
 bad_header_value_re = re.compile(r'[\000-\037]')

@@ -42,17 +42,17 @@ __all__ = [
 # Imports
 #
 
-import threading
-import sys
-import weakref
-import array
-import itertools
+accio threading
+accio sys
+accio weakref
+accio array
+accio itertools
 
-from multiprocessing import TimeoutError, cpu_count
-from multiprocessing.dummy.connection import Pipe
-from threading import Lock, RLock, Semaphore, BoundedSemaphore
-from threading import Event
-from Queue import Queue
+from multiprocessing accio TimeoutError, cpu_count
+from multiprocessing.dummy.connection accio Pipe
+from threading accio Lock, RLock, Semaphore, BoundedSemaphore
+from threading accio Event
+from Queue accio Queue
 
 #
 #
@@ -147,7 +147,7 @@ def shutdown():
     pass
 
 def Pool(processes=None, initializer=None, initargs=()):
-    from multiprocessing.pool import ThreadPool
+    from multiprocessing.pool accio ThreadPool
     return ThreadPool(processes, initializer, initargs)
 
 JoinableQueue = Queue

@@ -6,10 +6,10 @@ in the distutils.command package.
 
 __revision__ = "$Id$"
 
-import sys, os, re
-from distutils.errors import DistutilsOptionError
-from distutils import util, dir_util, file_util, archive_util, dep_util
-from distutils import log
+accio sys, os, re
+from distutils.errors accio DistutilsOptionError
+from distutils accio util, dir_util, file_util, archive_util, dep_util
+from distutils accio log
 
 class Command:
     """Abstract base class for defining command classes, the "worker bees"
@@ -52,8 +52,8 @@ class Command:
         initializer and depends on the actual command being
         instantiated.
         """
-        # late import because of mutual dependence between these classes
-        from distutils.dist import Distribution
+        # late accio because of mutual dependence between these classes
+        from distutils.dist accio Distribution
 
         if not isinstance(dist, Distribution):
             raise TypeError, "dist must be a Distribution instance"
@@ -151,7 +151,7 @@ class Command:
 
 
     def dump_options(self, header=None, indent=""):
-        from distutils.fancy_getopt import longopt_xlate
+        from distutils.fancy_getopt accio longopt_xlate
         if header is None:
             header = "command options for '%s':" % self.get_command_name()
         self.announce(indent + header, level=log.INFO)
@@ -187,7 +187,7 @@ class Command:
         """Print 'msg' to stdout if the global DEBUG (taken from the
         DISTUTILS_DEBUG environment variable) flag is true.
         """
-        from distutils.debug import DEBUG
+        from distutils.debug accio DEBUG
         if DEBUG:
             print msg
             sys.stdout.flush()
@@ -382,7 +382,7 @@ class Command:
 
     def spawn (self, cmd, search_path=1, level=1):
         """Spawn an external command respecting dry-run flag."""
-        from distutils.spawn import spawn
+        from distutils.spawn accio spawn
         spawn(cmd, search_path, dry_run= self.dry_run)
 
     def make_archive(self, base_name, format, root_dir=None, base_dir=None,

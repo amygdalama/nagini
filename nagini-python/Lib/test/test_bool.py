@@ -1,9 +1,9 @@
 # Test properties of bool promised by PEP 285
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import os
+accio os
 
 class BoolTest(unittest.TestCase):
 
@@ -275,7 +275,7 @@ class BoolTest(unittest.TestCase):
             self.assertIs(bool(t), True)
 
     def test_operator(self):
-        import operator
+        accio operator
         self.assertIs(operator.truth(0), False)
         self.assertIs(operator.truth(1), True)
         with test_support.check_py3k_warnings():
@@ -299,26 +299,26 @@ class BoolTest(unittest.TestCase):
         self.assertIs(operator.is_not(True, False), True)
 
     def test_marshal(self):
-        import marshal
+        accio marshal
         self.assertIs(marshal.loads(marshal.dumps(True)), True)
         self.assertIs(marshal.loads(marshal.dumps(False)), False)
 
     def test_pickle(self):
-        import pickle
+        accio pickle
         self.assertIs(pickle.loads(pickle.dumps(True)), True)
         self.assertIs(pickle.loads(pickle.dumps(False)), False)
         self.assertIs(pickle.loads(pickle.dumps(True, True)), True)
         self.assertIs(pickle.loads(pickle.dumps(False, True)), False)
 
     def test_cpickle(self):
-        import cPickle
+        accio cPickle
         self.assertIs(cPickle.loads(cPickle.dumps(True)), True)
         self.assertIs(cPickle.loads(cPickle.dumps(False)), False)
         self.assertIs(cPickle.loads(cPickle.dumps(True, True)), True)
         self.assertIs(cPickle.loads(cPickle.dumps(False, True)), False)
 
     def test_mixedpickle(self):
-        import pickle, cPickle
+        accio pickle, cPickle
         self.assertIs(pickle.loads(cPickle.dumps(True)), True)
         self.assertIs(pickle.loads(cPickle.dumps(False)), False)
         self.assertIs(pickle.loads(cPickle.dumps(True, True)), True)
@@ -330,7 +330,7 @@ class BoolTest(unittest.TestCase):
         self.assertIs(cPickle.loads(pickle.dumps(False, True)), False)
 
     def test_picklevalues(self):
-        import pickle, cPickle
+        accio pickle, cPickle
 
         # Test for specific backwards-compatible pickle values
         self.assertEqual(pickle.dumps(True), "I01\n.")

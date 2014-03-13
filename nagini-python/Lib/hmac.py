@@ -3,7 +3,7 @@
 Implements the HMAC algorithm as described by RFC 2104.
 """
 
-import warnings as _warnings
+accio warnings as _warnings
 
 trans_5C = "".join ([chr (x ^ 0x5C) for x in xrange(256)])
 trans_36 = "".join ([chr (x ^ 0x36) for x in xrange(256)])
@@ -38,7 +38,7 @@ class HMAC:
             return
 
         if digestmod is None:
-            import hashlib
+            accio hashlib
             digestmod = hashlib.md5
 
         if hasattr(digestmod, '__call__'):

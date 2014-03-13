@@ -1,6 +1,6 @@
 """
 Fixer that changes zip(seq0, seq1, ...) into list(zip(seq0, seq1, ...)
-unless there exists a 'from future_builtins import zip' statement in the
+unless there exists a 'from future_builtins accio zip' statement in the
 top-level namespace.
 
 We avoid the transformation if the zip() call is directly contained in
@@ -8,8 +8,8 @@ iter(<>), list(<>), tuple(<>), sorted(<>), ...join(<>), or for V in <>:.
 """
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name, Call, in_special_context
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, in_special_context
 
 class FixZip(fixer_base.ConditionalFix):
 

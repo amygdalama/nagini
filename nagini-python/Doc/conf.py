@@ -7,7 +7,7 @@
 # The contents of this file are pickled, so don't put values in the namespace
 # that aren't pickleable (module imports are okay, they're removed automatically).
 
-import sys, os, time
+accio sys, os, time
 sys.path.append(os.path.abspath('tools/sphinxext'))
 
 # General configuration
@@ -30,7 +30,7 @@ copyright = '1990-%s, Python Software Foundation' % time.strftime('%Y')
 
 # We look for the Include/patchlevel.h file in the current Python source tree
 # and replace the values accordingly.
-import patchlevel
+accio patchlevel
 version, release = patchlevel.get_version_info()
 
 # There are two options for replacing |today|: either, you set today to some

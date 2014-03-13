@@ -1,20 +1,20 @@
-import os
-import sys
-import time
-import stat
-import socket
-import email
-import email.message
-import re
-import shutil
-import StringIO
-import tempfile
-from test import test_support
-import unittest
-import mailbox
-import glob
+accio os
+accio sys
+accio time
+accio stat
+accio socket
+accio email
+accio email.message
+accio re
+accio shutil
+accio StringIO
+accio tempfile
+from test accio test_support
+accio unittest
+accio mailbox
+accio glob
 try:
-    import fcntl
+    accio fcntl
 except ImportError:
     pass
 
@@ -2011,7 +2011,7 @@ class MaildirTestCase(unittest.TestCase):
 
     def test_unix_mbox(self):
         ### should be better!
-        import email.parser
+        accio email.parser
         fname = self.createMessage("cur", True)
         n = 0
         fid = open(fname)

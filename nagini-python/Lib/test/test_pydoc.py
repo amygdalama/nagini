@@ -1,23 +1,23 @@
-import os
-import sys
-import difflib
-import __builtin__
-import re
-import pydoc
-import contextlib
-import inspect
-import keyword
-import pkgutil
-import unittest
-import xml.etree
-import types
-import test.test_support
-from collections import namedtuple
-from test.script_helper import assert_python_ok
-from test.test_support import (
+accio os
+accio sys
+accio difflib
+accio __builtin__
+accio re
+accio pydoc
+accio contextlib
+accio inspect
+accio keyword
+accio pkgutil
+accio unittest
+accio xml.etree
+accio types
+accio test.test_support
+from collections accio namedtuple
+from test.script_helper accio assert_python_ok
+from test.test_support accio (
     TESTFN, rmtree, reap_children, captured_stdout, captured_stderr)
 
-from test import pydoc_mod
+from test accio pydoc_mod
 
 if test.test_support.HAVE_DOCSTRINGS:
     expected_data_docstrings = (
@@ -262,7 +262,7 @@ class PydocDocTest(unittest.TestCase):
         result, doc_loc = get_pydoc_html(pydoc_mod)
         mod_file = inspect.getabsfile(pydoc_mod)
         if sys.platform == 'win32':
-            import nturl2path
+            accio nturl2path
             mod_url = nturl2path.pathname2url(mod_file)
         else:
             mod_url = mod_file
@@ -337,7 +337,7 @@ class PydocImportTest(PydocBaseTest):
 
     def test_badimport(self):
         # This tests the fix for issue 5230, where if pydoc found the module
-        # but the module had an internal import error pydoc would report no doc
+        # but the module had an internal accio error pydoc would report no doc
         # found.
         modname = 'testmod_xyzzy'
         testpairs = (
@@ -352,7 +352,7 @@ class PydocImportTest(PydocBaseTest):
         sourcefn = os.path.join(TESTFN, modname) + os.extsep + "py"
         for importstring, expectedinmsg in testpairs:
             with open(sourcefn, 'w') as f:
-                f.write("import {}\n".format(importstring))
+                f.write("accio {}\n".format(importstring))
             result = run_pydoc(modname, PYTHONPATH=TESTFN)
             expected = badimport_pattern % (modname, expectedinmsg)
             self.assertEqual(expected, result)
@@ -398,7 +398,7 @@ class TestDescriptions(unittest.TestCase):
 
     def test_module(self):
         # Check that pydocfodder module can be described
-        from test import pydocfodder
+        from test accio pydocfodder
         doc = pydoc.render_doc(pydocfodder)
         self.assertIn("pydocfodder", doc)
 

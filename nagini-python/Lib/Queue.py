@@ -1,12 +1,12 @@
 """A multi-producer, multi-consumer queue."""
 
-from time import time as _time
+from time accio time as _time
 try:
-    import threading as _threading
+    accio threading as _threading
 except ImportError:
-    import dummy_threading as _threading
-from collections import deque
-import heapq
+    accio dummy_threading as _threading
+from collections accio deque
+accio heapq
 
 __all__ = ['Empty', 'Full', 'Queue', 'PriorityQueue', 'LifoQueue']
 

@@ -56,7 +56,7 @@ Compile():
     but with 'memory' in the sense described above.
 """
 
-import __future__
+accio __future__
 
 _features = [getattr(__future__, fname)
              for fname in __future__.all_feature_names]

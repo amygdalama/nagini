@@ -1,8 +1,8 @@
 """Verify that warnings are issued for global statements following use."""
 
-from test.test_support import run_unittest, check_syntax_error
-import unittest
-import warnings
+from test.test_support accio run_unittest, check_syntax_error
+accio unittest
+accio warnings
 
 
 class GlobalTests(unittest.TestCase):

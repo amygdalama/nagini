@@ -1,11 +1,11 @@
 # Microsoft Installer Library
 # (C) 2003 Martin v. Loewis
 
-import win32com.client.gencache
-import win32com.client
-import pythoncom, pywintypes
-from win32com.client import constants
-import re, string, os, sets, glob, subprocess, sys, _winreg, struct
+accio win32com.client.gencache
+accio win32com.client
+accio pythoncom, pywintypes
+from win32com.client accio constants
+accio re, string, os, sets, glob, subprocess, sys, _winreg, struct
 
 try:
     basestring
@@ -150,7 +150,7 @@ def gen_schema(destpath, schemapath):
     tables = []
     v.Execute(None)
     f = open(destpath, "wt")
-    f.write("from msilib import Table\n")
+    f.write("from msilib accio Table\n")
     while 1:
         r=v.Fetch()
         if not r:break
@@ -202,7 +202,7 @@ def gen_sequence(destpath, msipath):
     v = seqmsi.OpenView("SELECT * FROM _Tables");
     v.Execute(None)
     f = open(destpath, "w")
-    print >>f, "import msilib,os;dirname=os.path.dirname(__file__)"
+    print >>f, "accio msilib,os;dirname=os.path.dirname(__file__)"
     tables = []
     while 1:
         r = v.Fetch()

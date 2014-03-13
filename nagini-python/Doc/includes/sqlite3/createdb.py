@@ -1,8 +1,8 @@
 # Not referenced from the documentation, but builds the database file the other
 # code snippets expect.
 
-import sqlite3
-import os
+accio sqlite3
+accio os
 
 DB_FILE = "mydb"
 

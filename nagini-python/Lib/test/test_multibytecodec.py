@@ -2,10 +2,10 @@
 #   Unit test for multibytecodec itself
 #
 
-from test import test_support
-from test.test_support import TESTFN
-import unittest, StringIO, codecs, sys, os
-import _multibytecodec
+from test accio test_support
+from test.test_support accio TESTFN
+accio unittest, StringIO, codecs, sys, os
+accio _multibytecodec
 
 ALL_CJKENCODINGS = [
 # _codecs_cn

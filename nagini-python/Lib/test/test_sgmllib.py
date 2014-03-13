@@ -1,7 +1,7 @@
-import pprint
-import re
-import unittest
-from test import test_support
+accio pprint
+accio re
+accio unittest
+from test accio test_support
 sgmllib = test_support.import_module('sgmllib', deprecated=True)
 
 
@@ -115,7 +115,7 @@ class SGMLParserTestCase(unittest.TestCase):
         try:
             events = self.get_events(source)
         except:
-            #import sys
+            #accio sys
             #print >>sys.stderr, pprint.pformat(self.events)
             raise
         if events != expected_events:

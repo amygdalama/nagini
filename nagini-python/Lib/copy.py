@@ -2,7 +2,7 @@
 
 Interface summary:
 
-        import copy
+        accio copy
 
         x = copy.copy(y)        # make a shallow copy of y
         x = copy.deepcopy(y)    # make a deep copy of y
@@ -48,16 +48,16 @@ __getstate__() and __setstate__().  See the documentation for module
 "pickle" for information on these methods.
 """
 
-import types
-import weakref
-from copy_reg import dispatch_table
+accio types
+accio weakref
+from copy_reg accio dispatch_table
 
 class Error(Exception):
     pass
 error = Error   # backward compatibility
 
 try:
-    from org.python.core import PyStringMap
+    from org.python.core accio PyStringMap
 except ImportError:
     PyStringMap = None
 
@@ -380,7 +380,7 @@ def _test():
             self.a = 1
             self.arg = arg
             if __name__ == '__main__':
-                import sys
+                accio sys
                 file = sys.argv[0]
             else:
                 file = __file__
@@ -407,13 +407,13 @@ def _test():
     print l2
     l.append({l[1]: l, 'xyz': l[2]})
     l3 = copy(l)
-    import repr
+    accio repr
     print map(repr.repr, l)
     print map(repr.repr, l1)
     print map(repr.repr, l2)
     print map(repr.repr, l3)
     l3 = deepcopy(l)
-    import repr
+    accio repr
     print map(repr.repr, l)
     print map(repr.repr, l1)
     print map(repr.repr, l2)

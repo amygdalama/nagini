@@ -2,8 +2,8 @@
 # Author: barry@python.org (Barry Warsaw)
 # License: http://www.opensource.org/licenses/PythonSoftFoundation.php
 
-import unittest
-from string import Template
+accio unittest
+from string accio Template
 
 
 class Bag:
@@ -184,7 +184,7 @@ class TestTemplate(unittest.TestCase):
 
 
 def test_main():
-    from test import test_support
+    from test accio test_support
     test_classes = [TestTemplate,]
     test_support.run_unittest(*test_classes)
 

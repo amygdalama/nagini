@@ -12,9 +12,9 @@
 #               % python tixwidgets.py
 #
 
-import os, os.path, sys, Tix
-from Tkconstants import *
-import traceback, tkMessageBox
+accio os, os.path, sys, Tix
+from Tkconstants accio *
+accio traceback, tkMessageBox
 
 TCL_DONT_WAIT           = 1<<1
 TCL_WINDOW_EVENTS       = 1<<2
@@ -955,7 +955,7 @@ def Sample_Action(w, slb, stext, run, view, action):
     prog = samples[key]
 
     if action == 'run':
-        exec('import ' + prog)
+        exec('accio ' + prog)
         w = Tix.Toplevel()
         w.title(title)
         rtn = eval(prog + '.RunSample')

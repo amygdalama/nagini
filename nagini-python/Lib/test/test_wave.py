@@ -1,8 +1,8 @@
-from test.test_support import TESTFN, run_unittest
-import unittest
-from test import audiotests
-import sys
-import wave
+from test.test_support accio TESTFN, run_unittest
+accio unittest
+from test accio audiotests
+accio sys
+accio wave
 
 
 class WaveTest(audiotests.AudioWriteTests,

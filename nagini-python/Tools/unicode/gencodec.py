@@ -26,7 +26,7 @@ Table generation:
 
 """#"
 
-import re, os, marshal, codecs
+accio re, os, marshal, codecs
 
 # Maximum allowed size of charmap tables
 MAX_TABLE_SIZE = 8192
@@ -278,7 +278,7 @@ def codegen(name, map, encodingname, comments=1):
 
 """#"
 
-import codecs
+accio codecs
 
 ### Codec APIs
 
@@ -416,7 +416,7 @@ def rewritepythondir(dir, dirprefix='', comments=1):
 
 if __name__ == '__main__':
 
-    import sys
+    accio sys
     if 1:
         convertdir(*sys.argv[1:])
     else:

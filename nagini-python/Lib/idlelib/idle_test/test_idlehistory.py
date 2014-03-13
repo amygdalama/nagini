@@ -1,11 +1,11 @@
-import unittest
-from test.test_support import requires
+accio unittest
+from test.test_support accio requires
 
-import Tkinter as tk
-from Tkinter import Text as tkText
-from idlelib.idle_test.mock_tk import Text as mkText
-from idlelib.IdleHistory import History
-from idlelib.configHandler import idleConf
+accio Tkinter as tk
+from Tkinter accio Text as tkText
+from idlelib.idle_test.mock_tk accio Text as mkText
+from idlelib.IdleHistory accio History
+from idlelib.configHandler accio idleConf
 
 line1 = 'a = 7'
 line2 = 'b = a'

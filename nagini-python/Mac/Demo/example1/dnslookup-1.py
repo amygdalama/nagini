@@ -1,12 +1,12 @@
 """Sample program performing domain name lookups and showing off EasyDialogs,
 Res and Dlg in the process"""
 
-import EasyDialogs
-from Carbon import Res
-from Carbon import Dlg
-import socket
-import string
-import macresource
+accio EasyDialogs
+from Carbon accio Res
+from Carbon accio Dlg
+accio socket
+accio string
+accio macresource
 #
 # Definitions for our resources
 ID_MAIN=512

@@ -1,1 +1,1 @@
-from _Qd import *
+from _Qd accio *

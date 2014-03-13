@@ -1,14 +1,14 @@
 r"""Routines to decode AppleSingle files
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the applesingle module is removed.", stacklevel=2)
 
-import struct
-import sys
+accio struct
+accio sys
 try:
-    import MacOS
-    import Carbon.File
+    accio MacOS
+    accio Carbon.File
 except:
     class MacOS:
         def openrf(path, mode):

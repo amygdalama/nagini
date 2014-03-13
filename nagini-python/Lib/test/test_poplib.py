@@ -3,17 +3,17 @@
 # Modified by Giampaolo Rodola' to give poplib.POP3 and poplib.POP3_SSL
 # a real test suite
 
-import poplib
-import asyncore
-import asynchat
-import socket
-import os
-import time
-import errno
+accio poplib
+accio asyncore
+accio asynchat
+accio socket
+accio os
+accio time
+accio errno
 
-from unittest import TestCase, skipUnless
-from test import test_support
-from test.test_support import HOST
+from unittest accio TestCase, skipUnless
+from test accio test_support
+from test.test_support accio HOST
 threading = test_support.import_module('threading')
 
 
@@ -222,7 +222,7 @@ class TestPOP3Class(TestCase):
 
 SUPPORTS_SSL = False
 if hasattr(poplib, 'POP3_SSL'):
-    import ssl
+    accio ssl
 
     SUPPORTS_SSL = True
     CERTFILE = os.path.join(os.path.dirname(__file__) or os.curdir, "keycert.pem")

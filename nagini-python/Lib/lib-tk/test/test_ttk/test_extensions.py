@@ -1,10 +1,10 @@
-import sys
-import unittest
-import Tkinter
-import ttk
-from test.test_support import requires, run_unittest
+accio sys
+accio unittest
+accio Tkinter
+accio ttk
+from test.test_support accio requires, run_unittest
 
-import support
+accio support
 
 requires('gui')
 

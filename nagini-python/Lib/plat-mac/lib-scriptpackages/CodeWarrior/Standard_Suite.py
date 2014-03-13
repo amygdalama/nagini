@@ -5,12 +5,12 @@ Generated from /Volumes/Sap/Applications (Mac OS 9)/Metrowerks CodeWarrior 7.0/M
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'CoRe'
 
-from StdSuites.Standard_Suite import *
+from StdSuites.Standard_Suite accio *
 class Standard_Suite_Events(Standard_Suite_Events):
 
     _argmap_close = {

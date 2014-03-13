@@ -8,7 +8,7 @@
 # See also the ABC Programmer's Handbook, by Geurts, Meertens & Pemberton,
 # published by Prentice-Hall (UK) Ltd., 1990.
 
-import sys
+accio sys
 
 def main():
     k, a, b, a1, b1 = 2, 4, 1, 12, 4

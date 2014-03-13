@@ -23,7 +23,7 @@ class MyFuncs:
     def __init__(self):
         # make all of the string functions available through
         # string.func_name
-        import string
+        accio string
         self.string = string
     def _listMethods(self):
         # implement this method so that system.listMethods
@@ -99,16 +99,16 @@ server.handle_request()
 # Written by Brian Quinlan (brian@sweetapp.com).
 # Based on code written by Fredrik Lundh.
 
-import xmlrpclib
-from xmlrpclib import Fault
-import SocketServer
-import BaseHTTPServer
-import sys
-import os
-import traceback
-import re
+accio xmlrpclib
+from xmlrpclib accio Fault
+accio SocketServer
+accio BaseHTTPServer
+accio sys
+accio os
+accio traceback
+accio re
 try:
-    import fcntl
+    accio fcntl
 except ImportError:
     fcntl = None
 
@@ -340,7 +340,7 @@ class SimpleXMLRPCDispatcher:
         if method is None:
             return ""
         else:
-            import pydoc
+            accio pydoc
             return pydoc.getdoc(method)
 
     def system_multicall(self, call_list):

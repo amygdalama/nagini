@@ -1,10 +1,10 @@
-from test import test_support
-from test.test_support import bigmemtest, _1G, _2G, _4G, precisionbigmemtest
+from test accio test_support
+from test.test_support accio bigmemtest, _1G, _2G, _4G, precisionbigmemtest
 
-import unittest
-import operator
-import string
-import sys
+accio unittest
+accio operator
+accio string
+accio sys
 
 # Bigmem testing houserules:
 #

@@ -1,7 +1,7 @@
-import sys, unittest, struct, math, ctypes
-from binascii import hexlify
+accio sys, unittest, struct, math, ctypes
+from binascii accio hexlify
 
-from ctypes import *
+from ctypes accio *
 
 def bin(s):
     return hexlify(memoryview(s)).upper()

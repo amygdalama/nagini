@@ -5,7 +5,7 @@
 tabnanny -- Detection of ambiguous indentation
 
 For the time being this module is intended to be called as a script.
-However it is possible to import it into an IDE and use the function
+However it is possible to accio it into an IDE and use the function
 check() described below.
 
 Warning: The API provided by this module is likely to change in future
@@ -20,10 +20,10 @@ releases; such changes may not be backward compatible.
 
 __version__ = "6"
 
-import os
-import sys
-import getopt
-import tokenize
+accio os
+accio sys
+accio getopt
+accio tokenize
 if not hasattr(tokenize, 'NL'):
     raise ValueError("tokenize.NL doesn't exist -- tokenize module too old")
 

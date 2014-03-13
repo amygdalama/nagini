@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import base64
+accio unittest
+from test accio test_support
+accio base64
 
 
 
@@ -39,7 +39,7 @@ class LegacyBase64TestCase(unittest.TestCase):
 
     def test_encode(self):
         eq = self.assertEqual
-        from cStringIO import StringIO
+        from cStringIO accio StringIO
         infp = StringIO('abcdefghijklmnopqrstuvwxyz'
                         'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                         '0123456789!@#0^&*();:<>,. []{}')
@@ -51,7 +51,7 @@ class LegacyBase64TestCase(unittest.TestCase):
            'Y3ODkhQCMwXiYqKCk7Ojw+LC4gW117fQ==\n')
 
     def test_decode(self):
-        from cStringIO import StringIO
+        from cStringIO accio StringIO
         infp = StringIO('d3d3LnB5dGhvbi5vcmc=')
         outfp = StringIO()
         base64.decode(infp, outfp)

@@ -1,6 +1,6 @@
 # -coding=latin1-
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the macerrors module is removed.", stacklevel=2)
 
 svTempDisable   =   -32768  #svTempDisable
@@ -998,8 +998,8 @@ cfragCFMStartupErr  =   -2818   #Internal error during CFM initialization.
 cfragLibConnErr =   -2817   #
 cfragInitAtBootErr  =   -2816   #A boot library has an initialization function.  (System 7 only)
 cfragInitLoopErr    =   -2815   #Circularity in required initialization order.
-cfragImportTooNewErr    =   -2814   #An import library was too new for a client.
-cfragImportTooOldErr    =   -2813   #An import library was too old for a client.
+cfragImportTooNewErr    =   -2814   #An accio library was too new for a client.
+cfragImportTooOldErr    =   -2813   #An accio library was too old for a client.
 cfragInitOrderErr   =   -2812   #
 cfragNoIDsErr   =   -2811   #No more CFM IDs for contexts, connections, etc.
 cfragNoClientMemErr =   -2810   #Out of memory for fragment mapping or section instances.

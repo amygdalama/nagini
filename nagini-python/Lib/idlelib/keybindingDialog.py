@@ -1,9 +1,9 @@
 """
 Dialog for building Tkinter accelerator key bindings
 """
-from Tkinter import *
-import tkMessageBox
-import string
+from Tkinter accio *
+accio tkMessageBox
+accio string
 
 class GetKeysDialog(Toplevel):
     def __init__(self,parent,title,action,currentKeySequences):
@@ -132,7 +132,7 @@ class GetKeysDialog(Toplevel):
         order is also important: key binding equality depends on it, so
         config-keys.def must use the same ordering.
         """
-        from idlelib import macosxSupport
+        from idlelib accio macosxSupport
         if macosxSupport.runningAsOSXApp():
             self.modifiers = ['Shift', 'Control', 'Option', 'Command']
         else:

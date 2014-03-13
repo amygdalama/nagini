@@ -21,9 +21,9 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-import sys
-import os, unittest
-import sqlite3 as sqlite
+accio sys
+accio os, unittest
+accio sqlite3 as sqlite
 
 def get_db_path():
     return "sqlite_testdb"

@@ -1,4 +1,4 @@
 try:
-    from OverrideFrom23._Res import *
+    from OverrideFrom23._Res accio *
 except ImportError:
-    from _Res import *
+    from _Res accio *

@@ -48,16 +48,16 @@ Where:
 
 __version__ = '1.4.1'
 
-import sys
-import os
-import getopt
-import ColorDB
+accio sys
+accio os
+accio getopt
+accio ColorDB
 
-from PyncheWidget import PyncheWidget
-from Switchboard import Switchboard
-from StripViewer import StripViewer
-from ChipViewer import ChipViewer
-from TypeinViewer import TypeinViewer
+from PyncheWidget accio PyncheWidget
+from Switchboard accio Switchboard
+from StripViewer accio StripViewer
+from ChipViewer accio ChipViewer
+from TypeinViewer accio TypeinViewer
 
 
 

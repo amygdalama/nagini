@@ -1,9 +1,9 @@
 """Macintosh-specific module for conversion between pathnames and URLs.
 
-Do not import directly; use urllib instead."""
+Do not accio directly; use urllib instead."""
 
-import urllib
-import os
+accio urllib
+accio os
 
 __all__ = ["url2pathname","pathname2url"]
 

@@ -5,12 +5,12 @@ Generated from /System/Library/CoreServices/Finder.app
 AETE/AEUT resource version 0/144, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'CoRe'
 
-from StdSuites.Standard_Suite import *
+from StdSuites.Standard_Suite accio *
 class Standard_Suite_Events(Standard_Suite_Events):
 
     def close(self, _object, _attributes={}, **_arguments):

@@ -1,9 +1,9 @@
-import mimetypes
-import StringIO
-import unittest
-import sys
+accio mimetypes
+accio StringIO
+accio unittest
+accio sys
 
-from test import test_support
+from test accio test_support
 
 # Tell it we don't know about external files:
 mimetypes.knownfiles = []

@@ -1,4 +1,4 @@
-from pybench import Test
+from pybench accio Test
 
 class TupleSlicing(Test):
 

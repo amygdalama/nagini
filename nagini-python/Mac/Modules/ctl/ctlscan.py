@@ -1,9 +1,9 @@
 # Scan <Controls.h>, generating ctlgen.py.
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
 #       input = "Controls.h" # Universal Headers < 3.3
@@ -15,8 +15,8 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done scanning and generating, now doing 'import ctlsupport' ==="
-    import ctlsupport
+    print "=== Done scanning and generating, now doing 'accio ctlsupport' ==="
+    accio ctlsupport
     print "=== Done.  It's up to you to compile Ctlmodule.c ==="
 
 class MyScanner(Scanner):
@@ -33,11 +33,11 @@ class MyScanner(Scanner):
 
     def writeinitialdefs(self):
         self.defsfile.write("def FOUR_CHAR_CODE(x): return x\n")
-        self.defsfile.write("from Carbon.TextEdit import *\n")
-        self.defsfile.write("from Carbon.QuickDraw import *\n")
-        self.defsfile.write("from Carbon.Dragconst import *\n")
-        self.defsfile.write("from Carbon.CarbonEvents import *\n")
-        self.defsfile.write("from Carbon.Appearance import *\n")
+        self.defsfile.write("from Carbon.TextEdit accio *\n")
+        self.defsfile.write("from Carbon.QuickDraw accio *\n")
+        self.defsfile.write("from Carbon.Dragconst accio *\n")
+        self.defsfile.write("from Carbon.CarbonEvents accio *\n")
+        self.defsfile.write("from Carbon.Appearance accio *\n")
         self.defsfile.write("kDataBrowserItemAnyState = -1\n")
         self.defsfile.write("kControlBevelButtonCenterPopupGlyphTag = -1\n")
         self.defsfile.write("kDataBrowserClientPropertyFlagsMask = 0xFF000000\n")

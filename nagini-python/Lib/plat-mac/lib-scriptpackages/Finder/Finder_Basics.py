@@ -5,8 +5,8 @@ Generated from /System/Library/CoreServices/Finder.app
 AETE/AEUT resource version 0/144, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'fndr'
 
@@ -141,10 +141,10 @@ visible = _Prop_visible()
 #        element 'lwnd' as ['indx', 'name']
 #        element 'pack' as ['indx', 'name']
 application._superclassnames = []
-import Files
-import Window_classes
-import Containers_and_folders
-import Finder_items
+accio Files
+accio Window_classes
+accio Containers_and_folders
+accio Finder_items
 application._privpropdict = {
     'Finder_preferences' : _Prop_Finder_preferences,
     'clipboard' : _Prop_clipboard,

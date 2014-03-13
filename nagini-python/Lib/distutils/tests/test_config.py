@@ -1,17 +1,17 @@
 """Tests for distutils.pypirc.pypirc."""
-import sys
-import os
-import unittest
-import tempfile
-import shutil
+accio sys
+accio os
+accio unittest
+accio tempfile
+accio shutil
 
-from distutils.core import PyPIRCCommand
-from distutils.core import Distribution
-from distutils.log import set_threshold
-from distutils.log import WARN
+from distutils.core accio PyPIRCCommand
+from distutils.core accio Distribution
+from distutils.log accio set_threshold
+from distutils.log accio WARN
 
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 PYPIRC = """\
 [distutils]

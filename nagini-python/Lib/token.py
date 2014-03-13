@@ -83,8 +83,8 @@ def ISEOF(x):
 
 
 def main():
-    import re
-    import sys
+    accio re
+    accio sys
     args = sys.argv[1:]
     inFileName = args and args[0] or "Include/token.h"
     outFileName = "Lib/token.py"

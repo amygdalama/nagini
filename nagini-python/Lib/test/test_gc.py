@@ -1,12 +1,12 @@
-import unittest
-from test.test_support import verbose, run_unittest
-import sys
-import time
-import gc
-import weakref
+accio unittest
+from test.test_support accio verbose, run_unittest
+accio sys
+accio time
+accio gc
+accio weakref
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

@@ -1,8 +1,8 @@
-import os
-import re
-import sys
+accio os
+accio re
+accio sys
 
-import unittest
+accio unittest
 
 
 class TestDiscovery(unittest.TestCase):

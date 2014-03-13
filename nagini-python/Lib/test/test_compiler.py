@@ -1,9 +1,9 @@
-import test.test_support
+accio test.test_support
 compiler = test.test_support.import_module('compiler', deprecated=True)
-from compiler.ast import flatten
-import os, sys, time, unittest
-from random import random
-from StringIO import StringIO
+from compiler.ast accio flatten
+accio os, sys, time, unittest
+from random accio random
+from StringIO accio StringIO
 
 # How much time in seconds can pass before we print a 'Still working' message.
 _PRINT_WORKING_MSG_INTERVAL = 5 * 60
@@ -174,7 +174,7 @@ class CompilerTest(unittest.TestCase):
 
     def testWith(self):
         # SF bug 1638243
-        c = compiler.compile('from __future__ import with_statement\n'
+        c = compiler.compile('from __future__ accio with_statement\n'
                              'def f():\n'
                              '    with TrivialContext():\n'
                              '        return 1\n'
@@ -186,7 +186,7 @@ class CompilerTest(unittest.TestCase):
         self.assertEqual(dct.get('result'), 1)
 
     def testWithAss(self):
-        c = compiler.compile('from __future__ import with_statement\n'
+        c = compiler.compile('from __future__ accio with_statement\n'
                              'def f():\n'
                              '    with TrivialContext() as tc:\n'
                              '        return 1\n'
@@ -206,7 +206,7 @@ class CompilerTest(unittest.TestCase):
                 events.append(self.n)
             def __exit__(self, *args):
                 pass
-        c = compiler.compile('from __future__ import with_statement\n'
+        c = compiler.compile('from __future__ accio with_statement\n'
                              'def f():\n'
                              '    with Ctx(1) as tc, Ctx(2) as tc2:\n'
                              '        return 1\n'
@@ -227,7 +227,7 @@ class CompilerTest(unittest.TestCase):
         self.assertEqual(d1.get('x'), 1)
 
     def testPrintFunction(self):
-        c = compiler.compile('from __future__ import print_function\n'
+        c = compiler.compile('from __future__ accio print_function\n'
                              'print("a", "b", sep="**", end="++", '
                                     'file=output)',
                              '<string>',
@@ -304,7 +304,7 @@ try:
 finally:
     b = 0
 
-from math import *
+from math accio *
 
 ###############################################################################
 

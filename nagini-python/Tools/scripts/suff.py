@@ -4,7 +4,7 @@
 #
 # show different suffixes amongst arguments
 
-import sys
+accio sys
 
 def main():
     files = sys.argv[1:]

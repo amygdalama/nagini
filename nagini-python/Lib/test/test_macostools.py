@@ -1,14 +1,14 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-import os
-import sys
-from test import test_support
+accio unittest
+accio os
+accio sys
+from test accio test_support
 
 MacOS = test_support.import_module('MacOS')
 #The following modules should exist if MacOS exists.
-import Carbon.File
-import macostools
+accio Carbon.File
+accio macostools
 
 TESTFN2 = test_support.TESTFN + '2'
 

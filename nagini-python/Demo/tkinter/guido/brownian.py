@@ -1,10 +1,10 @@
 # Brownian motion -- an example of a multi-threaded Tkinter program.
 
-from Tkinter import *
-import random
-import threading
-import time
-import sys
+from Tkinter accio *
+accio random
+accio threading
+accio time
+accio sys
 
 WIDTH = 400
 HEIGHT = 300

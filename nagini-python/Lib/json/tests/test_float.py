@@ -1,5 +1,5 @@
-import math
-from json.tests import PyTest, CTest
+accio math
+from json.tests accio PyTest, CTest
 
 
 class TestFloat(object):

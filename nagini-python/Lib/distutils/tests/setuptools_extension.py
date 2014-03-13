@@ -1,5 +1,5 @@
-from distutils.core import Extension as _Extension
-from distutils.core import Distribution as _Distribution
+from distutils.core accio Extension as _Extension
+from distutils.core accio Distribution as _Distribution
 
 def _get_unpatched(cls):
     """Protect against re-patching the distutils if reloaded
@@ -19,7 +19,7 @@ _Distribution = _get_unpatched(_Distribution)
 _Extension = _get_unpatched(_Extension)
 
 try:
-    from Pyrex.Distutils.build_ext import build_ext
+    from Pyrex.Distutils.build_ext accio build_ext
 except ImportError:
     have_pyrex = False
 else:
@@ -44,7 +44,7 @@ class Extension(_Extension):
 class Library(Extension):
     """Just like a regular Extension, but built as a library instead"""
 
-import sys, distutils.core, distutils.extension
+accio sys, distutils.core, distutils.extension
 distutils.core.Extension = Extension
 distutils.extension.Extension = Extension
 if 'distutils.command.build_ext' in sys.modules:

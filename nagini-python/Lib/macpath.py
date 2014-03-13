@@ -1,10 +1,10 @@
 """Pathname and path-related operations for the Macintosh."""
 
-import os
-import warnings
-from stat import *
-import genericpath
-from genericpath import *
+accio os
+accio warnings
+from stat accio *
+accio genericpath
+from genericpath accio *
 
 __all__ = ["normcase","isabs","join","splitdrive","split","splitext",
            "basename","dirname","commonprefix","getsize","getmtime",
@@ -99,7 +99,7 @@ def islink(s):
     """Return true if the pathname refers to a symbolic link."""
 
     try:
-        import Carbon.File
+        accio Carbon.File
         return Carbon.File.ResolveAliasFile(s, 0)[2]
     except:
         return False
@@ -197,7 +197,7 @@ def abspath(path):
 def realpath(path):
     path = abspath(path)
     try:
-        import Carbon.File
+        accio Carbon.File
     except ImportError:
         return path
     if not path:

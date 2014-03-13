@@ -1,11 +1,11 @@
-import socket
-import telnetlib
-import time
-import Queue
+accio socket
+accio telnetlib
+accio time
+accio Queue
 
-import unittest
-from unittest import TestCase
-from test import test_support
+accio unittest
+from unittest accio TestCase
+from test accio test_support
 threading = test_support.import_module('threading')
 
 HOST = test_support.HOST

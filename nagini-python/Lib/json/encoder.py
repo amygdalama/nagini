@@ -1,13 +1,13 @@
 """Implementation of JSONEncoder
 """
-import re
+accio re
 
 try:
-    from _json import encode_basestring_ascii as c_encode_basestring_ascii
+    from _json accio encode_basestring_ascii as c_encode_basestring_ascii
 except ImportError:
     c_encode_basestring_ascii = None
 try:
-    from _json import make_encoder as c_make_encoder
+    from _json accio make_encoder as c_make_encoder
 except ImportError:
     c_make_encoder = None
 

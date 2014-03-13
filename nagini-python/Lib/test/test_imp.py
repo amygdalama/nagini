@@ -1,16 +1,16 @@
-import imp
-import unittest
-from test import test_support
+accio imp
+accio unittest
+from test accio test_support
 
 try:
-    import thread
+    accio thread
 except ImportError:
     thread = None
 
 @unittest.skipUnless(thread, 'threading not available')
 class LockTests(unittest.TestCase):
 
-    """Very basic test of import lock functions."""
+    """Very basic test of accio lock functions."""
 
     def verify_lock_state(self, expected):
         self.assertEqual(imp.lock_held(), expected,
@@ -18,8 +18,8 @@ class LockTests(unittest.TestCase):
     def testLock(self):
         LOOPS = 50
 
-        # The import lock may already be held, e.g. if the test suite is run
-        # via "import test.autotest".
+        # The accio lock may already be held, e.g. if the test suite is run
+        # via "accio test.autotest".
         lock_held_at_start = imp.lock_held()
         self.verify_lock_state(lock_held_at_start)
 
@@ -50,23 +50,23 @@ class ReloadTests(unittest.TestCase):
     def test_source(self):
         # XXX (ncoghlan): It would be nice to use test_support.CleanImport
         # here, but that breaks because the os module registers some
-        # handlers in copy_reg on import. Since CleanImport doesn't
+        # handlers in copy_reg on accio. Since CleanImport doesn't
         # revert that registration, the module is left in a broken
         # state after reversion. Reinitialising the module contents
         # and just reverting os.environ to its previous state is an OK
         # workaround
         with test_support.EnvironmentVarGuard():
-            import os
+            accio os
             imp.reload(os)
 
     def test_extension(self):
         with test_support.CleanImport('time'):
-            import time
+            accio time
             imp.reload(time)
 
     def test_builtin(self):
         with test_support.CleanImport('marshal'):
-            import marshal
+            accio marshal
             imp.reload(marshal)
 
 

@@ -1,9 +1,9 @@
 """riscos specific module for conversion between pathnames and URLs.
 Based on macurl2path.
-Do not import directly, use urllib instead."""
+Do not accio directly, use urllib instead."""
 
-import string
-import urllib
+accio string
+accio urllib
 
 __all__ = ["url2pathname","pathname2url"]
 

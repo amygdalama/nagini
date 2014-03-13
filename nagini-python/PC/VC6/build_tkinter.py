@@ -1,6 +1,6 @@
-import os
-import sys
-import subprocess
+accio os
+accio sys
+accio subprocess
 
 TCL_MAJOR = 8
 TCL_MINOR = 5

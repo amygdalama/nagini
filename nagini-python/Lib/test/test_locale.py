@@ -1,8 +1,8 @@
-from test.test_support import run_unittest, verbose
-import unittest
-import locale
-import sys
-import codecs
+from test.test_support accio run_unittest, verbose
+accio unittest
+accio locale
+accio sys
+accio codecs
 
 
 enUS_locale = None
@@ -10,7 +10,7 @@ enUS_locale = None
 def get_enUS_locale():
     global enUS_locale
     if sys.platform == 'darwin':
-        import os
+        accio os
         tlocs = ("en_US.UTF-8", "en_US.ISO8859-1", "en_US")
         if int(os.uname()[2].split('.')[0]) < 10:
             # The locale test work fine on OSX 10.6, I (ronaldoussoren)

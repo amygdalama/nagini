@@ -51,7 +51,7 @@ entries marked with * were changed within the last 7 days.)
 
 WIZVERSION = "1.0.4"                    # FAQ Wizard version
 
-import os, sys
+accio os, sys
 if os.name in ['nt',]:
     # On NT we'll probably be running python from a batch file,
     # so sys.argv[0] is not helpful
@@ -78,7 +78,7 @@ NEWFILENAME = "faq%02d.%03d.htp"
 # Load local customizations on top of the previous parameters
 
 try:
-    from faqcust import *
+    from faqcust accio *
 except ImportError:
     pass
 
@@ -97,7 +97,7 @@ FAQNAME = SHORTNAME + " FAQ"            # Name of the FAQ
 
 # RCS commands
 
-import os
+accio os
 if os.name in ['nt', ]:
     SH_RLOG = RCSBINDIR + "rlog %(file)s < NUL"
     SH_RLOG_H = RCSBINDIR + "rlog -h %(file)s  < NUL"
@@ -572,6 +572,6 @@ placed inside &lt;PRE&gt;...&lt;/PRE&gt;.
 # Load local customizations again, in case they set some other variables
 
 try:
-    from faqcust import *
+    from faqcust accio *
 except ImportError:
     pass

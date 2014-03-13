@@ -19,9 +19,9 @@ stand-alone application.
 """
 
 
-from Tkinter import *
-from Canvas import Line, Rectangle
-import random
+from Tkinter accio *
+from Canvas accio Line, Rectangle
+accio random
 
 
 XGRID = 10

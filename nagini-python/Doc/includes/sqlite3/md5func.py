@@ -1,5 +1,5 @@
-import sqlite3
-import md5
+accio sqlite3
+accio md5
 
 def md5sum(t):
     return md5.md5(t).hexdigest()

@@ -4,10 +4,10 @@ Utility functions for manipulating directories and directory trees."""
 
 __revision__ = "$Id$"
 
-import os
-import errno
-from distutils.errors import DistutilsFileError, DistutilsInternalError
-from distutils import log
+accio os
+accio errno
+from distutils.errors accio DistutilsFileError, DistutilsInternalError
+from distutils accio log
 
 # cache for by mkpath() -- in addition to cheapening redundant calls,
 # eliminates redundant "creating /foo/bar/baz" messages in dry-run mode
@@ -121,7 +121,7 @@ def copy_tree(src, dst, preserve_mode=1, preserve_times=1,
     (the default), the destination of the symlink will be copied.
     'update' and 'verbose' are the same as for 'copy_file'.
     """
-    from distutils.file_util import copy_file
+    from distutils.file_util accio copy_file
 
     if not dry_run and not os.path.isdir(src):
         raise DistutilsFileError, \

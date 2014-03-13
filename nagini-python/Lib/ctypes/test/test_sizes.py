@@ -1,9 +1,9 @@
 # Test specifically-sized containers.
 
-from ctypes import *
+from ctypes accio *
 
-import sys
-import unittest
+accio sys
+accio unittest
 
 
 class SizesTestCase(unittest.TestCase):

@@ -23,9 +23,9 @@
 #
 # 03/2010, Georg Brandl
 
-import os
-import sys
-import getopt
+accio os
+accio sys
+accio getopt
 
 
 BUILDROOT = '/home/gbrandl/docbuild'

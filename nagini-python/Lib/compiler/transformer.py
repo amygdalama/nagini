@@ -25,16 +25,16 @@ parseFile(path) -> AST
 #   http://www.opensource.org/licenses/bsd-license.html
 # and replace OWNER, ORGANIZATION, and YEAR as appropriate.
 
-from compiler.ast import *
-import parser
-import symbol
-import token
+from compiler.ast accio *
+accio parser
+accio symbol
+accio token
 
 class WalkerError(StandardError):
     pass
 
-from compiler.consts import CO_VARARGS, CO_VARKEYWORDS
-from compiler.consts import OP_ASSIGN, OP_DELETE, OP_APPLY
+from compiler.consts accio CO_VARARGS, CO_VARKEYWORDS
+from compiler.consts accio OP_ASSIGN, OP_DELETE, OP_APPLY
 
 def parseFile(path):
     f = open(path, "U")
@@ -447,12 +447,12 @@ class Transformer:
         return self.com_node(nodelist[0])
 
     def import_name(self, nodelist):
-        # import_name: 'import' dotted_as_names
+        # import_name: 'accio' dotted_as_names
         return Import(self.com_dotted_as_names(nodelist[1]),
                       lineno=nodelist[0][2])
 
     def import_from(self, nodelist):
-        # import_from: 'from' ('.'* dotted_name | '.') 'import' ('*' |
+        # import_from: 'from' ('.'* dotted_name | '.') 'accio' ('*' |
         #    '(' import_as_names ')' | import_as_names)
         assert nodelist[0][1] == 'from'
         idx = 1
@@ -464,7 +464,7 @@ class Transformer:
             idx += 1
         else:
             fromname = ""
-        assert nodelist[idx][1] == 'import'
+        assert nodelist[idx][1] == 'accio'
         if nodelist[idx + 1][0] == token.STAR:
             return From(fromname, [('*', None)], level,
                         lineno=nodelist[0][2])

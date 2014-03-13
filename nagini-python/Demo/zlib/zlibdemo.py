@@ -4,7 +4,7 @@
 # Reads the file and compresses the content using level 1 and level 9
 # compression, printing a summary of the results.
 
-import zlib, sys
+accio zlib, sys
 
 def main():
     if len(sys.argv) > 1:

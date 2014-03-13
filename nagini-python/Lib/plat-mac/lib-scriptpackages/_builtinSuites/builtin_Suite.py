@@ -2,8 +2,8 @@
 Level 1, version 1
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'aevt'
 

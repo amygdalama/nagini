@@ -1,3 +1,3 @@
-from _struct import *
-from _struct import _clearcache
-from _struct import __doc__
+from _struct accio *
+from _struct accio _clearcache
+from _struct accio __doc__

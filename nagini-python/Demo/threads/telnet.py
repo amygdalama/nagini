@@ -13,9 +13,9 @@
 # it defaults to 'telnet'.
 
 
-import sys, os, time
-from socket import *
-import thread
+accio sys, os, time
+from socket accio *
+accio thread
 
 BUFSIZE = 8*1024
 

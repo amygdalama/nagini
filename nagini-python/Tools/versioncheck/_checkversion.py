@@ -2,7 +2,7 @@
 "versioncheck" package. It is also an example of how to format your own
 _checkversion.py file"""
 
-import pyversioncheck
+accio pyversioncheck
 
 _PACKAGE="versioncheck"
 _VERSION="1.0"

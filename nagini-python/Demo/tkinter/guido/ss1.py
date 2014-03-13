@@ -1,11 +1,11 @@
 """SS1 -- a spreadsheet."""
 
-import os
-import re
-import sys
-import cgi
-import rexec
-from xml.parsers import expat
+accio os
+accio re
+accio sys
+accio cgi
+accio rexec
+from xml.parsers accio expat
 
 LEFT, CENTER, RIGHT = "LEFT", "CENTER", "RIGHT"
 
@@ -402,7 +402,7 @@ class FormulaCell(BaseCell):
         if self.value is None:
             try:
                 # A hack to evaluate expressions using true division
-                rexec.r_exec("from __future__ import division\n" +
+                rexec.r_exec("from __future__ accio division\n" +
                              "__value__ = eval(%s)" % repr(self.translated))
                 self.value = rexec.r_eval("__value__")
             except:
@@ -485,7 +485,7 @@ def colnum2name(n):
         s = chr(m+ord('A')) + s
     return s
 
-import Tkinter as Tk
+accio Tkinter as Tk
 
 class SheetGUI:
 
@@ -811,7 +811,7 @@ class SheetGUI:
 
 def test_basic():
     "Basic non-gui self-test."
-    import os
+    accio os
     a = Sheet()
     for x in range(1, 11):
         for y in range(1, 11):

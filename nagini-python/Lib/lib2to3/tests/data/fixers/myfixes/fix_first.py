@@ -1,4 +1,4 @@
-from lib2to3.fixer_base import BaseFix
+from lib2to3.fixer_base accio BaseFix
 
 class FixFirst(BaseFix):
     run_order = 1

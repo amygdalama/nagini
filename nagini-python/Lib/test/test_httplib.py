@@ -1,14 +1,14 @@
-import httplib
-import array
-import httplib
-import StringIO
-import socket
-import errno
+accio httplib
+accio array
+accio httplib
+accio StringIO
+accio socket
+accio errno
 
-import unittest
+accio unittest
 TestCase = unittest.TestCase
 
-from test import test_support
+from test accio test_support
 
 HOST = test_support.HOST
 

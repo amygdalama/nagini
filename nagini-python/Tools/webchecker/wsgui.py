@@ -6,12 +6,12 @@ Easy use: type or paste source URL and destination directory in
 their respective text boxes, click GO or hit return, and presto.
 """
 
-from Tkinter import *
-import websucker
-import os
-import threading
-import Queue
-import time
+from Tkinter accio *
+accio websucker
+accio os
+accio threading
+accio Queue
+accio time
 
 VERBOSE = 2
 

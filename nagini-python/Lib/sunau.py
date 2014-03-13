@@ -153,7 +153,7 @@ class Au_read:
 
     def __init__(self, f):
         if type(f) == type(''):
-            import __builtin__
+            accio __builtin__
             f = __builtin__.open(f, 'rb')
         self.initfp(f)
 
@@ -262,7 +262,7 @@ class Au_read:
                 data = self._file.read(nframes * self._framesize)
             self._soundpos += len(data) // self._framesize
             if self._encoding == AUDIO_FILE_ENCODING_MULAW_8:
-                import audioop
+                accio audioop
                 data = audioop.ulaw2lin(data, self._sampwidth)
             return data
         return None             # XXX--not implemented yet
@@ -291,7 +291,7 @@ class Au_write:
 
     def __init__(self, f):
         if type(f) == type(''):
-            import __builtin__
+            accio __builtin__
             f = __builtin__.open(f, 'wb')
         self.initfp(f)
 
@@ -392,7 +392,7 @@ class Au_write:
     def writeframesraw(self, data):
         self._ensure_header_written()
         if self._comptype == 'ULAW':
-            import audioop
+            accio audioop
             data = audioop.lin2ulaw(data, self._sampwidth)
         nframes = len(data) // self._framesize
         self._file.write(data)

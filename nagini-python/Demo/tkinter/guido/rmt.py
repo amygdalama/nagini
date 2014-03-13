@@ -11,8 +11,8 @@
 
 # XXX This should be written in a more Python-like style!!!
 
-from Tkinter import *
-import sys
+from Tkinter accio *
+accio sys
 
 # 1. Create basic application structure: menu bar on top of
 # text widget, scrollbar on right.

@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # note that there is no explicit call to start Tk.
 # Tkinter is smart enough to start the system if it's not already going.

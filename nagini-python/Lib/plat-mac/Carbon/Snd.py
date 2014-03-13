@@ -1,1 +1,1 @@
-from _Snd import *
+from _Snd accio *

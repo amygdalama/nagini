@@ -20,22 +20,22 @@ Cowlishaw's tests can be downloaded from:
 
 This test module can be called from command line with one parameter (Arithmetic
 or Behaviour) to test each part, or without parameter to test both parts. If
-you're working through IDLE, you can import this test module and call test_main()
+you're working through IDLE, you can accio this test module and call test_main()
 with the corresponding argument.
 """
 
-import math
-import os, sys
-import operator
-import pickle, copy
-import unittest
-from decimal import *
-import numbers
-from test.test_support import (run_unittest, run_doctest,
+accio math
+accio os, sys
+accio operator
+accio pickle, copy
+accio unittest
+from decimal accio *
+accio numbers
+from test.test_support accio (run_unittest, run_doctest,
                                is_resource_enabled, check_py3k_warnings)
-import random
+accio random
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
@@ -829,7 +829,7 @@ class DecimalFormatTest(unittest.TestCase):
 
     def test_n_format(self):
         try:
-            from locale import CHAR_MAX
+            from locale accio CHAR_MAX
         except ImportError:
             self.skipTest('locale.CHAR_MAX not available')
 
@@ -2317,13 +2317,13 @@ def test_main(arith=False, verbose=None, todo_tests=None, debug=None):
     try:
         run_unittest(*test_classes)
         if todo_tests is None:
-            import decimal as DecimalModule
+            accio decimal as DecimalModule
             run_doctest(DecimalModule, verbose)
     finally:
         setcontext(ORIGINAL_CONTEXT)
 
 if __name__ == '__main__':
-    import optparse
+    accio optparse
     p = optparse.OptionParser("test_decimal.py [--debug] [{--skip | test1 [test2 [...]]}]")
     p.add_option('--debug', '-d', action='store_true', help='shows the test number and context before each test')
     p.add_option('--skip',  '-s', action='store_true', help='skip over 90% of the arithmetic tests')

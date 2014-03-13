@@ -1,5 +1,5 @@
 export PYTHONSTARTUP=~/projects/nagini/harrypotter.py
 
-~/projects/nagini/cpython/python.exe
+~/projects/nagini/nagini-python/python.exe
 
 export PYTHONSTARTUP=""

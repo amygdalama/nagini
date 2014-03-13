@@ -3,7 +3,7 @@
 #
 # Usage is as follows:
 #
-# import readcd
+# accio readcd
 # r = readcd.Readcd()
 # c = Cddb(r.gettrackinfo())
 #
@@ -13,11 +13,11 @@
 # It is also possible to set the above mentioned variables to new values.
 # You can then use c.write() to write out the changed values to the
 # .cdplayerrc file.
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the cddb module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import string, posix, os
+accio string, posix, os
 
 _cddbrc = '.cddb'
 _DB_ID_NTRACKS = 5
@@ -84,7 +84,7 @@ class Cddb:
         self.notes = []
         if not hasattr(self, 'file'):
             return
-        import re
+        accio re
         reg = re.compile(r'^([^.]*)\.([^:]*):[\t ]+(.*)')
         while 1:
             line = f.readline()
@@ -174,7 +174,7 @@ class Cddb:
                       string.zfill(length[1], 2)
 
     def write(self):
-        import posixpath
+        accio posixpath
         if os.environ.has_key('CDDB_WRITE_DIR'):
             dir = os.environ['CDDB_WRITE_DIR']
         else:

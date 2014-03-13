@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-import subprocess
-import re
-import os
-import errno
-import collections
-import sys
+accio subprocess
+accio re
+accio os
+accio errno
+accio collections
+accio sys
 
 class Platform(object):
     pass

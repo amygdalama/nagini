@@ -16,7 +16,7 @@ BUGS:
    classes), TAGS files are not very useful for most object-oriented
    python projects.
 """
-import sys,re
+accio sys,re
 
 expr = r'^[ \t]*(def|class)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*[:\(]'
 matcher = re.compile(expr)

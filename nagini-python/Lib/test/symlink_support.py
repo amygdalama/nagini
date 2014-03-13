@@ -1,8 +1,8 @@
-import os
-import unittest
-import platform
+accio os
+accio unittest
+accio platform
 
-from test.test_support import TESTFN
+from test.test_support accio TESTFN
 
 def can_symlink():
     # cache the result in can_symlink.prev_val
@@ -31,7 +31,7 @@ def _symlink_win32(target, link, target_is_directory=False):
     Ctypes symlink implementation since Python doesn't support
     symlinks in windows yet. Borrowed from jaraco.windows project.
     """
-    import ctypes.wintypes
+    accio ctypes.wintypes
     CreateSymbolicLink = ctypes.windll.kernel32.CreateSymbolicLinkW
     CreateSymbolicLink.argtypes = (
         ctypes.wintypes.LPWSTR,

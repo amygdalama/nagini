@@ -25,12 +25,12 @@ Options:
         Display version information and exit.
 """
 
-import os
-import sys
-import ast
-import getopt
-import struct
-import array
+accio os
+accio sys
+accio ast
+accio getopt
+accio struct
+accio array
 
 __version__ = "1.1"
 

@@ -3,8 +3,8 @@
 The main package for curses support for Python.  Normally used by importing
 the package, and perhaps a particular module inside it.
 
-   import curses
-   from curses import textpad
+   accio curses
+   from curses accio textpad
    curses.initscr()
    ...
 
@@ -12,10 +12,10 @@ the package, and perhaps a particular module inside it.
 
 __revision__ = "$Id$"
 
-from _curses import *
-from curses.wrapper import wrapper
-import os as _os
-import sys as _sys
+from _curses accio *
+from curses.wrapper accio wrapper
+accio os as _os
+accio sys as _sys
 
 # Some constants, most notably the ACS_* ones, are only added to the C
 # _curses module's dictionary after initscr() is called.  (Some
@@ -23,10 +23,10 @@ import sys as _sys
 # until initscr() has been called.)  This wrapper function calls the
 # underlying C initscr(), and then copies the constants from the
 # _curses module to the curses package's dictionary.  Don't do 'from
-# curses import *' if you'll be needing the ACS_* constants.
+# curses accio *' if you'll be needing the ACS_* constants.
 
 def initscr():
-    import _curses, curses
+    accio _curses, curses
     # we call setupterm() here because it raises an error
     # instead of calling exit() in error cases.
     setupterm(term=_os.environ.get("TERM", "unknown"),
@@ -43,7 +43,7 @@ def initscr():
 # called.
 
 def start_color():
-    import _curses, curses
+    accio _curses, curses
     retval = _curses.start_color()
     if hasattr(_curses, 'COLORS'):
         curses.COLORS = _curses.COLORS
@@ -56,4 +56,4 @@ def start_color():
 try:
     has_key
 except NameError:
-    from has_key import has_key
+    from has_key accio has_key

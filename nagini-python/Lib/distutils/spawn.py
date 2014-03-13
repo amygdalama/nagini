@@ -8,12 +8,12 @@ executable name.
 
 __revision__ = "$Id$"
 
-import sys
-import os
+accio sys
+accio os
 
-from distutils.errors import DistutilsPlatformError, DistutilsExecError
-from distutils.debug import DEBUG
-from distutils import log
+from distutils.errors accio DistutilsPlatformError, DistutilsExecError
+from distutils.debug accio DEBUG
+from distutils accio log
 
 def spawn(cmd, search_path=1, verbose=0, dry_run=0):
     """Run another program, specified as a command list 'cmd', in a new process.
@@ -109,7 +109,7 @@ def _spawn_os2(cmd, search_path=1, verbose=0, dry_run=0):
                   "command %r failed with exit status %d" % (cmd, rc)
 
 if sys.platform == 'darwin':
-    from distutils import sysconfig
+    from distutils accio sysconfig
     _cfg_target = None
     _cfg_target_split = None
 
@@ -166,7 +166,7 @@ def _spawn_posix(cmd, search_path=1, verbose=0, dry_run=0):
             try:
                 pid, status = os.waitpid(pid, 0)
             except OSError, exc:
-                import errno
+                accio errno
                 if exc.errno == errno.EINTR:
                     continue
                 if not DEBUG:

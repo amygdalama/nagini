@@ -4,7 +4,7 @@
 
 # A demonstration of chaos
 
-from turtle import *
+from turtle accio *
 
 N = 80
 

@@ -1,5 +1,5 @@
-import sqlite3
-import datetime
+accio sqlite3
+accio datetime
 
 con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_COLNAMES)
 cur = con.cursor()

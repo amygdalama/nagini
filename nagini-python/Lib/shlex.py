@@ -7,14 +7,14 @@
 # Posix compliance, split(), string arguments, and
 # iterator interface by Gustavo Niemeyer, April 2003.
 
-import os.path
-import sys
-from collections import deque
+accio os.path
+accio sys
+from collections accio deque
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 __all__ = ["shlex", "split"]
 

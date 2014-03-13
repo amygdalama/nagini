@@ -6,18 +6,18 @@ Revise if output destination changes (http://bugs.python.org/issue18318).
 Make sure warnings module is left unaltered (http://bugs.python.org/issue18081).
 '''
 
-import unittest
-from test.test_support import captured_stderr
+accio unittest
+from test.test_support accio captured_stderr
 
-import warnings
+accio warnings
 # Try to capture default showwarning before Idle modules are imported.
 showwarning = warnings.showwarning
 # But if we run this file within idle, we are in the middle of the run.main loop
 # and default showwarnings has already been replaced.
 running_in_idle = 'idle' in showwarning.__name__
 
-from idlelib import run
-from idlelib import PyShell as shell
+from idlelib accio run
+from idlelib accio PyShell as shell
 
 # The following was generated from PyShell.idle_formatwarning
 # and checked as matching expectation.

@@ -14,7 +14,7 @@ Status: progress has been made replacing these cases, but there is an
 infinite number of such cases.
 """
 
-import _json, weakref
+accio _json, weakref
 
 class Ctx1(object):
     encoding = "utf8"

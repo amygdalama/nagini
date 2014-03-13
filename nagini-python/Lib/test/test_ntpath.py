@@ -1,9 +1,9 @@
-import ntpath
-import os
-import sys
-from test.test_support import TestFailed
-from test import test_support, test_genericpath
-import unittest
+accio ntpath
+accio os
+accio sys
+from test.test_support accio TestFailed
+from test accio test_support, test_genericpath
+accio unittest
 
 def tester0(fn, wantResult):
     gotResult = eval(fn)
@@ -215,13 +215,13 @@ class TestNtpath(unittest.TestCase):
 
     def test_abspath(self):
         # ntpath.abspath() can only be used on a system with the "nt" module
-        # (reasonably), so we protect this test with "import nt".  This allows
+        # (reasonably), so we protect this test with "accio nt".  This allows
         # the rest of the tests for the ntpath module to be run to completion
         # on any platform, since most of the module is intended to be usable
         # from any platform.
         # XXX this needs more tests
         try:
-            import nt
+            accio nt
         except ImportError:
             # check that the function is there even if we are not on Windows
             ntpath.abspath

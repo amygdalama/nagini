@@ -1,6 +1,6 @@
-import unittest
+accio unittest
 
-from test import test_support as support
+from test accio test_support as support
 
 # For scope testing.
 g = "Global variable"

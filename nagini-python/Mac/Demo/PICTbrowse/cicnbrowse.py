@@ -1,14 +1,14 @@
 """browsepict - Display all "cicn" resources found"""
 
-import FrameWork
-import EasyDialogs
-from Carbon import Res
-from Carbon import Qd
-from Carbon import Win
-from Carbon import Controls
-from Carbon import List
-from Carbon import Icn
-import macresource
+accio FrameWork
+accio EasyDialogs
+from Carbon accio Res
+from Carbon accio Qd
+from Carbon accio Win
+from Carbon accio Controls
+from Carbon accio List
+from Carbon accio Icn
+accio macresource
 
 #
 # Resource definitions

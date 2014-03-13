@@ -1,7 +1,7 @@
 """Generate the skeleton for cStringIO as an example of framer."""
 
-from framer.bases import Module, Type
-from framer.member import member
+from framer.bases accio Module, Type
+from framer.member accio member
 
 class cStringIO(Module):
     """A simple fast partial StringIO replacement.
@@ -14,7 +14,7 @@ class cStringIO(Module):
 
     Usage:
 
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 
     an_output_stream = StringIO()
     an_output_stream.write(some_stuff)

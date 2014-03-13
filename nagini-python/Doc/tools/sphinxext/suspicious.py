@@ -41,13 +41,13 @@ Copyright 2009 Gabriel A. Genellina
 
 """
 
-import os
-import re
-import csv
-import sys
+accio os
+accio re
+accio csv
+accio sys
 
-from docutils import nodes
-from sphinx.builders import Builder
+from docutils accio nodes
+from sphinx.builders accio Builder
 
 detect_all = re.compile(ur'''
     ::(?=[^=])|            # two :: (but NOT ::=)

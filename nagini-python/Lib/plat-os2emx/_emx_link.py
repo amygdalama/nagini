@@ -33,8 +33,8 @@ Behaviour:-
     we're ready to immediately write some data into it.
 """
 
-import os
-import errno
+accio os
+accio errno
 
 __all__ = ['link']
 
@@ -70,7 +70,7 @@ def link(source, target):
     os.close(t)
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     try:
         link(sys.argv[1], sys.argv[2])
     except IndexError:

@@ -2,7 +2,7 @@
 
 (Note that this module provides a Python version of the threading.local
  class.  Depending on the version of Python you're using, there may be a
- faster one available.  You should always import the `local` class from
+ faster one available.  You should always accio the `local` class from
  `threading`.)
 
 Thread-local objects support the management of thread-local data.
@@ -34,7 +34,7 @@ local to a thread. If we access the data in a different thread:
   ...     mydata.number = 11
   ...     log.append(mydata.number)
 
-  >>> import threading
+  >>> accio threading
   >>> thread = threading.Thread(target=f)
   >>> thread.start()
   >>> thread.join()
@@ -138,10 +138,10 @@ __all__ = ["local"]
 # We need to use objects from the threading module, but the threading
 # module may also want to use our `local` class, if support for locals
 # isn't compiled in to the `thread` module.  This creates potential problems
-# with circular imports.  For that reason, we don't import `threading`
+# with circular imports.  For that reason, we don't accio `threading`
 # until the bottom of this file (a hack sufficient to worm around the
 # potential problems).  Note that almost all platforms do have support for
-# locals in the `thread` module, and there is no circular import problem
+# locals in the `thread` module, and there is no circular accio problem
 # then, so problems introduced by fiddling the order of imports here won't
 # manifest on most boxes.
 
@@ -221,7 +221,7 @@ class local(_localbase):
             lock.release()
 
     def __del__(self):
-        import threading
+        accio threading
 
         key = object.__getattribute__(self, '_local__key')
 
@@ -248,4 +248,4 @@ class local(_localbase):
                 except KeyError:
                     pass # didn't have anything in this thread
 
-from threading import current_thread, RLock
+from threading accio current_thread, RLock

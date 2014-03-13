@@ -12,8 +12,8 @@ Command line flags:
          Exclude specified tests.
   mask   mask to select filenames containing testcases, wildcards allowed
 """
-import sys
-import ctypes.test
+accio sys
+accio ctypes.test
 
 if __name__ == "__main__":
     sys.exit(ctypes.test.main(ctypes.test))

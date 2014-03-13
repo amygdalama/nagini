@@ -5,11 +5,11 @@ modules in setup scripts."""
 
 __revision__ = "$Id$"
 
-import os, string, sys
-from types import *
+accio os, string, sys
+from types accio *
 
 try:
-    import warnings
+    accio warnings
 except ImportError:
     warnings = None
 
@@ -20,7 +20,7 @@ except ImportError:
 # better error-checking ("foo.c" actually exists).
 #
 # Also, putting this in build_ext.py means every setup script would have to
-# import that large-ish module (indirectly, through distutils.core) in
+# accio that large-ish module (indirectly, through distutils.core) in
 # order to do anything.
 
 class Extension:
@@ -137,10 +137,10 @@ class Extension:
 
 
 def read_setup_file (filename):
-    from distutils.sysconfig import \
+    from distutils.sysconfig accio \
          parse_makefile, expand_makefile_vars, _variable_rx
-    from distutils.text_file import TextFile
-    from distutils.util import split_quoted
+    from distutils.text_file accio TextFile
+    from distutils.util accio split_quoted
 
     # First pass over the file to gather "VAR = VALUE" assignments.
     vars = parse_makefile(filename)

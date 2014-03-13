@@ -3,9 +3,9 @@
 #   Codec mapping tests for PRC encodings
 #
 
-from test import test_support
-from test import test_multibytecodec_support
-import unittest
+from test accio test_support
+from test accio test_multibytecodec_support
+accio unittest
 
 class TestGB2312Map(test_multibytecodec_support.TestBase_Mapping,
                    unittest.TestCase):

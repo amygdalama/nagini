@@ -5,11 +5,11 @@ Written by Marc-Andre Lemburg (mal@lemburg.com).
 (c) Copyright CNRI, All Rights Reserved. NO WARRANTY.
 
 """#"
-import sys
-import struct
-import codecs
-import unittest
-from test import test_support, string_tests
+accio sys
+accio struct
+accio codecs
+accio unittest
+from test accio test_support, string_tests
 
 # decorator to skip tests on narrow builds
 requires_wide_build = unittest.skipIf(sys.maxunicode == 65535,
@@ -651,7 +651,7 @@ class UnicodeTest(
 
     @test_support.cpython_only
     def test_formatting_huge_precision_c_limits(self):
-        from _testcapi import INT_MAX
+        from _testcapi accio INT_MAX
         format_string = u"%.{}f".format(INT_MAX + 1)
         with self.assertRaises(ValueError):
             result = format_string % 2.34
@@ -1052,7 +1052,7 @@ class UnicodeTest(
         self.assertRaises(TypeError, u"hello".encode, "test.unicode1")
         self.assertRaises(TypeError, u"hello".encode, "test.unicode2")
         # executes PyUnicode_Encode()
-        import imp
+        accio imp
         self.assertRaises(
             ImportError,
             imp.find_module,
@@ -1338,7 +1338,7 @@ class UnicodeTest(
         self.assertEqual(u'a{{b'.format(), u'a{b')
 
         # examples from the PEP:
-        import datetime
+        accio datetime
         self.assertEqual(u"My name is {0}".format(u'Fred'), u"My name is Fred")
         self.assertEqual(u"My name is {0[name]}".format(dict(name=u'Fred')),
                          u"My name is Fred")
@@ -1640,7 +1640,7 @@ class UnicodeTest(
 
     @test_support.cpython_only
     def test_encode_decimal(self):
-        from _testcapi import unicode_encodedecimal
+        from _testcapi accio unicode_encodedecimal
         self.assertEqual(unicode_encodedecimal(u'123'),
                          b'123')
         self.assertEqual(unicode_encodedecimal(u'\u0663.\u0661\u0664'),
@@ -1666,7 +1666,7 @@ class UnicodeTest(
 
     @test_support.cpython_only
     def test_encode_decimal_with_surrogates(self):
-        from _testcapi import unicode_encodedecimal
+        from _testcapi accio unicode_encodedecimal
         tests = [(u'\U0001f49d', '&#128157;'),
                  (u'\ud83d', '&#55357;'),
                  (u'\udc9d', '&#56477;'),

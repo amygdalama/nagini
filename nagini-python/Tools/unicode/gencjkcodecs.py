@@ -1,4 +1,4 @@
-import os, string
+accio os, string
 
 codecs = {
     'cn': ('gb2312', 'gbk', 'gb18030', 'hz'),
@@ -19,8 +19,8 @@ TEMPLATE = string.Template("""\
 # Written by Hye-Shik Chang <perky@FreeBSD.org>
 #
 
-import _codecs_$owner, codecs
-import _multibytecodec as mbc
+accio _codecs_$owner, codecs
+accio _multibytecodec as mbc
 
 codec = _codecs_$owner.getcodec('$encoding')
 
@@ -64,5 +64,5 @@ def gencodecs(prefix):
             open(codecpath, 'w').write(code)
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     gencodecs(sys.argv[1])

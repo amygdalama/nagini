@@ -5,10 +5,10 @@
 # All rights reserved.
 #
 
-import time, sys, random
-from Queue import Empty
+accio time, sys, random
+from Queue accio Empty
 
-import multiprocessing               # may get overwritten
+accio multiprocessing               # may get overwritten
 
 
 #### TEST_VALUE
@@ -268,7 +268,7 @@ if __name__ == '__main__':
         namespace.active_children = multiprocessing.active_children
     elif sys.argv[1] == 'threads':
         print ' Using threads '.center(79, '-')
-        import multiprocessing.dummy as namespace
+        accio multiprocessing.dummy as namespace
     else:
         print 'Usage:\n\t%s [processes | manager | threads]' % sys.argv[0]
         raise SystemExit(2)

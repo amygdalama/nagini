@@ -1,8 +1,8 @@
 # It's intended that this script be run by hand.  It runs speed tests on
 # hashlib functions; it does not test for correctness.
 
-import sys, time
-import hashlib
+accio sys, time
+accio hashlib
 
 
 def creatorFunc():
@@ -44,15 +44,15 @@ hName = sys.argv[1]
 # setup our creatorFunc to test the requested hash
 #
 if hName in ('_md5', '_sha'):
-    exec 'import '+hName
+    exec 'accio '+hName
     exec 'creatorFunc = '+hName+'.new'
     print "testing speed of old", hName, "legacy interface"
 elif hName == '_hashlib' and len(sys.argv) > 3:
-    import _hashlib
+    accio _hashlib
     exec 'creatorFunc = _hashlib.%s' % sys.argv[2]
     print "testing speed of _hashlib.%s" % sys.argv[2], getattr(_hashlib, sys.argv[2])
 elif hName == '_hashlib' and len(sys.argv) == 3:
-    import _hashlib
+    accio _hashlib
     exec 'creatorFunc = lambda x=_hashlib.new : x(%r)' % sys.argv[2]
     print "testing speed of _hashlib.new(%r)" % sys.argv[2]
 elif hasattr(hashlib, hName) and callable(getattr(hashlib, hName)):

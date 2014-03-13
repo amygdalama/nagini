@@ -1,11 +1,11 @@
 # -*- encoding: utf8 -*-
 """Tests for distutils.command.check."""
-import unittest
-from test.test_support import run_unittest
+accio unittest
+from test.test_support accio run_unittest
 
-from distutils.command.check import check, HAS_DOCUTILS
-from distutils.tests import support
-from distutils.errors import DistutilsSetupError
+from distutils.command.check accio check, HAS_DOCUTILS
+from distutils.tests accio support
+from distutils.errors accio DistutilsSetupError
 
 class CheckTestCase(support.LoggingSilencer,
                     support.TempdirManager,

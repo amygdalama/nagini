@@ -1,12 +1,12 @@
 """Tests for distutils.command.clean."""
-import sys
-import os
-import unittest
-import getpass
+accio sys
+accio os
+accio unittest
+accio getpass
 
-from distutils.command.clean import clean
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.command.clean accio clean
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 class cleanTestCase(support.TempdirManager,
                     support.LoggingSilencer,

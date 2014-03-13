@@ -28,8 +28,8 @@ has another way to reference private data (besides global variables).
 # XXX instead of having to define a module or class just to hold
 # XXX the global state of your particular time and delay functions.
 
-import heapq
-from collections import namedtuple
+accio heapq
+from collections accio namedtuple
 
 __all__ = ["scheduler"]
 

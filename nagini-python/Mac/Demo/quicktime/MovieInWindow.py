@@ -3,18 +3,18 @@
 Jack Jansen, CWI, December 1995
 """
 
-from Carbon import Qt
-from Carbon import QuickTime
-from Carbon import Qd
-from Carbon import QuickDraw
-from Carbon import Evt
-from Carbon import Events
-from Carbon import Win
-from Carbon import Windows
-from Carbon import File
-import EasyDialogs
-import sys
-import os
+from Carbon accio Qt
+from Carbon accio QuickTime
+from Carbon accio Qd
+from Carbon accio QuickDraw
+from Carbon accio Evt
+from Carbon accio Events
+from Carbon accio Win
+from Carbon accio Windows
+from Carbon accio File
+accio EasyDialogs
+accio sys
+accio os
 
 
 def main():

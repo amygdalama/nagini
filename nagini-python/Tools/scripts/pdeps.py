@@ -20,9 +20,9 @@
 # - option to limit output to particular modules
 
 
-import sys
-import re
-import os
+accio sys
+accio re
+accio os
 
 
 # Main program
@@ -55,10 +55,10 @@ def main():
     return 0
 
 
-# Compiled regular expressions to search for import statements
+# Compiled regular expressions to search for accio statements
 #
 m_import = re.compile('^[ \t]*from[ \t]+([^ \t]+)[ \t]+')
-m_from = re.compile('^[ \t]*import[ \t]+([^#]+)')
+m_from = re.compile('^[ \t]*accio[ \t]+([^#]+)')
 
 
 # Collect data from one file

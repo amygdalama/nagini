@@ -196,11 +196,11 @@ class ArgumentDescriptor(object):
         assert isinstance(doc, str)
         self.doc = doc
 
-from struct import unpack as _unpack
+from struct accio unpack as _unpack
 
 def read_uint1(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_uint1(StringIO.StringIO('\xff'))
     255
     """
@@ -219,7 +219,7 @@ uint1 = ArgumentDescriptor(
 
 def read_uint2(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_uint2(StringIO.StringIO('\xff\x00'))
     255
     >>> read_uint2(StringIO.StringIO('\xff\xff'))
@@ -240,7 +240,7 @@ uint2 = ArgumentDescriptor(
 
 def read_int4(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_int4(StringIO.StringIO('\xff\x00\x00\x00'))
     255
     >>> read_int4(StringIO.StringIO('\x00\x00\x00\x80')) == -(2**31)
@@ -261,7 +261,7 @@ int4 = ArgumentDescriptor(
 
 def read_stringnl(f, decode=True, stripquotes=True):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_stringnl(StringIO.StringIO("'abcd'\nefg\n"))
     'abcd'
 
@@ -334,7 +334,7 @@ stringnl_noescape = ArgumentDescriptor(
 
 def read_stringnl_noescape_pair(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_stringnl_noescape_pair(StringIO.StringIO("Queue\nEmpty\njunk"))
     'Queue Empty'
     """
@@ -356,7 +356,7 @@ stringnl_noescape_pair = ArgumentDescriptor(
 
 def read_string4(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_string4(StringIO.StringIO("\x00\x00\x00\x00abc"))
     ''
     >>> read_string4(StringIO.StringIO("\x03\x00\x00\x00abcdef"))
@@ -390,7 +390,7 @@ string4 = ArgumentDescriptor(
 
 def read_string1(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_string1(StringIO.StringIO("\x00"))
     ''
     >>> read_string1(StringIO.StringIO("\x03abcdef"))
@@ -419,7 +419,7 @@ string1 = ArgumentDescriptor(
 
 def read_unicodestringnl(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_unicodestringnl(StringIO.StringIO("abc\uabcd\njunk"))
     u'abc\uabcd'
     """
@@ -444,7 +444,7 @@ unicodestringnl = ArgumentDescriptor(
 
 def read_unicodestring4(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> s = u'abcd\uabcd'
     >>> enc = s.encode('utf-8')
     >>> enc
@@ -484,7 +484,7 @@ unicodestring4 = ArgumentDescriptor(
 
 def read_decimalnl_short(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_decimalnl_short(StringIO.StringIO("1234\n56"))
     1234
 
@@ -513,7 +513,7 @@ def read_decimalnl_short(f):
 
 def read_decimalnl_long(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
 
     >>> read_decimalnl_long(StringIO.StringIO("1234\n56"))
     Traceback (most recent call last):
@@ -561,7 +561,7 @@ decimalnl_long = ArgumentDescriptor(
 
 def read_floatnl(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_floatnl(StringIO.StringIO("-1.25\n6"))
     -1.25
     """
@@ -583,7 +583,7 @@ floatnl = ArgumentDescriptor(
 
 def read_float8(f):
     r"""
-    >>> import StringIO, struct
+    >>> accio StringIO, struct
     >>> raw = struct.pack(">d", -1.25)
     >>> raw
     '\xbf\xf4\x00\x00\x00\x00\x00\x00'
@@ -617,11 +617,11 @@ float8 = ArgumentDescriptor(
 
 # Protocol 2 formats
 
-from pickle import decode_long
+from pickle accio decode_long
 
 def read_long1(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_long1(StringIO.StringIO("\x00"))
     0L
     >>> read_long1(StringIO.StringIO("\x02\xff\x00"))
@@ -653,7 +653,7 @@ long1 = ArgumentDescriptor(
 
 def read_long4(f):
     r"""
-    >>> import StringIO
+    >>> accio StringIO
     >>> read_long4(StringIO.StringIO("\x02\x00\x00\x00\xff\x00"))
     255L
     >>> read_long4(StringIO.StringIO("\x02\x00\x00\x00\xff\x7f"))
@@ -1761,7 +1761,7 @@ for d in opcodes:
 del d
 
 def assure_pickle_consistency(verbose=False):
-    import pickle, re
+    accio pickle, re
 
     copy = code2op.copy()
     for name in pickle.__all__:
@@ -1828,7 +1828,7 @@ def genops(pickle):
     to query its current position) pos is None.
     """
 
-    import cStringIO as StringIO
+    accio cStringIO as StringIO
 
     if isinstance(pickle, str):
         pickle = StringIO.StringIO(pickle)
@@ -2030,7 +2030,7 @@ class _Example:
         self.value = value
 
 _dis_test = r"""
->>> import pickle
+>>> accio pickle
 >>> x = [1, 2, (3, 4), {'abc': u"def"}]
 >>> pkl = pickle.dumps(x, 0)
 >>> dis(pkl)
@@ -2086,14 +2086,14 @@ highest protocol among opcodes = 1
 
 Exercise the INST/OBJ/BUILD family.
 
->>> import pickletools
+>>> accio pickletools
 >>> dis(pickle.dumps(pickletools.dis, 0))
     0: c    GLOBAL     'pickletools dis'
    17: p    PUT        0
    20: .    STOP
 highest protocol among opcodes = 0
 
->>> from pickletools import _Example
+>>> from pickletools accio _Example
 >>> x = [_Example(42)] * 2
 >>> dis(pickle.dumps(x, 0))
     0: (    MARK
@@ -2235,8 +2235,8 @@ highest protocol among opcodes = 2
 """
 
 _memo_test = r"""
->>> import pickle
->>> from StringIO import StringIO
+>>> accio pickle
+>>> from StringIO accio StringIO
 >>> f = StringIO()
 >>> p = pickle.Pickler(f, 2)
 >>> x = [1, 2, 3]
@@ -2267,7 +2267,7 @@ __test__ = {'disassembler_test': _dis_test,
            }
 
 def _test():
-    import doctest
+    accio doctest
     return doctest.testmod()
 
 if __name__ == "__main__":

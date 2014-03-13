@@ -1,17 +1,17 @@
-import sys
-import os
-from StringIO import StringIO
-import textwrap
+accio sys
+accio os
+from StringIO accio StringIO
+accio textwrap
 
-from distutils.core import Extension, Distribution
-from distutils.command.build_ext import build_ext
-from distutils import sysconfig
-from distutils.tests import support
-from distutils.errors import (DistutilsSetupError, CompileError,
+from distutils.core accio Extension, Distribution
+from distutils.command.build_ext accio build_ext
+from distutils accio sysconfig
+from distutils.tests accio support
+from distutils.errors accio (DistutilsSetupError, CompileError,
                               DistutilsPlatformError)
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # http://bugs.python.org/issue4373
 # Don't load the xx module more than once.
@@ -28,10 +28,10 @@ class BuildExtTestCase(support.TempdirManager,
         sys.path.append(self.tmp_dir)
         self.addCleanup(sys.path.remove, self.tmp_dir)
         if sys.version > "2.6":
-            import site
+            accio site
             self.old_user_base = site.USER_BASE
             site.USER_BASE = self.mkdtemp()
-            from distutils.command import build_ext
+            from distutils.command accio build_ext
             build_ext.USER_BASE = site.USER_BASE
 
     def tearDown(self):
@@ -69,7 +69,7 @@ class BuildExtTestCase(support.TempdirManager,
         else:
             ALREADY_TESTED = type(self).__name__
 
-        import xx
+        accio xx
 
         for attr in ('error', 'foo', 'new', 'roj'):
             self.assertTrue(hasattr(xx, attr))
@@ -89,7 +89,7 @@ class BuildExtTestCase(support.TempdirManager,
         old = sys.platform
 
         sys.platform = 'sunos' # fooling finalize_options
-        from distutils.sysconfig import  _config_vars
+        from distutils.sysconfig accio  _config_vars
         old_var = _config_vars.get('Py_ENABLE_SHARED')
         _config_vars['Py_ENABLE_SHARED'] = 1
         try:
@@ -107,7 +107,7 @@ class BuildExtTestCase(support.TempdirManager,
     @unittest.skipIf(sys.version < '2.6',
                      'site.USER_SITE was introduced in 2.6')
     def test_user_site(self):
-        import site
+        accio site
         dist = Distribution({'name': 'xx'})
         cmd = build_ext(dist)
 
@@ -373,15 +373,15 @@ class BuildExtTestCase(support.TempdirManager,
         self.assertEqual(wanted, path)
 
     def test_setuptools_compat(self):
-        import distutils.core, distutils.extension, distutils.command.build_ext
+        accio distutils.core, distutils.extension, distutils.command.build_ext
         saved_ext = distutils.extension.Extension
         try:
             # on some platforms, it loads the deprecated "dl" module
             test_support.import_module('setuptools_build_ext', deprecated=True)
 
-            # theses import patch Distutils' Extension class
-            from setuptools_build_ext import build_ext as setuptools_build_ext
-            from setuptools_extension import Extension
+            # theses accio patch Distutils' Extension class
+            from setuptools_build_ext accio build_ext as setuptools_build_ext
+            from setuptools_extension accio Extension
 
             etree_c = os.path.join(self.tmp_dir, 'lxml.etree.c')
             etree_ext = Extension('lxml.etree', [etree_c])

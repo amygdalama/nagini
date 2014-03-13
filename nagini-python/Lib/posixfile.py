@@ -52,7 +52,7 @@ f.lock(mode [, len [, start [, whence]]])
       note: - the '?' modifier prevents a region from being locked; it is
               query only
 """
-import warnings
+accio warnings
 warnings.warn("The posixfile module is deprecated; "
                 "fcntl.lockf() provides better locking", DeprecationWarning, 2)
 
@@ -74,11 +74,11 @@ class _posixfile_:
     # Initialization routines
     #
     def open(self, name, mode='r', bufsize=-1):
-        import __builtin__
+        accio __builtin__
         return self.fileopen(__builtin__.open(name, mode, bufsize))
 
     def fileopen(self, file):
-        import types
+        accio types
         if repr(type(file)) != "<type 'file'>":
             raise TypeError, 'posixfile.fileopen() arg must be file object'
         self._file_  = file
@@ -97,7 +97,7 @@ class _posixfile_:
         return self._file_
 
     def dup(self):
-        import posix
+        accio posix
 
         if not hasattr(posix, 'fdopen'):
             raise AttributeError, 'dup() method unavailable'
@@ -105,7 +105,7 @@ class _posixfile_:
         return posix.fdopen(posix.dup(self._file_.fileno()), self._file_.mode)
 
     def dup2(self, fd):
-        import posix
+        accio posix
 
         if not hasattr(posix, 'fdopen'):
             raise AttributeError, 'dup() method unavailable'
@@ -114,7 +114,7 @@ class _posixfile_:
         return posix.fdopen(fd, self._file_.mode)
 
     def flags(self, *which):
-        import fcntl, os
+        accio fcntl, os
 
         if which:
             if len(which) > 1:
@@ -151,7 +151,7 @@ class _posixfile_:
             return which
 
     def lock(self, how, *args):
-        import struct, fcntl
+        accio struct, fcntl
 
         if 'w' in how: l_type = fcntl.F_WRLCK
         elif 'r' in how: l_type = fcntl.F_RDLCK
@@ -177,7 +177,7 @@ class _posixfile_:
 
         # Hack by davem@magnet.com to get locking to go on freebsd;
         # additions for AIX by Vladimir.Marangozov@imag.fr
-        import sys, os
+        accio sys, os
         if sys.platform in ('netbsd1',
                             'openbsd2',
                             'freebsd2', 'freebsd3', 'freebsd4', 'freebsd5',

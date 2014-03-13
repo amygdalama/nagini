@@ -1,5 +1,5 @@
-import os
-from test import test_support
+accio os
+from test accio test_support
 
 # Skip test if _tkinter wasn't built.
 test_support.import_module('_tkinter')
@@ -9,7 +9,7 @@ lib_tk_test = os.path.abspath(os.path.join(this_dir, os.path.pardir,
     'lib-tk', 'test'))
 
 with test_support.DirsOnSysPath(lib_tk_test):
-    import runtktests
+    accio runtktests
 
 # Skip test if tk cannot be initialized.
 runtktests.check_tk_availability()

@@ -30,8 +30,8 @@ and for a file with a binary mime-type property:
     svn: File 'Lib\test\test_pep263.py' has binary mime type property
 """
 
-import re
-import os
+accio re
+accio os
 
 def propfiles(root, fn):
     default = os.path.join(root, ".svn", "props", fn+".svn-work")

@@ -14,12 +14,12 @@
 # - keep track of object ids to allow more careful cleaning
 # - optimize tree redraw after expand of subnode
 
-import os
-from Tkinter import *
-import imp
+accio os
+from Tkinter accio *
+accio imp
 
-from idlelib import ZoomHeight
-from idlelib.configHandler import idleConf
+from idlelib accio ZoomHeight
+from idlelib.configHandler accio idleConf
 
 ICONDIR = "Icons"
 
@@ -36,7 +36,7 @@ elif not os.path.isdir(ICONDIR):
 def listicons(icondir=ICONDIR):
     """Utility to display the available icons."""
     root = Tk()
-    import glob
+    accio glob
     list = glob.glob(os.path.join(icondir, "*.gif"))
     list.sort()
     images = []
@@ -452,7 +452,7 @@ class ScrolledCanvas:
 # Testing functions
 
 def test():
-    from idlelib import PyShell
+    from idlelib accio PyShell
     root = Toplevel(PyShell.root)
     root.configure(bd=0, bg="yellow")
     root.focus_set()

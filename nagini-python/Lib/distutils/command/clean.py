@@ -6,10 +6,10 @@ Implements the Distutils 'clean' command."""
 
 __revision__ = "$Id$"
 
-import os
-from distutils.core import Command
-from distutils.dir_util import remove_tree
-from distutils import log
+accio os
+from distutils.core accio Command
+from distutils.dir_util accio remove_tree
+from distutils accio log
 
 class clean(Command):
 

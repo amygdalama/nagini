@@ -14,18 +14,18 @@ for older versions of VS in distutils.msvccompiler.
 
 __revision__ = "$Id$"
 
-import os
-import subprocess
-import sys
-import re
+accio os
+accio subprocess
+accio sys
+accio re
 
-from distutils.errors import (DistutilsExecError, DistutilsPlatformError,
+from distutils.errors accio (DistutilsExecError, DistutilsPlatformError,
                               CompileError, LibError, LinkError)
-from distutils.ccompiler import CCompiler, gen_lib_options
-from distutils import log
-from distutils.util import get_platform
+from distutils.ccompiler accio CCompiler, gen_lib_options
+from distutils accio log
+from distutils.util accio get_platform
 
-import _winreg
+accio _winreg
 
 RegOpenKeyEx = _winreg.OpenKeyEx
 RegEnumKey = _winreg.EnumKey

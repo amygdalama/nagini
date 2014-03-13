@@ -1,6 +1,6 @@
 # IBCarbonsupport.py
 
-from macsupport import *
+from macsupport accio *
 
 IBNibRef = OpaqueByValueType('IBNibRef', 'IBNibRefObj')
 #CFBundleRef = OpaqueByValueType('CFBundleRef')

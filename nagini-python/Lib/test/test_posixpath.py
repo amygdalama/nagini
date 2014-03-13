@@ -1,8 +1,8 @@
-import unittest
-from test import test_support, test_genericpath
+accio unittest
+from test accio test_support, test_genericpath
 
-import posixpath, os
-from posixpath import realpath, abspath, dirname, basename
+accio posixpath, os
+from posixpath accio realpath, abspath, dirname, basename
 
 # An absolute path to a temporary filename for testing. We can't rely on TESTFN
 # being an absolute path, so we need this.
@@ -196,7 +196,7 @@ class PosixPathTest(unittest.TestCase):
     def test_expanduser(self):
         self.assertEqual(posixpath.expanduser("foo"), "foo")
         try:
-            import pwd
+            accio pwd
         except ImportError:
             pass
         else:

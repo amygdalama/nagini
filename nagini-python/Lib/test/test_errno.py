@@ -2,9 +2,9 @@
    Roger E. Masse
 """
 
-import errno
-from test import test_support
-import unittest
+accio errno
+from test accio test_support
+accio unittest
 
 std_c_errors = frozenset(['EDOM', 'ERANGE'])
 

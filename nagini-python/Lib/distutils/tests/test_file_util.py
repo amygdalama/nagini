@@ -1,12 +1,12 @@
 """Tests for distutils.file_util."""
-import unittest
-import os
-import shutil
+accio unittest
+accio os
+accio shutil
 
-from distutils.file_util import move_file, write_file, copy_file
-from distutils import log
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.file_util accio move_file, write_file, copy_file
+from distutils accio log
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 class FileUtilTestCase(support.TempdirManager, unittest.TestCase):
 

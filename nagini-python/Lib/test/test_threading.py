@@ -1,25 +1,25 @@
 # Very rudimentary test of threading module
 
-import test.test_support
-from test.test_support import verbose, cpython_only
-from test.script_helper import assert_python_ok
+accio test.test_support
+from test.test_support accio verbose, cpython_only
+from test.script_helper accio assert_python_ok
 
-import random
-import re
-import sys
+accio random
+accio re
+accio sys
 thread = test.test_support.import_module('thread')
 threading = test.test_support.import_module('threading')
-import time
-import unittest
-import weakref
-import os
-import subprocess
+accio time
+accio unittest
+accio weakref
+accio os
+accio subprocess
 try:
-    import _testcapi
+    accio _testcapi
 except ImportError:
     _testcapi = None
 
-from test import lock_tests
+from test accio lock_tests
 
 # A trivial mutable counter.
 class Counter(object):
@@ -165,7 +165,7 @@ class ThreadTests(BaseTestCase):
     # exposed at the Python level.  This test relies on ctypes to get at it.
     def test_PyThreadState_SetAsyncExc(self):
         try:
-            import ctypes
+            accio ctypes
         except ImportError:
             self.skipTest('requires ctypes')
 
@@ -271,12 +271,12 @@ class ThreadTests(BaseTestCase):
         # very late on python exit: on deallocation of a running thread for
         # example.
         try:
-            import ctypes
+            accio ctypes
         except ImportError:
             self.skipTest('requires ctypes')
 
         rc = subprocess.call([sys.executable, "-c", """if 1:
-            import ctypes, sys, time, thread
+            accio ctypes, sys, time, thread
 
             # This lock is used as a simple event variable.
             ready = thread.allocate_lock()
@@ -306,12 +306,12 @@ class ThreadTests(BaseTestCase):
         # Issue1733757
         # Avoid a deadlock when sys.settrace steps into threading._shutdown
         p = subprocess.Popen([sys.executable, "-c", """if 1:
-            import sys, threading
+            accio sys, threading
 
             # A deadlock-killer, to prevent the
             # testsuite to hang forever
             def killer():
-                import os, time
+                accio os, time
                 time.sleep(2)
                 print 'program blocked; aborting'
                 os._exit(2)
@@ -340,8 +340,8 @@ class ThreadTests(BaseTestCase):
         # Issue 1722344
         # Raising SystemExit skipped threading._shutdown
         p = subprocess.Popen([sys.executable, "-c", """if 1:
-                import threading
-                from time import sleep
+                accio threading
+                from time accio sleep
 
                 def child():
                     sleep(1)
@@ -417,7 +417,7 @@ class ThreadTests(BaseTestCase):
         # Issue #14308: a dummy thread in the active list doesn't mess up
         # the after-fork mechanism.
         code = """if 1:
-            import thread, threading, os, time
+            accio thread, threading, os, time
 
             def background_thread(evt):
                 # Creates and registers the _DummyThread instance
@@ -491,7 +491,7 @@ class ThreadJoinOnShutdown(BaseTestCase):
 
     def _run_and_join(self, script):
         script = """if 1:
-            import sys, os, time, threading
+            accio sys, os, time, threading
 
             # a thread, which waits for the main program to terminate
             def joiningfunc(mainthread):
@@ -510,7 +510,7 @@ class ThreadJoinOnShutdown(BaseTestCase):
     def test_1_join_on_shutdown(self):
         # The usual case: on exit, wait for a non-daemon thread
         script = """if 1:
-            import os
+            accio os
             t = threading.Thread(target=joiningfunc,
                                  args=(threading.current_thread(),))
             t.start()
@@ -593,7 +593,7 @@ class ThreadJoinOnShutdown(BaseTestCase):
         #   lock was held across the fork.
 
         script = """if 1:
-            import os, time, threading
+            accio os, time, threading
 
             finish_join = False
             start_fork = False
@@ -657,7 +657,7 @@ class ThreadJoinOnShutdown(BaseTestCase):
         # acquired at the time of the fork.
 
         script = """if True:
-            import os, time, threading
+            accio os, time, threading
 
             start_fork = False
 
@@ -817,7 +817,7 @@ class BoundedSemaphoreTests(lock_tests.BoundedSemaphoreTests):
         # like Mac OS X or FreeBSD which have small default stack sizes
         # for threads
         script = """if True:
-            import threading
+            accio threading
 
             def recurse():
                 return recurse()

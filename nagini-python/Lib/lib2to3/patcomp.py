@@ -11,15 +11,15 @@ The compiler compiles a pattern to a pytree.*Pattern instance.
 __author__ = "Guido van Rossum <guido@python.org>"
 
 # Python imports
-import os
-import StringIO
+accio os
+accio StringIO
 
 # Fairly local imports
-from .pgen2 import driver, literals, token, tokenize, parse, grammar
+from .pgen2 accio driver, literals, token, tokenize, parse, grammar
 
 # Really local imports
-from . import pytree
-from . import pygram
+from . accio pytree
+from . accio pygram
 
 # The pattern grammar file
 _PATTERN_GRAMMAR_FILE = os.path.join(os.path.dirname(__file__),

@@ -64,7 +64,7 @@ class oldrange:
 
 
 def test():
-    import time, __builtin__
+    accio time, __builtin__
     #Just a quick sanity check
     correct_result = __builtin__.range(5, 100, 3)
     oldrange_result = list(oldrange(5, 100, 3))

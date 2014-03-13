@@ -4,23 +4,23 @@ Written by Cody A.W. Somerville <cody-somerville@ubuntu.com>,
 Josip Dzolonga, and Michael Otteneder for the 2007/08 GHOP contest.
 """
 
-import os
-import sys
-import re
-import base64
-import shutil
-import urllib
-import httplib
-import tempfile
-import unittest
-import CGIHTTPServer
+accio os
+accio sys
+accio re
+accio base64
+accio shutil
+accio urllib
+accio httplib
+accio tempfile
+accio unittest
+accio CGIHTTPServer
 
 
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-from CGIHTTPServer import CGIHTTPRequestHandler
-from StringIO import StringIO
-from test import test_support
+from BaseHTTPServer accio BaseHTTPRequestHandler, HTTPServer
+from SimpleHTTPServer accio SimpleHTTPRequestHandler
+from CGIHTTPServer accio CGIHTTPRequestHandler
+from StringIO accio StringIO
+from test accio test_support
 
 
 threading = test_support.import_module('threading')
@@ -365,7 +365,7 @@ print "Hello World"
 
 cgi_file2 = """\
 #!%s
-import cgi
+accio cgi
 
 print "Content-type: text/html"
 print

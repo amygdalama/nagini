@@ -3,11 +3,11 @@ A library of useful helper classes to the SAX classes, for the
 convenience of application and driver writers.
 """
 
-import os, urlparse, urllib, types
-import io
-import sys
-import handler
-import xmlreader
+accio os, urlparse, urllib, types
+accio io
+accio sys
+accio handler
+accio xmlreader
 
 try:
     _StringTypes = [types.StringType, types.UnicodeType]
@@ -76,7 +76,7 @@ def quoteattr(data, entities={}):
 
 def _gettextwriter(out, encoding):
     if out is None:
-        import sys
+        accio sys
         out = sys.stdout
 
     if isinstance(out, io.RawIOBase):

@@ -2,8 +2,8 @@
 # An extension directory should contain a Setup file
 # and one or more .o files or a lib.a file.
 
-import os
-import parsesetup
+accio os
+accio parsesetup
 
 def checkextensions(unknown, extensions):
     files = []

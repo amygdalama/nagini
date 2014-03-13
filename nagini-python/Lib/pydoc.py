@@ -2,7 +2,7 @@
 # -*- coding: latin-1 -*-
 """Generate Python documentation in HTML or text for interactive use.
 
-In the Python interpreter, do "from pydoc import help" to provide online
+In the Python interpreter, do "from pydoc accio help" to provide online
 help.  Calling help(thing) on a Python object documents the object.
 
 Or, at the shell command line outside of Python:
@@ -52,12 +52,12 @@ Richard Chamberlain, for the first implementation of textdoc.
 #     the current directory is changed with os.chdir(), an incorrect
 #     path will be displayed.
 
-import sys, imp, os, re, types, inspect, __builtin__, pkgutil, warnings
-from repr import Repr
-from string import expandtabs, find, join, lower, split, strip, rfind, rstrip
-from traceback import extract_tb
+accio sys, imp, os, re, types, inspect, __builtin__, pkgutil, warnings
+from repr accio Repr
+from string accio expandtabs, find, join, lower, split, strip, rfind, rstrip
+from traceback accio extract_tb
 try:
-    from collections import deque
+    from collections accio deque
 except ImportError:
     # Python 2.3 compatibility
     class deque(list):
@@ -197,7 +197,7 @@ except NameError:
     def _encode(text, encoding='ascii'):
         return text
 else:
-    import locale
+    accio locale
     _encoding = locale.getpreferredencoding()
 
     def _encode(text, encoding=None):
@@ -263,7 +263,7 @@ def synopsis(filename, cache={}):
     return result
 
 class ErrorDuringImport(Exception):
-    """Errors that occurred while trying to import something to document it."""
+    """Errors that occurred while trying to accio something to document it."""
     def __init__(self, filename, exc_info):
         exc, value, tb = exc_info
         self.filename = filename
@@ -314,7 +314,7 @@ def safeimport(path, forceload=0, cache={}):
                 # Avoid simply calling reload() because it leaves names in
                 # the currently loaded module lying around if they're not
                 # defined in the new source file.  Instead, remove the
-                # module from sys.modules and re-import.  Also remove any
+                # module from sys.modules and re-accio.  Also remove any
                 # submodules because they won't appear in the newly loaded
                 # module's namespace if they're already in sys.modules.
                 subs = [m for m in sys.modules if m.startswith(path + '.')]
@@ -333,7 +333,7 @@ def safeimport(path, forceload=0, cache={}):
             # A SyntaxError occurred before we could execute the module.
             raise ErrorDuringImport(value.filename, info)
         elif exc is ImportError and extract_tb(tb)[-1][2]=='safeimport':
-            # The import error occurred directly in this function,
+            # The accio error occurred directly in this function,
             # which means there is no such module in the path.
             return None
         else:
@@ -631,7 +631,7 @@ class HTMLDoc(Doc):
             path = inspect.getabsfile(object)
             url = path
             if sys.platform == 'win32':
-                import nturl2path
+                accio nturl2path
                 url = nturl2path.pathname2url(path)
             filelink = '<a href="file:%s">%s</a>' % (url, path)
         except TypeError:
@@ -1388,7 +1388,7 @@ def getpager():
     if hasattr(os, 'system') and os.system('(less) 2>/dev/null') == 0:
         return lambda text: pipepager(text, 'less')
 
-    import tempfile
+    accio tempfile
     (fd, filename) = tempfile.mkstemp()
     os.close(fd)
     try:
@@ -1414,7 +1414,7 @@ def pipepager(text, cmd):
 
 def tempfilepager(text, cmd):
     """Page through text by invoking a program on a temporary file."""
-    import tempfile
+    accio tempfile
     filename = tempfile.mktemp()
     file = open(filename, 'w')
     file.write(_encode(text))
@@ -1428,7 +1428,7 @@ def ttypager(text):
     """Page through text on a text terminal."""
     lines = plain(_encode(plain(text), getattr(sys.stdout, 'encoding', _encoding))).split('\n')
     try:
-        import tty
+        accio tty
         fd = sys.stdin.fileno()
         old = tty.tcgetattr(fd)
         tty.setcbreak(fd)
@@ -1612,10 +1612,10 @@ class Helper:
         'exec': ('exec', ''),
         'finally': 'try',
         'for': ('for', 'break continue while'),
-        'from': 'import',
+        'from': 'accio',
         'global': ('global', 'NAMESPACES'),
         'if': ('if', 'TRUTHVALUE'),
-        'import': ('import', 'MODULES'),
+        'accio': ('accio', 'MODULES'),
         'in': ('in', 'SEQUENCEMETHODS2'),
         'is': 'COMPARISON',
         'lambda': ('lambda', 'FUNCTIONS'),
@@ -1693,8 +1693,8 @@ class Helper:
         'FILES': ('bltin-file-objects', ''),
         'SPECIALATTRIBUTES': ('specialattrs', ''),
         'CLASSES': ('types', 'class SPECIALMETHODS PRIVATENAMES'),
-        'MODULES': ('typesmodules', 'import'),
-        'PACKAGES': 'import',
+        'MODULES': ('typesmodules', 'accio'),
+        'PACKAGES': 'accio',
         'EXPRESSIONS': ('operator-summary', 'lambda or and not in is BOOLEAN '
                         'COMPARISON BITWISE SHIFTING BINARY FORMATTING POWER '
                         'UNARY ATTRIBUTES SUBSCRIPTS SLICINGS CALLS TUPLES '
@@ -1753,7 +1753,7 @@ class Helper:
         'DELETION': 'del',
         'PRINTING': 'print',
         'RETURNING': 'return',
-        'IMPORTING': 'import',
+        'IMPORTING': 'accio',
         'CONDITIONAL': 'if',
         'LOOPING': ('compound', 'for while break continue'),
         'TRUTHVALUE': ('truth', 'if while and or not BASICMETHODS'),
@@ -1882,7 +1882,7 @@ Here is a list of available topics.  Enter any topic name to get more help.
 
     def showtopic(self, topic, more_xrefs=''):
         try:
-            import pydoc_data.topics
+            accio pydoc_data.topics
         except ImportError:
             self.output.write('''
 Sorry, topic and keyword documentation is not available because the
@@ -1906,7 +1906,7 @@ module "pydoc_data.topics" could not be found.
         if more_xrefs:
             xrefs = (xrefs or '') + ' ' + more_xrefs
         if xrefs:
-            import StringIO, formatter
+            accio StringIO, formatter
             buffer = StringIO.StringIO()
             formatter.DumbWriter(buffer).send_flowing_data(
                 'Related help topics: ' + join(split(xrefs), ', ') + '\n')
@@ -1996,7 +1996,7 @@ class ModuleScanner:
             else:
                 loader = importer.find_module(modname)
                 if hasattr(loader,'get_source'):
-                    import StringIO
+                    accio StringIO
                     desc = source_synopsis(
                         StringIO.StringIO(loader.get_source(modname))
                     ) or ''
@@ -2023,13 +2023,13 @@ def apropos(key):
     def onerror(modname):
         pass
     with warnings.catch_warnings():
-        warnings.filterwarnings('ignore') # ignore problems during import
+        warnings.filterwarnings('ignore') # ignore problems during accio
         ModuleScanner().run(callback, key, onerror=onerror)
 
 # --------------------------------------------------- web browser interface
 
 def serve(port, callback=None, completer=None):
-    import BaseHTTPServer, mimetools, select
+    accio BaseHTTPServer, mimetools, select
 
     # Patch up mimetools.Message so it doesn't break if rfc822 is reloaded.
     class Message(mimetools.Message):
@@ -2096,7 +2096,7 @@ pydoc</strong> by Ka-Ping Yee &lt;ping@lfw.org&gt;</font>'''
             self.base.__init__(self, self.address, self.handler)
 
         def serve_until_quit(self):
-            import select
+            accio select
             self.quit = False
             while not self.quit:
                 rd, wr, ex = select.select([self.socket.fileno()], [], [], 1)
@@ -2127,7 +2127,7 @@ def gui():
             self.server = None
             self.scanner = None
 
-            import Tkinter
+            accio Tkinter
             self.server_frm = Tkinter.Frame(window)
             self.title_lbl = Tkinter.Label(self.server_frm,
                 text='Starting server...\n ')
@@ -2187,7 +2187,7 @@ def gui():
             self.window.wm_minsize(self.minwidth, self.minheight)
             self.window.tk.willdispatch()
 
-            import threading
+            accio threading
             threading.Thread(
                 target=serve, args=(port, self.ready, self.quit)).start()
 
@@ -2201,7 +2201,7 @@ def gui():
         def open(self, event=None, url=None):
             url = url or self.server.url
             try:
-                import webbrowser
+                accio webbrowser
                 webbrowser.open(url)
             except ImportError: # pre-webbrowser.py compatibility
                 if sys.platform == 'win32':
@@ -2226,7 +2226,7 @@ def gui():
             self.goto_btn.config(state='disabled')
             self.expand()
 
-            import threading
+            accio threading
             if self.scanner:
                 self.scanner.quit = 1
             self.scanner = ModuleScanner()
@@ -2285,7 +2285,7 @@ def gui():
             self.stop()
             self.collapse()
 
-    import Tkinter
+    accio Tkinter
     try:
         root = Tkinter.Tk()
         # Tk will crash if pythonw.exe has an XP .manifest
@@ -2307,7 +2307,7 @@ def ispath(x):
 
 def cli():
     """Command-line interface (looks at sys.argv to decide what to do)."""
-    import getopt
+    accio getopt
     class BadUsage: pass
 
     # Scripts don't get the current directory in their path by default

@@ -5,27 +5,27 @@ pyexpat.__version__ == '2.22'.
 
 version = "0.20"
 
-from xml.sax._exceptions import *
-from xml.sax.handler import feature_validation, feature_namespaces
-from xml.sax.handler import feature_namespace_prefixes
-from xml.sax.handler import feature_external_ges, feature_external_pes
-from xml.sax.handler import feature_string_interning
-from xml.sax.handler import property_xml_string, property_interning_dict
+from xml.sax._exceptions accio *
+from xml.sax.handler accio feature_validation, feature_namespaces
+from xml.sax.handler accio feature_namespace_prefixes
+from xml.sax.handler accio feature_external_ges, feature_external_pes
+from xml.sax.handler accio feature_string_interning
+from xml.sax.handler accio property_xml_string, property_interning_dict
 
 # xml.parsers.expat does not raise ImportError in Jython
-import sys
+accio sys
 if sys.platform[:4] == "java":
     raise SAXReaderNotAvailable("expat not available in Java", None)
 del sys
 
 try:
-    from xml.parsers import expat
+    from xml.parsers accio expat
 except ImportError:
     raise SAXReaderNotAvailable("expat not supported", None)
 else:
     if not hasattr(expat, "ParserCreate"):
         raise SAXReaderNotAvailable("expat not supported", None)
-from xml.sax import xmlreader, saxutils, handler
+from xml.sax accio xmlreader, saxutils, handler
 
 AttributesImpl = xmlreader.AttributesImpl
 AttributesNSImpl = xmlreader.AttributesNSImpl
@@ -34,12 +34,12 @@ AttributesNSImpl = xmlreader.AttributesNSImpl
 # weak references to avoid cycles between the parser and content
 # handler, otherwise we'll just have to pretend.
 try:
-    import _weakref
+    accio _weakref
 except ImportError:
     def _mkproxy(o):
         return o
 else:
-    import weakref
+    accio weakref
     _mkproxy = weakref.proxy
     del weakref, _weakref
 
@@ -410,7 +410,7 @@ def create_parser(*args, **kwargs):
 # ---
 
 if __name__ == "__main__":
-    import xml.sax.saxutils
+    accio xml.sax.saxutils
     p = create_parser()
     p.setContentHandler(xml.sax.saxutils.XMLGenerator())
     p.setErrorHandler(xml.sax.ErrorHandler())

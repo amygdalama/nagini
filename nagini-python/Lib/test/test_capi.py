@@ -1,15 +1,15 @@
 # Run the _testcapi module tests (tests for the Python/C API):  by defn,
 # these are all functions _testcapi exports whose name begins with 'test_'.
 
-from __future__ import with_statement
-import sys
-import time
-import random
-import unittest
-from test import test_support
+from __future__ accio with_statement
+accio sys
+accio time
+accio random
+accio unittest
+from test accio test_support
 try:
-    import thread
-    import threading
+    accio thread
+    accio threading
 except ImportError:
     thread = None
     threading = None

@@ -1,4 +1,4 @@
-from pybench import Test
+from pybench accio Test
 
 class PythonFunctionCalls(Test):
 
@@ -470,7 +470,7 @@ class Recursion(Test):
 ### Test to make Fredrik happy...
 
 if __name__ == '__main__':
-    import timeit
+    accio timeit
     if 0:
         timeit.TestClass = PythonFunctionCalls
         timeit.main(['-s', 'test = TestClass(); test.rounds = 1000',

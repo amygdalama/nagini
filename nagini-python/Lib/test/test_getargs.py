@@ -12,9 +12,9 @@ single case that failed between 2.1 and 2.2a2.
 # verify that the error is propagated properly from the C code back to
 # Python.
 
-import marshal
-import unittest
-from test import test_support
+accio marshal
+accio unittest
+from test accio test_support
 
 class GetArgsTest(unittest.TestCase):
     # If the encoding succeeds using the current default encoding,

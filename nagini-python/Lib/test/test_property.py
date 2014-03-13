@@ -1,9 +1,9 @@
 # Test case for property
 # more tests are in test_descr
 
-import sys
-import unittest
-from test.test_support import run_unittest
+accio sys
+accio unittest
+from test.test_support accio run_unittest
 
 class PropertyBase(Exception):
     pass

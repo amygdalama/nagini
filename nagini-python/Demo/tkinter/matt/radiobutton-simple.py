@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # This is a demo program that shows how to
 # create radio buttons and how to get other widgets to

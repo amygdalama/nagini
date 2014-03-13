@@ -2,13 +2,13 @@
 Various tests for synchronization primitives.
 """
 
-import sys
-import time
-from thread import start_new_thread, get_ident
-import threading
-import unittest
+accio sys
+accio time
+from thread accio start_new_thread, get_ident
+accio threading
+accio unittest
 
-from test import test_support as support
+from test accio test_support as support
 
 
 def _wait():

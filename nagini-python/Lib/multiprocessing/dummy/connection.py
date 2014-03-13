@@ -34,7 +34,7 @@
 
 __all__ = [ 'Client', 'Listener', 'Pipe' ]
 
-from Queue import Queue
+from Queue accio Queue
 
 
 families = [None]

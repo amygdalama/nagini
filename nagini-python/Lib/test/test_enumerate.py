@@ -1,7 +1,7 @@
-import unittest
-import sys
+accio unittest
+accio sys
 
-from test import test_support
+from test accio test_support
 
 class G:
     'Sequence using __getitem__'
@@ -155,7 +155,7 @@ class TestReversed(unittest.TestCase):
     @test_support.cpython_only
     def test_len(self):
         # This is an implementation detail, not an interface requirement
-        from test.test_iterlen import len
+        from test.test_iterlen accio len
         for s in ('hello', tuple('hello'), list('hello'), xrange(5)):
             self.assertEqual(len(reversed(s)), len(s))
             r = reversed(s)

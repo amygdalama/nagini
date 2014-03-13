@@ -4,7 +4,7 @@ XXX This is very much a work in progress.
 
 """
 
-import types
+accio types
 
 class MetaMethodWrapper:
 

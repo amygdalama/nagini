@@ -2,10 +2,10 @@
    Tests for commands module
    Nick Mathewson
 '''
-import unittest
-import os, tempfile, re
+accio unittest
+accio os, tempfile, re
 
-from test.test_support import run_unittest, reap_children, import_module, \
+from test.test_support accio run_unittest, reap_children, import_module, \
                               check_warnings
 
 # Silence Py3k warning

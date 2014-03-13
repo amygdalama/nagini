@@ -1,14 +1,14 @@
 """ Test suite for the fixer modules """
 
 # Python imports
-import os
-import unittest
-from itertools import chain
-from operator import itemgetter
+accio os
+accio unittest
+from itertools accio chain
+from operator accio itemgetter
 
 # Local imports
-from lib2to3 import pygram, pytree, refactor, fixer_util
-from lib2to3.tests import support
+from lib2to3 accio pygram, pytree, refactor, fixer_util
+from lib2to3.tests accio support
 
 
 class FixerTestCase(support.TestCase):
@@ -287,30 +287,30 @@ class Test_intern(FixerTestCase):
 
     def test_prefix_preservation(self):
         b = """x =   intern(  a  )"""
-        a = """import sys\nx =   sys.intern(  a  )"""
+        a = """accio sys\nx =   sys.intern(  a  )"""
         self.check(b, a)
 
         b = """y = intern("b" # test
               )"""
-        a = """import sys\ny = sys.intern("b" # test
+        a = """accio sys\ny = sys.intern("b" # test
               )"""
         self.check(b, a)
 
         b = """z = intern(a+b+c.d,   )"""
-        a = """import sys\nz = sys.intern(a+b+c.d,   )"""
+        a = """accio sys\nz = sys.intern(a+b+c.d,   )"""
         self.check(b, a)
 
     def test(self):
         b = """x = intern(a)"""
-        a = """import sys\nx = sys.intern(a)"""
+        a = """accio sys\nx = sys.intern(a)"""
         self.check(b, a)
 
         b = """z = intern(a+b+c.d,)"""
-        a = """import sys\nz = sys.intern(a+b+c.d,)"""
+        a = """accio sys\nz = sys.intern(a+b+c.d,)"""
         self.check(b, a)
 
         b = """intern("y%s" % 5).replace("y", "")"""
-        a = """import sys\nsys.intern("y%s" % 5).replace("y", "")"""
+        a = """accio sys\nsys.intern("y%s" % 5).replace("y", "")"""
         self.check(b, a)
 
     # These should not be refactored
@@ -336,18 +336,18 @@ class Test_reduce(FixerTestCase):
 
     def test_simple_call(self):
         b = "reduce(a, b, c)"
-        a = "from functools import reduce\nreduce(a, b, c)"
+        a = "from functools accio reduce\nreduce(a, b, c)"
         self.check(b, a)
 
     def test_bug_7253(self):
         # fix_tuple_params was being bad and orphaning nodes in the tree.
         b = "def x(arg): reduce(sum, [])"
-        a = "from functools import reduce\ndef x(arg): reduce(sum, [])"
+        a = "from functools accio reduce\ndef x(arg): reduce(sum, [])"
         self.check(b, a)
 
     def test_call_with_lambda(self):
         b = "reduce(lambda x, y: x + y, seq)"
-        a = "from functools import reduce\nreduce(lambda x, y: x + y, seq)"
+        a = "from functools accio reduce\nreduce(lambda x, y: x + y, seq)"
         self.check(b, a)
 
     def test_unchanged(self):
@@ -463,7 +463,7 @@ class Test_print(FixerTestCase):
         self.check(b, a)
 
     def test_with_future_print_function(self):
-        s = "from __future__ import print_function\n" \
+        s = "from __future__ accio print_function\n" \
             "print('Hai!', end=' ')"
         self.unchanged(s)
 
@@ -1509,7 +1509,7 @@ class Test_xrange_with_reduce(FixerTestCase):
 
     def test_double_transform(self):
         b = """reduce(x, xrange(5))"""
-        a = """from functools import reduce
+        a = """from functools accio reduce
 reduce(x, range(5))"""
         self.check(b, a)
 
@@ -1633,68 +1633,68 @@ class ImportsFixerTests:
 
     def test_import_module(self):
         for old, new in self.modules.items():
-            b = "import %s" % old
-            a = "import %s" % new
+            b = "accio %s" % old
+            a = "accio %s" % new
             self.check(b, a)
 
-            b = "import foo, %s, bar" % old
-            a = "import foo, %s, bar" % new
+            b = "accio foo, %s, bar" % old
+            a = "accio foo, %s, bar" % new
             self.check(b, a)
 
     def test_import_from(self):
         for old, new in self.modules.items():
-            b = "from %s import foo" % old
-            a = "from %s import foo" % new
+            b = "from %s accio foo" % old
+            a = "from %s accio foo" % new
             self.check(b, a)
 
-            b = "from %s import foo, bar" % old
-            a = "from %s import foo, bar" % new
+            b = "from %s accio foo, bar" % old
+            a = "from %s accio foo, bar" % new
             self.check(b, a)
 
-            b = "from %s import (yes, no)" % old
-            a = "from %s import (yes, no)" % new
+            b = "from %s accio (yes, no)" % old
+            a = "from %s accio (yes, no)" % new
             self.check(b, a)
 
     def test_import_module_as(self):
         for old, new in self.modules.items():
-            b = "import %s as foo_bar" % old
-            a = "import %s as foo_bar" % new
+            b = "accio %s as foo_bar" % old
+            a = "accio %s as foo_bar" % new
             self.check(b, a)
 
-            b = "import %s as foo_bar" % old
-            a = "import %s as foo_bar" % new
+            b = "accio %s as foo_bar" % old
+            a = "accio %s as foo_bar" % new
             self.check(b, a)
 
     def test_import_from_as(self):
         for old, new in self.modules.items():
-            b = "from %s import foo as bar" % old
-            a = "from %s import foo as bar" % new
+            b = "from %s accio foo as bar" % old
+            a = "from %s accio foo as bar" % new
             self.check(b, a)
 
     def test_star(self):
         for old, new in self.modules.items():
-            b = "from %s import *" % old
-            a = "from %s import *" % new
+            b = "from %s accio *" % old
+            a = "from %s accio *" % new
             self.check(b, a)
 
     def test_import_module_usage(self):
         for old, new in self.modules.items():
             b = """
-                import %s
+                accio %s
                 foo(%s.bar)
                 """ % (old, old)
             a = """
-                import %s
+                accio %s
                 foo(%s.bar)
                 """ % (new, new)
             self.check(b, a)
 
             b = """
-                from %s import x
+                from %s accio x
                 %s = 23
                 """ % (old, old)
             a = """
-                from %s import x
+                from %s accio x
                 %s = 23
                 """ % (new, old)
             self.check(b, a)
@@ -1707,21 +1707,21 @@ class ImportsFixerTests:
 
             # test nested usage
             b = """
-                import %s
+                accio %s
                 %s.bar(%s.foo)
                 """ % (old, old, old)
             a = """
-                import %s
+                accio %s
                 %s.bar(%s.foo)
                 """ % (new, new, new)
             self.check(b, a)
 
             b = """
-                import %s
+                accio %s
                 x.%s
                 """ % (old, old)
             a = """
-                import %s
+                accio %s
                 x.%s
                 """ % (new, old)
             self.check(b, a)
@@ -1729,20 +1729,20 @@ class ImportsFixerTests:
 
 class Test_imports(FixerTestCase, ImportsFixerTests):
     fixer = "imports"
-    from ..fixes.fix_imports import MAPPING as modules
+    from ..fixes.fix_imports accio MAPPING as modules
 
     def test_multiple_imports(self):
-        b = """import urlparse, cStringIO"""
-        a = """import urllib.parse, io"""
+        b = """accio urlparse, cStringIO"""
+        a = """accio urllib.parse, io"""
         self.check(b, a)
 
     def test_multiple_imports_as(self):
         b = """
-            import copy_reg as bar, HTMLParser as foo, urlparse
+            accio copy_reg as bar, HTMLParser as foo, urlparse
             s = urlparse.spam(bar.foo())
             """
         a = """
-            import copyreg as bar, html.parser as foo, urllib.parse
+            accio copyreg as bar, html.parser as foo, urllib.parse
             s = urllib.parse.spam(bar.foo())
             """
         self.check(b, a)
@@ -1750,33 +1750,33 @@ class Test_imports(FixerTestCase, ImportsFixerTests):
 
 class Test_imports2(FixerTestCase, ImportsFixerTests):
     fixer = "imports2"
-    from ..fixes.fix_imports2 import MAPPING as modules
+    from ..fixes.fix_imports2 accio MAPPING as modules
 
 
 class Test_imports_fixer_order(FixerTestCase, ImportsFixerTests):
 
     def setUp(self):
         super(Test_imports_fixer_order, self).setUp(['imports', 'imports2'])
-        from ..fixes.fix_imports2 import MAPPING as mapping2
+        from ..fixes.fix_imports2 accio MAPPING as mapping2
         self.modules = mapping2.copy()
-        from ..fixes.fix_imports import MAPPING as mapping1
+        from ..fixes.fix_imports accio MAPPING as mapping1
         for key in ('dbhash', 'dumbdbm', 'dbm', 'gdbm'):
             self.modules[key] = mapping1[key]
 
     def test_after_local_imports_refactoring(self):
         for fix in ("imports", "imports2"):
             self.fixer = fix
-            self.assert_runs_after("import")
+            self.assert_runs_after("accio")
 
 
 class Test_urllib(FixerTestCase):
     fixer = "urllib"
-    from ..fixes.fix_urllib import MAPPING as modules
+    from ..fixes.fix_urllib accio MAPPING as modules
 
     def test_import_module(self):
         for old, changes in self.modules.items():
-            b = "import %s" % old
-            a = "import %s" % ", ".join(map(itemgetter(0), changes))
+            b = "accio %s" % old
+            a = "accio %s" % ", ".join(map(itemgetter(0), changes))
             self.check(b, a)
 
     def test_import_from(self):
@@ -1785,69 +1785,69 @@ class Test_urllib(FixerTestCase):
             for new, members in changes:
                 for member in members:
                     all_members.append(member)
-                    b = "from %s import %s" % (old, member)
-                    a = "from %s import %s" % (new, member)
+                    b = "from %s accio %s" % (old, member)
+                    a = "from %s accio %s" % (new, member)
                     self.check(b, a)
 
-                    s = "from foo import %s" % member
+                    s = "from foo accio %s" % member
                     self.unchanged(s)
 
-                b = "from %s import %s" % (old, ", ".join(members))
-                a = "from %s import %s" % (new, ", ".join(members))
+                b = "from %s accio %s" % (old, ", ".join(members))
+                a = "from %s accio %s" % (new, ", ".join(members))
                 self.check(b, a)
 
-                s = "from foo import %s" % ", ".join(members)
+                s = "from foo accio %s" % ", ".join(members)
                 self.unchanged(s)
 
             # test the breaking of a module into multiple replacements
-            b = "from %s import %s" % (old, ", ".join(all_members))
-            a = "\n".join(["from %s import %s" % (new, ", ".join(members))
+            b = "from %s accio %s" % (old, ", ".join(all_members))
+            a = "\n".join(["from %s accio %s" % (new, ", ".join(members))
                             for (new, members) in changes])
             self.check(b, a)
 
     def test_import_module_as(self):
         for old in self.modules:
-            s = "import %s as foo" % old
+            s = "accio %s as foo" % old
             self.warns_unchanged(s, "This module is now multiple modules")
 
     def test_import_from_as(self):
         for old, changes in self.modules.items():
             for new, members in changes:
                 for member in members:
-                    b = "from %s import %s as foo_bar" % (old, member)
-                    a = "from %s import %s as foo_bar" % (new, member)
+                    b = "from %s accio %s as foo_bar" % (old, member)
+                    a = "from %s accio %s as foo_bar" % (new, member)
                     self.check(b, a)
-                    b = "from %s import %s as blah, %s" % (old, member, member)
-                    a = "from %s import %s as blah, %s" % (new, member, member)
+                    b = "from %s accio %s as blah, %s" % (old, member, member)
+                    a = "from %s accio %s as blah, %s" % (new, member, member)
                     self.check(b, a)
 
     def test_star(self):
         for old in self.modules:
-            s = "from %s import *" % old
+            s = "from %s accio *" % old
             self.warns_unchanged(s, "Cannot handle star imports")
 
     def test_indented(self):
         b = """
 def foo():
-    from urllib import urlencode, urlopen
+    from urllib accio urlencode, urlopen
 """
         a = """
 def foo():
-    from urllib.parse import urlencode
-    from urllib.request import urlopen
+    from urllib.parse accio urlencode
+    from urllib.request accio urlopen
 """
         self.check(b, a)
 
         b = """
 def foo():
     other()
-    from urllib import urlencode, urlopen
+    from urllib accio urlencode, urlopen
 """
         a = """
 def foo():
     other()
-    from urllib.parse import urlencode
-    from urllib.request import urlopen
+    from urllib.parse accio urlencode
+    from urllib.request accio urlopen
 """
         self.check(b, a)
 
@@ -1860,20 +1860,20 @@ def foo():
                     new_import = ", ".join([n for (n, mems)
                                             in self.modules[old]])
                     b = """
-                        import %s
+                        accio %s
                         foo(%s.%s)
                         """ % (old, old, member)
                     a = """
-                        import %s
+                        accio %s
                         foo(%s.%s)
                         """ % (new_import, new, member)
                     self.check(b, a)
                     b = """
-                        import %s
+                        accio %s
                         %s.%s(%s.%s)
                         """ % (old, old, member, old, member)
                     a = """
-                        import %s
+                        accio %s
                         %s.%s(%s.%s)
                         """ % (new_import, new, member, new, member)
                     self.check(b, a)
@@ -2456,7 +2456,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_1(self):
         s = """
-            import foo.bar as next
+            accio foo.bar as next
 
             class A:
                 def next(self, a, b):
@@ -2466,7 +2466,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_2(self):
         s = """
-            import bar, bar.foo as next
+            accio bar, bar.foo as next
 
             class A:
                 def next(self, a, b):
@@ -2476,7 +2476,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_3(self):
         s = """
-            import bar, bar.foo as next, baz
+            accio bar, bar.foo as next, baz
 
             class A:
                 def next(self, a, b):
@@ -2486,7 +2486,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_from_1(self):
         s = """
-            from x import next
+            from x accio next
 
             class A:
                 def next(self, a, b):
@@ -2496,7 +2496,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_from_2(self):
         s = """
-            from x.a import next
+            from x.a accio next
 
             class A:
                 def next(self, a, b):
@@ -2506,7 +2506,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_from_3(self):
         s = """
-            from x import a, next, b
+            from x accio a, next, b
 
             class A:
                 def next(self, a, b):
@@ -2516,7 +2516,7 @@ class Test_next(FixerTestCase):
 
     def test_shadowing_import_from_4(self):
         s = """
-            from x.a import a, next, b
+            from x.a accio a, next, b
 
             class A:
                 def next(self, a, b):
@@ -2745,27 +2745,27 @@ class Test_renames(FixerTestCase):
 
     def test_import_from(self):
         for mod, (old, new) in self.modules.items():
-            b = "from %s import %s" % (mod, old)
-            a = "from %s import %s" % (mod, new)
+            b = "from %s accio %s" % (mod, old)
+            a = "from %s accio %s" % (mod, new)
             self.check(b, a)
 
-            s = "from foo import %s" % old
+            s = "from foo accio %s" % old
             self.unchanged(s)
 
     def test_import_from_as(self):
         for mod, (old, new) in self.modules.items():
-            b = "from %s import %s as foo_bar" % (mod, old)
-            a = "from %s import %s as foo_bar" % (mod, new)
+            b = "from %s accio %s as foo_bar" % (mod, old)
+            a = "from %s accio %s as foo_bar" % (mod, new)
             self.check(b, a)
 
     def test_import_module_usage(self):
         for mod, (old, new) in self.modules.items():
             b = """
-                import %s
+                accio %s
                 foo(%s, %s.%s)
                 """ % (mod, mod, mod, old)
             a = """
-                import %s
+                accio %s
                 foo(%s, %s.%s)
                 """ % (mod, mod, mod, new)
             self.check(b, a)
@@ -2774,11 +2774,11 @@ class Test_renames(FixerTestCase):
         # not implemented yet
         for mod, (old, new) in self.modules.items():
             b = """
-                from %s import %s
+                from %s accio %s
                 foo(%s, %s)
                 """ % (mod, old, mod, old)
             a = """
-                from %s import %s
+                from %s accio %s
                 foo(%s, %s)
                 """ % (mod, new, mod, new)
             self.check(b, a)
@@ -2852,7 +2852,7 @@ class Test_unicode(FixerTestCase):
         self.check(b, a)
 
     def test_native_unicode_literal_escape_u(self):
-        f = 'from __future__ import unicode_literals\n'
+        f = 'from __future__ accio unicode_literals\n'
         b = f + """'\\\\\\u20ac\\U0001d121\\\\u20ac'"""
         a = f + """'\\\\\\u20ac\\U0001d121\\\\u20ac'"""
         self.check(b, a)
@@ -2866,17 +2866,17 @@ class Test_callable(FixerTestCase):
 
     def test_prefix_preservation(self):
         b = """callable(    x)"""
-        a = """import collections\nisinstance(    x, collections.Callable)"""
+        a = """accio collections\nisinstance(    x, collections.Callable)"""
         self.check(b, a)
 
         b = """if     callable(x): pass"""
-        a = """import collections
+        a = """accio collections
 if     isinstance(x, collections.Callable): pass"""
         self.check(b, a)
 
     def test_callable_call(self):
         b = """callable(x)"""
-        a = """import collections\nisinstance(x, collections.Callable)"""
+        a = """accio collections\nisinstance(x, collections.Callable)"""
         self.check(b, a)
 
     def test_global_import(self):
@@ -2884,25 +2884,25 @@ if     isinstance(x, collections.Callable): pass"""
 def spam(foo):
     callable(foo)"""[1:]
         a = """
-import collections
+accio collections
 def spam(foo):
     isinstance(foo, collections.Callable)"""[1:]
         self.check(b, a)
 
         b = """
-import collections
+accio collections
 def spam(foo):
     callable(foo)"""[1:]
         # same output if it was already imported
         self.check(b, a)
 
         b = """
-from collections import *
+from collections accio *
 def spam(foo):
     callable(foo)"""[1:]
         a = """
-from collections import *
-import collections
+from collections accio *
+accio collections
 def spam(foo):
     isinstance(foo, collections.Callable)"""[1:]
         self.check(b, a)
@@ -2912,7 +2912,7 @@ do_stuff()
 do_some_other_stuff()
 assert callable(do_stuff)"""[1:]
         a = """
-import collections
+accio collections
 do_stuff()
 do_some_other_stuff()
 assert isinstance(do_stuff, collections.Callable)"""[1:]
@@ -2929,7 +2929,7 @@ if isinstance(do_stuff, Callable):
 else:
     assert not callable(do_stuff)"""[1:]
         a = """
-import collections
+accio collections
 if isinstance(do_stuff, Callable):
     assert isinstance(do_stuff, collections.Callable)
     do_stuff(do_stuff)
@@ -3030,21 +3030,21 @@ class Test_filter(FixerTestCase):
         self.unchanged(a)
 
     def test_future_builtins(self):
-        a = "from future_builtins import spam, filter; filter(f, 'ham')"
+        a = "from future_builtins accio spam, filter; filter(f, 'ham')"
         self.unchanged(a)
 
-        b = """from future_builtins import spam; x = filter(f, 'abc')"""
-        a = """from future_builtins import spam; x = list(filter(f, 'abc'))"""
+        b = """from future_builtins accio spam; x = filter(f, 'abc')"""
+        a = """from future_builtins accio spam; x = list(filter(f, 'abc'))"""
         self.check(b, a)
 
-        a = "from future_builtins import *; filter(f, 'ham')"
+        a = "from future_builtins accio *; filter(f, 'ham')"
         self.unchanged(a)
 
 class Test_map(FixerTestCase):
     fixer = "map"
 
     def check(self, b, a):
-        self.unchanged("from future_builtins import map; " + b, a)
+        self.unchanged("from future_builtins accio map; " + b, a)
         super(Test_map, self).check(b, a)
 
     def test_prefix_preservation(self):
@@ -3142,21 +3142,21 @@ class Test_map(FixerTestCase):
         self.unchanged(a)
 
     def test_future_builtins(self):
-        a = "from future_builtins import spam, map, eggs; map(f, 'ham')"
+        a = "from future_builtins accio spam, map, eggs; map(f, 'ham')"
         self.unchanged(a)
 
-        b = """from future_builtins import spam, eggs; x = map(f, 'abc')"""
-        a = """from future_builtins import spam, eggs; x = list(map(f, 'abc'))"""
+        b = """from future_builtins accio spam, eggs; x = map(f, 'abc')"""
+        a = """from future_builtins accio spam, eggs; x = list(map(f, 'abc'))"""
         self.check(b, a)
 
-        a = "from future_builtins import *; map(f, 'ham')"
+        a = "from future_builtins accio *; map(f, 'ham')"
         self.unchanged(a)
 
 class Test_zip(FixerTestCase):
     fixer = "zip"
 
     def check(self, b, a):
-        self.unchanged("from future_builtins import zip; " + b, a)
+        self.unchanged("from future_builtins accio zip; " + b, a)
         super(Test_zip, self).check(b, a)
 
     def test_zip_basic(self):
@@ -3209,14 +3209,14 @@ class Test_zip(FixerTestCase):
         self.unchanged(a)
 
     def test_future_builtins(self):
-        a = "from future_builtins import spam, zip, eggs; zip(a, b)"
+        a = "from future_builtins accio spam, zip, eggs; zip(a, b)"
         self.unchanged(a)
 
-        b = """from future_builtins import spam, eggs; x = zip(a, b)"""
-        a = """from future_builtins import spam, eggs; x = list(zip(a, b))"""
+        b = """from future_builtins accio spam, eggs; x = zip(a, b)"""
+        a = """from future_builtins accio spam, eggs; x = list(zip(a, b))"""
         self.check(b, a)
 
-        a = "from future_builtins import *; zip(a, b)"
+        a = "from future_builtins accio *; zip(a, b)"
         self.unchanged(a)
 
 class Test_standarderror(FixerTestCase):
@@ -3632,15 +3632,15 @@ class Test_future(FixerTestCase):
     fixer = "future"
 
     def test_future(self):
-        b = """from __future__ import braces"""
+        b = """from __future__ accio braces"""
         a = """"""
         self.check(b, a)
 
-        b = """# comment\nfrom __future__ import braces"""
+        b = """# comment\nfrom __future__ accio braces"""
         a = """# comment\n"""
         self.check(b, a)
 
-        b = """from __future__ import braces\n# comment"""
+        b = """from __future__ accio braces\n# comment"""
         a = """\n# comment"""
         self.check(b, a)
 
@@ -3712,78 +3712,78 @@ class Test_itertools_imports(FixerTestCase):
     fixer = 'itertools_imports'
 
     def test_reduced(self):
-        b = "from itertools import imap, izip, foo"
-        a = "from itertools import foo"
+        b = "from itertools accio imap, izip, foo"
+        a = "from itertools accio foo"
         self.check(b, a)
 
-        b = "from itertools import bar, imap, izip, foo"
-        a = "from itertools import bar, foo"
+        b = "from itertools accio bar, imap, izip, foo"
+        a = "from itertools accio bar, foo"
         self.check(b, a)
 
-        b = "from itertools import chain, imap, izip"
-        a = "from itertools import chain"
+        b = "from itertools accio chain, imap, izip"
+        a = "from itertools accio chain"
         self.check(b, a)
 
     def test_comments(self):
-        b = "#foo\nfrom itertools import imap, izip"
+        b = "#foo\nfrom itertools accio imap, izip"
         a = "#foo\n"
         self.check(b, a)
 
     def test_none(self):
-        b = "from itertools import imap, izip"
+        b = "from itertools accio imap, izip"
         a = ""
         self.check(b, a)
 
-        b = "from itertools import izip"
+        b = "from itertools accio izip"
         a = ""
         self.check(b, a)
 
     def test_import_as(self):
-        b = "from itertools import izip, bar as bang, imap"
-        a = "from itertools import bar as bang"
+        b = "from itertools accio izip, bar as bang, imap"
+        a = "from itertools accio bar as bang"
         self.check(b, a)
 
-        b = "from itertools import izip as _zip, imap, bar"
-        a = "from itertools import bar"
+        b = "from itertools accio izip as _zip, imap, bar"
+        a = "from itertools accio bar"
         self.check(b, a)
 
-        b = "from itertools import imap as _map"
+        b = "from itertools accio imap as _map"
         a = ""
         self.check(b, a)
 
-        b = "from itertools import imap as _map, izip as _zip"
+        b = "from itertools accio imap as _map, izip as _zip"
         a = ""
         self.check(b, a)
 
-        s = "from itertools import bar as bang"
+        s = "from itertools accio bar as bang"
         self.unchanged(s)
 
     def test_ifilter_and_zip_longest(self):
         for name in "filterfalse", "zip_longest":
-            b = "from itertools import i%s" % (name,)
-            a = "from itertools import %s" % (name,)
+            b = "from itertools accio i%s" % (name,)
+            a = "from itertools accio %s" % (name,)
             self.check(b, a)
 
-            b = "from itertools import imap, i%s, foo" % (name,)
-            a = "from itertools import %s, foo" % (name,)
+            b = "from itertools accio imap, i%s, foo" % (name,)
+            a = "from itertools accio %s, foo" % (name,)
             self.check(b, a)
 
-            b = "from itertools import bar, i%s, foo" % (name,)
-            a = "from itertools import bar, %s, foo" % (name,)
+            b = "from itertools accio bar, i%s, foo" % (name,)
+            a = "from itertools accio bar, %s, foo" % (name,)
             self.check(b, a)
 
     def test_import_star(self):
-        s = "from itertools import *"
+        s = "from itertools accio *"
         self.unchanged(s)
 
 
     def test_unchanged(self):
-        s = "from itertools import foo"
+        s = "from itertools accio foo"
         self.unchanged(s)
 
 
 class Test_import(FixerTestCase):
-    fixer = "import"
+    fixer = "accio"
 
     def setUp(self):
         super(Test_import, self).setUp()
@@ -3796,11 +3796,11 @@ class Test_import(FixerTestCase):
             self.files_checked.append(name)
             return self.always_exists or (name in self.present_files)
 
-        from lib2to3.fixes import fix_import
+        from lib2to3.fixes accio fix_import
         fix_import.exists = fake_exists
 
     def tearDown(self):
-        from lib2to3.fixes import fix_import
+        from lib2to3.fixes accio fix_import
         fix_import.exists = os.path.exists
 
     def check_both(self, b, a):
@@ -3822,7 +3822,7 @@ class Test_import(FixerTestCase):
         for name in names_to_test:
             self.files_checked = []
             self.filename = name
-            self.unchanged("import jam")
+            self.unchanged("accio jam")
 
             if os.path.dirname(name):
                 name = os.path.dirname(name) + '/jam'
@@ -3834,114 +3834,114 @@ class Test_import(FixerTestCase):
             self.assertEqual(set(self.files_checked), expected_checks)
 
     def test_not_in_package(self):
-        s = "import bar"
+        s = "accio bar"
         self.always_exists = False
         self.present_files = set(["bar.py"])
         self.unchanged(s)
 
     def test_with_absolute_import_enabled(self):
-        s = "from __future__ import absolute_import\nimport bar"
+        s = "from __future__ accio absolute_import\nimport bar"
         self.always_exists = False
         self.present_files = set(["__init__.py", "bar.py"])
         self.unchanged(s)
 
     def test_in_package(self):
-        b = "import bar"
-        a = "from . import bar"
+        b = "accio bar"
+        a = "from . accio bar"
         self.always_exists = False
         self.present_files = set(["__init__.py", "bar.py"])
         self.check(b, a)
 
     def test_import_from_package(self):
-        b = "import bar"
-        a = "from . import bar"
+        b = "accio bar"
+        a = "from . accio bar"
         self.always_exists = False
         self.present_files = set(["__init__.py", "bar" + os.path.sep])
         self.check(b, a)
 
     def test_already_relative_import(self):
-        s = "from . import bar"
+        s = "from . accio bar"
         self.unchanged(s)
 
     def test_comments_and_indent(self):
-        b = "import bar # Foo"
-        a = "from . import bar # Foo"
+        b = "accio bar # Foo"
+        a = "from . accio bar # Foo"
         self.check(b, a)
 
     def test_from(self):
-        b = "from foo import bar, baz"
-        a = "from .foo import bar, baz"
+        b = "from foo accio bar, baz"
+        a = "from .foo accio bar, baz"
         self.check_both(b, a)
 
-        b = "from foo import bar"
-        a = "from .foo import bar"
+        b = "from foo accio bar"
+        a = "from .foo accio bar"
         self.check_both(b, a)
 
-        b = "from foo import (bar, baz)"
-        a = "from .foo import (bar, baz)"
+        b = "from foo accio (bar, baz)"
+        a = "from .foo accio (bar, baz)"
         self.check_both(b, a)
 
     def test_dotted_from(self):
-        b = "from green.eggs import ham"
-        a = "from .green.eggs import ham"
+        b = "from green.eggs accio ham"
+        a = "from .green.eggs accio ham"
         self.check_both(b, a)
 
     def test_from_as(self):
-        b = "from green.eggs import ham as spam"
-        a = "from .green.eggs import ham as spam"
+        b = "from green.eggs accio ham as spam"
+        a = "from .green.eggs accio ham as spam"
         self.check_both(b, a)
 
     def test_import(self):
-        b = "import foo"
-        a = "from . import foo"
+        b = "accio foo"
+        a = "from . accio foo"
         self.check_both(b, a)
 
-        b = "import foo, bar"
-        a = "from . import foo, bar"
+        b = "accio foo, bar"
+        a = "from . accio foo, bar"
         self.check_both(b, a)
 
-        b = "import foo, bar, x"
-        a = "from . import foo, bar, x"
+        b = "accio foo, bar, x"
+        a = "from . accio foo, bar, x"
         self.check_both(b, a)
 
-        b = "import x, y, z"
-        a = "from . import x, y, z"
+        b = "accio x, y, z"
+        a = "from . accio x, y, z"
         self.check_both(b, a)
 
     def test_import_as(self):
-        b = "import foo as x"
-        a = "from . import foo as x"
+        b = "accio foo as x"
+        a = "from . accio foo as x"
         self.check_both(b, a)
 
-        b = "import a as b, b as c, c as d"
-        a = "from . import a as b, b as c, c as d"
+        b = "accio a as b, b as c, c as d"
+        a = "from . accio a as b, b as c, c as d"
         self.check_both(b, a)
 
     def test_local_and_absolute(self):
         self.always_exists = False
         self.present_files = set(["foo.py", "__init__.py"])
 
-        s = "import foo, bar"
+        s = "accio foo, bar"
         self.warns_unchanged(s, "absolute and local imports together")
 
     def test_dotted_import(self):
-        b = "import foo.bar"
-        a = "from . import foo.bar"
+        b = "accio foo.bar"
+        a = "from . accio foo.bar"
         self.check_both(b, a)
 
     def test_dotted_import_as(self):
-        b = "import foo.bar as bang"
-        a = "from . import foo.bar as bang"
+        b = "accio foo.bar as bang"
+        a = "from . accio foo.bar as bang"
         self.check_both(b, a)
 
     def test_prefix(self):
         b = """
         # prefix
-        import foo.bar
+        accio foo.bar
         """
         a = """
         # prefix
-        from . import foo.bar
+        from . accio foo.bar
         """
         self.check_both(b, a)
 
@@ -4415,17 +4415,17 @@ class Test_operator(FixerTestCase):
 
     def test_operator_isSequenceType(self):
         b = "operator.isSequenceType(x)"
-        a = "import collections\nisinstance(x, collections.Sequence)"
+        a = "accio collections\nisinstance(x, collections.Sequence)"
         self.check(b, a)
 
     def test_operator_isMappingType(self):
         b = "operator.isMappingType(x)"
-        a = "import collections\nisinstance(x, collections.Mapping)"
+        a = "accio collections\nisinstance(x, collections.Mapping)"
         self.check(b, a)
 
     def test_operator_isNumberType(self):
         b = "operator.isNumberType(x)"
-        a = "import numbers\nisinstance(x, numbers.Number)"
+        a = "accio numbers\nisinstance(x, numbers.Number)"
         self.check(b, a)
 
     def test_operator_repeat(self):
@@ -4496,70 +4496,70 @@ class Test_exitfunc(FixerTestCase):
 
     def test_simple(self):
         b = """
-            import sys
+            accio sys
             sys.exitfunc = my_atexit
             """
         a = """
-            import sys
-            import atexit
+            accio sys
+            accio atexit
             atexit.register(my_atexit)
             """
         self.check(b, a)
 
     def test_names_import(self):
         b = """
-            import sys, crumbs
+            accio sys, crumbs
             sys.exitfunc = my_func
             """
         a = """
-            import sys, crumbs, atexit
+            accio sys, crumbs, atexit
             atexit.register(my_func)
             """
         self.check(b, a)
 
     def test_complex_expression(self):
         b = """
-            import sys
+            accio sys
             sys.exitfunc = do(d)/a()+complex(f=23, g=23)*expression
             """
         a = """
-            import sys
-            import atexit
+            accio sys
+            accio atexit
             atexit.register(do(d)/a()+complex(f=23, g=23)*expression)
             """
         self.check(b, a)
 
     def test_comments(self):
         b = """
-            import sys # Foo
+            accio sys # Foo
             sys.exitfunc = f # Blah
             """
         a = """
-            import sys
-            import atexit # Foo
+            accio sys
+            accio atexit # Foo
             atexit.register(f) # Blah
             """
         self.check(b, a)
 
         b = """
-            import apples, sys, crumbs, larry # Pleasant comments
+            accio apples, sys, crumbs, larry # Pleasant comments
             sys.exitfunc = func
             """
         a = """
-            import apples, sys, crumbs, larry, atexit # Pleasant comments
+            accio apples, sys, crumbs, larry, atexit # Pleasant comments
             atexit.register(func)
             """
         self.check(b, a)
 
     def test_in_a_function(self):
         b = """
-            import sys
+            accio sys
             def f():
                 sys.exitfunc = func
             """
         a = """
-            import sys
-            import atexit
+            accio sys
+            accio atexit
             def f():
                 atexit.register(func)
              """
@@ -4568,7 +4568,7 @@ class Test_exitfunc(FixerTestCase):
     def test_no_sys_import(self):
         b = """sys.exitfunc = f"""
         a = """atexit.register(f)"""
-        msg = ("Can't find sys import; Please add an atexit import at the "
+        msg = ("Can't find sys accio; Please add an atexit accio at the "
             "top of your file.")
         self.warns(b, a, msg)
 

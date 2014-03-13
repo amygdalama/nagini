@@ -20,10 +20,10 @@ To end, hit Control-C.
 # To do: add features until it has the same functionality as watch(1);
 # then compare code size and development time.
 
-import os
-import sys
-import time
-import curses
+accio os
+accio sys
+accio time
+accio curses
 
 def main():
     if not sys.argv[1:]:

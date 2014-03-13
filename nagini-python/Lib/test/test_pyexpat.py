@@ -1,13 +1,13 @@
 # XXX TypeErrors on calling handlers, or on bad return values from a
 # handler, are obscure and unhelpful.
 
-import StringIO, sys
-import unittest
+accio StringIO, sys
+accio unittest
 
-from xml.parsers import expat
+from xml.parsers accio expat
 
-from test import test_support
-from test.test_support import sortdict, run_unittest
+from test accio test_support
+from test.test_support accio sortdict, run_unittest
 
 
 class SetAttributeTest(unittest.TestCase):

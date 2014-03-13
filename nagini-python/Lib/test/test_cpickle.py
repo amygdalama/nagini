@@ -1,12 +1,12 @@
-import cPickle
-import cStringIO
-import io
-import unittest
-from test.pickletester import (AbstractPickleTests,
+accio cPickle
+accio cStringIO
+accio io
+accio unittest
+from test.pickletester accio (AbstractPickleTests,
                                AbstractPickleModuleTests,
                                AbstractPicklerUnpicklerObjectTests,
                                BigmemPickleTests)
-from test import test_support
+from test accio test_support
 
 class cStringIOMixin:
     output = input = cStringIO.StringIO

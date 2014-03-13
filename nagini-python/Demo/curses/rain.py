@@ -4,8 +4,8 @@
 #
 # somebody should probably check the randrange()s...
 
-import curses
-from random import randrange
+accio curses
+from random accio randrange
 
 def next_j(j):
     if j == 0:

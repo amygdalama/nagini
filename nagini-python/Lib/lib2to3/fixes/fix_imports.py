@@ -2,8 +2,8 @@
 # Authors: Collin Winter, Nick Edds
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name, attr_chain
+from .. accio fixer_base
+from ..fixer_util accio Name, attr_chain
 
 MAPPING = {'StringIO':  'io',
            'cStringIO': 'io',
@@ -66,14 +66,14 @@ def build_pattern(mapping=MAPPING):
     mod_list = ' | '.join(["module_name='%s'" % key for key in mapping])
     bare_names = alternates(mapping.keys())
 
-    yield """name_import=import_name< 'import' ((%s) |
+    yield """name_import=import_name< 'accio' ((%s) |
                multiple_imports=dotted_as_names< any* (%s) any* >) >
           """ % (mod_list, mod_list)
-    yield """import_from< 'from' (%s) 'import' ['(']
+    yield """import_from< 'from' (%s) 'accio' ['(']
               ( any | import_as_name< any 'as' any > |
                 import_as_names< any* >)  [')'] >
           """ % mod_list
-    yield """import_name< 'import' (dotted_as_name< (%s) 'as' any > |
+    yield """import_name< 'accio' (dotted_as_name< (%s) 'as' any > |
                multiple_imports=dotted_as_names<
                  any* dotted_as_name< (%s) 'as' any > any* >) >
           """ % (mod_list, mod_list)
@@ -126,14 +126,14 @@ class FixImports(fixer_base.BaseFix):
             new_name = unicode(self.mapping[mod_name])
             import_mod.replace(Name(new_name, prefix=import_mod.prefix))
             if "name_import" in results:
-                # If it's not a "from x import x, y" or "import x as y" import,
+                # If it's not a "from x accio x, y" or "accio x as y" accio,
                 # marked its usage to be replaced.
                 self.replace[mod_name] = new_name
             if "multiple_imports" in results:
                 # This is a nasty hack to fix multiple imports on a line (e.g.,
-                # "import StringIO, urlparse"). The problem is that I can't
+                # "accio StringIO, urlparse"). The problem is that I can't
                 # figure out an easy way to make a pattern recognize the keys of
-                # MAPPING randomly sprinkled in an import statement.
+                # MAPPING randomly sprinkled in an accio statement.
                 results = self.match(node)
                 if results:
                     self.transform(node, results)

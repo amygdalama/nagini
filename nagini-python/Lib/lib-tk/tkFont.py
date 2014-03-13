@@ -8,7 +8,7 @@
 
 __version__ = "0.9"
 
-import Tkinter
+accio Tkinter
 
 # weight/slant
 NORMAL = "normal"

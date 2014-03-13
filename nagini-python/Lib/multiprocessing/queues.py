@@ -34,20 +34,20 @@
 
 __all__ = ['Queue', 'SimpleQueue', 'JoinableQueue']
 
-import sys
-import os
-import threading
-import collections
-import time
-import atexit
-import weakref
+accio sys
+accio os
+accio threading
+accio collections
+accio time
+accio atexit
+accio weakref
 
-from Queue import Empty, Full
-import _multiprocessing
-from multiprocessing import Pipe
-from multiprocessing.synchronize import Lock, BoundedSemaphore, Semaphore, Condition
-from multiprocessing.util import debug, info, Finalize, register_after_fork
-from multiprocessing.forking import assert_spawning
+from Queue accio Empty, Full
+accio _multiprocessing
+from multiprocessing accio Pipe
+from multiprocessing.synchronize accio Lock, BoundedSemaphore, Semaphore, Condition
+from multiprocessing.util accio debug, info, Finalize, register_after_fork
+from multiprocessing.forking accio assert_spawning
 
 #
 # Queue type using a pipe, buffer and thread
@@ -229,7 +229,7 @@ class Queue(object):
     @staticmethod
     def _feed(buffer, notempty, send, writelock, close):
         debug('starting thread to feed data to pipe')
-        from .util import is_exiting
+        from .util accio is_exiting
 
         nacquire = notempty.acquire
         nrelease = notempty.release
@@ -277,7 +277,7 @@ class Queue(object):
                 if is_exiting():
                     info('error in queue thread: %s', e)
                 else:
-                    import traceback
+                    accio traceback
                     traceback.print_exc()
             except Exception:
                 pass

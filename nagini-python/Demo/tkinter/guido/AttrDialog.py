@@ -12,7 +12,7 @@
 # -- totally static, though different between PackDialog and WidgetDialog
 #    (but even that could be unified)
 
-from Tkinter import *
+from Tkinter accio *
 
 class Option:
 
@@ -409,7 +409,7 @@ class RemoteWidgetDialog(WidgetDialog):
     class readonlyoption(remotewidgetoption, ReadonlyOption): pass
 
 def test():
-    import sys
+    accio sys
     root = Tk()
     root.minsize(1, 1)
     if sys.argv[1:]:
@@ -430,13 +430,13 @@ def test():
     root.mainloop()
 
 def remotetest(root, app):
-    from listtree import listtree
+    from listtree accio listtree
     list = listtree(root, app)
     list.bind('<Any-Double-1>', opendialogs)
     list.app = app                  # Pass it on to handler
 
 def opendialogs(e):
-    import string
+    accio string
     list = e.widget
     sel = list.curselection()
     for i in sel:

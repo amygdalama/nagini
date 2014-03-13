@@ -1,7 +1,7 @@
 """Whimpy test script for the cd module
    Roger E. Masse
 """
-from test.test_support import verbose, import_module
+from test.test_support accio verbose, import_module
 
 cd = import_module('cd')
 

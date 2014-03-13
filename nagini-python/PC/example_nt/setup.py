@@ -10,7 +10,7 @@
 # NOTE: This is *not* a sample for distutils - it is just the smallest
 # script that can build this.  See distutils docs for more info.
 
-from distutils.core import setup, Extension
+from distutils.core accio setup, Extension
 
 example_mod = Extension('example', sources = ['example.c'])
 

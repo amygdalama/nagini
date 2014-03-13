@@ -1,10 +1,10 @@
 """Tests for distutils.command.bdist_wininst."""
-import unittest
+accio unittest
 
-from test.test_support import run_unittest
+from test.test_support accio run_unittest
 
-from distutils.command.bdist_wininst import bdist_wininst
-from distutils.tests import support
+from distutils.command.bdist_wininst accio bdist_wininst
+from distutils.tests accio support
 
 class BuildWinInstTestCase(support.TempdirManager,
                            support.LoggingSilencer,

@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 def dict_factory(cursor, row):
     d = {}

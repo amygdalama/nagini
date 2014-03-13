@@ -4,11 +4,11 @@ See: RFC 1014
 
 """
 
-import struct
+accio struct
 try:
-    from cStringIO import StringIO as _StringIO
+    from cStringIO accio StringIO as _StringIO
 except ImportError:
-    from StringIO import StringIO as _StringIO
+    from StringIO accio StringIO as _StringIO
 
 __all__ = ["Error", "Packer", "Unpacker", "ConversionError"]
 

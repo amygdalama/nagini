@@ -2,7 +2,7 @@
 
 Written by Brian Quinlan (brian@sweetapp.com).
 """
-import codecs
+accio codecs
 
 ### Codec APIs
 

@@ -16,9 +16,9 @@
 # - is only about 2.5 times as slow as egrep (though I couldn't run
 #   Tom's test -- this system, a vanilla SGI, only has /etc/terminfo)
 
-import string
-import sys
-import re
+accio string
+accio sys
+accio re
 
 def main():
     pats = map(chomp, sys.stdin.readlines())

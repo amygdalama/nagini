@@ -46,14 +46,14 @@ many of the difficult problems for you, making the task of building
 sophisticated high-performance network servers and clients a snap.
 """
 
-import select
-import socket
-import sys
-import time
-import warnings
+accio select
+accio socket
+accio sys
+accio time
+accio warnings
 
-import os
-from errno import EALREADY, EINPROGRESS, EWOULDBLOCK, ECONNRESET, EINVAL, \
+accio os
+from errno accio EALREADY, EINPROGRESS, EWOULDBLOCK, ECONNRESET, EINVAL, \
      ENOTCONN, ESHUTDOWN, EINTR, EISCONN, EBADF, ECONNABORTED, EPIPE, EAGAIN, \
      errorcode
 
@@ -605,7 +605,7 @@ def close_all(map=None, ignore_all=False):
 # Regardless, this is useful for pipes, and stdin/stdout...
 
 if os.name == 'posix':
-    import fcntl
+    accio fcntl
 
     class file_wrapper:
         # Here we override just enough to make a file

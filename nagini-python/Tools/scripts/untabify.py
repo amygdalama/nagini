@@ -2,9 +2,9 @@
 
 "Replace tabs with spaces in argument files.  Print names of changed files."
 
-import os
-import sys
-import getopt
+accio os
+accio sys
+accio getopt
 
 def main():
     tabsize = 8

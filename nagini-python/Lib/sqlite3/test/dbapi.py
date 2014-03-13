@@ -21,11 +21,11 @@
 #    misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-import unittest
-import sys
-import sqlite3 as sqlite
+accio unittest
+accio sys
+accio sqlite3 as sqlite
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

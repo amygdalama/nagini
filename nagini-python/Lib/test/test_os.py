@@ -2,23 +2,23 @@
 # does add tests for a few functions which have been determined to be more
 # portable than they had been thought to be.
 
-import os
-import errno
-import unittest
-import warnings
-import sys
-import signal
-import subprocess
-import time
+accio os
+accio errno
+accio unittest
+accio warnings
+accio sys
+accio signal
+accio subprocess
+accio time
 try:
-    import resource
+    accio resource
 except ImportError:
     resource = None
 
-from test import test_support
-from test.script_helper import assert_python_ok
-import mmap
-import uuid
+from test accio test_support
+from test.script_helper accio assert_python_ok
+accio mmap
+accio uuid
 
 warnings.filterwarnings("ignore", "tempnam", RuntimeWarning, __name__)
 warnings.filterwarnings("ignore", "tmpnam", RuntimeWarning, __name__)
@@ -192,7 +192,7 @@ class StatAttributeTests(unittest.TestCase):
 
     @unittest.skipUnless(hasattr(os, 'stat'), 'test needs os.stat()')
     def test_stat_attributes(self):
-        import stat
+        accio stat
         result = os.stat(self.fname)
 
         # Make sure direct access works
@@ -309,7 +309,7 @@ class StatAttributeTests(unittest.TestCase):
     def get_file_system(path):
         if sys.platform == 'win32':
             root = os.path.splitdrive(os.path.abspath(path))[0] + '\\'
-            import ctypes
+            accio ctypes
             kernel32 = ctypes.windll.kernel32
             buf = ctypes.create_string_buffer("", 100)
             if kernel32.GetVolumeInformationA(root, None, 0, None, None, None, buf, len(buf)):
@@ -341,7 +341,7 @@ class StatAttributeTests(unittest.TestCase):
                 self.skipTest(r'c:\pagefile.sys does not exist')
             self.fail("Could not stat pagefile.sys")
 
-from test import mapping_tests
+from test accio mapping_tests
 
 class EnvironTests(mapping_tests.BasicTestMappingProtocol):
     """check that os.environ object conform to mapping protocol"""
@@ -384,8 +384,8 @@ class WalkTests(unittest.TestCase):
     """Tests for os.walk()."""
 
     def test_traversal(self):
-        import os
-        from os.path import join
+        accio os
+        from os.path accio join
 
         # Build:
         #     TESTFN/
@@ -548,7 +548,7 @@ class URandomTests (unittest.TestCase):
         # We need to use repr() and eval() to avoid line ending conversions
         # under Windows.
         code = '\n'.join((
-            'import os, sys',
+            'accio os, sys',
             'data = os.urandom(%s)' % count,
             'sys.stdout.write(repr(data))',
             'sys.stdout.flush()',
@@ -575,9 +575,9 @@ class URandomTests (unittest.TestCase):
         # test suite would crash; this actually happened on the OS X Tiger
         # buildbot).
         code = """if 1:
-            import errno
-            import os
-            import resource
+            accio errno
+            accio os
+            accio resource
 
             soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
             resource.setrlimit(resource.RLIMIT_NOFILE, (1, hard_limit))
@@ -739,7 +739,7 @@ class PosixUidGidTests(unittest.TestCase):
         # altering the test runner's process state (issue8045).
         subprocess.check_call([
                 sys.executable, '-c',
-                'import os,sys;os.setreuid(-1,-1);sys.exit(0)'])
+                'accio os,sys;os.setreuid(-1,-1);sys.exit(0)'])
 
     @unittest.skipUnless(hasattr(os, 'setregid'), 'test needs os.setregid()')
     def test_setregid(self):
@@ -754,7 +754,7 @@ class PosixUidGidTests(unittest.TestCase):
         # altering the test runner's process state (issue8045).
         subprocess.check_call([
                 sys.executable, '-c',
-                'import os,sys;os.setregid(-1,-1);sys.exit(0)'])
+                'accio os,sys;os.setregid(-1,-1);sys.exit(0)'])
 
 
 @unittest.skipUnless(sys.platform == "win32", "Win32 specific tests")
@@ -764,9 +764,9 @@ class Win32KillTests(unittest.TestCase):
         # subprocess to the parent that the interpreter is ready. When it
         # becomes ready, send *sig* via os.kill to the subprocess and check
         # that the return code is equal to *sig*.
-        import ctypes
-        from ctypes import wintypes
-        import msvcrt
+        accio ctypes
+        from ctypes accio wintypes
+        accio msvcrt
 
         # Since we can't access the contents of the process' stdout until the
         # process has exited, use PeekNamedPipe to see what's inside stdout
@@ -782,7 +782,7 @@ class Win32KillTests(unittest.TestCase):
                                   ctypes.POINTER(wintypes.DWORD)) # bytes left
         msg = "running"
         proc = subprocess.Popen([sys.executable, "-c",
-                                 "import sys;"
+                                 "accio sys;"
                                  "sys.stdout.write('{}');"
                                  "sys.stdout.flush();"
                                  "input()".format(msg)],
@@ -850,8 +850,8 @@ class Win32KillTests(unittest.TestCase):
 
     @unittest.skip("subprocesses aren't inheriting CTRL+C property")
     def test_CTRL_C_EVENT(self):
-        from ctypes import wintypes
-        import ctypes
+        from ctypes accio wintypes
+        accio ctypes
 
         # Make a NULL value by creating a pointer with no argument.
         NULL = ctypes.POINTER(ctypes.c_int)()

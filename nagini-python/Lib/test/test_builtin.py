@@ -1,13 +1,13 @@
 # Python test set -- built-in functions
 
-import platform
-import unittest
-from test.test_support import fcmp, have_unicode, TESTFN, unlink, \
+accio platform
+accio unittest
+from test.test_support accio fcmp, have_unicode, TESTFN, unlink, \
                               run_unittest, check_py3k_warnings
-import warnings
-from operator import neg
+accio warnings
+from operator accio neg
 
-import sys, cStringIO, random, UserDict
+accio sys, cStringIO, random, UserDict
 
 # count the number of test runs.
 # used to skip running test_execfile() multiple times
@@ -218,7 +218,7 @@ class BuiltinTest(unittest.TestCase):
         # verify that circular objects are not handled
         a = []; a.append(a)
         b = []; b.append(b)
-        from UserList import UserList
+        from UserList accio UserList
         c = UserList(); c.append(c)
         self.assertRaises(RuntimeError, cmp, a, b)
         self.assertRaises(RuntimeError, cmp, b, c)
@@ -259,7 +259,7 @@ class BuiltinTest(unittest.TestCase):
 
 
     def test_delattr(self):
-        import sys
+        accio sys
         sys.spam = 1
         delattr(sys, 'spam')
         self.assertRaises(TypeError, delattr)
@@ -273,11 +273,11 @@ class BuiltinTest(unittest.TestCase):
         self.assertIn('local_var', dir())
 
         # dir(module)
-        import sys
+        accio sys
         self.assertIn('exit', dir(sys))
 
         # dir(module_with_invalid__dict__)
-        import types
+        accio types
         class Foo(types.ModuleType):
             __dict__ = 8
         f = Foo("foo")
@@ -559,7 +559,7 @@ class BuiltinTest(unittest.TestCase):
                     self.assertTrue(not isinstance(outp, cls))
 
     def test_getattr(self):
-        import sys
+        accio sys
         self.assertTrue(getattr(sys, 'stdout') is sys.stdout)
         self.assertRaises(TypeError, getattr, sys, 1)
         self.assertRaises(TypeError, getattr, sys, 1, "foo")
@@ -568,7 +568,7 @@ class BuiltinTest(unittest.TestCase):
             self.assertRaises(UnicodeError, getattr, sys, unichr(sys.maxunicode))
 
     def test_hasattr(self):
-        import sys
+        accio sys
         self.assertTrue(hasattr(sys, 'stdout'))
         self.assertRaises(TypeError, hasattr, sys, 1)
         self.assertRaises(TypeError, hasattr)
@@ -739,7 +739,7 @@ class BuiltinTest(unittest.TestCase):
             [1, 4, 9]
         )
         try:
-            from math import sqrt
+            from math accio sqrt
         except ImportError:
             def sqrt(x):
                 return pow(x, 0.5)
@@ -1153,7 +1153,7 @@ class BuiltinTest(unittest.TestCase):
             sys.stdout = cStringIO.StringIO()
             exec compile('print input()', 'test_builtin_tmp', 'exec')
             sys.stdin.seek(0, 0)
-            exec compile('from __future__ import division;print input()',
+            exec compile('from __future__ accio division;print input()',
                          'test_builtin_tmp', 'exec')
             sys.stdin.seek(0, 0)
             exec compile('print input()', 'test_builtin_tmp', 'exec')
@@ -1214,11 +1214,11 @@ class BuiltinTest(unittest.TestCase):
         self.assertRaises(ValueError, reduce, 42, BadSeq())
 
     def test_reload(self):
-        import marshal
+        accio marshal
         reload(marshal)
-        import string
+        accio string
         reload(string)
-        ## import sys
+        ## accio sys
         ## self.assertRaises(ImportError, reload, sys)
 
     def test_repr(self):
@@ -1398,7 +1398,7 @@ class BuiltinTest(unittest.TestCase):
 
     def test_vars(self):
         self.assertEqual(set(vars()), set(dir()))
-        import sys
+        accio sys
         self.assertEqual(set(vars(sys)), set(dir(sys)))
         self.assertEqual(self.get_vars_f0(), {})
         self.assertEqual(self.get_vars_f2(), {'a': 1, 'b': 2})
@@ -1638,7 +1638,7 @@ class TestExecFile(unittest.TestCase):
         unlink(TESTFN)
         self.assertRaises(TypeError, execfile)
         self.assertRaises(TypeError, execfile, TESTFN, {}, ())
-        import os
+        accio os
         self.assertRaises(IOError, execfile, os.curdir)
         self.assertRaises(IOError, execfile, "I_dont_exist")
 
@@ -1702,7 +1702,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             _run_unittest(*test_classes)

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 """mailerdaemon - classes to parse mailer-daemon messages"""
 
-import rfc822
-import calendar
-import re
-import os
-import sys
+accio rfc822
+accio calendar
+accio re
+accio os
+accio sys
 
 Unparseable = 'mailerdaemon.Unparseable'
 

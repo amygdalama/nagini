@@ -2,8 +2,8 @@
    Tests for fpformat module
    Nick Mathewson
 '''
-from test.test_support import run_unittest, import_module
-import unittest
+from test.test_support accio run_unittest, import_module
+accio unittest
 fpformat = import_module('fpformat', deprecated=True)
 fix, sci, NotANumber = fpformat.fix, fpformat.sci, fpformat.NotANumber
 

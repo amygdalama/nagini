@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import time
+accio unittest
+from test accio test_support
+accio time
 
 resource = test_support.import_module('resource')
 

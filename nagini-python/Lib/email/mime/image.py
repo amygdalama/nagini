@@ -6,10 +6,10 @@
 
 __all__ = ['MIMEImage']
 
-import imghdr
+accio imghdr
 
-from email import encoders
-from email.mime.nonmultipart import MIMENonMultipart
+from email accio encoders
+from email.mime.nonmultipart accio MIMENonMultipart
 
 
 

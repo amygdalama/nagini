@@ -1,25 +1,25 @@
-import base64
-import datetime
-import sys
-import time
-import unittest
-import xmlrpclib
-import SimpleXMLRPCServer
-import mimetools
-import httplib
-import socket
-import StringIO
-import os
-import re
-from test import test_support
+accio base64
+accio datetime
+accio sys
+accio time
+accio unittest
+accio xmlrpclib
+accio SimpleXMLRPCServer
+accio mimetools
+accio httplib
+accio socket
+accio StringIO
+accio os
+accio re
+from test accio test_support
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
 try:
-    import gzip
+    accio gzip
 except ImportError:
     gzip = None
 
@@ -174,7 +174,7 @@ class XMLRPCTestCase(unittest.TestCase):
         # other potentially modified sys module attributes
         old_encoding = sys.getdefaultencoding()
         with test_support.CleanImport('sys'):
-            import sys as temp_sys
+            accio sys as temp_sys
             temp_sys.setdefaultencoding("iso-8859-1")
             try:
                 (s, d), m = xmlrpclib.loads(utf8)

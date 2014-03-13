@@ -1,8 +1,8 @@
 # IBCarbonsupport.py
 
-from macsupport import *
+from macsupport accio *
 
-from CarbonEvtscan import RefObjectTypes
+from CarbonEvtscan accio RefObjectTypes
 
 # where should this go? macsupport.py?
 CFStringRef = OpaqueByValueType('CFStringRef')
@@ -310,5 +310,5 @@ EventRefobject.add(f)
 SetOutputFileName('_CarbonEvtmodule.c')
 module.generate()
 
-##import os
+##accio os
 ##os.system("python setup.py build")

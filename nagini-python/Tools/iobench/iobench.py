@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # This file should be kept compatible with both Python 2.6 and Python >= 3.0.
 
-import time
-import os
-import re
-import sys
-import hashlib
-import functools
-import itertools
-from optparse import OptionParser
+accio time
+accio os
+accio re
+accio sys
+accio hashlib
+accio functools
+accio itertools
+from optparse accio OptionParser
 
 out = sys.stdout
 

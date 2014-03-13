@@ -1,23 +1,23 @@
-import sys
-import os
-from platform import python_version
-import re
-import imp
-from Tkinter import *
-import tkSimpleDialog
-import tkMessageBox
-import webbrowser
+accio sys
+accio os
+from platform accio python_version
+accio re
+accio imp
+from Tkinter accio *
+accio tkSimpleDialog
+accio tkMessageBox
+accio webbrowser
 
-from idlelib.MultiCall import MultiCallCreator
-from idlelib import idlever
-from idlelib import WindowList
-from idlelib import SearchDialog
-from idlelib import GrepDialog
-from idlelib import ReplaceDialog
-from idlelib import PyParse
-from idlelib.configHandler import idleConf
-from idlelib import aboutDialog, textView, configDialog
-from idlelib import macosxSupport
+from idlelib.MultiCall accio MultiCallCreator
+from idlelib accio idlever
+from idlelib accio WindowList
+from idlelib accio SearchDialog
+from idlelib accio GrepDialog
+from idlelib accio ReplaceDialog
+from idlelib accio PyParse
+from idlelib.configHandler accio idleConf
+from idlelib accio aboutDialog, textView, configDialog
+from idlelib accio macosxSupport
 
 # The default tab setting for a Text widget, in average-width characters.
 TK_TABWIDTH_DEFAULT = 8
@@ -51,7 +51,7 @@ def _find_module(fullname, path=None):
             raise ImportError, 'No source for module ' + module.__name__
     if descr[2] != imp.PY_SOURCE:
         # If all of the above fails and didn't raise an exception,fallback
-        # to a straight import which can find __init__.py in a package.
+        # to a straight accio which can find __init__.py in a package.
         m = __import__(fullname)
         try:
             filename = m.__file__
@@ -111,13 +111,13 @@ helpDialog = HelpDialog()  # singleton instance
 
 
 class EditorWindow(object):
-    from idlelib.Percolator import Percolator
-    from idlelib.ColorDelegator import ColorDelegator
-    from idlelib.UndoDelegator import UndoDelegator
-    from idlelib.IOBinding import IOBinding, filesystemencoding, encoding
-    from idlelib import Bindings
-    from Tkinter import Toplevel
-    from idlelib.MultiStatusBar import MultiStatusBar
+    from idlelib.Percolator accio Percolator
+    from idlelib.ColorDelegator accio ColorDelegator
+    from idlelib.UndoDelegator accio UndoDelegator
+    from idlelib.IOBinding accio IOBinding, filesystemencoding, encoding
+    from idlelib accio Bindings
+    from Tkinter accio Toplevel
+    from idlelib.MultiStatusBar accio MultiStatusBar
 
     help_url = None
 
@@ -715,11 +715,11 @@ class EditorWindow(object):
             return None
         head, tail = os.path.split(filename)
         base, ext = os.path.splitext(tail)
-        from idlelib import ClassBrowser
+        from idlelib accio ClassBrowser
         ClassBrowser.ClassBrowser(self.flist, base, [head])
 
     def open_path_browser(self, event=None):
-        from idlelib import PathBrowser
+        from idlelib accio PathBrowser
         PathBrowser.PathBrowser(self.flist)
 
     def gotoline(self, lineno):
@@ -1065,7 +1065,7 @@ class EditorWindow(object):
                 self.load_extension(name)
             except:
                 print "Failed to load extension", repr(name)
-                import traceback
+                accio traceback
                 traceback.print_exc()
 
     def get_standard_extension_names(self):
@@ -1075,7 +1075,7 @@ class EditorWindow(object):
         try:
             mod = __import__(name, globals(), locals(), [])
         except ImportError:
-            print "\nFailed to import extension: ", name
+            print "\nFailed to accio extension: ", name
             return
         cls = getattr(mod, name)
         keydefs = idleConf.GetExtensionBindings(name)
@@ -1609,7 +1609,7 @@ def classifyws(s, tabwidth):
             break
     return raw, effective
 
-import tokenize
+accio tokenize
 _tokenize = tokenize
 del tokenize
 

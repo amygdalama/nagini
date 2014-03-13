@@ -17,10 +17,10 @@ usage: sum5 [-b] [-t] [-l] [-s bufsize] [file ...]
 file ...  : files to sum; '-' or no files means stdin
 """ % bufsize
 
-import sys
-import os
-import getopt
-import md5
+accio sys
+accio os
+accio getopt
+accio md5
 
 def sum(*files):
     sts = 0

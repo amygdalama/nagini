@@ -4,8 +4,8 @@
 # Written by Hye-Shik Chang <perky@FreeBSD.org>
 #
 
-import _codecs_hk, codecs
-import _multibytecodec as mbc
+accio _codecs_hk, codecs
+accio _multibytecodec as mbc
 
 codec = _codecs_hk.getcodec('big5hkscs')
 

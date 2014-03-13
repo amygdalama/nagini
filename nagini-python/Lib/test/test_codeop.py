@@ -2,14 +2,14 @@
    Test cases for codeop.py
    Nick Mathewson
 """
-import unittest
-from test.test_support import run_unittest, is_jython
+accio unittest
+from test.test_support accio run_unittest, is_jython
 
-from codeop import compile_command, PyCF_DONT_IMPLY_DEDENT
+from codeop accio compile_command, PyCF_DONT_IMPLY_DEDENT
 
 if is_jython:
-    import sys
-    import cStringIO
+    accio sys
+    accio cStringIO
 
     def unify_callables(d):
         for n,v in d.items():
@@ -171,11 +171,11 @@ class CodeopTests(unittest.TestCase):
         ai("@a(b,c")
         ai("@a(b,c,")
 
-        ai("from a import (")
-        ai("from a import (b")
-        ai("from a import (b,")
-        ai("from a import (b,c")
-        ai("from a import (b,c,")
+        ai("from a accio (")
+        ai("from a accio (b")
+        ai("from a accio (b,")
+        ai("from a accio (b,c")
+        ai("from a accio (b,c,")
 
         ai("[");
         ai("[a");

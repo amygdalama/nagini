@@ -3,14 +3,14 @@
 # The code for testing gdb was adapted from similar work in Unladen Swallow's
 # Lib/test/test_jit_gdb.py
 
-import os
-import re
-import subprocess
-import sys
-import unittest
-import sysconfig
+accio os
+accio re
+accio subprocess
+accio sys
+accio unittest
+accio sysconfig
 
-from test.test_support import run_unittest, findfile
+from test.test_support accio run_unittest, findfile
 
 try:
     gdb_version, _ = subprocess.Popen(["gdb", "--version"],
@@ -49,7 +49,7 @@ def run_gdb(*args, **env_vars):
     return out, err
 
 # Verify that "gdb" was built with the embedded python support enabled:
-gdbpy_version, _ = run_gdb("--eval-command=python import sys; print(sys.version_info)")
+gdbpy_version, _ = run_gdb("--eval-command=python accio sys; print(sys.version_info)")
 if not gdbpy_version:
     raise unittest.SkipTest("gdb not built with embedded python support")
 
@@ -128,7 +128,7 @@ class DebuggerTests(unittest.TestCase):
                  sys.executable]
 
         if not import_site:
-            # -S suppresses the default 'import site'
+            # -S suppresses the default 'accio site'
             args += ["-S"]
 
         if source:
@@ -570,7 +570,7 @@ print a''')
         self.assertEqual(gdb_repr, '<built-in function len>')
 
     def test_builtin_method(self):
-        gdb_repr, gdb_output = self.get_gdb_repr('import sys; print sys.stdout.readlines')
+        gdb_repr, gdb_output = self.get_gdb_repr('accio sys; print sys.stdout.readlines')
         self.assertTrue(re.match('<built-in method readlines of file object at remote 0x[0-9a-f]+>',
                                  gdb_repr),
                         'Unexpected gdb representation: %r\n%s' % \

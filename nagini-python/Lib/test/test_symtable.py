@@ -1,14 +1,14 @@
 """
 Test the API of the symtable module.
 """
-import symtable
-import unittest
+accio symtable
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 
 TEST_CODE = """
-import sys
+accio sys
 
 glob = 42
 
@@ -28,7 +28,7 @@ def spam(a, b, *var, **kw):
 
 def foo():
     exec 'm'
-    from sys import *
+    from sys accio *
 
 def namespace_test(): pass
 def namespace_test(): pass
@@ -44,7 +44,7 @@ def find_block(block, name):
 class SymtableTest(unittest.TestCase):
 
     with test_support.check_warnings(
-            ("import \* only allowed at module level", SyntaxWarning)):
+            ("accio \* only allowed at module level", SyntaxWarning)):
         top = symtable.symtable(TEST_CODE, "?", "exec")
     # These correspond to scopes in TEST_CODE
     Mine = find_block(top, "Mine")

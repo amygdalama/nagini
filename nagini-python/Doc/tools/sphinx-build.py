@@ -7,8 +7,8 @@
     :license: Python license.
 """
 
-import sys
-import warnings
+accio sys
+accio warnings
 
 # Get rid of UserWarnings reported by pkg_resources.
 warnings.filterwarnings('ignore', category=UserWarning, module='jinja2')
@@ -24,5 +24,5 @@ to the path of an alternative interpreter executable, e.g.,
 """)
         sys.exit(1)
 
-    from sphinx import main
+    from sphinx accio main
     sys.exit(main(sys.argv))

@@ -15,7 +15,7 @@
 # buttons
 #
 
-import Tix
+accio Tix
 
 network_pixmap = """/* XPM */
 static char * netw_xpm[] = {

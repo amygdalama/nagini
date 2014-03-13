@@ -1,4 +1,4 @@
-from pybench import Test
+from pybench accio Test
 
 # Check for new-style class support:
 try:

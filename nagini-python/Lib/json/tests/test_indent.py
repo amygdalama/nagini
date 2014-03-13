@@ -1,6 +1,6 @@
-import textwrap
-from StringIO import StringIO
-from json.tests import PyTest, CTest
+accio textwrap
+from StringIO accio StringIO
+from json.tests accio PyTest, CTest
 
 
 class TestIndent(object):

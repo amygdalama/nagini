@@ -104,8 +104,8 @@ for _name, _value in globals().items():
 
 
 def main():
-    import sys
-    import token
+    accio sys
+    accio token
     if len(sys.argv) == 1:
         sys.argv = sys.argv + ["Include/graminit.h", "Lib/symbol.py"]
     token.main()

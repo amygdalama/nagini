@@ -1,7 +1,7 @@
-import test.test_support, unittest
+accio test.test_support, unittest
 
 # we're testing the behavior of these future builtins:
-from future_builtins import hex, oct, map, zip, filter
+from future_builtins accio hex, oct, map, zip, filter
 
 class BuiltinTest(unittest.TestCase):
     def test_hex(self):
@@ -21,7 +21,7 @@ class BuiltinTest(unittest.TestCase):
         self.assertRaises(TypeError, oct, ())
 
     def test_itertools(self):
-        from itertools import imap, izip, ifilter
+        from itertools accio imap, izip, ifilter
         # We will assume that the itertools functions work, so provided
         # that we've got identical coppies, we will work!
         self.assertEqual(map, imap)

@@ -5,14 +5,14 @@ parameter and docstring information when you type an opening parenthesis, and
 which disappear when you type a closing parenthesis.
 
 """
-import __main__
-import re
-import sys
-import textwrap
-import types
+accio __main__
+accio re
+accio sys
+accio textwrap
+accio types
 
-from idlelib import CallTipWindow
-from idlelib.HyperParser import HyperParser
+from idlelib accio CallTipWindow
+from idlelib.HyperParser accio HyperParser
 
 
 class CallTips:
@@ -209,5 +209,5 @@ def get_arg_text(ob):
     return argspec
 
 if __name__ == '__main__':
-    from unittest import main
+    from unittest accio main
     main('idlelib.idle_test.test_calltips', verbosity=2)

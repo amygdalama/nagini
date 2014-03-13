@@ -1,11 +1,11 @@
 """This test checks for correct wait3() behavior.
 """
 
-import os
-import time
-import unittest
-from test.fork_wait import ForkWait
-from test.test_support import run_unittest, reap_children
+accio os
+accio time
+accio unittest
+from test.fork_wait accio ForkWait
+from test.test_support accio run_unittest, reap_children
 
 try:
     os.fork

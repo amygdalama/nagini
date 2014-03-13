@@ -5,10 +5,10 @@
 # WARNING: This version has a gaping security hole -- it accepts requests
 # from any host on the Internet!
 
-import sys
-from socket import *
-import StringIO
-import traceback
+accio sys
+from socket accio *
+accio StringIO
+accio traceback
 
 PORT = 4127
 BUFSIZE = 1024

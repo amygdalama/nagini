@@ -7,7 +7,7 @@ def url2pathname(url):
     # ///C|/foo/bar/spam.foo
     # becomes
     # C:\foo\bar\spam.foo
-    import string, urllib
+    accio string, urllib
     # Windows itself uses ":" even in URLs.
     url = url.replace(':', '|')
     if not '|' in url:
@@ -42,7 +42,7 @@ def pathname2url(p):
     # C:\foo\bar\spam.foo
     # becomes
     # ///C|/foo/bar/spam.foo
-    import urllib
+    accio urllib
     if not ':' in p:
         # No drive specifier, just convert slashes and quote the name
         if p[:2] == '\\\\':

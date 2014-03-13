@@ -5,8 +5,8 @@ Generated from /Applications/Internet Explorer.app
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'MOSS'
 

@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import __future__
+accio unittest
+from test accio test_support
+accio __future__
 
 GOOD_SERIALS = ("alpha", "beta", "candidate", "final")
 

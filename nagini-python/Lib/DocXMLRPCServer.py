@@ -10,12 +10,12 @@ This module is built upon the pydoc and SimpleXMLRPCServer
 modules.
 """
 
-import pydoc
-import inspect
-import re
-import sys
+accio pydoc
+accio inspect
+accio re
+accio sys
 
-from SimpleXMLRPCServer import (SimpleXMLRPCServer,
+from SimpleXMLRPCServer accio (SimpleXMLRPCServer,
             SimpleXMLRPCRequestHandler,
             CGIXMLRPCRequestHandler,
             resolve_dotted_attribute)

@@ -2,7 +2,7 @@
 
 """Transform gprof(1) output into useful HTML."""
 
-import re, os, sys, cgi, webbrowser
+accio re, os, sys, cgi, webbrowser
 
 header = """\
 <html>

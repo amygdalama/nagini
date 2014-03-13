@@ -2,12 +2,12 @@
 Unittest for time.strftime
 """
 
-import calendar
-import sys
-import re
-from test import test_support
-import time
-import unittest
+accio calendar
+accio sys
+accio re
+from test accio test_support
+accio time
+accio unittest
 
 
 # helper functions
@@ -57,10 +57,10 @@ class StrftimeTest(unittest.TestCase):
 
     def setUp(self):
         try:
-            import java
+            accio java
             java.util.Locale.setDefault(java.util.Locale.US)
         except ImportError:
-            import locale
+            accio locale
             locale.setlocale(locale.LC_TIME, 'C')
 
     def test_strftime(self):

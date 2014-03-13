@@ -1,10 +1,10 @@
 # UserString is a wrapper around the native builtin string type.
 # UserString instances should behave similar to builtin string objects.
 
-import string
-from test import test_support, string_tests
-from UserString import UserString, MutableString
-import warnings
+accio string
+from test accio test_support, string_tests
+from UserString accio UserString, MutableString
+accio warnings
 
 class UserStringTest(
     string_tests.CommonTest,

@@ -1,9 +1,9 @@
-import _hotshot
-import os.path
-import parser
-import symbol
+accio _hotshot
+accio os.path
+accio parser
+accio symbol
 
-from _hotshot import \
+from _hotshot accio \
      WHAT_ENTER, \
      WHAT_EXIT, \
      WHAT_LINENO, \

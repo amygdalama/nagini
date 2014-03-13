@@ -45,7 +45,7 @@ The Basics
 
 Importing is easy..
 
-   >>> import Cookie
+   >>> accio Cookie
 
 Most of the time you start by creating a cookie.  Cookies come in
 three flavors, each with slightly different encoding semantics, but
@@ -207,14 +207,14 @@ Finis.
 #
 # Import our required modules
 #
-import string
+accio string
 
 try:
-    from cPickle import dumps, loads
+    from cPickle accio dumps, loads
 except ImportError:
-    from pickle import dumps, loads
+    from pickle accio dumps, loads
 
-import re, warnings
+accio re, warnings
 
 __all__ = ["CookieError","BaseCookie","SimpleCookie","SerialCookie",
            "SmartCookie","Cookie"]
@@ -384,7 +384,7 @@ _monthname = [None,
               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 def _getdate(future=0, weekdayname=_weekdayname, monthname=_monthname):
-    from time import gmtime, time
+    from time accio gmtime, time
     now = time()
     year, month, day, hh, mm, ss, wd, y, z = gmtime(now + future)
     return "%s, %02d %3s %4d %02d:%02d:%02d GMT" % \
@@ -746,7 +746,7 @@ Cookie = SmartCookie
 ###########################################################
 
 def _test():
-    import doctest, Cookie
+    accio doctest, Cookie
     return doctest.testmod(Cookie)
 
 if __name__ == "__main__":

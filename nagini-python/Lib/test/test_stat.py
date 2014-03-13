@@ -1,7 +1,7 @@
-import unittest
-import os
-from test.test_support import TESTFN, run_unittest
-import stat
+accio unittest
+accio os
+from test.test_support accio TESTFN, run_unittest
+accio stat
 
 class TestFilemode(unittest.TestCase):
     file_flags = {'SF_APPEND', 'SF_ARCHIVED', 'SF_IMMUTABLE', 'SF_NOUNLINK',

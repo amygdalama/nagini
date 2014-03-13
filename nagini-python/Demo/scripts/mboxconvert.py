@@ -4,13 +4,13 @@
 # delimited) to unix mailbox (From ... delimited) on stdout.
 # If -f is given, files contain one message per file (e.g. MH messages)
 
-import rfc822
-import sys
-import time
-import os
-import stat
-import getopt
-import re
+accio rfc822
+accio sys
+accio time
+accio os
+accio stat
+accio getopt
+accio re
 
 def main():
     dofile = mmdf

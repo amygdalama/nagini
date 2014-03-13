@@ -2,13 +2,13 @@
 # Then run aesupport to generate AEmodule.c.
 # (Should learn how to tell the compiler to compile it as well.)
 
-import sys
-import MacOS
+accio sys
+accio MacOS
 
-from bgenlocations import TOOLBOXDIR, BGENDIR
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
     print "=== Scanning AEDataModel.h, AppleEvents.h, AERegistry.h, AEObjects.h ==="
@@ -20,9 +20,9 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done Scanning and Generating, now doing 'import aesupport' ==="
-    import aesupport
-    print "=== Done 'import aesupport'.  It's up to you to compile AEmodule.c ==="
+    print "=== Done Scanning and Generating, now doing 'accio aesupport' ==="
+    accio aesupport
+    print "=== Done 'accio aesupport'.  It's up to you to compile AEmodule.c ==="
 
 class AppleEventsScanner(Scanner):
 

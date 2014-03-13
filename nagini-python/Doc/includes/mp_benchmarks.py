@@ -5,7 +5,7 @@
 # All rights reserved.
 #
 
-import time, sys, multiprocessing, threading, Queue, gc
+accio time, sys, multiprocessing, threading, Queue, gc
 
 if sys.platform == 'win32':
     _timer = time.clock

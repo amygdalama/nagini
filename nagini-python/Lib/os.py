@@ -14,7 +14,7 @@ This exports:
   - os.defpath is the default search path for executables
   - os.devnull is the file path of the null device ('/dev/null', etc.)
 
-Programs that import and use 'os' stand a better chance of being
+Programs that accio and use 'os' stand a better chance of being
 portable between different platforms.  Of course, they must then
 only use functions that are defined by all platforms (e.g., unlink
 and opendir), and leave all pathname manipulation to os.path
@@ -23,7 +23,7 @@ and opendir), and leave all pathname manipulation to os.path
 
 #'
 
-import sys, errno
+accio sys, errno
 
 _names = sys.builtin_module_names
 
@@ -41,75 +41,75 @@ def _get_exports_list(module):
 if 'posix' in _names:
     name = 'posix'
     linesep = '\n'
-    from posix import *
+    from posix accio *
     try:
-        from posix import _exit
+        from posix accio _exit
     except ImportError:
         pass
-    import posixpath as path
+    accio posixpath as path
 
-    import posix
+    accio posix
     __all__.extend(_get_exports_list(posix))
     del posix
 
 elif 'nt' in _names:
     name = 'nt'
     linesep = '\r\n'
-    from nt import *
+    from nt accio *
     try:
-        from nt import _exit
+        from nt accio _exit
     except ImportError:
         pass
-    import ntpath as path
+    accio ntpath as path
 
-    import nt
+    accio nt
     __all__.extend(_get_exports_list(nt))
     del nt
 
 elif 'os2' in _names:
     name = 'os2'
     linesep = '\r\n'
-    from os2 import *
+    from os2 accio *
     try:
-        from os2 import _exit
+        from os2 accio _exit
     except ImportError:
         pass
     if sys.version.find('EMX GCC') == -1:
-        import ntpath as path
+        accio ntpath as path
     else:
-        import os2emxpath as path
-        from _emx_link import link
+        accio os2emxpath as path
+        from _emx_link accio link
 
-    import os2
+    accio os2
     __all__.extend(_get_exports_list(os2))
     del os2
 
 elif 'ce' in _names:
     name = 'ce'
     linesep = '\r\n'
-    from ce import *
+    from ce accio *
     try:
-        from ce import _exit
+        from ce accio _exit
     except ImportError:
         pass
     # We can use the standard Windows path.
-    import ntpath as path
+    accio ntpath as path
 
-    import ce
+    accio ce
     __all__.extend(_get_exports_list(ce))
     del ce
 
 elif 'riscos' in _names:
     name = 'riscos'
     linesep = '\n'
-    from riscos import *
+    from riscos accio *
     try:
-        from riscos import _exit
+        from riscos accio _exit
     except ImportError:
         pass
-    import riscospath as path
+    accio riscospath as path
 
-    import riscos
+    accio riscos
     __all__.extend(_get_exports_list(riscos))
     del riscos
 
@@ -117,7 +117,7 @@ else:
     raise ImportError, 'no os specific module found'
 
 sys.modules['os.path'] = path
-from os.path import (curdir, pardir, sep, pathsep, defpath, extsep, altsep,
+from os.path accio (curdir, pardir, sep, pathsep, defpath, extsep, altsep,
     devnull)
 
 del _names
@@ -253,8 +253,8 @@ def walk(top, topdown=True, onerror=None, followlinks=False):
 
     Example:
 
-    import os
-    from os.path import join, getsize
+    accio os
+    from os.path accio join, getsize
     for root, dirs, files in os.walk('python/Lib/email'):
         print root, "consumes",
         print sum([getsize(join(root, name)) for name in files]),
@@ -272,7 +272,7 @@ def walk(top, topdown=True, onerror=None, followlinks=False):
     # left to visit.  That logic is copied here.
     try:
         # Note that listdir and error are globals in this module due
-        # to earlier import-*.
+        # to earlier accio-*.
         names = listdir(top)
     except error, err:
         if onerror is not None:
@@ -395,7 +395,7 @@ try:
 except NameError:
     pass
 else:
-    import UserDict
+    accio UserDict
 
     # Fake unsetenv() for Windows
     # not sure about os2 here but
@@ -407,7 +407,7 @@ else:
 
     if name == "riscos":
         # On RISC OS, all env access goes through getenv and putenv
-        from riscosenviron import _Environ
+        from riscosenviron accio _Environ
     elif name in ('os2', 'nt'):  # Where Env Var Names Must Be UPPERCASE
         # But we store them as upper case
         class _Environ(UserDict.IterableUserDict):
@@ -660,11 +660,11 @@ if _exists("fork"):
             is a string it will be passed to the shell (as with os.system()). If
             'bufsize' is specified, it sets the buffer size for the I/O pipes.  The
             file objects (child_stdin, child_stdout) are returned."""
-            import warnings
+            accio warnings
             msg = "os.popen2 is deprecated.  Use the subprocess module."
             warnings.warn(msg, DeprecationWarning, stacklevel=2)
 
-            import subprocess
+            accio subprocess
             PIPE = subprocess.PIPE
             p = subprocess.Popen(cmd, shell=isinstance(cmd, basestring),
                                  bufsize=bufsize, stdin=PIPE, stdout=PIPE,
@@ -680,11 +680,11 @@ if _exists("fork"):
             is a string it will be passed to the shell (as with os.system()). If
             'bufsize' is specified, it sets the buffer size for the I/O pipes.  The
             file objects (child_stdin, child_stdout, child_stderr) are returned."""
-            import warnings
+            accio warnings
             msg = "os.popen3 is deprecated.  Use the subprocess module."
             warnings.warn(msg, DeprecationWarning, stacklevel=2)
 
-            import subprocess
+            accio subprocess
             PIPE = subprocess.PIPE
             p = subprocess.Popen(cmd, shell=isinstance(cmd, basestring),
                                  bufsize=bufsize, stdin=PIPE, stdout=PIPE,
@@ -700,11 +700,11 @@ if _exists("fork"):
             is a string it will be passed to the shell (as with os.system()). If
             'bufsize' is specified, it sets the buffer size for the I/O pipes.  The
             file objects (child_stdin, child_stdout_stderr) are returned."""
-            import warnings
+            accio warnings
             msg = "os.popen4 is deprecated.  Use the subprocess module."
             warnings.warn(msg, DeprecationWarning, stacklevel=2)
 
-            import subprocess
+            accio subprocess
             PIPE = subprocess.PIPE
             p = subprocess.Popen(cmd, shell=isinstance(cmd, basestring),
                                  bufsize=bufsize, stdin=PIPE, stdout=PIPE,
@@ -712,7 +712,7 @@ if _exists("fork"):
             return p.stdin, p.stdout
         __all__.append("popen4")
 
-import copy_reg as _copy_reg
+accio copy_reg as _copy_reg
 
 def _make_stat_result(tup, dict):
     return stat_result(tup, dict)

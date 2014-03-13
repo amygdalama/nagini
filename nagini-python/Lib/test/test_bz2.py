@@ -1,19 +1,19 @@
-from test import test_support
-from test.test_support import TESTFN, _4G, bigmemtest, import_module, findfile
+from test accio test_support
+from test.test_support accio TESTFN, _4G, bigmemtest, import_module, findfile
 
-import unittest
-from cStringIO import StringIO
-import os
-import subprocess
-import sys
+accio unittest
+from cStringIO accio StringIO
+accio os
+accio subprocess
+accio sys
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 
 bz2 = import_module('bz2')
-from bz2 import BZ2File, BZ2Compressor, BZ2Decompressor
+from bz2 accio BZ2File, BZ2Compressor, BZ2Decompressor
 
 has_cmdline_bunzip2 = sys.platform not in ("win32", "os2emx", "riscos")
 

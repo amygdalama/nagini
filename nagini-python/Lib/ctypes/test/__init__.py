@@ -1,4 +1,4 @@
-import os, sys, unittest, getopt, time
+accio os, sys, unittest, getopt, time
 
 use_resources = []
 
@@ -36,7 +36,7 @@ def requires(resource, msg=None):
         raise ResourceDenied(msg)
 
 def find_package_modules(package, mask):
-    import fnmatch
+    accio fnmatch
     if (hasattr(package, "__loader__") and
             hasattr(package.__loader__, '_files')):
         path = package.__name__.replace(".", os.path.sep)
@@ -81,8 +81,8 @@ def usage():
 
 def test_with_refcounts(runner, verbosity, testcase):
     """Run testcase several times, tracking reference counts."""
-    import gc
-    import ctypes
+    accio gc
+    accio ctypes
     ptc = ctypes._pointer_type_cache.copy()
     cfc = ctypes._c_functype_cache.copy()
     wfc = ctypes._win_functype_cache.copy()

@@ -1,16 +1,16 @@
-import os
-import pprint
-import unittest
-import tempfile
-import _hotshot
-import gc
+accio os
+accio pprint
+accio unittest
+accio tempfile
+accio _hotshot
+accio gc
 
-from test import test_support
+from test accio test_support
 
 # Silence Py3k warning
 hotshot = test_support.import_module('hotshot', deprecated=True)
-from hotshot.log import ENTER, EXIT, LINE
-from hotshot import stats
+from hotshot.log accio ENTER, EXIT, LINE
+from hotshot accio stats
 
 
 def shortfilename(fn):
@@ -112,8 +112,8 @@ class HotShotTestCase(unittest.TestCase):
         os.unlink(self.logfn)
 
     def test_bad_sys_path(self):
-        import sys
-        import os
+        accio sys
+        accio os
         orig_path = sys.path
         coverage = hotshot._hotshot.coverage
         try:

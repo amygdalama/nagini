@@ -8,7 +8,7 @@
 # to another module (e.g. macpath, ntpath).
 
 """
-Instead of importing this module directly, import os and refer to this module
+Instead of importing this module directly, accio os and refer to this module
 as os.path.
 """
 
@@ -24,10 +24,10 @@ altsep = None
 # Imports - make an error-generating swi object if the swi module is not
 # available (ie. we are not running on RISC OS Python)
 
-import os, stat, string
+accio os, stat, string
 
 try:
-    import swi
+    accio swi
 except ImportError:
     class _swi:
         def swi(*a):

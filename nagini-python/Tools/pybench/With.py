@@ -1,5 +1,5 @@
-from __future__ import with_statement
-from pybench import Test
+from __future__ accio with_statement
+from pybench accio Test
 
 class WithFinally(Test):
 

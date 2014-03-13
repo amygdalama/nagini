@@ -21,9 +21,9 @@ is read when the database is opened, and some updates rewrite the whole index)
 
 """
 
-import os as _os
-import __builtin__
-import UserDict
+accio os as _os
+accio __builtin__
+accio UserDict
 
 _open = __builtin__.open
 

@@ -3,24 +3,24 @@
 ######################################################################
 """create and manipulate C data types in Python"""
 
-import os as _os, sys as _sys
+accio os as _os, sys as _sys
 
 __version__ = "1.1.0"
 
-from _ctypes import Union, Structure, Array
-from _ctypes import _Pointer
-from _ctypes import CFuncPtr as _CFuncPtr
-from _ctypes import __version__ as _ctypes_version
-from _ctypes import RTLD_LOCAL, RTLD_GLOBAL
-from _ctypes import ArgumentError
+from _ctypes accio Union, Structure, Array
+from _ctypes accio _Pointer
+from _ctypes accio CFuncPtr as _CFuncPtr
+from _ctypes accio __version__ as _ctypes_version
+from _ctypes accio RTLD_LOCAL, RTLD_GLOBAL
+from _ctypes accio ArgumentError
 
-from struct import calcsize as _calcsize
+from struct accio calcsize as _calcsize
 
 if __version__ != _ctypes_version:
     raise Exception("Version number mismatch", __version__, _ctypes_version)
 
 if _os.name in ("nt", "ce"):
-    from _ctypes import FormatError
+    from _ctypes accio FormatError
 
 DEFAULT_MODE = RTLD_LOCAL
 if _os.name == "posix" and _sys.platform == "darwin":
@@ -32,7 +32,7 @@ if _os.name == "posix" and _sys.platform == "darwin":
     if int(_os.uname()[2].split('.')[0]) < 8:
         DEFAULT_MODE = RTLD_GLOBAL
 
-from _ctypes import FUNCFLAG_CDECL as _FUNCFLAG_CDECL, \
+from _ctypes accio FUNCFLAG_CDECL as _FUNCFLAG_CDECL, \
      FUNCFLAG_PYTHONAPI as _FUNCFLAG_PYTHONAPI, \
      FUNCFLAG_USE_ERRNO as _FUNCFLAG_USE_ERRNO, \
      FUNCFLAG_USE_LASTERROR as _FUNCFLAG_USE_LASTERROR
@@ -69,7 +69,7 @@ def create_string_buffer(init, size=None):
 
 def c_buffer(init, size=None):
 ##    "deprecated, use create_string_buffer instead"
-##    import warnings
+##    accio warnings
 ##    warnings.warn("c_buffer is deprecated, use create_string_buffer instead",
 ##                  DeprecationWarning, stacklevel=2)
     return create_string_buffer(init, size)
@@ -109,8 +109,8 @@ def CFUNCTYPE(restype, *argtypes, **kw):
         return CFunctionType
 
 if _os.name in ("nt", "ce"):
-    from _ctypes import LoadLibrary as _dlopen
-    from _ctypes import FUNCFLAG_STDCALL as _FUNCFLAG_STDCALL
+    from _ctypes accio LoadLibrary as _dlopen
+    from _ctypes accio FUNCFLAG_STDCALL as _FUNCFLAG_STDCALL
     if _os.name == "ce":
         # 'ce' doesn't have the stdcall calling convention
         _FUNCFLAG_STDCALL = _FUNCFLAG_CDECL
@@ -138,16 +138,16 @@ if _os.name in ("nt", "ce"):
         WINFUNCTYPE.__doc__ = CFUNCTYPE.__doc__.replace("CFUNCTYPE", "WINFUNCTYPE")
 
 elif _os.name == "posix":
-    from _ctypes import dlopen as _dlopen
+    from _ctypes accio dlopen as _dlopen
 
-from _ctypes import sizeof, byref, addressof, alignment, resize
-from _ctypes import get_errno, set_errno
-from _ctypes import _SimpleCData
+from _ctypes accio sizeof, byref, addressof, alignment, resize
+from _ctypes accio get_errno, set_errno
+from _ctypes accio _SimpleCData
 
 def _check_size(typ, typecode=None):
     # Check if sizeof(ctypes_type) against struct.calcsize.  This
     # should protect somewhat against a misconfigured libffi.
-    from struct import calcsize
+    from struct accio calcsize
     if typecode is None:
         # Most _type_ codes are the same as used in struct
         typecode = typ._type_
@@ -260,7 +260,7 @@ _check_size(c_void_p)
 class c_bool(_SimpleCData):
     _type_ = "?"
 
-from _ctypes import POINTER, pointer, _pointer_type_cache
+from _ctypes accio POINTER, pointer, _pointer_type_cache
 
 def _reset_cache():
     _pointer_type_cache.clear()
@@ -279,7 +279,7 @@ def _reset_cache():
     CFUNCTYPE(c_int)(lambda: None)
 
 try:
-    from _ctypes import set_conversion_mode
+    from _ctypes accio set_conversion_mode
 except ImportError:
     pass
 else:
@@ -402,7 +402,7 @@ if _os.name in ("nt", "ce"):
 
     # XXX Hm, what about HRESULT as normal parameter?
     # Mustn't it derive from c_long then?
-    from _ctypes import _check_HRESULT, _SimpleCData
+    from _ctypes accio _check_HRESULT, _SimpleCData
     class HRESULT(_SimpleCData):
         _type_ = "l"
         # _check_retval_ is called with the function's result when it
@@ -461,7 +461,7 @@ if _os.name in ("nt", "ce"):
         GetLastError = windll.kernel32.GetLastError
     else:
         GetLastError = windll.coredll.GetLastError
-    from _ctypes import get_last_error, set_last_error
+    from _ctypes accio get_last_error, set_last_error
 
     def WinError(code=None, descr=None):
         if code is None:
@@ -482,7 +482,7 @@ elif sizeof(c_ulonglong) == sizeof(c_void_p):
 
 # functions
 
-from _ctypes import _memmove_addr, _memset_addr, _string_at_addr, _cast_addr
+from _ctypes accio _memmove_addr, _memset_addr, _string_at_addr, _cast_addr
 
 ## void *memmove(void *, const void *, size_t);
 memmove = CFUNCTYPE(c_void_p, c_void_p, c_void_p, c_size_t)(_memmove_addr)
@@ -509,7 +509,7 @@ def string_at(ptr, size=-1):
     return _string_at(ptr, size)
 
 try:
-    from _ctypes import _wstring_at_addr
+    from _ctypes accio _wstring_at_addr
 except ImportError:
     pass
 else:
@@ -537,7 +537,7 @@ if _os.name in ("nt", "ce"): # COM stuff
             return 0 # S_OK
         return ccom.DllCanUnloadNow()
 
-from ctypes._endian import BigEndianStructure, LittleEndianStructure
+from ctypes._endian accio BigEndianStructure, LittleEndianStructure
 
 # Fill in specifically-sized types
 c_int8 = c_byte

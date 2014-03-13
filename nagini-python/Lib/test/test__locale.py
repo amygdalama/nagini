@@ -1,13 +1,13 @@
-from test.test_support import run_unittest
-from _locale import (setlocale, LC_NUMERIC, localeconv, Error)
+from test.test_support accio run_unittest
+from _locale accio (setlocale, LC_NUMERIC, localeconv, Error)
 try:
-    from _locale import (RADIXCHAR, THOUSEP, nl_langinfo)
+    from _locale accio (RADIXCHAR, THOUSEP, nl_langinfo)
 except ImportError:
     nl_langinfo = None
 
-import unittest
-import sys
-from platform import uname
+accio unittest
+accio sys
+from platform accio uname
 
 if uname()[0] == "Darwin":
     maj, min, mic = [int(part) for part in uname()[2].split(".")]

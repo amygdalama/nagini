@@ -1,11 +1,11 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import socket
-import urllib
-import sys
-import os
-import time
+accio socket
+accio urllib
+accio sys
+accio os
+accio time
 
 mimetools = test_support.import_module("mimetools", deprecated=True)
 

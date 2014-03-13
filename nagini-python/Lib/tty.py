@@ -2,7 +2,7 @@
 
 # Author: Steen Lumholt.
 
-from termios import *
+from termios accio *
 
 __all__ = ["setraw", "setcbreak"]
 

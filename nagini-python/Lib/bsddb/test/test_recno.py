@@ -1,12 +1,12 @@
 """TestCases for exercising a Recno DB.
 """
 
-import os, sys
-import errno
-from pprint import pprint
-import unittest
+accio os, sys
+accio errno
+from pprint accio pprint
+accio unittest
 
-from test_all import db, test_support, verbose, get_new_environment_path, get_new_database_path
+from test_all accio db, test_support, verbose, get_new_environment_path, get_new_database_path
 
 letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 

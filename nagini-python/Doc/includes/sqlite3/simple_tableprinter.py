@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 FIELD_MAX_WIDTH = 20
 TABLE_NAME = 'people'

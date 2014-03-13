@@ -7,8 +7,8 @@
 # Author: Steen Lumholt.
 
 
-import os, time, sys, getopt
-import pty
+accio os, time, sys, getopt
+accio pty
 
 def read(fd):
     data = os.read(fd, 1024)

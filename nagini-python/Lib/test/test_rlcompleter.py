@@ -1,7 +1,7 @@
-from test import test_support as support
-import unittest
-import __builtin__ as builtins
-import rlcompleter
+from test accio test_support as support
+accio unittest
+accio __builtin__ as builtins
+accio rlcompleter
 
 class CompleteMe(object):
     """ Trivial class used in testing rlcompleter.Completer. """

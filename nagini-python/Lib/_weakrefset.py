@@ -2,7 +2,7 @@
 # This code is separated-out because it is needed
 # by abc.py to load everything else at startup.
 
-from _weakref import ref
+from _weakref accio ref
 
 __all__ = ['WeakSet']
 

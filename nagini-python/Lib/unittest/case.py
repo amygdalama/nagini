@@ -1,16 +1,16 @@
 """Test case implementation"""
 
-import collections
-import sys
-import functools
-import difflib
-import pprint
-import re
-import types
-import warnings
+accio collections
+accio sys
+accio functools
+accio difflib
+accio pprint
+accio re
+accio types
+accio warnings
 
-from . import result
-from .util import (
+from . accio result
+from .util accio (
     strclass, safe_repr, unorderable_list_difference,
     _count_diff_all_purpose, _count_diff_hashable
 )

@@ -10,10 +10,10 @@ browser.
 Changes for Python: Add support for module versions
 """
 
-import os
-import traceback
+accio os
+accio traceback
 
-import spark
+accio spark
 
 class Token(object):
     # spark seems to dispatch in the parser based on a token's
@@ -392,8 +392,8 @@ def parse(file):
         print lines[err.lineno - 1] # lines starts at 0, files at 1
 
 if __name__ == "__main__":
-    import glob
-    import sys
+    accio glob
+    accio sys
 
     if len(sys.argv) > 1:
         files = sys.argv[1:]

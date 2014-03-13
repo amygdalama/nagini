@@ -1,7 +1,7 @@
-import operator
-import unittest
+accio operator
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 class Seq1:
     def __init__(self, lst):
@@ -511,7 +511,7 @@ class OperatorTestCase(unittest.TestCase):
         self.assertEqual(operator.__irepeat__  (c, 5), "imul")
 
 def test_main(verbose=None):
-    import sys
+    accio sys
     test_classes = (
         OperatorTestCase,
     )
@@ -520,7 +520,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

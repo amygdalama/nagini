@@ -1,8 +1,8 @@
 """JSON token scanner
 """
-import re
+accio re
 try:
-    from _json import make_scanner as c_make_scanner
+    from _json accio make_scanner as c_make_scanner
 except ImportError:
     c_make_scanner = None
 

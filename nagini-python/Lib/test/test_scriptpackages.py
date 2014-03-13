@@ -1,7 +1,7 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # Skip this test if aetools does not exist.
 test_support.import_module('aetools')
@@ -9,7 +9,7 @@ test_support.import_module('aetools')
 class TestScriptpackages(unittest.TestCase):
 
     def _test_scriptpackage(self, package, testobject=1):
-        # Check that we can import the package
+        # Check that we can accio the package
         mod = __import__(package)
         # Test that we can get the main event class
         klass = getattr(mod, package)

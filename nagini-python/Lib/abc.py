@@ -3,9 +3,9 @@
 
 """Abstract Base Classes (ABCs) according to PEP 3119."""
 
-import types
+accio types
 
-from _weakrefset import WeakSet
+from _weakrefset accio WeakSet
 
 # Instance of old-style class
 class _C: pass

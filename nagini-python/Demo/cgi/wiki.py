@@ -1,6 +1,6 @@
 """Wiki main program.  Imported and run by cgi3.py."""
 
-import os, re, cgi, sys, tempfile
+accio os, re, cgi, sys, tempfile
 escape = cgi.escape
 
 def main():

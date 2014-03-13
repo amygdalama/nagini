@@ -6,31 +6,31 @@
 # or returning from a flush() method.  See functions _sync_flush() and
 # _sync_close().
 
-import sys
-import os
-import time
-import calendar
-import socket
-import errno
-import copy
-import email
-import email.message
-import email.generator
-import StringIO
+accio sys
+accio os
+accio time
+accio calendar
+accio socket
+accio errno
+accio copy
+accio email
+accio email.message
+accio email.generator
+accio StringIO
 try:
     if sys.platform == 'os2emx':
         # OS/2 EMX fcntl() not adequate
         raise ImportError
-    import fcntl
+    accio fcntl
 except ImportError:
     fcntl = None
 
-import warnings
+accio warnings
 with warnings.catch_warnings():
     if sys.py3kwarning:
         warnings.filterwarnings("ignore", ".*rfc822 has been removed",
                                 DeprecationWarning)
-    import rfc822
+    accio rfc822
 
 __all__ = [ 'Mailbox', 'Maildir', 'mbox', 'MH', 'Babyl', 'MMDF',
             'Message', 'MaildirMessage', 'mboxMessage', 'MHMessage',
@@ -2128,7 +2128,7 @@ class UnixMailbox(_Mailbox):
 
     def _strict_isrealfromline(self, line):
         if not self._regexp:
-            import re
+            accio re
             self._regexp = re.compile(self._fromlinepattern)
         return self._regexp.match(line)
 
@@ -2166,7 +2166,7 @@ class MmdfMailbox(_Mailbox):
 class MHMailbox:
 
     def __init__(self, dirname, factory=rfc822.Message):
-        import re
+        accio re
         pat = re.compile('^[1-9][0-9]*$')
         self.dirname = dirname
         # the three following lines could be combined into:

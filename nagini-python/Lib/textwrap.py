@@ -7,7 +7,7 @@
 
 __revision__ = "$Id$"
 
-import string, re
+accio string, re
 
 try:
     _unicode = unicode

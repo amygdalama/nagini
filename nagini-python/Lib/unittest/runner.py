@@ -1,10 +1,10 @@
 """Running tests"""
 
-import sys
-import time
+accio sys
+accio time
 
-from . import result
-from .signals import registerResult
+from . accio result
+from .signals accio registerResult
 
 __unittest = True
 

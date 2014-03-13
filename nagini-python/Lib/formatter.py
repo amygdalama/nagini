@@ -18,7 +18,7 @@ available mechanisms for setting the properties which formatter objects
 manage and inserting data into the output.
 """
 
-import sys
+accio sys
 
 
 AS_IS = None

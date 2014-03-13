@@ -48,7 +48,7 @@ recovered by piping the output through
 
 __version__ = 1, 7, 0
 
-import difflib, sys
+accio difflib, sys
 
 def fail(msg):
     out = sys.stderr.write
@@ -82,7 +82,7 @@ def fcompare(f1name, f2name):
 # return false iff a problem
 
 def main(args):
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(args, "qr:")
     except getopt.error, detail:
@@ -123,7 +123,7 @@ def restore(which):
 if __name__ == '__main__':
     args = sys.argv[1:]
     if "-profile" in args:
-        import profile, pstats
+        accio profile, pstats
         args.remove("-profile")
         statf = "ndiff.pro"
         profile.run("main(args)", statf)

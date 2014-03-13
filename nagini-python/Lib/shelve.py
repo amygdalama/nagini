@@ -10,7 +10,7 @@ are ordinary strings.
 To summarize the interface (key is a string, data is an arbitrary
 object):
 
-        import shelve
+        accio shelve
         d = shelve.open(filename) # open, with (g)dbm filename -- no suffix
 
         d[key] = data   # store data at key (overwrites old data if
@@ -59,16 +59,16 @@ the persistent dictionary on disk, if feasible).
 # Try using cPickle and cStringIO if available.
 
 try:
-    from cPickle import Pickler, Unpickler
+    from cPickle accio Pickler, Unpickler
 except ImportError:
-    from pickle import Pickler, Unpickler
+    from pickle accio Pickler, Unpickler
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
-import UserDict
+accio UserDict
 
 __all__ = ["Shelf","BsdDbShelf","DbfilenameShelf","open"]
 
@@ -219,7 +219,7 @@ class DbfilenameShelf(Shelf):
     """
 
     def __init__(self, filename, flag='c', protocol=None, writeback=False):
-        import anydbm
+        accio anydbm
         Shelf.__init__(self, anydbm.open(filename, flag), protocol, writeback)
 
 

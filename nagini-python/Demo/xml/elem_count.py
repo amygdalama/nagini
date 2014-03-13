@@ -3,10 +3,10 @@ A simple demo that reads in an XML document and displays the number of
 elements and attributes as well as a tally of elements and attributes by name.
 """
 
-import sys
-from collections import defaultdict
+accio sys
+from collections accio defaultdict
 
-from xml.sax import make_parser, handler
+from xml.sax accio make_parser, handler
 
 class FancyCounter(handler.ContentHandler):
 

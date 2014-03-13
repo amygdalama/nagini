@@ -1,5 +1,5 @@
-import time
-import FSProxy
+accio time
+accio FSProxy
 
 def main():
     t1 = time.time()

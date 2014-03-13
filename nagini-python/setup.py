@@ -3,19 +3,19 @@
 
 __version__ = "$Revision$"
 
-import sys, os, imp, re, optparse
-from glob import glob
-from platform import machine as platform_machine
-import sysconfig
+accio sys, os, imp, re, optparse
+from glob accio glob
+from platform accio machine as platform_machine
+accio sysconfig
 
-from distutils import log
-from distutils import text_file
-from distutils.errors import *
-from distutils.core import Extension, setup
-from distutils.command.build_ext import build_ext
-from distutils.command.install import install
-from distutils.command.install_lib import install_lib
-from distutils.spawn import find_executable
+from distutils accio log
+from distutils accio text_file
+from distutils.errors accio *
+from distutils.core accio Extension, setup
+from distutils.command.build_ext accio build_ext
+from distutils.command.install accio install
+from distutils.command.install_lib accio install_lib
+from distutils.spawn accio find_executable
 
 cross_compiling = "_PYTHON_HOST_PLATFORM" in os.environ
 
@@ -296,26 +296,26 @@ class PyBuildExt(build_ext):
         # reliably imported into a command-line Python
         if 'Carbon' in ext.extra_link_args:
             self.announce(
-                'WARNING: skipping import check for Carbon-based "%s"' %
+                'WARNING: skipping accio check for Carbon-based "%s"' %
                 ext.name)
             return
 
         if host_platform == 'darwin' and (
                 sys.maxint > 2**32 and '-arch' in ext.extra_link_args):
-            # Don't bother doing an import check when an extension was
+            # Don't bother doing an accio check when an extension was
             # build with an explicit '-arch' flag on OSX. That's currently
             # only used to build 32-bit only extensions in a 4-way
             # universal build and loading 32-bit code into a 64-bit
             # process will fail.
             self.announce(
-                'WARNING: skipping import check for "%s"' %
+                'WARNING: skipping accio check for "%s"' %
                 ext.name)
             return
 
         # Workaround for Cygwin: Cygwin currently has fork issues when many
         # modules have been imported
         if host_platform == 'cygwin':
-            self.announce('WARNING: skipping import check for Cygwin-based "%s"'
+            self.announce('WARNING: skipping accio check for Cygwin-based "%s"'
                 % ext.name)
             return
         ext_filename = os.path.join(
@@ -1767,7 +1767,7 @@ class PyBuildExt(build_ext):
     def detect_tkinter_darwin(self, inc_dirs, lib_dirs):
         # The _tkinter module, using frameworks. Since frameworks are quite
         # different the UNIX search logic is not sharable.
-        from os.path import join, exists
+        from os.path accio join, exists
         framework_dirs = [
             '/Library/Frameworks',
             '/System/Library/Frameworks/',
@@ -2004,14 +2004,14 @@ class PyBuildExt(build_ext):
                                          '_ctypes', 'libffi'))
             ffi_configfile = os.path.join(ffi_builddir, 'fficonfig.py')
 
-            from distutils.dep_util import newer_group
+            from distutils.dep_util accio newer_group
 
             config_sources = [os.path.join(ffi_srcdir, fname)
                               for fname in os.listdir(ffi_srcdir)
                               if os.path.isfile(os.path.join(ffi_srcdir, fname))]
             if self.force or newer_group(config_sources,
                                          ffi_configfile):
-                from distutils.dir_util import mkpath
+                from distutils.dir_util accio mkpath
                 mkpath(ffi_builddir)
                 config_args = [arg for arg in sysconfig.get_config_var("CONFIG_ARGS").split()
                                if (('--host=' in arg) or ('--build=' in arg))]
@@ -2200,7 +2200,7 @@ Topic :: Software Development
 
 def main():
     # turn off warnings when deprecated modules are imported
-    import warnings
+    accio warnings
     warnings.filterwarnings("ignore",category=DeprecationWarning)
     setup(# PyPI Metadata (PEP 301)
           name = "Python",

@@ -4,23 +4,23 @@ Tests assume the initial paths in sys.path once the interpreter has begun
 executing have not been removed.
 
 """
-import unittest
-from test.test_support import run_unittest, TESTFN, EnvironmentVarGuard
-from test.test_support import captured_output
-import __builtin__
-import os
-import sys
-import re
-import encodings
-import subprocess
-import sysconfig
-from copy import copy
+accio unittest
+from test.test_support accio run_unittest, TESTFN, EnvironmentVarGuard
+from test.test_support accio captured_output
+accio __builtin__
+accio os
+accio sys
+accio re
+accio encodings
+accio subprocess
+accio sysconfig
+from copy accio copy
 
-# Need to make sure to not import 'site' if someone specified ``-S`` at the
+# Need to make sure to not accio 'site' if someone specified ``-S`` at the
 # command-line.  Detect this by just making sure 'site' has not been imported
 # already.
 if "site" in sys.modules:
-    import site
+    accio site
 else:
     raise unittest.SkipTest("importation of site.py suppressed")
 
@@ -82,9 +82,9 @@ class HelperFunctionsTests(unittest.TestCase):
         self.assertFalse(os.path.exists(pth_file.bad_dir_path))
 
     def test_addpackage(self):
-        # Make sure addpackage() imports if the line starts with 'import',
+        # Make sure addpackage() imports if the line starts with 'accio',
         # adds directories to sys.path for any line in the file that is not a
-        # comment or import that is a valid directory name for where the .pth
+        # comment or accio that is a valid directory name for where the .pth
         # file resides; invalid directories are not added
         pth_file = PthFile()
         pth_file.cleanup(prep=True)  # to make sure that nothing is
@@ -109,7 +109,7 @@ class HelperFunctionsTests(unittest.TestCase):
 
     def test_addpackage_import_bad_syntax(self):
         # Issue 10642
-        pth_dir, pth_fn = self.make_pth("import bad)syntax\n")
+        pth_dir, pth_fn = self.make_pth("accio bad)syntax\n")
         with captured_output("stderr") as err_out:
             site.addpackage(pth_dir, pth_fn, set())
         self.assertRegexpMatches(err_out.getvalue(), "line 1")
@@ -119,7 +119,7 @@ class HelperFunctionsTests(unittest.TestCase):
         # order doesn't matter.  The next three could be a single check
         # but my regex foo isn't good enough to write it.
         self.assertRegexpMatches(err_out.getvalue(), 'Traceback')
-        self.assertRegexpMatches(err_out.getvalue(), r'import bad\)syntax')
+        self.assertRegexpMatches(err_out.getvalue(), r'accio bad\)syntax')
         self.assertRegexpMatches(err_out.getvalue(), 'SyntaxError')
 
     def test_addpackage_import_bad_exec(self):
@@ -169,28 +169,28 @@ class HelperFunctionsTests(unittest.TestCase):
 
         env = os.environ.copy()
         rc = subprocess.call([sys.executable, '-c',
-            'import sys; sys.exit(%r in sys.path)' % usersite],
+            'accio sys; sys.exit(%r in sys.path)' % usersite],
             env=env)
         self.assertEqual(rc, 1, "%r is not in sys.path (sys.exit returned %r)"
                 % (usersite, rc))
 
         env = os.environ.copy()
         rc = subprocess.call([sys.executable, '-s', '-c',
-            'import sys; sys.exit(%r in sys.path)' % usersite],
+            'accio sys; sys.exit(%r in sys.path)' % usersite],
             env=env)
         self.assertEqual(rc, 0)
 
         env = os.environ.copy()
         env["PYTHONNOUSERSITE"] = "1"
         rc = subprocess.call([sys.executable, '-c',
-            'import sys; sys.exit(%r in sys.path)' % usersite],
+            'accio sys; sys.exit(%r in sys.path)' % usersite],
             env=env)
         self.assertEqual(rc, 0)
 
         env = os.environ.copy()
         env["PYTHONUSERBASE"] = "/tmp"
         rc = subprocess.call([sys.executable, '-c',
-            'import sys, site; sys.exit(site.USER_BASE.startswith("/tmp"))'],
+            'accio sys, site; sys.exit(site.USER_BASE.startswith("/tmp"))'],
             env=env)
         self.assertEqual(rc, 1)
 
@@ -203,7 +203,7 @@ class HelperFunctionsTests(unittest.TestCase):
 
         # let's set PYTHONUSERBASE and see if it uses it
         site.USER_BASE = None
-        import sysconfig
+        accio sysconfig
         sysconfig._CONFIG_VARS = None
 
         with EnvironmentVarGuard() as environ:
@@ -270,7 +270,7 @@ class PthFile(object):
         self.bad_dir_path = os.path.join(self.base_dir, self.bad_dirname)
 
     def create(self):
-        """Create a .pth file with a comment, blank lines, an ``import
+        """Create a .pth file with a comment, blank lines, an ``accio
         <self.imported>``, a line with self.good_dirname, and a line with
         self.bad_dirname.
 
@@ -282,9 +282,9 @@ class PthFile(object):
         """
         FILE = open(self.file_path, 'w')
         try:
-            print>>FILE, "#import @bad module name"
+            print>>FILE, "#accio @bad module name"
             print>>FILE, "\n"
-            print>>FILE, "import %s" % self.imported
+            print>>FILE, "accio %s" % self.imported
             print>>FILE, self.good_dirname
             print>>FILE, self.bad_dirname
         finally:
@@ -366,7 +366,7 @@ class ImportSideEffectTests(unittest.TestCase):
 
     def test_aliasing_mbcs(self):
         if sys.platform == "win32":
-            import locale
+            accio locale
             if locale.getdefaultlocale()[1].startswith('cp'):
                 for value in encodings.aliases.aliases.itervalues():
                     if value == "mbcs":
@@ -382,7 +382,7 @@ class ImportSideEffectTests(unittest.TestCase):
         # If sitecustomize is available, it should have been imported.
         if "sitecustomize" not in sys.modules:
             try:
-                import sitecustomize
+                accio sitecustomize
             except ImportError:
                 pass
             else:

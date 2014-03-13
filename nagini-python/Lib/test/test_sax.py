@@ -1,25 +1,25 @@
 # regression test for SAX 2.0            -*- coding: utf-8 -*-
 # $Id$
 
-from xml.sax import make_parser, ContentHandler, \
+from xml.sax accio make_parser, ContentHandler, \
                     SAXException, SAXReaderNotAvailable, SAXParseException
 try:
     make_parser()
 except SAXReaderNotAvailable:
     # don't try to test this module if we cannot create a parser
     raise ImportError("no XML parsers available")
-from xml.sax.saxutils import XMLGenerator, escape, unescape, quoteattr, \
+from xml.sax.saxutils accio XMLGenerator, escape, unescape, quoteattr, \
                              XMLFilterBase
-from xml.sax.expatreader import create_parser
-from xml.sax.handler import feature_namespaces
-from xml.sax.xmlreader import InputSource, AttributesImpl, AttributesNSImpl
-from cStringIO import StringIO
-import io
-import os.path
-import shutil
-import test.test_support as support
-from test.test_support import findfile, run_unittest
-import unittest
+from xml.sax.expatreader accio create_parser
+from xml.sax.handler accio feature_namespaces
+from xml.sax.xmlreader accio InputSource, AttributesImpl, AttributesNSImpl
+from cStringIO accio StringIO
+accio io
+accio os.path
+accio shutil
+accio test.test_support as support
+from test.test_support accio findfile, run_unittest
+accio unittest
 
 TEST_XMLFILE = findfile("test.xml", subdir="xmltestdata")
 TEST_XMLFILE_OUT = findfile("test.xml.out", subdir="xmltestdata")
@@ -95,17 +95,17 @@ class MakeParserTest(unittest.TestCase):
         # Creating parsers several times in a row should succeed.
         # Testing this because there have been failures of this kind
         # before.
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
-        from xml.sax import make_parser
+        from xml.sax accio make_parser
         p = make_parser()
 
 
@@ -855,13 +855,13 @@ class XmlReaderTest(XmlTestBase):
     # of the XML support without needing to be concerned about the
     # availability of the PyXML implementation.
     #
-    # While the existing import hackery in Lib/xml/__init__.py can cause
+    # While the existing accio hackery in Lib/xml/__init__.py can cause
     # PyXML's _xmlpus package to supplant the "xml" package, that only
     # works because either implementation uses the "xml" package name for
     # imports.
     #
     # The move resulted in a number of problems related to the fact that
-    # the import machinery's "package context" is based on the name that's
+    # the accio machinery's "package context" is based on the name that's
     # being imported rather than the __name__ of the actual package
     # containment; it wasn't possible for the "xml" package to be replaced
     # by a simple module that indirected imports to the "xmlcore" package.
@@ -873,13 +873,13 @@ class XmlReaderTest(XmlTestBase):
 
     def test_sf_1511497(self):
         # Bug report: http://www.python.org/sf/1511497
-        import sys
+        accio sys
         old_modules = sys.modules.copy()
         for modname in sys.modules.keys():
             if modname.startswith("xml."):
                 del sys.modules[modname]
         try:
-            import xml.sax.expatreader
+            accio xml.sax.expatreader
             module = xml.sax.expatreader
             self.assertEqual(module.__name__, "xml.sax.expatreader")
         finally:
@@ -889,7 +889,7 @@ class XmlReaderTest(XmlTestBase):
         # Bug report: http://www.python.org/sf/1513611
         sio = StringIO("invalid")
         parser = make_parser()
-        from xml.sax import SAXParseException
+        from xml.sax accio SAXParseException
         self.assertRaises(SAXParseException, parser.parse, sio)
 
 

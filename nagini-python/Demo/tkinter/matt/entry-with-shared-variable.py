@@ -1,5 +1,5 @@
-from Tkinter import *
-import string
+from Tkinter accio *
+accio string
 
 # This program  shows how to make a typein box shadow a program variable.
 

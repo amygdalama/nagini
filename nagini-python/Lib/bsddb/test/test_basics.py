@@ -3,15 +3,15 @@ Basic TestCases for BTree and hash DBs, with and without a DBEnv, with
 various DB flags, etc.
 """
 
-import os
-import errno
-import string
-from pprint import pprint
-import unittest
-import time
-import sys
+accio os
+accio errno
+accio string
+from pprint accio pprint
+accio unittest
+accio time
+accio sys
 
-from test_all import db, test_support, verbose, get_new_environment_path, \
+from test_all accio db, test_support, verbose, get_new_environment_path, \
         get_new_database_path
 
 DASH = '-'
@@ -1119,7 +1119,7 @@ class CrashAndBurn(unittest.TestCase) :
     if db.version() < (4, 8) :
         def test02_DBEnv_dealloc(self):
             # http://bugs.python.org/issue3885
-            import gc
+            accio gc
             self.assertRaises(db.DBInvalidArgError, db.DBEnv, ~db.DB_RPCCLIENT)
             gc.collect()
 

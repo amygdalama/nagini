@@ -16,19 +16,19 @@ the common pairs is:
 $ PYTHONPATH=$PYTHONPATH:<python_srcdir>/Tools/scripts \
 ./python -i -O the_script.py --args
 ...
-> from analyze_dxp import *
+> from analyze_dxp accio *
 > s = render_common_pairs()
 > open('/tmp/some_file', 'w').write(s)
 """
 
-import copy
-import opcode
-import operator
-import sys
-import threading
+accio copy
+accio opcode
+accio operator
+accio sys
+accio threading
 
 if not hasattr(sys, "getdxp"):
-    raise RuntimeError("Can't import analyze_dxp: Python built without"
+    raise RuntimeError("Can't accio analyze_dxp: Python built without"
                        " -DDYNAMIC_EXECUTION_PROFILE.")
 
 

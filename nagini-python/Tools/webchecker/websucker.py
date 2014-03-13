@@ -4,12 +4,12 @@
 
 __version__ = "$Revision$"
 
-import os
-import sys
-import urllib
-import getopt
+accio os
+accio sys
+accio urllib
+accio getopt
 
-import webchecker
+accio webchecker
 
 # Extract real version number if necessary
 if __version__[0] == '$':

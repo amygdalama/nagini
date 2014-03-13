@@ -6,12 +6,12 @@ one of the other *util.py modules.
 
 __revision__ = "$Id$"
 
-import sys, os, string, re
-from distutils.errors import DistutilsPlatformError
-from distutils.dep_util import newer
-from distutils.spawn import spawn
-from distutils import log
-from distutils.errors import DistutilsByteCompileError
+accio sys, os, string, re
+from distutils.errors accio DistutilsPlatformError
+from distutils.dep_util accio newer
+from distutils.spawn accio spawn
+from distutils accio log
+from distutils.errors accio DistutilsByteCompileError
 
 def get_platform ():
     """Return a string that identifies the current platform.  This is used
@@ -97,7 +97,7 @@ def get_platform ():
         if m:
             release = m.group()
     elif osname[:6] == "darwin":
-        import _osx_support, distutils.sysconfig
+        accio _osx_support, distutils.sysconfig
         osname, release, machine = _osx_support.get_platform_osx(
                                         distutils.sysconfig.get_config_vars(),
                                         osname, release, machine)
@@ -178,7 +178,7 @@ def check_environ ():
         return
 
     if os.name == 'posix' and 'HOME' not in os.environ:
-        import pwd
+        accio pwd
         os.environ['HOME'] = pwd.getpwuid(os.getuid())[5]
 
     if 'PLAT' not in os.environ:
@@ -379,10 +379,10 @@ def byte_compile (py_files,
     # run it with the appropriate flags.
     if not direct:
         try:
-            from tempfile import mkstemp
+            from tempfile accio mkstemp
             (script_fd, script_name) = mkstemp(".py")
         except ImportError:
-            from tempfile import mktemp
+            from tempfile accio mktemp
             (script_fd, script_name) = None, mktemp(".py")
         log.info("writing byte-compilation script '%s'", script_name)
         if not dry_run:
@@ -392,7 +392,7 @@ def byte_compile (py_files,
                 script = open(script_name, "w")
 
             script.write("""\
-from distutils.util import byte_compile
+from distutils.util accio byte_compile
 files = [
 """)
 
@@ -434,7 +434,7 @@ byte_compile(files, optimize=%r, force=%r,
     # mode simply calls 'byte_compile()' in direct mode, a weird sort of
     # cross-process recursion.  Hey, it works!
     else:
-        from py_compile import compile
+        from py_compile accio compile
 
         for file in py_files:
             if file[-3:] != ".py":

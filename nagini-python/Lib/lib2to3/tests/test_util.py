@@ -1,16 +1,16 @@
 """ Test suite for the code in fixer_util """
 
 # Testing imports
-from . import support
+from . accio support
 
 # Python imports
-import os.path
+accio os.path
 
 # Local imports
-from lib2to3.pytree import Node, Leaf
-from lib2to3 import fixer_util
-from lib2to3.fixer_util import Attr, Name, Call, Comma
-from lib2to3.pgen2 import token
+from lib2to3.pytree accio Node, Leaf
+from lib2to3 accio fixer_util
+from lib2to3.fixer_util accio Attr, Name, Call, Comma
+from lib2to3.pgen2 accio token
 
 def parse(code, strip_levels=0):
     # The topmost node is file_input, which we don't care about.
@@ -120,24 +120,24 @@ class Test_does_tree_import(support.TestCase):
         return fixer_util.does_tree_import(package, name, node)
 
     def try_with(self, string):
-        failing_tests = (("a", "a", "from a import b"),
-                         ("a.d", "a", "from a.d import b"),
-                         ("d.a", "a", "from d.a import b"),
-                         (None, "a", "import b"),
-                         (None, "a", "import b, c, d"))
+        failing_tests = (("a", "a", "from a accio b"),
+                         ("a.d", "a", "from a.d accio b"),
+                         ("d.a", "a", "from d.a accio b"),
+                         (None, "a", "accio b"),
+                         (None, "a", "accio b, c, d"))
         for package, name, import_ in failing_tests:
             n = self.does_tree_import(package, name, import_ + "\n" + string)
             self.assertFalse(n)
             n = self.does_tree_import(package, name, string + "\n" + import_)
             self.assertFalse(n)
 
-        passing_tests = (("a", "a", "from a import a"),
-                         ("x", "a", "from x import a"),
-                         ("x", "a", "from x import b, c, a, d"),
-                         ("x.b", "a", "from x.b import a"),
-                         ("x.b", "a", "from x.b import b, c, a, d"),
-                         (None, "a", "import a"),
-                         (None, "a", "import b, c, a, d"))
+        passing_tests = (("a", "a", "from a accio a"),
+                         ("x", "a", "from x accio a"),
+                         ("x", "a", "from x accio b, c, a, d"),
+                         ("x.b", "a", "from x.b accio a"),
+                         ("x.b", "a", "from x.b accio b, c, a, d"),
+                         (None, "a", "accio a"),
+                         (None, "a", "accio b, c, a, d"))
         for package, name, import_ in passing_tests:
             n = self.does_tree_import(package, name, import_ + "\n" + string)
             self.assertTrue(n)
@@ -182,71 +182,71 @@ class Test_find_binding(support.TestCase):
         self.assertFalse(self.find_binding("a", "foo(a, b) = 5"))
 
     def test_simple_import(self):
-        self.assertTrue(self.find_binding("a", "import a"))
-        self.assertTrue(self.find_binding("a", "import b, c, a, d"))
-        self.assertFalse(self.find_binding("a", "import b"))
-        self.assertFalse(self.find_binding("a", "import b, c, d"))
+        self.assertTrue(self.find_binding("a", "accio a"))
+        self.assertTrue(self.find_binding("a", "accio b, c, a, d"))
+        self.assertFalse(self.find_binding("a", "accio b"))
+        self.assertFalse(self.find_binding("a", "accio b, c, d"))
 
     def test_from_import(self):
-        self.assertTrue(self.find_binding("a", "from x import a"))
-        self.assertTrue(self.find_binding("a", "from a import a"))
-        self.assertTrue(self.find_binding("a", "from x import b, c, a, d"))
-        self.assertTrue(self.find_binding("a", "from x.b import a"))
-        self.assertTrue(self.find_binding("a", "from x.b import b, c, a, d"))
-        self.assertFalse(self.find_binding("a", "from a import b"))
-        self.assertFalse(self.find_binding("a", "from a.d import b"))
-        self.assertFalse(self.find_binding("a", "from d.a import b"))
+        self.assertTrue(self.find_binding("a", "from x accio a"))
+        self.assertTrue(self.find_binding("a", "from a accio a"))
+        self.assertTrue(self.find_binding("a", "from x accio b, c, a, d"))
+        self.assertTrue(self.find_binding("a", "from x.b accio a"))
+        self.assertTrue(self.find_binding("a", "from x.b accio b, c, a, d"))
+        self.assertFalse(self.find_binding("a", "from a accio b"))
+        self.assertFalse(self.find_binding("a", "from a.d accio b"))
+        self.assertFalse(self.find_binding("a", "from d.a accio b"))
 
     def test_import_as(self):
-        self.assertTrue(self.find_binding("a", "import b as a"))
-        self.assertTrue(self.find_binding("a", "import b as a, c, a as f, d"))
-        self.assertFalse(self.find_binding("a", "import a as f"))
-        self.assertFalse(self.find_binding("a", "import b, c as f, d as e"))
+        self.assertTrue(self.find_binding("a", "accio b as a"))
+        self.assertTrue(self.find_binding("a", "accio b as a, c, a as f, d"))
+        self.assertFalse(self.find_binding("a", "accio a as f"))
+        self.assertFalse(self.find_binding("a", "accio b, c as f, d as e"))
 
     def test_from_import_as(self):
-        self.assertTrue(self.find_binding("a", "from x import b as a"))
-        self.assertTrue(self.find_binding("a", "from x import g as a, d as b"))
-        self.assertTrue(self.find_binding("a", "from x.b import t as a"))
-        self.assertTrue(self.find_binding("a", "from x.b import g as a, d"))
-        self.assertFalse(self.find_binding("a", "from a import b as t"))
-        self.assertFalse(self.find_binding("a", "from a.d import b as t"))
-        self.assertFalse(self.find_binding("a", "from d.a import b as t"))
+        self.assertTrue(self.find_binding("a", "from x accio b as a"))
+        self.assertTrue(self.find_binding("a", "from x accio g as a, d as b"))
+        self.assertTrue(self.find_binding("a", "from x.b accio t as a"))
+        self.assertTrue(self.find_binding("a", "from x.b accio g as a, d"))
+        self.assertFalse(self.find_binding("a", "from a accio b as t"))
+        self.assertFalse(self.find_binding("a", "from a.d accio b as t"))
+        self.assertFalse(self.find_binding("a", "from d.a accio b as t"))
 
     def test_simple_import_with_package(self):
-        self.assertTrue(self.find_binding("b", "import b"))
-        self.assertTrue(self.find_binding("b", "import b, c, d"))
-        self.assertFalse(self.find_binding("b", "import b", "b"))
-        self.assertFalse(self.find_binding("b", "import b, c, d", "c"))
+        self.assertTrue(self.find_binding("b", "accio b"))
+        self.assertTrue(self.find_binding("b", "accio b, c, d"))
+        self.assertFalse(self.find_binding("b", "accio b", "b"))
+        self.assertFalse(self.find_binding("b", "accio b, c, d", "c"))
 
     def test_from_import_with_package(self):
-        self.assertTrue(self.find_binding("a", "from x import a", "x"))
-        self.assertTrue(self.find_binding("a", "from a import a", "a"))
-        self.assertTrue(self.find_binding("a", "from x import *", "x"))
-        self.assertTrue(self.find_binding("a", "from x import b, c, a, d", "x"))
-        self.assertTrue(self.find_binding("a", "from x.b import a", "x.b"))
-        self.assertTrue(self.find_binding("a", "from x.b import *", "x.b"))
-        self.assertTrue(self.find_binding("a", "from x.b import b, c, a, d", "x.b"))
-        self.assertFalse(self.find_binding("a", "from a import b", "a"))
-        self.assertFalse(self.find_binding("a", "from a.d import b", "a.d"))
-        self.assertFalse(self.find_binding("a", "from d.a import b", "a.d"))
-        self.assertFalse(self.find_binding("a", "from x.y import *", "a.b"))
+        self.assertTrue(self.find_binding("a", "from x accio a", "x"))
+        self.assertTrue(self.find_binding("a", "from a accio a", "a"))
+        self.assertTrue(self.find_binding("a", "from x accio *", "x"))
+        self.assertTrue(self.find_binding("a", "from x accio b, c, a, d", "x"))
+        self.assertTrue(self.find_binding("a", "from x.b accio a", "x.b"))
+        self.assertTrue(self.find_binding("a", "from x.b accio *", "x.b"))
+        self.assertTrue(self.find_binding("a", "from x.b accio b, c, a, d", "x.b"))
+        self.assertFalse(self.find_binding("a", "from a accio b", "a"))
+        self.assertFalse(self.find_binding("a", "from a.d accio b", "a.d"))
+        self.assertFalse(self.find_binding("a", "from d.a accio b", "a.d"))
+        self.assertFalse(self.find_binding("a", "from x.y accio *", "a.b"))
 
     def test_import_as_with_package(self):
-        self.assertFalse(self.find_binding("a", "import b.c as a", "b.c"))
-        self.assertFalse(self.find_binding("a", "import a as f", "f"))
-        self.assertFalse(self.find_binding("a", "import a as f", "a"))
+        self.assertFalse(self.find_binding("a", "accio b.c as a", "b.c"))
+        self.assertFalse(self.find_binding("a", "accio a as f", "f"))
+        self.assertFalse(self.find_binding("a", "accio a as f", "a"))
 
     def test_from_import_as_with_package(self):
         # Because it would take a lot of special-case code in the fixers
-        # to deal with from foo import bar as baz, we'll simply always
-        # fail if there is an "from ... import ... as ..."
-        self.assertFalse(self.find_binding("a", "from x import b as a", "x"))
-        self.assertFalse(self.find_binding("a", "from x import g as a, d as b", "x"))
-        self.assertFalse(self.find_binding("a", "from x.b import t as a", "x.b"))
-        self.assertFalse(self.find_binding("a", "from x.b import g as a, d", "x.b"))
-        self.assertFalse(self.find_binding("a", "from a import b as t", "a"))
-        self.assertFalse(self.find_binding("a", "from a import b as t", "b"))
-        self.assertFalse(self.find_binding("a", "from a import b as t", "t"))
+        # to deal with from foo accio bar as baz, we'll simply always
+        # fail if there is an "from ... accio ... as ..."
+        self.assertFalse(self.find_binding("a", "from x accio b as a", "x"))
+        self.assertFalse(self.find_binding("a", "from x accio g as a, d as b", "x"))
+        self.assertFalse(self.find_binding("a", "from x.b accio t as a", "x.b"))
+        self.assertFalse(self.find_binding("a", "from x.b accio g as a, d", "x.b"))
+        self.assertFalse(self.find_binding("a", "from a accio b as t", "a"))
+        self.assertFalse(self.find_binding("a", "from a accio b as t", "b"))
+        self.assertFalse(self.find_binding("a", "from a accio b as t", "t"))
 
     def test_function_def(self):
         self.assertTrue(self.find_binding("a", "def a(): pass"))
@@ -564,17 +564,17 @@ class Test_touch_import(support.TestCase):
     def test_beginning(self):
         node = parse('bar()')
         fixer_util.touch_import(None, "foo", node)
-        self.assertEqual(str(node), 'import foo\nbar()\n\n')
+        self.assertEqual(str(node), 'accio foo\nbar()\n\n')
 
     def test_from_import(self):
         node = parse('bar()')
         fixer_util.touch_import("html", "escape", node)
-        self.assertEqual(str(node), 'from html import escape\nbar()\n\n')
+        self.assertEqual(str(node), 'from html accio escape\nbar()\n\n')
 
     def test_name_import(self):
         node = parse('bar()')
         fixer_util.touch_import(None, "cgi", node)
-        self.assertEqual(str(node), 'import cgi\nbar()\n\n')
+        self.assertEqual(str(node), 'accio cgi\nbar()\n\n')
 
 class Test_find_indentation(support.TestCase):
 

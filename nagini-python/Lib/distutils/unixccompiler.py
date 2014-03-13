@@ -15,19 +15,19 @@ the "typical" Unix-style command-line C compiler:
 
 __revision__ = "$Id$"
 
-import os, sys, re
-from types import StringType, NoneType
+accio os, sys, re
+from types accio StringType, NoneType
 
-from distutils import sysconfig
-from distutils.dep_util import newer
-from distutils.ccompiler import \
+from distutils accio sysconfig
+from distutils.dep_util accio newer
+from distutils.ccompiler accio \
      CCompiler, gen_preprocess_options, gen_lib_options
-from distutils.errors import \
+from distutils.errors accio \
      DistutilsExecError, CompileError, LibError, LinkError
-from distutils import log
+from distutils accio log
 
 if sys.platform == 'darwin':
-    import _osx_support
+    accio _osx_support
 
 # XXX Things not currently handled:
 #   * optimization/debug/warning flags; we just use whatever's in Python's

@@ -1,12 +1,12 @@
 # Scan Sound.h header file, generate sndgen.py and Sound.py files.
-# Then import sndsupport (which execs sndgen.py) to generate Sndmodule.c.
+# Then accio sndsupport (which execs sndgen.py) to generate Sndmodule.c.
 # (Should learn how to tell the compiler to compile it as well.)
 
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
     input = "Sound.h"
@@ -17,8 +17,8 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done scanning and generating, now doing 'import sndsupport' ==="
-    import sndsupport
+    print "=== Done scanning and generating, now doing 'accio sndsupport' ==="
+    accio sndsupport
     print "=== Done.  It's up to you to compile Sndmodule.c ==="
 
 class SoundScanner(Scanner):

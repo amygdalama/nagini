@@ -2,11 +2,11 @@
 Tests common to genericpath, macpath, ntpath and posixpath
 """
 
-import unittest
-from test import test_support
-import os
-import genericpath
-import sys
+accio unittest
+from test accio test_support
+accio os
+accio genericpath
+accio sys
 
 
 def safe_rmdir(dirname):

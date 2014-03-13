@@ -17,11 +17,11 @@ a requested config value, a message is printed to stderr to aid in
 configuration problem notification and resolution.
 
 """
-import os
-import sys
-import string
-from idlelib import macosxSupport
-from ConfigParser import ConfigParser, NoOptionError, NoSectionError
+accio os
+accio sys
+accio string
+from idlelib accio macosxSupport
+from ConfigParser accio ConfigParser, NoOptionError, NoSectionError
 
 class InvalidConfigType(Exception): pass
 class InvalidConfigSet(Exception): pass

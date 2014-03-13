@@ -6,7 +6,7 @@
 
 __all__ = ["run", "runctx", "help", "Profile"]
 
-import _lsprof
+accio _lsprof
 
 # ____________________________________________________________
 # Simple interface
@@ -77,11 +77,11 @@ class Profile(_lsprof.Profiler):
     # This subclass only adds convenient and backward-compatible methods.
 
     def print_stats(self, sort=-1):
-        import pstats
+        accio pstats
         pstats.Stats(self).strip_dirs().sort_stats(sort).print_stats()
 
     def dump_stats(self, file):
-        import marshal
+        accio marshal
         f = open(file, 'wb')
         self.create_stats()
         marshal.dump(self.stats, f)
@@ -130,7 +130,7 @@ class Profile(_lsprof.Profiler):
     # a profiler to profile a statement, given as a string.
 
     def run(self, cmd):
-        import __main__
+        accio __main__
         dict = __main__.__dict__
         return self.runctx(cmd, dict, dict)
 
@@ -161,8 +161,8 @@ def label(code):
 # ____________________________________________________________
 
 def main():
-    import os, sys
-    from optparse import OptionParser
+    accio os, sys
+    from optparse accio OptionParser
     usage = "cProfile.py [-o output_file_path] [-s sort] scriptfile [arg] ..."
     parser = OptionParser(usage=usage)
     parser.allow_interspersed_args = False

@@ -1,6 +1,6 @@
-import sys
-import string
-import rcvs
+accio sys
+accio string
+accio rcvs
 
 def main():
     while 1:

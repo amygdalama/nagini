@@ -11,7 +11,7 @@ is None.
 
 Here is an array of string pointers:
 
->>> from ctypes import *
+>>> from ctypes accio *
 >>> array = (c_char_p * 5)()
 >>> print array._objects
 None
@@ -54,9 +54,9 @@ of 'x' ('_b_base_' is either None, or the root object owning the memory block):
 
 '''
 
-import unittest, doctest, sys
+accio unittest, doctest, sys
 
-import ctypes.test.test_objects
+accio ctypes.test.test_objects
 
 class TestCase(unittest.TestCase):
     if sys.hexversion > 0x02040000:

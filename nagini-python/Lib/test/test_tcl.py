@@ -1,17 +1,17 @@
-import unittest
-import sys
-import os
-from test import test_support
-from subprocess import Popen, PIPE
+accio unittest
+accio sys
+accio os
+from test accio test_support
+from subprocess accio Popen, PIPE
 
 # Skip this test if the _tkinter module wasn't built.
 _tkinter = test_support.import_module('_tkinter')
 
-from Tkinter import Tcl
-from _tkinter import TclError
+from Tkinter accio Tcl
+from _tkinter accio TclError
 
 try:
-    from _testcapi import INT_MAX, PY_SSIZE_T_MAX
+    from _testcapi accio INT_MAX, PY_SSIZE_T_MAX
 except ImportError:
     INT_MAX = PY_SSIZE_T_MAX = sys.maxsize
 
@@ -183,7 +183,7 @@ class TclTest(unittest.TestCase):
 
         with test_support.EnvironmentVarGuard() as env:
             env.unset("TCL_LIBRARY")
-            cmd = '%s -c "import Tkinter; print Tkinter"' % (unc_name,)
+            cmd = '%s -c "accio Tkinter; print Tkinter"' % (unc_name,)
 
             try:
                 p = Popen(cmd, stdout=PIPE, stderr=PIPE)

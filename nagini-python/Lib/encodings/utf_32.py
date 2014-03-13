@@ -1,7 +1,7 @@
 """
 Python 'utf-32' Codec
 """
-import codecs, sys
+accio codecs, sys
 
 ### Codec APIs
 

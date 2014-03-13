@@ -3,21 +3,21 @@
 # Modified by Giampaolo Rodola' to test FTP class, IPv6 and TLS
 # environment
 
-import ftplib
-import asyncore
-import asynchat
-import socket
-import StringIO
-import errno
-import os
+accio ftplib
+accio asyncore
+accio asynchat
+accio socket
+accio StringIO
+accio errno
+accio os
 try:
-    import ssl
+    accio ssl
 except ImportError:
     ssl = None
 
-from unittest import TestCase, SkipTest, skipUnless
-from test import test_support
-from test.test_support import HOST, HOSTv6
+from unittest accio TestCase, SkipTest, skipUnless
+from test accio test_support
+from test.test_support accio HOST, HOSTv6
 threading = test_support.import_module('threading')
 
 

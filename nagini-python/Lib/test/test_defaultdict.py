@@ -1,12 +1,12 @@
 """Unit tests for collections.defaultdict."""
 
-import os
-import copy
-import tempfile
-import unittest
-from test import test_support
+accio os
+accio copy
+accio tempfile
+accio unittest
+from test accio test_support
 
-from collections import defaultdict
+from collections accio defaultdict
 
 def foobar():
     return list

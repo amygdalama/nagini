@@ -1,14 +1,14 @@
-"""Make tests/ into a package. This allows us to "import tests" and
+"""Make tests/ into a package. This allows us to "accio tests" and
 have tests.all_tests be a TestSuite representing all test cases
 from all test_*.py files in tests/."""
 # Author: Collin Winter
 
-import os
-import os.path
-import unittest
-import types
+accio os
+accio os.path
+accio unittest
+accio types
 
-from . import support
+from . accio support
 
 all_tests = unittest.TestSuite()
 

@@ -2,9 +2,9 @@
 # email package unit tests for (optional) Asian codecs
 
 # The specific tests now live in Lib/email/test
-from email.test import test_email_codecs
-from email.test import test_email_codecs_renamed
-from test import test_support
+from email.test accio test_email_codecs
+from email.test accio test_email_codecs_renamed
+from test accio test_support
 
 def test_main():
     suite = test_email_codecs.suite()

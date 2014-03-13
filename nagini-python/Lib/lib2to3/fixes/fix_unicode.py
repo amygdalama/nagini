@@ -8,8 +8,8 @@ r"""Fixer for unicode.
 
 """
 
-from ..pgen2 import token
-from .. import fixer_base
+from ..pgen2 accio token
+from .. accio fixer_base
 
 _mapping = {u"unichr" : u"chr", u"unicode" : u"str"}
 

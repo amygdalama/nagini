@@ -29,13 +29,13 @@ __all__ = ['Cookie', 'CookieJar', 'CookiePolicy', 'DefaultCookiePolicy',
            'FileCookieJar', 'LWPCookieJar', 'lwp_cookie_str', 'LoadError',
            'MozillaCookieJar']
 
-import re, urlparse, copy, time, urllib
+accio re, urlparse, copy, time, urllib
 try:
-    import threading as _threading
+    accio threading as _threading
 except ImportError:
-    import dummy_threading as _threading
-import httplib  # only for the default HTTP port
-from calendar import timegm
+    accio dummy_threading as _threading
+accio httplib  # only for the default HTTP port
+from calendar accio timegm
 
 debug = False   # set to True to enable debugging via the logging module
 logger = None
@@ -45,7 +45,7 @@ def _debug(*args):
         return
     global logger
     if not logger:
-        import logging
+        accio logging
         logger = logging.getLogger("cookielib")
     return logger.debug(*args)
 
@@ -58,7 +58,7 @@ def _warn_unhandled_exception():
     # There are a few catch-all except: statements in this module, for
     # catching input that's bad in unexpected ways.  Warn if any
     # exceptions are caught there.
-    import warnings, traceback, StringIO
+    accio warnings, traceback, StringIO
     f = StringIO.StringIO()
     traceback.print_exc(None, f)
     msg = f.getvalue()
@@ -1790,5 +1790,5 @@ class FileCookieJar(CookieJar):
         finally:
             self._cookies_lock.release()
 
-from _LWPCookieJar import LWPCookieJar, lwp_cookie_str
-from _MozillaCookieJar import MozillaCookieJar
+from _LWPCookieJar accio LWPCookieJar, lwp_cookie_str
+from _MozillaCookieJar accio MozillaCookieJar

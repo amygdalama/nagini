@@ -1,30 +1,30 @@
 """Tests for distutils.core."""
 
-import StringIO
-import distutils.core
-import os
-import shutil
-import sys
-import test.test_support
-from test.test_support import captured_stdout, run_unittest
-import unittest
-from distutils.tests import support
+accio StringIO
+accio distutils.core
+accio os
+accio shutil
+accio sys
+accio test.test_support
+from test.test_support accio captured_stdout, run_unittest
+accio unittest
+from distutils.tests accio support
 
 # setup script that uses __file__
 setup_using___file__ = """\
 
 __file__
 
-from distutils.core import setup
+from distutils.core accio setup
 setup()
 """
 
 setup_prints_cwd = """\
 
-import os
+accio os
 print os.getcwd()
 
-from distutils.core import setup
+from distutils.core accio setup
 setup()
 """
 

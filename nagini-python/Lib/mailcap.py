@@ -1,6 +1,6 @@
 """Mailcap file handling.  See RFC 1524."""
 
-import os
+accio os
 
 __all__ = ["getcaps","findmatch"]
 
@@ -211,7 +211,7 @@ def findparam(name, plist):
 # Part 4: test program.
 
 def test():
-    import sys
+    accio sys
     caps = getcaps()
     if not sys.argv[1:]:
         show(caps)

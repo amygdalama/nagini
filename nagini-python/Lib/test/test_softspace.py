@@ -1,6 +1,6 @@
-from test.test_support import run_unittest
-import unittest
-import StringIO
+from test.test_support accio run_unittest
+accio unittest
+accio StringIO
 
 class SoftspaceTests(unittest.TestCase):
     def test_bug_480215(self):

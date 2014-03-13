@@ -6,26 +6,26 @@ Based on aete.py.
 Reading and understanding this code is left as an exercise to the reader.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the gensuitemodule module is removed.", stacklevel=2)
 
-import MacOS
-import EasyDialogs
-import os
-import string
-import sys
-import types
-import StringIO
-import keyword
-import macresource
-import aetools
-import distutils.sysconfig
-import OSATerminology
-from Carbon.Res import *
-import Carbon.Folder
-import MacOS
-import getopt
-import plistlib
+accio MacOS
+accio EasyDialogs
+accio os
+accio string
+accio sys
+accio types
+accio StringIO
+accio keyword
+accio macresource
+accio aetools
+accio distutils.sysconfig
+accio OSATerminology
+from Carbon.Res accio *
+accio Carbon.Folder
+accio MacOS
+accio getopt
+accio plistlib
 
 _MAC_LIB_FOLDER=os.path.dirname(aetools.__file__)
 DEFAULT_STANDARD_PACKAGEFOLDER=os.path.join(_MAC_LIB_FOLDER, 'lib-scriptpackages')
@@ -231,7 +231,7 @@ def getappterminology(fullname, verbose=None):
         raise RuntimeError, "Cannot send AppleEvents, no access to window manager"
     # Next, a workaround for a bug in MacOS 10.2: sending events will hang unless
     # you have created an event loop first.
-    import Carbon.Evt
+    accio Carbon.Evt
     Carbon.Evt.WaitNextEvent(0,0)
     if os.path.isdir(fullname):
         # Now get the signature of the application, hoping it is a bundle
@@ -264,7 +264,7 @@ def compileaetelist(aetelist, fullname, output=None, basepkgname=None,
             creatorsignature=creatorsignature, verbose=verbose)
 
 def dumpaetelist(aetelist, output):
-    import pprint
+    accio pprint
     pprint.pprint(aetelist, output)
 
 def decode(data, verbose=None):
@@ -488,11 +488,11 @@ def compileaete(aete, resinfo, fname, output=None, basepkgname=None,
     if resinfo:
         fp.write("Resource %s resid %d %s\n"%(ascii(resinfo[1]), resinfo[0], ascii(resinfo[2])))
     fp.write('"""\n')
-    fp.write('import aetools\n')
+    fp.write('accio aetools\n')
     fp.write('Error = aetools.Error\n')
     suitelist.sort()
     for code, modname in suitelist:
-        fp.write("import %s\n" % modname)
+        fp.write("accio %s\n" % modname)
     fp.write("\n\n_code_to_module = {\n")
     for code, modname in suitelist:
         fp.write("    '%s' : %s,\n"%(ascii(code), modname))
@@ -502,7 +502,7 @@ def compileaete(aete, resinfo, fname, output=None, basepkgname=None,
         fp.write("    '%s' : ('%s.%s', '%s'),\n"%(ascii(code), packagename, modname, modname))
     fp.write("}\n\n")
     for code, modname in suitelist:
-        fp.write("from %s import *\n"%modname)
+        fp.write("from %s accio *\n"%modname)
 
     # Generate property dicts and element dicts for all types declared in this module
     fp.write("\ndef getbaseclasses(v):\n")
@@ -517,7 +517,7 @@ def compileaete(aete, resinfo, fname, output=None, basepkgname=None,
     fp.write("        v._propdict.update(getattr(v, '_privpropdict', {}))\n")
     fp.write("        v._elemdict.update(getattr(v, '_privelemdict', {}))\n")
     fp.write("\n")
-    fp.write("import StdSuites\n")
+    fp.write("accio StdSuites\n")
     allprecompinfo.sort()
     if allprecompinfo:
         fp.write("\n#\n# Set property and element dictionaries now that all classes have been defined\n#\n")
@@ -656,17 +656,17 @@ class SuiteCompiler:
             (major, minor, language, script))
         fp.write('"""\n\n')
 
-        fp.write('import aetools\n')
-        fp.write('import MacOS\n\n')
+        fp.write('accio aetools\n')
+        fp.write('accio MacOS\n\n')
         fp.write("_code = %r\n\n"% (code,))
         if self.basepackage and code in self.basepackage._code_to_module:
             # We are an extension of a baseclass (usually an application extending
             # Standard_Suite or so). Import everything from our base module
-            fp.write('from %s import *\n'%self.basepackage._code_to_fullname[code][0])
+            fp.write('from %s accio *\n'%self.basepackage._code_to_fullname[code][0])
             basemodule = self.basepackage._code_to_module[code]
         elif self.basepackage and code.lower() in self.basepackage._code_to_module:
             # This is needed by CodeWarrior and some others.
-            fp.write('from %s import *\n'%self.basepackage._code_to_fullname[code.lower()][0])
+            fp.write('from %s accio *\n'%self.basepackage._code_to_fullname[code.lower()][0])
             basemodule = self.basepackage._code_to_module[code.lower()]
         else:
             # We are not an extension.
@@ -925,7 +925,7 @@ class ObjectCompiler:
                     self.othernamemappers.remove(mapper)
                     self.namemappers.append(mapper)
                     if self.fp:
-                        self.fp.write("import %s\n"%mapper.modulename)
+                        self.fp.write("accio %s\n"%mapper.modulename)
                     break
             else:
                 # If all this has failed we ask the user for a guess on where it could
@@ -959,7 +959,7 @@ class ObjectCompiler:
         if not path in sys.path:
             sys.path.insert(0, path)
         m = __import__(modname)
-        self.fp.write("import %s\n"%modname)
+        self.fp.write("accio %s\n"%modname)
         return m
 
     def compileclass(self, cls):
@@ -1105,7 +1105,7 @@ class ObjectCompiler:
             return
         if module:
             if self.fp:
-                self.fp.write("from %s import %s\n"%(module, name))
+                self.fp.write("from %s accio %s\n"%(module, name))
 
     def dumpindex(self):
         if not self.fp:

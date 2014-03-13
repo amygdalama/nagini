@@ -1,6 +1,6 @@
-import unittest, string
-from test import test_support, string_tests
-from UserList import UserList
+accio unittest, string
+from test accio test_support, string_tests
+from UserList accio UserList
 
 class StringTest(
     string_tests.CommonTest,

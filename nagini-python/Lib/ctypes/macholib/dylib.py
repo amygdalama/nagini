@@ -5,7 +5,7 @@
 Generic dylib path manipulation
 """
 
-import re
+accio re
 
 __all__ = ['dylib_info']
 

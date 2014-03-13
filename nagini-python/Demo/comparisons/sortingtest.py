@@ -23,8 +23,8 @@
 # - Outputs the sorted fields with exactly one space between them
 # - Handles blank input lines correctly
 
-import re
-import sys
+accio re
+accio sys
 
 def main():
     prog = re.compile('^(.*)=([-+]?[0-9]+)')

@@ -11,9 +11,9 @@ __all__ = [
     'encode_quopri',
     ]
 
-import base64
+accio base64
 
-from quopri import encodestring as _encodestring
+from quopri accio encodestring as _encodestring
 
 
 

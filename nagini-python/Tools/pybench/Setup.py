@@ -2,7 +2,7 @@
 
 # Setup file for pybench
 #
-# This file has to import all tests to be run; it is executed as
+# This file has to accio all tests to be run; it is executed as
 # Python source file, so you can do all kinds of manipulations here
 # rather than having to edit the tests themselves.
 #
@@ -17,27 +17,27 @@ Number_of_rounds = 10
 Warp_factor = 10
 
 # Import tests
-from Arithmetic import *
-from Calls import *
-from Constructs import *
-from Lookups import *
-from Instances import *
+from Arithmetic accio *
+from Calls accio *
+from Constructs accio *
+from Lookups accio *
+from Instances accio *
 try:
-    from NewInstances import *
+    from NewInstances accio *
 except ImportError:
     pass
-from Lists import *
-from Tuples import *
-from Dict import *
-from Exceptions import *
+from Lists accio *
+from Tuples accio *
+from Dict accio *
+from Exceptions accio *
 try:
-    from With import *
+    from With accio *
 except SyntaxError:
     pass
-from Imports import *
-from Strings import *
-from Numbers import *
+from Imports accio *
+from Strings accio *
+from Numbers accio *
 try:
-    from Unicode import *
+    from Unicode accio *
 except (ImportError, SyntaxError):
     pass

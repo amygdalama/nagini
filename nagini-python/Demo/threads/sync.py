@@ -10,7 +10,7 @@
 # CONDITIONS
 #
 # A condition object is created via
-#   import this_module
+#   accio this_module
 #   your_condition_object = this_module.condition(lock=None)
 #
 # As explained below, a condition object has a lock associated with it,
@@ -144,7 +144,7 @@
 # BARRIERS
 #
 # A barrier object is created via
-#   import this_module
+#   accio this_module
 #   your_barrier = this_module.barrier(num_threads)
 #
 # Methods:
@@ -157,7 +157,7 @@
 # EVENTS
 #
 # An event object is created via
-#   import this_module
+#   accio this_module
 #   your_event = this_module.event()
 #
 # An event has two states, `posted' and `cleared'.  An event is
@@ -195,7 +195,7 @@
 # SEMAPHORES
 #
 # A semaphore object is created via
-#   import this_module
+#   accio this_module
 #   your_semaphore = this_module.semaphore(count=1)
 #
 # A semaphore has an integer count associated with it.  The initial value
@@ -220,7 +220,7 @@
 # MULTIPLE-READER SINGLE-WRITER LOCKS
 #
 # A mrsw lock is created via
-#   import this_module
+#   accio this_module
 #   your_mrsw_lock = this_module.mrsw()
 #
 # This kind of lock is often useful with complex shared data structures.
@@ -268,7 +268,7 @@
 #      if there are no threads waiting to write.  (This is a
 #      weakness of the interface!)
 
-import thread
+accio thread
 
 class condition:
     def __init__(self, lock=None):
@@ -566,7 +566,7 @@ def _run_one_sort(tid, a, bar, done):
 
 def test():
     global TID, tid, io, wh, randint, alive
-    import random
+    accio random
     randint = random.randint
 
     TID = 0                             # thread ID (1, 2, ...)

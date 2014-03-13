@@ -2,9 +2,9 @@
 
 # Copy one file's atime and mtime to another
 
-import sys
-import os
-from stat import ST_ATIME, ST_MTIME # Really constants 7 and 8
+accio sys
+accio os
+from stat accio ST_ATIME, ST_MTIME # Really constants 7 and 8
 
 def main():
     if len(sys.argv) <> 3:

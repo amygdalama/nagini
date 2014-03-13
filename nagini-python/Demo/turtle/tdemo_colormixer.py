@@ -1,6 +1,6 @@
 # colormixer
 
-from turtle import Screen, Turtle, mainloop
+from turtle accio Screen, Turtle, mainloop
 
 class ColorTurtle(Turtle):
 

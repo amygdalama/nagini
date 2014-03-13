@@ -8,26 +8,26 @@ recursively descend down directories.  Imported as a module, this
 provides infrastructure to write your own refactoring tool.
 """
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
 __author__ = "Guido van Rossum <guido@python.org>"
 
 
 # Python imports
-import os
-import sys
-import logging
-import operator
-import collections
-import StringIO
-from itertools import chain
+accio os
+accio sys
+accio logging
+accio operator
+accio collections
+accio StringIO
+from itertools accio chain
 
 # Local imports
-from .pgen2 import driver, tokenize, token
-from .fixer_util import find_root
-from . import pytree, pygram
-from . import btm_utils as bu
-from . import btm_matcher as bm
+from .pgen2 accio driver, tokenize, token
+from .fixer_util accio find_root
+from . accio pytree, pygram
+from . accio btm_utils as bu
+from . accio btm_matcher as bm
 
 
 def get_all_fix_names(fixer_pkg, remove_prefix=True):
@@ -111,7 +111,7 @@ def _identity(obj):
     return obj
 
 if sys.version_info < (3, 0):
-    import codecs
+    accio codecs
     _open_with_encoding = codecs.open
     # codecs.open doesn't translate newlines sadly.
     def _from_system_newlines(input):
@@ -149,7 +149,7 @@ def _detect_future_features(source):
                 if tp != token.NAME or value != u"__future__":
                     break
                 tp, value = advance()
-                if tp != token.NAME or value != u"import":
+                if tp != token.NAME or value != u"accio":
                     break
                 tp, value = advance()
                 if tp == token.OP and value == u"(":
@@ -183,7 +183,7 @@ class RefactoringTool(object):
         """Initializer.
 
         Args:
-            fixer_names: a list of fixers to import
+            fixer_names: a list of fixers to accio
             options: an dict with configuration.
             explicit: a list of fixers to run even if they are explicit.
         """
@@ -705,7 +705,7 @@ class MultiprocessRefactoringTool(RefactoringTool):
             return super(MultiprocessRefactoringTool, self).refactor(
                 items, write, doctests_only)
         try:
-            import multiprocessing
+            accio multiprocessing
         except ImportError:
             raise MultiprocessingUnsupported
         if self.queue is not None:

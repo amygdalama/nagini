@@ -6,9 +6,9 @@ whether mode is 'r' or 'w'.  This module provides the functions popen2(cmd)
 and popen3(cmd) which return two or three pipes to the spawned command.
 """
 
-import os
-import sys
-import warnings
+accio os
+accio sys
+accio warnings
 warnings.warn("The popen2 module is deprecated.  Use the subprocess module.",
               DeprecationWarning, stacklevel=2)
 

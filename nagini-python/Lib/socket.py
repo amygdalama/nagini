@@ -44,28 +44,28 @@ Many other constants may be defined; these may be used in calls to
 the setsockopt() and getsockopt() methods.
 """
 
-import _socket
-from _socket import *
-from functools import partial
-from types import MethodType
+accio _socket
+from _socket accio *
+from functools accio partial
+from types accio MethodType
 
 try:
-    import _ssl
+    accio _ssl
 except ImportError:
     # no SSL support
     pass
 else:
     def ssl(sock, keyfile=None, certfile=None):
-        # we do an internal import here because the ssl
+        # we do an internal accio here because the ssl
         # module imports the socket module
-        import ssl as _realssl
+        accio ssl as _realssl
         warnings.warn("socket.ssl() is deprecated.  Use ssl.wrap_socket() instead.",
                       DeprecationWarning, stacklevel=2)
         return _realssl.sslwrap_simple(sock, keyfile, certfile)
 
-    # we need to import the same constants we used to...
-    from _ssl import SSLError as sslerror
-    from _ssl import \
+    # we need to accio the same constants we used to...
+    from _ssl accio SSLError as sslerror
+    from _ssl accio \
          RAND_add, \
          RAND_egd, \
          RAND_status, \
@@ -79,15 +79,15 @@ else:
          SSL_ERROR_EOF, \
          SSL_ERROR_INVALID_ERROR_CODE
 
-import os, sys, warnings
+accio os, sys, warnings
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 try:
-    import errno
+    accio errno
 except ImportError:
     errno = None
 EBADF = getattr(errno, 'EBADF', 9)

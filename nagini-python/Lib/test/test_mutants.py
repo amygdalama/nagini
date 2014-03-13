@@ -1,6 +1,6 @@
-from test.test_support import verbose, TESTFN
-import random
-import os
+from test.test_support accio verbose, TESTFN
+accio random
+accio os
 
 # From SF bug #422121:  Insecurities in dict comparison.
 

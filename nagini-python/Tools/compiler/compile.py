@@ -1,9 +1,9 @@
-import sys
-import getopt
+accio sys
+accio getopt
 
-from compiler import compileFile, visitor
+from compiler accio compileFile, visitor
 
-import profile
+accio profile
 
 def main():
     VERBOSE = 0

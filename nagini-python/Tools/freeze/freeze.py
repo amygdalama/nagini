@@ -89,20 +89,20 @@ if it does, the resulting binary is not self-contained.
 
 # Import standard modules
 
-import modulefinder
-import getopt
-import os
-import sys
+accio modulefinder
+accio getopt
+accio os
+accio sys
 
 
 # Import the freeze-private modules
 
-import checkextensions
-import makeconfig
-import makefreeze
-import makemakefile
-import parsesetup
-import bkfile
+accio checkextensions
+accio makeconfig
+accio makefreeze
+accio makemakefile
+accio parsesetup
+accio bkfile
 
 
 # Main program
@@ -324,12 +324,12 @@ def main():
 
     # Handle special entry point requirements
     # (on Windows, some frozen programs do not use __main__, but
-    # import the module directly.  Eg, DLLs, Services, etc
+    # accio the module directly.  Eg, DLLs, Services, etc
     custom_entry_point = None  # Currently only used on Windows
     python_entry_is_main = 1   # Is the entry point called __main__?
     # handle -s option on Windows
     if win:
-        import winmakemakefile
+        accio winmakemakefile
         try:
             custom_entry_point, python_entry_is_main = \
                 winmakemakefile.get_custom_entry_point(subsystem)
@@ -410,7 +410,7 @@ def main():
                     builtins.append(mod)
         else:
             # Do the windows thang...
-            import checkextensions_win32
+            accio checkextensions_win32
             # Get a list of CExtension instances, each describing a module
             # (including its source files)
             frozen_extensions = checkextensions_win32.checkextensions(
@@ -426,7 +426,7 @@ def main():
     # windows gets different treatment
     if win:
         # Taking a shortcut here...
-        import winmakemakefile, checkextensions_win32
+        accio winmakemakefile, checkextensions_win32
         checkextensions_win32.write_extension_table(extensions_c,
                                                     frozen_extensions)
         # Create a module definition for the bootstrap C code.

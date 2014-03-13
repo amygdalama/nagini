@@ -6,8 +6,8 @@
 # test_ module.
 #
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 #
 # No test cases for outstanding bugs at the moment.

@@ -1,8 +1,8 @@
 # Tests universal newline support for both reading and parsing files.
-import unittest
-import os
-import sys
-from test import test_support
+accio unittest
+accio os
+accio sys
+from test accio test_support
 
 if not hasattr(sys.stdin, 'newlines'):
     raise unittest.SkipTest, \

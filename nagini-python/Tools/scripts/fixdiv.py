@@ -130,10 +130,10 @@ Notes:
   files given by relative pathnames.
 """
 
-import sys
-import getopt
-import re
-import tokenize
+accio sys
+accio getopt
+accio re
+accio tokenize
 
 multi_ok = 0
 

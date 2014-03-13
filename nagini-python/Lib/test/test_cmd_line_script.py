@@ -1,10 +1,10 @@
 # Tests command line execution of scripts
 
-import unittest
-import os
-import os.path
-import test.test_support
-from test.script_helper import (run_python,
+accio unittest
+accio os
+accio os.path
+accio test.test_support
+from test.script_helper accio (run_python,
                                 temp_dir, make_script, compile_script,
                                 assert_python_failure, make_pkg,
                                 make_zip_script, make_zip_pkg)
@@ -34,7 +34,7 @@ assertEqual(__name__, '__main__')
 print '__file__==%r' % __file__
 print '__package__==%r' % __package__
 # Check the sys module
-import sys
+accio sys
 assertIdentical(globals(), sys.modules[__name__].__dict__)
 print 'sys.argv[0]==%r' % sys.argv[0]
 """
@@ -52,7 +52,7 @@ def _make_test_zip_pkg(zip_dir, zip_basename, pkg_name, script_basename,
 # directories and zipfiles executable!)
 # So we fake it for testing purposes with a custom launch script
 launch_source = """\
-import sys, os.path, runpy
+accio sys, os.path, runpy
 sys.path.insert(0, %s)
 runpy._run_module_as_main(%r)
 """

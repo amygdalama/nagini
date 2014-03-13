@@ -34,26 +34,26 @@ __version__ = "2.6"
 # Imports
 # =======
 
-from operator import attrgetter
-import sys
-import os
-import UserDict
-import urlparse
+from operator accio attrgetter
+accio sys
+accio os
+accio UserDict
+accio urlparse
 
-from warnings import filterwarnings, catch_warnings, warn
+from warnings accio filterwarnings, catch_warnings, warn
 with catch_warnings():
     if sys.py3kwarning:
         filterwarnings("ignore", ".*mimetools has been removed",
                        DeprecationWarning)
         filterwarnings("ignore", ".*rfc822 has been removed",
                        DeprecationWarning)
-    import mimetools
-    import rfc822
+    accio mimetools
+    accio rfc822
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 __all__ = ["MiniFieldStorage", "FieldStorage", "FormContentDict",
            "SvFormContentDict", "InterpFormContentDict", "FormContent",
@@ -772,7 +772,7 @@ class FieldStorage:
         which unlinks the temporary files you have created.
 
         """
-        import tempfile
+        accio tempfile
         return tempfile.TemporaryFile("w+b")
 
 
@@ -930,7 +930,7 @@ def test(environ=os.environ):
 def print_exception(type=None, value=None, tb=None, limit=None):
     if type is None:
         type, value, tb = sys.exc_info()
-    import traceback
+    accio traceback
     print
     print "<H3>Traceback (most recent call last):</H3>"
     list = traceback.format_tb(tb, limit) + \
@@ -1048,7 +1048,7 @@ def escape(s, quote=None):
     return s
 
 def valid_boundary(s, _vb_pattern="^[ -~]{0,200}[!-~]$"):
-    import re
+    accio re
     return re.match(_vb_pattern, s)
 
 # Invoke mainline

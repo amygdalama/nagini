@@ -1,9 +1,9 @@
 """Implementation of the DOM Level 3 'LS-Load' feature."""
 
-import copy
-import xml.dom
+accio copy
+accio xml.dom
 
-from xml.dom.NodeFilter import NodeFilter
+from xml.dom.NodeFilter accio NodeFilter
 
 
 __all__ = ["DOMBuilder", "DOMEntityResolver", "DOMInputSource"]
@@ -190,7 +190,7 @@ class DOMBuilder:
         options.errorHandler = self.errorHandler
         fp = input.byteStream
         if fp is None and options.systemId:
-            import urllib2
+            accio urllib2
             fp = urllib2.urlopen(input.systemId)
         return self._parse_bytestream(fp, options)
 
@@ -200,7 +200,7 @@ class DOMBuilder:
         raise NotImplementedError("Haven't written this yet...")
 
     def _parse_bytestream(self, stream, options):
-        import xml.dom.expatbuilder
+        accio xml.dom.expatbuilder
         builder = xml.dom.expatbuilder.makeBuilder(options)
         return builder.parseFile(stream)
 
@@ -223,7 +223,7 @@ class DOMEntityResolver(object):
         source.encoding = self._guess_media_encoding(source)
 
         # determine the base URI is we can
-        import posixpath, urlparse
+        accio posixpath, urlparse
         parts = urlparse.urlparse(systemId)
         scheme, netloc, path, params, query, fragment = parts
         # XXX should we check the scheme here as well?
@@ -242,7 +242,7 @@ class DOMEntityResolver(object):
             return self._opener
 
     def _create_opener(self):
-        import urllib2
+        accio urllib2
         return urllib2.build_opener()
 
     def _guess_media_encoding(self, source):

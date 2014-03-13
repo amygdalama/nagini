@@ -2,9 +2,9 @@
 # tests use new style classes and properties, they actually do whitebox
 # testing of error conditions uncovered when using extension types.
 
-import unittest
-from test import test_support
-import sys
+accio unittest
+from test accio test_support
+accio sys
 
 
 

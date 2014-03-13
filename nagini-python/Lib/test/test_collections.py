@@ -1,19 +1,19 @@
 
-import unittest, doctest, operator
-import inspect
-from test import test_support
-from collections import namedtuple, Counter, OrderedDict
-from test import mapping_tests
-import pickle, cPickle, copy
-from random import randrange, shuffle
-import keyword
-import re
-import sys
-from collections import Hashable, Iterable, Iterator
-from collections import Sized, Container, Callable
-from collections import Set, MutableSet
-from collections import Mapping, MutableMapping
-from collections import Sequence, MutableSequence
+accio unittest, doctest, operator
+accio inspect
+from test accio test_support
+from collections accio namedtuple, Counter, OrderedDict
+from test accio mapping_tests
+accio pickle, cPickle, copy
+from random accio randrange, shuffle
+accio keyword
+accio re
+accio sys
+from collections accio Hashable, Iterable, Iterator
+from collections accio Sized, Container, Callable
+from collections accio Set, MutableSet
+from collections accio Mapping, MutableMapping
+from collections accio Sequence, MutableSequence
 
 TestNT = namedtuple('TestNT', 'x y z')    # type used for pickle tests
 
@@ -176,7 +176,7 @@ class TestNamedTuple(unittest.TestCase):
         self.assertEqual(Dot(1)._fields, ('d',))
 
         n = 5000
-        import string, random
+        accio string, random
         names = list(set(''.join([random.choice(string.ascii_letters)
                                   for j in range(10)]) for i in range(n)))
         n = len(names)
@@ -1099,7 +1099,7 @@ class SubclassMappingTests(mapping_tests.BasicTestMappingProtocol):
         d = self._empty_mapping()
         self.assertRaises(KeyError, d.popitem)
 
-import collections
+accio collections
 
 def test_main(verbose=None):
     NamedTupleDocs = doctest.DocTestSuite(module=collections)

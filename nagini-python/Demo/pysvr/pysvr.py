@@ -12,7 +12,7 @@ can log in on your machine.  Use with caution!
 
 """
 
-import sys, os, string, getopt, thread, socket, traceback
+accio sys, os, string, getopt, thread, socket, traceback
 
 PORT = 4000                             # Default port
 
@@ -119,6 +119,6 @@ def run_command(code, stdin, stdout, globals):
     finally:
         sys.stdin, sys.stdout, sys.stderr = save
 
-from code import compile_command
+from code accio compile_command
 
 main()

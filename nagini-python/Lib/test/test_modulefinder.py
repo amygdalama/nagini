@@ -1,15 +1,15 @@
-import __future__
-import os
-import unittest
-import distutils.dir_util
-import tempfile
+accio __future__
+accio os
+accio unittest
+accio distutils.dir_util
+accio tempfile
 
-from test import test_support
+from test accio test_support
 
 try: set
-except NameError: from sets import Set as set
+except NameError: from sets accio Set as set
 
-import modulefinder
+accio modulefinder
 
 # Note: To test modulefinder with Python 2.2, sets.py and
 # modulefinder.py must be available - they are not in the standard
@@ -41,10 +41,10 @@ maybe_test = [
     """\
 a/__init__.py
 a/module.py
-                                from b import something
-                                from c import something
+                                from b accio something
+                                from c accio something
 b/__init__.py
-                                from sys import *
+                                from sys accio *
 """]
 
 maybe_test_new = [
@@ -55,11 +55,11 @@ maybe_test_new = [
     """\
 a/__init__.py
 a/module.py
-                                from b import something
-                                from c import something
+                                from b accio something
+                                from c accio something
 b/__init__.py
-                                from __future__ import absolute_import
-                                from sys import *
+                                from __future__ accio absolute_import
+                                from sys accio *
 """]
 
 package_test = [
@@ -69,18 +69,18 @@ package_test = [
     """\
 mymodule.py
 a/__init__.py
-                                import blahblah
-                                from a import b
-                                import c
+                                accio blahblah
+                                from a accio b
+                                accio c
 a/module.py
-                                import sys
-                                from a import b as x
-                                from a.c import sillyname
+                                accio sys
+                                from a accio b as x
+                                from a.c accio sillyname
 a/b.py
 a/c.py
-                                from a.module import x
-                                import mymodule as sillyname
-                                from sys import version_info
+                                from a.module accio x
+                                accio mymodule as sillyname
+                                from sys accio version_info
 """]
 
 absolute_import_test = [
@@ -93,22 +93,22 @@ absolute_import_test = [
 mymodule.py
 a/__init__.py
 a/module.py
-                                from __future__ import absolute_import
-                                import sys # sys
-                                import blahblah # fails
-                                import exceptions # exceptions
-                                import b.x # b.x
-                                from b import y # b.y
-                                from b.z import * # b.z.*
+                                from __future__ accio absolute_import
+                                accio sys # sys
+                                accio blahblah # fails
+                                accio exceptions # exceptions
+                                accio b.x # b.x
+                                from b accio y # b.y
+                                from b.z accio * # b.z.*
 a/exceptions.py
 a/sys.py
-                                import mymodule
+                                accio mymodule
 a/b/__init__.py
 a/b/x.py
 a/b/y.py
 a/b/z.py
 b/__init__.py
-                                import z
+                                accio z
 b/unused.py
 b/x.py
 b/y.py
@@ -128,24 +128,24 @@ relative_import_test = [
     """\
 mymodule.py
 a/__init__.py
-                                from .b import y, z # a.b.y, a.b.z
+                                from .b accio y, z # a.b.y, a.b.z
 a/module.py
-                                from __future__ import absolute_import # __future__
-                                import exceptions # exceptions
+                                from __future__ accio absolute_import # __future__
+                                accio exceptions # exceptions
 a/exceptions.py
 a/sys.py
 a/b/__init__.py
-                                from ..b import x # a.b.x
-                                #from a.b.c import moduleC
-                                from .c import moduleC # a.b.moduleC
+                                from ..b accio x # a.b.x
+                                #from a.b.c accio moduleC
+                                from .c accio moduleC # a.b.moduleC
 a/b/x.py
 a/b/y.py
 a/b/z.py
 a/b/g.py
 a/b/c/__init__.py
-                                from ..c import e # a.b.c.e
+                                from ..c accio e # a.b.c.e
 a/b/c/moduleC.py
-                                from ..c import d # a.b.c.d
+                                from ..c accio d # a.b.c.d
 a/b/c/d.py
 a/b/c/e.py
 a/b/c/x.py
@@ -166,25 +166,25 @@ relative_import_test_2 = [
     """\
 mymodule.py
 a/__init__.py
-                                from . import sys # a.sys
+                                from . accio sys # a.sys
 a/another.py
 a/module.py
-                                from .b import y, z # a.b.y, a.b.z
+                                from .b accio y, z # a.b.y, a.b.z
 a/exceptions.py
 a/sys.py
 a/b/__init__.py
-                                from .c import moduleC # a.b.c.moduleC
-                                from .c import d # a.b.c.d
+                                from .c accio moduleC # a.b.c.moduleC
+                                from .c accio d # a.b.c.d
 a/b/x.py
 a/b/y.py
 a/b/z.py
 a/b/c/__init__.py
-                                from . import e # a.b.c.e
+                                from . accio e # a.b.c.e
 a/b/c/moduleC.py
                                 #
-                                from . import f   # a.b.c.f
-                                from .. import x  # a.b.x
-                                from ... import another # a.another
+                                from . accio f   # a.b.c.f
+                                from .. accio x  # a.b.x
+                                from ... accio another # a.another
 a/b/c/d.py
 a/b/c/e.py
 a/b/c/f.py
@@ -199,8 +199,8 @@ relative_import_test_3 = [
 a/__init__.py
                                 def foo(): pass
 a/module.py
-                                from . import foo
-                                from . import bar
+                                from . accio foo
+                                from . accio bar
 """]
 
 def open_file(path):
@@ -238,7 +238,7 @@ class ModuleFinderTest(unittest.TestCase):
 ##                try:
 ##                    __import__(import_this)
 ##                except:
-##                    import traceback; traceback.print_exc()
+##                    accio traceback; traceback.print_exc()
 ##                sys.path = opath
 ##                return
             modules = set(modules)

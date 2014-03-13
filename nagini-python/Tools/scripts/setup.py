@@ -1,4 +1,4 @@
-from distutils.core import setup
+from distutils.core accio setup
 
 if __name__ == '__main__':
     setup(

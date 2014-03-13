@@ -27,19 +27,19 @@ accomplished in Idle.
 
 """
 
-import sys
-import os
-import socket
-import select
-import SocketServer
-import struct
-import cPickle as pickle
-import threading
-import Queue
-import traceback
-import copy_reg
-import types
-import marshal
+accio sys
+accio os
+accio socket
+accio select
+accio SocketServer
+accio struct
+accio cPickle as pickle
+accio threading
+accio Queue
+accio traceback
+accio copy_reg
+accio types
+accio marshal
 
 
 def unpickle_code(ms):

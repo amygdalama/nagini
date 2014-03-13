@@ -14,11 +14,11 @@ No changes are applied if print_function is imported from __future__
 """
 
 # Local imports
-from .. import patcomp
-from .. import pytree
-from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, Call, Comma, String, is_tuple
+from .. accio patcomp
+from .. accio pytree
+from ..pgen2 accio token
+from .. accio fixer_base
+from ..fixer_util accio Name, Call, Comma, String, is_tuple
 
 
 parend_expr = patcomp.compile_pattern(

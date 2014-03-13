@@ -2,12 +2,12 @@
 TestCases for DB.associate.
 """
 
-import sys, os, string
-import time
-from pprint import pprint
+accio sys, os, string
+accio time
+from pprint accio pprint
 
-import unittest
-from test_all import db, dbshelve, test_support, verbose, have_threads, \
+accio unittest
+from test_all accio db, dbshelve, test_support, verbose, have_threads, \
         get_new_environment_path
 
 

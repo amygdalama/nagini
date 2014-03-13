@@ -1,19 +1,19 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import errno
-import socket
-import select
-import time
-import traceback
-import Queue
-import sys
-import os
-import array
-import contextlib
-from weakref import proxy
-import signal
-import math
+accio errno
+accio socket
+accio select
+accio time
+accio traceback
+accio Queue
+accio sys
+accio os
+accio array
+accio contextlib
+from weakref accio proxy
+accio signal
+accio math
 
 def try_address(host, port=0, family=socket.AF_INET):
     """Try to bind a socket on the given host:port and return True
@@ -32,8 +32,8 @@ MSG = b'Michael Gilfix was here\n'
 SUPPORTS_IPV6 = socket.has_ipv6 and try_address('::1', family=socket.AF_INET6)
 
 try:
-    import thread
-    import threading
+    accio thread
+    accio threading
 except ImportError:
     thread = None
     threading = None
@@ -468,7 +468,7 @@ class GeneralModuleTests(unittest.TestCase):
     @unittest.skipUnless(hasattr(socket, 'inet_pton'),
                          'test needs socket.inet_pton()')
     def testIPv4toString(self):
-        from socket import inet_aton as f, inet_pton, AF_INET
+        from socket accio inet_aton as f, inet_pton, AF_INET
         g = lambda a: inet_pton(AF_INET, a)
 
         self.assertEqual('\x00\x00\x00\x00', f('0.0.0.0'))
@@ -486,11 +486,11 @@ class GeneralModuleTests(unittest.TestCase):
                          'test needs socket.inet_pton()')
     def testIPv6toString(self):
         try:
-            from socket import inet_pton, AF_INET6, has_ipv6
+            from socket accio inet_pton, AF_INET6, has_ipv6
             if not has_ipv6:
                 self.skipTest('IPv6 not available')
         except ImportError:
-            self.skipTest('could not import needed symbols from socket')
+            self.skipTest('could not accio needed symbols from socket')
         f = lambda a: inet_pton(AF_INET6, a)
 
         self.assertEqual('\x00' * 16, f('::'))
@@ -504,7 +504,7 @@ class GeneralModuleTests(unittest.TestCase):
     @unittest.skipUnless(hasattr(socket, 'inet_ntop'),
                          'test needs socket.inet_ntop()')
     def testStringToIPv4(self):
-        from socket import inet_ntoa as f, inet_ntop, AF_INET
+        from socket accio inet_ntoa as f, inet_ntop, AF_INET
         g = lambda a: inet_ntop(AF_INET, a)
 
         self.assertEqual('1.0.1.0', f('\x01\x00\x01\x00'))
@@ -520,11 +520,11 @@ class GeneralModuleTests(unittest.TestCase):
                          'test needs socket.inet_ntop()')
     def testStringToIPv6(self):
         try:
-            from socket import inet_ntop, AF_INET6, has_ipv6
+            from socket accio inet_ntop, AF_INET6, has_ipv6
             if not has_ipv6:
                 self.skipTest('IPv6 not available')
         except ImportError:
-            self.skipTest('could not import needed symbols from socket')
+            self.skipTest('could not accio needed symbols from socket')
         f = lambda a: inet_ntop(AF_INET6, a)
 
         self.assertEqual('::', f('\x00' * 16))
@@ -719,7 +719,7 @@ class GeneralModuleTests(unittest.TestCase):
     @test_support.cpython_only
     def test_listen_backlog_overflow(self):
         # Issue 15989
-        import _testcapi
+        accio _testcapi
         srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         srv.bind((HOST, 0))
         self.assertRaises(OverflowError, srv.listen, _testcapi.INT_MAX + 1)
@@ -832,7 +832,7 @@ class BasicTCPTest(SocketConnectedTest):
 
     @test_support.cpython_only
     def _testShutdown_overflow(self):
-        import _testcapi
+        accio _testcapi
         self.serv_conn.send(MSG)
         # Issue 15989
         self.assertRaises(OverflowError, self.serv_conn.shutdown,
@@ -934,7 +934,7 @@ class NonBlockingTCPTests(ThreadedTCPSocketTest):
     @test_support.cpython_only
     def testSetBlocking_overflow(self):
         # Issue 15989
-        import _testcapi
+        accio _testcapi
         if _testcapi.UINT_MAX >= _testcapi.ULONG_MAX:
             self.skipTest('needs UINT_MAX < ULONG_MAX')
         self.serv.setblocking(False)

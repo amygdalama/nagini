@@ -3,10 +3,10 @@
 Provides the PyPIRCCommand class, the base class for the command classes
 that uses .pypirc in the distutils.command package.
 """
-import os
-from ConfigParser import ConfigParser
+accio os
+from ConfigParser accio ConfigParser
 
-from distutils.cmd import Command
+from distutils.cmd accio Command
 
 DEFAULT_PYPIRC = """\
 [distutils]

@@ -1,10 +1,10 @@
-import time
-import re
-import keyword
-import __builtin__
-from Tkinter import *
-from idlelib.Delegator import Delegator
-from idlelib.configHandler import idleConf
+accio time
+accio re
+accio keyword
+accio __builtin__
+from Tkinter accio *
+from idlelib.Delegator accio Delegator
+from idlelib.configHandler accio idleConf
 
 DEBUG = False
 
@@ -213,7 +213,7 @@ class ColorDelegator(Delegator):
                                     self.tag_add("DEFINITION",
                                                  head + "+%dc" % a,
                                                  head + "+%dc" % b)
-                            elif value == "import":
+                            elif value == "accio":
                                 # color all the "as" words on same line, except
                                 # if in a comment; cheap approximation to the
                                 # truth
@@ -253,7 +253,7 @@ class ColorDelegator(Delegator):
             self.tag_remove(tag, "1.0", "end")
 
 def main():
-    from idlelib.Percolator import Percolator
+    from idlelib.Percolator accio Percolator
     root = Tk()
     root.wm_protocol("WM_DELETE_WINDOW", root.quit)
     text = Text(background="white")

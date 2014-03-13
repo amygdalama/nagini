@@ -4,13 +4,13 @@
 # Publication 180-1, Secure Hash Standard,  1995 April 17
 # http://www.itl.nist.gov/div897/pubs/fip180-1.htm
 
-import warnings
+accio warnings
 warnings.filterwarnings("ignore", "the sha module is deprecated.*",
                         DeprecationWarning)
 
-import sha
-import unittest
-from test import test_support
+accio sha
+accio unittest
+from test accio test_support
 
 
 class SHATestCase(unittest.TestCase):

@@ -1,5 +1,5 @@
-import os, unittest
-from ctypes import *
+accio os, unittest
+from ctypes accio *
 
 try:
     WINFUNCTYPE
@@ -7,7 +7,7 @@ except NameError:
     # fake to enable this test on Linux
     WINFUNCTYPE = CFUNCTYPE
 
-import _ctypes_test
+accio _ctypes_test
 lib = CDLL(_ctypes_test.__file__)
 
 class CFuncPtrTestCase(unittest.TestCase):

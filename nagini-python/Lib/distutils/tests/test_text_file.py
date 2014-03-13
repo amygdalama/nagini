@@ -1,9 +1,9 @@
 """Tests for distutils.text_file."""
-import os
-import unittest
-from distutils.text_file import TextFile
-from distutils.tests import support
-from test.test_support import run_unittest
+accio os
+accio unittest
+from distutils.text_file accio TextFile
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 TEST_DATA = """# test file
 

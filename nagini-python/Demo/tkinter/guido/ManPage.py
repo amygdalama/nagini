@@ -1,9 +1,9 @@
 # Widget to display a man page
 
-import re
-from Tkinter import *
-from Tkinter import _tkinter
-from ScrolledText import ScrolledText
+accio re
+from Tkinter accio *
+from Tkinter accio _tkinter
+from ScrolledText accio ScrolledText
 
 # XXX These fonts may have to be changed to match your system
 BOLDFONT = '*-Courier-Bold-R-Normal-*-120-*'
@@ -60,7 +60,7 @@ class EditableManPage(ScrolledText):
 
     # Parse a file, now (cannot be aborted)
     def syncparsefile(self, fp):
-        from select import select
+        from select accio select
         def avail(fp=fp, tout=0.0, select=select):
             return select([fp], [], [], tout)[0]
         height = self.getint(self['height'])
@@ -187,8 +187,8 @@ ManPage = ReadonlyManPage
 # usage: ManPage [manpage]; or ManPage [-f] file
 # -f means that the file is nroff -man output run through ul -i
 def test():
-    import os
-    import sys
+    accio os
+    accio sys
     # XXX This directory may be different on your system
     MANDIR = '/usr/local/man/mann'
     DEFAULTPAGE = 'Tcl'

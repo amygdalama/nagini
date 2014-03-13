@@ -1,7 +1,7 @@
 # This is a temporary setup script to allow distribution of
 # MacPython 2.4 modules for MacPython 2.3.
 
-from distutils.core import Extension, setup
+from distutils.core accio Extension, setup
 
 setup(name="OSA", version="0.1",
         ext_modules=[

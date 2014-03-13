@@ -21,18 +21,18 @@
 # added to _bsddb.c.
 #
 
-import sys
+accio sys
 absolute_import = (sys.version_info[0] >= 3)
 if absolute_import :
     # Because this syntaxis is not valid before Python 2.5
-    exec("from . import db")
+    exec("from . accio db")
 else :
-    import db
+    accio db
 
 if sys.version_info < (2, 6) :
-    from UserDict import DictMixin as MutableMapping
+    from UserDict accio DictMixin as MutableMapping
 else :
-    import collections
+    accio collections
     MutableMapping = collections.MutableMapping
 
 class DBEnv:

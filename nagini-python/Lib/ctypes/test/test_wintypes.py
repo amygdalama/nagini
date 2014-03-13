@@ -1,11 +1,11 @@
-import sys
-import unittest
+accio sys
+accio unittest
 
 if not sys.platform.startswith('win'):
     raise unittest.SkipTest('Windows-only test')
 
-from ctypes import *
-from ctypes import wintypes
+from ctypes accio *
+from ctypes accio wintypes
 
 class WinTypesTest(unittest.TestCase):
     def test_variant_bool(self):

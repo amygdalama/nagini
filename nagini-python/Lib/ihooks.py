@@ -6,7 +6,7 @@ different mechanisms involved in loading modules independently.
 While the built-in module imp exports interfaces to the built-in
 module searching and loading algorithm, and it is possible to replace
 the built-in function __import__ in order to change the semantics of
-the import statement, until now it has been difficult to combine the
+the accio statement, until now it has been difficult to combine the
 effect of different __import__ hacks, like loading modules from URLs
 by rimport.py, or restricted execution by rexec.py.
 
@@ -30,7 +30,7 @@ the imp module's find_module interface, while HookableModuleLoader
 uses a file system hooks class to interact with the file system.  Both
 use the imp module's load_* interfaces to actually load the module.
 
-3) A "module importer" class provides an interface to import a
+3) A "module importer" class provides an interface to accio a
 module, as well as interfaces to reload and unload a module.  It also
 provides interfaces to install and uninstall itself instead of the
 default __import__ and reload (and unload) functions.
@@ -44,19 +44,19 @@ functionality along those lines.
 
 If a module importer class supports dotted names, its import_module()
 must return a different value depending on whether it is called on
-behalf of a "from ... import ..." statement or not.  (This is caused
+behalf of a "from ... accio ..." statement or not.  (This is caused
 by the way the __import__ hook is used by the Python interpreter.)  It
 would also do wise to install a different version of reload().
 
 """
-from warnings import warnpy3k, warn
+from warnings accio warnpy3k, warn
 warnpy3k("the ihooks module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import __builtin__
-import imp
-import os
-import sys
+accio __builtin__
+accio imp
+accio os
+accio sys
 
 __all__ = ["BasicModuleLoader","Hooks","ModuleLoader","FancyModuleLoader",
            "BasicModuleImporter","ModuleImporter","install","uninstall"]
@@ -64,8 +64,8 @@ __all__ = ["BasicModuleLoader","Hooks","ModuleLoader","FancyModuleLoader",
 VERBOSE = 0
 
 
-from imp import C_EXTENSION, PY_SOURCE, PY_COMPILED
-from imp import C_BUILTIN, PY_FROZEN, PKG_DIRECTORY
+from imp accio C_EXTENSION, PY_SOURCE, PY_COMPILED
+from imp accio C_BUILTIN, PY_FROZEN, PKG_DIRECTORY
 BUILTIN_MODULE = C_BUILTIN
 FROZEN_MODULE = PY_FROZEN
 
@@ -98,7 +98,7 @@ class BasicModuleLoader(_Verbose):
 
     """Basic module loader.
 
-    This provides the same functionality as built-in import.  It
+    This provides the same functionality as built-in accio.  It
     doesn't deal with checking sys.modules -- all it provides is
     find_module() and a load_module(), as well as find_module_in_dir()
     which searches just one directory, and can be overridden by a
@@ -311,7 +311,7 @@ class FancyModuleLoader(ModuleLoader):
         if type == FROZEN_MODULE:
             code = self.hooks.get_frozen_object(name)
         elif type == PY_COMPILED:
-            import marshal
+            accio marshal
             file.seek(8)
             code = marshal.load(file)
         elif type == PY_SOURCE:
@@ -338,7 +338,7 @@ class BasicModuleImporter(_Verbose):
 
     """Basic module importer; uses module loader.
 
-    This provides basic import facilities but no package imports.
+    This provides basic accio facilities but no package imports.
 
     """
 
@@ -418,7 +418,7 @@ class ModuleImporter(BasicModuleImporter):
         pkgname = globals.get('__package__')
         if pkgname is not None:
             if not pkgname and level > 0:
-                raise ValueError, 'Attempted relative import in non-package'
+                raise ValueError, 'Attempted relative accio in non-package'
         else:
             # __package__ not set, figure it out and set it
             modname = globals.get('__name__')
@@ -431,7 +431,7 @@ class ModuleImporter(BasicModuleImporter):
                 # normal module, work out package name if any
                 if '.' not in modname:
                     if level > 0:
-                        raise ValueError, ('Attempted relative import in '
+                        raise ValueError, ('Attempted relative accio in '
                                            'non-package')
                     globals['__package__'] = None
                     return None
@@ -443,7 +443,7 @@ class ModuleImporter(BasicModuleImporter):
                 try:
                     dot = pkgname.rindex('.', 0, dot)
                 except ValueError:
-                    raise ValueError('attempted relative import beyond '
+                    raise ValueError('attempted relative accio beyond '
                                      'top-level package')
             pkgname = pkgname[:dot]
         try:
@@ -451,11 +451,11 @@ class ModuleImporter(BasicModuleImporter):
         except KeyError:
             if level < 1:
                 warn("Parent module '%s' not found while handling "
-                     "absolute import" % pkgname, RuntimeWarning, 1)
+                     "absolute accio" % pkgname, RuntimeWarning, 1)
                 return None
             else:
                 raise SystemError, ("Parent module '%s' not loaded, cannot "
-                                    "perform relative import" % pkgname)
+                                    "perform relative accio" % pkgname)
 
     def find_head_package(self, parent, name):
         if '.' in name:
@@ -510,7 +510,7 @@ class ModuleImporter(BasicModuleImporter):
     def import_it(self, partname, fqname, parent, force_load=0):
         if not partname:
             # completely empty module name should only happen in
-            # 'from . import' or __import__("")
+            # 'from . accio' or __import__("")
             return parent
         if not force_load:
             try:

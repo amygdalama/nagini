@@ -32,17 +32,17 @@
 # SUCH DAMAGE.
 #
 
-import bisect
-import mmap
-import tempfile
-import os
-import sys
-import threading
-import itertools
+accio bisect
+accio mmap
+accio tempfile
+accio os
+accio sys
+accio threading
+accio itertools
 
-import _multiprocessing
-from multiprocessing.util import Finalize, info
-from multiprocessing.forking import assert_spawning
+accio _multiprocessing
+from multiprocessing.util accio Finalize, info
+from multiprocessing.forking accio assert_spawning
 
 __all__ = ['BufferWrapper']
 
@@ -52,7 +52,7 @@ __all__ = ['BufferWrapper']
 
 if sys.platform == 'win32':
 
-    from _multiprocessing import win32
+    from _multiprocessing accio win32
 
     class Arena(object):
 

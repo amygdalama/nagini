@@ -1,13 +1,13 @@
 """Tests for distutils.spawn."""
-import unittest
-import os
-import time
-from test.test_support import captured_stdout, run_unittest
+accio unittest
+accio os
+accio time
+from test.test_support accio captured_stdout, run_unittest
 
-from distutils.spawn import _nt_quote_args
-from distutils.spawn import spawn, find_executable
-from distutils.errors import DistutilsExecError
-from distutils.tests import support
+from distutils.spawn accio _nt_quote_args
+from distutils.spawn accio spawn, find_executable
+from distutils.errors accio DistutilsExecError
+from distutils.tests accio support
 
 class SpawnTestCase(support.TempdirManager,
                     support.LoggingSilencer,

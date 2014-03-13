@@ -1,7 +1,7 @@
-from Carbon.Sound import *
-from Carbon import Snd
+from Carbon.Sound accio *
+from Carbon accio Snd
 
-import aifc, audioop
+accio aifc, audioop
 
 fn = 'f:just samples:2ndbeat.aif'
 af = aifc.open(fn, 'r')
@@ -16,7 +16,7 @@ print repr(frames[:100])
 frames = audioop.add(frames, '\x80'*len(frames), 1)
 print repr(frames[:100])
 
-import struct
+accio struct
 
 header1 = struct.pack('llhhllbbl',
                       0,

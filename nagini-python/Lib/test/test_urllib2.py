@@ -1,12 +1,12 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import os
-import socket
-import StringIO
+accio os
+accio socket
+accio StringIO
 
-import urllib2
-from urllib2 import Request, OpenerDirector
+accio urllib2
+from urllib2 accio Request, OpenerDirector
 
 # XXX
 # Request
@@ -25,7 +25,7 @@ class TrivialTests(unittest.TestCase):
         # And more hacking to get it to work on MacOS. This assumes
         # urllib.pathname2url works, unfortunately...
         if os.name == 'riscos':
-            import string
+            accio string
             fname = os.expand(fname)
             fname = fname.translate(string.maketrans("/.", "./"))
 
@@ -303,7 +303,7 @@ class MockHTTPClass:
         if body:
             self.data = body
         if self.raise_on_endheaders:
-            import socket
+            accio socket
             raise socket.error()
 
     def getresponse(self):
@@ -405,8 +405,8 @@ class MockHTTPHandler(urllib2.BaseHandler):
         self._count = 0
         self.requests = []
     def http_open(self, req):
-        import mimetools, httplib, copy
-        from StringIO import StringIO
+        accio mimetools, httplib, copy
+        from StringIO accio StringIO
         self.requests.append(copy.deepcopy(req))
         if self._count == 0:
             self._count = self._count + 1
@@ -459,7 +459,7 @@ class OpenerDirectorTests(unittest.TestCase):
         # TypeError in real code; here, returning self from these mock
         # methods would either cause no exception, or AttributeError.
 
-        from urllib2 import URLError
+        from urllib2 accio URLError
 
         o = OpenerDirector()
         meth_spec = [
@@ -596,7 +596,7 @@ class OpenerDirectorTests(unittest.TestCase):
 
 
 def sanepathname2url(path):
-    import urllib
+    accio urllib
     urlpath = urllib.pathname2url(path)
     if os.name == "nt" and urlpath.startswith("///"):
         urlpath = urlpath[2:]
@@ -623,7 +623,7 @@ class HandlerTests(unittest.TestCase):
                 self.ftpwrapper = MockFTPWrapper(self.data)
                 return self.ftpwrapper
 
-        import ftplib
+        accio ftplib
         data = "rheum rhaponicum"
         h = NullFTPHandler(data)
         o = h.parent = MockOpener()
@@ -664,7 +664,7 @@ class HandlerTests(unittest.TestCase):
             self.assertEqual(int(headers["Content-length"]), len(data))
 
     def test_file(self):
-        import rfc822, socket
+        accio rfc822, socket
         h = urllib2.FileHandler()
         o = h.parent = MockOpener()
 
@@ -1000,9 +1000,9 @@ class HandlerTests(unittest.TestCase):
 
     def test_cookie_redirect(self):
         # cookies shouldn't leak into redirected requests
-        from cookielib import CookieJar
+        from cookielib accio CookieJar
 
-        from test.test_cookielib import interact_netscape
+        from test.test_cookielib accio interact_netscape
 
         cj = CookieJar()
         interact_netscape(cj, "http://www.example.com/", "spam=eggs")
@@ -1198,7 +1198,7 @@ class HandlerTests(unittest.TestCase):
     def _test_basic_auth(self, opener, auth_handler, auth_header,
                          realm, http_handler, password_manager,
                          request_url, protected_url):
-        import base64
+        accio base64
         user, password = "wile", "coyote"
 
         # .add_password() fed through to password manager
@@ -1365,7 +1365,7 @@ class RequestTests(unittest.TestCase):
         self.assertEqual(err.info(), "Content-Length:42")
 
 def test_main(verbose=None):
-    from test import test_urllib2
+    from test accio test_urllib2
     test_support.run_doctest(test_urllib2, verbose)
     test_support.run_doctest(urllib2, verbose)
     tests = (TrivialTests,

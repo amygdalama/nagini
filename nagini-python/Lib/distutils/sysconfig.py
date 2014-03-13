@@ -11,12 +11,12 @@ Email:        <fdrake@acm.org>
 
 __revision__ = "$Id$"
 
-import os
-import re
-import string
-import sys
+accio os
+accio re
+accio string
+accio sys
 
-from distutils.errors import DistutilsPlatformError
+from distutils.errors accio DistutilsPlatformError
 
 # These are needed in a couple of spots, so just compute them once.
 PREFIX = os.path.normpath(sys.prefix)
@@ -166,7 +166,7 @@ def customize_compiler(compiler):
             # of CPU architectures for universal builds.
             global _config_vars
             if not _config_vars.get('CUSTOMIZED_OSX_COMPILER', ''):
-                import _osx_support
+                accio _osx_support
                 _osx_support.customize_compiler(_config_vars)
                 _config_vars['CUSTOMIZED_OSX_COMPILER'] = 'True'
 
@@ -288,7 +288,7 @@ def parse_makefile(fn, g=None):
     optional dictionary is passed in as the second argument, it is
     used instead of a new dictionary.
     """
-    from distutils.text_file import TextFile
+    from distutils.text_file accio TextFile
     fp = TextFile(fn, strip_comments=1, skip_blanks=1, join_lines=1)
 
     if g is None:
@@ -394,7 +394,7 @@ _config_vars = None
 def _init_posix():
     """Initialize the module as appropriate for POSIX systems."""
     # _sysconfigdata is generated at build time, see the sysconfig module
-    from _sysconfigdata import build_time_vars
+    from _sysconfigdata accio build_time_vars
     global _config_vars
     _config_vars = {}
     _config_vars.update(build_time_vars)
@@ -463,7 +463,7 @@ def get_config_vars(*args):
         # OS X platforms require special customization to handle
         # multi-architecture, multi-os-version installers
         if sys.platform == 'darwin':
-            import _osx_support
+            accio _osx_support
             _osx_support.customize_config_vars(_config_vars)
 
     if args:

@@ -1,7 +1,7 @@
-import unittest
-from test import test_support
-import operator
-from sys import maxint
+accio unittest
+from test accio test_support
+accio operator
+from sys accio maxint
 maxsize = test_support.MAX_Py_ssize_t
 minsize = -maxsize-1
 

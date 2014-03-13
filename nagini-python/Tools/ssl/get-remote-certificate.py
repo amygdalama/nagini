@@ -6,14 +6,14 @@
 #
 # By Bill Janssen.
 
-import sys
+accio sys
 
 def fetch_server_certificate (host, port):
 
-    import re, tempfile, os, ssl
+    accio re, tempfile, os, ssl
 
     def subproc(cmd):
-        from subprocess import Popen, PIPE, STDOUT
+        from subprocess accio Popen, PIPE, STDOUT
         proc = Popen(cmd, stdout=PIPE, stderr=STDOUT, shell=True)
         status = proc.wait()
         output = proc.stdout.read()

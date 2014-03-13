@@ -1,11 +1,11 @@
 """Tests for distutils.command.bdist."""
-import os
-import unittest
+accio os
+accio unittest
 
-from test.test_support import run_unittest
+from test.test_support accio run_unittest
 
-from distutils.command.bdist import bdist
-from distutils.tests import support
+from distutils.command.bdist accio bdist
+from distutils.tests accio support
 
 
 class BuildTestCase(support.TempdirManager,

@@ -7,14 +7,14 @@ Returned filename is either the input filename or a temporary filename;
 in the latter case the caller must ensure that it is removed.
 Other temporary files used are removed by the function.
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the toaiff module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import os
-import tempfile
-import pipes
-import sndhdr
+accio os
+accio tempfile
+accio pipes
+accio sndhdr
 
 __all__ = ["error", "toaiff"]
 

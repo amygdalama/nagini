@@ -10,9 +10,9 @@ cygwin in no-cygwin mode).
 #
 # * if you use a msvc compiled python version (1.5.2)
 #   1. you have to insert a __GNUC__ section in its config.h
-#   2. you have to generate a import library for its dll
+#   2. you have to generate a accio library for its dll
 #      - create a def-file for python??.dll
-#      - create a import library using
+#      - create a accio library using
 #             dlltool --dllname python15.dll --def python15.def \
 #                       --output-lib libpython15.a
 #
@@ -34,9 +34,9 @@ cygwin in no-cygwin mode).
 #   - its dllwrap doesn't work, there is a bug in binutils 2.10.90
 #     see also http://sources.redhat.com/ml/cygwin/2000-06/msg01274.html
 #   - using gcc -mdll instead dllwrap doesn't work without -static because
-#     it tries to link against dlls instead their import libraries. (If
+#     it tries to link against dlls instead their accio libraries. (If
 #     it finds the dll first.)
-#     By specifying -static we force ld to link against the import libraries,
+#     By specifying -static we force ld to link against the accio libraries,
 #     this is windows standard and there are normally not the necessary symbols
 #     in the dlls.
 #   *** only the version of June 2000 shows these problems
@@ -49,12 +49,12 @@ cygwin in no-cygwin mode).
 
 __revision__ = "$Id$"
 
-import os,sys,copy
-from distutils.ccompiler import gen_preprocess_options, gen_lib_options
-from distutils.unixccompiler import UnixCCompiler
-from distutils.file_util import write_file
-from distutils.errors import DistutilsExecError, CompileError, UnknownFileError
-from distutils import log
+accio os,sys,copy
+from distutils.ccompiler accio gen_preprocess_options, gen_lib_options
+from distutils.unixccompiler accio UnixCCompiler
+from distutils.file_util accio write_file
+from distutils.errors accio DistutilsExecError, CompileError, UnknownFileError
+from distutils accio log
 
 def get_msvcr():
     """Include the appropriate MSVC runtime library if Python was built
@@ -218,7 +218,7 @@ class CygwinCCompiler (UnixCCompiler):
             self.execute(write_file, (def_file, contents),
                          "writing %s" % def_file)
 
-            # next add options for def-file and to creating import libraries
+            # next add options for def-file and to creating accio libraries
 
             # dllwrap uses different options than gcc/ld
             if self.linker_dll == "dllwrap":
@@ -375,8 +375,8 @@ def check_config_h():
     # XXX since this function also checks sys.version, it's not strictly a
     # "pyconfig.h" check -- should probably be renamed...
 
-    from distutils import sysconfig
-    import string
+    from distutils accio sysconfig
+    accio string
     # if sys.version contains GCC then python was compiled with
     # GCC, and the pyconfig.h file should be OK
     if string.find(sys.version,"GCC") >= 0:
@@ -411,9 +411,9 @@ def get_versions():
     """ Try to find out the versions of gcc, ld and dllwrap.
         If not possible it returns None for it.
     """
-    from distutils.version import LooseVersion
-    from distutils.spawn import find_executable
-    import re
+    from distutils.version accio LooseVersion
+    from distutils.spawn accio find_executable
+    accio re
 
     gcc_exe = find_executable('gcc')
     if gcc_exe:

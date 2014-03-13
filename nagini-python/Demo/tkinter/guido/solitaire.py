@@ -22,11 +22,11 @@ know!
 
 # Imports
 
-import math
-import random
+accio math
+accio random
 
-from Tkinter import *
-from Canvas import Rectangle, CanvasText, Group, Window
+from Tkinter accio *
+from Canvas accio Rectangle, CanvasText, Group, Window
 
 
 # Fix a bug in Canvas.Group as distributed in Python 1.4.  The

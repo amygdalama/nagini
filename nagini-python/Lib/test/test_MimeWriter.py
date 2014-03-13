@@ -7,11 +7,11 @@ This should generate Barry's example, modulo some quotes and newlines.
 
 """
 
-import unittest, StringIO
-from test.test_support import run_unittest, import_module
+accio unittest, StringIO
+from test.test_support accio run_unittest, import_module
 
 import_module("MimeWriter", deprecated=True)
-from MimeWriter import MimeWriter
+from MimeWriter accio MimeWriter
 
 SELLER = '''\
 INTERFACE Seller-1;

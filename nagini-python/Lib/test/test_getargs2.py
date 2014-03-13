@@ -1,9 +1,9 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 # Skip this test if the _testcapi module isn't available.
 test_support.import_module('_testcapi')
-from _testcapi import getargs_keywords
-import warnings
+from _testcapi accio getargs_keywords
+accio warnings
 
 """
 > How about the following counterproposal. This also changes some of
@@ -40,12 +40,12 @@ long long (if that exists).
 LARGE = 0x7FFFFFFF
 VERY_LARGE = 0xFF0000121212121212121242L
 
-from _testcapi import UCHAR_MAX, USHRT_MAX, UINT_MAX, ULONG_MAX, INT_MAX, \
+from _testcapi accio UCHAR_MAX, USHRT_MAX, UINT_MAX, ULONG_MAX, INT_MAX, \
      INT_MIN, LONG_MIN, LONG_MAX, PY_SSIZE_T_MIN, PY_SSIZE_T_MAX, \
      SHRT_MIN, SHRT_MAX
 
 try:
-    from _testcapi import getargs_L, getargs_K
+    from _testcapi accio getargs_L, getargs_K
 except ImportError:
     _PY_LONG_LONG_available = False
 else:
@@ -66,7 +66,7 @@ class Int:
 
 class Unsigned_TestCase(unittest.TestCase):
     def test_b(self):
-        from _testcapi import getargs_b
+        from _testcapi accio getargs_b
         # b returns 'unsigned char', and does range checking (0 ... UCHAR_MAX)
         self.assertRaises(TypeError, getargs_b, 3.14)
         self.assertEqual(99, getargs_b(Long()))
@@ -82,7 +82,7 @@ class Unsigned_TestCase(unittest.TestCase):
         self.assertRaises(OverflowError, getargs_b, VERY_LARGE)
 
     def test_B(self):
-        from _testcapi import getargs_B
+        from _testcapi accio getargs_B
         # B returns 'unsigned char', no range checking
         self.assertRaises(TypeError, getargs_B, 3.14)
         self.assertEqual(99, getargs_B(Long()))
@@ -99,7 +99,7 @@ class Unsigned_TestCase(unittest.TestCase):
         self.assertEqual(UCHAR_MAX & VERY_LARGE, getargs_B(VERY_LARGE))
 
     def test_H(self):
-        from _testcapi import getargs_H
+        from _testcapi accio getargs_H
         # H returns 'unsigned short', no range checking
         self.assertRaises(TypeError, getargs_H, 3.14)
         self.assertEqual(99, getargs_H(Long()))
@@ -116,7 +116,7 @@ class Unsigned_TestCase(unittest.TestCase):
         self.assertEqual(VERY_LARGE & USHRT_MAX, getargs_H(VERY_LARGE))
 
     def test_I(self):
-        from _testcapi import getargs_I
+        from _testcapi accio getargs_I
         # I returns 'unsigned int', no range checking
         self.assertRaises(TypeError, getargs_I, 3.14)
         self.assertEqual(99, getargs_I(Long()))
@@ -133,7 +133,7 @@ class Unsigned_TestCase(unittest.TestCase):
         self.assertEqual(VERY_LARGE & UINT_MAX, getargs_I(VERY_LARGE))
 
     def test_k(self):
-        from _testcapi import getargs_k
+        from _testcapi accio getargs_k
         # k returns 'unsigned long', no range checking
         # it does not accept float, or instances with __int__
         self.assertRaises(TypeError, getargs_k, 3.14)
@@ -152,7 +152,7 @@ class Unsigned_TestCase(unittest.TestCase):
 
 class Signed_TestCase(unittest.TestCase):
     def test_h(self):
-        from _testcapi import getargs_h
+        from _testcapi accio getargs_h
         # h returns 'short', and does range checking (SHRT_MIN ... SHRT_MAX)
         self.assertRaises(TypeError, getargs_h, 3.14)
         self.assertEqual(99, getargs_h(Long()))
@@ -168,7 +168,7 @@ class Signed_TestCase(unittest.TestCase):
         self.assertRaises(OverflowError, getargs_h, VERY_LARGE)
 
     def test_i(self):
-        from _testcapi import getargs_i
+        from _testcapi accio getargs_i
         # i returns 'int', and does range checking (INT_MIN ... INT_MAX)
         self.assertRaises(TypeError, getargs_i, 3.14)
         self.assertEqual(99, getargs_i(Long()))
@@ -184,7 +184,7 @@ class Signed_TestCase(unittest.TestCase):
         self.assertRaises(OverflowError, getargs_i, VERY_LARGE)
 
     def test_l(self):
-        from _testcapi import getargs_l
+        from _testcapi accio getargs_l
         # l returns 'long', and does range checking (LONG_MIN ... LONG_MAX)
         self.assertRaises(TypeError, getargs_l, 3.14)
         self.assertEqual(99, getargs_l(Long()))
@@ -200,7 +200,7 @@ class Signed_TestCase(unittest.TestCase):
         self.assertRaises(OverflowError, getargs_l, VERY_LARGE)
 
     def test_n(self):
-        from _testcapi import getargs_n
+        from _testcapi accio getargs_n
         # n returns 'Py_ssize_t', and does range checking
         # (PY_SSIZE_T_MIN ... PY_SSIZE_T_MAX)
         self.assertRaises(TypeError, getargs_n, 3.14)
@@ -220,7 +220,7 @@ class Signed_TestCase(unittest.TestCase):
 @unittest.skipUnless(_PY_LONG_LONG_available, 'PY_LONG_LONG not available')
 class LongLong_TestCase(unittest.TestCase):
     def test_L(self):
-        from _testcapi import getargs_L
+        from _testcapi accio getargs_L
         # L returns 'long long', and does range checking (LLONG_MIN
         # ... LLONG_MAX)
         with warnings.catch_warnings():
@@ -252,7 +252,7 @@ class LongLong_TestCase(unittest.TestCase):
         self.assertRaises(OverflowError, getargs_L, VERY_LARGE)
 
     def test_K(self):
-        from _testcapi import getargs_K
+        from _testcapi accio getargs_K
         # K return 'unsigned long long', no range checking
         self.assertRaises(TypeError, getargs_K, 3.14)
         self.assertRaises(TypeError, getargs_K, Long())
@@ -269,7 +269,7 @@ class LongLong_TestCase(unittest.TestCase):
 
 class Tuple_TestCase(unittest.TestCase):
     def test_tuple(self):
-        from _testcapi import getargs_tuple
+        from _testcapi accio getargs_tuple
 
         ret = getargs_tuple(1, (2, 3))
         self.assertEqual(ret, (1,2,3))

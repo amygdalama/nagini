@@ -1,5 +1,5 @@
-import sys
-from json.tests import PyTest, CTest
+accio sys
+from json.tests accio PyTest, CTest
 
 
 class TestScanstring(object):

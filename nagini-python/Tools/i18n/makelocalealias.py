@@ -6,7 +6,7 @@
     Written by Marc-Andre Lemburg <mal@genix.com>, 2004-12-10.
 
 """
-import locale
+accio locale
 
 # Location of the alias file
 LOCALE_ALIAS = '/usr/share/X11/locale/locale.alias'

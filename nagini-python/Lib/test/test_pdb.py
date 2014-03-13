@@ -1,16 +1,16 @@
 # A test suite for pdb; at the moment, this only validates skipping of
 # specified test modules (RFE #5142).
 
-import imp
-import sys
-import os
-import unittest
-import subprocess
-import textwrap
+accio imp
+accio sys
+accio os
+accio unittest
+accio subprocess
+accio textwrap
 
-from test import test_support
+from test accio test_support
 # This little helper class is essential for testing pdb under doctest.
-from test_doctest import _FakeInput
+from test_doctest accio _FakeInput
 
 
 class PdbTestCase(unittest.TestCase):
@@ -34,7 +34,7 @@ class PdbTestCase(unittest.TestCase):
 
     def test_issue13183(self):
         script = """
-            from bar import bar
+            from bar accio bar
 
             def foo():
                 bar()
@@ -49,7 +49,7 @@ class PdbTestCase(unittest.TestCase):
             foobar()
         """
         commands = """
-            from bar import bar
+            from bar accio bar
             break bar
             continue
             step
@@ -90,7 +90,7 @@ def test_pdb_displayhook():
     """This tests the custom displayhook for pdb.
 
     >>> def test_function(foo, bar):
-    ...     import pdb; pdb.Pdb().set_trace()
+    ...     accio pdb; pdb.Pdb().set_trace()
     ...     pass
 
     >>> with PdbTestInput([
@@ -118,7 +118,7 @@ def test_pdb_breakpoint_commands():
     """Test basic commands related to breakpoints.
 
     >>> def test_function():
-    ...     import pdb; pdb.Pdb().set_trace()
+    ...     accio pdb; pdb.Pdb().set_trace()
     ...     print(1)
     ...     print(2)
     ...     print(3)
@@ -127,7 +127,7 @@ def test_pdb_breakpoint_commands():
     First, need to clear bdb state that might be left over from previous tests.
     Otherwise, the new breakpoints might get assigned different numbers.
 
-    >>> from bdb import Breakpoint
+    >>> from bdb accio Breakpoint
     >>> Breakpoint.next = 1
     >>> Breakpoint.bplist = {}
     >>> Breakpoint.bpbynumber = [None]
@@ -221,8 +221,8 @@ def test_pdb_skip_modules():
     """This illustrates the simple case of module skipping.
 
     >>> def skip_module():
-    ...     import string
-    ...     import pdb; pdb.Pdb(skip=['string*']).set_trace()
+    ...     accio string
+    ...     accio pdb; pdb.Pdb(skip=['string*']).set_trace()
     ...     string.lower('FOO')
 
     >>> with PdbTestInput([
@@ -251,7 +251,7 @@ def test_pdb_skip_modules_with_callback():
     >>> def skip_module():
     ...     def callback():
     ...         return None
-    ...     import pdb; pdb.Pdb(skip=['module_to_skip*']).set_trace()
+    ...     accio pdb; pdb.Pdb(skip=['module_to_skip*']).set_trace()
     ...     mod.foo_pony(callback)
 
     >>> with PdbTestInput([
@@ -292,7 +292,7 @@ def test_pdb_continue_in_bottomframe():
     """Test that "continue" and "next" work properly in bottom frame (issue #5294).
 
     >>> def test_function():
-    ...     import pdb, sys; inst = pdb.Pdb()
+    ...     accio pdb, sys; inst = pdb.Pdb()
     ...     inst.set_trace()
     ...     inst.botframe = sys._getframe()  # hackery to get the right botframe
     ...     print(1)
@@ -303,7 +303,7 @@ def test_pdb_continue_in_bottomframe():
     First, need to clear bdb state that might be left over from previous tests.
     Otherwise, the new breakpoints might get assigned different numbers.
 
-    >>> from bdb import Breakpoint
+    >>> from bdb accio Breakpoint
     >>> Breakpoint.next = 1
     >>> Breakpoint.bplist = {}
     >>> Breakpoint.bpbynumber = [None]
@@ -364,7 +364,7 @@ class ModuleInitTester(unittest.TestCase):
 
 
 def test_main():
-    from test import test_pdb
+    from test accio test_pdb
     test_support.run_doctest(test_pdb, verbosity=True)
     test_support.run_unittest(
         PdbTestCase,

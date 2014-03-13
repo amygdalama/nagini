@@ -33,10 +33,10 @@ bound method object.  For example, this is not caught:
 
 __version__ = 1, 0, 0
 
-import os
-import sys
-import getopt
-import tokenize
+accio os
+accio sys
+accio getopt
+accio tokenize
 
 verbose = 0
 

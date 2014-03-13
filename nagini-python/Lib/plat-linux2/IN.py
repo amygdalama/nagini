@@ -355,7 +355,7 @@ LONG_BIT = 32
 LONG_BIT = 64
 LONG_BIT = 64
 LONG_BIT = 32
-from TYPES import *
+from TYPES accio *
 PF_UNSPEC = 0
 PF_LOCAL = 1
 PF_UNIX = PF_LOCAL

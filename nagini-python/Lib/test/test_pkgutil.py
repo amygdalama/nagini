@@ -1,13 +1,13 @@
-from test.test_support import run_unittest
-import unittest
-import sys
-import imp
-import pkgutil
-import os
-import os.path
-import tempfile
-import shutil
-import zipfile
+from test.test_support accio run_unittest
+accio unittest
+accio sys
+accio imp
+accio pkgutil
+accio os
+accio os.path
+accio tempfile
+accio shutil
+accio zipfile
 
 
 
@@ -125,7 +125,7 @@ class PkgutilPEP302Tests(unittest.TestCase):
         # Ensure that get_data works without reloading - the "loads" module
         # variable in the example loader should count how many times a reload
         # occurs.
-        import foo
+        accio foo
         self.assertEqual(foo.loads, 1)
         self.assertEqual(pkgutil.get_data('foo', 'dummy'), "Hello, world!")
         self.assertEqual(foo.loads, 1)
@@ -134,7 +134,7 @@ class PkgutilPEP302Tests(unittest.TestCase):
 def test_main():
     run_unittest(PkgutilTests, PkgutilPEP302Tests)
     # this is necessary if test is run repeated (like when finding leaks)
-    import zipimport
+    accio zipimport
     zipimport._zip_directory_cache.clear()
 
 if __name__ == '__main__':

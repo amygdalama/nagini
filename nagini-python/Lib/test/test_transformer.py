@@ -1,10 +1,10 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # Silence Py3k warning
 test_support.import_module('compiler', deprecated=True)
-from compiler import transformer, ast
-from compiler import compile
+from compiler accio transformer, ast
+from compiler accio compile
 
 class Tests(unittest.TestCase):
 

@@ -11,8 +11,8 @@ The CurvesTurtle class and the fractal-curve-
 methods are taken from the PythonCard example
 scripts for turtle-graphics.
 """
-from turtle import *
-from time import sleep, clock
+from turtle accio *
+from time accio sleep, clock
 
 class CurvesTurtle(Pen):
     # example derived from
@@ -45,7 +45,7 @@ class CurvesTurtle(Pen):
     # Koch curve, after Helge von Koch who introduced this geometric figure in 1904
     # p. 146
     def fractalgon(self, n, rad, lev, dir):
-        import math
+        accio math
 
         # if dir = 1 turn outward
         # if dir = -1 turn inward

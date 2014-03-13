@@ -5,13 +5,13 @@ section on using the parser module.  Refer to the manual for a thorough
 discussion of the operation of this code.
 """
 
-import os
-import parser
-import symbol
-import token
-import types
+accio os
+accio parser
+accio symbol
+accio token
+accio types
 
-from types import ListType, TupleType
+from types accio ListType, TupleType
 
 
 def get_docs(fileName):

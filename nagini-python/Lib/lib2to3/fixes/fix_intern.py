@@ -6,9 +6,9 @@
 intern(s) -> sys.intern(s)"""
 
 # Local imports
-from .. import pytree
-from .. import fixer_base
-from ..fixer_util import Name, Attr, touch_import
+from .. accio pytree
+from .. accio fixer_base
+from ..fixer_util accio Name, Attr, touch_import
 
 
 class FixIntern(fixer_base.BaseFix):

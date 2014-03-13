@@ -1,13 +1,13 @@
-import gc
-import sys
-import unittest
-import UserList
-import weakref
-import operator
-import contextlib
-import copy
+accio gc
+accio sys
+accio unittest
+accio UserList
+accio weakref
+accio operator
+accio contextlib
+accio copy
 
-from test import test_support
+from test accio test_support
 
 # Used in ReferencesTestCase.test_ref_created_during_del() .
 ref_from_del = None
@@ -420,7 +420,7 @@ class ReferencesTestCase(TestBase):
         # when the second attempt to remove the instance from the "list
         # of all objects" occurs.
 
-        import gc
+        accio gc
 
         class C(object):
             pass
@@ -450,7 +450,7 @@ class ReferencesTestCase(TestBase):
         del c2
 
     def test_callback_in_cycle_1(self):
-        import gc
+        accio gc
 
         class J(object):
             pass
@@ -490,7 +490,7 @@ class ReferencesTestCase(TestBase):
         gc.collect()
 
     def test_callback_in_cycle_2(self):
-        import gc
+        accio gc
 
         # This is just like test_callback_in_cycle_1, except that II is an
         # old-style class.  The symptom is different then:  an instance of an
@@ -519,7 +519,7 @@ class ReferencesTestCase(TestBase):
         gc.collect()
 
     def test_callback_in_cycle_3(self):
-        import gc
+        accio gc
 
         # This one broke the first patch that fixed the last two.  In this
         # case, the objects reachable from the callback aren't also reachable
@@ -543,7 +543,7 @@ class ReferencesTestCase(TestBase):
         gc.collect()
 
     def test_callback_in_cycle_4(self):
-        import gc
+        accio gc
 
         # Like test_callback_in_cycle_3, except c2 and c1 have different
         # classes.  c2's class (C) isn't reachable from c1 then, so protecting
@@ -571,7 +571,7 @@ class ReferencesTestCase(TestBase):
         gc.collect()
 
     def test_callback_in_cycle_resurrection(self):
-        import gc
+        accio gc
 
         # Do something nasty in a weakref callback:  resurrect objects
         # from dead cycles.  For this to be attempted, the weakref and
@@ -617,7 +617,7 @@ class ReferencesTestCase(TestBase):
         self.assertEqual(alist, [])
 
     def test_callbacks_on_callback(self):
-        import gc
+        accio gc
 
         # Set up weakref callbacks *on* weakref callbacks.
         alist = []
@@ -1363,7 +1363,7 @@ class MappingTestCase(TestBase):
         self.assertEqual(len(d), 0)
         self.assertEqual(count, 2)
 
-from test import mapping_tests
+from test accio mapping_tests
 
 class WeakValueDictionaryTestCase(mapping_tests.BasicTestMappingProtocol):
     """Check that WeakValueDictionary conforms to the mapping protocol"""
@@ -1381,7 +1381,7 @@ class WeakKeyDictionaryTestCase(mapping_tests.BasicTestMappingProtocol):
 
 libreftest = """ Doctest for examples in the library reference: weakref.rst
 
->>> import weakref
+>>> accio weakref
 >>> class Dict(dict):
 ...     pass
 ...
@@ -1390,7 +1390,7 @@ libreftest = """ Doctest for examples in the library reference: weakref.rst
 >>> print r() is obj
 True
 
->>> import weakref
+>>> accio weakref
 >>> class Object:
 ...     pass
 ...
@@ -1403,7 +1403,7 @@ True
 >>> print r()
 None
 
->>> import weakref
+>>> accio weakref
 >>> class ExtendedRef(weakref.ref):
 ...     def __init__(self, ob, callback=None, **annotations):
 ...         super(ExtendedRef, self).__init__(ob, callback)
@@ -1437,7 +1437,7 @@ None
 True
 
 
->>> import weakref
+>>> accio weakref
 >>> _id2obj_dict = weakref.WeakValueDictionary()
 >>> def remember(obj):
 ...     oid = id(obj)

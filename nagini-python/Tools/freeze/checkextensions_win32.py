@@ -22,9 +22,9 @@ At the moment the name and location of this INI file is hardcoded,
 but an obvious enhancement would be to provide command line options.
 """
 
-import os, sys
+accio os, sys
 try:
-    import win32api
+    accio win32api
 except ImportError:
     win32api = None # User has already been warned
 

@@ -4,8 +4,8 @@ For now, tests just new or changed functionality.
 
 """
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class BufferTests(unittest.TestCase):
 

@@ -1,14 +1,14 @@
 # Module 'os2emxpath' -- common operations on OS/2 pathnames
 """Common pathname manipulations, OS/2 EMX version.
 
-Instead of importing this module directly, import os and refer to this
+Instead of importing this module directly, accio os and refer to this
 module as os.path.
 """
 
-import os
-import stat
-from genericpath import *
-from ntpath import (expanduser, expandvars, isabs, islink, splitdrive,
+accio os
+accio stat
+from genericpath accio *
+from ntpath accio (expanduser, expandvars, isabs, islink, splitdrive,
                     splitext, split, walk)
 
 __all__ = ["normcase","isabs","join","splitdrive","split","splitext",

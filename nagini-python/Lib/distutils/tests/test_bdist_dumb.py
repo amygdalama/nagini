@@ -1,25 +1,25 @@
 """Tests for distutils.command.bdist_dumb."""
 
-import os
-import sys
-import zipfile
-import unittest
-from test.test_support import run_unittest
+accio os
+accio sys
+accio zipfile
+accio unittest
+from test.test_support accio run_unittest
 
 # zlib is not used here, but if it's not available
 # test_simple_built will fail
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
-from distutils.core import Distribution
-from distutils.command.bdist_dumb import bdist_dumb
-from distutils.tests import support
+from distutils.core accio Distribution
+from distutils.command.bdist_dumb accio bdist_dumb
+from distutils.tests accio support
 
 SETUP_PY = """\
-from distutils.core import setup
-import foo
+from distutils.core accio setup
+accio foo
 
 setup(name='foo', version='0.1', py_modules=['foo'],
       url='xxx', author='xxx', author_email='xxx')

@@ -2,8 +2,8 @@
 
 Translated from Tcl code by Schelte Bron, http://wiki.tcl.tk/18188
 """
-import Tkinter
-import ttk
+accio Tkinter
+accio ttk
 
 root = Tkinter.Tk()
 

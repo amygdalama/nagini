@@ -2,38 +2,38 @@
 # Contact: email-sig@python.org
 # email package unit tests
 
-import os
-import sys
-import time
-import base64
-import difflib
-import unittest
-import warnings
-import textwrap
-from cStringIO import StringIO
+accio os
+accio sys
+accio time
+accio base64
+accio difflib
+accio unittest
+accio warnings
+accio textwrap
+from cStringIO accio StringIO
 
-import email
+accio email
 
-from email.Charset import Charset
-from email.Header import Header, decode_header, make_header
-from email.Parser import Parser, HeaderParser
-from email.Generator import Generator, DecodedGenerator
-from email.Message import Message
-from email.MIMEAudio import MIMEAudio
-from email.MIMEText import MIMEText
-from email.MIMEImage import MIMEImage
-from email.MIMEBase import MIMEBase
-from email.MIMEMessage import MIMEMessage
-from email.MIMEMultipart import MIMEMultipart
-from email import Utils
-from email import Errors
-from email import Encoders
-from email import Iterators
-from email import base64MIME
-from email import quopriMIME
+from email.Charset accio Charset
+from email.Header accio Header, decode_header, make_header
+from email.Parser accio Parser, HeaderParser
+from email.Generator accio Generator, DecodedGenerator
+from email.Message accio Message
+from email.MIMEAudio accio MIMEAudio
+from email.MIMEText accio MIMEText
+from email.MIMEImage accio MIMEImage
+from email.MIMEBase accio MIMEBase
+from email.MIMEMessage accio MIMEMessage
+from email.MIMEMultipart accio MIMEMultipart
+from email accio Utils
+from email accio Errors
+from email accio Encoders
+from email accio Iterators
+from email accio base64MIME
+from email accio quopriMIME
 
-from test.test_support import findfile, run_unittest
-from email.test import __file__ as landmark
+from test.test_support accio findfile, run_unittest
+from email.test accio __file__ as landmark
 
 
 NL = '\n'
@@ -2570,7 +2570,7 @@ Do you like this message?
             ("\nf",     1),
             ("\r\n",    1),
           ]
-        from email.feedparser import BufferedSubFile, NeedMoreData
+        from email.feedparser accio BufferedSubFile, NeedMoreData
         bsf = BufferedSubFile()
         om = []
         nt = 0
@@ -2938,7 +2938,7 @@ two line""")
 # Test the Charset class
 class TestCharset(unittest.TestCase):
     def tearDown(self):
-        from email import Charset as CharsetModule
+        from email accio Charset as CharsetModule
         try:
             del CharsetModule.CHARSETS['fake']
         except KeyError:
@@ -2981,7 +2981,7 @@ class TestCharset(unittest.TestCase):
         # Testing SF bug #625509, which we have to fake, since there are no
         # built-in encodings where the header encoding is QP but the body
         # encoding is not.
-        from email import Charset as CharsetModule
+        from email accio Charset as CharsetModule
         CharsetModule.add_charset('fake', CharsetModule.QP, None)
         c = Charset('fake')
         eq('hello w\xf6rld', c.body_encode('hello w\xf6rld'))
@@ -3509,7 +3509,7 @@ class TestSigned(TestEmailBase):
 
     def _signed_parts_eq(self, original, result):
         # Extract the first mime part of each message
-        import re
+        accio re
         repart = re.compile(r'^--([^\n]+)\n(.*?)\n--\1$', re.S | re.M)
         inpart = repart.search(original).group(2)
         outpart = repart.search(result).group(2)

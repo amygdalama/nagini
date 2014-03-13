@@ -1,10 +1,10 @@
 """RPC Client module."""
 
-import sys
-import socket
-import pickle
-import __builtin__
-import os
+accio sys
+accio socket
+accio pickle
+accio __builtin__
+accio os
 
 
 # Default verbosity (0 = silent, 1 = print connections, 2 = print requests too)
@@ -126,13 +126,13 @@ class Client:
         self._wf.flush()
 
 
-from security import Security
+from security accio Security
 
 
 class SecureClient(Client, Security):
 
     def __init__(self, *args):
-        import string
+        accio string
         apply(self._pre_init, args)
         Security.__init__(self)
         self._wf.flush()

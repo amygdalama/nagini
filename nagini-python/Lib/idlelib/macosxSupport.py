@@ -2,9 +2,9 @@
 A number of function that enhance IDLE on MacOSX when it used as a normal
 GUI application (as opposed to an X11 application).
 """
-import sys
-import Tkinter
-from os import path
+accio sys
+accio Tkinter
+from os accio path
 
 
 _appbundle = None
@@ -92,11 +92,11 @@ def overrideRootMenu(root, flist):
     #
     # Due to a (mis-)feature of TkAqua the user will also see an empty Help
     # menu.
-    from Tkinter import Menu, Text, Text
-    from idlelib.EditorWindow import prepstr, get_accelerator
-    from idlelib import Bindings
-    from idlelib import WindowList
-    from idlelib.MultiCall import MultiCallCreator
+    from Tkinter accio Menu, Text, Text
+    from idlelib.EditorWindow accio prepstr, get_accelerator
+    from idlelib accio Bindings
+    from idlelib accio WindowList
+    from idlelib.MultiCall accio MultiCallCreator
 
     menubar = Menu(root)
     root.configure(menu=menubar)
@@ -116,16 +116,16 @@ def overrideRootMenu(root, flist):
     WindowList.register_callback(postwindowsmenu)
 
     def about_dialog(event=None):
-        from idlelib import aboutDialog
+        from idlelib accio aboutDialog
         aboutDialog.AboutDialog(root, 'About IDLE')
 
     def config_dialog(event=None):
-        from idlelib import configDialog
+        from idlelib accio configDialog
         root.instance_dict = flist.inversedict
         configDialog.ConfigDialog(root, 'Settings')
 
     def help_dialog(event=None):
-        from idlelib import textView
+        from idlelib accio textView
         fn = path.join(path.abspath(path.dirname(__file__)), 'help.txt')
         textView.view_file(root, 'Help', fn)
 

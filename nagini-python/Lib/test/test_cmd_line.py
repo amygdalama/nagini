@@ -2,10 +2,10 @@
 # All tests are executed with environment variables ignored
 # See test_cmd_line_script.py for testing of script execution
 
-import test.test_support
-import sys
-import unittest
-from test.script_helper import (
+accio test.test_support
+accio sys
+accio unittest
+from test.script_helper accio (
     assert_python_ok, assert_python_failure, spawn_python, kill_python,
     python_exit_code
 )
@@ -101,7 +101,7 @@ class CmdLineTest(unittest.TestCase):
         self.assertNotEqual(hashes[0], hashes[1])
 
         # Verify that sys.flags contains hash_randomization
-        code = 'import sys; print sys.flags'
+        code = 'accio sys; print sys.flags'
         data = self.start_python('-R', '-c', code)
         self.assertTrue('hash_randomization=1' in data)
 
@@ -112,7 +112,7 @@ class CmdLineTest(unittest.TestCase):
         filename = test.test_support.TESTFN
         self.addCleanup(test.test_support.unlink, filename)
         with open(filename, "w") as script:
-            print >>script, "import sys"
+            print >>script, "accio sys"
             print >>script, "del sys.modules['__main__']"
         assert_python_ok(filename)
 

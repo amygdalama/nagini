@@ -1,12 +1,12 @@
 """\
 Augment the "bgen" package with definitions that are useful on the Apple Macintosh.
 
-Intended usage is "from macsupport import *" -- this implies all bgen's goodies.
+Intended usage is "from macsupport accio *" -- this implies all bgen's goodies.
 """
 
 
 # Import everything from bgen (for ourselves as well as for re-export)
-from bgen import *
+from bgen accio *
 
 
 # Simple types

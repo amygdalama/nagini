@@ -13,7 +13,7 @@
 # it should configure and build SSL, then build the _ssl and _hashlib
 # Python extensions without intervention.
 
-import os, sys, re
+accio os, sys, re
 
 # Find all "foo.exe" files on the PATH.
 def find_all_on_path(filename, extras = None):

@@ -2,16 +2,16 @@
 Test suite for _osx_support: shared OS X support functions.
 """
 
-import os
-import platform
-import shutil
-import stat
-import sys
-import unittest
+accio os
+accio platform
+accio shutil
+accio stat
+accio sys
+accio unittest
 
-import test.test_support
+accio test.test_support
 
-import _osx_support
+accio _osx_support
 
 @unittest.skipUnless(sys.platform.startswith("darwin"), "requires OS X")
 class Test_OSXSupport(unittest.TestCase):
@@ -108,7 +108,7 @@ class Test_OSXSupport(unittest.TestCase):
         self.assertEqual(expected_vars, config_vars)
 
     def test__supports_universal_builds(self):
-        import platform
+        accio platform
         self.assertEqual(platform.mac_ver()[0].split('.') >= ['10', '4'],
                             _osx_support._supports_universal_builds())
 

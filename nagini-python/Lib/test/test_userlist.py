@@ -1,7 +1,7 @@
 # Check every path through every method of UserList
 
-from UserList import UserList
-from test import test_support, list_tests
+from UserList accio UserList
+from test accio test_support, list_tests
 
 class UserListTest(list_tests.CommonTest):
     type2test = UserList

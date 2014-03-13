@@ -6,9 +6,9 @@ timestamp dependency analysis."""
 
 __revision__ = "$Id$"
 
-import os
-from stat import ST_MTIME
-from distutils.errors import DistutilsFileError
+accio os
+from stat accio ST_MTIME
+from distutils.errors accio DistutilsFileError
 
 def newer(source, target):
     """Tells if the target is newer than the source.

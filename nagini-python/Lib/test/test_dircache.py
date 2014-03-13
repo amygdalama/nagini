@@ -3,10 +3,10 @@
   Nick Mathewson
 """
 
-import unittest
-from test.test_support import run_unittest, import_module
+accio unittest
+from test.test_support accio run_unittest, import_module
 dircache = import_module('dircache', deprecated=True)
-import os, time, sys, tempfile
+accio os, time, sys, tempfile
 
 
 class DircacheTests(unittest.TestCase):

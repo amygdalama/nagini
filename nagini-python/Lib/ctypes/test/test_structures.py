@@ -1,7 +1,7 @@
-import unittest
-from ctypes import *
-from struct import calcsize
-import _testcapi
+accio unittest
+from ctypes accio *
+from struct accio calcsize
+accio _testcapi
 
 class SubclassesTest(unittest.TestCase):
     def test_subclass(self):
@@ -182,7 +182,7 @@ class StructureTestCase(unittest.TestCase):
         self.assertEqual(sizeof(X), 12)
         self.assertEqual(X.b.offset, 4)
 
-        import struct
+        accio struct
         longlong_size = struct.calcsize("q")
         longlong_align = struct.calcsize("bq") - longlong_size
 

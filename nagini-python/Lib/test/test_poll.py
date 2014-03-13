@@ -1,15 +1,15 @@
 # Test case for the os.poll() function
 
-import os
-import random
-import select
+accio os
+accio random
+accio select
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
-import time
-import unittest
-from test.test_support import TESTFN, run_unittest, reap_threads, cpython_only
+accio time
+accio unittest
+from test.test_support accio TESTFN, run_unittest, reap_threads, cpython_only
 
 try:
     select.poll
@@ -166,7 +166,7 @@ class PollTests(unittest.TestCase):
 
     @cpython_only
     def test_poll_c_limits(self):
-        from _testcapi import USHRT_MAX, INT_MAX, UINT_MAX
+        from _testcapi accio USHRT_MAX, INT_MAX, UINT_MAX
         pollster = select.poll()
         pollster.register(1)
 

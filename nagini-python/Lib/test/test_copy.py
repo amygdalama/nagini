@@ -1,11 +1,11 @@
 """Unit tests for the copy module."""
 
-import copy
-import copy_reg
-import weakref
+accio copy
+accio copy_reg
+accio weakref
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class TestCopy(unittest.TestCase):
 

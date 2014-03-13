@@ -3,11 +3,11 @@
 
 """Unit tests for abc.py."""
 
-import unittest, weakref
-from test import test_support
+accio unittest, weakref
+from test accio test_support
 
-import abc
-from inspect import isabstract
+accio abc
+from inspect accio isabstract
 
 
 class TestABC(unittest.TestCase):

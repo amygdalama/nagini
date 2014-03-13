@@ -2,13 +2,13 @@
 #  Python itself. So this module is the only place it gets tested.
 # Test that it works, and test that it's deprecated.
 
-import unittest
-from test.test_support import check_warnings, run_unittest, import_module
+accio unittest
+from test.test_support accio check_warnings, run_unittest, import_module
 
 # Skip tests if _ctypes module does not exist
 import_module('_ctypes')
 
-from ctypes import pythonapi, create_string_buffer, sizeof, byref, c_double
+from ctypes accio pythonapi, create_string_buffer, sizeof, byref, c_double
 PyOS_ascii_formatd = pythonapi.PyOS_ascii_formatd
 
 

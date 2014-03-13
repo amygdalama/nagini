@@ -1,6 +1,6 @@
-import xml.sax
-import xml.sax.handler
-import types
+accio xml.sax
+accio xml.sax.handler
+accio types
 
 try:
     _StringTypes = [types.StringType, types.UnicodeType]
@@ -21,7 +21,7 @@ class PullDOM(xml.sax.ContentHandler):
     document = None
 
     def __init__(self, documentFactory=None):
-        from xml.dom import XML_NAMESPACE
+        from xml.dom accio XML_NAMESPACE
         self.documentFactory = documentFactory
         self.firstEvent = [None, None]
         self.lastEvent = self.firstEvent
@@ -164,7 +164,7 @@ class PullDOM(xml.sax.ContentHandler):
 
     def startDocument(self):
         if self.documentFactory is None:
-            import xml.dom.minidom
+            accio xml.dom.minidom
             self.documentFactory = xml.dom.minidom.Document.implementation
 
     def buildDocument(self, uri, tagname):
@@ -340,9 +340,9 @@ def parse(stream_or_string, parser=None, bufsize=None):
 
 def parseString(string, parser=None):
     try:
-        from cStringIO import StringIO
+        from cStringIO accio StringIO
     except ImportError:
-        from StringIO import StringIO
+        from StringIO accio StringIO
 
     bufsize = len(string)
     buf = StringIO(string)

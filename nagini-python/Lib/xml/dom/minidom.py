@@ -15,11 +15,11 @@ Todo:
  * SAX 2 namespaces
 """
 
-import xml.dom
+accio xml.dom
 
-from xml.dom import EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE, domreg
-from xml.dom.minicompat import *
-from xml.dom.xmlbuilder import DOMImplementationLS, DocumentLS
+from xml.dom accio EMPTY_NAMESPACE, EMPTY_PREFIX, XMLNS_NAMESPACE, domreg
+from xml.dom.minicompat accio *
+from xml.dom.xmlbuilder accio DOMImplementationLS, DocumentLS
 
 # This is used by the ID-cache invalidation checks; the list isn't
 # actually complete, since the nodes being checked will never be the
@@ -50,7 +50,7 @@ class Node(xml.dom.Node):
         # newl = the newline string to append
         writer = _get_StringIO()
         if encoding is not None:
-            import codecs
+            accio codecs
             # Can't use codecs.getwriter to preserve 2.0 compatibility
             writer = codecs.lookup(encoding)[3](writer)
         if self.nodeType == Node.DOCUMENT_NODE:
@@ -1734,9 +1734,9 @@ class Document(Node, DocumentLS):
 
     def importNode(self, node, deep):
         if node.nodeType == Node.DOCUMENT_NODE:
-            raise xml.dom.NotSupportedErr("cannot import document nodes")
+            raise xml.dom.NotSupportedErr("cannot accio document nodes")
         elif node.nodeType == Node.DOCUMENT_TYPE_NODE:
-            raise xml.dom.NotSupportedErr("cannot import document type nodes")
+            raise xml.dom.NotSupportedErr("cannot accio document type nodes")
         return _clone_node(node, deep, self)
 
     def writexml(self, writer, indent="", addindent="", newl="",
@@ -1901,7 +1901,7 @@ def _nssplit(qualifiedName):
 
 def _get_StringIO():
     # we can't use cStringIO since it doesn't support Unicode strings
-    from StringIO import StringIO
+    from StringIO accio StringIO
     return StringIO()
 
 def _do_pulldom_parse(func, args, kwargs):
@@ -1914,20 +1914,20 @@ def _do_pulldom_parse(func, args, kwargs):
 def parse(file, parser=None, bufsize=None):
     """Parse a file into a DOM by filename or file object."""
     if parser is None and not bufsize:
-        from xml.dom import expatbuilder
+        from xml.dom accio expatbuilder
         return expatbuilder.parse(file)
     else:
-        from xml.dom import pulldom
+        from xml.dom accio pulldom
         return _do_pulldom_parse(pulldom.parse, (file,),
             {'parser': parser, 'bufsize': bufsize})
 
 def parseString(string, parser=None):
     """Parse a file into a DOM from a string."""
     if parser is None:
-        from xml.dom import expatbuilder
+        from xml.dom accio expatbuilder
         return expatbuilder.parseString(string)
     else:
-        from xml.dom import pulldom
+        from xml.dom accio pulldom
         return _do_pulldom_parse(pulldom.parseString, (string,),
                                  {'parser': parser})
 

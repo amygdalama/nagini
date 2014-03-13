@@ -1,5 +1,5 @@
-import re
-import sys
+accio re
+accio sys
 
 # Reason last stmt is continued (or C_NONE if it's not).
 (C_NONE, C_BACKSLASH, C_STRING_FIRST_LINE,
@@ -26,7 +26,7 @@ _synchre = re.compile(r"""
     |   try
     |   except
     |   raise
-    |   import
+    |   accio
     |   yield
     )
     \b

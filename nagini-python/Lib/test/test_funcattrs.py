@@ -1,6 +1,6 @@
-from test import test_support
-import types
-import unittest
+from test accio test_support
+accio types
+accio unittest
 
 class FuncAttrsTest(unittest.TestCase):
     def setUp(self):
@@ -255,7 +255,7 @@ class FunctionDictsTest(FuncAttrsTest):
     def test_setting_dict_to_invalid(self):
         self.cannot_set_attr(self.b, '__dict__', None, TypeError)
         self.cannot_set_attr(self.b, 'func_dict', None, TypeError)
-        from UserDict import UserDict
+        from UserDict accio UserDict
         d = UserDict({'known_attr': 7})
         self.cannot_set_attr(self.f.a.im_func, '__dict__', d, TypeError)
         self.cannot_set_attr(self.fi.a.im_func, '__dict__', d, TypeError)

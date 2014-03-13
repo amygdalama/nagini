@@ -34,14 +34,14 @@ NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 WITH THE USE OR PERFORMANCE OF THIS SOFTWARE !
 """
 
-import sys, time, operator, string, platform
-from CommandLine import *
+accio sys, time, operator, string, platform
+from CommandLine accio *
 
 try:
-    import cPickle
+    accio cPickle
     pickle = cPickle
 except ImportError:
-    import pickle
+    accio pickle
 
 # Version number; version history: see README file !
 __version__ = '2.0'
@@ -95,7 +95,7 @@ def get_timer(timertype):
     elif timertype == TIMER_TIME_CLOCK:
         return time.clock
     elif timertype == TIMER_SYSTIMES_PROCESSTIME:
-        import systimes
+        accio systimes
         return systimes.processtime
     else:
         raise TypeError('unknown timer type: %s' % timertype)
@@ -385,9 +385,9 @@ class Test:
 ### Load Setup
 
 # This has to be done after the definition of the Test class, since
-# the Setup module will import subclasses using this class.
+# the Setup module will accio subclasses using this class.
 
-import Setup
+accio Setup
 
 ### Benchmark base class
 
@@ -845,7 +845,7 @@ python pybench.py -s p25.pybench -c p21.pybench
         # Switch off garbage collection
         if not withgc:
             try:
-                import gc
+                accio gc
             except ImportError:
                 print '* Python version doesn\'t support garbage collection'
             else:
@@ -868,7 +868,7 @@ python pybench.py -s p25.pybench -c p21.pybench
                 print '* system check interval set to maximum: %s' % value
 
         if timer == TIMER_SYSTIMES_PROCESSTIME:
-            import systimes
+            accio systimes
             print '* using timer: systimes.processtime (%s)' % \
                   systimes.SYSTIMES_IMPLEMENTATION
         else:

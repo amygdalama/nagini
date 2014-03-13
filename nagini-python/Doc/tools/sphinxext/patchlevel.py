@@ -10,9 +10,9 @@
     :license: Python license.
 """
 
-import os
-import re
-import sys
+accio os
+accio re
+accio sys
 
 def get_header_version_info(srcdir):
     patchlevel_h = os.path.join(srcdir, '..', 'Include', 'patchlevel.h')

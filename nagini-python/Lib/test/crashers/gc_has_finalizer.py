@@ -12,7 +12,7 @@ the call to has_finalizer() in gcmodule.c, and that might
 segfault.
 """
 
-import gc
+accio gc
 
 
 class A:

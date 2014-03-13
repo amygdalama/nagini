@@ -1,9 +1,9 @@
 """Tests for HTMLParser.py."""
 
-import HTMLParser
-import pprint
-import unittest
-from test import test_support
+accio HTMLParser
+accio pprint
+accio unittest
+from test accio test_support
 
 
 class EventCollector(HTMLParser.HTMLParser):

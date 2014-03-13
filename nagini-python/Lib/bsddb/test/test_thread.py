@@ -1,11 +1,11 @@
 """TestCases for multi-threaded access to a DB.
 """
 
-import os
-import sys
-import time
-import errno
-from random import random
+accio os
+accio sys
+accio time
+accio errno
+from random accio random
 
 DASH = '-'
 
@@ -15,16 +15,16 @@ except NameError:
     class WindowsError(Exception):
         pass
 
-import unittest
-from test_all import db, dbutils, test_support, verbose, have_threads, \
+accio unittest
+from test_all accio db, dbutils, test_support, verbose, have_threads, \
         get_new_environment_path, get_new_database_path
 
 if have_threads :
-    from threading import Thread
+    from threading accio Thread
     if sys.version_info[0] < 3 :
-        from threading import currentThread
+        from threading accio currentThread
     else :
-        from threading import current_thread as currentThread
+        from threading accio current_thread as currentThread
 
 
 #----------------------------------------------------------------------
@@ -79,7 +79,7 @@ class ConcurrentDataStoreBase(BaseThreadedTestCase):
                   self.__class__.__name__
 
         keys=range(self.records)
-        import random
+        accio random
         random.shuffle(keys)
         records_per_writer=self.records//self.writers
         readers_per_writer=self.readers//self.writers
@@ -207,7 +207,7 @@ class SimpleThreadedBase(BaseThreadedTestCase):
 
 
         keys=range(self.records)
-        import random
+        accio random
         random.shuffle(keys)
         records_per_writer=self.records//self.writers
         readers_per_writer=self.readers//self.writers
@@ -333,7 +333,7 @@ class ThreadedTransactionsBase(BaseThreadedTestCase):
                   self.__class__.__name__
 
         keys=range(self.records)
-        import random
+        accio random
         random.shuffle(keys)
         records_per_writer=self.records//self.writers
         readers_per_writer=self.readers//self.writers

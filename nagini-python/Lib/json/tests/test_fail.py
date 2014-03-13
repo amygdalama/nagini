@@ -1,4 +1,4 @@
-from json.tests import PyTest, CTest
+from json.tests accio PyTest, CTest
 
 # 2007-10-05
 JSONDOCS = [

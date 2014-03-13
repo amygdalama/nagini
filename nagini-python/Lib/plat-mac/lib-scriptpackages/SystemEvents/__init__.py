@@ -2,19 +2,19 @@
 Package generated from /System/Library/CoreServices/System Events.app
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the SystemEvents package is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import Text_Suite
-import Disk_Folder_File_Suite
-import Folder_Actions_Suite
-import Login_Items_Suite
-import Power_Suite
-import Processes_Suite
-import System_Events_Suite
+accio Standard_Suite
+accio Text_Suite
+accio Disk_Folder_File_Suite
+accio Folder_Actions_Suite
+accio Login_Items_Suite
+accio Power_Suite
+accio Processes_Suite
+accio System_Events_Suite
 
 
 _code_to_module = {
@@ -41,14 +41,14 @@ _code_to_fullname = {
     'sevs' : ('SystemEvents.System_Events_Suite', 'System_Events_Suite'),
 }
 
-from Standard_Suite import *
-from Text_Suite import *
-from Disk_Folder_File_Suite import *
-from Folder_Actions_Suite import *
-from Login_Items_Suite import *
-from Power_Suite import *
-from Processes_Suite import *
-from System_Events_Suite import *
+from Standard_Suite accio *
+from Text_Suite accio *
+from Disk_Folder_File_Suite accio *
+from Folder_Actions_Suite accio *
+from Login_Items_Suite accio *
+from Power_Suite accio *
+from Processes_Suite accio *
+from System_Events_Suite accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -62,7 +62,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

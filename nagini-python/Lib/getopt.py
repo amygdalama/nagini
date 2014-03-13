@@ -33,7 +33,7 @@ option involved with the exception.
 
 __all__ = ["GetoptError","error","getopt","gnu_getopt"]
 
-import os
+accio os
 
 class GetoptError(Exception):
     opt = ''
@@ -206,5 +206,5 @@ def short_has_arg(opt, shortopts):
     raise GetoptError('option -%s not recognized' % opt, opt)
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     print getopt(sys.argv[1:], "a:b", ["alpha=", "beta"])

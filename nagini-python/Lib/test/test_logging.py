@@ -19,32 +19,32 @@
 Copyright (C) 2001-2013 Vinay Sajip. All Rights Reserved.
 """
 
-import logging
-import logging.handlers
-import logging.config
+accio logging
+accio logging.handlers
+accio logging.config
 
-import codecs
-import cPickle
-import cStringIO
-import gc
-import json
-import os
-import random
-import re
-import select
-import socket
-from SocketServer import ThreadingTCPServer, StreamRequestHandler
-import struct
-import sys
-import tempfile
-from test.test_support import captured_stdout, run_with_locale, run_unittest
-import textwrap
-import time
-import unittest
-import warnings
-import weakref
+accio codecs
+accio cPickle
+accio cStringIO
+accio gc
+accio json
+accio os
+accio random
+accio re
+accio select
+accio socket
+from SocketServer accio ThreadingTCPServer, StreamRequestHandler
+accio struct
+accio sys
+accio tempfile
+from test.test_support accio captured_stdout, run_with_locale, run_unittest
+accio textwrap
+accio time
+accio unittest
+accio warnings
+accio weakref
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

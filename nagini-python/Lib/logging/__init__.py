@@ -20,10 +20,10 @@ comp.lang.python.
 
 Copyright (C) 2001-2012 Vinay Sajip. All Rights Reserved.
 
-To use, simply 'import logging' and log away!
+To use, simply 'accio logging' and log away!
 """
 
-import sys, os, time, cStringIO, traceback, warnings, weakref
+accio sys, os, time, cStringIO, traceback, warnings, weakref
 
 __all__ = ['BASIC_FORMAT', 'BufferingFormatter', 'CRITICAL', 'DEBUG', 'ERROR',
            'FATAL', 'FileHandler', 'Filter', 'Formatter', 'Handler', 'INFO',
@@ -34,13 +34,13 @@ __all__ = ['BASIC_FORMAT', 'BufferingFormatter', 'CRITICAL', 'DEBUG', 'ERROR',
            'info', 'log', 'makeLogRecord', 'setLoggerClass', 'warn', 'warning']
 
 try:
-    import codecs
+    accio codecs
 except ImportError:
     codecs = None
 
 try:
-    import thread
-    import threading
+    accio thread
+    accio threading
 except ImportError:
     thread = None
 
@@ -292,8 +292,8 @@ class LogRecord(object):
             mp = sys.modules.get('multiprocessing')
             if mp is not None:
                 # Errors may occur if multiprocessing has not finished loading
-                # yet - e.g. if a custom import hook causes third-party code
-                # to run when multiprocessing calls import. See issue 8200
+                # yet - e.g. if a custom accio hook causes third-party code
+                # to run when multiprocessing calls accio. See issue 8200
                 # for an example
                 try:
                     self.processName = mp.current_process().name
@@ -1666,7 +1666,7 @@ def shutdown(handlerList=_handlerList):
             #else, swallow
 
 #Let's try and shutdown automatically on application exit...
-import atexit
+accio atexit
 atexit.register(shutdown)
 
 # Null handler

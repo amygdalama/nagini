@@ -2,8 +2,8 @@
 Tests common to tuple, list and UserList.UserList
 """
 
-import unittest
-import sys
+accio unittest
+accio sys
 
 # Various iterables
 # This is used for checking the constructor (here and in test_deque.py)
@@ -79,7 +79,7 @@ class IterFuncStop:
     def next(self):
         raise StopIteration
 
-from itertools import chain, imap
+from itertools accio chain, imap
 def itermulti(seqn):
     'Test multiple tiers of iterators'
     return chain(imap(lambda x:x, iterfunc(IterGen(Sequence(seqn)))))
@@ -306,7 +306,7 @@ class CommonTest(unittest.TestCase):
             self.assertEqual(id(s), id(s*1))
 
     def test_bigrepeat(self):
-        import sys
+        accio sys
         if sys.maxint <= 2147483647:
             x = self.type2test([0])
             x *= 2**16

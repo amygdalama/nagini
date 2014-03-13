@@ -1,7 +1,7 @@
 """Simple textbox editing widget with Emacs-like keybindings."""
 
-import curses
-import curses.ascii
+accio curses
+accio curses.ascii
 
 def rectangle(win, uly, ulx, lry, lrx):
     """Draw a rectangle with corners at the provided upper-left

@@ -4,12 +4,12 @@
 """Export the Python grammar and symbols."""
 
 # Python imports
-import os
+accio os
 
 # Local imports
-from .pgen2 import token
-from .pgen2 import driver
-from . import pytree
+from .pgen2 accio token
+from .pgen2 accio driver
+from . accio pytree
 
 # The grammar file
 _GRAMMAR_FILE = os.path.join(os.path.dirname(__file__), "Grammar.txt")

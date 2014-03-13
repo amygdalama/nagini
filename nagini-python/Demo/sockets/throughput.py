@@ -12,8 +12,8 @@
 # measures the time it takes (roundtrip!).
 
 
-import sys, time
-from socket import *
+accio sys, time
+from socket accio *
 
 MY_PORT = 50000 + 42
 

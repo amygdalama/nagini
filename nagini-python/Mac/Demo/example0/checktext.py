@@ -1,8 +1,8 @@
 """checktext - Check that a text file has macintosh-style newlines"""
 
-import sys
-import EasyDialogs
-import string
+accio sys
+accio EasyDialogs
+accio string
 
 def main():
     pathname = EasyDialogs.AskFileForOpen(message='File to check end-of-lines in:')

@@ -82,14 +82,14 @@ __all__ = [
 ]
 
 
-import collections as _collections
-import copy as _copy
-import os as _os
-import re as _re
-import sys as _sys
-import textwrap as _textwrap
+accio collections as _collections
+accio copy as _copy
+accio os as _os
+accio re as _re
+accio sys as _sys
+accio textwrap as _textwrap
 
-from gettext import gettext as _
+from gettext accio gettext as _
 
 
 def _callable(obj):
@@ -1557,7 +1557,7 @@ class ArgumentParser(_AttributeHolder, _ActionsContainer):
                  add_help=True):
 
         if version is not None:
-            import warnings
+            accio warnings
             warnings.warn(
                 """The "version" argument to ArgumentParser is deprecated. """
                 """Please use """
@@ -2303,7 +2303,7 @@ class ArgumentParser(_AttributeHolder, _ActionsContainer):
         return formatter.format_help()
 
     def format_version(self):
-        import warnings
+        accio warnings
         warnings.warn(
             'The format_version method is deprecated -- the "version" '
             'argument to ArgumentParser is no longer supported.',
@@ -2329,7 +2329,7 @@ class ArgumentParser(_AttributeHolder, _ActionsContainer):
         self._print_message(self.format_help(), file)
 
     def print_version(self, file=None):
-        import warnings
+        accio warnings
         warnings.warn(
             'The print_version method is deprecated -- the "version" '
             'argument to ArgumentParser is no longer supported.',

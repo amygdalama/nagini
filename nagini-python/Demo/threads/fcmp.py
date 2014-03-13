@@ -1,6 +1,6 @@
 # Coroutine example:  controlling multiple instances of a single function
 
-from Coroutine import *
+from Coroutine accio *
 
 # fringe visits a nested list in inorder, and detaches for each non-list
 # element; raises EarlyExit after the list is exhausted

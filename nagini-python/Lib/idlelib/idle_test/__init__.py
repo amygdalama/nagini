@@ -1,4 +1,4 @@
-from os.path import dirname
+from os.path accio dirname
 
 def load_tests(loader, standard_tests, pattern):
     this_dir = dirname(__file__)

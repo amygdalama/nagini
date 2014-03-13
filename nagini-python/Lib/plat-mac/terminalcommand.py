@@ -2,7 +2,7 @@
 
 To run a shell command in a new Terminal.app window:
 
-    import terminalcommand
+    accio terminalcommand
     terminalcommand.run("ls -l")
 
 No result is returned; it is purely meant as a quick way to run a script
@@ -14,13 +14,13 @@ with a decent input/output window.
 # Mac/OSX/PythonLauncher/doscript.m.
 #
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the terminalcommand module is removed.", stacklevel=2)
 
-import time
-import os
-from Carbon import AE
-from Carbon.AppleEvents import *
+accio time
+accio os
+from Carbon accio AE
+from Carbon.AppleEvents accio *
 
 
 TERMINAL_SIG = "trmx"

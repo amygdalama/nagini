@@ -17,7 +17,7 @@ of the same form as sys.version_info:
 
 OptionalRelease records the first release in which
 
-    from __future__ import FeatureName
+    from __future__ accio FeatureName
 
 was accepted.
 
@@ -28,7 +28,7 @@ of the language.
 Else MandatoryRelease records when the feature became part of the language;
 in releases at or after that, modules no longer need
 
-    from __future__ import FeatureName
+    from __future__ accio FeatureName
 
 to use the feature in question, but may continue to use such imports.
 

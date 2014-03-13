@@ -1,5 +1,5 @@
-import re
-import sys
+accio re
+accio sys
 
 # Write the config.c file
 

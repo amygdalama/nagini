@@ -1,12 +1,12 @@
 """Tests for distutils.command.config."""
-import unittest
-import os
-import sys
-from test.test_support import run_unittest
+accio unittest
+accio os
+accio sys
+from test.test_support accio run_unittest
 
-from distutils.command.config import dump_file, config
-from distutils.tests import support
-from distutils import log
+from distutils.command.config accio dump_file, config
+from distutils.tests accio support
+from distutils accio log
 
 class ConfigTestCase(support.LoggingSilencer,
                      support.TempdirManager,

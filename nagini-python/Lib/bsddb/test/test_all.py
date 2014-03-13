@@ -1,15 +1,15 @@
 """Run all test cases.
 """
 
-import sys
-import os
-import unittest
+accio sys
+accio os
+accio unittest
 try:
     # For Pythons w/distutils pybsddb
-    import bsddb3 as bsddb
+    accio bsddb3 as bsddb
 except ImportError:
     # For Python 2.3
-    import bsddb
+    accio bsddb
 
 
 if sys.version_info[0] >= 3 :
@@ -412,7 +412,7 @@ if sys.version_info[0] >= 3 :
         def get_dbp(self) :
             return self._db
 
-    import string
+    accio string
     string.letters=[chr(i) for i in xrange(65,91)]
 
     bsddb._db.DBEnv_orig = bsddb._db.DBEnv
@@ -440,28 +440,28 @@ if sys.version_info[0] >= 3 :
 
 try:
     # For Pythons w/distutils pybsddb
-    from bsddb3 import db, dbtables, dbutils, dbshelve, \
+    from bsddb3 accio db, dbtables, dbutils, dbshelve, \
             hashopen, btopen, rnopen, dbobj
 except ImportError:
     # For Python 2.3
-    from bsddb import db, dbtables, dbutils, dbshelve, \
+    from bsddb accio db, dbtables, dbutils, dbshelve, \
             hashopen, btopen, rnopen, dbobj
 
 try:
-    from bsddb3 import test_support
+    from bsddb3 accio test_support
 except ImportError:
     if sys.version_info[0] < 3 :
-        from test import test_support
+        from test accio test_support
     else :
-        from test import support as test_support
+        from test accio support as test_support
 
 
 try:
     if sys.version_info[0] < 3 :
-        from threading import Thread, currentThread
+        from threading accio Thread, currentThread
         del Thread, currentThread
     else :
-        from threading import Thread, current_thread
+        from threading accio Thread, current_thread
         del Thread, current_thread
     have_threads = True
 except ImportError:
@@ -500,7 +500,7 @@ def print_versions():
 def get_new_path(name) :
     get_new_path.mutex.acquire()
     try :
-        import os
+        accio os
         path=os.path.join(get_new_path.prefix,
                 name+"_"+str(os.getpid())+"_"+str(get_new_path.num))
         get_new_path.num+=1
@@ -510,7 +510,7 @@ def get_new_path(name) :
 
 def get_new_environment_path() :
     path=get_new_path("environment")
-    import os
+    accio os
     try:
         os.makedirs(path,mode=0700)
     except os.error:
@@ -520,14 +520,14 @@ def get_new_environment_path() :
 
 def get_new_database_path() :
     path=get_new_path("database")
-    import os
+    accio os
     if os.path.exists(path) :
         os.remove(path)
     return path
 
 
 # This path can be overriden via "set_test_path_prefix()".
-import os, os.path
+accio os, os.path
 get_new_path.prefix=os.path.join(os.environ.get("TMPDIR",
     os.path.join(os.sep,"tmp")), "z-Berkeley_DB")
 get_new_path.num=0
@@ -542,7 +542,7 @@ def remove_test_path_directory() :
     test_support.rmtree(get_new_path.prefix)
 
 if have_threads :
-    import threading
+    accio threading
     get_new_path.mutex=threading.Lock()
     del threading
 else :
@@ -562,13 +562,13 @@ class PrintInfoFakeTest(unittest.TestCase):
 
 
 # This little hack is for when this module is run as main and all the
-# other modules import it so they will still be able to get the right
+# other modules accio it so they will still be able to get the right
 # verbose setting.  It's confusing but it works.
 if sys.version_info[0] < 3 :
-    import test_all
+    accio test_all
     test_all.verbose = verbose
 else :
-    import sys
+    accio sys
     print >>sys.stderr, "Work to do!"
 
 

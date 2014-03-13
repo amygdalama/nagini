@@ -9,9 +9,9 @@ http://www.python.org/dev/peps/pep-0205/
 # they are called this instead of "ref" to avoid name collisions with
 # the module-global ref() function imported from _weakref.
 
-import UserDict
+accio UserDict
 
-from _weakref import (
+from _weakref accio (
      getweakrefcount,
      getweakrefs,
      ref,
@@ -20,9 +20,9 @@ from _weakref import (
      ProxyType,
      ReferenceType)
 
-from _weakrefset import WeakSet, _IterationGuard
+from _weakrefset accio WeakSet, _IterationGuard
 
-from exceptions import ReferenceError
+from exceptions accio ReferenceError
 
 
 ProxyTypes = (ProxyType, CallableProxyType)
@@ -116,7 +116,7 @@ class WeakValueDictionary(UserDict.UserDict):
     __copy__ = copy
 
     def __deepcopy__(self, memo):
-        from copy import deepcopy
+        from copy accio deepcopy
         new = self.__class__()
         for key, wr in self.data.items():
             o = wr()
@@ -331,7 +331,7 @@ class WeakKeyDictionary(UserDict.UserDict):
     __copy__ = copy
 
     def __deepcopy__(self, memo):
-        from copy import deepcopy
+        from copy accio deepcopy
         new = self.__class__()
         for key, value in self.data.items():
             o = key()

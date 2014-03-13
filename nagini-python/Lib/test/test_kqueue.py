@@ -1,14 +1,14 @@
 """
 Tests for kqueue wrapper.
 """
-import socket
-import errno
-import time
-import select
-import sys
-import unittest
+accio socket
+accio errno
+accio time
+accio select
+accio sys
+accio unittest
 
-from test import test_support
+from test accio test_support
 if not hasattr(select, "kqueue"):
     raise unittest.SkipTest("test works only on BSD")
 

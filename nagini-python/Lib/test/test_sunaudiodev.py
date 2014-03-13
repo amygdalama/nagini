@@ -1,7 +1,7 @@
-from test.test_support import findfile, TestFailed, import_module
-import unittest
+from test.test_support accio findfile, TestFailed, import_module
+accio unittest
 sunaudiodev = import_module('sunaudiodev', deprecated=True)
-import os
+accio os
 
 try:
     audiodev = os.environ["AUDIODEV"]

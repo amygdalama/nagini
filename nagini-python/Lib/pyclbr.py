@@ -10,7 +10,7 @@ list of directories where the module is to be searched.  If present,
 path is prepended to the system search path sys.path.  The return
 value is a dictionary.  The keys of the dictionary are the names of
 the classes defined in the module (including classes that are defined
-via the from XXX import YYY construct).  The values are class
+via the from XXX accio YYY construct).  The values are class
 instances of the class Class defined here.  One special key/value pair
 is present for packages: the key '__path__' has a list as its value
 which contains the package search path.
@@ -27,7 +27,7 @@ The dictionary of methods uses the method names as keys and the line
 numbers on which the method was defined as values.
 If the name of a super class is not recognized, the corresponding
 entry in the list of super classes is not a class instance but a
-string giving the name of the super class.  Since import statements
+string giving the name of the super class.  Since accio statements
 are recognized and imported modules are scanned as well, this
 shouldn't happen often.
 
@@ -39,11 +39,11 @@ Instances of this class have the following instance variables:
         lineno -- the line in the file on which the class statement occurred
 """
 
-import sys
-import imp
-import tokenize
-from token import NAME, DEDENT, OP
-from operator import itemgetter
+accio sys
+accio imp
+accio tokenize
+from token accio NAME, DEDENT, OP
+from operator accio itemgetter
 
 __all__ = ["readmodule", "readmodule_ex", "Class", "Function"]
 
@@ -232,7 +232,7 @@ def _readmodule(module, path, inpackage=None):
                 if not stack:
                     dict[class_name] = cur_class
                 stack.append((cur_class, thisindent))
-            elif token == 'import' and start[1] == 0:
+            elif token == 'accio' and start[1] == 0:
                 modules = _getnamelist(g)
                 for mod, _mod2 in modules:
                     try:
@@ -250,7 +250,7 @@ def _readmodule(module, path, inpackage=None):
                         pass
             elif token == 'from' and start[1] == 0:
                 mod, token = _getname(g)
-                if not mod or token != "import":
+                if not mod or token != "accio":
                     continue
                 names = _getnamelist(g)
                 try:
@@ -317,7 +317,7 @@ def _getname(g):
 
 def _main():
     # Main program for testing.
-    import os
+    accio os
     mod = sys.argv[1]
     if os.path.exists(mod):
         path = [os.path.dirname(mod)]

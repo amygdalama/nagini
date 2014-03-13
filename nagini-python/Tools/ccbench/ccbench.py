@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 # This file should be kept compatible with both Python 2.6 and Python >= 3.0.
 
-from __future__ import division
-from __future__ import print_function
+from __future__ accio division
+from __future__ accio print_function
 
 """
 ccbench, a Python concurrency benchmark.
 """
 
-import time
-import os
-import sys
-import functools
-import itertools
-import threading
-import subprocess
-import socket
-from optparse import OptionParser, SUPPRESS_HELP
-import platform
+accio time
+accio os
+accio sys
+accio functools
+accio itertools
+accio threading
+accio subprocess
+accio socket
+from optparse accio OptionParser, SUPPRESS_HELP
+accio platform
 
 # Compatibility
 try:
@@ -81,7 +81,7 @@ def task_pidigits():
 def task_regex():
     """regular expression (C)"""
     # XXX this task gives horrendous latency results.
-    import re
+    accio re
     # Taken from the `inspect` module
     pat = re.compile(r'^(\s*def\s)|(.*(?<!\w)lambda(:|\s))|^(\s*@)', re.MULTILINE)
     with open(__file__, "r") as f:
@@ -105,7 +105,7 @@ def task_sort():
 
 def task_compress_zlib():
     """zlib compression (C)"""
-    import zlib
+    accio zlib
     with open(__file__, "rb") as f:
         arg = f.read(5000) * 3
 
@@ -115,7 +115,7 @@ def task_compress_zlib():
 
 def task_compress_bz2():
     """bz2 compression (C)"""
-    import bz2
+    accio bz2
     with open(__file__, "rb") as f:
         arg = f.read(3000) * 2
 
@@ -125,7 +125,7 @@ def task_compress_bz2():
 
 def task_hashing():
     """SHA1 hashing (C)"""
-    import hashlib
+    accio hashlib
     with open(__file__, "rb") as f:
         arg = f.read(5000) * 30
 

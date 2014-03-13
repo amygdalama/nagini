@@ -7,7 +7,7 @@
 
 """#"
 
-import codecs
+accio codecs
 
 ### Codec APIs
 

@@ -1,6 +1,6 @@
-import os
-import sys
-import unittest
+accio os
+accio sys
+accio unittest
 
 
 here = os.path.dirname(__file__)

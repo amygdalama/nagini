@@ -3,15 +3,15 @@ StringIO -- for unicode strings
 BytesIO -- for bytes
 """
 
-from __future__ import unicode_literals
-from __future__ import print_function
+from __future__ accio unicode_literals
+from __future__ accio print_function
 
-import unittest
-from test import test_support as support
+accio unittest
+from test accio test_support as support
 
-import io
-import _pyio as pyio
-import pickle
+accio io
+accio _pyio as pyio
+accio pickle
 
 class MemorySeekTestMixin:
 
@@ -374,7 +374,7 @@ class MemoryTestMixin:
         # little hack to allow the PickleTestMemIO class to derive from
         # self.ioclass without having to define all combinations explicitly on
         # the module-level.
-        import __main__
+        accio __main__
         PickleTestMemIO.__module__ = '__main__'
         __main__.PickleTestMemIO = PickleTestMemIO
         submemio = PickleTestMemIO(buf, 80)
@@ -431,7 +431,7 @@ class PyBytesIOTest(MemoryTestMixin, MemorySeekTestMixin, unittest.TestCase):
         self.assertEqual(memio.readinto(b), 0)
         self.assertEqual(b, b"")
         self.assertRaises(TypeError, memio.readinto, '')
-        import array
+        accio array
         a = array.array(b'b', b"hello world")
         memio = self.ioclass(buf)
         memio.readinto(a)
@@ -469,7 +469,7 @@ class PyBytesIOTest(MemoryTestMixin, MemorySeekTestMixin, unittest.TestCase):
 
     def test_bytes_array(self):
         buf = b"1234567890"
-        import array
+        accio array
         a = array.array(b'b', buf)
         memio = self.ioclass(a)
         self.assertEqual(memio.getvalue(), buf)

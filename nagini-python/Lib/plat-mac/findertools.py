@@ -15,18 +15,18 @@ So bottom line: the processes() stuff does not work on < MacOS9
 Mostly written by erik@letterror.com
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the findertools module is removed.", stacklevel=2)
 
-import Finder
-from Carbon import AppleEvents
-import aetools
-import MacOS
-import sys
-import Carbon.File
-import Carbon.Folder
-import aetypes
-from types import *
+accio Finder
+from Carbon accio AppleEvents
+accio aetools
+accio MacOS
+accio sys
+accio Carbon.File
+accio Carbon.Folder
+accio aetypes
+from types accio *
 
 __version__ = '1.1'
 Error = 'findertools.Error'
@@ -698,7 +698,7 @@ def emptytrash():
 
 
 def _test():
-    import EasyDialogs
+    accio EasyDialogs
     print 'Original findertools functionality test...'
     print 'Testing launch...'
     pathname = EasyDialogs.AskFileForOpen('File to launch:')
@@ -760,8 +760,8 @@ def _test():
 
 def _test2():
     print '\nmorefindertools version %s\nTests coming up...' %__version__
-    import os
-    import random
+    accio os
+    accio random
 
     # miscellaneous
     print '\tfilesharing on?',  filesharing()       # is file sharing on, off, starting up?

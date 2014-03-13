@@ -10,11 +10,11 @@ packages -- for now, you'll have to deal with packages separately.)
 
 See module py_compile for details of the actual byte-compilation.
 """
-import os
-import sys
-import py_compile
-import struct
-import imp
+accio os
+accio sys
+accio py_compile
+accio struct
+accio imp
 
 __all__ = ["compile_dir","compile_file","compile_path"]
 
@@ -150,7 +150,7 @@ def expand_args(args, flist):
 
 def main():
     """Script main program."""
-    import getopt
+    accio getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'lfqd:x:i:')
     except getopt.error, msg:
@@ -191,7 +191,7 @@ def main():
         if o == '-f': force = 1
         if o == '-q': quiet = 1
         if o == '-x':
-            import re
+            accio re
             rx = re.compile(a)
         if o == '-i': flist = a
     if ddir:

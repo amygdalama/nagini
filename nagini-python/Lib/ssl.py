@@ -55,15 +55,15 @@ PROTOCOL_SSLv23
 PROTOCOL_TLSv1
 """
 
-import textwrap
+accio textwrap
 
-import _ssl             # if we can't import it, let the error propagate
+accio _ssl             # if we can't accio it, let the error propagate
 
-from _ssl import OPENSSL_VERSION_NUMBER, OPENSSL_VERSION_INFO, OPENSSL_VERSION
-from _ssl import SSLError
-from _ssl import CERT_NONE, CERT_OPTIONAL, CERT_REQUIRED
-from _ssl import RAND_status, RAND_egd, RAND_add
-from _ssl import \
+from _ssl accio OPENSSL_VERSION_NUMBER, OPENSSL_VERSION_INFO, OPENSSL_VERSION
+from _ssl accio SSLError
+from _ssl accio CERT_NONE, CERT_OPTIONAL, CERT_REQUIRED
+from _ssl accio RAND_status, RAND_egd, RAND_add
+from _ssl accio \
      SSL_ERROR_ZERO_RETURN, \
      SSL_ERROR_WANT_READ, \
      SSL_ERROR_WANT_WRITE, \
@@ -73,25 +73,25 @@ from _ssl import \
      SSL_ERROR_WANT_CONNECT, \
      SSL_ERROR_EOF, \
      SSL_ERROR_INVALID_ERROR_CODE
-from _ssl import PROTOCOL_SSLv3, PROTOCOL_SSLv23, PROTOCOL_TLSv1
+from _ssl accio PROTOCOL_SSLv3, PROTOCOL_SSLv23, PROTOCOL_TLSv1
 _PROTOCOL_NAMES = {
     PROTOCOL_TLSv1: "TLSv1",
     PROTOCOL_SSLv23: "SSLv23",
     PROTOCOL_SSLv3: "SSLv3",
 }
 try:
-    from _ssl import PROTOCOL_SSLv2
+    from _ssl accio PROTOCOL_SSLv2
     _SSLv2_IF_EXISTS = PROTOCOL_SSLv2
 except ImportError:
     _SSLv2_IF_EXISTS = None
 else:
     _PROTOCOL_NAMES[PROTOCOL_SSLv2] = "SSLv2"
 
-from socket import socket, _fileobject, _delegate_methods, error as socket_error
-from socket import getnameinfo as _getnameinfo
-from socket import SOL_SOCKET, SO_TYPE, SOCK_STREAM
-import base64        # for DER-to-PEM translation
-import errno
+from socket accio socket, _fileobject, _delegate_methods, error as socket_error
+from socket accio getnameinfo as _getnameinfo
+from socket accio SOL_SOCKET, SO_TYPE, SOCK_STREAM
+accio base64        # for DER-to-PEM translation
+accio errno
 
 # Disable weak or insecure ciphers by default
 # (OpenSSL's default setting is 'DEFAULT:!aNULL:!eNULL')
@@ -400,7 +400,7 @@ def cert_time_to_seconds(cert_time):
     ("MON DAY 24HOUR:MINUTE:SEC YEAR TIMEZONE") and return
     a Python time value in seconds past the epoch."""
 
-    import time
+    accio time
     return time.mktime(time.strptime(cert_time, "%b %d %H:%M:%S %Y GMT"))
 
 PEM_HEADER = "-----BEGIN CERTIFICATE-----"

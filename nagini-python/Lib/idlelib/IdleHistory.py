@@ -1,6 +1,6 @@
 "Implement Idle Shell history mechanism with History class"
 
-from idlelib.configHandler import idleConf
+from idlelib.configHandler accio idleConf
 
 class History:
     ''' Implement Idle Shell history mechanism.
@@ -100,7 +100,7 @@ class History:
         self.prefix = None
 
 if __name__ == "__main__":
-    from test import test_support as support
+    from test accio test_support as support
     support.use_resources = ['gui']
-    from unittest import main
+    from unittest accio main
     main('idlelib.idle_test.test_idlehistory', verbosity=2, exit=False)

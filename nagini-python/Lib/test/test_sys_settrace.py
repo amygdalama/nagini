@@ -1,10 +1,10 @@
 # Testing the line trace facility.
 
-from test import test_support
-import unittest
-import sys
-import difflib
-import gc
+from test accio test_support
+accio unittest
+accio sys
+accio difflib
+accio gc
 
 # A very basic example.  If this fails, we're in deep trouble.
 def basic():
@@ -447,7 +447,7 @@ class RaisingTraceFuncTestCase(unittest.TestCase):
             f()
         except RuntimeError:
             # the test is really that this doesn't segfault:
-            import gc
+            accio gc
             gc.collect()
         else:
             self.fail("exception not propagated")

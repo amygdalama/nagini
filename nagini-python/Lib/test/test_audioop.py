@@ -1,8 +1,8 @@
-import audioop
-import sys
-import unittest
-import struct
-from test.test_support import run_unittest
+accio audioop
+accio sys
+accio unittest
+accio struct
+from test.test_support accio run_unittest
 
 
 formats = {

@@ -12,9 +12,9 @@ which fixes this problem.
 The script will first check all prerequisites, and return a zero exit
 status also when nothing needs to be fixed.
 """
-import sys
-import os
-import gestalt
+accio sys
+accio os
+accio gestalt
 
 MAKEFILE='/System/Library/Frameworks/Python.framework/Versions/2.3/lib/python2.3/config/Makefile'
 CHANGES=((

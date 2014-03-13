@@ -3,15 +3,15 @@
 # NOTE: this file tests the new `io` library backported from Python 3.x.
 # Similar tests for the builtin file object can be found in test_univnewlines2k.py.
 
-from __future__ import print_function
-from __future__ import unicode_literals
+from __future__ accio print_function
+from __future__ accio unicode_literals
 
-import io
-import _pyio as pyio
-import unittest
-import os
-import sys
-from test import test_support as support
+accio io
+accio _pyio as pyio
+accio unittest
+accio os
+accio sys
+from test accio test_support as support
 
 if not hasattr(sys.stdin, 'newlines'):
     raise unittest.SkipTest(

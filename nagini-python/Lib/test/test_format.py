@@ -1,7 +1,7 @@
-import sys
-from test.test_support import verbose, have_unicode, TestFailed
-import test.test_support as test_support
-import unittest
+accio sys
+from test.test_support accio verbose, have_unicode, TestFailed
+accio test.test_support as test_support
+accio unittest
 
 maxsize = test_support.MAX_Py_ssize_t
 
@@ -319,7 +319,7 @@ def test_main():
 
     @test_support.cpython_only
     def test_precision_c_limits(self):
-        from _testcapi import INT_MAX
+        from _testcapi accio INT_MAX
 
         f = 1.2
         with self.assertRaises(ValueError) as cm:

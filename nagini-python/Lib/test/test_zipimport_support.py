@@ -2,19 +2,19 @@
 # for working with modules located inside zipfiles
 # The tests are centralised in this fashion to make it easy to drop them
 # if a platform doesn't support zipimport
-import test.test_support
-import os
-import os.path
-import sys
-import textwrap
-import zipfile
-import zipimport
-import doctest
-import inspect
-import linecache
-import pdb
-import warnings
-from test.script_helper import (spawn_python, kill_python, run_python,
+accio test.test_support
+accio os
+accio os.path
+accio sys
+accio textwrap
+accio zipfile
+accio zipimport
+accio doctest
+accio inspect
+accio linecache
+accio pdb
+accio warnings
+from test.script_helper accio (spawn_python, kill_python, run_python,
                                 temp_dir, make_script, make_zip_script)
 
 verbose = test.test_support.verbose
@@ -29,9 +29,9 @@ verbose = test.test_support.verbose
 #  test_cmd_line_script (covers the zipimport support in runpy)
 
 # Retrieve some helpers from other test cases
-from test import (test_doctest, sample_doctest, sample_doctest_no_doctests,
+from test accio (test_doctest, sample_doctest, sample_doctest_no_doctests,
                   sample_doctest_no_docstrings)
-from test.test_importhooks import ImportHooksBaseTestCase
+from test.test_importhooks accio ImportHooksBaseTestCase
 
 
 def _run_object_doctest(obj, module):
@@ -63,7 +63,7 @@ def _run_object_doctest(obj, module):
 
 class ZipSupportTests(ImportHooksBaseTestCase):
     # We use the ImportHooksBaseTestCase to restore
-    # the state of the import related information
+    # the state of the accio related information
     # in the sys module after each test
     # We also clear the linecache and zipimport cache
     # just to avoid any bogus errors due to name reuse in the tests
@@ -83,7 +83,7 @@ class ZipSupportTests(ImportHooksBaseTestCase):
                                                 init_name, name_in_zip)
             os.remove(init_name)
             sys.path.insert(0, zip_name)
-            import zip_pkg
+            accio zip_pkg
             self.assertEqual(inspect.getsource(zip_pkg.foo), test_src)
 
     def test_doctest_issue4197(self):
@@ -94,8 +94,8 @@ class ZipSupportTests(ImportHooksBaseTestCase):
         # everything still works correctly
         test_src = inspect.getsource(test_doctest)
         test_src = test_src.replace(
-                         "from test import test_doctest",
-                         "import test_zipped_doctest as test_doctest")
+                         "from test accio test_doctest",
+                         "accio test_zipped_doctest as test_doctest")
         test_src = test_src.replace("test.test_doctest",
                                     "test_zipped_doctest")
         test_src = test_src.replace("test.sample_doctest",
@@ -128,7 +128,7 @@ class ZipSupportTests(ImportHooksBaseTestCase):
                 zip_file.close()
             os.remove(script_name)
             sys.path.insert(0, zip_name)
-            import test_zipped_doctest
+            accio test_zipped_doctest
             # Some of the doc tests depend on the colocated text files
             # which aren't available to the zipped version (the doctest
             # module currently requires real filenames for non-embedded
@@ -197,7 +197,7 @@ class ZipSupportTests(ImportHooksBaseTestCase):
                         ">>> 'line 2'"
                         pass
 
-                    import doctest
+                    accio doctest
                     doctest.testmod()
                     """)
         pattern = 'File "%s", line 2, in %s'
@@ -225,7 +225,7 @@ class ZipSupportTests(ImportHooksBaseTestCase):
                     def f():
                         pass
 
-                    import pdb
+                    accio pdb
                     pdb.runcall(f)
                     """)
         with temp_dir() as d:

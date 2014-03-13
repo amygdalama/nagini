@@ -21,29 +21,29 @@ by Apache's log4j system.
 
 Copyright (C) 2001-2014 Vinay Sajip. All Rights Reserved.
 
-To use, simply 'import logging' and log away!
+To use, simply 'accio logging' and log away!
 """
 
-import cStringIO
-import errno
-import io
-import logging
-import logging.handlers
-import os
-import re
-import socket
-import struct
-import sys
-import traceback
-import types
+accio cStringIO
+accio errno
+accio io
+accio logging
+accio logging.handlers
+accio os
+accio re
+accio socket
+accio struct
+accio sys
+accio traceback
+accio types
 
 try:
-    import thread
-    import threading
+    accio thread
+    accio threading
 except ImportError:
     thread = None
 
-from SocketServer import ThreadingTCPServer, StreamRequestHandler
+from SocketServer accio ThreadingTCPServer, StreamRequestHandler
 
 
 DEFAULT_LOGGING_CONFIG_PORT = 9030
@@ -66,7 +66,7 @@ def fileConfig(fname, defaults=None, disable_existing_loggers=True):
     developer provides a mechanism to present the choices and load the chosen
     configuration).
     """
-    import ConfigParser
+    accio ConfigParser
 
     cp = ConfigParser.ConfigParser(defaults)
     if hasattr(fname, 'readline'):
@@ -379,7 +379,7 @@ class BaseConfigurator(object):
 
     def resolve(self, s):
         """
-        Resolve strings to objects using standard import and attribute
+        Resolve strings to objects using standard accio and attribute
         syntax.
         """
         name = s.split('.')
@@ -822,7 +822,7 @@ def listen(port=DEFAULT_LOGGING_CONFIG_PORT):
             struct.pack(">L", n), followed by the config file.
             Uses fileConfig() to do the grunt work.
             """
-            import tempfile
+            accio tempfile
             try:
                 conn = self.connection
                 chunk = conn.recv(4)
@@ -832,7 +832,7 @@ def listen(port=DEFAULT_LOGGING_CONFIG_PORT):
                     while len(chunk) < slen:
                         chunk = chunk + conn.recv(slen - len(chunk))
                     try:
-                        import json
+                        accio json
                         d =json.loads(chunk)
                         assert isinstance(d, dict)
                         dictConfig(d)
@@ -869,7 +869,7 @@ def listen(port=DEFAULT_LOGGING_CONFIG_PORT):
             self.ready = ready
 
         def serve_until_stopped(self):
-            import select
+            accio select
             abort = 0
             while not abort:
                 rd, wr, ex = select.select([self.socket.fileno()],

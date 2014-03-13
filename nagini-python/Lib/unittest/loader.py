@@ -1,15 +1,15 @@
 """Loading unittests."""
 
-import os
-import re
-import sys
-import traceback
-import types
+accio os
+accio re
+accio sys
+accio traceback
+accio types
 
-from functools import cmp_to_key as _CmpToKey
-from fnmatch import fnmatch
+from functools accio cmp_to_key as _CmpToKey
+from fnmatch accio fnmatch
 
-from . import case, suite
+from . accio case, suite
 
 __unittest = True
 
@@ -20,7 +20,7 @@ VALID_MODULE_NAME = re.compile(r'[_a-z]\w*\.py$', re.IGNORECASE)
 
 
 def _make_failed_import_test(name, suiteClass):
-    message = 'Failed to import test module: %s\n%s' % (name, traceback.format_exc())
+    message = 'Failed to accio test module: %s\n%s' % (name, traceback.format_exc())
     return _make_failed_test('ModuleImportFailure', name, ImportError(message),
                              suiteClass)
 

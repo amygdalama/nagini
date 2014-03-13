@@ -27,11 +27,11 @@
 # 2001-06-10 fl  Folded in _xmlrpclib accelerator support (1.0b2)
 # 2001-08-20 fl  Base xmlrpclib.Error on built-in Exception (from Paul Prescod)
 # 2001-09-03 fl  Allow Transport subclass to override getparser
-# 2001-09-10 fl  Lazy import of urllib, cgi, xmllib (20x import speedup)
+# 2001-09-10 fl  Lazy accio of urllib, cgi, xmllib (20x accio speedup)
 # 2001-10-01 fl  Remove containers from memo cache when done with them
 # 2001-10-01 fl  Use faster escape method (80% dumps speedup)
 # 2001-10-02 fl  More dumps microtuning
-# 2001-10-04 fl  Make sure import expat gets a parser (from Guido van Rossum)
+# 2001-10-04 fl  Make sure accio expat gets a parser (from Guido van Rossum)
 # 2001-10-10 sm  Allow long ints to be passed as ints if they don't overflow
 # 2001-10-17 sm  Test for int and long overflow (allows use on 64-bit systems)
 # 2001-11-12 fl  Use repr() to marshal doubles (from Paul Felix)
@@ -136,14 +136,14 @@ Exported functions:
                  name (None if not present).
 """
 
-import re, string, time, operator
+accio re, string, time, operator
 
-from types import *
-import socket
-import errno
-import httplib
+from types accio *
+accio socket
+accio errno
+accio httplib
 try:
-    import gzip
+    accio gzip
 except ImportError:
     gzip = None #python can be built without zlib/gzip support
 
@@ -156,7 +156,7 @@ except NameError:
     unicode = None # unicode support not available
 
 try:
-    import datetime
+    accio datetime
 except ImportError:
     datetime = None
 
@@ -289,7 +289,7 @@ class Fault(Error):
 # @param value A boolean value.  Any true value is interpreted as True,
 #              all other values are interpreted as False.
 
-from sys import modules
+from sys accio modules
 mod_dict = modules[__name__].__dict__
 if _bool_is_builtin:
     boolean = Boolean = bool
@@ -473,11 +473,11 @@ def _datetime_type(data):
 #
 # @param data An 8-bit string containing arbitrary data.
 
-import base64
+accio base64
 try:
-    import cStringIO as StringIO
+    accio cStringIO as StringIO
 except ImportError:
-    import StringIO
+    accio StringIO
 
 class Binary:
     """Wrapper for binary data."""
@@ -521,20 +521,20 @@ if not _bool_is_builtin:
 
 try:
     # optional xmlrpclib accelerator
-    import _xmlrpclib
+    accio _xmlrpclib
     FastParser = _xmlrpclib.Parser
     FastUnmarshaller = _xmlrpclib.Unmarshaller
 except (AttributeError, ImportError):
     FastParser = FastUnmarshaller = None
 
 try:
-    import _xmlrpclib
+    accio _xmlrpclib
     FastMarshaller = _xmlrpclib.Marshaller
 except (AttributeError, ImportError):
     FastMarshaller = None
 
 try:
-    from xml.parsers import expat
+    from xml.parsers accio expat
     if not hasattr(expat, "ParserCreate"):
         raise ImportError
 except ImportError:
@@ -564,7 +564,7 @@ class SlowParser:
     """Default XML parser (based on xmllib.XMLParser)."""
     # this is the slowest parser.
     def __init__(self, target):
-        import xmllib # lazy subclassing (!)
+        accio xmllib # lazy subclassing (!)
         if xmllib.XMLParser not in SlowParser.__bases__:
             SlowParser.__bases__ = (xmllib.XMLParser,)
         self.handle_xml = target.xml
@@ -1337,11 +1337,11 @@ class Transport:
         if isinstance(host, TupleType):
             host, x509 = host
 
-        import urllib
+        accio urllib
         auth, host = urllib.splituser(host)
 
         if auth:
-            import base64
+            accio base64
             auth = base64.encodestring(urllib.unquote(auth))
             auth = string.join(string.split(auth), "") # get rid of whitespace
             extra_headers = [
@@ -1543,7 +1543,7 @@ class ServerProxy:
             uri = uri.encode('ISO-8859-1')
 
         # get the url
-        import urllib
+        accio urllib
         type, uri = urllib.splittype(uri)
         if type not in ("http", "https"):
             raise IOError, "unsupported XML-RPC protocol"

@@ -6,10 +6,10 @@
 These work for only the known names in the types module.  The forms above
 can include types. or not.  ie, It is assumed the module is imported either as:
 
-    import types
-    from types import ... # either * or specific types
+    accio types
+    from types accio ... # either * or specific types
 
-The import statements are not modified.
+The accio statements are not modified.
 
 There should be another fixer that handles at least the following constants:
 
@@ -20,9 +20,9 @@ There should be another fixer that handles at least the following constants:
 """
 
 # Local imports
-from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name
+from ..pgen2 accio token
+from .. accio fixer_base
+from ..fixer_util accio Name
 
 _TYPE_MAPPING = {
         'BooleanType' : 'bool',

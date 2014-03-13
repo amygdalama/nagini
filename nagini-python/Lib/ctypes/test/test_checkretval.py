@@ -1,6 +1,6 @@
-import unittest
+accio unittest
 
-from ctypes import *
+from ctypes accio *
 
 class CHECKED(c_int):
     def _check_retval_(value):
@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
 
     def test_checkretval(self):
 
-        import _ctypes_test
+        accio _ctypes_test
         dll = CDLL(_ctypes_test.__file__)
         self.assertEqual(42, dll._testfunc_p_p(42))
 

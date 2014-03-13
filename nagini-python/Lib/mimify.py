@@ -27,9 +27,9 @@ CHARSET = 'ISO-8859-1'  # default charset for non-US-ASCII mail
 QUOTE = '> '            # string replies are quoted with
 # End configure
 
-import re
+accio re
 
-import warnings
+accio warnings
 warnings.warn("the mimify module is deprecated; use the email package instead",
                 DeprecationWarning, 2)
 
@@ -199,7 +199,7 @@ def unmimify_part(ifile, ofile, decode_base64 = 0):
                 line = line + newline
             line = mime_decode(line)
         if line and is_base64 and not pref:
-            import base64
+            accio base64
             line = base64.decodestring(line)
         if line:
             ofile.write(pref + line)
@@ -209,7 +209,7 @@ def unmimify(infile, outfile, decode_base64 = 0):
     if type(infile) == type(''):
         ifile = open(infile)
         if type(outfile) == type('') and infile == outfile:
-            import os
+            accio os
             d, f = os.path.split(infile)
             os.rename(infile, os.path.join(d, ',' + f))
     else:
@@ -417,7 +417,7 @@ def mimify(infile, outfile):
     if type(infile) == type(''):
         ifile = open(infile)
         if type(outfile) == type('') and infile == outfile:
-            import os
+            accio os
             d, f = os.path.split(infile)
             os.rename(infile, os.path.join(d, ',' + f))
     else:
@@ -430,9 +430,9 @@ def mimify(infile, outfile):
     mimify_part(nifile, ofile, 0)
     ofile.flush()
 
-import sys
+accio sys
 if __name__ == '__main__' or (len(sys.argv) > 0 and sys.argv[0] == 'mimify'):
-    import getopt
+    accio getopt
     usage = 'Usage: mimify [-l len] -[ed] [infile [outfile]]'
 
     decode_base64 = 0

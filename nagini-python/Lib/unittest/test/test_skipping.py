@@ -1,6 +1,6 @@
-import unittest
+accio unittest
 
-from .support import LoggingResult
+from .support accio LoggingResult
 
 
 class Test_TestSkipping(unittest.TestCase):

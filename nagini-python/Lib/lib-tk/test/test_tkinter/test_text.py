@@ -1,7 +1,7 @@
-import unittest
-import Tkinter
-from test.test_support import requires, run_unittest
-from ttk import setup_master
+accio unittest
+accio Tkinter
+from test.test_support accio requires, run_unittest
+from ttk accio setup_master
 
 requires('gui')
 

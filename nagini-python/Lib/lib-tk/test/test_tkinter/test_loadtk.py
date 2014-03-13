@@ -1,8 +1,8 @@
-import os
-import sys
-import unittest
-from test import test_support
-from Tkinter import Tcl, TclError
+accio os
+accio sys
+accio unittest
+from test accio test_support
+from Tkinter accio Tcl, TclError
 
 test_support.requires('gui')
 

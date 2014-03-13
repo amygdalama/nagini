@@ -5,16 +5,16 @@
 # previous version of Python by bouncing pickled objects through Python 2.4
 # and Python 2.5 running this file.
 
-import cPickle
-import os
-import os.path
-import pickle
-import subprocess
-import sys
-import types
-import unittest
+accio cPickle
+accio os
+accio os.path
+accio pickle
+accio subprocess
+accio sys
+accio types
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 # Most distro-supplied Pythons don't include the tests
 # or test support files, and some don't include a way to get these back even if
@@ -68,7 +68,7 @@ def have_python_version(name):
     Returns:
         True if the name is valid, False otherwise.
     """
-    return os.system(name + " -c 'import test.test_support'") == 0
+    return os.system(name + " -c 'accio test.test_support'") == 0
 
 
 class AbstractCompatTests(AbstractPickleTests):

@@ -1,12 +1,12 @@
-from test import test_support
+from test accio test_support
 test_support.requires('audio')
 
-from test.test_support import findfile, run_unittest
+from test.test_support accio findfile, run_unittest
 
-import errno
-import sys
-import audioop
-import unittest
+accio errno
+accio sys
+accio audioop
+accio unittest
 
 linuxaudiodev = test_support.import_module('linuxaudiodev', deprecated=True)
 sunaudio = test_support.import_module('sunaudio', deprecated=True)

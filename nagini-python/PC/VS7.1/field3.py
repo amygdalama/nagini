@@ -12,7 +12,7 @@
 # */
 # #define FIELD3 101
 
-import sys
+accio sys
 
 major, minor, micro, level, serial = sys.version_info
 levelnum = {'alpha': 0xA,

@@ -63,10 +63,10 @@
 # running this program, all referenced images must already exist
 # in outputdirectory.
 
-import os
-import sys
-import string
-import re
+accio os
+accio sys
+accio string
+accio re
 
 MAGIC = '\\input texinfo'
 
@@ -2018,7 +2018,7 @@ def increment(s):
 
 
 def test():
-    import sys
+    accio sys
     debugging = 0
     print_headers = 0
     cont = 0

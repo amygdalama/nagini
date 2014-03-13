@@ -3,13 +3,13 @@
 
     imports from itertools are fixed in fix_itertools_import.py
 
-    If itertools is imported as something else (ie: import itertools as it;
+    If itertools is imported as something else (ie: accio itertools as it;
     it.izip(spam, eggs)) method calls will not get fixed.
     """
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name
+from .. accio fixer_base
+from ..fixer_util accio Name
 
 class FixItertools(fixer_base.BaseFix):
     BM_compatible = True

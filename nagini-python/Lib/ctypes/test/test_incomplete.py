@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 ################################################################
 #
@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(result, ["foo", "bar"] * 4)
 
         # to not leak references, we must clean _pointer_type_cache
-        from ctypes import _pointer_type_cache
+        from ctypes accio _pointer_type_cache
         del _pointer_type_cache[cell]
 
 ################################################################

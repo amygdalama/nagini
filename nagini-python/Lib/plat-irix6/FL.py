@@ -1,14 +1,14 @@
 # Constants used by the FORMS library (module fl).
 # This corresponds to "forms.h".
-# Recommended use: import FL; ... FL.NORMAL_BOX ... etc.
-# Alternate use: from FL import *; ... NORMAL_BOX ... etc.
-from warnings import warnpy3k
+# Recommended use: accio FL; ... FL.NORMAL_BOX ... etc.
+# Alternate use: from FL accio *; ... NORMAL_BOX ... etc.
+from warnings accio warnpy3k
 warnpy3k("the FL module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
 _v20 = 1
 _v21 = 1
-##import fl
+##accio fl
 ##try:
 ##      _v20 = (fl.get_rgbmode is not None)
 ##except:

@@ -2,8 +2,8 @@
 
 MYPORT = 50000
 
-import sys
-from socket import *
+accio sys
+from socket accio *
 
 s = socket(AF_INET, SOCK_DGRAM)
 s.bind(('', MYPORT))

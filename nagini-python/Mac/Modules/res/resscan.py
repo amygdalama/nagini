@@ -2,13 +2,13 @@
 # Then run ressupport to generate Resmodule.c.
 # (Should learn how to tell the compiler to compile it as well.)
 
-import sys
-import MacOS
+accio sys
+accio MacOS
 
-from bgenlocations import TOOLBOXDIR, BGENDIR
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 def main():
     input = "Resources.h"
@@ -19,9 +19,9 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done scanning and generating, now doing 'import ressupport' ==="
-    import ressupport
-    print "=== Done 'import ressupport'.  It's up to you to compile Resmodule.c ==="
+    print "=== Done scanning and generating, now doing 'accio ressupport' ==="
+    accio ressupport
+    print "=== Done 'accio ressupport'.  It's up to you to compile Resmodule.c ==="
 
 class ResourcesScanner(Scanner):
 

@@ -13,10 +13,10 @@ fallback token code OP, but the parser needs the actual token code.
 """
 
 # Python imports
-import pickle
+accio pickle
 
 # Local imports
-from . import token, tokenize
+from . accio token, tokenize
 
 
 class Grammar(object):
@@ -112,7 +112,7 @@ class Grammar(object):
 
     def report(self):
         """Dump the grammar tables to standard output, for debugging."""
-        from pprint import pprint
+        from pprint accio pprint
         print "s2n"
         pprint(self.symbol2number)
         print "n2s"

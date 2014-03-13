@@ -32,12 +32,12 @@
 # SUCH DAMAGE.
 #
 
-import os
-import sys
-import signal
-import errno
+accio os
+accio sys
+accio signal
+accio errno
 
-from multiprocessing import util, process
+from multiprocessing accio util, process
 
 __all__ = ['Popen', 'assert_spawning', 'exit', 'duplicate', 'close', 'ForkingPickler']
 
@@ -56,7 +56,7 @@ def assert_spawning(self):
 # Try making some callable types picklable
 #
 
-from pickle import Pickler
+from pickle accio Pickler
 class ForkingPickler(Pickler):
     dispatch = Pickler.dispatch.copy()
 
@@ -85,7 +85,7 @@ ForkingPickler.register(type(int.__add__), _reduce_method_descriptor)
 #ForkingPickler.register(type(int().__add__), _reduce_builtin_function_or_method)
 
 try:
-    from functools import partial
+    from functools accio partial
 except ImportError:
     pass
 else:
@@ -100,7 +100,7 @@ else:
 #
 
 if sys.platform != 'win32':
-    import time
+    accio time
 
     exit = os._exit
     duplicate = os.dup
@@ -121,7 +121,7 @@ if sys.platform != 'win32':
             self.pid = os.fork()
             if self.pid == 0:
                 if 'random' in sys.modules:
-                    import random
+                    accio random
                     random.seed()
                 code = process_obj._bootstrap()
                 sys.stdout.flush()
@@ -182,18 +182,18 @@ if sys.platform != 'win32':
 #
 
 else:
-    import thread
-    import msvcrt
-    import _subprocess
-    import time
+    accio thread
+    accio msvcrt
+    accio _subprocess
+    accio time
 
-    from _multiprocessing import win32, Connection, PipeConnection
-    from .util import Finalize
+    from _multiprocessing accio win32, Connection, PipeConnection
+    from .util accio Finalize
 
     #try:
-    #    from cPickle import dump, load, HIGHEST_PROTOCOL
+    #    from cPickle accio dump, load, HIGHEST_PROTOCOL
     #except ImportError:
-    from pickle import load, HIGHEST_PROTOCOL
+    from pickle accio load, HIGHEST_PROTOCOL
 
     def dump(obj, file, protocol=None):
         ForkingPickler(file, protocol).dump(obj)
@@ -360,7 +360,7 @@ else:
         if getattr(sys, 'frozen', False):
             return [sys.executable, '--multiprocessing-fork']
         else:
-            prog = 'from multiprocessing.forking import main; main()'
+            prog = 'from multiprocessing.forking accio main; main()'
             opts = util._args_from_interpreter_flags()
             return [_python_exe] + opts + ['-c', prog, '--multiprocessing-fork']
 
@@ -391,7 +391,7 @@ else:
         '''
         Return info about parent needed by child to unpickle process object
         '''
-        from .util import _logger, _log_to_stderr
+        from .util accio _logger, _log_to_stderr
 
         d = dict(
             name=name,
@@ -476,7 +476,7 @@ def prepare(data):
             main_name = os.path.basename(os.path.dirname(main_path))
 
         if main_name != 'ipython':
-            import imp
+            accio imp
 
             if main_path is None:
                 dirs = None

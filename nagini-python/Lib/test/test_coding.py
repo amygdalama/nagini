@@ -1,6 +1,6 @@
 
-import test.test_support, unittest
-import os
+accio test.test_support, unittest
+accio os
 
 class CodingTest(unittest.TestCase):
     def test_bad_coding(self):

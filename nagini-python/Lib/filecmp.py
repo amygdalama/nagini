@@ -9,9 +9,9 @@ Functions:
 
 """
 
-import os
-import stat
-from itertools import ifilter, ifilterfalse, imap, izip
+accio os
+accio stat
+from itertools accio ifilter, ifilterfalse, imap, izip
 
 __all__ = ["cmp","dircmp","cmpfiles"]
 
@@ -281,8 +281,8 @@ def _filter(flist, skip):
 # Demonstration and testing.
 #
 def demo():
-    import sys
-    import getopt
+    accio sys
+    accio getopt
     options, args = getopt.getopt(sys.argv[1:], 'r')
     if len(args) != 2:
         raise getopt.GetoptError('need exactly two args', None)

@@ -1,8 +1,8 @@
 # Test the module type
-import unittest
-from test.test_support import run_unittest, gc_collect
+accio unittest
+from test.test_support accio run_unittest, gc_collect
 
-import sys
+accio sys
 ModuleType = type(sys)
 
 class ModuleTests(unittest.TestCase):

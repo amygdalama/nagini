@@ -17,8 +17,8 @@
 #   Make board updates faster
 #
 
-import random, string, traceback
-import curses
+accio random, string, traceback
+accio curses
 
 class LifeBoard:
     """Encapsulates a Life board

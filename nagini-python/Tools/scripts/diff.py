@@ -8,7 +8,7 @@
 
 """
 
-import sys, os, time, difflib, optparse
+accio sys, os, time, difflib, optparse
 
 def main():
 

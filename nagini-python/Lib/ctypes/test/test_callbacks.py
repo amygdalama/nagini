@@ -1,12 +1,12 @@
-import unittest
-from ctypes import *
-import _ctypes_test
+accio unittest
+from ctypes accio *
+accio _ctypes_test
 
 class Callbacks(unittest.TestCase):
     functype = CFUNCTYPE
 
 ##    def tearDown(self):
-##        import gc
+##        accio gc
 ##        gc.collect()
 
     def callback(self, *args):
@@ -75,7 +75,7 @@ class Callbacks(unittest.TestCase):
 
     def test_float(self):
         # only almost equal: double -> float -> double
-        import math
+        accio math
         self.check_type(c_float, math.e)
         self.check_type(c_float, -math.e)
 
@@ -100,7 +100,7 @@ class Callbacks(unittest.TestCase):
 
     def test_pyobject(self):
         o = ()
-        from sys import getrefcount as grc
+        from sys accio getrefcount as grc
         for o in (), [], object():
             initial = grc(o)
             # This call leaks a reference to 'o'...
@@ -132,7 +132,7 @@ class Callbacks(unittest.TestCase):
             def __init__(self):
                 self.v = proto(self.func)
 
-        import gc
+        accio gc
         for i in range(32):
             X()
         gc.collect()
@@ -141,7 +141,7 @@ class Callbacks(unittest.TestCase):
         self.assertEqual(len(live), 0)
 
     def test_issue12483(self):
-        import gc
+        accio gc
         class Nasty:
             def __del__(self):
                 gc.collect()
@@ -181,7 +181,7 @@ class SampleCallbacksTestCase(unittest.TestCase):
         self.assertLess(diff, 0.01, "%s not less than 0.01" % diff)
 
     def test_issue_8959_a(self):
-        from ctypes.util import find_library
+        from ctypes.util accio find_library
         libc_path = find_library("c")
         if not libc_path:
             return # cannot test
@@ -202,7 +202,7 @@ class SampleCallbacksTestCase(unittest.TestCase):
         pass
     else:
         def test_issue_8959_b(self):
-            from ctypes.wintypes import BOOL, HWND, LPARAM
+            from ctypes.wintypes accio BOOL, HWND, LPARAM
             global windowCount
             windowCount = 0
 

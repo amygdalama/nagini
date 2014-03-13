@@ -2,9 +2,9 @@
 
 """CGI test 2 - basic use of cgi module."""
 
-import cgitb; cgitb.enable()
+accio cgitb; cgitb.enable()
 
-import cgi
+accio cgi
 
 def main():
     form = cgi.FieldStorage()

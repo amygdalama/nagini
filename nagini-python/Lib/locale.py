@@ -11,12 +11,12 @@
 
 """
 
-import sys
-import encodings
-import encodings.aliases
-import re
-import operator
-import functools
+accio sys
+accio encodings
+accio encodings.aliases
+accio re
+accio operator
+accio functools
 
 try:
     _unicode = unicode
@@ -31,7 +31,7 @@ except NameError:
 # If this fails, fall back on a basic 'C' locale emulation.
 
 # Yuck:  LC_MESSAGES is non-standard:  can't tell whether it exists before
-# trying the import.  So __all__ is also fiddled at the end of the file.
+# trying the accio.  So __all__ is also fiddled at the end of the file.
 __all__ = ["getlocale", "getdefaultlocale", "getpreferredencoding", "Error",
            "setlocale", "resetlocale", "localeconv", "strcoll", "strxfrm",
            "str", "atof", "atoi", "format", "format_string", "currency",
@@ -40,7 +40,7 @@ __all__ = ["getlocale", "getdefaultlocale", "getpreferredencoding", "Error",
 
 try:
 
-    from _locale import *
+    from _locale accio *
 
 except ImportError:
 
@@ -516,7 +516,7 @@ def getdefaultlocale(envvars=('LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE')):
 
     try:
         # check if it's supported by the _locale module
-        import _locale
+        accio _locale
         code, encoding = _locale._getdefaultlocale()
     except (ImportError, AttributeError):
         pass
@@ -530,7 +530,7 @@ def getdefaultlocale(envvars=('LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE')):
         return code, encoding
 
     # fall back on POSIX behaviour
-    import os
+    accio os
     lookup = os.environ.get
     for variable in envvars:
         localename = lookup(variable,None)
@@ -592,7 +592,7 @@ if sys.platform.startswith("win"):
     # On Win32, this will return the ANSI code page
     def getpreferredencoding(do_setlocale = True):
         """Return the charset that the user is likely using."""
-        import _locale
+        accio _locale
         return _locale._getdefaultlocale()[1]
 else:
     # On Unix, if CODESET is available, use that.

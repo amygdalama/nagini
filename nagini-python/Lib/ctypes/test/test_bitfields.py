@@ -1,9 +1,9 @@
-from ctypes import *
-import unittest
-import os
+from ctypes accio *
+accio unittest
+accio os
 
-import ctypes
-import _ctypes_test
+accio ctypes
+accio _ctypes_test
 
 class BITS(Structure):
     _fields_ = [("A", c_int, 1),

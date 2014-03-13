@@ -71,7 +71,7 @@ The close() method is called automatically when the class instance
 is destroyed.
 """
 
-import __builtin__
+accio __builtin__
 
 __all__ = ["open", "openfp", "Error"]
 
@@ -82,9 +82,9 @@ WAVE_FORMAT_PCM = 0x0001
 
 _array_fmts = None, 'b', 'h', None, 'i'
 
-import struct
-import sys
-from chunk import Chunk
+accio struct
+accio sys
+from chunk accio Chunk
 
 def _byteswap3(data):
     ba = bytearray(data)
@@ -236,7 +236,7 @@ class Wave_read:
             # unfortunately the fromfile() method does not take
             # something that only looks like a file object, so
             # we have to reach into the innards of the chunk object
-            import array
+            accio array
             chunk = self._data_chunk
             data = array.array(_array_fmts[self._sampwidth])
             assert data.itemsize == self._sampwidth
@@ -423,7 +423,7 @@ class Wave_write:
         if self._convert:
             data = self._convert(data)
         if self._sampwidth in (2, 4) and sys.byteorder == 'big':
-            import array
+            accio array
             a = array.array(_array_fmts[self._sampwidth])
             a.fromstring(data)
             data = a

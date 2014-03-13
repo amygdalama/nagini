@@ -2,10 +2,10 @@
 A testcase which accesses *values* in a dll.
 """
 
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
-import _ctypes_test
+accio _ctypes_test
 
 class ValuesTestCase(unittest.TestCase):
 
@@ -65,14 +65,14 @@ class ValuesTestCase(unittest.TestCase):
                 if entry.name is None:
                     break
                 items.append((entry.name, entry.size))
-            import sys
+            accio sys
             if sys.version_info[:2] >= (2, 3):
                 expected = [("__hello__", 104), ("__phello__", -104), ("__phello__.spam", 104)]
             else:
                 expected = [("__hello__", 100), ("__phello__", -100), ("__phello__.spam", 100)]
             self.assertEqual(items, expected)
 
-            from ctypes import _pointer_type_cache
+            from ctypes accio _pointer_type_cache
             del _pointer_type_cache[struct_frozen]
 
         def test_undefined(self):

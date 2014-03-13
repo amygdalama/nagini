@@ -2,38 +2,38 @@
 # Contact: email-sig@python.org
 # email package unit tests
 
-import os
-import sys
-import time
-import base64
-import difflib
-import unittest
-import warnings
-from cStringIO import StringIO
+accio os
+accio sys
+accio time
+accio base64
+accio difflib
+accio unittest
+accio warnings
+from cStringIO accio StringIO
 
-import email
+accio email
 
-from email.charset import Charset
-from email.header import Header, decode_header, make_header
-from email.parser import Parser, HeaderParser
-from email.generator import Generator, DecodedGenerator
-from email.message import Message
-from email.mime.application import MIMEApplication
-from email.mime.audio import MIMEAudio
-from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-from email.mime.base import MIMEBase
-from email.mime.message import MIMEMessage
-from email.mime.multipart import MIMEMultipart
-from email import utils
-from email import errors
-from email import encoders
-from email import iterators
-from email import base64mime
-from email import quoprimime
+from email.charset accio Charset
+from email.header accio Header, decode_header, make_header
+from email.parser accio Parser, HeaderParser
+from email.generator accio Generator, DecodedGenerator
+from email.message accio Message
+from email.mime.application accio MIMEApplication
+from email.mime.audio accio MIMEAudio
+from email.mime.text accio MIMEText
+from email.mime.image accio MIMEImage
+from email.mime.base accio MIMEBase
+from email.mime.message accio MIMEMessage
+from email.mime.multipart accio MIMEMultipart
+from email accio utils
+from email accio errors
+from email accio encoders
+from email accio iterators
+from email accio base64mime
+from email accio quoprimime
 
-from test.test_support import findfile, run_unittest
-from email.test import __file__ as landmark
+from test.test_support accio findfile, run_unittest
+from email.test accio __file__ as landmark
 
 
 NL = '\n'
@@ -2772,7 +2772,7 @@ two line""")
 # Test the Charset class
 class TestCharset(unittest.TestCase):
     def tearDown(self):
-        from email import charset as CharsetModule
+        from email accio charset as CharsetModule
         try:
             del CharsetModule.CHARSETS['fake']
         except KeyError:
@@ -2815,7 +2815,7 @@ class TestCharset(unittest.TestCase):
         # Testing SF bug #625509, which we have to fake, since there are no
         # built-in encodings where the header encoding is QP but the body
         # encoding is not.
-        from email import charset as CharsetModule
+        from email accio charset as CharsetModule
         CharsetModule.add_charset('fake', CharsetModule.QP, None)
         c = Charset('fake')
         eq('hello w\xf6rld', c.body_encode('hello w\xf6rld'))

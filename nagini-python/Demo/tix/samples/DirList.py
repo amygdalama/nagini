@@ -16,8 +16,8 @@
 # installation directory for an application.
 #
 
-import Tix, os, copy
-from Tkconstants import *
+accio Tix, os, copy
+from Tkconstants accio *
 
 TCL_ALL_EVENTS          = 0
 
@@ -118,7 +118,7 @@ class DemoDirList:
 # outside of the main demo program "tixwidgets.py".
 #
 if __name__== '__main__' :
-    import tkMessageBox, traceback
+    accio tkMessageBox, traceback
 
     try:
         root=Tix.Tk()

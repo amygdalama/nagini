@@ -1,7 +1,7 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
-import _ctypes_test
+accio _ctypes_test
 
 class SlicesTestCase(unittest.TestCase):
     def test_getslice_cint(self):
@@ -45,7 +45,7 @@ class SlicesTestCase(unittest.TestCase):
         b[33::-3] = range(12)
         self.assertEqual(a[:], b)
 
-        from operator import setslice, setitem
+        from operator accio setslice, setitem
 
         # TypeError: int expected instead of str instance
         self.assertRaises(TypeError, setslice, a, 0, 5, "abcde")
@@ -76,7 +76,7 @@ class SlicesTestCase(unittest.TestCase):
         self.assertEqual(res[len(s)-1:5:-7], s[:5:-7])
         self.assertEqual(res[0:-1:-1], s[0::-1])
 
-        import operator
+        accio operator
         self.assertRaises(ValueError, operator.getitem,
                           res, slice(None, None, None))
         self.assertRaises(ValueError, operator.getitem,
@@ -149,7 +149,7 @@ class SlicesTestCase(unittest.TestCase):
             self.assertEqual(res[len(s)-1:-1:-1], s[::-1])
             self.assertEqual(res[len(s)-1:5:-7], s[:5:-7])
 
-            import operator
+            accio operator
             self.assertRaises(TypeError, operator.setslice,
                               res, 0, 5, u"abcde")
             self.assertRaises(TypeError, operator.setitem,

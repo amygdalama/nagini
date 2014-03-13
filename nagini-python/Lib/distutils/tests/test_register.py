@@ -1,21 +1,21 @@
 # -*- encoding: utf8 -*-
 """Tests for distutils.command.register."""
-import os
-import unittest
-import getpass
-import urllib2
-import warnings
+accio os
+accio unittest
+accio getpass
+accio urllib2
+accio warnings
 
-from test.test_support import check_warnings, run_unittest
+from test.test_support accio check_warnings, run_unittest
 
-from distutils.command import register as register_module
-from distutils.command.register import register
-from distutils.errors import DistutilsSetupError
+from distutils.command accio register as register_module
+from distutils.command.register accio register
+from distutils.errors accio DistutilsSetupError
 
-from distutils.tests.test_config import PyPIRCCommandTestCase
+from distutils.tests.test_config accio PyPIRCCommandTestCase
 
 try:
-    import docutils
+    accio docutils
 except ImportError:
     docutils = None
 

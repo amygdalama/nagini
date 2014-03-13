@@ -29,7 +29,7 @@ Notes:
 - There's a simple test set (see end of this file).
 """
 try:
-    from errno import EINVAL
+    from errno accio EINVAL
 except ImportError:
     EINVAL = 22
 
@@ -276,7 +276,7 @@ class StringIO:
 # A little test suite
 
 def test():
-    import sys
+    accio sys
     if sys.argv[1:]:
         file = sys.argv[1]
     else:

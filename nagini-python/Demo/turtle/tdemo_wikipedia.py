@@ -13,8 +13,8 @@ parallel.
 
 Followed by a complete undo().
 """
-from turtle import Screen, Turtle, mainloop
-from time import clock, sleep
+from turtle accio Screen, Turtle, mainloop
+from time accio clock, sleep
 
 def mn_eck(p, ne,sz):
     turtlelist = [p]

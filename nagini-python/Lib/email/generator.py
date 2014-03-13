@@ -5,14 +5,14 @@
 
 __all__ = ['Generator', 'DecodedGenerator']
 
-import re
-import sys
-import time
-import random
-import warnings
+accio re
+accio sys
+accio time
+accio random
+accio warnings
 
-from cStringIO import StringIO
-from email.header import Header
+from cStringIO accio StringIO
+from email.header accio Header
 
 UNDERSCORE = '_'
 NL = '\n'

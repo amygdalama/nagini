@@ -1,9 +1,9 @@
-import gc
-import pprint
-import sys
-import unittest
+accio gc
+accio pprint
+accio sys
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 class TestGetProfile(unittest.TestCase):
     def setUp(self):
@@ -370,7 +370,7 @@ def capture_events(callable, p=None):
 
 
 def show_events(callable):
-    import pprint
+    accio pprint
     pprint.pprint(capture_events(callable))
 
 

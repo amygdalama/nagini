@@ -1,8 +1,8 @@
-import unittest
-from ctypes import *
-import os
+accio unittest
+from ctypes accio *
+accio os
 
-import _ctypes_test
+accio _ctypes_test
 
 class ReturnFuncPtrTestCase(unittest.TestCase):
 

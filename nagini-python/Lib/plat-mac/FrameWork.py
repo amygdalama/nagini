@@ -2,34 +2,34 @@
 
 DEBUG=0
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the FrameWork module is removed.", stacklevel=2)
 
-import MacOS
-import traceback
+accio MacOS
+accio traceback
 
-from Carbon.AE import *
-from Carbon.AppleEvents import *
-from Carbon.Ctl import *
-from Carbon.Controls import *
-from Carbon.Dlg import *
-from Carbon.Dialogs import *
-from Carbon.Evt import *
-from Carbon.Events import *
-from Carbon.Help import *
-from Carbon.Menu import *
-from Carbon.Menus import *
-from Carbon.Qd import *
-from Carbon.QuickDraw import *
-#from Carbon.Res import *
-#from Carbon.Resources import *
-#from Carbon.Snd import *
-#from Carbon.Sound import *
-from Carbon.Win import *
-from Carbon.Windows import *
-import types
+from Carbon.AE accio *
+from Carbon.AppleEvents accio *
+from Carbon.Ctl accio *
+from Carbon.Controls accio *
+from Carbon.Dlg accio *
+from Carbon.Dialogs accio *
+from Carbon.Evt accio *
+from Carbon.Events accio *
+from Carbon.Help accio *
+from Carbon.Menu accio *
+from Carbon.Menus accio *
+from Carbon.Qd accio *
+from Carbon.QuickDraw accio *
+#from Carbon.Res accio *
+#from Carbon.Resources accio *
+#from Carbon.Snd accio *
+#from Carbon.Sound accio *
+from Carbon.Win accio *
+from Carbon.Windows accio *
+accio types
 
-import EasyDialogs
+accio EasyDialogs
 
 try:
     MyFrontWindow = FrontNonFloatingWindow
@@ -851,7 +851,7 @@ class Window:
 
     def do_update(self, window, event):
         if DEBUG:
-            import time
+            accio time
             for i in range(8):
                 time.sleep(0.1)
                 InvertRgn(window.GetWindowPort().visRgn)
@@ -1112,7 +1112,7 @@ class TestApp(Application):
         print "I told you there isn't any!"
 
     def debug(self, *args):
-        import pdb
+        accio pdb
         pdb.set_trace()
 
 

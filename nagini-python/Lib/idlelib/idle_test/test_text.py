@@ -1,9 +1,9 @@
 # Test mock_tk.Text class against tkinter.Text class by running same tests with both.
-import unittest
-from test.test_support import requires
+accio unittest
+from test.test_support accio requires
 
-from _tkinter import TclError
-import Tkinter as tk
+from _tkinter accio TclError
+accio Tkinter as tk
 
 class TextTest(object):
 
@@ -194,7 +194,7 @@ class MockTextTest(TextTest, unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from idlelib.idle_test.mock_tk import Text
+        from idlelib.idle_test.mock_tk accio Text
         cls.Text = Text
 
     def test_decode(self):
@@ -214,7 +214,7 @@ class TkTextTest(TextTest, unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         requires('gui')
-        from Tkinter import Tk, Text
+        from Tkinter accio Tk, Text
         cls.Text = Text
         cls.root = Tk()
 

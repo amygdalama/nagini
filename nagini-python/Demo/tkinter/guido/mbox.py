@@ -2,16 +2,16 @@
 
 # Scan MH folder, display results in window
 
-import os
-import sys
-import re
-import getopt
-import string
-import mhlib
+accio os
+accio sys
+accio re
+accio getopt
+accio string
+accio mhlib
 
-from Tkinter import *
+from Tkinter accio *
 
-from dialog import dialog
+from dialog accio dialog
 
 mailbox = os.environ['HOME'] + '/Mail'
 
@@ -193,7 +193,7 @@ def open_message(e=None):
         num = string.atoi(scanparser.group(1))
         m = mhf.openmessage(num)
         if viewer: viewer.destroy()
-        from MimeViewer import MimeViewer
+        from MimeViewer accio MimeViewer
         viewer = MimeViewer(bot, '+%s/%d' % (folder, num), m)
         viewer.pack()
         viewer.show()

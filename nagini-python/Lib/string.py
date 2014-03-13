@@ -80,7 +80,7 @@ def maketrans(fromstr, tostr):
 
 
 ####################################################################
-import re as _re
+accio re as _re
 
 class _multimap:
     """Helper class for combining multiple mappings.
@@ -525,7 +525,7 @@ def replace(s, old, new, maxreplace=-1):
 # that match <ctype.h>'s definitions.
 
 try:
-    from strop import maketrans, lowercase, uppercase, whitespace
+    from strop accio maketrans, lowercase, uppercase, whitespace
     letters = lowercase + uppercase
 except ImportError:
     pass                                          # Use the original versions

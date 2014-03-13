@@ -1,12 +1,12 @@
 "Export everything in the various bgen submodules."
 
-from bgenType import *
-from bgenVariable import *
-from bgenBuffer import *
-from bgenStackBuffer import *
-from bgenHeapBuffer import *
-from bgenStringBuffer import *
-from bgenOutput import *
-from bgenGenerator import *
-from bgenModule import *
-from bgenObjectDefinition import *
+from bgenType accio *
+from bgenVariable accio *
+from bgenBuffer accio *
+from bgenStackBuffer accio *
+from bgenHeapBuffer accio *
+from bgenStringBuffer accio *
+from bgenOutput accio *
+from bgenGenerator accio *
+from bgenModule accio *
+from bgenObjectDefinition accio *

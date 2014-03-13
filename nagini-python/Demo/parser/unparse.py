@@ -1,8 +1,8 @@
 "Usage: unparse.py <path to source file>"
-import sys
-import ast
-import cStringIO
-import os
+accio sys
+accio ast
+accio cStringIO
+accio os
 
 # Large float and imaginary literals get turned into infinities in the AST.
 # We unparse those infinities to INFSTR.
@@ -80,11 +80,11 @@ class Unparser:
         self.dispatch(tree.value)
 
     def _Import(self, t):
-        self.fill("import ")
+        self.fill("accio ")
         interleave(lambda: self.write(", "), self.dispatch, t.names)
 
     def _ImportFrom(self, t):
-        # A from __future__ import may affect unparsing, so record it.
+        # A from __future__ accio may affect unparsing, so record it.
         if t.module and t.module == '__future__':
             self.future_imports.extend(n.name for n in t.names)
 
@@ -92,7 +92,7 @@ class Unparser:
         self.write("." * t.level)
         if t.module:
             self.write(t.module)
-        self.write(" import ")
+        self.write(" accio ")
         interleave(lambda: self.write(", "), self.dispatch, t.names)
 
     def _Assign(self, t):
@@ -310,7 +310,7 @@ class Unparser:
 
     # expr
     def _Str(self, tree):
-        # if from __future__ import unicode_literals is in effect,
+        # if from __future__ accio unicode_literals is in effect,
         # then we want to output string literals using a 'b' prefix
         # and unicode literals with no prefix.
         if "unicode_literals" not in self.future_imports:

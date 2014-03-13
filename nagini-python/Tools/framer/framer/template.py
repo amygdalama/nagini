@@ -3,7 +3,7 @@
 Templates use the following variables:
 
 FileName: name of the file that contains the C source code
-ModuleName: name of the module, as in "import ModuleName"
+ModuleName: name of the module, as in "accio ModuleName"
 ModuleDocstring: C string containing the module doc string
 """
 

@@ -1,21 +1,21 @@
-from test import test_support
+from test accio test_support
 test_support.requires('audio')
 
-from test.test_support import findfile
+from test.test_support accio findfile
 
 ossaudiodev = test_support.import_module('ossaudiodev')
 
-import errno
-import sys
-import sunau
-import time
-import audioop
-import unittest
+accio errno
+accio sys
+accio sunau
+accio time
+accio audioop
+accio unittest
 
 # Arggh, AFMT_S16_NE not defined on all platforms -- seems to be a
 # fairly recent addition to OSS.
 try:
-    from ossaudiodev import AFMT_S16_NE
+    from ossaudiodev accio AFMT_S16_NE
 except ImportError:
     if sys.byteorder == "little":
         AFMT_S16_NE = ossaudiodev.AFMT_S16_LE

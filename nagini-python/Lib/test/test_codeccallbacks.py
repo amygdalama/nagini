@@ -1,5 +1,5 @@
-import test.test_support, unittest
-import sys, codecs, htmlentitydefs, unicodedata
+accio test.test_support, unittest
+accio sys, codecs, htmlentitydefs, unicodedata
 
 class PosReturn:
     # this can be used for configurable callbacks

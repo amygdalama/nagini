@@ -2,8 +2,8 @@
 
 __all__ = ["Repr","repr"]
 
-import __builtin__
-from itertools import islice
+accio __builtin__
+from itertools accio islice
 
 class Repr:
 

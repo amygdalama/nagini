@@ -28,8 +28,8 @@ From:
     Itamar Shtull-Trauring <itamar@maxnm.com>
 """
 
-import errno
-import string
+accio errno
+accio string
 
 class DBRecIO:
     def __init__(self, db, key, txn=None):
@@ -146,7 +146,7 @@ class DBRecIO:
 # A little test suite
 
 def _test():
-    import sys
+    accio sys
     if sys.argv[1:]:
         file = sys.argv[1]
     else:

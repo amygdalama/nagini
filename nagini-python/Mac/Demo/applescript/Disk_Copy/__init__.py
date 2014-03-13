@@ -2,11 +2,11 @@
 Package generated from Macintosh HD:Hulpprogramma's:Disk Copy
 Resource aete resid 0
 """
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import Special_Events
-import Utility_Events
+accio Standard_Suite
+accio Special_Events
+accio Utility_Events
 
 
 _code_to_module = {
@@ -23,9 +23,9 @@ _code_to_fullname = {
         'ddsk' : ('Disk_Copy.Utility_Events', 'Utility_Events'),
 }
 
-from Standard_Suite import *
-from Special_Events import *
-from Utility_Events import *
+from Standard_Suite accio *
+from Special_Events accio *
+from Utility_Events accio *
 
 
 class Disk_Copy(Standard_Suite_Events,

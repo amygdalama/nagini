@@ -3,20 +3,20 @@
   Particularly useful for platforms that fake popen.
 """
 
-import unittest
-from test import test_support
-import os, sys
+accio unittest
+from test accio test_support
+accio os, sys
 
 # Test that command-lines get down as we expect.
 # To do this we execute:
-#    python -c "import sys;print sys.argv" {rest_of_commandline}
+#    python -c "accio sys;print sys.argv" {rest_of_commandline}
 # This results in Python being spawned and printing the sys.argv list.
 # We can then eval() the result of this, and see what each argv was.
 python = sys.executable
 
 class PopenTest(unittest.TestCase):
     def _do_test_commandline(self, cmdline, expected):
-        cmd = '%s -c "import sys;print sys.argv" %s' % (python, cmdline)
+        cmd = '%s -c "accio sys;print sys.argv" %s' % (python, cmdline)
         data = os.popen(cmd).read() + '\n'
         got = eval(data)[1:] # strip off argv[0]
         self.assertEqual(got, expected)

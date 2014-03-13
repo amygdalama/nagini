@@ -4,12 +4,12 @@ Original by Michael Schneider
 """
 
 
-import cmd
-import sys
-from test import test_support
-import re
-import unittest
-import StringIO
+accio cmd
+accio sys
+from test accio test_support
+accio re
+accio unittest
+accio StringIO
 
 class samplecmdclass(cmd.Cmd):
     """
@@ -223,7 +223,7 @@ class TestAlternateInput(unittest.TestCase):
 
 
 def test_main(verbose=None):
-    from test import test_cmd
+    from test accio test_cmd
     test_support.run_doctest(test_cmd, verbose)
     test_support.run_unittest(TestAlternateInput)
 

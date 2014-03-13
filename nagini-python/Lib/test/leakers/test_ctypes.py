@@ -1,8 +1,8 @@
 
 # Taken from Lib/ctypes/test/test_keeprefs.py, PointerToStructure.test().
 
-from ctypes import Structure, c_int, POINTER
-import gc
+from ctypes accio Structure, c_int, POINTER
+accio gc
 
 def leak_inner():
     class POINT(Structure):

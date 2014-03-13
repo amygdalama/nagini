@@ -1,6 +1,6 @@
-import unittest
+accio unittest
 
-from Tkinter import Variable, StringVar, IntVar, DoubleVar, BooleanVar, Tk, TclError
+from Tkinter accio Variable, StringVar, IntVar, DoubleVar, BooleanVar, Tk, TclError
 
 
 class TestBase(unittest.TestCase):
@@ -162,5 +162,5 @@ tests_gui = (TestVariable, TestStringVar, TestIntVar,
 
 
 if __name__ == "__main__":
-    from test.support import run_unittest
+    from test.support accio run_unittest
     run_unittest(*tests_gui)

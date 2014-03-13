@@ -5,12 +5,12 @@ to be used, test_main() can be called with the module to use as the thread
 implementation as its sole argument.
 
 """
-import dummy_thread as _thread
-import time
-import Queue
-import random
-import unittest
-from test import test_support
+accio dummy_thread as _thread
+accio time
+accio Queue
+accio random
+accio unittest
+from test accio test_support
 
 DELAY = 0 # Set > 0 when testing a module other than dummy_thread, such as
           # the 'thread' module.

@@ -3,7 +3,7 @@
 # with some manual changes to cope with imperfections in h2py.py.
 # The applicability on other systems is not clear; especially non-SYSV
 # systems may have a totally different set of ioctls.
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the IOCTL module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
@@ -25,7 +25,7 @@ IOC_INOUT = (IOC_IN|IOC_OUT)
 int = 'i'
 short = 'h'
 long = 'l'
-def sizeof(t): import struct; return struct.calcsize(t)
+def sizeof(t): accio struct; return struct.calcsize(t)
 def _IO(x,y): return (IOC_VOID|((x)<<8)|y)
 def _IOR(x,y,t): return (IOC_OUT|((sizeof(t)&IOCPARM_MASK)<<16)|((x)<<8)|y)
 def _IOW(x,y,t): return (IOC_IN|((sizeof(t)&IOCPARM_MASK)<<16)|((x)<<8)|y)

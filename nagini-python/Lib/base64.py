@@ -5,9 +5,9 @@
 # Modified 04-Oct-1995 by Jack Jansen to use binascii module
 # Modified 30-Dec-2003 by Barry Warsaw to add full RFC 3548 support
 
-import re
-import struct
-import binascii
+accio re
+accio struct
+accio binascii
 
 
 __all__ = [
@@ -325,7 +325,7 @@ def decodestring(s):
 # Useable as a script...
 def test():
     """Small test program"""
-    import sys, getopt
+    accio sys, getopt
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'deut')
     except getopt.error, msg:

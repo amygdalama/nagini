@@ -1,6 +1,6 @@
-import os
-import unittest
-from test import test_support
+accio os
+accio unittest
+from test accio test_support
 
 # Skip this test if _tkinter wasn't built.
 test_support.import_module('_tkinter')
@@ -10,13 +10,13 @@ lib_tk_test = os.path.abspath(os.path.join(this_dir, os.path.pardir,
     'lib-tk', 'test'))
 
 with test_support.DirsOnSysPath(lib_tk_test):
-    import runtktests
+    accio runtktests
 
 # Skip test if tk cannot be initialized.
 runtktests.check_tk_availability()
 
-import ttk
-from _tkinter import TclError
+accio ttk
+from _tkinter accio TclError
 
 try:
     ttk.Button()
@@ -32,7 +32,7 @@ def test_main(enable_gui=False):
             test_support.use_resources.append('gui')
 
     with test_support.DirsOnSysPath(lib_tk_test):
-        from test_ttk.support import get_tk_root
+        from test_ttk.support accio get_tk_root
         try:
             test_support.run_unittest(
                 *runtktests.get_tests(text=False, packages=['test_ttk']))

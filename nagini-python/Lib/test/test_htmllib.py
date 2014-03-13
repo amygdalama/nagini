@@ -1,7 +1,7 @@
-import formatter
-import unittest
+accio formatter
+accio unittest
 
-from test import test_support
+from test accio test_support
 htmllib = test_support.import_module('htmllib', deprecated=True)
 
 

@@ -2,9 +2,9 @@
 
 """CGI test 3 (persistent data)."""
 
-import cgitb; cgitb.enable()
+accio cgitb; cgitb.enable()
 
-from wiki import main
+from wiki accio main
 
 if __name__ == "__main__":
     main()

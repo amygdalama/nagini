@@ -2,25 +2,25 @@
 Import utilities
 
 Exported classes:
-    ImportManager   Manage the import process
+    ImportManager   Manage the accio process
 
-    Importer        Base class for replacing standard import functions
-    BuiltinImporter Emulate the import mechanism for builtin and frozen modules
+    Importer        Base class for replacing standard accio functions
+    BuiltinImporter Emulate the accio mechanism for builtin and frozen modules
 
     DynLoadSuffixImporter
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the imputil module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
 # note: avoid importing non-builtin modules
-import imp                      ### not available in Jython?
-import sys
-import __builtin__
+accio imp                      ### not available in Jython?
+accio sys
+accio __builtin__
 
 # for the DirectoryImporter
-import struct
-import marshal
+accio struct
+accio marshal
 
 __all__ = ["ImportManager","Importer","BuiltinImporter"]
 
@@ -28,7 +28,7 @@ _StringType = type('')
 _ModuleType = type(sys)         ### doesn't work in Jython...
 
 class ImportManager:
-    "Manage the import process."
+    "Manage the accio process."
 
     def install(self, namespace=vars(__builtin__)):
         "Install this ImportManager into the specified namespace."
@@ -38,7 +38,7 @@ class ImportManager:
 
         # Note: we have no notion of "chaining"
 
-        # Record the previous import hook, then install our own.
+        # Record the previous accio hook, then install our own.
         self.previous_importer = namespace['__import__']
         self.namespace = namespace
         namespace['__import__'] = self._import_hook
@@ -47,7 +47,7 @@ class ImportManager:
         #namespace['reload'] = self._reload_hook
 
     def uninstall(self):
-        "Restore the previous import mechanism."
+        "Restore the previous accio mechanism."
         self.namespace['__import__'] = self.previous_importer
 
     def add_suffix(self, suffix, importFunc):
@@ -74,8 +74,8 @@ class ImportManager:
             fs_imp = cls()
         self.fs_imp = fs_imp
 
-        # Initialize the set of suffixes that we recognize and import.
-        # The default will import dynamic-load modules first, followed by
+        # Initialize the set of suffixes that we recognize and accio.
+        # The default will accio dynamic-load modules first, followed by
         # .py files (or a .py file's cached bytecode)
         for desc in imp.get_suffixes():
             if desc[2] == imp.C_EXTENSION:
@@ -84,14 +84,14 @@ class ImportManager:
         self.add_suffix('.py', py_suffix_importer)
 
     def _import_hook(self, fqname, globals=None, locals=None, fromlist=None):
-        """Python calls this hook to locate and import a module."""
+        """Python calls this hook to locate and accio a module."""
 
         parts = fqname.split('.')
 
-        # determine the context of this import
+        # determine the context of this accio
         parent = self._determine_import_context(globals)
 
-        # if there is a parent, then its importer should manage this import
+        # if there is a parent, then its importer should manage this accio
         if parent:
             module = parent.__importer__._do_import(parent, parts, fromlist)
             if module:
@@ -117,7 +117,7 @@ class ImportManager:
                 # __ispkg__ isn't defined (the module was not imported by us),
                 # or it is zero.
                 #
-                # In the former case, there is no way that we could import
+                # In the former case, there is no way that we could accio
                 # sub-modules that occur in the fromlist (but we can't raise an
                 # error because it may just be names) because we don't know how
                 # to deal with packages that were imported by other systems.
@@ -134,7 +134,7 @@ class ImportManager:
         if importer:
             return importer._finish_import(top_module, parts[1:], fromlist)
 
-        # Grrr, some people "import os.path" or do "from os.path import ..."
+        # Grrr, some people "accio os.path" or do "from os.path accio ..."
         if len(parts) == 2 and hasattr(top_module, parts[1]):
             if fromlist:
                 return getattr(top_module, parts[1])
@@ -157,15 +157,15 @@ class ImportManager:
 
         if not globals or not globals.get('__importer__'):
             # globals does not refer to one of our modules or packages. That
-            # implies there is no relative import context (as far as we are
+            # implies there is no relative accio context (as far as we are
             # concerned), and it should just pick it off the standard path.
             return None
 
         # The globals refer to a module or package of ours. It will define
-        # the context of the new import. Get the module/package fqname.
+        # the context of the new accio. Get the module/package fqname.
         parent_fqname = globals['__name__']
 
-        # if a package is performing the import, then return itself (imports
+        # if a package is performing the accio, then return itself (imports
         # refer to pkg contents)
         if globals['__ispkg__']:
             parent = sys.modules[parent_fqname]
@@ -174,11 +174,11 @@ class ImportManager:
 
         i = parent_fqname.rfind('.')
 
-        # a module outside of a package has no particular import context
+        # a module outside of a package has no particular accio context
         if i == -1:
             return None
 
-        # if a module in a package is performing the import, then return the
+        # if a module in a package is performing the accio, then return the
         # package (imports refer to siblings)
         parent_fqname = parent_fqname[:i]
         parent = sys.modules[parent_fqname]
@@ -187,7 +187,7 @@ class ImportManager:
 
     def _import_top_module(self, name):
         # scan sys.path looking for a location in the filesystem that contains
-        # the module, or an Importer object that can import the module.
+        # the module, or an Importer object that can accio the module.
         for item in sys.path:
             if isinstance(item, _StringType):
                 module = self.fs_imp.import_from_dir(item, name)
@@ -215,7 +215,7 @@ class ImportManager:
 
 
 class Importer:
-    "Base class for replacing standard import functions."
+    "Base class for replacing standard accio functions."
 
     def import_top(self, name):
         "Import a top-level module."
@@ -230,9 +230,9 @@ class Importer:
         # below the top-level module.
         bottom = self._load_tail(top, parts)
 
-        # if the form is "import a.b.c", then return "a"
+        # if the form is "accio a.b.c", then return "a"
         if not fromlist:
-            # no fromlist: return the top of the import tree
+            # no fromlist: return the top of the accio tree
             return top
 
         # the top module was imported by self.
@@ -243,13 +243,13 @@ class Importer:
         # since we imported/handled the bottom module, this means that we can
         # also handle its fromlist (and reliably use __ispkg__).
 
-        # if the bottom node is a package, then (potentially) import some
+        # if the bottom node is a package, then (potentially) accio some
         # modules.
         #
         # note: if it is not a package, then "fromlist" refers to names in
         #       the bottom module rather than modules.
         # note: for a mix of names and modules in the fromlist, we will
-        #       import all modules and insert those into the namespace of
+        #       accio all modules and insert those into the namespace of
         #       the package module. Python will pick up all fromlist names
         #       from the bottom (package) module; some will be modules that
         #       we imported and stored in the namespace, others are expected
@@ -257,7 +257,7 @@ class Importer:
         if bottom.__ispkg__:
             self._import_fromlist(bottom, fromlist)
 
-        # if the form is "from a.b import c, d" then return "b"
+        # if the form is "from a.b accio c, d" then return "b"
         return bottom
 
     def _import_one(self, parent, modname, fqname):
@@ -334,24 +334,24 @@ class Importer:
         'Import any sub-modules in the "from" list.'
 
         # if '*' is present in the fromlist, then look for the '__all__'
-        # variable to find additional items (modules) to import.
+        # variable to find additional items (modules) to accio.
         if '*' in fromlist:
             fromlist = list(fromlist) + \
                        list(package.__dict__.get('__all__', []))
 
         for sub in fromlist:
-            # if the name is already present, then don't try to import it (it
+            # if the name is already present, then don't try to accio it (it
             # might not be a module!).
             if sub != '*' and not hasattr(package, sub):
                 subname = "%s.%s" % (package.__name__, sub)
                 submod = self._import_one(package, sub, subname)
                 if not submod:
-                    raise ImportError, "cannot import name " + subname
+                    raise ImportError, "cannot accio name " + subname
 
     def _do_import(self, parent, parts, fromlist):
-        """Attempt to import the module relative to parent.
+        """Attempt to accio the module relative to parent.
 
-        This method is used when the import context specifies that <self>
+        This method is used when the accio context specifies that <self>
         imported the parent module.
         """
         top_name = parts[0]
@@ -445,23 +445,23 @@ def _compile(pathname, timestamp):
 
 _os_stat = _os_path_join = None
 def _os_bootstrap():
-    "Set up 'os' module replacement functions for use during import bootstrap."
+    "Set up 'os' module replacement functions for use during accio bootstrap."
 
     names = sys.builtin_module_names
 
     join = None
     if 'posix' in names:
         sep = '/'
-        from posix import stat
+        from posix accio stat
     elif 'nt' in names:
         sep = '\\'
-        from nt import stat
+        from nt accio stat
     elif 'dos' in names:
         sep = '\\'
-        from dos import stat
+        from dos accio stat
     elif 'os2' in names:
         sep = '\\'
-        from os2 import stat
+        from os2 accio stat
     else:
         raise ImportError, 'no os specific module found'
 
@@ -499,7 +499,7 @@ def _timestamp(pathname):
 
 ######################################################################
 #
-# Emulate the import mechanism for builtin and frozen modules
+# Emulate the accio mechanism for builtin and frozen modules
 #
 class BuiltinImporter(Importer):
     def get_code(self, parent, modname, fqname):
@@ -542,7 +542,7 @@ class _FilesystemImporter(Importer):
     def get_code(self, parent, modname, fqname):
         # This importer is never used with an empty parent. Its existence is
         # private to the ImportManager. The ImportManager uses the
-        # import_from_dir() method to import top-level modules/packages.
+        # import_from_dir() method to accio top-level modules/packages.
         # This method is only used when we look for a module within a package.
         assert parent
 
@@ -634,18 +634,18 @@ def _test_revamp():
 #   imp.C_EXTENSION is not in Jython. same for get_suffixes and new_module
 #
 #   given foo.py of:
-#      import sys
+#      accio sys
 #      sys.modules['foo'] = sys
 #
-#   ---- standard import mechanism
-#   >>> import foo
+#   ---- standard accio mechanism
+#   >>> accio foo
 #   >>> foo
 #   <module 'sys' (built-in)>
 #
-#   ---- revamped import mechanism
-#   >>> import imputil
+#   ---- revamped accio mechanism
+#   >>> accio imputil
 #   >>> imputil._test_revamp()
-#   >>> import foo
+#   >>> accio foo
 #   >>> foo
 #   <module 'foo' from 'foo.py'>
 #
@@ -662,20 +662,20 @@ def _test_revamp():
 #     distutils importer hooked to list of standard Internet repositories
 #     module->file location mapper to speed FS-based imports
 #     relative imports
-#     keep chaining so that it can play nice with other import hooks
+#     keep chaining so that it can play nice with other accio hooks
 #
 # from Gordon:
 #   push MAL's mapper into sys.path[0] as a cache (hard-coded for apps)
 #
 # from Guido:
 #   need to change sys.* references for rexec environs
-#   need hook for MAL's walk-me-up import strategy, or Tim's absolute strategy
+#   need hook for MAL's walk-me-up accio strategy, or Tim's absolute strategy
 #   watch out for sys.modules[...] is None
 #   flag to force absolute imports? (speeds _determine_import_context and
 #       checking for a relative module)
 #   insert names of archives into sys.path  (see quote below)
 #   note: reload does NOT blast module dict
-#   shift import mechanisms and policies around; provide for hooks, overrides
+#   shift accio mechanisms and policies around; provide for hooks, overrides
 #       (see quote below)
 #   add get_source stuff
 #   get_topcode and get_subcode

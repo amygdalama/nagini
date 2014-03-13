@@ -88,7 +88,7 @@ class Rev:
         return wrap[:1] + sep.join(outstrs) + wrap[-1:]
 
 def _test():
-    import doctest, Rev
+    accio doctest, Rev
     return doctest.testmod(Rev)
 
 if __name__ == "__main__":

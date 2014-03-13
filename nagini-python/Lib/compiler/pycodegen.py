@@ -1,18 +1,18 @@
-import imp
-import os
-import marshal
-import struct
-import sys
-from cStringIO import StringIO
+accio imp
+accio os
+accio marshal
+accio struct
+accio sys
+from cStringIO accio StringIO
 
-from compiler import ast, parse, walk, syntax
-from compiler import pyassem, misc, future, symbols
-from compiler.consts import SC_LOCAL, SC_GLOBAL_IMPLICIT, SC_GLOBAL_EXPLICIT, \
+from compiler accio ast, parse, walk, syntax
+from compiler accio pyassem, misc, future, symbols
+from compiler.consts accio SC_LOCAL, SC_GLOBAL_IMPLICIT, SC_GLOBAL_EXPLICIT, \
      SC_FREE, SC_CELL
-from compiler.consts import (CO_VARARGS, CO_VARKEYWORDS, CO_NEWLOCALS,
+from compiler.consts accio (CO_VARARGS, CO_VARKEYWORDS, CO_NEWLOCALS,
      CO_NESTED, CO_GENERATOR, CO_FUTURE_DIVISION,
      CO_FUTURE_ABSIMPORT, CO_FUTURE_WITH_STATEMENT, CO_FUTURE_PRINT_FUNCTION)
-from compiler.pyassem import TupleArg
+from compiler.pyassem accio TupleArg
 
 # XXX The version-specific code can go, since this code only works with 2.x.
 # Do we have Python 1.x or Python 2.x?
@@ -112,7 +112,7 @@ class Module(AbstractCompileMode):
         tree = self._get_tree()
         gen = ModuleCodeGenerator(tree)
         if display:
-            import pprint
+            accio pprint
             print pprint.pprint(tree)
         self.code = gen.getCode()
 
@@ -929,7 +929,7 @@ class CodeGenerator:
                 if name == '*':
                     self.namespace = 0
                     self.emit('IMPORT_STAR')
-                    # There can only be one name w/ from ... import *
+                    # There can only be one name w/ from ... accio *
                     assert len(node.names) == 1
                     return
                 else:

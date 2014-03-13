@@ -3,14 +3,14 @@
   Nick Mathewson
 """
 
-import sys
-import os
-import shutil
-import unittest
+accio sys
+accio os
+accio shutil
+accio unittest
 
-from test.test_support import run_unittest, check_py3k_warnings
-from repr import repr as r # Don't shadow builtin repr
-from repr import Repr
+from test.test_support accio run_unittest, check_py3k_warnings
+from repr accio repr as r # Don't shadow builtin repr
+from repr accio Repr
 
 
 def nestedTuple(nesting):
@@ -48,8 +48,8 @@ class ReprTests(unittest.TestCase):
         eq(r2.repr(t3), expected)
 
     def test_container(self):
-        from array import array
-        from collections import deque
+        from array accio array
+        from collections accio deque
 
         eq = self.assertEqual
         # Tuples give up after 6 elements
@@ -253,7 +253,7 @@ class LongReprTest(unittest.TestCase):
     def test_module(self):
         eq = self.assertEqual
         touch(os.path.join(self.subpkgname, self.pkgname + os.extsep + 'py'))
-        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation import areallylongpackageandmodulenametotestreprtruncation
+        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation accio areallylongpackageandmodulenametotestreprtruncation
         eq(repr(areallylongpackageandmodulenametotestreprtruncation),
            "<module '%s' from '%s'>" % (areallylongpackageandmodulenametotestreprtruncation.__name__, areallylongpackageandmodulenametotestreprtruncation.__file__))
         eq(repr(sys), "<module 'sys' (built-in)>")
@@ -264,7 +264,7 @@ class LongReprTest(unittest.TestCase):
 class foo(object):
     pass
 ''')
-        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation import foo
+        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation accio foo
         eq(repr(foo.foo),
                "<class '%s.foo'>" % foo.__name__)
 
@@ -279,7 +279,7 @@ class foo(object):
 class bar:
     pass
 ''')
-        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation import bar
+        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation accio bar
         # Module name may be prefixed with "test.", depending on how run.
         self.assertTrue(repr(bar.bar).startswith(
             "<class %s.bar at 0x" % bar.__name__))
@@ -289,7 +289,7 @@ class bar:
 class baz:
     pass
 ''')
-        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation import baz
+        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation accio baz
         ibaz = baz.baz()
         self.assertTrue(repr(ibaz).startswith(
             "<%s.baz instance at 0x" % baz.__name__))
@@ -300,7 +300,7 @@ class baz:
 class aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:
     def amethod(self): pass
 ''')
-        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation import qux
+        from areallylongpackageandmodulenametotestreprtruncation.areallylongpackageandmodulenametotestreprtruncation accio qux
         # Unbound methods first
         eq(repr(qux.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.amethod),
         '<unbound method aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.amethod>')

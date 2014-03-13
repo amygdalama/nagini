@@ -1,6 +1,6 @@
-import macpath
-from test import test_support, test_genericpath
-import unittest
+accio macpath
+from test accio test_support, test_genericpath
+accio unittest
 
 
 class MacPathTestCase(unittest.TestCase):

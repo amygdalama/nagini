@@ -16,14 +16,14 @@ __author__ = "Guido van Rossum <guido@python.org>"
 __all__ = ["Driver", "load_grammar"]
 
 # Python imports
-import codecs
-import os
-import logging
-import StringIO
-import sys
+accio codecs
+accio os
+accio logging
+accio StringIO
+accio sys
 
 # Pgen imports
-from . import grammar, parse, token, tokenize, pgen
+from . accio grammar, parse, token, tokenize, pgen
 
 
 class Driver(object):

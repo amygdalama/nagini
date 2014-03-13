@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import sys
+accio unittest
+from test accio test_support
+accio sys
 new = test_support.import_module('new', deprecated=True)
 
 class NewTest(unittest.TestCase):
@@ -12,7 +12,7 @@ class NewTest(unittest.TestCase):
         m = new.module('Spam')
         m.Eggs = Eggs
         sys.modules['Spam'] = m
-        import Spam
+        accio Spam
 
         def get_more_yolks(self):
             return self.yolks + 3
@@ -73,7 +73,7 @@ class NewTest(unittest.TestCase):
 
         ccode = compile(codestr, '<string>', 'exec')
         # Jython doesn't have a __builtins__, so use a portable alternative
-        import __builtin__
+        accio __builtin__
         g = {'c': 0, '__builtins__': __builtin__}
 
         # this test could be more robust

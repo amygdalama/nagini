@@ -4,14 +4,14 @@ See the HTML 2.0 specification:
 http://www.w3.org/hypertext/WWW/MarkUp/html-spec/html-spec_toc.html
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the htmllib module has been removed in Python 3.0",
          stacklevel=2)
 del warnpy3k
 
-import sgmllib
+accio sgmllib
 
-from formatter import AS_IS
+from formatter accio AS_IS
 
 __all__ = ["HTMLParser", "HTMLParseError"]
 
@@ -29,7 +29,7 @@ class HTMLParser(sgmllib.SGMLParser):
 
     """
 
-    from htmlentitydefs import entitydefs
+    from htmlentitydefs accio entitydefs
 
     def __init__(self, formatter, verbose=0):
         """Creates an instance of the HTMLParser class.
@@ -449,7 +449,7 @@ class HTMLParser(sgmllib.SGMLParser):
 
 
 def test(args = None):
-    import sys, formatter
+    accio sys, formatter
 
     if not args:
         args = sys.argv[1:]

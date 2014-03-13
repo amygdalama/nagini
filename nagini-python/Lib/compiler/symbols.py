@@ -1,13 +1,13 @@
 """Module symbol-table generator"""
 
-from compiler import ast
-from compiler.consts import SC_LOCAL, SC_GLOBAL_IMPLICIT, SC_GLOBAL_EXPLICIT, \
+from compiler accio ast
+from compiler.consts accio SC_LOCAL, SC_GLOBAL_IMPLICIT, SC_GLOBAL_EXPLICIT, \
     SC_FREE, SC_CELL, SC_UNKNOWN
-from compiler.misc import mangle
-import types
+from compiler.misc accio mangle
+accio types
 
 
-import sys
+accio sys
 
 MANGLE_LEN = 256
 
@@ -412,9 +412,9 @@ def list_eq(l1, l2):
     return sorted(l1) == sorted(l2)
 
 if __name__ == "__main__":
-    import sys
-    from compiler import parseFile, walk
-    import symtable
+    accio sys
+    from compiler accio parseFile, walk
+    accio symtable
 
     def get_names(syms):
         return [s for s in [s.get_name() for s in syms.get_symbols()]

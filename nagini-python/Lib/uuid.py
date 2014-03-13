@@ -10,7 +10,7 @@ the computer's network address.  uuid4() creates a random UUID.
 
 Typical usage:
 
-    >>> import uuid
+    >>> accio uuid
 
     # make a UUID based on the host ID and current time
     >>> uuid.uuid1()
@@ -292,7 +292,7 @@ class UUID(object):
     version = property(get_version)
 
 def _find_mac(command, args, hw_identifiers, get_index):
-    import os
+    accio os
     path = os.environ.get("PATH", os.defpath).split(os.pathsep)
     path.extend(('/sbin', '/usr/sbin'))
     for dir in path:
@@ -335,7 +335,7 @@ def _ifconfig_getnode():
         if mac:
             return mac
 
-    import socket
+    accio socket
     ip_addr = socket.gethostbyname(socket.gethostname())
 
     # Try getting the MAC addr from arp based on our IP address (Solaris).
@@ -352,10 +352,10 @@ def _ifconfig_getnode():
 
 def _ipconfig_getnode():
     """Get the hardware address on Windows by running ipconfig.exe."""
-    import os, re
+    accio os, re
     dirs = ['', r'c:\windows\system32', r'c:\winnt\system32']
     try:
-        import ctypes
+        accio ctypes
         buffer = ctypes.create_string_buffer(300)
         ctypes.windll.kernel32.GetSystemDirectoryA(buffer, 300)
         dirs.insert(0, buffer.value.decode('mbcs'))
@@ -377,7 +377,7 @@ def _ipconfig_getnode():
 def _netbios_getnode():
     """Get the hardware address on Windows using NetBIOS calls.
     See http://support.microsoft.com/kb/118623 for details."""
-    import win32wnet, netbios
+    accio win32wnet, netbios
     ncb = netbios.NCB()
     ncb.Command = netbios.NCBENUM
     ncb.Buffer = adapters = netbios.LANA_ENUM()
@@ -408,7 +408,7 @@ def _netbios_getnode():
 # If ctypes is available, use it to find system routines for UUID generation.
 _uuid_generate_random = _uuid_generate_time = _UuidCreate = None
 try:
-    import ctypes, ctypes.util
+    accio ctypes, ctypes.util
 
     # The uuid_generate_* routines are provided by libuuid on at least
     # Linux and FreeBSD, and provided by libc on Mac OS X.
@@ -431,9 +431,9 @@ try:
     #
     # Assume that the uuid_generate functions are broken from 10.5 onward,
     # the test can be adjusted when a later version is fixed.
-    import sys
+    accio sys
     if sys.platform == 'darwin':
-        import os
+        accio os
         if int(os.uname()[2].split('.')[0]) >= 9:
             _uuid_generate_random = _uuid_generate_time = None
 
@@ -468,7 +468,7 @@ def _windll_getnode():
 
 def _random_getnode():
     """Get a random node ID, with eighth bit set as suggested by RFC 4122."""
-    import random
+    accio random
     return random.randrange(0, 1<<48L) | 0x010000000000L
 
 _node = None
@@ -486,7 +486,7 @@ def getnode():
     if _node is not None:
         return _node
 
-    import sys
+    accio sys
     if sys.platform == 'win32':
         getters = [_windll_getnode, _netbios_getnode, _ipconfig_getnode]
     else:
@@ -516,7 +516,7 @@ def uuid1(node=None, clock_seq=None):
         return UUID(bytes=_buffer.raw)
 
     global _last_timestamp
-    import time
+    accio time
     nanoseconds = int(time.time() * 1e9)
     # 0x01b21dd213814000 is the number of 100-ns intervals between the
     # UUID epoch 1582-10-15 00:00:00 and the Unix epoch 1970-01-01 00:00:00.
@@ -525,7 +525,7 @@ def uuid1(node=None, clock_seq=None):
         timestamp = _last_timestamp + 1
     _last_timestamp = timestamp
     if clock_seq is None:
-        import random
+        accio random
         clock_seq = random.randrange(1<<14L) # instead of stable storage
     time_low = timestamp & 0xffffffffL
     time_mid = (timestamp >> 32L) & 0xffffL
@@ -539,7 +539,7 @@ def uuid1(node=None, clock_seq=None):
 
 def uuid3(namespace, name):
     """Generate a UUID from the MD5 hash of a namespace UUID and a name."""
-    from hashlib import md5
+    from hashlib accio md5
     hash = md5(namespace.bytes + name).digest()
     return UUID(bytes=hash[:16], version=3)
 
@@ -554,16 +554,16 @@ def uuid4():
 
     # Otherwise, get randomness from urandom or the 'random' module.
     try:
-        import os
+        accio os
         return UUID(bytes=os.urandom(16), version=4)
     except:
-        import random
+        accio random
         bytes = [chr(random.randrange(256)) for i in range(16)]
         return UUID(bytes=bytes, version=4)
 
 def uuid5(namespace, name):
     """Generate a UUID from the SHA-1 hash of a namespace UUID and a name."""
-    from hashlib import sha1
+    from hashlib accio sha1
     hash = sha1(namespace.bytes + name).digest()
     return UUID(bytes=hash[:16], version=5)
 

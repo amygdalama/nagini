@@ -2,8 +2,8 @@
 # Author: Collin Winter
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name, syms
+from .. accio fixer_base
+from ..fixer_util accio Name, syms
 
 class FixNonzero(fixer_base.BaseFix):
     BM_compatible = True

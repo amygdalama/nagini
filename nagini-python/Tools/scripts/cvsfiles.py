@@ -10,10 +10,10 @@ printed.  As a special case, if a file does not exist, it is always
 printed.
 """
 
-import os
-import sys
-import stat
-import getopt
+accio os
+accio sys
+accio stat
+accio getopt
 
 cutofftime = 0
 

@@ -1,15 +1,15 @@
-import difflib
-import pprint
-import pickle
-import re
-import sys
+accio difflib
+accio pprint
+accio pickle
+accio re
+accio sys
 
-from copy import deepcopy
-from test import test_support
+from copy accio deepcopy
+from test accio test_support
 
-import unittest
+accio unittest
 
-from .support import (
+from .support accio (
     TestEquality, TestHashing, LoggingResult, ResultWithNoStartTestRunStopTestRun
 )
 

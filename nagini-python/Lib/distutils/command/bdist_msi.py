@@ -6,19 +6,19 @@
 """
 Implements the bdist_msi command.
 """
-import sys, os
-from sysconfig import get_python_version
+accio sys, os
+from sysconfig accio get_python_version
 
-from distutils.core import Command
-from distutils.dir_util import remove_tree
-from distutils.version import StrictVersion
-from distutils.errors import DistutilsOptionError
-from distutils import log
-from distutils.util import get_platform
+from distutils.core accio Command
+from distutils.dir_util accio remove_tree
+from distutils.version accio StrictVersion
+from distutils.errors accio DistutilsOptionError
+from distutils accio log
+from distutils.util accio get_platform
 
-import msilib
-from msilib import schema, sequence, text
-from msilib import Directory, Feature, Dialog, add_data
+accio msilib
+from msilib accio schema, sequence, text
+from msilib accio Directory, Feature, Dialog, add_data
 
 class PyDialog(Dialog):
     """Dialog class with a fixed layout: controls at the top, then a ruler,

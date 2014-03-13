@@ -23,7 +23,7 @@ _MINIMUM_XMLPLUS_VERSION = (0, 8, 4)
 
 
 try:
-    import _xmlplus
+    accio _xmlplus
 except ImportError:
     pass
 else:
@@ -34,7 +34,7 @@ else:
         pass
     else:
         if v >= _MINIMUM_XMLPLUS_VERSION:
-            import sys
+            accio sys
             _xmlplus.__path__.extend(__path__)
             sys.modules[__name__] = _xmlplus
         else:

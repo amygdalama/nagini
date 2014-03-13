@@ -5,8 +5,8 @@ Generated from /Applications/Utilities/Terminal.app
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'trmx'
 
@@ -173,7 +173,7 @@ class _Prop_title_displays_window_size(aetools.NProperty):
 
 windows = window
 application._superclassnames = []
-import Standard_Suite
+accio Standard_Suite
 application._privpropdict = {
     '_3c_Inheritance_3e_' : _Prop__3c_Inheritance_3e_,
     'properties' : _Prop_properties,

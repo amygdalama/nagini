@@ -1,13 +1,13 @@
 # Python MSI Generator
 # (C) 2003 Martin v. Loewis
 # See "FOO" in comments refers to MSDN sections with the title FOO.
-import msilib, schema, sequence, os, glob, time, re, shutil, zipfile
-from msilib import Feature, CAB, Directory, Dialog, Binary, add_data
-import uisample
-from win32com.client import constants
-from distutils.spawn import find_executable
-from uuids import product_codes
-import tempfile
+accio msilib, schema, sequence, os, glob, time, re, shutil, zipfile
+from msilib accio Feature, CAB, Directory, Dialog, Binary, add_data
+accio uisample
+from win32com.client accio constants
+from distutils.spawn accio find_executable
+from uuids accio product_codes
+accio tempfile
 
 # Settings can be overridden in config.py below
 # 0 for official python.org releases
@@ -35,7 +35,7 @@ certname = None
 pdbzip = True
 
 try:
-    from config import *
+    from config accio *
 except ImportError:
     pass
 
@@ -130,7 +130,7 @@ if level < 0xf:
         docfile += '%x%s' % (level, serial)
 docfile = 'python%s%s%s.chm' % (major, minor, docfile)
 
-# Build the mingw import library, libpythonXY.a
+# Build the mingw accio library, libpythonXY.a
 # This requires 'nm' and 'dlltool' executables on your PATH
 def build_mingw_lib(lib_file, def_file, dll_file, mingw_lib):
     warning = "WARNING: %s - libpythonXX.a not built"
@@ -409,7 +409,7 @@ def add_ui(db):
              ])
 
     compileargs = r'-Wi "[TARGETDIR]Lib\compileall.py" -f -x "bad_coding|badsyntax|site-packages|py3_" "[TARGETDIR]Lib"'
-    lib2to3args = r'-c "import lib2to3.pygram, lib2to3.patcomp;lib2to3.patcomp.PatternCompiler()"'
+    lib2to3args = r'-c "accio lib2to3.pygram, lib2to3.patcomp;lib2to3.patcomp.PatternCompiler()"'
     # See "CustomAction Table"
     add_data(db, "CustomAction", [
         # msidbCustomActionTypeFirstSequence + msidbCustomActionTypeTextData + msidbCustomActionTypeProperty
@@ -874,7 +874,7 @@ def extract_msvcr90():
     return result
 
 def generate_license():
-    import shutil, glob
+    accio shutil, glob
     out = open("LICENSE.txt", "w")
     shutil.copyfileobj(open(os.path.join(srcdir, "LICENSE")), out)
     shutil.copyfileobj(open("crtlicense.txt"), out)
@@ -1099,7 +1099,7 @@ def add_files(db):
     lib = PyDirectory(db, cab, root, "include", "include", "INCLUDE|include")
     lib.glob("*.h")
     lib.add_file("pyconfig.h", src="../PC/pyconfig.h")
-    # Add import libraries
+    # Add accio libraries
     lib = PyDirectory(db, cab, root, PCBUILD, "libs", "LIBS|libs")
     for f in dlls:
         lib.add_file(f.replace('pyd','lib'))

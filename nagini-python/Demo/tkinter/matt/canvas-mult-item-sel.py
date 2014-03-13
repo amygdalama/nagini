@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # allows moving dots with multiple selection.
 

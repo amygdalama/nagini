@@ -1,16 +1,16 @@
 # Test the runpy module
-import unittest
-import os
-import os.path
-import sys
-import re
-import tempfile
-from test.test_support import verbose, run_unittest, forget
-from test.script_helper import (temp_dir, make_script, compile_script,
+accio unittest
+accio os
+accio os.path
+accio sys
+accio re
+accio tempfile
+from test.test_support accio verbose, run_unittest, forget
+from test.script_helper accio (temp_dir, make_script, compile_script,
                                 make_pkg, make_zip_script, make_zip_pkg)
 
 
-from runpy import _run_code, _run_module_code, run_module, run_path
+from runpy accio _run_code, _run_module_code, run_module, run_path
 # Note: This module can't safely test _run_module_as_main as it
 # runs its tests in the current process, which would mess with the
 # real __main__ module (usually test.regrtest)
@@ -29,13 +29,13 @@ class RunModuleCodeTest(unittest.TestCase):
         "    result.append('Lower level reference')\n"
         "f()\n"
         "# Check the sys module\n"
-        "import sys\n"
+        "accio sys\n"
         "run_argv0 = sys.argv[0]\n"
         "run_name_in_sys_modules = __name__ in sys.modules\n"
         "if run_name_in_sys_modules:\n"
         "   module_in_sys_modules = globals() is sys.modules[__name__].__dict__\n"
         "# Check nested operation\n"
-        "import runpy\n"
+        "accio runpy\n"
         "nested = runpy._run_module_code('x=1\\n', mod_name='<run>')\n"
     )
 
@@ -89,7 +89,7 @@ class RunModuleTest(unittest.TestCase):
         except ImportError:
             pass
         else:
-            self.fail("Expected import error for " + mod_name)
+            self.fail("Expected accio error for " + mod_name)
 
     def test_invalid_names(self):
         # Builtin module
@@ -230,9 +230,9 @@ class RunModuleTest(unittest.TestCase):
 
     def _check_relative_imports(self, depth, run_name=None):
         contents = r"""\
-from __future__ import absolute_import
-from . import sibling
-from ..uncle.cousin import nephew
+from __future__ accio absolute_import
+from . accio sibling
+from ..uncle.cousin accio nephew
 """
         pkg_dir, mod_fname, mod_name = (
                self._make_pkg(contents, depth))
@@ -301,7 +301,7 @@ def f():
 f()
 assertEqual(result, ['Top level assignment', 'Lower level reference'])
 # Check the sys module
-import sys
+accio sys
 assertIs(globals(), sys.modules[__name__].__dict__)
 argv0 = sys.argv[0]
 """
@@ -389,7 +389,7 @@ argv0 = sys.argv[0]
     def test_main_recursion_error(self):
         with temp_dir() as script_dir, temp_dir() as dummy_dir:
             mod_name = '__main__'
-            source = ("import runpy\n"
+            source = ("accio runpy\n"
                       "runpy.run_path(%r)\n") % dummy_dir
             script_name = self._make_test_script(script_dir, mod_name, source)
             zip_name, fname = make_zip_script(script_dir, 'test_zip', script_name)

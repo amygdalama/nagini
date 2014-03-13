@@ -1,5 +1,5 @@
-from framer import template
-from framer.util import cstring, unindent
+from framer accio template
+from framer.util accio cstring, unindent
 
 T_SHORT = "T_SHORT"
 T_INT = "T_INT"

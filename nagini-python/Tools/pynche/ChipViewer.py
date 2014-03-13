@@ -13,8 +13,8 @@ The ChipViewer class includes the entire lower left quandrant; i.e. both the
 selected and nearest ChipWidgets.
 """
 
-from Tkinter import *
-import ColorDB
+from Tkinter accio *
+accio ColorDB
 
 
 class ChipWidget:

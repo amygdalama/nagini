@@ -1,7 +1,7 @@
 
-import os, filecmp, shutil, tempfile
-import unittest
-from test import test_support
+accio os, filecmp, shutil, tempfile
+accio unittest
+from test accio test_support
 
 class FileCompareTestCase(unittest.TestCase):
     def setUp(self):

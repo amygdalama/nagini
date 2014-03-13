@@ -1,4 +1,4 @@
-import xml.dom.minidom
+accio xml.dom.minidom
 
 document = """\
 <slideshow>

@@ -2,17 +2,17 @@
 Package generated from /Applications/Internet Explorer.app
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the Explorer module is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import URL_Suite
-import Netscape_Suite
-import Microsoft_Internet_Explorer
-import Web_Browser_Suite
-import Required_Suite
+accio Standard_Suite
+accio URL_Suite
+accio Netscape_Suite
+accio Microsoft_Internet_Explorer
+accio Web_Browser_Suite
+accio Required_Suite
 
 
 _code_to_module = {
@@ -35,12 +35,12 @@ _code_to_fullname = {
     'reqd' : ('Explorer.Required_Suite', 'Required_Suite'),
 }
 
-from Standard_Suite import *
-from URL_Suite import *
-from Netscape_Suite import *
-from Microsoft_Internet_Explorer import *
-from Web_Browser_Suite import *
-from Required_Suite import *
+from Standard_Suite accio *
+from URL_Suite accio *
+from Netscape_Suite accio *
+from Microsoft_Internet_Explorer accio *
+from Web_Browser_Suite accio *
+from Required_Suite accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -54,7 +54,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

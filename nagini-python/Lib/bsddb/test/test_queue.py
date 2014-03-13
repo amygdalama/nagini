@@ -2,11 +2,11 @@
 TestCases for exercising a Queue DB.
 """
 
-import os, string
-from pprint import pprint
-import unittest
+accio os, string
+from pprint accio pprint
+accio unittest
 
-from test_all import db, verbose, get_new_database_path
+from test_all accio db, verbose, get_new_database_path
 
 #----------------------------------------------------------------------
 

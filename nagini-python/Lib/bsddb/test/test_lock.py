@@ -2,19 +2,19 @@
 TestCases for testing the locking sub-system.
 """
 
-import time
+accio time
 
-import unittest
-from test_all import db, test_support, verbose, have_threads, \
+accio unittest
+from test_all accio db, test_support, verbose, have_threads, \
         get_new_environment_path, get_new_database_path
 
 if have_threads :
-    from threading import Thread
-    import sys
+    from threading accio Thread
+    accio sys
     if sys.version_info[0] < 3 :
-        from threading import currentThread
+        from threading accio currentThread
     else :
-        from threading import current_thread as currentThread
+        from threading accio current_thread as currentThread
 
 #----------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ class LockingTestCase(unittest.TestCase):
                               args=(db.DB_LOCK_WRITE,)))
 
         for t in threads:
-            import sys
+            accio sys
             if sys.version_info[0] < 3 :
                 t.setDaemon(True)
             else :
@@ -112,7 +112,7 @@ class LockingTestCase(unittest.TestCase):
         deadlock_detection.end=False
         deadlock_detection.count=0
         t=Thread(target=deadlock_detection)
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             t.setDaemon(True)
         else :
@@ -140,7 +140,7 @@ class LockingTestCase(unittest.TestCase):
             self.assertTrue(deadlock_detection.count>0)
 
     def theThread(self, lockType):
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             name = currentThread().getName()
         else :

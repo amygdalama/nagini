@@ -1,5 +1,5 @@
-import sys, unittest
-from ctypes import *
+accio sys, unittest
+from ctypes accio *
 
 structures = []
 byteswapped_structures = []

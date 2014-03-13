@@ -1,14 +1,14 @@
 """Tests for distutils.command.build_clib."""
-import unittest
-import os
-import sys
+accio unittest
+accio os
+accio sys
 
-from test.test_support import run_unittest
+from test.test_support accio run_unittest
 
-from distutils.command.build_clib import build_clib
-from distutils.errors import DistutilsSetupError
-from distutils.tests import support
-from distutils.spawn import find_executable
+from distutils.command.build_clib accio build_clib
+from distutils.errors accio DistutilsSetupError
+from distutils.tests accio support
+from distutils.spawn accio find_executable
 
 class BuildCLibTestCase(support.TempdirManager,
                         support.LoggingSilencer,
@@ -119,8 +119,8 @@ class BuildCLibTestCase(support.TempdirManager,
         # before we run the command, we want to make sure
         # all commands are present on the system
         # by creating a compiler and checking its executables
-        from distutils.ccompiler import new_compiler
-        from distutils.sysconfig import customize_compiler
+        from distutils.ccompiler accio new_compiler
+        from distutils.sysconfig accio customize_compiler
 
         compiler = new_compiler()
         customize_compiler(compiler)

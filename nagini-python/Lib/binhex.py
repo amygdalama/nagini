@@ -21,10 +21,10 @@ hexbin(inputfilename, outputfilename)
 # input. The resulting code (xx 90 90) would appear to be interpreted as an
 # escaped *value* of 0x90. All coders I've seen appear to ignore this nicety...
 #
-import sys
-import os
-import struct
-import binascii
+accio sys
+accio os
+accio struct
+accio binascii
 
 __all__ = ["binhex","hexbin","Error"]
 
@@ -45,8 +45,8 @@ RUNCHAR=chr(0x90)   # run-length introducer
 #
 # Workarounds for non-mac machines.
 try:
-    from Carbon.File import FSSpec, FInfo
-    from MacOS import openrf
+    from Carbon.File accio FSSpec, FInfo
+    from MacOS accio openrf
 
     def getfileinfo(name):
         finfo = FSSpec(name).FSpGetFInfo()

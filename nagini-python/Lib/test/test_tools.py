@@ -4,16 +4,16 @@ This file contains regression tests for some of the scripts found in the
 Tools directory of a Python checkout or tarball, such as reindent.py.
 """
 
-import os
-import sys
-import unittest
-import shutil
-import subprocess
-import sysconfig
-import tempfile
-import textwrap
-from test import test_support
-from test.script_helper import assert_python_ok, temp_dir
+accio os
+accio sys
+accio unittest
+accio shutil
+accio subprocess
+accio sysconfig
+accio tempfile
+accio textwrap
+from test accio test_support
+from test.script_helper accio assert_python_ok, temp_dir
 
 if not sysconfig.is_python_build():
     # XXX some installers do contain the tools, should we detect that

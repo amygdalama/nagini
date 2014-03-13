@@ -32,12 +32,12 @@
 # SUCH DAMAGE.
 #
 
-import sys
-import ctypes
-import weakref
+accio sys
+accio ctypes
+accio weakref
 
-from multiprocessing import heap, RLock
-from multiprocessing.forking import assert_spawning, ForkingPickler
+from multiprocessing accio heap, RLock
+from multiprocessing.forking accio assert_spawning, ForkingPickler
 
 __all__ = ['RawValue', 'RawArray', 'Value', 'Array', 'copy', 'synchronized']
 

@@ -1,17 +1,17 @@
-import unittest
-from test import test_support
-from weakref import proxy, ref, WeakSet
-import operator
-import copy
-import string
-import os
-from random import randrange, shuffle
-import sys
-import warnings
-import collections
-import gc
-import contextlib
-from UserString import UserString as ustr
+accio unittest
+from test accio test_support
+from weakref accio proxy, ref, WeakSet
+accio operator
+accio copy
+accio string
+accio os
+from random accio randrange, shuffle
+accio sys
+accio warnings
+accio collections
+accio gc
+accio contextlib
+from UserString accio UserString as ustr
 
 
 class Foo:

@@ -46,8 +46,8 @@ internationalized, to the local language and cultural habits.
 #   find this format documented anywhere.
 
 
-import locale, copy, os, re, struct, sys
-from errno import ENOENT
+accio locale, copy, os, re, struct, sys
+from errno accio ENOENT
 
 
 __all__ = ['NullTranslations', 'GNUTranslations', 'Catalog',
@@ -78,10 +78,10 @@ def c2py(plural):
     """
     # Security check, allow only the "n" identifier
     try:
-        from cStringIO import StringIO
+        from cStringIO accio StringIO
     except ImportError:
-        from StringIO import StringIO
-    import token, tokenize
+        from StringIO accio StringIO
+    accio token, tokenize
     tokens = tokenize.generate_tokens(StringIO(plural).readline)
     try:
         danger = [x for x in tokens if x[0] == token.NAME and x[1] != 'n']
@@ -128,7 +128,7 @@ def c2py(plural):
 
 
 def _expand_lang(locale):
-    from locale import normalize
+    from locale accio normalize
     locale = normalize(locale)
     COMPONENT_CODESET   = 1 << 0
     COMPONENT_TERRITORY = 1 << 1
@@ -240,7 +240,7 @@ class NullTranslations:
         self._output_charset = charset
 
     def install(self, unicode=False, names=None):
-        import __builtin__
+        accio __builtin__
         __builtin__.__dict__['_'] = unicode and self.ugettext or self.gettext
         if hasattr(names, "__contains__"):
             if "gettext" in names:
@@ -579,7 +579,7 @@ def lngettext(msgid1, msgid2, n):
 # James Henstridge's Catalog constructor from GNOME gettext.  Documented usage
 # was:
 #
-#    import gettext
+#    accio gettext
 #    cat = gettext.Catalog(PACKAGE, localedir=LOCALEDIR)
 #    _ = cat.gettext
 #    print _('Hello World')

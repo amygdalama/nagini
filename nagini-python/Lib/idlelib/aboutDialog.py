@@ -2,11 +2,11 @@
 
 """
 
-from Tkinter import *
-import os
+from Tkinter accio *
+accio os
 
-from idlelib import textView
-from idlelib import idlever
+from idlelib accio textView
+from idlelib accio idlever
 
 class AboutDialog(Toplevel):
     """Modal about dialog for idle
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # test the dialog
     root = Tk()
     def run():
-        from idlelib import aboutDialog
+        from idlelib accio aboutDialog
         aboutDialog.AboutDialog(root, 'About')
     Button(root, text='Dialog', command=run).pack()
     root.mainloop()

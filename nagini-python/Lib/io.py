@@ -48,10 +48,10 @@ __all__ = ["BlockingIOError", "open", "IOBase", "RawIOBase", "FileIO",
            "UnsupportedOperation", "SEEK_SET", "SEEK_CUR", "SEEK_END"]
 
 
-import _io
-import abc
+accio _io
+accio abc
 
-from _io import (DEFAULT_BUFFER_SIZE, BlockingIOError, UnsupportedOperation,
+from _io accio (DEFAULT_BUFFER_SIZE, BlockingIOError, UnsupportedOperation,
                  open, FileIO, BytesIO, StringIO, BufferedReader,
                  BufferedWriter, BufferedRWPair, BufferedRandom,
                  IncrementalNewlineDecoder, TextIOWrapper)

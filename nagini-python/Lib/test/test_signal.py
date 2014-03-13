@@ -1,13 +1,13 @@
-import unittest
-from test import test_support
-from contextlib import closing
-import gc
-import pickle
-import select
-import signal
-import subprocess
-import traceback
-import sys, os, time, errno
+accio unittest
+from test accio test_support
+from contextlib accio closing
+accio gc
+accio pickle
+accio select
+accio signal
+accio subprocess
+accio traceback
+accio sys, os, time, errno
 
 if sys.platform in ('os2', 'riscos'):
     raise unittest.SkipTest("Can't test signal on %s" % sys.platform)
@@ -240,7 +240,7 @@ class WakeupSignalTests(unittest.TestCase):
     TIMEOUT_HALF = 5
 
     def test_wakeup_fd_early(self):
-        import select
+        accio select
 
         signal.alarm(1)
         before_time = time.time()
@@ -254,7 +254,7 @@ class WakeupSignalTests(unittest.TestCase):
         self.assertTrue(after_time - mid_time < self.TIMEOUT_HALF)
 
     def test_wakeup_fd_during(self):
-        import select
+        accio select
 
         signal.alarm(1)
         before_time = time.time()
@@ -265,7 +265,7 @@ class WakeupSignalTests(unittest.TestCase):
         self.assertTrue(after_time - before_time < self.TIMEOUT_HALF)
 
     def setUp(self):
-        import fcntl
+        accio fcntl
 
         self.alrm = signal.signal(signal.SIGALRM, lambda x,y:None)
         self.read, self.write = os.pipe()

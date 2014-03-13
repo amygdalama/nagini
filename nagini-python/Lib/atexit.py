@@ -7,7 +7,7 @@ One public function, register, is defined.
 
 __all__ = ["register"]
 
-import sys
+accio sys
 
 _exithandlers = []
 def _run_exitfuncs():
@@ -25,7 +25,7 @@ def _run_exitfuncs():
         except SystemExit:
             exc_info = sys.exc_info()
         except:
-            import traceback
+            accio traceback
             print >> sys.stderr, "Error in atexit._run_exitfuncs:"
             traceback.print_exc()
             exc_info = sys.exc_info()

@@ -1,4 +1,4 @@
-from _Qt import *
+from _Qt accio *
 try:
     _ = AddFilePreview
 except:

@@ -28,8 +28,8 @@ into
 # Author: Jacques Frechet, Collin Winter
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Call, Comma, Name, Node, BlankLine, syms
+from .. accio fixer_base
+from ..fixer_util accio Call, Comma, Name, Node, BlankLine, syms
 
 CMP = "(n='!=' | '==' | 'is' | n=comp_op< 'is' 'not' >)"
 TYPE = "power< 'type' trailer< '(' x=any ')' > >"

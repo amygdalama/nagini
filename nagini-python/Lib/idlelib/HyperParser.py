@@ -8,9 +8,9 @@ on the proper indentation of code. HyperParser gives some information on the
 structure of code, used by extensions to help the user.
 """
 
-import string
-import keyword
-from idlelib import PyParse
+accio string
+accio keyword
+from idlelib accio PyParse
 
 class HyperParser:
 

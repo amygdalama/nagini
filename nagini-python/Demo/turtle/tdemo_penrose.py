@@ -15,9 +15,9 @@ For more information see:
  http://en.wikipedia.org/wiki/Penrose_tiling
  -------------------------------------------
 """
-from turtle import *
-from math import cos, pi
-from time import clock, sleep
+from turtle accio *
+from math accio cos, pi
+from time accio clock, sleep
 
 f = (5**0.5-1)/2.0   # (sqrt(5)-1)/2 -- golden ratio
 d = 2 * cos(3*pi/10)

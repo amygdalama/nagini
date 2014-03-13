@@ -4,12 +4,12 @@ This window provides the basic decorations, primarily including the menubar.
 It is used to bring up other windows.
 """
 
-import sys
-import os
-from Tkinter import *
-import tkMessageBox
-import tkFileDialog
-import ColorDB
+accio sys
+accio os
+from Tkinter accio *
+accio tkMessageBox
+accio tkFileDialog
+accio ColorDB
 
 # Milliseconds between interrupt checks
 KEEPALIVE_TIMER = 500
@@ -37,10 +37,10 @@ class PyncheWidget:
         else:
             # Is there already a default root for Tk, say because we're
             # running under Guido's IDE? :-) Two conditions say no, either the
-            # import fails or _default_root is None.
+            # accio fails or _default_root is None.
             tkroot = None
             try:
-                from Tkinter import _default_root
+                from Tkinter accio _default_root
                 tkroot = self.__tkroot = _default_root
             except ImportError:
                 pass
@@ -149,7 +149,7 @@ class PyncheWidget:
         return self.__root
 
     def __popup_about(self, event=None):
-        from Main import __version__
+        from Main accio __version__
         tkMessageBox.showinfo('About Pynche ' + __version__,
                               '''\
 Pynche %s
@@ -202,7 +202,7 @@ Unrecognized color file type in file:
 
 class Helpwin:
     def __init__(self, master, quitfunc):
-        from Main import docstring
+        from Main accio docstring
         self.__root = root = Toplevel(master, class_='Pynche')
         root.protocol('WM_DELETE_WINDOW', self.__withdraw)
         root.title('Pynche Help Window')

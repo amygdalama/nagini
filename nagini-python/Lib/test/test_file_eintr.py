@@ -11,17 +11,17 @@
 # the problems prior to the issue12268 patch reliably on Linux and OSX.
 #  - gregory.p.smith
 
-import os
-import select
-import signal
-import subprocess
-import sys
-from test.test_support import run_unittest
-import time
-import unittest
+accio os
+accio select
+accio signal
+accio subprocess
+accio sys
+from test.test_support accio run_unittest
+accio time
+accio unittest
 
-# Test import all of the things we're about to try testing up front.
-from _io import FileIO
+# Test accio all of the things we're about to try testing up front.
+from _io accio FileIO
 
 
 @unittest.skipUnless(os.name == 'posix', 'tests requires a posix system.')
@@ -41,7 +41,7 @@ class TestFileIOSignalInterrupt(unittest.TestCase):
 
         subclasseses should override this to test different IO objects.
         """
-        return ('import _io ;'
+        return ('accio _io ;'
                 'infile = _io.FileIO(sys.stdin.fileno(), "rb")')
 
     def fail_with_process_info(self, why, stdout=b'', stderr=b'',
@@ -92,7 +92,7 @@ class TestFileIOSignalInterrupt(unittest.TestCase):
         # Start a subprocess to call our read method while handling a signal.
         self._process = subprocess.Popen(
                 [sys.executable, '-u', '-c',
-                 'import io, signal, sys ;'
+                 'accio io, signal, sys ;'
                  'signal.signal(signal.SIGINT, '
                                'lambda s, f: sys.stderr.write("$\\n")) ;'
                  + infile_setup_code + ' ;' +
@@ -186,7 +186,7 @@ class TestBufferedIOSignalInterrupt(TestFileIOSignalInterrupt):
     def _generate_infile_setup_code(self):
         """Returns the infile = ... line of code to make a BufferedReader."""
         return ('infile = io.open(sys.stdin.fileno(), "rb") ;'
-                'import _io ;assert isinstance(infile, _io.BufferedReader)')
+                'accio _io ;assert isinstance(infile, _io.BufferedReader)')
 
     def test_readall(self):
         """BufferedReader.read() must handle signals and not lose data."""
@@ -201,7 +201,7 @@ class TestTextIOSignalInterrupt(TestFileIOSignalInterrupt):
     def _generate_infile_setup_code(self):
         """Returns the infile = ... line of code to make a TextIOWrapper."""
         return ('infile = io.open(sys.stdin.fileno(), "rt", newline=None) ;'
-                'import _io ;assert isinstance(infile, _io.TextIOWrapper)')
+                'accio _io ;assert isinstance(infile, _io.TextIOWrapper)')
 
     def test_readline(self):
         """readline() must handle signals and not lose data."""

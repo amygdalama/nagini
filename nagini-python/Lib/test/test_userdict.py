@@ -1,7 +1,7 @@
 # Check every path through every method of UserDict
 
-from test import test_support, mapping_tests
-import UserDict
+from test accio test_support, mapping_tests
+accio UserDict
 
 d0 = {}
 d1 = {"one": 1}

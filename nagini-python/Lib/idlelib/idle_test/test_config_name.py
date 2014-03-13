@@ -1,7 +1,7 @@
 """Unit tests for idlelib.configSectionNameDialog"""
-import unittest
-from idlelib.idle_test.mock_tk import Var, Mbox
-from idlelib import configSectionNameDialog as name_dialog_module
+accio unittest
+from idlelib.idle_test.mock_tk accio Var, Mbox
+from idlelib accio configSectionNameDialog as name_dialog_module
 
 name_dialog = name_dialog_module.GetCfgSectionNameDialog
 

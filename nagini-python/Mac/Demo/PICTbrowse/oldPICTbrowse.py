@@ -1,13 +1,13 @@
 """browsepict - Display all "PICT" resources found"""
 
-import FrameWork
-import EasyDialogs
-from Carbon import Res
-from Carbon import Qd
-from Carbon import Win
-from Carbon import List
-import struct
-import macresource
+accio FrameWork
+accio EasyDialogs
+from Carbon accio Res
+from Carbon accio Qd
+from Carbon accio Win
+from Carbon accio List
+accio struct
+accio macresource
 
 #
 # Resource definitions

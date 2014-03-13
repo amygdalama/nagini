@@ -1,12 +1,12 @@
-import os
-import sys
-import json
-import doctest
-import unittest
+accio os
+accio sys
+accio json
+accio doctest
+accio unittest
 
-from test import test_support
+from test accio test_support
 
-# import json with and without accelerations
+# accio json with and without accelerations
 cjson = test_support.import_fresh_module('json', fresh=['_json'])
 pyjson = test_support.import_fresh_module('json', blocked=['_json'])
 

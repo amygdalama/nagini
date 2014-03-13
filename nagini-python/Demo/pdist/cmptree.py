@@ -1,10 +1,10 @@
 """Compare local and remote dictionaries and transfer differing files -- like rdist."""
 
-import sys
-from repr import repr
-import FSProxy
-import time
-import os
+accio sys
+from repr accio repr
+accio FSProxy
+accio time
+accio os
 
 def main():
     pwd = os.getcwd()

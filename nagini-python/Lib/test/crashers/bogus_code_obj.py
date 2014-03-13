@@ -12,7 +12,7 @@ the user build or load random bytecodes anyway.  Otherwise, this is a
 
 """
 
-import types
+accio types
 
 co = types.CodeType(0, 0, 0, 0, '\x04\x71\x00\x00', (),
                     (), (), '', '', 1, '')

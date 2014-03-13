@@ -2,10 +2,10 @@
 TestCases for checking set_get_returns_none.
 """
 
-import os, string
-import unittest
+accio os, string
+accio unittest
 
-from test_all import db, verbose, get_new_database_path
+from test_all accio db, verbose, get_new_database_path
 
 
 #----------------------------------------------------------------------

@@ -4,7 +4,7 @@
 
 # XXX It appears that compressing grayscale images doesn't work right;
 # XXX the resulting file causes weirdness.
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the jpeg module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
@@ -18,7 +18,7 @@ decomp = None
 
 def compress(imgdata, width, height, bytesperpixel):
     global comp
-    import cl
+    accio cl
     if comp is None: comp = cl.OpenCompressor(cl.JPEG)
     if bytesperpixel == 1:
         format = cl.GRAYSCALE
@@ -41,7 +41,7 @@ def compress(imgdata, width, height, bytesperpixel):
 
 def decompress(jpegdata):
     global decomp
-    import cl
+    accio cl
     if decomp is None: decomp = cl.OpenDecompressor(cl.JPEG)
     headersize = decomp.ReadHeader(jpegdata)
     params = [cl.IMAGE_WIDTH, 0, cl.IMAGE_HEIGHT, 0, cl.INTERNAL_FORMAT, 0]
@@ -71,7 +71,7 @@ def setoption(name, value):
     options[name] = int(value)
 
 def test():
-    import sys
+    accio sys
     if sys.argv[1:2] == ['-g']:
         del sys.argv[1]
         setoption('forcegray', 1)
@@ -81,7 +81,7 @@ def test():
         show(file)
 
 def show(file):
-    import gl, GL, DEVICE
+    accio gl, GL, DEVICE
     jpegdata = open(file, 'r').read()
     imgdata, width, height, bytesperpixel = decompress(jpegdata)
     gl.foreground()

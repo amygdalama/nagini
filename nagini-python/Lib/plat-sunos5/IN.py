@@ -47,17 +47,17 @@ _POSIX_PTHREAD_SEMANTICS = 1
 _XOPEN_VERSION = 500
 _XOPEN_VERSION = 4
 _XOPEN_VERSION = 3
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/stream.h
 
 # Included from sys/vnode.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/t_lock.h
 
 # Included from sys/machlock.h
-from TYPES import *
+from TYPES accio *
 LOCK_HELD_VALUE = 0xff
 def SPIN_LOCK(pl): return ((pl) > ipltospl(LOCK_LEVEL))
 
@@ -72,7 +72,7 @@ PTR24_ALIGN = 32
 PTR24_BASE = 0xe0000000
 
 # Included from sys/param.h
-from TYPES import *
+from TYPES accio *
 _POSIX_VDISABLE = 0
 MAX_INPUT = 512
 MAX_CANON = 256
@@ -327,12 +327,12 @@ _POSIX2_SW_DEV = 1
 _POSIX2_UPE = 1
 
 # Included from sys/mutex.h
-from TYPES import *
+from TYPES accio *
 def MUTEX_HELD(x): return (mutex_owned(x))
 
 
 # Included from sys/rwlock.h
-from TYPES import *
+from TYPES accio *
 def RW_READ_HELD(x): return (rw_read_held((x)))
 
 def RW_WRITE_HELD(x): return (rw_write_held((x)))
@@ -345,13 +345,13 @@ def RW_ISWRITER(x): return (rw_iswriter(x))
 # Included from sys/semaphore.h
 
 # Included from sys/thread.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/klwp.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/condvar.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/time.h
 
@@ -362,7 +362,7 @@ TIME32_MAX = INT32_MAX
 TIME32_MIN = INT32_MIN
 def TIMEVAL_OVERFLOW(tv): return \
 
-from TYPES import *
+from TYPES accio *
 DST_NONE = 0
 DST_USA = 1
 DST_AUST = 2
@@ -428,7 +428,7 @@ def TIMESTRUC_TO_TICK(tsp): return \
 
 
 # Included from time.h
-from TYPES import *
+from TYPES accio *
 
 # Included from iso/time_iso.h
 NULL = 0L
@@ -499,7 +499,7 @@ SIGIGNORE = 0x800
 SIGPAUSE = 0x1000
 
 # Included from sys/siginfo.h
-from TYPES import *
+from TYPES accio *
 SIGEV_NONE = 1
 SIGEV_SIGNAL = 2
 SIGEV_THREAD = 3
@@ -566,7 +566,7 @@ SI_MAXSZ = 256
 SI_MAXSZ = 128
 
 # Included from sys/time_std_impl.h
-from TYPES import *
+from TYPES accio *
 SI32_MAXSZ = 128
 def SI_CANQUEUE(c): return ((c) <= SI_QUEUE)
 
@@ -593,7 +593,7 @@ SN_CANCEL = 2
 SN_SEND = 3
 
 # Included from sys/ucontext.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/regset.h
 REG_CCR = (0)
@@ -772,7 +772,7 @@ NMSTATES = 10
 # Included from sys/lwp.h
 
 # Included from sys/synch.h
-from TYPES import *
+from TYPES accio *
 USYNC_THREAD = 0x00
 USYNC_PROCESS = 0x01
 LOCK_NORMAL = 0x00
@@ -853,10 +853,10 @@ NO_COMPETING_THREADS = 1
 # Included from sys/cred.h
 
 # Included from sys/uio.h
-from TYPES import *
+from TYPES accio *
 
 # Included from sys/resource.h
-from TYPES import *
+from TYPES accio *
 PRIO_PROCESS = 0
 PRIO_PGRP = 1
 PRIO_USER = 2
@@ -914,7 +914,7 @@ RUSAGE_CHILDREN = -1
 # Included from sys/buf.h
 
 # Included from sys/kstat.h
-from TYPES import *
+from TYPES accio *
 KSTAT_STRLEN = 31
 def KSTAT_ENTER(k): return \
 

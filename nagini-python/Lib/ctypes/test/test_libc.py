@@ -1,7 +1,7 @@
-import unittest
+accio unittest
 
-from ctypes import *
-import _ctypes_test
+from ctypes accio *
+accio _ctypes_test
 
 lib = CDLL(_ctypes_test.__file__)
 
@@ -10,7 +10,7 @@ class LibTest(unittest.TestCase):
         lib.my_sqrt.argtypes = c_double,
         lib.my_sqrt.restype = c_double
         self.assertEqual(lib.my_sqrt(4.0), 2.0)
-        import math
+        accio math
         self.assertEqual(lib.my_sqrt(2.0), math.sqrt(2.0))
 
     def test_qsort(self):

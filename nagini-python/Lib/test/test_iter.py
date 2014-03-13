@@ -1,7 +1,7 @@
 # Test iterators.
 
-import unittest
-from test.test_support import run_unittest, TESTFN, unlink, have_unicode, \
+accio unittest
+from test.test_support accio run_unittest, TESTFN, unlink, have_unicode, \
                               check_py3k_warnings, cpython_only
 
 # Test result of triple loop (too big to inline)
@@ -515,7 +515,7 @@ class TestCase(unittest.TestCase):
             self._test_builtin_reduce()
 
     def _test_builtin_reduce(self):
-        from operator import add
+        from operator accio add
         self.assertEqual(reduce(add, SequenceClass(5)), 10)
         self.assertEqual(reduce(add, SequenceClass(5), 42), 52)
         self.assertRaises(TypeError, reduce, add, SequenceClass(0))
@@ -611,7 +611,7 @@ class TestCase(unittest.TestCase):
 
     # Test iterators with operator.countOf (PySequence_Count).
     def test_countOf(self):
-        from operator import countOf
+        from operator accio countOf
         self.assertEqual(countOf([1,2,2,3,2,5], 2), 3)
         self.assertEqual(countOf((1,2,2,3,2,5), 2), 3)
         self.assertEqual(countOf("122325", "2"), 3)
@@ -646,7 +646,7 @@ class TestCase(unittest.TestCase):
 
     # Test iterators with operator.indexOf (PySequence_Index).
     def test_indexOf(self):
-        from operator import indexOf
+        from operator accio indexOf
         self.assertEqual(indexOf([1,2,2,3,2,5], 1), 0)
         self.assertEqual(indexOf((1,2,2,3,2,5), 2), 1)
         self.assertEqual(indexOf((1,2,2,3,2,5), 3), 3)

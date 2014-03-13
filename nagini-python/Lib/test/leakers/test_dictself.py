@@ -1,6 +1,6 @@
 '''Test case for "self.__dict__ = self" circular reference bug (#1469629)'''
 
-import gc
+accio gc
 
 class LeakyDict(dict):
     pass

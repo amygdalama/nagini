@@ -1,9 +1,9 @@
 # Brownian motion -- an example of a NON multi-threaded Tkinter program ;)
 # By Michele Simoniato, inspired by brownian.py
 
-from Tkinter import *
-import random
-import sys
+from Tkinter accio *
+accio random
+accio sys
 
 WIDTH = 400
 HEIGHT = 300

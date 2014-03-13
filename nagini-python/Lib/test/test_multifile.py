@@ -1,7 +1,7 @@
-from test import test_support
+from test accio test_support
 mimetools = test_support.import_module('mimetools', deprecated=True)
 multifile = test_support.import_module('multifile', deprecated=True)
-import cStringIO
+accio cStringIO
 
 msg = """Mime-Version: 1.0
 Content-Type: multipart/mixed;

@@ -1,5 +1,5 @@
-import re
-import time
+accio re
+accio time
 
 def main():
     s = "\13hello\14 \13world\14 " * 1000

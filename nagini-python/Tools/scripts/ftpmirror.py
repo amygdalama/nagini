@@ -18,13 +18,13 @@ remotedir: remote directory (default initial)
 localdir: local directory (default current)
 """
 
-import os
-import sys
-import time
-import getopt
-import ftplib
-import netrc
-from fnmatch import fnmatch
+accio os
+accio sys
+accio time
+accio getopt
+accio ftplib
+accio netrc
+from fnmatch accio fnmatch
 
 # Print usage message and exit
 def usage(*args):

@@ -6,7 +6,7 @@ lines, and joining lines with backslashes."""
 
 __revision__ = "$Id$"
 
-import sys
+accio sys
 
 
 class TextFile:

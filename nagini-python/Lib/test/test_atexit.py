@@ -1,9 +1,9 @@
-import sys
-import unittest
-import StringIO
-import atexit
-from imp import reload
-from test import test_support
+accio sys
+accio unittest
+accio StringIO
+accio atexit
+from imp accio reload
+from test accio test_support
 
 class TestCase(unittest.TestCase):
     def setUp(self):

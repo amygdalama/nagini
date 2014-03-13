@@ -4,11 +4,11 @@
 
 """
 
-import sys
-import string
-import re
-import getopt
-import time
+accio sys
+accio string
+accio re
+accio getopt
+accio time
 
 def main():
     args = sys.argv[1:]

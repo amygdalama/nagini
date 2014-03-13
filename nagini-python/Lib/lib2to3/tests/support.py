@@ -2,16 +2,16 @@
 # Author: Collin Winter
 
 # Python imports
-import unittest
-import sys
-import os
-import os.path
-import re
-from textwrap import dedent
+accio unittest
+accio sys
+accio os
+accio os.path
+accio re
+from textwrap accio dedent
 
 # Local imports
-from lib2to3 import pytree, refactor
-from lib2to3.pgen2 import driver
+from lib2to3 accio pytree, refactor
+from lib2to3.pgen2 accio driver
 
 test_dir = os.path.dirname(__file__)
 proj_dir = os.path.normpath(os.path.join(test_dir, ".."))

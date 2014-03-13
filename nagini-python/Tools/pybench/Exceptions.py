@@ -1,4 +1,4 @@
-from pybench import Test
+from pybench accio Test
 
 class TryRaiseExcept(Test):
 
@@ -693,7 +693,7 @@ class TryExcept(Test):
 ### Test to make Fredrik happy...
 
 if __name__ == '__main__':
-    import timeit
+    accio timeit
     timeit.TestClass = TryRaiseExcept
     timeit.main(['-s', 'test = TestClass(); test.rounds = 1000',
                  'test.test()'])

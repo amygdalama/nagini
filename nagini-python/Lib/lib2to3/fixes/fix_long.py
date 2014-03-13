@@ -5,8 +5,8 @@
 """
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import is_probably_builtin
+from lib2to3 accio fixer_base
+from lib2to3.fixer_util accio is_probably_builtin
 
 
 class FixLong(fixer_base.BaseFix):

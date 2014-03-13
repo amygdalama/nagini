@@ -1,17 +1,17 @@
-import unittest
-import ctypes
-import gc
+accio unittest
+accio ctypes
+accio gc
 
 MyCallback = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.c_int)
 OtherCallback = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.c_int, ctypes.c_ulonglong)
 
-import _ctypes_test
+accio _ctypes_test
 dll = ctypes.CDLL(_ctypes_test.__file__)
 
 class RefcountTestCase(unittest.TestCase):
 
     def test_1(self):
-        from sys import getrefcount as grc
+        from sys accio getrefcount as grc
 
         f = dll._testfunc_callback_i_if
         f.restype = ctypes.c_int
@@ -35,7 +35,7 @@ class RefcountTestCase(unittest.TestCase):
 
 
     def test_refcount(self):
-        from sys import getrefcount as grc
+        from sys accio getrefcount as grc
         def func(*args):
             pass
         # this is the standard refcount for func
@@ -83,7 +83,7 @@ class RefcountTestCase(unittest.TestCase):
 
 class AnotherLeak(unittest.TestCase):
     def test_callback(self):
-        import sys
+        accio sys
 
         proto = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.c_int, ctypes.c_int)
         def func(a, b):

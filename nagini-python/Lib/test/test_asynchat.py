@@ -1,11 +1,11 @@
 # test asynchat
 
-import asyncore, asynchat, socket, time
-import unittest
-import sys
-from test import test_support
+accio asyncore, asynchat, socket, time
+accio unittest
+accio sys
+from test accio test_support
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

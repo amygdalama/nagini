@@ -1,9 +1,9 @@
-import os
-import fnmatch
-import sys
-from Tkinter import *
-from idlelib import SearchEngine
-from idlelib.SearchDialogBase import SearchDialogBase
+accio os
+accio fnmatch
+accio sys
+from Tkinter accio *
+from idlelib accio SearchEngine
+from idlelib.SearchDialogBase accio SearchDialogBase
 
 def grep(text, io=None, flist=None):
     root = text._root()
@@ -63,7 +63,7 @@ class GrepDialog(SearchDialogBase):
         if not path:
             self.top.bell()
             return
-        from idlelib.OutputWindow import OutputWindow
+        from idlelib.OutputWindow accio OutputWindow
         save = sys.stdout
         try:
             sys.stdout = OutputWindow(self.flist)
@@ -123,5 +123,5 @@ class GrepDialog(SearchDialogBase):
 if __name__ == "__main__":
     # A human test is a bit tricky since EditorWindow() imports this module.
     # Hence Idle must be restarted after editing this file for a live test.
-    import unittest
+    accio unittest
     unittest.main('idlelib.idle_test.test_grep', verbosity=2, exit=False)

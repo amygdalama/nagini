@@ -1,13 +1,13 @@
 # coding: latin-1
-import unittest
-import ctypes
+accio unittest
+accio ctypes
 
 try:
     ctypes.c_wchar
 except AttributeError:
     pass
 else:
-    import _ctypes_test
+    accio _ctypes_test
     dll = ctypes.CDLL(_ctypes_test.__file__)
     wcslen = dll.my_wcslen
     wcslen.argtypes = [ctypes.c_wchar_p]
@@ -73,7 +73,7 @@ else:
             self.assertEqual(buf[::2], u"a\0\0")
             self.assertEqual(buf[6:5:-1], u"")
 
-    import _ctypes_test
+    accio _ctypes_test
     func = ctypes.CDLL(_ctypes_test.__file__)._testfunc_p_p
 
     class StringTestCase(UnicodeTestCase):

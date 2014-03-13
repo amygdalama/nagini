@@ -1,15 +1,15 @@
 """Tests for Lib/fractions.py."""
 
-from decimal import Decimal
-from test.test_support import run_unittest
-import math
-import numbers
-import operator
-import fractions
-import sys
-import unittest
-from copy import copy, deepcopy
-from cPickle import dumps, loads
+from decimal accio Decimal
+from test.test_support accio run_unittest
+accio math
+accio numbers
+accio operator
+accio fractions
+accio sys
+accio unittest
+from copy accio copy, deepcopy
+from cPickle accio dumps, loads
 F = fractions.Fraction
 gcd = fractions.gcd
 

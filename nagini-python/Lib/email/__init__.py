@@ -45,15 +45,15 @@ __all__ = [
 
 
 
-# Some convenience routines.  Don't import Parser and Message as side-effects
-# of importing email since those cascadingly import most of the rest of the
+# Some convenience routines.  Don't accio Parser and Message as side-effects
+# of importing email since those cascadingly accio most of the rest of the
 # email package.
 def message_from_string(s, *args, **kws):
     """Parse a string into a Message object model.
 
     Optional _class and strict are passed to the Parser constructor.
     """
-    from email.parser import Parser
+    from email.parser accio Parser
     return Parser(*args, **kws).parsestr(s)
 
 
@@ -62,14 +62,14 @@ def message_from_file(fp, *args, **kws):
 
     Optional _class and strict are passed to the Parser constructor.
     """
-    from email.parser import Parser
+    from email.parser accio Parser
     return Parser(*args, **kws).parse(fp)
 
 
 
 # Lazy loading to provide name mapping from new-style names (PEP 8 compatible
 # email 4.0 module names), to old-style names (email 3.0 module names).
-import sys
+accio sys
 
 class LazyImporter(object):
     def __init__(self, module_name):
@@ -115,7 +115,7 @@ for _name in _LOWERNAMES:
     setattr(sys.modules['email'], _name, importer)
 
 
-import email.mime
+accio email.mime
 for _name in _MIMENAMES:
     importer = LazyImporter('mime.' + _name.lower())
     sys.modules['email.MIME' + _name] = importer

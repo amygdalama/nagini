@@ -1,9 +1,9 @@
 # Scan <Drag.h>, generating draggen.py.
-import sys
-from bgenlocations import TOOLBOXDIR, BGENDIR, INCLUDEDIR
+accio sys
+from bgenlocations accio TOOLBOXDIR, BGENDIR, INCLUDEDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner
+from scantools accio Scanner
 
 MISSING_DEFINES="""
 kDragHasLeftSenderWindow        = (1 << 0)
@@ -26,8 +26,8 @@ def main():
     scanner.close()
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
-    print "=== Done scanning and generating, now doing 'import dragsupport' ==="
-    import dragsupport
+    print "=== Done scanning and generating, now doing 'accio dragsupport' ==="
+    accio dragsupport
     print "=== Done.  It's up to you to compile Dragmodule.c ==="
 
 class MyScanner(Scanner):
@@ -44,8 +44,8 @@ class MyScanner(Scanner):
 
     def writeinitialdefs(self):
         self.defsfile.write("def FOUR_CHAR_CODE(x): return x\n")
-        self.defsfile.write("from Carbon.TextEdit import *\n")
-        self.defsfile.write("from Carbon.QuickDraw import *\n")
+        self.defsfile.write("from Carbon.TextEdit accio *\n")
+        self.defsfile.write("from Carbon.QuickDraw accio *\n")
         self.defsfile.write("fkDragActionAll = -1\n")
         self.defsfile.write("\n")
         # Defines unparseable in Drag.h

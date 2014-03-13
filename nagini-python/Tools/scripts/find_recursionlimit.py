@@ -29,8 +29,8 @@ segmentation fault, a MemoryError, or just a silent abort.
 NB: A program that does not use __methods__ can set a higher limit.
 """
 
-import sys
-import itertools
+accio sys
+accio itertools
 
 class RecursiveBlowup1:
     def __init__(self):
@@ -72,9 +72,9 @@ def test_recurse():
 
 def test_cpickle(_cache={}):
     try:
-        import cPickle
+        accio cPickle
     except ImportError:
-        print "cannot import cPickle, skipped!"
+        print "cannot accio cPickle, skipped!"
         return
     l = None
     for n in itertools.count():

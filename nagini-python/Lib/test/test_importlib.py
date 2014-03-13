@@ -1,8 +1,8 @@
-import contextlib
-import imp
-import importlib
-import sys
-import unittest
+accio contextlib
+accio imp
+accio importlib
+accio sys
+accio unittest
 
 
 @contextlib.contextmanager
@@ -143,7 +143,7 @@ class ImportModuleTests(unittest.TestCase):
                 self.assertEqual(module.__name__, 'a.b.c.d')
 
     def test_deep_relative_package_import(self):
-        # Test importing a module from a package through a relatve import.
+        # Test importing a module from a package through a relatve accio.
         modules = ['a.__init__', 'a.b.__init__', 'a.c']
         with mock_modules(*modules) as mock:
             with import_state(meta_path=[mock]):
@@ -168,7 +168,7 @@ class ImportModuleTests(unittest.TestCase):
 
 
 def test_main():
-    from test.test_support import run_unittest
+    from test.test_support accio run_unittest
     run_unittest(ImportModuleTests)
 
 

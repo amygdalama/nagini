@@ -4,10 +4,10 @@
 #
 # Usage: gopher [ [selector] host [port] ]
 
-import string
-import sys
-import os
-import socket
+accio string
+accio sys
+accio os
+accio socket
 
 # Default selector, host and port
 DEF_SELECTOR = ''

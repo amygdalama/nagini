@@ -1,15 +1,15 @@
 """IC wrapper module, based on Internet Config 1.3"""
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the ic module is removed.", stacklevel=2)
 
-import icglue
-import string
-import sys
-import os
-from Carbon import Res
-import Carbon.File
-import macostools
+accio icglue
+accio string
+accio sys
+accio os
+from Carbon accio Res
+accio Carbon.File
+accio macostools
 
 error=icglue.error
 

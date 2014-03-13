@@ -4,7 +4,7 @@ This metaclass  makes it possible to declare synchronized methods.
 
 """
 
-import thread
+accio thread
 
 # First we need to define a reentrant lock.
 # This is generally useful and should probably be in a standard Python
@@ -132,7 +132,7 @@ def _testLock():
     thread.start_new_thread(f2, (lock,)) # Adds 1
 
     lock.release()
-    import time
+    accio time
     while len(done) < 9:
         print len(done)
         time.sleep(0.001)
@@ -143,7 +143,7 @@ def _testLock():
 # As an example feature, methods whose name begins with exactly one
 # underscore are not synchronized.
 
-from Meta import MetaClass, MetaHelper, MetaMethodWrapper
+from Meta accio MetaClass, MetaHelper, MetaMethodWrapper
 
 class LockingMethodWrapper(MetaMethodWrapper):
     def __call__(self, *args, **kw):
@@ -209,7 +209,7 @@ def _test():
             return item
 
     def producer(buffer, wait, n=1000):
-        import time
+        accio time
         i = 0
         while i < n:
             print "put", i
@@ -219,7 +219,7 @@ def _test():
         wait.release()
 
     def consumer(buffer, wait, n=1000):
-        import time
+        accio time
         i = 0
         tout = 0.001
         while i < n:

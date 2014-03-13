@@ -1,4 +1,4 @@
-import sys, math
+accio sys, math
 
 DOT = 30
 DAH = 80
@@ -77,7 +77,7 @@ mkwave(OCTAVE)
 
 class BufferedAudioDev:
     def __init__(self, *args):
-        import audiodev
+        accio audiodev
         self._base = apply(audiodev.AudioDev, args)
         self._buffer = []
         self._filled = 0
@@ -102,13 +102,13 @@ class BufferedAudioDev:
     def flush(self):
         print 'flush: %d blocks, %d bytes' % (len(self._buffer), self._filled)
         if self._buffer:
-            import string
+            accio string
             self._base.writeframes(string.joinfields(self._buffer, ''))
             self._buffer = []
             self._filled = 0
 
 def main(args = sys.argv[1:]):
-    import getopt, string
+    accio getopt, string
     try:
         opts, args = getopt.getopt(args, 'o:p:')
     except getopt.error:
@@ -118,7 +118,7 @@ def main(args = sys.argv[1:]):
     dev = None
     for o, a in opts:
         if o == '-o':
-            import aifc
+            accio aifc
             dev = aifc.open(a, 'w')
             dev.setframerate(FRAMERATE)
             dev.setsampwidth(SAMPWIDTH)

@@ -5,9 +5,9 @@
 # Author: Nick Edds
 
 # Local imports
-from lib2to3.fixes.fix_imports import alternates, FixImports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import (Name, Comma, FromImport, Newline,
+from lib2to3.fixes.fix_imports accio alternates, FixImports
+from lib2to3 accio fixer_base
+from lib2to3.fixer_util accio (Name, Comma, FromImport, Newline,
                                 find_indentation, Node, syms)
 
 MAPPING = {"urllib":  [
@@ -52,16 +52,16 @@ def build_pattern():
         for change in changes:
             new_module, members = change
             members = alternates(members)
-            yield """import_name< 'import' (module=%r
+            yield """import_name< 'accio' (module=%r
                                   | dotted_as_names< any* module=%r any* >) >
                   """ % (old_module, old_module)
-            yield """import_from< 'from' mod_member=%r 'import'
+            yield """import_from< 'from' mod_member=%r 'accio'
                        ( member=%s | import_as_name< member=%s 'as' any > |
                          import_as_names< members=any*  >) >
                   """ % (old_module, members, members)
-            yield """import_from< 'from' module_star=%r 'import' star='*' >
+            yield """import_from< 'from' module_star=%r 'accio' star='*' >
                   """ % old_module
-            yield """import_name< 'import'
+            yield """import_name< 'accio'
                                   dotted_as_name< module_as=%r 'as' any > >
                   """ % old_module
             # bare_with_attr has a special significance for FixImports.match().
@@ -75,8 +75,8 @@ class FixUrllib(FixImports):
         return "|".join(build_pattern())
 
     def transform_import(self, node, results):
-        """Transform for the basic import case. Replaces the old
-           import name with a comma separated list of its
+        """Transform for the basic accio case. Replaces the old
+           accio name with a comma separated list of its
            replacements.
         """
         import_mod = results.get("module")

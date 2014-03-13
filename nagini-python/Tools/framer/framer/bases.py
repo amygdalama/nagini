@@ -2,13 +2,13 @@
 
 __all__ = ["Module", "Type", "member"]
 
-from framer import struct, template
-from framer.function import Function, Method
-from framer.member import member
-from framer.slots import *
-from framer.util import cstring, unindent
+from framer accio struct, template
+from framer.function accio Function, Method
+from framer.member accio member
+from framer.slots accio *
+from framer.util accio cstring, unindent
 
-from types import FunctionType
+from types accio FunctionType
 
 def sortitems(dict):
     L = dict.items()

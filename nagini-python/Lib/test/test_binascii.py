@@ -1,9 +1,9 @@
 """Test the binascii C module."""
 
-from test import test_support
-import unittest
-import binascii
-import array
+from test accio test_support
+accio unittest
+accio binascii
+accio array
 
 # Note: "*_hex" functions are aliases for "(un)hexlify"
 b2a_functions = ['b2a_base64', 'b2a_hex', 'b2a_hqx', 'b2a_qp', 'b2a_uu',

@@ -1,10 +1,10 @@
 """Disassembler of Python byte code into mnemonics."""
 
-import sys
-import types
+accio sys
+accio types
 
-from opcode import *
-from opcode import __all__ as _opcodes_all
+from opcode accio *
+from opcode accio __all__ as _opcodes_all
 
 __all__ = ["dis", "disassemble", "distb", "disco",
            "findlinestarts", "findlabels"] + _opcodes_all

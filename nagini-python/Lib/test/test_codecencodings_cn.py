@@ -3,9 +3,9 @@
 #   Codec encoding tests for PRC encodings.
 #
 
-from test import test_support
-from test import test_multibytecodec_support
-import unittest
+from test accio test_support
+from test accio test_multibytecodec_support
+accio unittest
 
 class Test_GB2312(test_multibytecodec_support.TestBase, unittest.TestCase):
     encoding = 'gb2312'

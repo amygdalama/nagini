@@ -5,8 +5,8 @@ the test_suite() function there returns a test suite that's ready to
 be run.
 """
 
-import json.tests
-import test.test_support
+accio json.tests
+accio test.test_support
 
 
 def test_main():

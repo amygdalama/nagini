@@ -2,8 +2,8 @@
 # Author: Andre Roberge
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name
+from .. accio fixer_base
+from ..fixer_util accio Name
 
 class FixRawInput(fixer_base.BaseFix):
 

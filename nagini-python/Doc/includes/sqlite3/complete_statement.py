@@ -1,6 +1,6 @@
 # A minimal SQLite shell for experiments
 
-import sqlite3
+accio sqlite3
 
 con = sqlite3.connect(":memory:")
 con.isolation_level = None

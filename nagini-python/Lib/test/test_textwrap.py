@@ -8,10 +8,10 @@
 # $Id$
 #
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-from textwrap import TextWrapper, wrap, fill, dedent
+from textwrap accio TextWrapper, wrap, fill, dedent
 
 
 class BaseTestCase(unittest.TestCase):

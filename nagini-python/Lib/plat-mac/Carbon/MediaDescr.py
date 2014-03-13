@@ -1,5 +1,5 @@
 # Parsers/generators for QuickTime media descriptions
-import struct
+accio struct
 
 Error = 'MediaDescr.Error'
 

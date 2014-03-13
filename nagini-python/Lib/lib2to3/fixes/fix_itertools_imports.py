@@ -1,14 +1,14 @@
 """ Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import BlankLine, syms, token
+from lib2to3 accio fixer_base
+from lib2to3.fixer_util accio BlankLine, syms, token
 
 
 class FixItertoolsImports(fixer_base.BaseFix):
     BM_compatible = True
     PATTERN = """
-              import_from< 'from' 'itertools' 'import' imports=any >
+              import_from< 'from' 'itertools' 'accio' imports=any >
               """ %(locals())
 
     def transform(self, node, results):
@@ -22,7 +22,7 @@ class FixItertoolsImports(fixer_base.BaseFix):
                 member = child.value
                 name_node = child
             elif child.type == token.STAR:
-                # Just leave the import as is.
+                # Just leave the accio as is.
                 return
             else:
                 assert child.type == syms.import_as_name
@@ -36,7 +36,7 @@ class FixItertoolsImports(fixer_base.BaseFix):
                 name_node.value = (u'filterfalse' if member_name[1] == u'f'
                                    else u'zip_longest')
 
-        # Make sure the import statement is still sane
+        # Make sure the accio statement is still sane
         children = imports.children[:] or [imports]
         remove_comma = True
         for child in children:

@@ -1,8 +1,8 @@
-from test import test_support
-import unittest
-import codecs
-import locale
-import sys, StringIO
+from test accio test_support
+accio unittest
+accio codecs
+accio locale
+accio sys, StringIO
 
 def coding_checker(self, coder):
     def check(input, expect):
@@ -175,12 +175,12 @@ class ReadTest(unittest.TestCase):
             '========================================================--%>\r\n',
             '<%@inputencoding="ISO-8859-1"%>\r\n',
             '<%@pagetemplate=TEMPLATE.y%>\r\n',
-            '<%@import=import frog.util, frog%>\r\n',
-            '<%@import=import frog.objects%>\r\n',
-            '<%@import=from frog.storageerrors import StorageError%>\r\n',
+            '<%@accio=accio frog.util, frog%>\r\n',
+            '<%@accio=accio frog.objects%>\r\n',
+            '<%@accio=from frog.storageerrors accio StorageError%>\r\n',
             '<%\r\n',
             '\r\n',
-            'import logging\r\n',
+            'accio logging\r\n',
             'log=logging.getLogger("Snakelets.logger")\r\n',
             '\r\n',
             '\r\n',
@@ -694,7 +694,7 @@ class UTF16ExTest(unittest.TestCase):
 class ReadBufferTest(unittest.TestCase):
 
     def test_array(self):
-        import array
+        accio array
         self.assertEqual(
             codecs.readbuffer_encode(array.array("c", "spam")),
             ("spam", 4)
@@ -1199,7 +1199,7 @@ nameprep_tests = [
 
 class NameprepTest(unittest.TestCase):
     def test_nameprep(self):
-        from encodings.idna import nameprep
+        from encodings.idna accio nameprep
         for pos, (orig, prepped) in enumerate(nameprep_tests):
             if orig is None:
                 # Skipped
@@ -1230,7 +1230,7 @@ class IDNACodecTest(unittest.TestCase):
         self.assertEqual(u"pyth\xf6n.org.".encode("idna"), "xn--pythn-mua.org.")
 
     def test_stream(self):
-        import StringIO
+        accio StringIO
         r = codecs.getreader("idna")(StringIO.StringIO("abc"))
         r.read(3)
         self.assertEqual(r.read(), u"")
@@ -1522,7 +1522,7 @@ only_strict_mode = [
 ]
 
 try:
-    import bz2
+    accio bz2
 except ImportError:
     pass
 else:
@@ -1530,7 +1530,7 @@ else:
     broken_unicode_with_streams.append("bz2_codec")
 
 try:
-    import zlib
+    accio zlib
 except ImportError:
     pass
 else:
@@ -1614,7 +1614,7 @@ class BasicUnicodeTest(unittest.TestCase):
 
     @test_support.cpython_only
     def test_basics_capi(self):
-        from _testcapi import codec_incrementalencoder, codec_incrementaldecoder
+        from _testcapi accio codec_incrementalencoder, codec_incrementaldecoder
         s = u"abc123"  # all codecs should be able to encode these
         for encoding in all_unicode_encodings:
             if encoding not in broken_incremental_coders:
@@ -1679,7 +1679,7 @@ class BasicUnicodeTest(unittest.TestCase):
             self.assertRaises(TypeError, encoder)
 
     def test_encoding_map_type_initialized(self):
-        from encodings import cp1140
+        from encodings accio cp1140
         # This used to crash, we are only verifying there's no crash.
         table_type = type(cp1140.encoding_table)
         self.assertEqual(table_type, table_type)

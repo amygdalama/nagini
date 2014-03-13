@@ -71,10 +71,10 @@ list = MultipleWriteLock([repository1, repository2, ...], waittime)
 """
 
 
-import os
-import time
-import stat
-import pwd
+accio os
+accio time
+accio stat
+accio pwd
 
 
 # Default wait time
@@ -244,7 +244,7 @@ def MultipleWriteLock(repositories, delay = DELAY):
 
 
 def test():
-    import sys
+    accio sys
     if sys.argv[1:]:
         repository = sys.argv[1]
     else:

@@ -1,8 +1,8 @@
 
-import os, string
-import unittest
+accio os, string
+accio unittest
 
-from test_all import db, dbobj, test_support, get_new_environment_path, \
+from test_all accio db, dbobj, test_support, get_new_environment_path, \
         get_new_database_path
 
 #----------------------------------------------------------------------

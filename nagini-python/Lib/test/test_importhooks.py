@@ -1,8 +1,8 @@
-import sys
-import imp
-import os
-import unittest
-from test import test_support
+accio sys
+accio imp
+accio os
+accio unittest
+from test accio test_support
 
 
 test_src = """\
@@ -12,10 +12,10 @@ def get_file():
     return __file__
 """
 
-absimp = "import sub\n"
-relimp = "from . import sub\n"
-deeprelimp = "from .... import sub\n"
-futimp = "from __future__ import absolute_import\n"
+absimp = "accio sub\n"
+relimp = "from . accio sub\n"
+deeprelimp = "from .... accio sub\n"
+futimp = "from __future__ accio absolute_import\n"
 
 reload_src = test_src+"""\
 reloaded = True
@@ -157,10 +157,10 @@ class ImportHooksBaseTestCase(unittest.TestCase):
 class ImportHooksTestCase(ImportHooksBaseTestCase):
 
     def doTestImports(self, importer=None):
-        import hooktestmodule
-        import hooktestpackage
-        import hooktestpackage.sub
-        import hooktestpackage.sub.subber
+        accio hooktestmodule
+        accio hooktestpackage
+        accio hooktestpackage.sub
+        accio hooktestpackage.sub.subber
         self.assertEqual(hooktestmodule.get_name(),
                          "hooktestmodule")
         self.assertEqual(hooktestpackage.get_name(),
@@ -176,41 +176,41 @@ class ImportHooksTestCase(ImportHooksBaseTestCase):
             self.assertEqual(hooktestpackage.sub.subber.__loader__, importer)
 
         TestImporter.modules['reloadmodule'] = (False, test_co)
-        import reloadmodule
+        accio reloadmodule
         self.assertFalse(hasattr(reloadmodule,'reloaded'))
 
         TestImporter.modules['reloadmodule'] = (False, reload_co)
         imp.reload(reloadmodule)
         self.assertTrue(hasattr(reloadmodule,'reloaded'))
 
-        import hooktestpackage.oldabs
+        accio hooktestpackage.oldabs
         self.assertEqual(hooktestpackage.oldabs.get_name(),
                          "hooktestpackage.oldabs")
         self.assertEqual(hooktestpackage.oldabs.sub,
                          hooktestpackage.sub)
 
-        import hooktestpackage.newrel
+        accio hooktestpackage.newrel
         self.assertEqual(hooktestpackage.newrel.get_name(),
                          "hooktestpackage.newrel")
         self.assertEqual(hooktestpackage.newrel.sub,
                          hooktestpackage.sub)
 
-        import hooktestpackage.sub.subber.subest as subest
+        accio hooktestpackage.sub.subber.subest as subest
         self.assertEqual(subest.get_name(),
                          "hooktestpackage.sub.subber.subest")
         self.assertEqual(subest.sub,
                          hooktestpackage.sub)
 
-        import hooktestpackage.futrel
+        accio hooktestpackage.futrel
         self.assertEqual(hooktestpackage.futrel.get_name(),
                          "hooktestpackage.futrel")
         self.assertEqual(hooktestpackage.futrel.sub,
                          hooktestpackage.sub)
 
-        import sub
+        accio sub
         self.assertEqual(sub.get_name(), "sub")
 
-        import hooktestpackage.newabs
+        accio hooktestpackage.newabs
         self.assertEqual(hooktestpackage.newabs.get_name(),
                          "hooktestpackage.newabs")
         self.assertEqual(hooktestpackage.newabs.sub, sub)
@@ -245,7 +245,7 @@ class ImportHooksTestCase(ImportHooksBaseTestCase):
                                           "and removed", DeprecationWarning)):
             for mname in mnames:
                 m = __import__(mname, globals(), locals(), ["__dummy__"])
-                m.__loader__  # to make sure we actually handled the import
+                m.__loader__  # to make sure we actually handled the accio
 
 
 def test_main():

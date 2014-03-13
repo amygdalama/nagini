@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # this file demonstrates the creation of widgets as part of a canvas object
 

@@ -5,8 +5,8 @@ Generated from /Applications/Utilities/Terminal.app
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = '????'
 
@@ -101,7 +101,7 @@ attachment._privelemdict = {
     'paragraph' : paragraph,
     'word' : word,
 }
-import Standard_Suite
+accio Standard_Suite
 attribute_run._superclassnames = ['item']
 attribute_run._privpropdict = {
     '_3c_Inheritance_3e_' : _Prop__3c_Inheritance_3e_,

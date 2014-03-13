@@ -5,9 +5,9 @@
 Usage: rgrep [-i] pattern file
 """
 
-import sys
-import re
-import getopt
+accio sys
+accio re
+accio getopt
 
 def main():
     bufsize = 64*1024

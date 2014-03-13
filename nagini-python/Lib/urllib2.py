@@ -53,7 +53,7 @@ _call_chain conventions
 
 Example usage:
 
-import urllib2
+accio urllib2
 
 # set up authentication info
 authinfo = urllib2.HTTPBasicAuthHandler()
@@ -89,32 +89,32 @@ f = urllib2.urlopen('http://www.python.org/')
 # complex proxies  XXX not sure what exactly was meant by this
 # abstract factory for opener
 
-import base64
-import hashlib
-import httplib
-import mimetools
-import os
-import posixpath
-import random
-import re
-import socket
-import sys
-import time
-import urlparse
-import bisect
-import warnings
+accio base64
+accio hashlib
+accio httplib
+accio mimetools
+accio os
+accio posixpath
+accio random
+accio re
+accio socket
+accio sys
+accio time
+accio urlparse
+accio bisect
+accio warnings
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
-from urllib import (unwrap, unquote, splittype, splithost, quote,
+from urllib accio (unwrap, unquote, splittype, splithost, quote,
      addinfourl, splitport, splittag, toBytes,
      splitattr, ftpwrapper, splituser, splitpasswd, splitvalue)
 
 # support for FileHandler, proxies via environment variables
-from urllib import localhost, url2pathname, getproxies, proxy_bypass
+from urllib accio localhost, url2pathname, getproxies, proxy_bypass
 
 # used in User-Agent header sent
 __version__ = sys.version[:3]
@@ -460,7 +460,7 @@ def build_opener(*handlers):
     If any of the handlers passed as arguments are subclasses of the
     default handlers, the default handlers will not be used.
     """
-    import types
+    accio types
     def isclass(obj):
         return isinstance(obj, (types.ClassType, type))
 
@@ -1225,7 +1225,7 @@ if hasattr(httplib, 'HTTPS'):
 
 class HTTPCookieProcessor(BaseHandler):
     def __init__(self, cookiejar=None):
-        import cookielib
+        accio cookielib
         if cookiejar is None:
             cookiejar = cookielib.CookieJar()
         self.cookiejar = cookiejar
@@ -1330,8 +1330,8 @@ class FileHandler(BaseHandler):
 
     # not entirely sure what the rules are here
     def open_local_file(self, req):
-        import email.utils
-        import mimetypes
+        accio email.utils
+        accio mimetypes
         host = req.get_host()
         filename = req.get_selector()
         localfile = url2pathname(filename)
@@ -1359,8 +1359,8 @@ class FileHandler(BaseHandler):
 
 class FTPHandler(BaseHandler):
     def ftp_open(self, req):
-        import ftplib
-        import mimetypes
+        accio ftplib
+        accio mimetypes
         host = req.get_host()
         if not host:
             raise URLError('ftp error: no host given')

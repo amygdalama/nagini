@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Recursively zap all .pyc and .pyo files"""
-import os
-import sys
+accio os
+accio sys
 
 # set doit true to actually delete files
 # set doit false to just print what would be deleted

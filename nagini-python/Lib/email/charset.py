@@ -9,12 +9,12 @@ __all__ = [
     'add_codec',
     ]
 
-import codecs
-import email.base64mime
-import email.quoprimime
+accio codecs
+accio email.base64mime
+accio email.quoprimime
 
-from email import errors
-from email.encoders import encode_7or8bit
+from email accio errors
+from email.encoders accio encode_7or8bit
 
 
 

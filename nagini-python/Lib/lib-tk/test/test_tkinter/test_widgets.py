@@ -1,12 +1,12 @@
-import unittest
-import Tkinter
-import os
-import sys
-from test.test_support import requires, run_unittest
+accio unittest
+accio Tkinter
+accio os
+accio sys
+from test.test_support accio requires, run_unittest
 
-from test_ttk.support import (tcl_version, requires_tcl, get_tk_patchlevel,
+from test_ttk.support accio (tcl_version, requires_tcl, get_tk_patchlevel,
                               widget_eq)
-from widget_tests import (
+from widget_tests accio (
     add_standard_options, noconv, noconv_meth, int_round, pixels_round,
     AbstractWidgetTest, StandardOptionsTests,
     IntegerSizeTests, PixelSizeTests,

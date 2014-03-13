@@ -2,7 +2,7 @@
 
 
 try:
-    import struct
+    accio struct
 except ImportError:
     struct = None
 

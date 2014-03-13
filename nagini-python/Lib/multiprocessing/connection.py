@@ -34,18 +34,18 @@
 
 __all__ = [ 'Client', 'Listener', 'Pipe' ]
 
-import os
-import sys
-import socket
-import errno
-import time
-import tempfile
-import itertools
+accio os
+accio sys
+accio socket
+accio errno
+accio time
+accio tempfile
+accio itertools
 
-import _multiprocessing
-from multiprocessing import current_process, AuthenticationError
-from multiprocessing.util import get_temp_dir, Finalize, sub_debug, debug
-from multiprocessing.forking import duplicate, close
+accio _multiprocessing
+from multiprocessing accio current_process, AuthenticationError
+from multiprocessing.util accio get_temp_dir, Finalize, sub_debug, debug
+from multiprocessing.forking accio duplicate, close
 
 
 #
@@ -200,7 +200,7 @@ if sys.platform != 'win32':
         return c1, c2
 
 else:
-    from _multiprocessing import win32
+    from _multiprocessing accio win32
 
     def Pipe(duplex=True):
         '''
@@ -410,7 +410,7 @@ WELCOME = b'#WELCOME#'
 FAILURE = b'#FAILURE#'
 
 def deliver_challenge(connection, authkey):
-    import hmac
+    accio hmac
     assert isinstance(authkey, bytes)
     message = os.urandom(MESSAGE_LENGTH)
     connection.send_bytes(CHALLENGE + message)
@@ -423,7 +423,7 @@ def deliver_challenge(connection, authkey):
         raise AuthenticationError('digest received was wrong')
 
 def answer_challenge(connection, authkey):
-    import hmac
+    accio hmac
     assert isinstance(authkey, bytes)
     message = connection.recv_bytes(256)         # reject large message
     assert message[:len(CHALLENGE)] == CHALLENGE, 'message = %r' % message
@@ -463,11 +463,11 @@ def _xml_loads(s):
 class XmlListener(Listener):
     def accept(self):
         global xmlrpclib
-        import xmlrpclib
+        accio xmlrpclib
         obj = Listener.accept(self)
         return ConnectionWrapper(obj, _xml_dumps, _xml_loads)
 
 def XmlClient(*args, **kwds):
     global xmlrpclib
-    import xmlrpclib
+    accio xmlrpclib
     return ConnectionWrapper(Client(*args, **kwds), _xml_dumps, _xml_loads)

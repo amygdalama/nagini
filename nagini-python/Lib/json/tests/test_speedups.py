@@ -1,4 +1,4 @@
-from json.tests import CTest
+from json.tests accio CTest
 
 
 class TestSpeedups(CTest):

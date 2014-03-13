@@ -1,13 +1,13 @@
-import gc
-import os
-import sys
-import signal
-import weakref
+accio gc
+accio os
+accio sys
+accio signal
+accio weakref
 
-from cStringIO import StringIO
+from cStringIO accio StringIO
 
 
-import unittest
+accio unittest
 
 
 @unittest.skipUnless(hasattr(os, 'kill'), "Test requires os.kill")

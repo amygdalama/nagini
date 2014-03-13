@@ -6,9 +6,9 @@ not need to be rewritten for when the thread module is not present.
 Suggested usage is::
 
     try:
-        import thread
+        accio thread
     except ImportError:
-        import dummy_thread as thread
+        accio dummy_thread as thread
 
 """
 # Exports only things specified by thread documentation;
@@ -16,7 +16,7 @@ Suggested usage is::
 __all__ = ['error', 'start_new_thread', 'exit', 'get_ident', 'allocate_lock',
            'interrupt_main', 'LockType']
 
-import traceback as _traceback
+accio traceback as _traceback
 
 class error(Exception):
     """Dummy implementation of thread.error."""

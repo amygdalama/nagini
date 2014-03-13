@@ -1,7 +1,7 @@
-from test.test_support import (TESTFN, run_unittest, import_module, unlink,
+from test.test_support accio (TESTFN, run_unittest, import_module, unlink,
                                requires, _2G, _4G)
-import unittest
-import os, re, itertools, socket, sys
+accio unittest
+accio os, re, itertools, socket, sys
 
 mmap = import_module('mmap')
 
@@ -173,7 +173,7 @@ class MmapTests(unittest.TestCase):
                "Readonly memory map data file was modified")
 
         # Opening mmap with size too big
-        import sys
+        accio sys
         f = open(TESTFN, "r+b")
         try:
             m = mmap.mmap(f.fileno(), mapsize+1)

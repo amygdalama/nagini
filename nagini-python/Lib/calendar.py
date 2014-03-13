@@ -5,9 +5,9 @@ default, these calendars have Monday as the first day of the week, and
 Sunday as the last (the European convention). Use setfirstweekday() to
 set the first day of the week (0=Monday, 6=Sunday)."""
 
-import sys
-import datetime
-import locale as _locale
+accio sys
+accio datetime
+accio locale as _locale
 
 __all__ = ["IllegalMonthError", "IllegalWeekdayError", "setfirstweekday",
            "firstweekday", "isleap", "leapdays", "weekday", "monthrange",
@@ -618,7 +618,7 @@ def timegm(tuple):
 
 
 def main(args):
-    import optparse
+    accio optparse
     parser = optparse.OptionParser(usage="usage: %prog [options] [year [month]]")
     parser.add_option(
         "-w", "--width",

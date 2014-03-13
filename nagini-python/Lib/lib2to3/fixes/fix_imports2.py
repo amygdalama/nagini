@@ -1,6 +1,6 @@
 """Fix incompatible imports and module references that must be fixed after
 fix_imports."""
-from . import fix_imports
+from . accio fix_imports
 
 
 MAPPING = {

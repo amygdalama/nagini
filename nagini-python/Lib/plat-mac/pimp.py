@@ -13,23 +13,23 @@ There is a minimal main program that works as a command line tool, but the
 intention is that the end user will use this through a GUI.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the pimp module is removed.", stacklevel=2)
 
-import sys
-import os
-import subprocess
-import urllib
-import urllib2
-import urlparse
-import plistlib
-import distutils.util
-import distutils.sysconfig
-import hashlib
-import tarfile
-import tempfile
-import shutil
-import time
+accio sys
+accio os
+accio subprocess
+accio urllib
+accio urllib2
+accio urlparse
+accio plistlib
+accio distutils.util
+accio distutils.sysconfig
+accio hashlib
+accio tarfile
+accio tempfile
+accio shutil
+accio time
 
 __all__ = ["PimpPreferences", "PimpDatabase", "PimpPackage", "main",
     "getDefaultDatabase", "PIMP_VERSION", "main"]
@@ -608,7 +608,7 @@ class PimpPackage:
             sys.stderr.write("---- source:\n")
             sys.stderr.write(installTest)
             sys.stderr.write("---- exception:\n")
-            import traceback
+            accio traceback
             traceback.print_exc(file=sys.stderr)
             if self._db._maintainer:
                 sys.stderr.write("---- Please copy this and mail to %s\n" % self._db._maintainer)
@@ -761,7 +761,7 @@ class PimpPackage:
                     continue
                 if line[0] == '#':
                     continue
-                if line[:6] == 'import':
+                if line[:6] == 'accio':
                     exec line
                     continue
                 if line[-1] == '\n':
@@ -1095,7 +1095,7 @@ def _run(mode, verbose, force, args, prefargs, watcher):
 def main():
     """Minimal commandline tool to drive pimp."""
 
-    import getopt
+    accio getopt
     def _help():
         print "Usage: pimp [options] -s [package ...]  List installed status"
         print "       pimp [options] -l [package ...]  Show package information"
@@ -1167,16 +1167,16 @@ def main():
 # or somewhere similar
 if __name__ != 'pimp_update':
     try:
-        import pimp_update
+        accio pimp_update
     except ImportError:
         pass
     else:
         if pimp_update.PIMP_VERSION <= PIMP_VERSION:
-            import warnings
+            accio warnings
             warnings.warn("pimp_update is version %s, not newer than pimp version %s" %
                 (pimp_update.PIMP_VERSION, PIMP_VERSION))
         else:
-            from pimp_update import *
+            from pimp_update accio *
 
 if __name__ == '__main__':
     main()

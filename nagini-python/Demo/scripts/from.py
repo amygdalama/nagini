@@ -4,7 +4,7 @@
 # Extension to multiple mailboxes and other bells & whistles are left
 # as exercises for the reader.
 
-import sys, os
+accio sys, os
 
 # Open mailbox file.  Exits with exception when this fails.
 

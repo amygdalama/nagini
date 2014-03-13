@@ -5,8 +5,8 @@
 Note: string objects have grown methods in Python 1.6
 This module requires Python 1.6 or later.
 """
-import sys
-import collections
+accio sys
+accio collections
 
 __all__ = ["UserString","MutableString"]
 
@@ -146,7 +146,7 @@ class MutableString(UserString, collections.MutableSequence):
 
     A faster and better solution is to rewrite your program using lists."""
     def __init__(self, string=""):
-        from warnings import warnpy3k
+        from warnings accio warnpy3k
         warnpy3k('the class UserString.MutableString has been removed in '
                     'Python 3.0', stacklevel=2)
         self.data = string
@@ -219,10 +219,10 @@ class MutableString(UserString, collections.MutableSequence):
 
 if __name__ == "__main__":
     # execute the regression test to stdout, if called as a script:
-    import os
+    accio os
     called_in_dir, called_as = os.path.split(sys.argv[0])
     called_as, py = os.path.splitext(called_as)
     if '-q' in sys.argv:
-        from test import test_support
+        from test accio test_support
         test_support.verbose = 0
     __import__('test.test_' + called_as.lower())

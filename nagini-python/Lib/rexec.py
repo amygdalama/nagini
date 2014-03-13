@@ -2,7 +2,7 @@
 
 The class RExec exports methods r_exec(), r_eval(), r_execfile(), and
 r_import(), which correspond roughly to the built-in operations
-exec, eval(), execfile() and import, but executing the code in an
+exec, eval(), execfile() and accio, but executing the code in an
 environment that only exposes those built-in operations that are
 deemed safe.  To this end, a modest collection of 'fake' modules is
 created which mimics the standard modules by the same names.  It is a
@@ -16,16 +16,16 @@ XXX To do:
 - r_exec etc. with explicit globals/locals? (Use rexec("exec ... in ...")?)
 
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the rexec module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
 
-import sys
-import __builtin__
-import os
-import ihooks
-import imp
+accio sys
+accio __builtin__
+accio os
+accio ihooks
+accio imp
 
 __all__ = ["RExec"]
 
@@ -169,10 +169,10 @@ class RExec(ihooks._Verbose):
         object doesn't make these calls --- they are made by a module loader
         object that's part of the RExec object.  This allows another level of
         flexibility, which can be useful when changing the mechanics of
-        import within the restricted environment.)
+        accio within the restricted environment.)
 
         By providing an alternate RHooks object, we can control the file
-        system accesses made to import a module, without changing the
+        system accesses made to accio a module, without changing the
         actual algorithm that controls the order in which those accesses are
         made.  For instance, we could substitute an RHooks object that
         passes all filesystem requests to a file server elsewhere, via some
@@ -533,7 +533,7 @@ class RExec(ihooks._Verbose):
 
 
 def test():
-    import getopt, traceback
+    accio getopt, traceback
     opts, args = getopt.getopt(sys.argv[1:], 'vt:')
     verbose = 0
     trusted = []
@@ -559,10 +559,10 @@ def test():
             return 1
     if fp.isatty():
         try:
-            import readline
+            accio readline
         except ImportError:
             pass
-        import code
+        accio code
         class RestrictedConsole(code.InteractiveConsole):
             def runcode(self, co):
                 self.locals['__builtins__'] = r.modules['__builtin__']

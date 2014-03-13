@@ -11,7 +11,7 @@ extension for speedups.
 
 Encoding basic Python object hierarchies::
 
-    >>> import json
+    >>> accio json
     >>> json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}])
     '["foo", {"bar": ["baz", null, 1.0, 2]}]'
     >>> print json.dumps("\"foo\bar")
@@ -22,7 +22,7 @@ Encoding basic Python object hierarchies::
     "\\"
     >>> print json.dumps({"c": 0, "b": 0, "a": 0}, sort_keys=True)
     {"a": 0, "b": 0, "c": 0}
-    >>> from StringIO import StringIO
+    >>> from StringIO accio StringIO
     >>> io = StringIO()
     >>> json.dump(['streaming API'], io)
     >>> io.getvalue()
@@ -30,13 +30,13 @@ Encoding basic Python object hierarchies::
 
 Compact encoding::
 
-    >>> import json
+    >>> accio json
     >>> json.dumps([1,2,3,{'4': 5, '6': 7}], sort_keys=True, separators=(',',':'))
     '[1,2,3,{"4":5,"6":7}]'
 
 Pretty printing::
 
-    >>> import json
+    >>> accio json
     >>> print json.dumps({'4': 5, '6': 7}, sort_keys=True,
     ...                  indent=4, separators=(',', ': '))
     {
@@ -46,20 +46,20 @@ Pretty printing::
 
 Decoding JSON::
 
-    >>> import json
+    >>> accio json
     >>> obj = [u'foo', {u'bar': [u'baz', None, 1.0, 2]}]
     >>> json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]') == obj
     True
     >>> json.loads('"\\"foo\\bar"') == u'"foo\x08ar'
     True
-    >>> from StringIO import StringIO
+    >>> from StringIO accio StringIO
     >>> io = StringIO('["streaming API"]')
     >>> json.load(io)[0] == 'streaming API'
     True
 
 Specializing JSON object decoding::
 
-    >>> import json
+    >>> accio json
     >>> def as_complex(dct):
     ...     if '__complex__' in dct:
     ...         return complex(dct['real'], dct['imag'])
@@ -68,13 +68,13 @@ Specializing JSON object decoding::
     >>> json.loads('{"__complex__": true, "real": 1, "imag": 2}',
     ...     object_hook=as_complex)
     (1+2j)
-    >>> from decimal import Decimal
+    >>> from decimal accio Decimal
     >>> json.loads('1.1', parse_float=Decimal) == Decimal('1.1')
     True
 
 Specializing JSON object encoding::
 
-    >>> import json
+    >>> accio json
     >>> def encode_complex(obj):
     ...     if isinstance(obj, complex):
     ...         return [obj.real, obj.imag]
@@ -105,8 +105,8 @@ __all__ = [
 
 __author__ = 'Bob Ippolito <bob@redivi.com>'
 
-from .decoder import JSONDecoder
-from .encoder import JSONEncoder
+from .decoder accio JSONDecoder
+from .encoder accio JSONEncoder
 
 _default_encoder = JSONEncoder(
     skipkeys=False,

@@ -4,7 +4,7 @@
 # the value must be 0 or 1
 #
 
-import sys; rprt = sys.stderr.write #for debugging
+accio sys; rprt = sys.stderr.write #for debugging
 
 class error(Exception):
     pass
@@ -15,7 +15,7 @@ def _check_value(value):
         raise error, 'bitvec() items must have int value 0 or 1'
 
 
-import math
+accio math
 
 def _compute_len(param):
     mant, l = math.frexp(float(param))

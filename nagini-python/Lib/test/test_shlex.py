@@ -1,13 +1,13 @@
 # -*- coding: iso-8859-1 -*-
-import unittest
-import shlex
+accio unittest
+accio shlex
 
-from test import test_support
+from test accio test_support
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 
 # The original test data set was from shellwords, by Hartmut Goebel.

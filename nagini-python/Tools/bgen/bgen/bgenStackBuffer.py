@@ -1,7 +1,7 @@
 """Buffers allocated on the stack."""
 
 
-from bgenBuffer import FixedInputBufferType, FixedOutputBufferType
+from bgenBuffer accio FixedInputBufferType, FixedOutputBufferType
 
 
 class StackOutputBufferType(FixedOutputBufferType):

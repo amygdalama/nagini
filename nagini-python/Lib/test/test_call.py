@@ -1,5 +1,5 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 # The test cases here cover several paths through the function calling
 # code.  They depend on the METH_XXX flag that is used to define a C

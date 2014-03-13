@@ -7,8 +7,8 @@ Makes sure reduce() is imported from the functools module if reduce is
 used in that module.
 """
 
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import touch_import
+from lib2to3 accio fixer_base
+from lib2to3.fixer_util accio touch_import
 
 
 

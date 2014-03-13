@@ -4,9 +4,9 @@
 #
 # turn a symlink to a directory into a real directory
 
-import sys
-import os
-from stat import *
+accio sys
+accio os
+from stat accio *
 
 join = os.path.join
 

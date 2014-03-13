@@ -3,11 +3,11 @@
 OS/2+EMX doesn't support the file locking operations.
 
 """
-import os
-import struct
-import sys
-import unittest
-from test.test_support import (verbose, TESTFN, unlink, run_unittest,
+accio os
+accio struct
+accio sys
+accio unittest
+from test.test_support accio (verbose, TESTFN, unlink, run_unittest,
     import_module, cpython_only)
 
 # Skip test if no fcntl module.
@@ -99,7 +99,7 @@ class TestFcntl(unittest.TestCase):
 
     @cpython_only
     def test_fcntl_bad_file_overflow(self):
-        from _testcapi import INT_MAX, INT_MIN
+        from _testcapi accio INT_MAX, INT_MIN
         # Issue 15989
         with self.assertRaises(ValueError):
             fcntl.fcntl(INT_MAX + 1, fcntl.F_SETFL, os.O_NONBLOCK)

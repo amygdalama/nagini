@@ -2,13 +2,13 @@
 TestCases for python DB duplicate and Btree key comparison function.
 """
 
-import sys, os, re
-import test_all
-from cStringIO import StringIO
+accio sys, os, re
+accio test_all
+from cStringIO accio StringIO
 
-import unittest
+accio unittest
 
-from test_all import db, dbshelve, test_support, \
+from test_all accio db, dbshelve, test_support, \
         get_new_environment_path, get_new_database_path
 
 
@@ -35,7 +35,7 @@ class ComparatorTests(unittest.TestCase) :
     def comparator_test_helper(self, comparator, expected_data) :
         data = expected_data[:]
 
-        import sys
+        accio sys
         if sys.version_info < (2, 6) :
             data.sort(cmp=comparator)
         else :  # Insertion Sort. Please, improve

@@ -39,23 +39,23 @@ __all__ = [ 'BaseManager', 'SyncManager', 'BaseProxy', 'Token' ]
 # Imports
 #
 
-import os
-import sys
-import weakref
-import threading
-import array
-import Queue
+accio os
+accio sys
+accio weakref
+accio threading
+accio array
+accio Queue
 
-from traceback import format_exc
-from multiprocessing import Process, current_process, active_children, Pool, util, connection
-from multiprocessing.process import AuthenticationString
-from multiprocessing.forking import exit, Popen, assert_spawning, ForkingPickler
-from multiprocessing.util import Finalize, info
+from traceback accio format_exc
+from multiprocessing accio Process, current_process, active_children, Pool, util, connection
+from multiprocessing.process accio AuthenticationString
+from multiprocessing.forking accio exit, Popen, assert_spawning, ForkingPickler
+from multiprocessing.util accio Finalize, info
 
 try:
-    from cPickle import PicklingError
+    from cPickle accio PicklingError
 except ImportError:
-    from pickle import PicklingError
+    from pickle accio PicklingError
 
 #
 # Register some things for pickling
@@ -365,7 +365,7 @@ class Server(object):
                 util._run_finalizers()
                 util.info('manager exiting with exitcode 0')
             except:
-                import traceback
+                accio traceback
                 traceback.print_exc()
         finally:
             exit(0)

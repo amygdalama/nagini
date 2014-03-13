@@ -1,21 +1,21 @@
-from distutils.command.build_ext import build_ext as _du_build_ext
+from distutils.command.build_ext accio build_ext as _du_build_ext
 try:
     # Attempt to use Pyrex for building extensions, if available
-    from Pyrex.Distutils.build_ext import build_ext as _build_ext
+    from Pyrex.Distutils.build_ext accio build_ext as _build_ext
 except ImportError:
     _build_ext = _du_build_ext
 
-import os, sys
-from distutils.file_util import copy_file
+accio os, sys
+from distutils.file_util accio copy_file
 
-from distutils.tests.setuptools_extension import Library
+from distutils.tests.setuptools_extension accio Library
 
-from distutils.ccompiler import new_compiler
-from distutils.sysconfig import customize_compiler, get_config_var
+from distutils.ccompiler accio new_compiler
+from distutils.sysconfig accio customize_compiler, get_config_var
 get_config_var("LDSHARED")  # make sure _config_vars is initialized
-from distutils.sysconfig import _config_vars
-from distutils import log
-from distutils.errors import *
+from distutils.sysconfig accio _config_vars
+from distutils accio log
+from distutils.errors accio *
 
 have_rtld = False
 use_stubs = False
@@ -25,7 +25,7 @@ if sys.platform == "darwin":
     use_stubs = True
 elif os.name != 'nt':
     try:
-        from dl import RTLD_NOW
+        from dl accio RTLD_NOW
         have_rtld = True
         use_stubs = True
     except ImportError:
@@ -215,7 +215,7 @@ class build_ext(_build_ext):
             f.write('\n'.join([
                 "def __bootstrap__():",
                 "   global __bootstrap__, __file__, __loader__",
-                "   import sys, os, pkg_resources, imp"+if_dl(", dl"),
+                "   accio sys, os, pkg_resources, imp"+if_dl(", dl"),
                 "   __file__ = pkg_resources.resource_filename(__name__,%r)"
                    % os.path.basename(ext._file_name),
                 "   del __bootstrap__",
@@ -235,7 +235,7 @@ class build_ext(_build_ext):
             ]))
             f.close()
         if compile:
-            from distutils.util import byte_compile
+            from distutils.util accio byte_compile
             byte_compile([stub_file], optimize=0,
                          force=True, dry_run=self.dry_run)
             optimize = self.get_finalized_command('install_lib').optimize

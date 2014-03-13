@@ -15,8 +15,8 @@ You can turn off Update On Click if all you want to see is the alias for a
 given name, without selecting the color.
 """
 
-from Tkinter import *
-import ColorDB
+from Tkinter accio *
+accio ColorDB
 
 ADDTOVIEW = 'Color %List Window...'
 

@@ -18,7 +18,7 @@
 # Developers don't need an installation of Perl anymore to build Python. A svn
 # checkout from our svn repository is enough.
 
-import os, sys, re, shutil
+accio os, sys, re, shutil
 
 # Find all "foo.exe" files on the PATH.
 def find_all_on_path(filename, extras = None):

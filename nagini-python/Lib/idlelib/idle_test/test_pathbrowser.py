@@ -1,5 +1,5 @@
-import unittest
-import idlelib.PathBrowser as PathBrowser
+accio unittest
+accio idlelib.PathBrowser as PathBrowser
 
 class PathBrowserTest(unittest.TestCase):
 

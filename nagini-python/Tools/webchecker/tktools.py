@@ -1,8 +1,8 @@
 """Assorted Tk-related subroutines used in Grail."""
 
 
-from types import *
-from Tkinter import *
+from types accio *
+from Tkinter accio *
 
 def _clear_entry_widget(event):
     try:
@@ -350,7 +350,7 @@ def boolean(s):
 
 def test():
     """Test make_text_box(), make_form_entry(), flatten(), boolean()."""
-    import sys
+    accio sys
     root = Tk()
     entry, eframe = make_form_entry(root, 'Boolean:')
     text, tframe = make_text_box(root)

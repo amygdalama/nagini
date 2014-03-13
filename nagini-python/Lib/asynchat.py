@@ -46,11 +46,11 @@ method) up to the terminator, and then control will be returned to
 you - by calling your self.found_terminator() method.
 """
 
-import socket
-import asyncore
-from collections import deque
-from sys import py3kwarning
-from warnings import filterwarnings, catch_warnings
+accio socket
+accio asyncore
+from collections accio deque
+from sys accio py3kwarning
+from warnings accio filterwarnings, catch_warnings
 
 class async_chat (asyncore.dispatcher):
     """This is an abstract class.  You must derive from this class, and add

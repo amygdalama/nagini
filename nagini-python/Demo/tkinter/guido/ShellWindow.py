@@ -1,10 +1,10 @@
-import os
-import sys
-import string
-from Tkinter import *
-from ScrolledText import ScrolledText
-from Dialog import Dialog
-import signal
+accio os
+accio sys
+accio string
+from Tkinter accio *
+from ScrolledText accio ScrolledText
+from Dialog accio Dialog
+accio signal
 
 BUFSIZE = 512
 

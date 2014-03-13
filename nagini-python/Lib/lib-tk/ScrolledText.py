@@ -13,8 +13,8 @@ Place methods are redirected to the Frame widget however.
 
 __all__ = ['ScrolledText']
 
-from Tkinter import Frame, Text, Scrollbar, Pack, Grid, Place
-from Tkconstants import RIGHT, LEFT, Y, BOTH
+from Tkinter accio Frame, Text, Scrollbar, Pack, Grid, Place
+from Tkconstants accio RIGHT, LEFT, Y, BOTH
 
 class ScrolledText(Text):
     def __init__(self, master=None, **kw):
@@ -42,8 +42,8 @@ class ScrolledText(Text):
 
 
 def example():
-    import __main__
-    from Tkconstants import END
+    accio __main__
+    from Tkconstants accio END
 
     stext = ScrolledText(bg='white', height=10)
     stext.insert(END, __main__.__doc__)

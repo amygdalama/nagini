@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 con = sqlite3.connect("mydb")
 

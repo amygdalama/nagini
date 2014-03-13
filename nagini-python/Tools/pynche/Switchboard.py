@@ -41,9 +41,9 @@ master window.
 
 """
 
-import sys
-from types import DictType
-import marshal
+accio sys
+from types accio DictType
+accio marshal
 
 
 

@@ -1,20 +1,20 @@
-import asyncore
-import unittest
-import select
-import os
-import socket
-import sys
-import time
-import warnings
-import errno
-import struct
+accio asyncore
+accio unittest
+accio select
+accio os
+accio socket
+accio sys
+accio time
+accio warnings
+accio errno
+accio struct
 
-from test import test_support
-from test.test_support import TESTFN, run_unittest, unlink, HOST
-from StringIO import StringIO
+from test accio test_support
+from test.test_support accio TESTFN, run_unittest, unlink, HOST
+from StringIO accio StringIO
 
 try:
-    import threading
+    accio threading
 except ImportError:
     threading = None
 

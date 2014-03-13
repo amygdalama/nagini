@@ -1,7 +1,7 @@
 # Tests of the full ZIP64 functionality of zipfile
 # The test_support.requires call is the only reason for keeping this separate
 # from test_zipfile
-from test import test_support
+from test accio test_support
 
 # XXX(nnorwitz): disable this test by looking for extra largfile resource
 # which doesn't exist.  This test takes over 30 minutes to run in general
@@ -13,17 +13,17 @@ test_support.requires(
 
 # We can test part of the module without zlib.
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
-import zipfile, os, unittest
-import time
-import sys
+accio zipfile, os, unittest
+accio time
+accio sys
 
-from tempfile import TemporaryFile
+from tempfile accio TemporaryFile
 
-from test.test_support import TESTFN, run_unittest
+from test.test_support accio TESTFN, run_unittest
 
 TESTFN2 = TESTFN + "2"
 

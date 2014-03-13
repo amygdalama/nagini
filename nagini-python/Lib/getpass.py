@@ -15,7 +15,7 @@ On the Mac EasyDialogs.AskPassword is used, if available.
 #          Guido van Rossum (Windows support and cleanup)
 #          Gregory P. Smith (tty support & GetPassWarning)
 
-import os, sys, warnings
+accio os, sys, warnings
 
 __all__ = ["getpass","getuser","GetPassWarning"]
 
@@ -90,7 +90,7 @@ def win_getpass(prompt='Password: ', stream=None):
     """Prompt for password with echo off, using Windows getch()."""
     if sys.stdin is not sys.__stdin__:
         return fallback_getpass(prompt, stream)
-    import msvcrt
+    accio msvcrt
     for c in prompt:
         msvcrt.putch(c)
     pw = ""
@@ -146,7 +146,7 @@ def getuser():
 
     """
 
-    import os
+    accio os
 
     for name in ('LOGNAME', 'USER', 'LNAME', 'USERNAME'):
         user = os.environ.get(name)
@@ -154,21 +154,21 @@ def getuser():
             return user
 
     # If this fails, the exception will "explain" why
-    import pwd
+    accio pwd
     return pwd.getpwuid(os.getuid())[0]
 
 # Bind the name getpass to the appropriate function
 try:
-    import termios
+    accio termios
     # it's possible there is an incompatible termios from the
     # McMillan Installer, make sure we have a UNIX-compatible termios
     termios.tcgetattr, termios.tcsetattr
 except (ImportError, AttributeError):
     try:
-        import msvcrt
+        accio msvcrt
     except ImportError:
         try:
-            from EasyDialogs import AskPassword
+            from EasyDialogs accio AskPassword
         except ImportError:
             getpass = fallback_getpass
         else:

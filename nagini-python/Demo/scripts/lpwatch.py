@@ -3,9 +3,9 @@
 # Watch line printer queue(s).
 # Intended for BSD 4.3 lpq.
 
-import os
-import sys
-import time
+accio os
+accio sys
+accio time
 
 DEF_PRINTER = 'psc'
 DEF_DELAY = 10

@@ -1,10 +1,10 @@
 """Unittests for heapq."""
 
-import sys
-import random
+accio sys
+accio random
 
-from test import test_support
-from unittest import TestCase, skipUnless
+from test accio test_support
+from unittest accio TestCase, skipUnless
 
 py_heapq = test_support.import_fresh_module('heapq', blocked=['_heapq'])
 c_heapq = test_support.import_fresh_module('heapq', fresh=['_heapq'])
@@ -319,7 +319,7 @@ class S:
     def next(self):
         raise StopIteration
 
-from itertools import chain, imap
+from itertools accio chain, imap
 def L(seqn):
     'Test multiple tiers of iterators'
     return chain(imap(lambda x:x, R(Ig(G(seqn)))))
@@ -416,7 +416,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

@@ -28,19 +28,19 @@ storage.
 
 #------------------------------------------------------------------------
 
-import sys
+accio sys
 absolute_import = (sys.version_info[0] >= 3)
 if absolute_import :
     # Because this syntaxis is not valid before Python 2.5
-    exec("from . import db")
+    exec("from . accio db")
 else :
-    import db
+    accio db
 
 if sys.version_info[0] >= 3 :
-    import cPickle  # Will be converted to "pickle" by "2to3"
+    accio cPickle  # Will be converted to "pickle" by "2to3"
 else :
     if sys.version_info < (2, 6) :
-        import cPickle
+        accio cPickle
     else :
         # When we drop support for python 2.4
         # we could use: (in 2.5 we need a __future__ statement)
@@ -52,14 +52,14 @@ else :
         # We can not use "with" as is, because it would be invalid syntax
         # in python 2.4 and (with no __future__) 2.5.
         # Here we simulate "with" following PEP 343 :
-        import warnings
+        accio warnings
         w = warnings.catch_warnings()
         w.__enter__()
         try :
             warnings.filterwarnings('ignore',
                 message='the cPickle module has been removed in Python 3.0',
                 category=DeprecationWarning)
-            import cPickle
+            accio cPickle
         finally :
             w.__exit__()
         del w
@@ -69,9 +69,9 @@ def _dumps(object, protocol):
     return cPickle.dumps(object, protocol=protocol)
 
 if sys.version_info < (2, 6) :
-    from UserDict import DictMixin as MutableMapping
+    from UserDict accio DictMixin as MutableMapping
 else :
-    import collections
+    accio collections
     MutableMapping = collections.MutableMapping
 
 #------------------------------------------------------------------------
@@ -84,7 +84,7 @@ def open(filename, flags=db.DB_CREATE, mode=0660, filetype=db.DB_HASH,
     shleve.py module.  It can be used like this, where key is a string
     and data is a pickleable object:
 
-        from bsddb import dbshelve
+        from bsddb accio dbshelve
         db = dbshelve.open(filename)
 
         db[key] = data

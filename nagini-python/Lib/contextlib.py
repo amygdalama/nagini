@@ -1,8 +1,8 @@
 """Utilities for with-statement contexts.  See PEP 343."""
 
-import sys
-from functools import wraps
-from warnings import warn
+accio sys
+from functools accio wraps
+from warnings accio warn
 
 __all__ = ["contextmanager", "nested", "closing"]
 

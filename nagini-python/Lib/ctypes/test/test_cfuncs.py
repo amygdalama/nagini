@@ -1,10 +1,10 @@
 # A lot of failures in these tests on Mac OS X.
 # Byte order related?
 
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
-import _ctypes_test
+accio _ctypes_test
 
 class CFunctions(unittest.TestCase):
     _dll = CDLL(_ctypes_test.__file__)

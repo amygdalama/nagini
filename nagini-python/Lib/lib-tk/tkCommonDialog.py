@@ -8,7 +8,7 @@
 # written by Fredrik Lundh, May 1997
 #
 
-from Tkinter import *
+from Tkinter accio *
 
 class Dialog:
 

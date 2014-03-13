@@ -19,11 +19,11 @@
 # NB: by changing only the function fixfile() you can turn this
 # into a program for a different change to Python programs...
 
-import sys
-import re
-import os
-from stat import *
-import getopt
+accio sys
+accio re
+accio os
+from stat accio *
+accio getopt
 
 err = sys.stderr.write
 dbg = err

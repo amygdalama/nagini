@@ -9,11 +9,11 @@ variable in the CodeContext section of config-extensions.def. Lines which do
 not open blocks are not shown in the context hints pane.
 
 """
-import Tkinter
-from Tkconstants import TOP, LEFT, X, W, SUNKEN
-import re
-from sys import maxint as INFINITY
-from idlelib.configHandler import idleConf
+accio Tkinter
+from Tkconstants accio TOP, LEFT, X, W, SUNKEN
+accio re
+from sys accio maxint as INFINITY
+from idlelib.configHandler accio idleConf
 
 BLOCKOPENERS = set(["class", "def", "elif", "else", "except", "finally", "for",
                     "if", "try", "while", "with"])

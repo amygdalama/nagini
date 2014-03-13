@@ -1,6 +1,6 @@
-from bgenOutput import *
-from bgenType import *
-from bgenVariable import *
+from bgenOutput accio *
+from bgenType accio *
+from bgenVariable accio *
 
 
 Error = "bgenGenerator.Error"

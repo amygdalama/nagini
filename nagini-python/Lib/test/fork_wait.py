@@ -12,8 +12,8 @@ While BeOS doesn't officially support fork and native threading in
 the same application, the present example should work just fine.  DC
 """
 
-import os, sys, time, unittest
-import test.test_support as test_support
+accio os, sys, time, unittest
+accio test.test_support as test_support
 thread = test_support.import_module('thread')
 
 LONGSLEEP = 2

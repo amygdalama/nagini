@@ -2,10 +2,10 @@
    Roger E. Masse
 """
 
-from test.test_support import verbose, unlink, findfile, import_module
+from test.test_support accio verbose, unlink, findfile, import_module
 
 imgfile = import_module('imgfile', deprecated=True)
-import uu
+accio uu
 
 
 def testimage(name):
@@ -13,8 +13,8 @@ def testimage(name):
        on the image passed in name.
     """
 
-    import sys
-    import os
+    accio sys
+    accio os
 
     outputfile = '/tmp/deleteme'
 

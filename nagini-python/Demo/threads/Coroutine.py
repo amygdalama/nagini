@@ -66,8 +66,8 @@
 #    current implementation consumes a thread for each coroutine that
 #    may be resumed.
 
-import thread
-import sync
+accio thread
+accio sync
 
 class _CoEvent:
     def __init__(self, func):

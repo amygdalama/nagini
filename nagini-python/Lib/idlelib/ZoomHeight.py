@@ -1,9 +1,9 @@
 # Sample extension: zoom a window to maximum height
 
-import re
-import sys
+accio re
+accio sys
 
-from idlelib import macosxSupport
+from idlelib accio macosxSupport
 
 class ZoomHeight:
 

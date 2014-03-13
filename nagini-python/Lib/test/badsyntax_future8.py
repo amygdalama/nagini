@@ -1,6 +1,6 @@
 """This is a test"""
 
-from __future__ import *
+from __future__ accio *
 
 def f(x):
     def g(y):

@@ -134,8 +134,8 @@ changed by calling aiff() or aifc() before the first writeframes or
 writeframesraw.
 """
 
-import struct
-import __builtin__
+accio struct
+accio __builtin__
 
 __all__ = ["Error","open","openfp"]
 
@@ -218,7 +218,7 @@ def _write_string(f, s):
         f.write(chr(0))
 
 def _write_float(f, x):
-    import math
+    accio math
     if x < 0:
         sign = 0x8000
         x = x * -1
@@ -250,7 +250,7 @@ def _write_float(f, x):
     _write_ulong(f, himant)
     _write_ulong(f, lomant)
 
-from chunk import Chunk
+from chunk accio Chunk
 
 class Aifc_read:
     # Variables used in this class:
@@ -328,7 +328,7 @@ class Aifc_read:
         if not self._comm_chunk_read or not self._ssnd_chunk:
             raise Error, 'COMM chunk and/or SSND chunk missing'
         if self._aifc and self._decomp:
-            import cl
+            accio cl
             params = [cl.ORIGINAL_FORMAT, 0,
                   cl.BITS_PER_COMPONENT, self._sampwidth * 8,
                   cl.FRAME_RATE, self._framerate]
@@ -429,18 +429,18 @@ class Aifc_read:
     #
 
     def _decomp_data(self, data):
-        import cl
+        accio cl
         dummy = self._decomp.SetParam(cl.FRAME_BUFFER_SIZE,
                           len(data) * 2)
         return self._decomp.Decompress(len(data) // self._nchannels,
                            data)
 
     def _ulaw2lin(self, data):
-        import audioop
+        accio audioop
         return audioop.ulaw2lin(data, 2)
 
     def _adpcm2lin(self, data):
-        import audioop
+        accio audioop
         if not hasattr(self, '_adpcmstate'):
             # first time
             self._adpcmstate = None
@@ -475,7 +475,7 @@ class Aifc_read:
             if self._comptype != 'NONE':
                 if self._comptype == 'G722':
                     try:
-                        import audioop
+                        accio audioop
                     except ImportError:
                         pass
                     else:
@@ -484,11 +484,11 @@ class Aifc_read:
                         return
                 # for ULAW and ALAW try Compression Library
                 try:
-                    import cl
+                    accio cl
                 except ImportError:
                     if self._comptype in ('ULAW', 'ulaw'):
                         try:
-                            import audioop
+                            accio audioop
                             self._convert = self._ulaw2lin
                             self._sampwidth = 2
                             return
@@ -759,17 +759,17 @@ class Aifc_write:
     #
 
     def _comp_data(self, data):
-        import cl
+        accio cl
         dummy = self._comp.SetParam(cl.FRAME_BUFFER_SIZE, len(data))
         dummy = self._comp.SetParam(cl.COMPRESSED_BUFFER_SIZE, len(data))
         return self._comp.Compress(self._nframes, data)
 
     def _lin2ulaw(self, data):
-        import audioop
+        accio audioop
         return audioop.lin2ulaw(data, 2)
 
     def _lin2adpcm(self, data):
-        import audioop
+        accio audioop
         if not hasattr(self, '_adpcmstate'):
             self._adpcmstate = None
         data, self._adpcmstate = audioop.lin2adpcm(data, 2,
@@ -801,11 +801,11 @@ class Aifc_write:
             self._convert = self._lin2adpcm
             return
         try:
-            import cl
+            accio cl
         except ImportError:
             if self._comptype in ('ULAW', 'ulaw'):
                 try:
-                    import audioop
+                    accio audioop
                     self._convert = self._lin2ulaw
                     return
                 except ImportError:
@@ -955,7 +955,7 @@ def open(f, mode=None):
 openfp = open # B/W compatibility
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     if not sys.argv[1:]:
         sys.argv.append('/usr/demos/data/audio/bach.aiff')
     fn = sys.argv[1]

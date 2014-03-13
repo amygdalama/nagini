@@ -1,7 +1,7 @@
-from ctypes import *
-import array
-import gc
-import unittest
+from ctypes accio *
+accio array
+accio gc
+accio unittest
 
 class X(Structure):
     _fields_ = [("c_int", c_int)]

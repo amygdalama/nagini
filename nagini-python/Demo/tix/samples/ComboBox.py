@@ -13,7 +13,7 @@
 # This file demonstrates the use of the tixComboBox widget, which is close
 # to the MS Window Combo Box control.
 #
-import Tix
+accio Tix
 
 def RunSample(w):
     global demo_month, demo_year

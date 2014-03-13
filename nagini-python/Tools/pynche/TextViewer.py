@@ -15,8 +15,8 @@ button and drag it through some text.  The Insertion is the insertion cursor
 in the text window (which only has a background).
 """
 
-from Tkinter import *
-import ColorDB
+from Tkinter accio *
+accio ColorDB
 
 ADDTOVIEW = 'Text Window...'
 

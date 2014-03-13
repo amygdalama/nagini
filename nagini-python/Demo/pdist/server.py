@@ -1,10 +1,10 @@
 """RPC Server module."""
 
-import sys
-import socket
-import pickle
-from fnmatch import fnmatch
-from repr import repr
+accio sys
+accio socket
+accio pickle
+from fnmatch accio fnmatch
+from repr accio repr
 
 
 # Default verbosity (0 = silent, 1 = print connections, 2 = print requests too)
@@ -111,7 +111,7 @@ class Server:
         return names
 
 
-from security import Security
+from security accio Security
 
 
 class SecureServer(Server, Security):
@@ -121,7 +121,7 @@ class SecureServer(Server, Security):
         Security.__init__(self)
 
     def _verify(self, conn, address):
-        import string
+        accio string
         challenge = self._generate_challenge()
         conn.send("%d\n" % challenge)
         response = ""

@@ -1,15 +1,15 @@
-import unittest
-from test import test_support
-from itertools import *
-from weakref import proxy
-from decimal import Decimal
-from fractions import Fraction
-import sys
-import operator
-import random
-import copy
-import pickle
-from functools import reduce
+accio unittest
+from test accio test_support
+from itertools accio *
+from weakref accio proxy
+from decimal accio Decimal
+from fractions accio Fraction
+accio sys
+accio operator
+accio random
+accio copy
+accio pickle
+from functools accio reduce
 maxsize = test_support.MAX_Py_ssize_t
 minsize = -maxsize-1
 
@@ -1333,7 +1333,7 @@ class TestVariousIteratorArgs(unittest.TestCase):
 class LengthTransparency(unittest.TestCase):
 
     def test_repeat(self):
-        from test.test_iterlen import len
+        from test.test_iterlen accio len
         self.assertEqual(len(repeat(None, 50)), 50)
         self.assertRaises(TypeError, len, repeat(None))
 
@@ -1424,7 +1424,7 @@ Check 1200 is for $120.15
 Check 1201 is for $764.05
 Check 1202 is for $823.14
 
->>> import operator
+>>> accio operator
 >>> for cube in imap(operator.pow, xrange(1,4), repeat(3)):
 ...    print cube
 ...
@@ -1442,7 +1442,7 @@ Martin
 Walter
 Samuele
 
->>> from operator import itemgetter
+>>> from operator accio itemgetter
 >>> d = dict(a=1, b=2, c=1, d=2, e=1, f=2, g=3)
 >>> di = sorted(sorted(d.iteritems()), key=itemgetter(1))
 >>> for k, g in groupby(di, itemgetter(1)):
@@ -1589,7 +1589,7 @@ True
 >>> list(repeatfunc(pow, 5, 2, 3))
 [8, 8, 8, 8, 8]
 
->>> import random
+>>> accio random
 >>> take(5, imap(int, repeatfunc(random.random)))
 [0, 0, 0, 0, 0]
 
@@ -1650,7 +1650,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

@@ -3,11 +3,11 @@ Tests for uu module.
 Nick Mathewson
 """
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
-import sys, os, uu, cStringIO
-import uu
+accio sys, os, uu, cStringIO
+accio uu
 
 plaintext = "The smooth-scaled python crept over the sleeping dog\n"
 

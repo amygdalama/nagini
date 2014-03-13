@@ -2,13 +2,13 @@
 
 """Unpack a MIME message into a directory of files."""
 
-import os
-import sys
-import email
-import errno
-import mimetypes
+accio os
+accio sys
+accio email
+accio errno
+accio mimetypes
 
-from optparse import OptionParser
+from optparse accio OptionParser
 
 
 def main():

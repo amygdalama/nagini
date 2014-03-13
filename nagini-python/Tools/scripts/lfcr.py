@@ -2,7 +2,7 @@
 
 "Replace LF with CRLF in argument files.  Print names of changed files."
 
-import sys, re, os
+accio sys, re, os
 
 def main():
     for filename in sys.argv[1:]:

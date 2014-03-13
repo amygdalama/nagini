@@ -1,5 +1,5 @@
-from idlelib.WidgetRedirector import WidgetRedirector
-from idlelib.Delegator import Delegator
+from idlelib.WidgetRedirector accio WidgetRedirector
+from idlelib.Delegator accio Delegator
 
 class Percolator:
 
@@ -81,5 +81,5 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
-    from Tkinter import *
+    from Tkinter accio *
     main()

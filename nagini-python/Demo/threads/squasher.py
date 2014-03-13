@@ -40,7 +40,7 @@ twoa    =   2*a
 #    then kills all the coroutines
 # putline: grabs lines from assembler, and just prints them
 
-from Coroutine import *
+from Coroutine accio *
 
 def getline(text):
     for line in string.splitfields(text, '\n'):
@@ -91,7 +91,7 @@ def putline():
         line = co.tran(coassembler)
         print line
 
-import string
+accio string
 co = Coroutine()
 cogetline = co.create(getline, test)
 coputline = co.create(putline)

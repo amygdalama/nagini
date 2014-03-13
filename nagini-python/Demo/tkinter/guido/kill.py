@@ -1,11 +1,11 @@
 #! /usr/bin/env python
 # Tkinter interface to Linux `kill' command.
 
-from Tkinter import *
-from string import splitfields
-from string import split
-import commands
-import os
+from Tkinter accio *
+from string accio splitfields
+from string accio split
+accio commands
+accio os
 
 class BarButton(Menubutton):
     def __init__(self, master=None, **cnf):

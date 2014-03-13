@@ -15,7 +15,7 @@
 # Your can display the help message in a "balloon" and a status bar widget.
 #
 
-import Tix
+accio Tix
 
 TCL_ALL_EVENTS          = 0
 

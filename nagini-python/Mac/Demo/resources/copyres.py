@@ -1,6 +1,6 @@
-from Carbon.Res import *
-from Carbon.Resources import *
-import MacOS
+from Carbon.Res accio *
+from Carbon.Resources accio *
+accio MacOS
 
 READ = 1
 WRITE = 2

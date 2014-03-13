@@ -1,11 +1,11 @@
-import unittest
-import __builtin__
-import exceptions
-import warnings
-from test.test_support import run_unittest, check_warnings
-import os
-import sys
-from platform import system as platform_system
+accio unittest
+accio __builtin__
+accio exceptions
+accio warnings
+from test.test_support accio run_unittest, check_warnings
+accio os
+accio sys
+from platform accio system as platform_system
 
 DEPRECATION_WARNINGS = ["BaseException.message has been deprecated"]
 

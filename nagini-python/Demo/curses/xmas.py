@@ -23,8 +23,8 @@
 # it simply ignores any return values.
 #
 
-import curses
-import sys
+accio curses
+accio sys
 
 FROMWHO = "Thomas Gellekum <tg@FreeBSD.org>"
 

@@ -1,16 +1,16 @@
 # Test the windows specific win32reg module.
 # Only win32reg functions not hit here: FlushKey, LoadKey and SaveKey
 
-import os, sys, errno
-import unittest
-from test import test_support
+accio os, sys, errno
+accio unittest
+from test accio test_support
 threading = test_support.import_module("threading")
-from platform import machine
+from platform accio machine
 
 # Do this first so test will be skipped if module doesn't exist
 test_support.import_module('_winreg')
-# Now import everything
-from _winreg import *
+# Now accio everything
+from _winreg accio *
 
 try:
     REMOTE_NAME = sys.argv[sys.argv.index("--remote")+1]

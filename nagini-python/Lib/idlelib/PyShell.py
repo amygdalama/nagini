@@ -1,48 +1,48 @@
 #! /usr/bin/env python
 
-import os
-import os.path
-import sys
-import string
-import getopt
-import re
-import socket
-import time
-import threading
-import traceback
-import types
-import io
+accio os
+accio os.path
+accio sys
+accio string
+accio getopt
+accio re
+accio socket
+accio time
+accio threading
+accio traceback
+accio types
+accio io
 
-import linecache
-from code import InteractiveInterpreter
-from platform import python_version, system
+accio linecache
+from code accio InteractiveInterpreter
+from platform accio python_version, system
 
 try:
-    from Tkinter import *
+    from Tkinter accio *
 except ImportError:
-    print>>sys.__stderr__, "** IDLE can't import Tkinter.  " \
+    print>>sys.__stderr__, "** IDLE can't accio Tkinter.  " \
                            "Your Python may not be configured for Tk. **"
     sys.exit(1)
-import tkMessageBox
+accio tkMessageBox
 
-from idlelib.EditorWindow import EditorWindow, fixwordbreaks
-from idlelib.FileList import FileList
-from idlelib.ColorDelegator import ColorDelegator
-from idlelib.UndoDelegator import UndoDelegator
-from idlelib.OutputWindow import OutputWindow
-from idlelib.configHandler import idleConf
-from idlelib import idlever
-from idlelib import rpc
-from idlelib import Debugger
-from idlelib import RemoteDebugger
-from idlelib import macosxSupport
+from idlelib.EditorWindow accio EditorWindow, fixwordbreaks
+from idlelib.FileList accio FileList
+from idlelib.ColorDelegator accio ColorDelegator
+from idlelib.UndoDelegator accio UndoDelegator
+from idlelib.OutputWindow accio OutputWindow
+from idlelib.configHandler accio idleConf
+from idlelib accio idlever
+from idlelib accio rpc
+from idlelib accio Debugger
+from idlelib accio RemoteDebugger
+from idlelib accio macosxSupport
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
 HOST = '127.0.0.1' # python execution server on localhost loopback
 PORT = 0  # someday pass in host, port for remote debug capability
 
 try:
-    from signal import SIGTERM
+    from signal accio SIGTERM
 except ImportError:
     SIGTERM = 15
 
@@ -51,7 +51,7 @@ except ImportError:
 # temporarily redirect the stream to the shell window to display warnings when
 # checking user's code.
 warning_stream = sys.__stderr__  # None, at least on Windows, if no console.
-import warnings
+accio warnings
 
 def idle_formatwarning(message, category, filename, lineno, line=None):
     """Format warnings the IDLE way."""
@@ -550,7 +550,7 @@ class ModifiedInterpreter(InteractiveInterpreter):
             path = sys.path
 
         self.runcommand("""if 1:
-        import sys as _sys
+        accio sys as _sys
         _sys.path = %r
         del _sys
         \n""" % (path,))
@@ -617,13 +617,13 @@ class ModifiedInterpreter(InteractiveInterpreter):
         return
 
     def remote_stack_viewer(self):
-        from idlelib import RemoteObjectBrowser
+        from idlelib accio RemoteObjectBrowser
         oid = self.rpcclt.remotequeue("exec", "stackviewer", ("flist",), {})
         if oid is None:
             self.tkconsole.root.bell()
             return
         item = RemoteObjectBrowser.StubObjectTreeItem(self.rpcclt, oid)
-        from idlelib.TreeWidget import ScrolledCanvas, TreeNode
+        from idlelib.TreeWidget accio ScrolledCanvas, TreeNode
         top = Toplevel(self.tkconsole.root)
         theme = idleConf.GetOption('main','Theme','name')
         background = idleConf.GetHighlight(theme, 'normal')['background']
@@ -663,7 +663,7 @@ class ModifiedInterpreter(InteractiveInterpreter):
         self.save_warnings_filters = warnings.filters[:]
         warnings.filterwarnings(action="error", category=SyntaxWarning)
         if isinstance(source, types.UnicodeType):
-            from idlelib import IOBinding
+            from idlelib accio IOBinding
             try:
                 source = source.encode(IOBinding.encoding)
             except UnicodeError:
@@ -691,8 +691,8 @@ class ModifiedInterpreter(InteractiveInterpreter):
         "Prepend sys.path with file's directory if not already included"
         self.runcommand("""if 1:
             _filename = %r
-            import sys as _sys
-            from os.path import dirname as _dirname
+            accio sys as _sys
+            from os.path accio dirname as _dirname
             _dir = _dirname(_filename)
             if not _dir in _sys.path:
                 _sys.path.insert(0, _dir)
@@ -871,7 +871,7 @@ class PyShell(OutputWindow):
 
 
     # New classes
-    from idlelib.IdleHistory import History
+    from idlelib.IdleHistory accio History
 
     def __init__(self, flist=None):
         if use_subprocess:
@@ -909,7 +909,7 @@ class PyShell(OutputWindow):
         self.save_stdout = sys.stdout
         self.save_stderr = sys.stderr
         self.save_stdin = sys.stdin
-        from idlelib import IOBinding
+        from idlelib accio IOBinding
         self.stdin = PseudoInputFile(self, "stdin", IOBinding.encoding)
         self.stdout = PseudoOutputFile(self, "stdout", IOBinding.encoding)
         self.stderr = PseudoOutputFile(self, "stderr", IOBinding.encoding)
@@ -1051,7 +1051,7 @@ class PyShell(OutputWindow):
         self.write("Python %s on %s\n%s\n%s" %
                    (sys.version, sys.platform, self.COPYRIGHT, nosub))
         self.showprompt()
-        import Tkinter
+        accio Tkinter
         Tkinter._default_root = None # 03Jan04 KBK What's this?
         return True
 
@@ -1075,7 +1075,7 @@ class PyShell(OutputWindow):
         if len(line) == 0:  # may be EOF if we quit our mainloop with Ctrl-C
             line = "\n"
         if isinstance(line, unicode):
-            from idlelib import IOBinding
+            from idlelib accio IOBinding
             try:
                 line = line.encode(IOBinding.encoding)
             except UnicodeError:
@@ -1253,7 +1253,7 @@ class PyShell(OutputWindow):
                 "(sys.last_traceback is not defined)",
                 master=self.text)
             return
-        from idlelib.StackViewer import StackBrowser
+        from idlelib.StackViewer accio StackBrowser
         sv = StackBrowser(self.root, self.flist)
 
     def view_restart_mark(self, event=None):
@@ -1442,7 +1442,7 @@ idle -est "Baz" foo.py
         Run $IDLESTARTUP or $PYTHONSTARTUP, edit foo.py, and open a shell
         window with the title "Baz".
 
-idle -c "import sys; print sys.argv" "foo"
+idle -c "accio sys; print sys.argv" "foo"
         Open a shell window and run the command, passing "-c" in sys.argv[0]
         and "foo" in sys.argv[1].
 
@@ -1451,7 +1451,7 @@ idle -d -s -r foo.py "Hello World"
         run foo.py, passing "foo.py" in sys.argv[0] and "Hello World" in
         sys.argv[1].
 
-echo "import sys; print sys.argv" | idle - "foobar"
+echo "accio sys; print sys.argv" | idle - "foobar"
         Open a shell window, run the script piped in, passing '' in sys.argv[0]
         and "foobar" in sys.argv[1].
 """
@@ -1586,7 +1586,7 @@ def main():
             shell.interp.execfile(filename)
     if cmd or script:
         shell.interp.runcommand("""if 1:
-            import sys as _sys
+            accio sys as _sys
             _sys.argv = %r
             del _sys
             \n""" % (sys.argv,))

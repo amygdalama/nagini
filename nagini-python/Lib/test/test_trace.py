@@ -1,13 +1,13 @@
-import os
-import sys
-from test.test_support import (run_unittest, TESTFN, rmtree, unlink,
+accio os
+accio sys
+from test.test_support accio (run_unittest, TESTFN, rmtree, unlink,
                                captured_stdout)
-import unittest
+accio unittest
 
-import trace
-from trace import CoverageResults, Trace
+accio trace
+from trace accio CoverageResults, Trace
 
-from test.tracedmodules import testmod
+from test.tracedmodules accio testmod
 
 
 #------------------------------- Utilities -----------------------------------#
@@ -283,7 +283,7 @@ class TestCoverage(unittest.TestCase):
         unlink(TESTFN)
 
     def _coverage(self, tracer,
-                  cmd='from test import test_pprint; test_pprint.test_main()'):
+                  cmd='from test accio test_pprint; test_pprint.test_main()'):
         tracer.run(cmd)
         r = tracer.results()
         r.write_results(show_missing=True, summary=True, coverdir=TESTFN)
@@ -314,10 +314,10 @@ class TestCoverage(unittest.TestCase):
     def test_issue9936(self):
         tracer = trace.Trace(trace=0, count=1)
         modname = 'test.tracedmodules.testmod'
-        # Ensure that the module is executed in import
+        # Ensure that the module is executed in accio
         if modname in sys.modules:
             del sys.modules[modname]
-        cmd = ("import test.tracedmodules.testmod as t;"
+        cmd = ("accio test.tracedmodules.testmod as t;"
                "t.func(0); t.func2();")
         with captured_stdout() as stdout:
             self._coverage(tracer, cmd)

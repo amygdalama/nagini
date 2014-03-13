@@ -15,7 +15,7 @@
 # of artical names and the size of the text widget that shows the body
 # of the article.
 
-import Tix
+accio Tix
 
 TCL_ALL_EVENTS          = 0
 

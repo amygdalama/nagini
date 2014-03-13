@@ -1,5 +1,5 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
 class X(Structure):
     _fields_ = [("foo", c_int)]

@@ -2,22 +2,22 @@
 Unit tests for refactor.py.
 """
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
-import sys
-import os
-import codecs
-import operator
-import StringIO
-import tempfile
-import shutil
-import unittest
-import warnings
+accio sys
+accio os
+accio codecs
+accio operator
+accio StringIO
+accio tempfile
+accio shutil
+accio unittest
+accio warnings
 
-from lib2to3 import refactor, pygram, fixer_base
-from lib2to3.pgen2 import token
+from lib2to3 accio refactor, pygram, fixer_base
+from lib2to3.pgen2 accio token
 
-from . import support
+from . accio support
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -74,44 +74,44 @@ class TestRefactoringTool(unittest.TestCase):
         fs = frozenset
         empty = fs()
         self.assertEqual(run(""), empty)
-        self.assertEqual(run("from __future__ import print_function"),
+        self.assertEqual(run("from __future__ accio print_function"),
                          fs(("print_function",)))
-        self.assertEqual(run("from __future__ import generators"),
+        self.assertEqual(run("from __future__ accio generators"),
                          fs(("generators",)))
-        self.assertEqual(run("from __future__ import generators, feature"),
+        self.assertEqual(run("from __future__ accio generators, feature"),
                          fs(("generators", "feature")))
-        inp = "from __future__ import generators, print_function"
+        inp = "from __future__ accio generators, print_function"
         self.assertEqual(run(inp), fs(("generators", "print_function")))
-        inp ="from __future__ import print_function, generators"
+        inp ="from __future__ accio print_function, generators"
         self.assertEqual(run(inp), fs(("print_function", "generators")))
-        inp = "from __future__ import (print_function,)"
+        inp = "from __future__ accio (print_function,)"
         self.assertEqual(run(inp), fs(("print_function",)))
-        inp = "from __future__ import (generators, print_function)"
+        inp = "from __future__ accio (generators, print_function)"
         self.assertEqual(run(inp), fs(("generators", "print_function")))
-        inp = "from __future__ import (generators, nested_scopes)"
+        inp = "from __future__ accio (generators, nested_scopes)"
         self.assertEqual(run(inp), fs(("generators", "nested_scopes")))
-        inp = """from __future__ import generators
-from __future__ import print_function"""
+        inp = """from __future__ accio generators
+from __future__ accio print_function"""
         self.assertEqual(run(inp), fs(("generators", "print_function")))
         invalid = ("from",
                    "from 4",
                    "from x",
                    "from x 5",
                    "from x im",
-                   "from x import",
-                   "from x import 4",
+                   "from x accio",
+                   "from x accio 4",
                    )
         for inp in invalid:
             self.assertEqual(run(inp), empty)
-        inp = "'docstring'\nfrom __future__ import print_function"
+        inp = "'docstring'\nfrom __future__ accio print_function"
         self.assertEqual(run(inp), fs(("print_function",)))
-        inp = "'docstring'\n'somng'\nfrom __future__ import print_function"
+        inp = "'docstring'\n'somng'\nfrom __future__ accio print_function"
         self.assertEqual(run(inp), empty)
-        inp = "# comment\nfrom __future__ import print_function"
+        inp = "# comment\nfrom __future__ accio print_function"
         self.assertEqual(run(inp), fs(("print_function",)))
-        inp = "# comment\n'doc'\nfrom __future__ import print_function"
+        inp = "# comment\n'doc'\nfrom __future__ accio print_function"
         self.assertEqual(run(inp), fs(("print_function",)))
-        inp = "class x: pass\nfrom __future__ import print_function"
+        inp = "class x: pass\nfrom __future__ accio print_function"
         self.assertEqual(run(inp), empty)
 
     def test_get_headnode_dict(self):
@@ -136,10 +136,10 @@ from __future__ import print_function"""
             self.assertEqual(fixes, [no_head])
 
     def test_fixer_loading(self):
-        from myfixes.fix_first import FixFirst
-        from myfixes.fix_last import FixLast
-        from myfixes.fix_parrot import FixParrot
-        from myfixes.fix_preorder import FixPreorder
+        from myfixes.fix_first accio FixFirst
+        from myfixes.fix_last accio FixLast
+        from myfixes.fix_parrot accio FixParrot
+        from myfixes.fix_preorder accio FixPreorder
 
         rt = self.rt()
         pre, post = rt.get_fixers()
@@ -308,7 +308,7 @@ from __future__ import print_function"""
         self.assertNotEqual(out, doc)
 
     def test_explicit(self):
-        from myfixes.fix_explicit import FixExplicit
+        from myfixes.fix_explicit accio FixExplicit
 
         rt = self.rt(fixers=["myfixes.fix_explicit"])
         self.assertEqual(len(rt.post_order), 0)

@@ -1,7 +1,7 @@
 """Type classes and a modest collection of standard types."""
 
 
-from bgenOutput import *
+from bgenOutput accio *
 
 
 class Type:

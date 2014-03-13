@@ -1,6 +1,6 @@
-import compiler
-import dis
-import types
+accio compiler
+accio dis
+accio types
 
 def extract_code_objects(co):
     l = [co]
@@ -39,5 +39,5 @@ def main(files):
             compare(a, b)
 
 if __name__ == "__main__":
-    import sys
+    accio sys
     main(sys.argv[1:])

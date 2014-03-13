@@ -3,9 +3,9 @@ These tests only check url parsing for now.
 We don't want to require the 'network' resource.
 """
 
-import os, unittest
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-from test import test_support
+accio os, unittest
+from SimpleHTTPServer accio SimpleHTTPRequestHandler
+from test accio test_support
 
 
 class SocketlessRequestHandler (SimpleHTTPRequestHandler):

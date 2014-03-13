@@ -1,1 +1,1 @@
-from _CG import *
+from _CG accio *

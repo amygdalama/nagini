@@ -6,7 +6,7 @@
 
 __all__ = ['MIMEBase']
 
-from email import message
+from email accio message
 
 
 

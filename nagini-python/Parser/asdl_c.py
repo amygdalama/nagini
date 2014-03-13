@@ -4,9 +4,9 @@
 # TO DO
 # handle fields that have a type but no name
 
-import os, sys
+accio os, sys
 
-import asdl
+accio asdl
 
 TABSIZE = 8
 MAX_COL = 80
@@ -1223,8 +1223,8 @@ def main(srcfile):
         f.close()
 
 if __name__ == "__main__":
-    import sys
-    import getopt
+    accio sys
+    accio getopt
 
     INC_DIR = ''
     SRC_DIR = ''

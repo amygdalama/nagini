@@ -11,8 +11,8 @@ The actual script to place in cgi-bin is faqw.py.
 
 """
 
-import sys, time, os, stat, re, cgi, faqconf
-from faqconf import *                   # This imports all uppercase names
+accio sys, time, os, stat, re, cgi, faqconf
+from faqconf accio *                   # This imports all uppercase names
 now = time.time()
 
 class FileError:
@@ -138,7 +138,7 @@ def load_my_cookie():
         value = cookies[COOKIE_NAME]
     except KeyError:
         return {}
-    import urllib
+    accio urllib
     value = urllib.unquote(value)
     words = value.split('/')
     while len(words) < 3:
@@ -153,7 +153,7 @@ def load_my_cookie():
 def send_my_cookie(ui):
     name = COOKIE_NAME
     value = "%s/%s/%s" % (ui.author, ui.email, ui.password)
-    import urllib
+    accio urllib
     value = urllib.quote(value)
     then = now + COOKIE_LIFETIME
     gmt = time.gmtime(then)
@@ -207,7 +207,7 @@ class FaqEntry:
         self.file = file
         self.sec, self.num = sec_num
         if fp:
-            import rfc822
+            accio rfc822
             self.__headers = rfc822.Message(fp)
             self.body = fp.read().strip()
         else:
@@ -581,7 +581,7 @@ class FaqWizard:
         emit(TAIL_RECENT)
 
     def do_roulette(self):
-        import random
+        accio random
         files = self.dir.list()
         if not files:
             self.error("No entries.")
@@ -806,7 +806,7 @@ class FaqWizard:
         f.write('\n')
         f.close()
 
-        import tempfile
+        accio tempfile
         tf = tempfile.NamedTemporaryFile()
         emit(LOGHEADER, self.ui, os.environ, date=date, _file=tf)
         tf.flush()

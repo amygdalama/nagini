@@ -16,7 +16,7 @@
 # In a tixHList widget, you can have one ore more columns.
 #
 
-import Tix
+accio Tix
 
 TCL_ALL_EVENTS          = 0
 

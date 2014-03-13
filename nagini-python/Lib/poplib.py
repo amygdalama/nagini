@@ -13,7 +13,7 @@ Based on the J. Myers POP3 draft, Jan. 96
 
 # Imports
 
-import re, socket
+accio re, socket
 
 __all__ = ["POP3","error_proto"]
 
@@ -282,7 +282,7 @@ class POP3:
         m = self.timestamp.match(self.welcome)
         if not m:
             raise error_proto('-ERR APOP not supported by server')
-        import hashlib
+        accio hashlib
         digest = hashlib.md5(m.group(1)+secret).digest()
         digest = ''.join(map(lambda x:'%02x'%ord(x), digest))
         return self._shortcmd('APOP %s %s' % (user, digest))
@@ -309,7 +309,7 @@ class POP3:
         return self._longcmd('UIDL')
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     pass
 else:
@@ -401,7 +401,7 @@ else:
     __all__.append("POP3_SSL")
 
 if __name__ == "__main__":
-    import sys
+    accio sys
     a = POP3(sys.argv[1])
     print a.getwelcome()
     a.user(sys.argv[2])

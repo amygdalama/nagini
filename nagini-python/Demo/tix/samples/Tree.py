@@ -14,7 +14,7 @@
 # dynamic hierachical data (the files in the Unix file system)
 #
 
-import Tix, os
+accio Tix, os
 
 def RunSample(w):
     top = Tix.Frame(w, relief=Tix.RAISED, bd=1)

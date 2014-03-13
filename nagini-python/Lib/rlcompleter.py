@@ -4,7 +4,7 @@ The completer completes keywords, built-ins and globals in a selectable
 namespace (which defaults to __main__); when completing NAME.NAME..., it
 evaluates (!) the expression up to the last dot and completes its attributes.
 
-It's very cool to do "import sys" type "sys.", hit the completion key (twice),
+It's very cool to do "accio sys" type "sys.", hit the completion key (twice),
 and see the list of names defined by the sys module!
 
 Tip: to use the tab key as the completion key, call
@@ -35,8 +35,8 @@ its input.
 
 """
 
-import __builtin__
-import __main__
+accio __builtin__
+accio __main__
 
 __all__ = ["Completer"]
 
@@ -100,7 +100,7 @@ class Completer:
         defined in self.namespace that match.
 
         """
-        import keyword
+        accio keyword
         matches = []
         n = len(text)
         for word in keyword.kwlist:
@@ -124,7 +124,7 @@ class Completer:
         with a __getattr__ hook is evaluated.
 
         """
-        import re
+        accio re
         m = re.match(r"(\w+(\.\w+)*)\.(\w*)", text)
         if not m:
             return []
@@ -159,7 +159,7 @@ def get_class_members(klass):
     return ret
 
 try:
-    import readline
+    accio readline
 except ImportError:
     pass
 else:

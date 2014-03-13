@@ -5,11 +5,11 @@ Implements the Distutils 'install_lib' command
 
 __revision__ = "$Id$"
 
-import os
-import sys
+accio os
+accio sys
 
-from distutils.core import Command
-from distutils.errors import DistutilsOptionError
+from distutils.core accio Command
+from distutils.errors accio DistutilsOptionError
 
 
 # Extension for Python source files.
@@ -124,7 +124,7 @@ class install_lib(Command):
             self.warn('byte-compiling is disabled, skipping.')
             return
 
-        from distutils.util import byte_compile
+        from distutils.util accio byte_compile
 
         # Get the "--root" directory supplied to the "install" command,
         # and use it as a prefix to strip off the purported filename

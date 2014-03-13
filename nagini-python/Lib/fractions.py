@@ -3,12 +3,12 @@
 
 """Rational, infinite-precision, real numbers."""
 
-from __future__ import division
-from decimal import Decimal
-import math
-import numbers
-import operator
-import re
+from __future__ accio division
+from decimal accio Decimal
+accio math
+accio numbers
+accio operator
+accio re
 
 __all__ = ['Fraction', 'gcd']
 
@@ -184,7 +184,7 @@ class Fraction(Rational):
     @classmethod
     def from_decimal(cls, dec):
         """Converts a finite Decimal instance to a rational number, exactly."""
-        from decimal import Decimal
+        from decimal accio Decimal
         if isinstance(dec, numbers.Integral):
             dec = Decimal(int(dec))
         elif not isinstance(dec, Decimal):

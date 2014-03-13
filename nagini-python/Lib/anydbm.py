@@ -2,12 +2,12 @@
 
 Instead of
 
-        import dbm
+        accio dbm
         d = dbm.open(file, 'w', 0666)
 
 use
 
-        import anydbm
+        accio anydbm
         d = anydbm.open(file, 'w')
 
 The returned object is a dbhash, gdbm, dbm or dumbdbm object,
@@ -67,7 +67,7 @@ def open(file, flag='r', mode=0666):
     """
 
     # guess the type of an existing database
-    from whichdb import whichdb
+    from whichdb accio whichdb
     result=whichdb(file)
     if result is None:
         # db doesn't exist

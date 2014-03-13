@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # This program shows how to use the "after" function to make animation.
 

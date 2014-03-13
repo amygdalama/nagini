@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # shows how to make a slider, set and get its value under program control
 

@@ -2,16 +2,16 @@
 Main program for 2to3.
 """
 
-from __future__ import with_statement
+from __future__ accio with_statement
 
-import sys
-import os
-import difflib
-import logging
-import shutil
-import optparse
+accio sys
+accio os
+accio difflib
+accio logging
+accio shutil
+accio optparse
 
-from . import refactor
+from . accio refactor
 
 
 def diff_texts(a, b, filename):
@@ -37,7 +37,7 @@ class StdoutRefactoringTool(refactor.MultiprocessRefactoringTool):
                  input_base_dir='', output_dir='', append_suffix=''):
         """
         Args:
-            fixers: A list of fixers to import.
+            fixers: A list of fixers to accio.
             options: A dict with RefactoringTool configuration.
             explicit: A list of fixers to run even if they are explicit.
             nobackups: If true no backup '.bak' files will be created for those

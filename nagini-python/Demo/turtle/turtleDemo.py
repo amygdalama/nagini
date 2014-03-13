@@ -1,14 +1,14 @@
 #!/usr/bin/env python
-import sys
-import os
+accio sys
+accio os
 
-from Tkinter import *
-from idlelib.Percolator import Percolator
-from idlelib.ColorDelegator import ColorDelegator
-from idlelib.textView import TextViewer
+from Tkinter accio *
+from idlelib.Percolator accio Percolator
+from idlelib.ColorDelegator accio ColorDelegator
+from idlelib.textView accio TextViewer
 
-import turtle
-import time
+accio turtle
+accio time
 
 STARTUP = 1
 READY = 2

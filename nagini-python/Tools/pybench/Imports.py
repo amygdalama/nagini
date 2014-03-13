@@ -1,8 +1,8 @@
-from pybench import Test
+from pybench accio Test
 
 # First imports:
-import os
-import package.submodule
+accio os
+accio package.submodule
 
 class SecondImport(Test):
 
@@ -13,35 +13,35 @@ class SecondImport(Test):
     def test(self):
 
         for i in xrange(self.rounds):
-            import os
-            import os
-            import os
-            import os
-            import os
+            accio os
+            accio os
+            accio os
+            accio os
+            accio os
 
-            import os
-            import os
-            import os
-            import os
-            import os
+            accio os
+            accio os
+            accio os
+            accio os
+            accio os
 
-            import os
-            import os
-            import os
-            import os
-            import os
+            accio os
+            accio os
+            accio os
+            accio os
+            accio os
 
-            import os
-            import os
-            import os
-            import os
-            import os
+            accio os
+            accio os
+            accio os
+            accio os
+            accio os
 
-            import os
-            import os
-            import os
-            import os
-            import os
+            accio os
+            accio os
+            accio os
+            accio os
+            accio os
 
     def calibrate(self):
 
@@ -58,35 +58,35 @@ class SecondPackageImport(Test):
     def test(self):
 
         for i in xrange(self.rounds):
-            import package
-            import package
-            import package
-            import package
-            import package
+            accio package
+            accio package
+            accio package
+            accio package
+            accio package
 
-            import package
-            import package
-            import package
-            import package
-            import package
+            accio package
+            accio package
+            accio package
+            accio package
+            accio package
 
-            import package
-            import package
-            import package
-            import package
-            import package
+            accio package
+            accio package
+            accio package
+            accio package
+            accio package
 
-            import package
-            import package
-            import package
-            import package
-            import package
+            accio package
+            accio package
+            accio package
+            accio package
+            accio package
 
-            import package
-            import package
-            import package
-            import package
-            import package
+            accio package
+            accio package
+            accio package
+            accio package
+            accio package
 
     def calibrate(self):
 
@@ -102,35 +102,35 @@ class SecondSubmoduleImport(Test):
     def test(self):
 
         for i in xrange(self.rounds):
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
 
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
 
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
 
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
 
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
-            import package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
+            accio package.submodule
 
     def calibrate(self):
 

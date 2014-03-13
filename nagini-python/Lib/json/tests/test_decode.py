@@ -1,7 +1,7 @@
-import decimal
-from StringIO import StringIO
-from collections import OrderedDict
-from json.tests import PyTest, CTest
+accio decimal
+from StringIO accio StringIO
+from collections accio OrderedDict
+from json.tests accio PyTest, CTest
 
 
 class TestDecode(object):

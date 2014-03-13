@@ -2,15 +2,15 @@
 is closed before its DB objects.
 """
 
-import os, sys
-import unittest
+accio os, sys
+accio unittest
 
-from test_all import db, test_support, verbose, get_new_environment_path, get_new_database_path
+from test_all accio db, test_support, verbose, get_new_environment_path, get_new_database_path
 
 # We're going to get warnings in this module about trying to close the db when
 # its env is already closed.  Let's just ignore those.
 try:
-    import warnings
+    accio warnings
 except ImportError:
     pass
 else:
@@ -77,7 +77,7 @@ class DBEnvClosedEarlyCrash(unittest.TestCase):
         self.assertRaises(db.DBError, c.next)
 
     def test03_close_db_before_dbcursor_without_env(self):
-        import os.path
+        accio os.path
         path=os.path.join(self.homeDir,self.filename)
         d = db.DB()
         d.open(path, db.DB_BTREE, db.DB_CREATE | db.DB_THREAD, 0666)
@@ -142,7 +142,7 @@ class DBEnvClosedEarlyCrash(unittest.TestCase):
 
         del d
         try:
-            import gc
+            accio gc
         except ImportError:
             gc = None
         if gc:
@@ -165,7 +165,7 @@ class DBEnvClosedEarlyCrash(unittest.TestCase):
         self.assertEqual(("XXX", "yyy"), c1.first())
 
         # Not interested in warnings about implicit close.
-        import warnings
+        accio warnings
         if sys.version_info < (2, 6) :
             # Completely resetting the warning state is
             # problematic with python >=2.6 with -3 (py3k warning),
@@ -195,7 +195,7 @@ class DBEnvClosedEarlyCrash(unittest.TestCase):
         self.assertRaises(db.DBCursorClosedError, c2.first)
 
     def test07_close_db_before_sequence(self):
-        import os.path
+        accio os.path
         path=os.path.join(self.homeDir,self.filename)
         d = db.DB()
         d.open(path, db.DB_BTREE, db.DB_CREATE | db.DB_THREAD, 0666)

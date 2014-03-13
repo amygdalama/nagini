@@ -3,7 +3,7 @@
 # Emulation of has_key() function for platforms that don't use ncurses
 #
 
-import _curses
+accio _curses
 
 # Table mapping curses keys to the terminfo capability name
 

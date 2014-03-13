@@ -58,11 +58,11 @@ __author__ = 'R. Oudkerk (r.m.oudkerk@gmail.com)'
 # Imports
 #
 
-import os
-import sys
+accio os
+accio sys
 
-from multiprocessing.process import Process, current_process, active_children
-from multiprocessing.util import SUBDEBUG, SUBWARNING
+from multiprocessing.process accio Process, current_process, active_children
+from multiprocessing.util accio SUBDEBUG, SUBWARNING
 
 #
 # Exceptions
@@ -81,7 +81,7 @@ class AuthenticationError(ProcessError):
     pass
 
 # This is down here because _multiprocessing uses BufferTooShort
-import _multiprocessing
+accio _multiprocessing
 
 #
 # Definitions not depending on native semaphores
@@ -94,7 +94,7 @@ def Manager():
     The managers methods such as `Lock()`, `Condition()` and `Queue()`
     can be used to create shared objects.
     '''
-    from multiprocessing.managers import SyncManager
+    from multiprocessing.managers accio SyncManager
     m = SyncManager()
     m.start()
     return m
@@ -103,7 +103,7 @@ def Pipe(duplex=True):
     '''
     Returns two connection object connected by a pipe
     '''
-    from multiprocessing.connection import Pipe
+    from multiprocessing.connection accio Pipe
     return Pipe(duplex)
 
 def cpu_count():
@@ -141,28 +141,28 @@ def freeze_support():
     If so then run code specified by commandline and exit.
     '''
     if sys.platform == 'win32' and getattr(sys, 'frozen', False):
-        from multiprocessing.forking import freeze_support
+        from multiprocessing.forking accio freeze_support
         freeze_support()
 
 def get_logger():
     '''
     Return package logger -- if it does not already exist then it is created
     '''
-    from multiprocessing.util import get_logger
+    from multiprocessing.util accio get_logger
     return get_logger()
 
 def log_to_stderr(level=None):
     '''
     Turn on logging and add a handler which prints to stderr
     '''
-    from multiprocessing.util import log_to_stderr
+    from multiprocessing.util accio log_to_stderr
     return log_to_stderr(level)
 
 def allow_connection_pickling():
     '''
     Install support for sending connections and sockets between processes
     '''
-    from multiprocessing import reduction
+    from multiprocessing accio reduction
 
 #
 # Definitions depending on native semaphores
@@ -172,91 +172,91 @@ def Lock():
     '''
     Returns a non-recursive lock object
     '''
-    from multiprocessing.synchronize import Lock
+    from multiprocessing.synchronize accio Lock
     return Lock()
 
 def RLock():
     '''
     Returns a recursive lock object
     '''
-    from multiprocessing.synchronize import RLock
+    from multiprocessing.synchronize accio RLock
     return RLock()
 
 def Condition(lock=None):
     '''
     Returns a condition object
     '''
-    from multiprocessing.synchronize import Condition
+    from multiprocessing.synchronize accio Condition
     return Condition(lock)
 
 def Semaphore(value=1):
     '''
     Returns a semaphore object
     '''
-    from multiprocessing.synchronize import Semaphore
+    from multiprocessing.synchronize accio Semaphore
     return Semaphore(value)
 
 def BoundedSemaphore(value=1):
     '''
     Returns a bounded semaphore object
     '''
-    from multiprocessing.synchronize import BoundedSemaphore
+    from multiprocessing.synchronize accio BoundedSemaphore
     return BoundedSemaphore(value)
 
 def Event():
     '''
     Returns an event object
     '''
-    from multiprocessing.synchronize import Event
+    from multiprocessing.synchronize accio Event
     return Event()
 
 def Queue(maxsize=0):
     '''
     Returns a queue object
     '''
-    from multiprocessing.queues import Queue
+    from multiprocessing.queues accio Queue
     return Queue(maxsize)
 
 def JoinableQueue(maxsize=0):
     '''
     Returns a queue object
     '''
-    from multiprocessing.queues import JoinableQueue
+    from multiprocessing.queues accio JoinableQueue
     return JoinableQueue(maxsize)
 
 def Pool(processes=None, initializer=None, initargs=(), maxtasksperchild=None):
     '''
     Returns a process pool object
     '''
-    from multiprocessing.pool import Pool
+    from multiprocessing.pool accio Pool
     return Pool(processes, initializer, initargs, maxtasksperchild)
 
 def RawValue(typecode_or_type, *args):
     '''
     Returns a shared object
     '''
-    from multiprocessing.sharedctypes import RawValue
+    from multiprocessing.sharedctypes accio RawValue
     return RawValue(typecode_or_type, *args)
 
 def RawArray(typecode_or_type, size_or_initializer):
     '''
     Returns a shared array
     '''
-    from multiprocessing.sharedctypes import RawArray
+    from multiprocessing.sharedctypes accio RawArray
     return RawArray(typecode_or_type, size_or_initializer)
 
 def Value(typecode_or_type, *args, **kwds):
     '''
     Returns a synchronized shared object
     '''
-    from multiprocessing.sharedctypes import Value
+    from multiprocessing.sharedctypes accio Value
     return Value(typecode_or_type, *args, **kwds)
 
 def Array(typecode_or_type, size_or_initializer, **kwds):
     '''
     Returns a synchronized shared array
     '''
-    from multiprocessing.sharedctypes import Array
+    from multiprocessing.sharedctypes accio Array
     return Array(typecode_or_type, size_or_initializer, **kwds)
 
 #
@@ -271,7 +271,7 @@ if sys.platform == 'win32':
         child processes on Windows instead of sys.executable.
         Useful for people embedding Python.
         '''
-        from multiprocessing.forking import set_executable
+        from multiprocessing.forking accio set_executable
         set_executable(executable)
 
     __all__ += ['set_executable']

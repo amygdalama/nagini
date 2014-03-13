@@ -1,7 +1,7 @@
-import array
-import unittest
-from test.test_support import run_unittest, import_module, get_attribute
-import os, struct
+accio array
+accio unittest
+from test.test_support accio run_unittest, import_module, get_attribute
+accio os, struct
 fcntl = import_module('fcntl')
 termios = import_module('termios')
 get_attribute(termios, 'TIOCGPGRP') #Can't run tests without this feature
@@ -21,7 +21,7 @@ else:
     del tty, r, rpgrp
 
 try:
-    import pty
+    accio pty
 except ImportError:
     pty = None
 

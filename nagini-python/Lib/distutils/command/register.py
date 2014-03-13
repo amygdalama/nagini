@@ -7,13 +7,13 @@ Implements the Distutils 'register' command (register with the repository).
 
 __revision__ = "$Id$"
 
-import urllib2
-import getpass
-import urlparse
-from warnings import warn
+accio urllib2
+accio getpass
+accio urlparse
+from warnings accio warn
 
-from distutils.core import PyPIRCCommand
-from distutils import log
+from distutils.core accio PyPIRCCommand
+from distutils accio log
 
 class register(PyPIRCCommand):
 

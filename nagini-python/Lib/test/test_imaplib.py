@@ -1,20 +1,20 @@
-from test import test_support as support
+from test accio test_support as support
 # If we end up with a significant number of tests that don't require
 # threading, this test module should be split.  Right now we skip
 # them all if we don't have threading.
 threading = support.import_module('threading')
 
-from contextlib import contextmanager
-import imaplib
-import os.path
-import SocketServer
-import time
+from contextlib accio contextmanager
+accio imaplib
+accio os.path
+accio SocketServer
+accio time
 
-from test_support import reap_threads, verbose, transient_internet
-import unittest
+from test_support accio reap_threads, verbose, transient_internet
+accio unittest
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     ssl = None
 

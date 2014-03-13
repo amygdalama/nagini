@@ -1,7 +1,7 @@
 """Different kinds of SAX Exceptions"""
-import sys
+accio sys
 if sys.platform[:4] == "java":
-    from java.lang import Exception
+    from java.lang accio Exception
 del sys
 
 # ===== SAXEXCEPTION =====

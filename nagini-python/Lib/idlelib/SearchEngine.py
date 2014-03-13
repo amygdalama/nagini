@@ -1,7 +1,7 @@
 '''Define SearchEngine for search dialogs.'''
-import re
-from Tkinter import StringVar, BooleanVar, TclError
-import tkMessageBox
+accio re
+from Tkinter accio StringVar, BooleanVar, TclError
+accio tkMessageBox
 
 def get(root):
     '''Return the singleton SearchEngine instance for the process.
@@ -229,6 +229,6 @@ def get_line_col(index):
     return line, col
 
 if __name__ == "__main__":
-    from test import test_support; test_support.use_resources = ['gui']
-    import unittest
+    from test accio test_support; test_support.use_resources = ['gui']
+    accio unittest
     unittest.main('idlelib.idle_test.test_searchengine', verbosity=2, exit=False)

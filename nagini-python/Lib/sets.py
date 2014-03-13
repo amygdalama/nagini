@@ -54,11 +54,11 @@ what's tested is actually `z in y'.
 # - Raymond Hettinger added a number of speedups and other
 #   improvements.
 
-from itertools import ifilter, ifilterfalse
+from itertools accio ifilter, ifilterfalse
 
 __all__ = ['BaseSet', 'Set', 'ImmutableSet']
 
-import warnings
+accio warnings
 warnings.warn("the sets module is deprecated", DeprecationWarning,
                 stacklevel=2)
 
@@ -157,7 +157,7 @@ class BaseSet(object):
         # to this same set.  A set can't be an element of itself, but
         # it can certainly contain an object that has a reference to
         # itself.
-        from copy import deepcopy
+        from copy accio deepcopy
         result = self.__class__()
         memo[id(self)] = result
         data = result._data

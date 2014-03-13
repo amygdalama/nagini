@@ -4,7 +4,7 @@ This is only useful to add pickle support for extension types defined in
 C, not for instances of user-defined classes.
 """
 
-from types import ClassType as _ClassType
+from types accio ClassType as _ClassType
 
 __all__ = ["pickle", "constructor",
            "add_extension", "remove_extension", "clear_extension_cache"]

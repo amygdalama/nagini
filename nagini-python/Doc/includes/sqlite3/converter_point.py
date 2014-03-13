@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 class Point(object):
     def __init__(self, x, y):

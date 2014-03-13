@@ -1,8 +1,8 @@
 "Test the functionality of Python classes implementing operators."
 
-import unittest
+accio unittest
 
-from test import test_support
+from test accio test_support
 
 testmeths = [
 
@@ -358,7 +358,7 @@ class ClassTests(unittest.TestCase):
                 self.ok = True
         a = A()
         # Subtle: we need to call PySequence_SetItem, not PyMapping_SetItem.
-        from _testcapi import sequence_delitem
+        from _testcapi accio sequence_delitem
         sequence_delitem(a, 2)
         self.assertTrue(a.ok)
 
@@ -486,7 +486,7 @@ class ClassTests(unittest.TestCase):
                 x.append("crab people, crab people")
         testme = DelTest()
         del testme
-        import gc
+        accio gc
         gc.collect()
         self.assertEqual(["crab people, crab people"], x)
 

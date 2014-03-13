@@ -1,6 +1,6 @@
-import Disk_Copy
-import macfs
-import sys
+accio Disk_Copy
+accio macfs
+accio sys
 
 talker = Disk_Copy.Disk_Copy(start=1)
 talker.activate()

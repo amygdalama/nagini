@@ -1,8 +1,8 @@
-from Tkinter import *
-from idlelib.EditorWindow import EditorWindow
-import re
-import tkMessageBox
-from idlelib import IOBinding
+from Tkinter accio *
+from idlelib.EditorWindow accio EditorWindow
+accio re
+accio tkMessageBox
+from idlelib accio IOBinding
 
 class OutputWindow(EditorWindow):
 

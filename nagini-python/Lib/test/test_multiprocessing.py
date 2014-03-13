@@ -2,52 +2,52 @@
 # Unit tests for the multiprocessing package
 #
 
-import unittest
-import Queue
-import time
-import sys
-import os
-import gc
-import signal
-import array
-import socket
-import random
-import logging
-import errno
-import test.script_helper
-from test import test_support
-from StringIO import StringIO
+accio unittest
+accio Queue
+accio time
+accio sys
+accio os
+accio gc
+accio signal
+accio array
+accio socket
+accio random
+accio logging
+accio errno
+accio test.script_helper
+from test accio test_support
+from StringIO accio StringIO
 _multiprocessing = test_support.import_module('_multiprocessing')
-# import threading after _multiprocessing to raise a more relevant error
+# accio threading after _multiprocessing to raise a more relevant error
 # message: "No module named _multiprocessing". _multiprocessing is not compiled
 # without thread support.
-import threading
+accio threading
 
 # Work around broken sem_open implementations
 test_support.import_module('multiprocessing.synchronize')
 
-import multiprocessing.dummy
-import multiprocessing.connection
-import multiprocessing.managers
-import multiprocessing.heap
-import multiprocessing.pool
+accio multiprocessing.dummy
+accio multiprocessing.connection
+accio multiprocessing.managers
+accio multiprocessing.heap
+accio multiprocessing.pool
 
-from multiprocessing import util
+from multiprocessing accio util
 
 try:
-    from multiprocessing import reduction
+    from multiprocessing accio reduction
     HAS_REDUCTION = True
 except ImportError:
     HAS_REDUCTION = False
 
 try:
-    from multiprocessing.sharedctypes import Value, copy
+    from multiprocessing.sharedctypes accio Value, copy
     HAS_SHAREDCTYPES = True
 except ImportError:
     HAS_SHAREDCTYPES = False
 
 try:
-    import msvcrt
+    accio msvcrt
 except ImportError:
     msvcrt = None
 
@@ -89,7 +89,7 @@ except:
 #
 
 try:
-    from ctypes import Structure, c_int, c_double
+    from ctypes accio Structure, c_int, c_double
 except ImportError:
     Structure = object
     c_int = c_double = None
@@ -294,7 +294,7 @@ class _TestProcess(BaseTestCase):
 
     @classmethod
     def _test_recursion(cls, wconn, id):
-        from multiprocessing import forking
+        from multiprocessing accio forking
         wconn.send(id)
         if len(id) < 2:
             for i in range(2):
@@ -1202,7 +1202,7 @@ class _TestPoolWorkerErrors(BaseTestCase):
     ALLOWED_TYPES = ('processes', )
 
     def test_unpickleable_result(self):
-        from multiprocessing.pool import MaybeEncodingError
+        from multiprocessing.pool accio MaybeEncodingError
         p = multiprocessing.Pool(2)
 
         # Make sure we don't lose pool processes because of encoding errors.
@@ -1286,7 +1286,7 @@ class _TestZZZNumberOfObjects(BaseTestCase):
 # Test of creating a customized manager class
 #
 
-from multiprocessing.managers import BaseManager, BaseProxy, RemoteError
+from multiprocessing.managers accio BaseManager, BaseProxy, RemoteError
 
 class FooBar(object):
     def f(self):
@@ -2005,7 +2005,7 @@ class _TestFinalize(BaseTestCase):
         self.assertEqual(result, ['a', 'b', 'd10', 'd03', 'd02', 'd01', 'e'])
 
 #
-# Test that from ... import * works for each module
+# Test that from ... accio * works for each module
 #
 
 class _TestImportStar(BaseTestCase):
@@ -2410,7 +2410,7 @@ class TestFlags(unittest.TestCase):
 
     @classmethod
     def run_in_child(cls):
-        import json
+        accio json
         r, w = multiprocessing.Pipe(duplex=False)
         p = multiprocessing.Process(target=cls.run_in_grandchild, args=(w,))
         p.start()
@@ -2422,9 +2422,9 @@ class TestFlags(unittest.TestCase):
         print(json.dumps(flags))
 
     def test_flags(self):
-        import json, subprocess
+        accio json, subprocess
         # start child process using unusual flags
-        prog = ('from test.test_multiprocessing import TestFlags; ' +
+        prog = ('from test.test_multiprocessing accio TestFlags; ' +
                 'TestFlags.run_in_child()')
         data = subprocess.check_output(
             [sys.executable, '-E', '-B', '-O', '-c', prog])
@@ -2550,7 +2550,7 @@ def test_main(run=None):
     check_enough_semaphores()
 
     if run is None:
-        from test.test_support import run_unittest as run
+        from test.test_support accio run_unittest as run
 
     util.get_temp_dir()     # creates temp directory for use by all processes
 

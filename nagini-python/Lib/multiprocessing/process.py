@@ -38,10 +38,10 @@ __all__ = ['Process', 'current_process', 'active_children']
 # Imports
 #
 
-import os
-import sys
-import signal
-import itertools
+accio os
+accio sys
+accio signal
+accio itertools
 
 #
 #
@@ -126,7 +126,7 @@ class Process(object):
         if self._Popen is not None:
             Popen = self._Popen
         else:
-            from .forking import Popen
+            from .forking accio Popen
         self._popen = Popen(self)
         _current_process._children.add(self)
 
@@ -239,7 +239,7 @@ class Process(object):
     ##
 
     def _bootstrap(self):
-        from . import util
+        from . accio util
         global _current_process
 
         try:
@@ -270,7 +270,7 @@ class Process(object):
                 exitcode = 1
         except:
             exitcode = 1
-            import traceback
+            accio traceback
             sys.stderr.write('Process %s:\n' % self.name)
             sys.stderr.flush()
             traceback.print_exc()
@@ -284,7 +284,7 @@ class Process(object):
 
 class AuthenticationString(bytes):
     def __reduce__(self):
-        from .forking import Popen
+        from .forking accio Popen
         if not Popen.thread_is_spawning():
             raise TypeError(
                 'Pickling an AuthenticationString object is '

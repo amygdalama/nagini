@@ -8,9 +8,9 @@ the PythonShell window, and a Format menu which is only present in the Editor
 windows.
 
 """
-import sys
-from idlelib.configHandler import idleConf
-from idlelib import macosxSupport
+accio sys
+from idlelib.configHandler accio idleConf
+from idlelib accio macosxSupport
 
 menudefs = [
  # underscore prefixes character to underscore

@@ -1,16 +1,16 @@
 """imgbrowse - Display pictures using img"""
 
-import FrameWork
-import EasyDialogs
-from Carbon import Res
-from Carbon import Qd
-from Carbon import QuickDraw
-from Carbon import Win
+accio FrameWork
+accio EasyDialogs
+from Carbon accio Res
+from Carbon accio Qd
+from Carbon accio QuickDraw
+from Carbon accio Win
 #ifrom Carbon mport List
-import struct
-import img
-import imgformat
-import mac_image
+accio struct
+accio img
+accio imgformat
+accio mac_image
 
 
 # Where is the picture window?

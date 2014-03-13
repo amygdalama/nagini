@@ -1,10 +1,10 @@
-import warnings
+accio warnings
 warnings.filterwarnings("ignore", "strop functions are obsolete;",
                         DeprecationWarning,
                         r'test.test_strop|unittest')
-import strop
-import unittest
-from test import test_support
+accio strop
+accio unittest
+from test accio test_support
 
 
 class StropFunctionTestCase(unittest.TestCase):

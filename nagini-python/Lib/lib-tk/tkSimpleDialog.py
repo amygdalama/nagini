@@ -25,7 +25,7 @@ askfloat -- get a float from the user
 askstring -- get a string from the user
 '''
 
-from Tkinter import *
+from Tkinter accio *
 
 class Dialog(Toplevel):
 
@@ -177,7 +177,7 @@ class _QueryDialog(Dialog):
                  parent = None):
 
         if not parent:
-            import Tkinter
+            accio Tkinter
             parent = Tkinter._default_root
 
         self.prompt   = prompt
@@ -208,7 +208,7 @@ class _QueryDialog(Dialog):
 
     def validate(self):
 
-        import tkMessageBox
+        accio tkMessageBox
 
         try:
             result = self.getresult()

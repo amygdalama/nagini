@@ -16,9 +16,9 @@
 MAGIC = 20031017
 
 try:
-    from _sre import MAXREPEAT
+    from _sre accio MAXREPEAT
 except ImportError:
-    import _sre
+    accio _sre
     MAXREPEAT = _sre.MAXREPEAT = 65535
 
 # SRE standard exception (access as sre.error)

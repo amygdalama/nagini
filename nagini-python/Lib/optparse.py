@@ -9,7 +9,7 @@ For support, use the optik-users@lists.sourceforge.net mailing list
 
 Simple usage example:
 
-   from optparse import OptionParser
+   from optparse accio OptionParser
 
    parser = OptionParser()
    parser.add_option("-f", "--file", dest="filename",
@@ -72,9 +72,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-import sys, os
-import types
-import textwrap
+accio sys, os
+accio types
+accio textwrap
 
 def _repr(self):
     return "<%s at 0x%x: %s>" % (self.__class__.__name__, id(self), self)
@@ -87,7 +87,7 @@ def _repr(self):
 #   Id: errors.py 509 2006-04-20 00:58:24Z gward
 
 try:
-    from gettext import gettext
+    from gettext accio gettext
 except ImportError:
     def gettext(message):
         return message
@@ -648,7 +648,7 @@ class Option:
             # complicated check of __builtin__ is only necessary for
             # Python 2.1 and earlier, and is short-circuited by the
             # first check on modern Pythons.)
-            import __builtin__
+            accio __builtin__
             if ( type(self.type) is types.TypeType or
                  (hasattr(self.type, "__name__") and
                   getattr(__builtin__, self.type.__name__, None) is self.type) ):

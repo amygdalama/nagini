@@ -132,14 +132,14 @@ We also repeat each of the above scoping tests inside a function
 __test__ = {'doctests' : doctests}
 
 def test_main(verbose=None):
-    import sys
-    from test import test_support
-    from test import test_setcomps
+    accio sys
+    from test accio test_support
+    from test accio test_setcomps
     test_support.run_doctest(test_setcomps, verbose)
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in range(len(counts)):
             test_support.run_doctest(test_setcomps, verbose)

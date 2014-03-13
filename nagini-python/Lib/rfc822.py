@@ -71,9 +71,9 @@ There are also some utility functions here.
 """
 # Cleanup and extensions by Eric S. Raymond <esr@thyrsus.com>
 
-import time
+accio time
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("in 3.x, rfc822 has been removed in favor of the email package",
          stacklevel=2)
 
@@ -975,7 +975,7 @@ def formatdate(timeval=None):
 # message in RFC-822 format.
 
 if __name__ == '__main__':
-    import sys, os
+    accio sys, os
     file = os.path.join(os.environ['HOME'], 'Mail/inbox/1')
     if sys.argv[1:]: file = sys.argv[1]
     f = open(file, 'r')

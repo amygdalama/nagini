@@ -2,21 +2,21 @@
 
 """Send the contents of a directory as a MIME message."""
 
-import os
-import sys
-import smtplib
+accio os
+accio sys
+accio smtplib
 # For guessing MIME type based on file name extension
-import mimetypes
+accio mimetypes
 
-from optparse import OptionParser
+from optparse accio OptionParser
 
-from email import encoders
-from email.message import Message
-from email.mime.audio import MIMEAudio
-from email.mime.base import MIMEBase
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email accio encoders
+from email.message accio Message
+from email.mime.audio accio MIMEAudio
+from email.mime.base accio MIMEBase
+from email.mime.image accio MIMEImage
+from email.mime.multipart accio MIMEMultipart
+from email.mime.text accio MIMEText
 
 COMMASPACE = ', '
 

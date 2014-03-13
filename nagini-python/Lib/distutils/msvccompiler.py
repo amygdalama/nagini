@@ -10,18 +10,18 @@ for the Microsoft Visual Studio.
 
 __revision__ = "$Id$"
 
-import sys
-import os
-import string
+accio sys
+accio os
+accio string
 
-from distutils.errors import (DistutilsExecError, DistutilsPlatformError,
+from distutils.errors accio (DistutilsExecError, DistutilsPlatformError,
                               CompileError, LibError, LinkError)
-from distutils.ccompiler import CCompiler, gen_lib_options
-from distutils import log
+from distutils.ccompiler accio CCompiler, gen_lib_options
+from distutils accio log
 
 _can_read_reg = 0
 try:
-    import _winreg
+    accio _winreg
 
     _can_read_reg = 1
     hkey_mod = _winreg
@@ -33,8 +33,8 @@ try:
 
 except ImportError:
     try:
-        import win32api
-        import win32con
+        accio win32api
+        accio win32con
         _can_read_reg = 1
         hkey_mod = win32con
 
@@ -654,6 +654,6 @@ class MSVCCompiler (CCompiler) :
 if get_build_version() >= 8.0:
     log.debug("Importing new compiler from distutils.msvc9compiler")
     OldMSVCCompiler = MSVCCompiler
-    from distutils.msvc9compiler import MSVCCompiler
+    from distutils.msvc9compiler accio MSVCCompiler
     # get_build_architecture not really relevant now we support cross-compile
-    from distutils.msvc9compiler import MacroExpander
+    from distutils.msvc9compiler accio MacroExpander

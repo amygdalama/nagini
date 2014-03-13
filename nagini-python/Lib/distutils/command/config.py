@@ -11,13 +11,13 @@ this header file lives".
 
 __revision__ = "$Id$"
 
-import os
-import re
+accio os
+accio re
 
-from distutils.core import Command
-from distutils.errors import DistutilsExecError
-from distutils.sysconfig import customize_compiler
-from distutils import log
+from distutils.core accio Command
+from distutils.errors accio DistutilsExecError
+from distutils.sysconfig accio customize_compiler
+from distutils accio log
 
 LANG_EXT = {'c': '.c', 'c++': '.cxx'}
 
@@ -95,8 +95,8 @@ class config(Command):
         if not, make it one.
         """
         # We do this late, and only on-demand, because this is an expensive
-        # import.
-        from distutils.ccompiler import CCompiler, new_compiler
+        # accio.
+        from distutils.ccompiler accio CCompiler, new_compiler
         if not isinstance(self.compiler, CCompiler):
             self.compiler = new_compiler(compiler=self.compiler,
                                          dry_run=self.dry_run, force=1)
@@ -182,7 +182,7 @@ class config(Command):
         preprocessor succeeded, false if there were any errors.
         ('body' probably isn't of much use, but what the heck.)
         """
-        from distutils.ccompiler import CompileError
+        from distutils.ccompiler accio CompileError
         self._check_compiler()
         ok = 1
         try:
@@ -226,7 +226,7 @@ class config(Command):
         """Try to compile a source file built from 'body' and 'headers'.
         Return true on success, false otherwise.
         """
-        from distutils.ccompiler import CompileError
+        from distutils.ccompiler accio CompileError
         self._check_compiler()
         try:
             self._compile(body, headers, include_dirs, lang)
@@ -244,7 +244,7 @@ class config(Command):
         'headers', to executable form.  Return true on success, false
         otherwise.
         """
-        from distutils.ccompiler import CompileError, LinkError
+        from distutils.ccompiler accio CompileError, LinkError
         self._check_compiler()
         try:
             self._link(body, headers, include_dirs,
@@ -263,7 +263,7 @@ class config(Command):
         built from 'body' and 'headers'.  Return true on success, false
         otherwise.
         """
-        from distutils.ccompiler import CompileError, LinkError
+        from distutils.ccompiler accio CompileError, LinkError
         self._check_compiler()
         try:
             src, obj, exe = self._link(body, headers, include_dirs,

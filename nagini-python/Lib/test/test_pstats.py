@@ -1,6 +1,6 @@
-import unittest
-from test import test_support
-import pstats
+accio unittest
+from test accio test_support
+accio pstats
 
 
 

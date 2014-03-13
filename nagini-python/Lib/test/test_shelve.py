@@ -1,8 +1,8 @@
-import os
-import unittest
-import shelve
-import glob
-from test import test_support
+accio os
+accio unittest
+accio shelve
+accio glob
+from test accio test_support
 
 test_support.import_module('anydbm', deprecated=True)
 
@@ -102,7 +102,7 @@ class TestCase(unittest.TestCase):
         self.assertNotEqual(p1, p2)  # Write creates new object in store
 
 
-from test import mapping_tests
+from test accio mapping_tests
 
 class TestShelveBase(mapping_tests.BasicTestMappingProtocol):
     fn = "shelftemp.db"

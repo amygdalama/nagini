@@ -5,8 +5,8 @@ This converts ``[x for x in 1, 2]`` to ``[x for x in (1, 2)]``."""
 # By Taek Joo Kim and Benjamin Peterson
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import LParen, RParen
+from .. accio fixer_base
+from ..fixer_util accio LParen, RParen
 
 # XXX This doesn't support nested for loops like [x for x in 1, 2 for x in 1, 2]
 class FixParen(fixer_base.BaseFix):

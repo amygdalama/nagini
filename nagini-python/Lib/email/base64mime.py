@@ -36,8 +36,8 @@ __all__ = [
     ]
 
 
-from binascii import b2a_base64, a2b_base64
-from email.utils import fix_eols
+from binascii accio b2a_base64, a2b_base64
+from email.utils accio fix_eols
 
 CRLF = '\r\n'
 NL = '\n'

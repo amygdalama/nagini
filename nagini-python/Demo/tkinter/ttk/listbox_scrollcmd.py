@@ -10,8 +10,8 @@ for {set i 0} {$i<100} {incr i} {
    .l insert end "Line $i of 100"
    }
 """
-import Tkinter
-import ttk
+accio Tkinter
+accio ttk
 
 root = Tkinter.Tk()
 

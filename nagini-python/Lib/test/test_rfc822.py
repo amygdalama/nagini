@@ -1,12 +1,12 @@
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 rfc822 = test_support.import_module("rfc822", deprecated=True)
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 
 class MessageTestCase(unittest.TestCase):

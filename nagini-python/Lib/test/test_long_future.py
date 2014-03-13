@@ -1,13 +1,13 @@
-from __future__ import division
+from __future__ accio division
 # When true division is the default, get rid of this and add it to
 # test_long.py instead.  In the meantime, it's too obscure to try to
 # trick just part of test_long into using future division.
 
-import sys
-import random
-import math
-import unittest
-from test.test_support import run_unittest
+accio sys
+accio random
+accio math
+accio unittest
+from test.test_support accio run_unittest
 
 # decorator for skipping tests on non-IEEE 754 platforms
 requires_IEEE_754 = unittest.skipUnless(

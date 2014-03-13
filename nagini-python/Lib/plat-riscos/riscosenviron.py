@@ -1,6 +1,6 @@
 """A more or less complete dictionary like interface for the RISC OS environment."""
 
-import riscos
+accio riscos
 
 class _Environ:
     def __init__(self, initial = None):

@@ -15,19 +15,19 @@
 # lives, and change the value for SRCDIR to where your faqwiz.py
 # module lives.  The faqconf.py and faqcust.py files live there, too.
 
-import os
+accio os
 t1 = os.times() # If this doesn't work, just get rid of the timing code!
 try:
     FAQDIR = "/usr/people/guido/python/FAQ"
     SRCDIR = "/usr/people/guido/python/src/Tools/faqwiz"
-    import os, sys
+    accio os, sys
     os.chdir(FAQDIR)
     sys.path.insert(0, SRCDIR)
-    import faqwiz
+    accio faqwiz
 except SystemExit, n:
     sys.exit(n)
 except:
     t, v, tb = sys.exc_info()
     print
-    import cgi
+    accio cgi
     cgi.print_exception(t, v, tb)

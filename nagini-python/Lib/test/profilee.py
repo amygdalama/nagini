@@ -11,7 +11,7 @@ output without checking very carefully that not a single number has
 changed.
 """
 
-import sys
+accio sys
 
 # In order to have reproducible time, we simulate a timer in the global
 # variable 'TICKS', which represents simulated time in milliseconds.

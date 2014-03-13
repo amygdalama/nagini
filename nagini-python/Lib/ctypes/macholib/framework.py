@@ -5,7 +5,7 @@
 Generic framework path manipulation
 """
 
-import re
+accio re
 
 __all__ = ['framework_info']
 

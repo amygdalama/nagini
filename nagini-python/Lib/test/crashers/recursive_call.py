@@ -6,7 +6,7 @@
 # recursion limit crashes by overflowing the stack.  Unless this is
 # redesigned somehow, it won't go away.
 
-import sys
+accio sys
 
 sys.setrecursionlimit(1 << 30)
 f = lambda f:f(f)

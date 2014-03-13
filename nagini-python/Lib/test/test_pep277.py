@@ -1,8 +1,8 @@
 # Test the Unicode versions of normal file functions
 # open, os.open, os.stat. os.listdir, os.rename, os.remove, os.mkdir, os.chdir, os.rmdir
-import sys, os, unittest
-from unicodedata import normalize
-from test import test_support
+accio sys, os, unittest
+from unicodedata accio normalize
+from test accio test_support
 
 filenames = [
     '1_abc',

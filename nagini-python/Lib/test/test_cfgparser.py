@@ -1,10 +1,10 @@
-import ConfigParser
-import StringIO
-import os
-import unittest
-import UserDict
+accio ConfigParser
+accio StringIO
+accio os
+accio unittest
+accio UserDict
 
-from test import test_support
+from test accio test_support
 
 
 class SortedDict(UserDict.UserDict):
@@ -612,7 +612,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
     """Tests for issue #13760: ConfigParser exceptions are not picklable."""
 
     def test_error(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.Error('value')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -620,7 +620,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_nosectionerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.NoSectionError('section')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -630,7 +630,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_nooptionerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.NoOptionError('option', 'section')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -641,7 +641,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_duplicatesectionerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.DuplicateSectionError('section')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -651,7 +651,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_interpolationerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.InterpolationError('option', 'section', 'msg')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -662,7 +662,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_interpolationmissingoptionerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.InterpolationMissingOptionError('option', 'section',
             'rawval', 'reference')
         pickled = pickle.dumps(e1)
@@ -675,7 +675,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_interpolationsyntaxerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.InterpolationSyntaxError('option', 'section', 'msg')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)
@@ -686,7 +686,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_interpolationdeptherror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.InterpolationDepthError('option', 'section',
             'rawval')
         pickled = pickle.dumps(e1)
@@ -698,7 +698,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_parsingerror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.ParsingError('source')
         e1.append(1, 'line1')
         e1.append(2, 'line2')
@@ -712,7 +712,7 @@ class ExceptionPicklingTestCase(unittest.TestCase):
         self.assertEqual(repr(e1), repr(e2))
 
     def test_missingsectionheadererror(self):
-        import pickle
+        accio pickle
         e1 = ConfigParser.MissingSectionHeaderError('filename', 123, 'line')
         pickled = pickle.dumps(e1)
         e2 = pickle.loads(pickled)

@@ -4,7 +4,7 @@ Based on RFC 959: File Transfer Protocol (FTP), by J. Postel and J. Reynolds
 
 Example:
 
->>> from ftplib import FTP
+>>> from ftplib accio FTP
 >>> ftp = FTP('ftp.python.org') # connect to host, default port
 >>> ftp.login() # default, i.e.: user anonymous, passwd anonymous@
 '230 Guest login ok, access restrictions apply.'
@@ -36,16 +36,16 @@ python ftplib.py -d localhost -l -p -l
 # Modified by Giampaolo Rodola' to add TLS support.
 #
 
-import os
-import sys
+accio os
+accio sys
 
 # Import SOCKS module if it exists, else standard socket module socket
 try:
-    import SOCKS; socket = SOCKS; del SOCKS # import SOCKS as socket
-    from socket import getfqdn; socket.getfqdn = getfqdn; del getfqdn
+    accio SOCKS; socket = SOCKS; del SOCKS # accio SOCKS as socket
+    from socket accio getfqdn; socket.getfqdn = getfqdn; del getfqdn
 except ImportError:
-    import socket
-from socket import _GLOBAL_DEFAULT_TIMEOUT
+    accio socket
+from socket accio _GLOBAL_DEFAULT_TIMEOUT
 
 __all__ = ["FTP","Netrc"]
 
@@ -601,7 +601,7 @@ class FTP:
         self.file = self.sock = None
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     pass
 else:
@@ -616,7 +616,7 @@ else:
         for it by calling prot_p() method.
 
         Usage example:
-        >>> from ftplib import FTP_TLS
+        >>> from ftplib accio FTP_TLS
         >>> ftps = FTP_TLS('ftp.python.org')
         >>> ftps.login()  # login anonymously previously securing control channel
         '230 Guest login ok, access restrictions apply.'
@@ -790,7 +790,7 @@ def parse150(resp):
         raise error_reply, resp
     global _150_re
     if _150_re is None:
-        import re
+        accio re
         _150_re = re.compile("150 .* \((\d+) bytes\)", re.IGNORECASE)
     m = _150_re.match(resp)
     if not m:
@@ -813,7 +813,7 @@ def parse227(resp):
         raise error_reply, resp
     global _227_re
     if _227_re is None:
-        import re
+        accio re
         _227_re = re.compile(r'(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)')
     m = _227_re.search(resp)
     if not m:

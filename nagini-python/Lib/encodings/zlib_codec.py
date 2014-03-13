@@ -6,8 +6,8 @@
     Written by Marc-Andre Lemburg (mal@lemburg.com).
 
 """
-import codecs
-import zlib # this codec needs the optional zlib module !
+accio codecs
+accio zlib # this codec needs the optional zlib module !
 
 ### Codec APIs
 

@@ -6,8 +6,8 @@
 
 __all__ = ["MIMEApplication"]
 
-from email import encoders
-from email.mime.nonmultipart import MIMENonMultipart
+from email accio encoders
+from email.mime.nonmultipart accio MIMENonMultipart
 
 
 class MIMEApplication(MIMENonMultipart):

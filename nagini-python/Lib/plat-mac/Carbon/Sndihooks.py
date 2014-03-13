@@ -1,1 +1,1 @@
-from _Sndihooks import *
+from _Sndihooks accio *

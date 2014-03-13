@@ -9,9 +9,9 @@
 # XXX TO DO:
 # - for classes/modules, add "open source" to object browser
 
-from idlelib.TreeWidget import TreeItem, TreeNode, ScrolledCanvas
+from idlelib.TreeWidget accio TreeItem, TreeNode, ScrolledCanvas
 
-from repr import Repr
+from repr accio Repr
 
 myrepr = Repr()
 myrepr.maxstring = 100
@@ -110,7 +110,7 @@ class DictTreeItem(SequenceTreeItem):
             pass
         return keys
 
-from types import *
+from types accio *
 
 dispatch = {
     IntType: AtomicObjectTreeItem,
@@ -135,8 +135,8 @@ def make_objecttreeitem(labeltext, object, setfunction=None):
 # Test script
 
 def _test():
-    import sys
-    from Tkinter import Tk
+    accio sys
+    from Tkinter accio Tk
     root = Tk()
     root.configure(bd=0, bg="yellow")
     root.focus_set()

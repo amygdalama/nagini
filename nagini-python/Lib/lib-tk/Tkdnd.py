@@ -100,7 +100,7 @@ active; it will never call dnd_commit().
 """
 
 
-import Tkinter
+accio Tkinter
 
 
 # The factory function

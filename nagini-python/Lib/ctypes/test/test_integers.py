@@ -1,5 +1,5 @@
 # superseded by test_numbers.py
-import unittest
+accio unittest
 
 if __name__ == '__main__':
     unittest.main()

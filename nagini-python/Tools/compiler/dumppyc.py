@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
-import marshal
-import dis
-import types
+accio marshal
+accio dis
+accio types
 
 def dump(obj):
     print obj
@@ -32,7 +32,7 @@ def load(filename, codename=None):
     walk(co, codename)
 
 if __name__ == "__main__":
-    import sys
+    accio sys
     if len(sys.argv) == 3:
         filename, codename = sys.argv[1:]
     else:

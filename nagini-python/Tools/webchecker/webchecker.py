@@ -106,20 +106,20 @@ rooturl   -- URL to start checking
 __version__ = "$Revision$"
 
 
-import sys
-import os
-from types import *
-import StringIO
-import getopt
-import pickle
+accio sys
+accio os
+from types accio *
+accio StringIO
+accio getopt
+accio pickle
 
-import urllib
-import urlparse
-import sgmllib
-import cgi
+accio urllib
+accio urlparse
+accio sgmllib
+accio cgi
 
-import mimetypes
-import robotparser
+accio mimetypes
+accio robotparser
 
 # Extract real version number if necessary
 if __version__[0] == '$':

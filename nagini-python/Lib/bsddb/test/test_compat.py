@@ -3,10 +3,10 @@ Test cases adapted from the test_bsddb.py module in Python's
 regression test suite.
 """
 
-import os, string
-import unittest
+accio os, string
+accio unittest
 
-from test_all import db, hashopen, btopen, rnopen, verbose, \
+from test_all accio db, hashopen, btopen, rnopen, verbose, \
         get_new_database_path
 
 

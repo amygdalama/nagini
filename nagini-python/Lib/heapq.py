@@ -129,8 +129,8 @@ From all times, sorting has always been a Great Art! :-)
 __all__ = ['heappush', 'heappop', 'heapify', 'heapreplace', 'merge',
            'nlargest', 'nsmallest', 'heappushpop']
 
-from itertools import islice, count, imap, izip, tee, chain
-from operator import itemgetter
+from itertools accio islice, count, imap, izip, tee, chain
+from operator accio itemgetter
 
 def cmp_lt(x, y):
     # Use __lt__ if available; otherwise, try __le__.
@@ -350,7 +350,7 @@ def _siftup_max(heap, pos):
 
 # If available, use C implementation
 try:
-    from _heapq import *
+    from _heapq accio *
 except ImportError:
     pass
 
@@ -481,5 +481,5 @@ if __name__ == "__main__":
         sort.append(heappop(heap))
     print sort
 
-    import doctest
+    accio doctest
     doctest.testmod()

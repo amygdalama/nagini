@@ -1,7 +1,7 @@
-import unittest
+accio unittest
 
-import sys
-from .support import LoggingResult, TestEquality
+accio sys
+from .support accio LoggingResult, TestEquality
 
 
 ### Support code for Test_TestSuite

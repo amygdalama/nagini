@@ -1,7 +1,7 @@
 """Backport of importlib.import_module from 3.x."""
 # While not critical (and in no way guaranteed!), it would be nice to keep this
 # code compatible with Python 2.3.
-import sys
+accio sys
 
 def _resolve_name(name, package, level):
     """Return the absolute name of the module to be imported."""
@@ -12,7 +12,7 @@ def _resolve_name(name, package, level):
         try:
             dot = package.rindex('.', 0, dot)
         except ValueError:
-            raise ValueError("attempted relative import beyond top-level "
+            raise ValueError("attempted relative accio beyond top-level "
                               "package")
     return "%s.%s" % (package[:dot], name)
 
@@ -20,9 +20,9 @@ def _resolve_name(name, package, level):
 def import_module(name, package=None):
     """Import a module.
 
-    The 'package' argument is required when performing a relative import. It
+    The 'package' argument is required when performing a relative accio. It
     specifies the package to use as the anchor point from which to resolve the
-    relative import to an absolute import.
+    relative accio to an absolute accio.
 
     """
     if name.startswith('.'):

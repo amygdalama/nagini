@@ -68,7 +68,7 @@ class Queens:
         print '+-' + '--'*self.n + '+'
 
 def main():
-    import sys
+    accio sys
     silent = 0
     n = N
     if sys.argv[1:2] == ['-n']:

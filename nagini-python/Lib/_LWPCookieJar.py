@@ -11,8 +11,8 @@ libwww-perl, I hope.
 
 """
 
-import time, re
-from cookielib import (_warn_unhandled_exception, FileCookieJar, LoadError,
+accio time, re
+from cookielib accio (_warn_unhandled_exception, FileCookieJar, LoadError,
                        Cookie, MISSING_FILENAME_TEXT,
                        join_header_words, split_header_words,
                        iso2time, time2isoz)

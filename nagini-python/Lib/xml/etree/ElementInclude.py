@@ -48,8 +48,8 @@
 # Limited XInclude support for the ElementTree package.
 ##
 
-import copy
-from . import ElementTree
+accio copy
+from . accio ElementTree
 
 XINCLUDE = "{http://www.w3.org/2001/XInclude}"
 

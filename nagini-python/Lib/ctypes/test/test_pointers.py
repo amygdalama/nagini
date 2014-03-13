@@ -1,7 +1,7 @@
-import unittest, sys
+accio unittest, sys
 
-from ctypes import *
-import _ctypes_test
+from ctypes accio *
+accio _ctypes_test
 
 ctype_types = [c_byte, c_ubyte, c_short, c_ushort, c_int, c_uint,
                  c_long, c_ulong, c_longlong, c_ulonglong, c_double, c_float]
@@ -86,7 +86,7 @@ class PointersTestCase(unittest.TestCase):
 ##        print self.result
 
     def test_basics(self):
-        from operator import delitem
+        from operator accio delitem
         for ct, pt in zip(ctype_types, python_types):
             i = ct(42)
             p = pointer(i)
@@ -100,7 +100,7 @@ class PointersTestCase(unittest.TestCase):
             self.assertRaises(TypeError, delitem, p, 0)
 
     def test_from_address(self):
-        from array import array
+        from array accio array
         a = array('i', [100, 200, 300, 400, 500])
         addr = a.buffer_info()[0]
 
@@ -123,7 +123,7 @@ class PointersTestCase(unittest.TestCase):
 
         pt.contents.c = 33
 
-        from ctypes import _pointer_type_cache
+        from ctypes accio _pointer_type_cache
         del _pointer_type_cache[Table]
 
     def test_basic(self):

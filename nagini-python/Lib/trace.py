@@ -35,7 +35,7 @@ Sample use, command line:
   trace.py --trackcalls spam.py eggs
 
 Sample use, programmatically
-  import sys
+  accio sys
 
   # create a Trace object, telling it what to ignore, and whether to
   # do tracing or line-counting or both.
@@ -48,24 +48,24 @@ Sample use, programmatically
   r.write_results(show_missing=True, coverdir="/tmp")
 """
 
-import linecache
-import os
-import re
-import sys
-import time
-import token
-import tokenize
-import inspect
-import gc
-import dis
+accio linecache
+accio os
+accio re
+accio sys
+accio time
+accio token
+accio tokenize
+accio inspect
+accio gc
+accio dis
 try:
-    import cPickle
+    accio cPickle
     pickle = cPickle
 except ImportError:
-    import pickle
+    accio pickle
 
 try:
-    import threading
+    accio threading
 except ImportError:
     _settrace = sys.settrace
 
@@ -500,7 +500,7 @@ class Trace:
             self.donothing = 1
 
     def run(self, cmd):
-        import __main__
+        accio __main__
         dict = __main__.__dict__
         self.runctx(cmd, dict, dict)
 
@@ -657,7 +657,7 @@ def _err_exit(msg):
     sys.exit(1)
 
 def main(argv=None):
-    import getopt
+    accio getopt
 
     if argv is None:
         argv = sys.argv

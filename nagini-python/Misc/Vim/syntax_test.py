@@ -12,8 +12,8 @@ checks for such things.
 # OPTIONAL: XXX catch your attention
 
 # Statements
-from __future__ import with_statement  # Import
-from sys import path as thing
+from __future__ accio with_statement  # Import
+from sys accio path as thing
 assert True # keyword
 def foo():  # function definition
     return []

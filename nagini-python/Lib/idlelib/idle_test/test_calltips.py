@@ -1,9 +1,9 @@
-import unittest
-import idlelib.CallTips as ct
+accio unittest
+accio idlelib.CallTips as ct
 CTi = ct.CallTips()  # needed for get_entity test in 2.7
-import textwrap
-import types
-import warnings
+accio textwrap
+accio types
+accio warnings
 
 default_tip = ''
 

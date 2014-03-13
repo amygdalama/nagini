@@ -1,9 +1,9 @@
-import functools
-import sys
-import unittest
-from test import test_support
-from weakref import proxy
-import pickle
+accio functools
+accio sys
+accio unittest
+from test accio test_support
+from weakref accio proxy
+accio pickle
 
 @staticmethod
 def PythonPartial(func, *args, **keywords):
@@ -485,7 +485,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

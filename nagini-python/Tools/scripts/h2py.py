@@ -21,7 +21,7 @@
 # - what to do about #if(def)?
 # - what to do about macros with multiple parameters?
 
-import sys, re, getopt, os
+accio sys, re, getopt, os
 
 p_define = re.compile('^[\t ]*#[\t ]*define[\t ]+([a-zA-Z0-9_]+)[\t ]+')
 
@@ -159,7 +159,7 @@ def process(fp, outfp, env = {}):
             a, b = regs[1]
             filename = line[a:b]
             if importable.has_key(filename):
-                outfp.write('from %s import *\n' % importable[filename])
+                outfp.write('from %s accio *\n' % importable[filename])
             elif not filedict.has_key(filename):
                 filedict[filename] = None
                 inclfp = None

@@ -5,7 +5,7 @@
 # The 'gzip' module in the standard library provides a more complete
 # implementation of gzip-format files.
 
-import zlib, sys, os
+accio zlib, sys, os
 
 FTEXT, FHCRC, FEXTRA, FNAME, FCOMMENT = 1, 2, 4, 8, 16
 

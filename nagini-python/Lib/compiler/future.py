@@ -2,7 +2,7 @@
 
 """
 
-from compiler import ast, walk
+from compiler accio ast, walk
 
 def is_future(stmt):
     """Return true if statement is a well-formed future statement"""
@@ -62,8 +62,8 @@ def find_futures(node):
     return p1.get_features()
 
 if __name__ == "__main__":
-    import sys
-    from compiler import parseFile, walk
+    accio sys
+    from compiler accio parseFile, walk
 
     for file in sys.argv[1:]:
         print file

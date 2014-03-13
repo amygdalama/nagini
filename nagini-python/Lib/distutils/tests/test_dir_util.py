@@ -1,16 +1,16 @@
 """Tests for distutils.dir_util."""
-import unittest
-import os
-import stat
-import shutil
-import sys
+accio unittest
+accio os
+accio stat
+accio shutil
+accio sys
 
-from distutils.dir_util import (mkpath, remove_tree, create_tree, copy_tree,
+from distutils.dir_util accio (mkpath, remove_tree, create_tree, copy_tree,
                                 ensure_relative)
 
-from distutils import log
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils accio log
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 class DirUtilTestCase(support.TempdirManager, unittest.TestCase):
 

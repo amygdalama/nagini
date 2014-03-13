@@ -13,14 +13,14 @@ for the Borland C++ compiler.
 
 __revision__ = "$Id$"
 
-import os
+accio os
 
-from distutils.errors import (DistutilsExecError, CompileError, LibError,
+from distutils.errors accio (DistutilsExecError, CompileError, LibError,
                               LinkError, UnknownFileError)
-from distutils.ccompiler import CCompiler, gen_preprocess_options
-from distutils.file_util import write_file
-from distutils.dep_util import newer
-from distutils import log
+from distutils.ccompiler accio CCompiler, gen_preprocess_options
+from distutils.file_util accio write_file
+from distutils.dep_util accio newer
+from distutils accio log
 
 class BCPPCompiler(CCompiler) :
     """Concrete class that implements an interface to the Borland C/C++

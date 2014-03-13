@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-import re
-import sys
-import shutil
-import os.path
-import subprocess
-import sysconfig
+accio re
+accio sys
+accio shutil
+accio os.path
+accio subprocess
+accio sysconfig
 
-import reindent
-import untabify
+accio reindent
+accio untabify
 
 
 SRCDIR = sysconfig.get_config_var('srcdir')

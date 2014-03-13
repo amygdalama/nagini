@@ -3,10 +3,10 @@
 # View a single MIME multipart message.
 # Display each part as a box.
 
-import string
-from types import *
-from Tkinter import *
-from ScrolledText import ScrolledText
+accio string
+from types accio *
+from Tkinter accio *
+from ScrolledText accio ScrolledText
 
 class MimeViewer:
     def __init__(self, parent, title, msg):
@@ -109,9 +109,9 @@ def countlines(str, limit):
     return n
 
 def main():
-    import sys
-    import getopt
-    import mhlib
+    accio sys
+    accio getopt
+    accio mhlib
     opts, args = getopt.getopt(sys.argv[1:], '')
     for o, a in opts:
         pass

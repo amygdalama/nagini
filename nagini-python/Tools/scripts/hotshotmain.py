@@ -11,11 +11,11 @@ usage %prog [ %prog args ] filename [ filename args ]
 Any arguments after the filename are used as sys.argv for the filename.
 """
 
-import sys
-import optparse
-import os
-import hotshot
-import hotshot.stats
+accio sys
+accio optparse
+accio os
+accio hotshot
+accio hotshot.stats
 
 PROFILE = "hotshot.prof"
 

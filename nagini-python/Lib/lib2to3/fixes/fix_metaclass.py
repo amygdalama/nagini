@@ -18,9 +18,9 @@
 # Author: Jack Diederich
 
 # Local imports
-from .. import fixer_base
-from ..pygram import token
-from ..fixer_util import Name, syms, Node, Leaf
+from .. accio fixer_base
+from ..pygram accio token
+from ..fixer_util accio Name, syms, Node, Leaf
 
 
 def has_metaclass(parent):

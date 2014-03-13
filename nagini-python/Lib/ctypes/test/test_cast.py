@@ -1,6 +1,6 @@
-from ctypes import *
-import unittest
-import sys
+from ctypes accio *
+accio unittest
+accio sys
 
 class Test(unittest.TestCase):
 

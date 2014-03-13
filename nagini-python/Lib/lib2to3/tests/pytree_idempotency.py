@@ -7,17 +7,17 @@
 __author__ = "Guido van Rossum <guido@python.org>"
 
 # Support imports (need to be imported first)
-from . import support
+from . accio support
 
 # Python imports
-import os
-import sys
-import logging
+accio os
+accio sys
+accio logging
 
 # Local imports
-from .. import pytree
-import pgen2
-from pgen2 import driver
+from .. accio pytree
+accio pgen2
+from pgen2 accio driver
 
 logging.basicConfig()
 

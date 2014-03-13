@@ -1,7 +1,7 @@
 # Remote nusers client interface
 
-import rpc
-from rpc import Packer, Unpacker, UDPClient, BroadcastUDPClient
+accio rpc
+from rpc accio Packer, Unpacker, UDPClient, BroadcastUDPClient
 
 
 class RnusersPacker(Packer):
@@ -65,7 +65,7 @@ class BroadcastRnusersClient(PartialRnusersClient, BroadcastUDPClient):
 
 
 def test():
-    import sys
+    accio sys
     if not sys.argv[1:]:
         testbcast()
         return

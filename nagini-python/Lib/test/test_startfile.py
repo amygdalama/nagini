@@ -7,11 +7,11 @@
 # we can detect here, to make sure that not only the os.startfile()
 # call succeeded, but also the the script actually has run.
 
-import unittest
-from test import test_support
-import os
-from os import path
-from time import sleep
+accio unittest
+from test accio test_support
+accio os
+from os accio path
+from time accio sleep
 
 startfile = test_support.get_attribute(os, 'startfile')
 

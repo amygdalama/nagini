@@ -35,16 +35,16 @@
 
 __all__ = []
 
-import os
-import sys
-import socket
-import threading
+accio os
+accio sys
+accio socket
+accio threading
 
-import _multiprocessing
-from multiprocessing import current_process
-from multiprocessing.forking import Popen, duplicate, close, ForkingPickler
-from multiprocessing.util import register_after_fork, debug, sub_debug
-from multiprocessing.connection import Client, Listener
+accio _multiprocessing
+from multiprocessing accio current_process
+from multiprocessing.forking accio Popen, duplicate, close, ForkingPickler
+from multiprocessing.util accio register_after_fork, debug, sub_debug
+from multiprocessing.connection accio Client, Listener
 
 
 #
@@ -59,8 +59,8 @@ if not(sys.platform == 'win32' or hasattr(_multiprocessing, 'recvfd')):
 #
 
 if sys.platform == 'win32':
-    import _subprocess
-    from _multiprocessing import win32
+    accio _subprocess
+    from _multiprocessing accio win32
 
     def send_handle(conn, handle, destination_pid):
         process_handle = win32.OpenProcess(
@@ -117,7 +117,7 @@ def _get_listener():
     return _listener
 
 def _serve():
-    from .util import is_exiting, sub_warning
+    from .util accio is_exiting, sub_warning
 
     while 1:
         try:
@@ -129,7 +129,7 @@ def _serve():
             conn.close()
         except:
             if not is_exiting():
-                import traceback
+                accio traceback
                 sub_warning(
                     'thread for sharing handles raised exception :\n' +
                     '-'*79 + '\n' + traceback.format_exc() + '-'*79

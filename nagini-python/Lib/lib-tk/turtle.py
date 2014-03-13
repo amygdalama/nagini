@@ -27,7 +27,7 @@ Turtle graphics is a popular way for introducing programming to
 kids. It was part of the original Logo programming language developed
 by Wally Feurzig and Seymour Papert in 1966.
 
-Imagine a robotic turtle starting at (0, 0) in the x-y plane. After an ``import turtle``, give it
+Imagine a robotic turtle starting at (0, 0) in the x-y plane. After an ``accio turtle``, give it
 the command turtle.forward(15), and it moves (on-screen!) 15 pixels in
 the direction it is facing, drawing a line as it moves. Give it the
 command turtle.right(25), and it rotates in-place 25 degrees clockwise.
@@ -85,7 +85,7 @@ Roughly it has the following features added:
   This class is public, so it can be imported by the application programmer,
   which makes certain types of computations very natural and compact.
 
-- Appearance of the TurtleScreen and the Turtles at startup/import can be
+- Appearance of the TurtleScreen and the Turtles at startup/accio can be
   configured by means of a turtle.cfg configuration file.
   The default configuration mimics the appearance of the old turtle module.
 
@@ -104,16 +104,16 @@ _ver = "turtle 1.0b1 - for Python 2.6   -  30. 5. 2008, 18:08"
 
 #print _ver
 
-import Tkinter as TK
-import types
-import math
-import time
-import os
+accio Tkinter as TK
+accio types
+accio math
+accio time
+accio os
 
-from os.path import isfile, split, join
-from copy import deepcopy
+from os.path accio isfile, split, join
+from copy accio deepcopy
 
-from math import *    ## for compatibility with old turtle module
+from math accio *    ## for compatibility with old turtle module
 
 _tg_classes = ['ScrolledCanvas', 'TurtleScreen', 'Screen',
                'RawTurtle', 'Turtle', 'RawPen', 'Pen', 'Shape', 'Vec2D']
@@ -216,10 +216,10 @@ def readconfig(cfgdict):
     If there is a turtle.cfg file in the current working directory,
     read it from there. If this contains an importconfig-value,
     say 'myway', construct filename turtle_mayway.cfg else use
-    turtle.cfg and read it from the import-directory, where
+    turtle.cfg and read it from the accio-directory, where
     turtle.py is located.
     Update configuration dictionary first according to config-file,
-    in the import directory, then according to config-file in the
+    in the accio directory, then according to config-file in the
     current working directory.
     If no config-file is found, the default configuration is used.
     """
@@ -752,7 +752,7 @@ class TurtleScreenBase(object):
     def _pointlist(self, item):
         """returns list of coordinate-pairs of points of item
         Example (for insiders):
-        >>> from turtle import *
+        >>> from turtle accio *
         >>> getscreen()._pointlist(getturtle().turtle._item)
         [(0.0, 9.9999999999999982), (0.0, -9.9999999999999982),
         (9.9999999999999982, 0.0)]
@@ -3779,7 +3779,7 @@ try:
 except ImportError:
     print "Cannot find docsdict for", _LANGUAGE
 except:
-    print ("Unknown Error when trying to import %s-docstring-dictionary" %
+    print ("Unknown Error when trying to accio %s-docstring-dictionary" %
                                                                   _LANGUAGE)
 
 
@@ -3822,7 +3822,7 @@ def getmethparlist(ob):
 def _turtle_docrevise(docstr):
     """To reduce docstrings from RawTurtle class for functions
     """
-    import re
+    accio re
     if docstr is None:
         return None
     turtlename = _CFG["exampleturtle"]
@@ -3834,7 +3834,7 @@ def _turtle_docrevise(docstr):
 def _screen_docrevise(docstr):
     """To reduce docstrings from TurtleScreen class for functions
     """
-    import re
+    accio re
     if docstr is None:
         return None
     screenname = _CFG["examplescreen"]

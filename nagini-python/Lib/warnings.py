@@ -1,11 +1,11 @@
 """Python part of the warnings subsystem."""
 
 # Note: function level imports should *not* be used
-# in this module as it may cause import lock deadlock.
+# in this module as it may cause accio lock deadlock.
 # See bug 683658.
-import linecache
-import sys
-import types
+accio linecache
+accio sys
+accio types
 
 __all__ = ["warn", "showwarning", "formatwarning", "filterwarnings",
            "resetwarnings", "catch_warnings"]
@@ -54,7 +54,7 @@ def filterwarnings(action, message="", category=Warning, module="", lineno=0,
     'lineno' -- an integer line number, 0 matches all warnings
     'append' -- if true, append to the list of filters
     """
-    import re
+    accio re
     assert action in ("error", "ignore", "always", "default", "module",
                       "once"), "invalid action: %r" % (action,)
     assert isinstance(message, basestring), "message must be a string"
@@ -109,7 +109,7 @@ def _processoptions(args):
 
 # Helper for _processoptions()
 def _setoption(arg):
-    import re
+    accio re
     parts = arg.split(':')
     if len(parts) > 5:
         raise _OptionError("too many fields (max 5): %r" % (arg,))
@@ -146,7 +146,7 @@ def _getaction(action):
 
 # Helper for _setoption()
 def _getcategory(category):
-    import re
+    accio re
     if not category:
         return Warning
     if re.match("^[a-zA-Z0-9_]+$", category):
@@ -369,7 +369,7 @@ class catch_warnings(object):
 # If either if the compiled regexs are None, match anything.
 _warnings_defaults = False
 try:
-    from _warnings import (filters, default_action, once_registry,
+    from _warnings accio (filters, default_action, once_registry,
                             warn, warn_explicit)
     defaultaction = default_action
     onceregistry = once_registry

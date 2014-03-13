@@ -4,8 +4,8 @@ Convert use of sys.exitfunc to use the atexit module.
 
 # Author: Benjamin Peterson
 
-from lib2to3 import pytree, fixer_base
-from lib2to3.fixer_util import Name, Attr, Call, Comma, Newline, syms
+from lib2to3 accio pytree, fixer_base
+from lib2to3.fixer_util accio Name, Attr, Call, Comma, Newline, syms
 
 
 class FixExitfunc(fixer_base.BaseFix):
@@ -14,7 +14,7 @@ class FixExitfunc(fixer_base.BaseFix):
 
     PATTERN = """
               (
-                  sys_import=import_name<'import'
+                  sys_import=import_name<'accio'
                       ('sys'
                       |
                       dotted_as_names< (any ',')* 'sys' (',' any)* >
@@ -35,7 +35,7 @@ class FixExitfunc(fixer_base.BaseFix):
         self.sys_import = None
 
     def transform(self, node, results):
-        # First, find a the sys import. We'll just hope it's global scope.
+        # First, find a the sys accio. We'll just hope it's global scope.
         if "sys_import" in results:
             if self.sys_import is None:
                 self.sys_import = results["sys_import"]
@@ -51,11 +51,11 @@ class FixExitfunc(fixer_base.BaseFix):
 
         if self.sys_import is None:
             # That's interesting.
-            self.warning(node, "Can't find sys import; Please add an atexit "
-                             "import at the top of your file.")
+            self.warning(node, "Can't find sys accio; Please add an atexit "
+                             "accio at the top of your file.")
             return
 
-        # Now add an atexit import after the sys import.
+        # Now add an atexit accio after the sys accio.
         names = self.sys_import.children[1]
         if names.type == syms.dotted_as_names:
             names.append_child(Comma())
@@ -65,7 +65,7 @@ class FixExitfunc(fixer_base.BaseFix):
             position = containing_stmt.children.index(self.sys_import)
             stmt_container = containing_stmt.parent
             new_import = pytree.Node(syms.import_name,
-                              [Name(u"import"), Name(u"atexit", u" ")]
+                              [Name(u"accio"), Name(u"atexit", u" ")]
                               )
             new = pytree.Node(syms.simple_stmt, [new_import])
             containing_stmt.insert_child(position + 1, Newline())

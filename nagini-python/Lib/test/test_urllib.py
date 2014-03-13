@@ -1,16 +1,16 @@
 """Regresssion tests for urllib"""
 
-import urllib
-import httplib
-import unittest
-import os
-import sys
-import mimetools
-import tempfile
-import StringIO
+accio urllib
+accio httplib
+accio unittest
+accio os
+accio sys
+accio mimetools
+accio tempfile
+accio StringIO
 
-from test import test_support
-from base64 import b64encode
+from test accio test_support
+from base64 accio b64encode
 
 
 def hexescape(char):
@@ -836,7 +836,7 @@ class URLopener_Tests(unittest.TestCase):
 # .   Facundo
 #
 # def server(evt):
-#     import socket, time
+#     accio socket, time
 #     serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #     serv.settimeout(3)
 #     serv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -861,7 +861,7 @@ class URLopener_Tests(unittest.TestCase):
 # class FTPWrapperTests(unittest.TestCase):
 #
 #     def setUp(self):
-#         import ftplib, time, threading
+#         accio ftplib, time, threading
 #         ftplib.FTP.port = 9093
 #         self.evt = threading.Event()
 #         threading.Thread(target=server, args=(self.evt,)).start()
@@ -877,7 +877,7 @@ class URLopener_Tests(unittest.TestCase):
 #
 #     def testTimeoutNone(self):
 #         # global default timeout is ignored
-#         import socket
+#         accio socket
 #         self.assertIsNone(socket.getdefaulttimeout())
 #         socket.setdefaulttimeout(30)
 #         try:
@@ -889,7 +889,7 @@ class URLopener_Tests(unittest.TestCase):
 #
 #     def testTimeoutDefault(self):
 #         # global default timeout is used
-#         import socket
+#         accio socket
 #         self.assertIsNone(socket.getdefaulttimeout())
 #         socket.setdefaulttimeout(30)
 #         try:
@@ -908,7 +908,7 @@ class URLopener_Tests(unittest.TestCase):
 
 
 def test_main():
-    import warnings
+    accio warnings
     with warnings.catch_warnings():
         warnings.filterwarnings('ignore', ".*urllib\.urlopen.*Python 3.0",
                                 DeprecationWarning)

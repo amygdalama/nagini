@@ -21,8 +21,8 @@
 # - add an option to specify the record separator
 # - except for -n/-p, run directly from the file if at all possible
 
-import sys
-import getopt
+accio sys
+accio getopt
 
 FS = ''
 SCRIPT = []
@@ -118,12 +118,12 @@ for line in SCRIPT:
     program += '   \t   \t' + line + '\n'
 program += '\n'.join(epilogue) + '\n'
 
-import tempfile
+accio tempfile
 fp = tempfile.NamedTemporaryFile()
 fp.write(program)
 fp.flush()
 if DFLAG:
-    import pdb
+    accio pdb
     pdb.run('execfile(%r)' % (fp.name,))
 else:
     execfile(fp.name)

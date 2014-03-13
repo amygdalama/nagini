@@ -6,11 +6,11 @@
 
 __all__ = ['Parser', 'HeaderParser']
 
-import warnings
-from cStringIO import StringIO
+accio warnings
+from cStringIO accio StringIO
 
-from email.feedparser import FeedParser
-from email.message import Message
+from email.feedparser accio FeedParser
+from email.message accio Message
 
 
 

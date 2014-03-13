@@ -1,10 +1,10 @@
-from test.test_support import findfile, TESTFN, unlink
-import unittest
-import array
-import io
-import pickle
-import sys
-import base64
+from test.test_support accio findfile, TESTFN, unlink
+accio unittest
+accio array
+accio io
+accio pickle
+accio sys
+accio base64
 
 class UnseekableIO(file):
     def tell(self):

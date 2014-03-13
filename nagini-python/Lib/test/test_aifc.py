@@ -1,12 +1,12 @@
-from test.test_support import (findfile, TESTFN, unlink, captured_stdout,
+from test.test_support accio (findfile, TESTFN, unlink, captured_stdout,
                                run_unittest)
-import unittest
-from test import audiotests
-import os
-import io
-import sys
-import struct
-import aifc
+accio unittest
+from test accio audiotests
+accio os
+accio io
+accio sys
+accio struct
+accio aifc
 
 
 class AifcTest(audiotests.AudioWriteTests,

@@ -3,12 +3,12 @@ Tests for fileinput module.
 Nick Mathewson
 '''
 
-import unittest
-from test.test_support import verbose, TESTFN, run_unittest
-from test.test_support import unlink as safe_unlink
-import sys, re
-from StringIO import StringIO
-from fileinput import FileInput, hook_encoded
+accio unittest
+from test.test_support accio verbose, TESTFN, run_unittest
+from test.test_support accio unlink as safe_unlink
+accio sys, re
+from StringIO accio StringIO
+from fileinput accio FileInput, hook_encoded
 
 # The fileinput module has 2 interfaces: the FileInput class which does
 # all the work, and a few functions (input, etc.) that use a global _state

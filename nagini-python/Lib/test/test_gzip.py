@@ -1,11 +1,11 @@
 """Test script for the gzip module.
 """
 
-import unittest
-from test import test_support
-import os
-import io
-import struct
+accio unittest
+from test accio test_support
+accio os
+accio io
+accio struct
 gzip = test_support.import_module('gzip')
 
 data1 = """  int length=DEFAULTALLOC, err = Z_OK;

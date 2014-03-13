@@ -1,11 +1,11 @@
-import unittest, sys
+accio unittest, sys
 
 class SimpleTypesTestCase(unittest.TestCase):
 
     def setUp(self):
-        import ctypes
+        accio ctypes
         try:
-            from _ctypes import set_conversion_mode
+            from _ctypes accio set_conversion_mode
         except ImportError:
             pass
         else:
@@ -13,7 +13,7 @@ class SimpleTypesTestCase(unittest.TestCase):
 
     def tearDown(self):
         try:
-            from _ctypes import set_conversion_mode
+            from _ctypes accio set_conversion_mode
         except ImportError:
             pass
         else:
@@ -21,7 +21,7 @@ class SimpleTypesTestCase(unittest.TestCase):
 
 
     def test_subclasses(self):
-        from ctypes import c_void_p, c_char_p
+        from ctypes accio c_void_p, c_char_p
         # ctypes 0.9.5 and before did overwrite from_param in SimpleType_new
         class CVOIDP(c_void_p):
             def from_param(cls, value):
@@ -37,7 +37,7 @@ class SimpleTypesTestCase(unittest.TestCase):
         self.assertEqual(CCHARP.from_param("abc"), "abcabcabcabc")
 
         try:
-            from ctypes import c_wchar_p
+            from ctypes accio c_wchar_p
         except ImportError:
             return
 
@@ -50,7 +50,7 @@ class SimpleTypesTestCase(unittest.TestCase):
 
     # XXX Replace by c_char_p tests
     def test_cstrings(self):
-        from ctypes import c_char_p, byref
+        from ctypes accio c_char_p, byref
 
         # c_char_p.from_param on a Python String packs the string
         # into a cparam object
@@ -69,9 +69,9 @@ class SimpleTypesTestCase(unittest.TestCase):
         self.assertIs(c_char_p.from_param(a), a)
 
     def test_cw_strings(self):
-        from ctypes import byref
+        from ctypes accio byref
         try:
-            from ctypes import c_wchar_p
+            from ctypes accio c_wchar_p
         except ImportError:
 ##            print "(No c_wchar_p)"
             return
@@ -88,7 +88,7 @@ class SimpleTypesTestCase(unittest.TestCase):
         self.assertEqual(type(pa), c_wchar_p)
 
     def test_int_pointers(self):
-        from ctypes import c_short, c_uint, c_int, c_long, POINTER, pointer
+        from ctypes accio c_short, c_uint, c_int, c_long, POINTER, pointer
         LPINT = POINTER(c_int)
 
 ##        p = pointer(c_int(42))
@@ -107,7 +107,7 @@ class SimpleTypesTestCase(unittest.TestCase):
     def test_byref_pointer(self):
         # The from_param class method of POINTER(typ) classes accepts what is
         # returned by byref(obj), it type(obj) == typ
-        from ctypes import c_short, c_uint, c_int, c_long, pointer, POINTER, byref
+        from ctypes accio c_short, c_uint, c_int, c_long, pointer, POINTER, byref
         LPINT = POINTER(c_int)
 
         LPINT.from_param(byref(c_int(42)))
@@ -119,7 +119,7 @@ class SimpleTypesTestCase(unittest.TestCase):
 
     def test_byref_pointerpointer(self):
         # See above
-        from ctypes import c_short, c_uint, c_int, c_long, pointer, POINTER, byref
+        from ctypes accio c_short, c_uint, c_int, c_long, pointer, POINTER, byref
 
         LPLPINT = POINTER(POINTER(c_int))
         LPLPINT.from_param(byref(pointer(c_int(42))))
@@ -130,7 +130,7 @@ class SimpleTypesTestCase(unittest.TestCase):
         self.assertRaises(TypeError, LPLPINT.from_param, byref(pointer(c_uint(22))))
 
     def test_array_pointers(self):
-        from ctypes import c_short, c_uint, c_int, c_long, POINTER
+        from ctypes accio c_short, c_uint, c_int, c_long, POINTER
         INTARRAY = c_int * 3
         ia = INTARRAY()
         self.assertEqual(len(ia), 3)
@@ -148,8 +148,8 @@ class SimpleTypesTestCase(unittest.TestCase):
 ##        check_perf()
 
     def test_noctypes_argtype(self):
-        import _ctypes_test
-        from ctypes import CDLL, c_void_p, ArgumentError
+        accio _ctypes_test
+        from ctypes accio CDLL, c_void_p, ArgumentError
 
         func = CDLL(_ctypes_test.__file__)._testfunc_p_p
         func.restype = c_void_p

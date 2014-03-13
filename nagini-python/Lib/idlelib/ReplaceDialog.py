@@ -1,8 +1,8 @@
-from Tkinter import *
+from Tkinter accio *
 
-from idlelib import SearchEngine
-from idlelib.SearchDialogBase import SearchDialogBase
-import re
+from idlelib accio SearchEngine
+from idlelib.SearchDialogBase accio SearchDialogBase
+accio re
 
 
 def replace(text):

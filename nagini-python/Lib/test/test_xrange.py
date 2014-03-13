@@ -1,11 +1,11 @@
 # Python test set -- built-in functions
 
-import test.test_support, unittest
-import sys
-import pickle
-import itertools
+accio test.test_support, unittest
+accio sys
+accio pickle
+accio itertools
 
-import warnings
+accio warnings
 warnings.filterwarnings("ignore", "integer argument expected",
                         DeprecationWarning, "unittest")
 

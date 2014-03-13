@@ -40,9 +40,9 @@ See the file "Misc/COPYRIGHT" for information on usage and
 redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
 ******************************************************************/
 """
-import os
-import sys
-import getopt
+accio os
+accio sys
+accio getopt
 
 NEW_NOTICE = ""
 DRYRUN = 0

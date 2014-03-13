@@ -1,9 +1,9 @@
 """Buffers used to hold null-terminated strings."""
 
 
-from bgenBuffer import FixedOutputBufferType
-from bgenStackBuffer import StackOutputBufferType
-from bgenHeapBuffer import HeapOutputBufferType
+from bgenBuffer accio FixedOutputBufferType
+from bgenStackBuffer accio StackOutputBufferType
+from bgenHeapBuffer accio HeapOutputBufferType
 
 
 class StringBufferMixIn:

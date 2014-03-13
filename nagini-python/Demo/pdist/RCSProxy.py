@@ -19,13 +19,13 @@ The remote classes are instantiated with an IP address and an optional
 verbosity flag.
 """
 
-import server
-import md5
-import os
-import fnmatch
-import string
-import tempfile
-import rcslib
+accio server
+accio md5
+accio os
+accio fnmatch
+accio string
+accio tempfile
+accio rcslib
 
 
 class DirSupport:
@@ -166,8 +166,8 @@ class RCSProxyServer(RCSProxyLocal, server.SecureServer):
 
 
 def test_server():
-    import string
-    import sys
+    accio string
+    accio sys
     if sys.argv[1:]:
         port = string.atoi(sys.argv[1])
     else:
@@ -177,7 +177,7 @@ def test_server():
 
 
 def test():
-    import sys
+    accio sys
     if not sys.argv[1:] or sys.argv[1] and sys.argv[1][0] in '0123456789':
         test_server()
         sys.exit(0)

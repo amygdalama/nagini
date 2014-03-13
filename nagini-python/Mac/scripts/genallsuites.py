@@ -3,9 +3,9 @@
 # absolute paths. It is, however, a great leap forward compared to the time
 # when this information was only stored in Jack's brain:-)
 
-import sys
-import os
-import gensuitemodule
+accio sys
+accio os
+accio gensuitemodule
 
 verbose=sys.stdout
 

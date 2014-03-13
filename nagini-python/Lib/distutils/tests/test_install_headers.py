@@ -1,12 +1,12 @@
 """Tests for distutils.command.install_headers."""
-import sys
-import os
-import unittest
-import getpass
+accio sys
+accio os
+accio unittest
+accio getpass
 
-from distutils.command.install_headers import install_headers
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.command.install_headers accio install_headers
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 class InstallHeadersTestCase(support.TempdirManager,
                              support.LoggingSilencer,

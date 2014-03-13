@@ -1,8 +1,8 @@
 # Convenience test module to run all of the XML-related tests in the
 # standard library.
 
-import sys
-import test.test_support
+accio sys
+accio test.test_support
 
 test.test_support.verbose = 0
 

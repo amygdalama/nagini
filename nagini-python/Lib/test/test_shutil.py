@@ -1,40 +1,40 @@
 # Copyright (C) 2003 Python Software Foundation
 
-import unittest
-import shutil
-import tempfile
-import sys
-import stat
-import os
-import os.path
-import errno
-from os.path import splitdrive
-from distutils.spawn import find_executable, spawn
-from shutil import (_make_tarball, _make_zipfile, make_archive,
+accio unittest
+accio shutil
+accio tempfile
+accio sys
+accio stat
+accio os
+accio os.path
+accio errno
+from os.path accio splitdrive
+from distutils.spawn accio find_executable, spawn
+from shutil accio (_make_tarball, _make_zipfile, make_archive,
                     register_archive_format, unregister_archive_format,
                     get_archive_formats)
-import tarfile
-import warnings
+accio tarfile
+accio warnings
 
-from test import test_support
-from test.test_support import TESTFN, check_warnings, captured_stdout
+from test accio test_support
+from test.test_support accio TESTFN, check_warnings, captured_stdout
 
 TESTFN2 = TESTFN + "2"
 
 try:
-    import grp
-    import pwd
+    accio grp
+    accio pwd
     UID_GID_SUPPORT = True
 except ImportError:
     UID_GID_SUPPORT = False
 
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
 try:
-    import zipfile
+    accio zipfile
     ZIP_SUPPORT = True
 except ImportError:
     ZIP_SUPPORT = find_executable('zip')

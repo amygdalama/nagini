@@ -1,9 +1,9 @@
-from test.test_support import run_unittest, import_module
+from test.test_support accio run_unittest, import_module
 
 # Skip test if _sqlite3 module was not built.
 import_module('_sqlite3')
 
-from sqlite3.test import (dbapi, types, userfunctions, py25tests,
+from sqlite3.test accio (dbapi, types, userfunctions, py25tests,
                                 factory, transactions, hooks, regression,
                                 dump)
 

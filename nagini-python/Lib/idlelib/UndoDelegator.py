@@ -1,7 +1,7 @@
-import string
-from Tkinter import *
+accio string
+from Tkinter accio *
 
-from idlelib.Delegator import Delegator
+from idlelib.Delegator accio Delegator
 
 #$ event <<redo>>
 #$ win <Control-y>
@@ -36,7 +36,7 @@ class UndoDelegator(Delegator):
             self.bind("<<dump-undo-state>>", self.dump_event)
 
     def dump_event(self, event):
-        from pprint import pprint
+        from pprint accio pprint
         pprint(self.undolist[:self.pointer])
         print "pointer:", self.pointer,
         print "saved:", self.saved,
@@ -337,7 +337,7 @@ class CommandSequence(Command):
         return self.depth
 
 def main():
-    from idlelib.Percolator import Percolator
+    from idlelib.Percolator accio Percolator
     root = Tk()
     root.wm_protocol("WM_DELETE_WINDOW", root.quit)
     text = Text()

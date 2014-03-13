@@ -1,7 +1,7 @@
-from test import test_support
-import random
-import sys
-import unittest
+from test accio test_support
+accio random
+accio sys
+accio unittest
 
 verbose = test_support.verbose
 nerrors = 0
@@ -280,7 +280,7 @@ def test_main(verbose=None):
 
         # verify reference counting
         if verbose and hasattr(sys, "gettotalrefcount"):
-            import gc
+            accio gc
             counts = [None] * 5
             for i in xrange(len(counts)):
                 test_support.run_unittest(*test_classes)

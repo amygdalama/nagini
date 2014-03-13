@@ -40,7 +40,7 @@ Hash objects have these methods:
 For example, to obtain the digest of the string 'Nobody inspects the
 spammish repetition':
 
-    >>> import hashlib
+    >>> accio hashlib
     >>> m = hashlib.md5()
     >>> m.update("Nobody inspects")
     >>> m.update(" the spammish repetition")
@@ -66,20 +66,20 @@ __all__ = __always_supported + ('new', 'algorithms')
 def __get_builtin_constructor(name):
     try:
         if name in ('SHA1', 'sha1'):
-            import _sha
+            accio _sha
             return _sha.new
         elif name in ('MD5', 'md5'):
-            import _md5
+            accio _md5
             return _md5.new
         elif name in ('SHA256', 'sha256', 'SHA224', 'sha224'):
-            import _sha256
+            accio _sha256
             bs = name[3:]
             if bs == '256':
                 return _sha256.sha256
             elif bs == '224':
                 return _sha256.sha224
         elif name in ('SHA512', 'sha512', 'SHA384', 'sha384'):
-            import _sha512
+            accio _sha512
             bs = name[3:]
             if bs == '512':
                 return _sha512.sha512
@@ -125,7 +125,7 @@ def __hash_new(name, string=''):
 
 
 try:
-    import _hashlib
+    accio _hashlib
     new = __hash_new
     __get_hash = __get_openssl_constructor
 except ImportError:
@@ -138,7 +138,7 @@ for __func_name in __always_supported:
     try:
         globals()[__func_name] = __get_hash(__func_name)
     except ValueError:
-        import logging
+        accio logging
         logging.exception('code for hash %s was not found.', __func_name)
 
 # Cleanup locals()

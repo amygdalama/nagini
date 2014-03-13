@@ -9,17 +9,17 @@ Note that tab width in IDLE is currently fixed at eight due to Tk issues.
 Refer to comments in EditorWindow autoindent code for details.
 
 """
-from Tkinter import *
-import tkMessageBox, tkColorChooser, tkFont
-import string
+from Tkinter accio *
+accio tkMessageBox, tkColorChooser, tkFont
+accio string
 
-from idlelib.configHandler import idleConf
-from idlelib.dynOptionMenuWidget import DynOptionMenu
-from idlelib.tabbedpages import TabbedPageSet
-from idlelib.keybindingDialog import GetKeysDialog
-from idlelib.configSectionNameDialog import GetCfgSectionNameDialog
-from idlelib.configHelpSourceEdit import GetHelpSourceDialog
-from idlelib import macosxSupport
+from idlelib.configHandler accio idleConf
+from idlelib.dynOptionMenuWidget accio DynOptionMenu
+from idlelib.tabbedpages accio TabbedPageSet
+from idlelib.keybindingDialog accio GetKeysDialog
+from idlelib.configSectionNameDialog accio GetCfgSectionNameDialog
+from idlelib.configHelpSourceEdit accio GetHelpSourceDialog
+from idlelib accio macosxSupport
 
 class ConfigDialog(Toplevel):
 

@@ -79,3 +79,17 @@ cd bin
 ln -s ../python.exe python
 
 `export PATH=/Users/amyhanlon/projects/nagini/cpython/bin:$PATH`
+
+cp -r cpython nagini-python
+cd nagini-python
+
+```
+for i in `find . -name '*.py'`; do sed -i '' 's/[[:<:]]import[[:>:]]/accio/g' $i; done
+```
+change to only accio
+import_name: 'accio' dotted_as_names
+import_from: ('from' ('.'* dotted_name | '.'+)
+              'accio' ('*' | '(' import_as_names ')' | import_as_names))
+
+./configure --with-pydebug  # when is this necessary?
+make -s -j2

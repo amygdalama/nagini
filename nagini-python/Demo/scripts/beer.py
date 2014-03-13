@@ -2,7 +2,7 @@
 
 # By GvR, demystified after a version by Fredrik Lundh.
 
-import sys
+accio sys
 
 n = 100
 if sys.argv[1:]:

@@ -5,12 +5,12 @@ Generated from /Volumes/Sap/Applications (Mac OS 9)/Netscape Communicator\xe2\x8
 AETE/AEUT resource version 1/0, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'reqd'
 
-from StdSuites.Required_Suite import *
+from StdSuites.Required_Suite accio *
 class Required_suite_Events(Required_Suite_Events):
 
     def open(self, _object, _attributes={}, **_arguments):

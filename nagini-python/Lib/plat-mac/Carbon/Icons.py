@@ -1,7 +1,7 @@
 # Generated from 'Icons.h'
 
 def FOUR_CHAR_CODE(x): return x
-from Carbon.Files import *
+from Carbon.Files accio *
 kGenericDocumentIconResource = -4000
 kGenericStationeryIconResource = -3985
 kGenericEditionFileIconResource = -3989

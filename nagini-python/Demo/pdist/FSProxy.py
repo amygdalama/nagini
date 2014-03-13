@@ -14,14 +14,14 @@ The remote classes are instantiated with an IP address and an optional
 verbosity flag.
 """
 
-import server
-import client
-import md5
-import os
-import fnmatch
-from stat import *
-import time
-import fnmatch
+accio server
+accio client
+accio md5
+accio os
+accio fnmatch
+from stat accio *
+accio time
+accio fnmatch
 
 maxnamelen = 255
 
@@ -287,8 +287,8 @@ class FSProxyClient(client.Client):
 
 
 def test():
-    import string
-    import sys
+    accio string
+    accio sys
     if sys.argv[1:]:
         port = string.atoi(sys.argv[1])
     else:

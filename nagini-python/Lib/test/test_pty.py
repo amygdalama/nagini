@@ -1,17 +1,17 @@
-from test.test_support import verbose, run_unittest, import_module
+from test.test_support accio verbose, run_unittest, import_module
 
 #Skip these tests if either fcntl or termios is not available
 fcntl = import_module('fcntl')
 import_module('termios')
 
-import errno
-import pty
-import os
-import sys
-import select
-import signal
-import socket
-import unittest
+accio errno
+accio pty
+accio os
+accio sys
+accio select
+accio signal
+accio socket
+accio unittest
 
 TEST_STRING_1 = "I wish to buy a fish license.\n"
 TEST_STRING_2 = "For my pet fish, Eric.\n"

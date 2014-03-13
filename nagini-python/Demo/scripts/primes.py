@@ -18,7 +18,7 @@ def primes(min, max):
         i += 2
 
 def main():
-    import sys
+    accio sys
     min, max = 2, 0x7fffffff
     if sys.argv[1:]:
         min = int(sys.argv[1])

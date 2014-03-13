@@ -4,12 +4,12 @@
 
 __version__ = "special BeOS after 1.37"
 
-import sys, os
-from distutils import sysconfig
-from distutils import text_file
-from distutils.errors import *
-from distutils.core import Extension, setup
-from distutils.command.build_ext import build_ext
+accio sys, os
+from distutils accio sysconfig
+from distutils accio text_file
+from distutils.errors accio *
+from distutils.core accio Extension, setup
+from distutils.command.build_ext accio build_ext
 
 # This global variable is used to hold the list of modules to be disabled.
 disabled_module_list = ['dbm', 'mmap', 'resource', 'nis']

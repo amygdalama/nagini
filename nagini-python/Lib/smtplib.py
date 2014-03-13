@@ -13,7 +13,7 @@ and MAIL commands!
 
 Example:
 
-  >>> import smtplib
+  >>> accio smtplib
   >>> s=smtplib.SMTP("localhost")
   >>> print s.help()
   This is Sendmail version 8.8.4
@@ -41,13 +41,13 @@ Example:
 #
 # This was modified from the Python 1.5 library HTTP lib.
 
-import socket
-import re
-import email.utils
-import base64
-import hmac
-from email.base64mime import encode as encode_base64
-from sys import stderr
+accio socket
+accio re
+accio email.utils
+accio base64
+accio hmac
+from email.base64mime accio encode as encode_base64
+from sys accio stderr
 
 __all__ = ["SMTPException", "SMTPServerDisconnected", "SMTPResponseException",
            "SMTPSenderRefused", "SMTPRecipientsRefused", "SMTPDataError",
@@ -167,7 +167,7 @@ def quotedata(data):
 
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     _have_ssl = False
 else:
@@ -690,7 +690,7 @@ class SMTP:
 
         Example:
 
-         >>> import smtplib
+         >>> accio smtplib
          >>> s=smtplib.SMTP("localhost")
          >>> tolist=["one@one.org","two@two.org","three@three.org","four@four.org"]
          >>> msg = '''\\
@@ -840,7 +840,7 @@ class LMTP(SMTP):
 # Test the sendmail method, which tests most of the others.
 # Note: This always sends to localhost.
 if __name__ == '__main__':
-    import sys
+    accio sys
 
     def prompt(prompt):
         sys.stdout.write(prompt + ": ")

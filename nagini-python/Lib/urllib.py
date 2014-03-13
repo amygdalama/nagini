@@ -22,15 +22,15 @@ used to query various info about the object, if available.
 (mimetools.Message objects are queried with the getheader() method.)
 """
 
-import string
-import socket
-import os
-import time
-import sys
-import base64
-import re
+accio string
+accio socket
+accio os
+accio time
+accio sys
+accio base64
+accio re
 
-from urlparse import urljoin as basejoin
+from urlparse accio urljoin as basejoin
 
 __all__ = ["urlopen", "URLopener", "FancyURLopener", "urlretrieve",
            "urlcleanup", "quote", "quote_plus", "unquote", "unquote_plus",
@@ -46,9 +46,9 @@ MAXFTPCACHE = 10        # Trim the ftp cache beyond this size
 
 # Helper for non-unix systems
 if os.name == 'nt':
-    from nturl2path import url2pathname, pathname2url
+    from nturl2path accio url2pathname, pathname2url
 elif os.name == 'riscos':
-    from rourl2path import url2pathname, pathname2url
+    from rourl2path accio url2pathname, pathname2url
 else:
     def url2pathname(pathname):
         """OS-specific conversion from a relative URL of the 'file' scheme
@@ -71,7 +71,7 @@ else:
 _urlopener = None
 def urlopen(url, data=None, proxies=None):
     """Create a file-like object for the specified URL to read from."""
-    from warnings import warnpy3k
+    from warnings accio warnpy3k
     warnpy3k("urllib.urlopen() has been removed in Python 3.0 in "
              "favor of urllib2.urlopen()", stacklevel=2)
 
@@ -100,7 +100,7 @@ def urlcleanup():
 
 # check for SSL
 try:
-    import ssl
+    accio ssl
 except:
     _have_ssl = False
 else:
@@ -158,7 +158,7 @@ class URLopener:
     def cleanup(self):
         # This code sometimes runs when the rest of this module
         # has already been deleted, so it can't use any globals
-        # or import anything.
+        # or accio anything.
         if self.__tempfiles:
             for file in self.__tempfiles:
                 try:
@@ -243,7 +243,7 @@ class URLopener:
             if filename:
                 tfp = open(filename, 'wb')
             else:
-                import tempfile
+                accio tempfile
                 garbage, path = splittype(url)
                 garbage, path = splithost(path or "")
                 path, garbage = splitquery(path or "")
@@ -289,7 +289,7 @@ class URLopener:
 
     def open_http(self, url, data=None):
         """Use HTTP protocol."""
-        import httplib
+        accio httplib
         user_passwd = None
         proxy_passwd= None
         if isinstance(url, str):
@@ -384,7 +384,7 @@ class URLopener:
         def open_https(self, url, data=None):
             """Use HTTPS protocol."""
 
-            import httplib
+            accio httplib
             user_passwd = None
             proxy_passwd = None
             if isinstance(url, str):
@@ -464,11 +464,11 @@ class URLopener:
 
     def open_local_file(self, url):
         """Use local file."""
-        import mimetypes, mimetools, email.utils
+        accio mimetypes, mimetools, email.utils
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         host, file = splithost(url)
         localname = url2pathname(file)
         try:
@@ -503,11 +503,11 @@ class URLopener:
         """Use FTP protocol."""
         if not isinstance(url, str):
             raise IOError, ('ftp error', 'proxy support for ftp protocol currently not implemented')
-        import mimetypes, mimetools
+        accio mimetypes, mimetools
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         host, path = splithost(url)
         if not host: raise IOError, ('ftp error', 'no host given')
         host, port = splitport(host)
@@ -519,7 +519,7 @@ class URLopener:
         passwd = passwd or ''
         host = socket.gethostbyname(host)
         if not port:
-            import ftplib
+            accio ftplib
             port = ftplib.FTP_PORT
         else:
             port = int(port)
@@ -572,11 +572,11 @@ class URLopener:
         # mediatype := [ type "/" subtype ] *( ";" parameter )
         # data      := *urlchar
         # parameter := attribute "=" value
-        import mimetools
+        accio mimetools
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         try:
             [type, data] = url.split(',', 1)
         except ValueError:
@@ -682,7 +682,7 @@ class FancyURLopener(URLopener):
             URLopener.http_error_default(self, url, fp,
                                          errcode, errmsg, headers)
         stuff = headers['www-authenticate']
-        import re
+        accio re
         match = re.match('[ \t]*([^ \t]+)[ \t]+realm="([^"]*)"', stuff)
         if not match:
             URLopener.http_error_default(self, url, fp,
@@ -704,7 +704,7 @@ class FancyURLopener(URLopener):
             URLopener.http_error_default(self, url, fp,
                                          errcode, errmsg, headers)
         stuff = headers['proxy-authenticate']
-        import re
+        accio re
         match = re.match('[ \t]*([^ \t]+)[ \t]+realm="([^"]*)"', stuff)
         if not match:
             URLopener.http_error_default(self, url, fp,
@@ -792,7 +792,7 @@ class FancyURLopener(URLopener):
 
     def prompt_user_passwd(self, host, realm):
         """Override this in a GUI environment!"""
-        import getpass
+        accio getpass
         try:
             user = raw_input("Enter username for %s at %s: " % (realm,
                                                                 host))
@@ -830,7 +830,7 @@ def ftperrors():
     """Return the set of errors raised by the FTP class."""
     global _ftperrors
     if _ftperrors is None:
-        import ftplib
+        accio ftplib
         _ftperrors = ftplib.all_errors
     return _ftperrors
 
@@ -839,11 +839,11 @@ def noheaders():
     """Return an empty mimetools.Message object."""
     global _noheaders
     if _noheaders is None:
-        import mimetools
+        accio mimetools
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         _noheaders = mimetools.Message(StringIO(), 0)
         _noheaders.fp.close()   # Recycle file descriptor
     return _noheaders
@@ -868,7 +868,7 @@ class ftpwrapper:
         self.init()
 
     def init(self):
-        import ftplib
+        accio ftplib
         self.busy = 0
         self.ftp = ftplib.FTP()
         self.ftp.connect(self.host, self.port, self.timeout)
@@ -877,7 +877,7 @@ class ftpwrapper:
         self.ftp.cwd(_target)
 
     def retrfile(self, file, type):
-        import ftplib
+        accio ftplib
         self.endtransfer()
         if type in ('d', 'D'): cmd = 'TYPE A'; isdir = 1
         else: cmd = 'TYPE ' + type; isdir = 0
@@ -1068,7 +1068,7 @@ def splittype(url):
     """splittype('type:opaquestring') --> 'type', 'opaquestring'."""
     global _typeprog
     if _typeprog is None:
-        import re
+        accio re
         _typeprog = re.compile('^([^/:]+):')
 
     match = _typeprog.match(url)
@@ -1082,7 +1082,7 @@ def splithost(url):
     """splithost('//host[:port]/path') --> 'host[:port]', '/path'."""
     global _hostprog
     if _hostprog is None:
-        import re
+        accio re
         _hostprog = re.compile('^//([^/?]*)(.*)$')
 
     match = _hostprog.match(url)
@@ -1099,7 +1099,7 @@ def splituser(host):
     """splituser('user[:passwd]@host[:port]') --> 'user[:passwd]', 'host[:port]'."""
     global _userprog
     if _userprog is None:
-        import re
+        accio re
         _userprog = re.compile('^(.*)@(.*)$')
 
     match = _userprog.match(host)
@@ -1111,7 +1111,7 @@ def splitpasswd(user):
     """splitpasswd('user:passwd') -> 'user', 'passwd'."""
     global _passwdprog
     if _passwdprog is None:
-        import re
+        accio re
         _passwdprog = re.compile('^([^:]*):(.*)$',re.S)
 
     match = _passwdprog.match(user)
@@ -1124,7 +1124,7 @@ def splitport(host):
     """splitport('host:port') --> 'host', 'port'."""
     global _portprog
     if _portprog is None:
-        import re
+        accio re
         _portprog = re.compile('^(.*):([0-9]*)$')
 
     match = _portprog.match(host)
@@ -1142,7 +1142,7 @@ def splitnport(host, defport=-1):
     Return None if ':' but not a valid number."""
     global _nportprog
     if _nportprog is None:
-        import re
+        accio re
         _nportprog = re.compile('^(.*):(.*)$')
 
     match = _nportprog.match(host)
@@ -1161,7 +1161,7 @@ def splitquery(url):
     """splitquery('/path?query') --> '/path', 'query'."""
     global _queryprog
     if _queryprog is None:
-        import re
+        accio re
         _queryprog = re.compile('^(.*)\?([^?]*)$')
 
     match = _queryprog.match(url)
@@ -1173,7 +1173,7 @@ def splittag(url):
     """splittag('/path#tag') --> '/path', 'tag'."""
     global _tagprog
     if _tagprog is None:
-        import re
+        accio re
         _tagprog = re.compile('^(.*)#([^#]*)$')
 
     match = _tagprog.match(url)
@@ -1191,14 +1191,14 @@ def splitvalue(attr):
     """splitvalue('attr=value') --> 'attr', 'value'."""
     global _valueprog
     if _valueprog is None:
-        import re
+        accio re
         _valueprog = re.compile('^([^=]*)=(.*)$')
 
     match = _valueprog.match(attr)
     if match: return match.group(1, 2)
     return attr, None
 
-# urlparse contains a duplicate of this method to avoid a circular import.  If
+# urlparse contains a duplicate of this method to avoid a circular accio.  If
 # you update this method, also update the copy in urlparse.  This code
 # duplication does not exist in Python3.
 
@@ -1396,7 +1396,7 @@ def proxy_bypass_environment(host):
 
 
 if sys.platform == 'darwin':
-    from _scproxy import _get_proxy_settings, _get_proxies
+    from _scproxy accio _get_proxy_settings, _get_proxies
 
     def proxy_bypass_macosx_sysconf(host):
         """
@@ -1405,9 +1405,9 @@ if sys.platform == 'darwin':
         This function uses the MacOSX framework SystemConfiguration
         to fetch the proxy information.
         """
-        import re
-        import socket
-        from fnmatch import fnmatch
+        accio re
+        accio socket
+        from fnmatch accio fnmatch
 
         hostonly, port = splitport(host)
 
@@ -1483,7 +1483,7 @@ elif os.name == 'nt':
         """
         proxies = {}
         try:
-            import _winreg
+            accio _winreg
         except ImportError:
             # Std module, so should be around - but you never know!
             return proxies
@@ -1501,7 +1501,7 @@ elif os.name == 'nt':
                     for p in proxyServer.split(';'):
                         protocol, address = p.split('=', 1)
                         # See if address has a type:// prefix
-                        import re
+                        accio re
                         if not re.match('^([^/:]+)://', address):
                             address = '%s://%s' % (protocol, address)
                         proxies[protocol] = address
@@ -1532,8 +1532,8 @@ elif os.name == 'nt':
 
     def proxy_bypass_registry(host):
         try:
-            import _winreg
-            import re
+            accio _winreg
+            accio re
         except ImportError:
             # Std modules, so should be around - but you never know!
             return 0

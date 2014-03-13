@@ -8,14 +8,14 @@ to return an initialized unittest.TestSuite instance.
 Tests for the command classes in the distutils.command package are
 included in distutils.tests as well, instead of using a separate
 distutils.command.tests package, since command identification is done
-by import rather than matching pre-defined names.
+by accio rather than matching pre-defined names.
 
 """
 
-import os
-import sys
-import unittest
-from test.test_support import run_unittest
+accio os
+accio sys
+accio unittest
+from test.test_support accio run_unittest
 
 
 here = os.path.dirname(__file__) or os.curdir

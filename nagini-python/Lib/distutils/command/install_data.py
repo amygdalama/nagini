@@ -7,9 +7,9 @@ platform-independent data files."""
 
 __revision__ = "$Id$"
 
-import os
-from distutils.core import Command
-from distutils.util import change_root, convert_path
+accio os
+from distutils.core accio Command
+from distutils.util accio change_root, convert_path
 
 class install_data(Command):
 

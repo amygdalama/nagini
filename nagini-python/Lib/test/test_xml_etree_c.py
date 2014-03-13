@@ -1,8 +1,8 @@
 # xml.etree test for cElementTree
 
-from test import test_support
-from test.test_support import precisionbigmemtest, _2G
-import unittest
+from test accio test_support
+from test.test_support accio precisionbigmemtest, _2G
+accio unittest
 
 cET = test_support.import_module('xml.etree.cElementTree')
 
@@ -13,7 +13,7 @@ def sanity():
     """
     Import sanity.
 
-    >>> from xml.etree import cElementTree
+    >>> from xml.etree accio cElementTree
     """
 
 
@@ -32,7 +32,7 @@ class MiscTests(unittest.TestCase):
 
 
 def test_main():
-    from test import test_xml_etree, test_xml_etree_c
+    from test accio test_xml_etree, test_xml_etree_c
 
     # Run the tests specific to the C implementation
     test_support.run_doctest(test_xml_etree_c, verbosity=True)

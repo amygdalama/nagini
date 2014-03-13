@@ -2,7 +2,7 @@
 
 Interface summary:
 
-       import commands
+       accio commands
 
        outtext = commands.getoutput(cmd)
        (exitstatus, outtext) = commands.getstatusoutput(cmd)
@@ -18,7 +18,7 @@ Encapsulates the basic operation:
 
  [Note:  it would be nice to add functions to interpret the exit status.]
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the commands module has been removed in Python 3.0; "
          "use the subprocess module instead", stacklevel=2)
 del warnpy3k
@@ -36,7 +36,7 @@ __all__ = ["getstatusoutput","getoutput","getstatus"]
 #
 def getstatus(file):
     """Return output of "ls -ld <file>" in a string."""
-    import warnings
+    accio warnings
     warnings.warn("commands.getstatus() is deprecated", DeprecationWarning, 2)
     return getoutput('ls -ld' + mkarg(file))
 
@@ -55,7 +55,7 @@ def getoutput(cmd):
 #
 def getstatusoutput(cmd):
     """Return (status, output) of executing cmd in a shell."""
-    import os
+    accio os
     pipe = os.popen('{ ' + cmd + '; } 2>&1', 'r')
     text = pipe.read()
     sts = pipe.close()
@@ -67,7 +67,7 @@ def getstatusoutput(cmd):
 # Make command argument from directory and pathname (prefix space, add quotes).
 #
 def mk2arg(head, x):
-    import os
+    accio os
     return mkarg(os.path.join(head, x))
 
 

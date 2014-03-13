@@ -33,7 +33,7 @@ class Markov:
 
 
 def test():
-    import sys, random, getopt
+    accio sys, random, getopt
     args = sys.argv[1:]
     try:
         opts, args = getopt.getopt(args, '0123456789cdwq')

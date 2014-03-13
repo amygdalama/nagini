@@ -18,19 +18,19 @@
 #
 # $Id$
 
-import os, re, sys
+accio os, re, sys
 
 if sys.version_info[0] < 3 :
     try:
-        import cPickle
+        accio cPickle
         pickle = cPickle
     except ImportError:
-        import pickle
+        accio pickle
 else :
-    import pickle
+    accio pickle
 
-import unittest
-from test_all import db, dbtables, test_support, verbose, \
+accio unittest
+from test_all accio db, dbtables, test_support, verbose, \
         get_new_environment_path, get_new_database_path
 
 #----------------------------------------------------------------------
@@ -39,9 +39,9 @@ class TableDBTestCase(unittest.TestCase):
     db_name = 'test-table.db'
 
     def setUp(self):
-        import sys
+        accio sys
         if sys.version_info[0] >= 3 :
-            from test_all import do_proxy_db_py3k
+            from test_all accio do_proxy_db_py3k
             self._flag_proxy_db_py3k = do_proxy_db_py3k(False)
 
         self.testHomeDir = get_new_environment_path()
@@ -50,9 +50,9 @@ class TableDBTestCase(unittest.TestCase):
 
     def tearDown(self):
         self.tdb.close()
-        import sys
+        accio sys
         if sys.version_info[0] >= 3 :
-            from test_all import do_proxy_db_py3k
+            from test_all accio do_proxy_db_py3k
             do_proxy_db_py3k(self._flag_proxy_db_py3k)
         test_support.rmtree(self.testHomeDir)
 
@@ -64,7 +64,7 @@ class TableDBTestCase(unittest.TestCase):
         except dbtables.TableDBError:
             pass
         self.tdb.CreateTable(tabname, [colname])
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             self.tdb.Insert(tabname, {colname: pickle.dumps(3.14159, 1)})
         else :
@@ -77,7 +77,7 @@ class TableDBTestCase(unittest.TestCase):
         values = self.tdb.Select(
             tabname, [colname], conditions={colname: None})
 
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             colval = pickle.loads(values[0][colname])
         else :
@@ -92,7 +92,7 @@ class TableDBTestCase(unittest.TestCase):
         col1 = 'but can it fly?'
         col2 = 'Species'
 
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             testinfo = [
                 {col0: pickle.dumps(8, 1), col1: 'no', col2: 'Penguin'},
@@ -117,7 +117,7 @@ class TableDBTestCase(unittest.TestCase):
         for row in testinfo :
             self.tdb.Insert(tabname, row)
 
-        import sys
+        accio sys
         if sys.version_info[0] < 3 :
             values = self.tdb.Select(tabname, [col2],
                 conditions={col0: lambda x: pickle.loads(x) >= 8})

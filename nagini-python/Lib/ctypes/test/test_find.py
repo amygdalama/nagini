@@ -1,8 +1,8 @@
-import unittest
-import sys
-from ctypes import *
-from ctypes.util import find_library
-from ctypes.test import is_resource_enabled
+accio unittest
+accio sys
+from ctypes accio *
+from ctypes.util accio find_library
+from ctypes.test accio is_resource_enabled
 
 if sys.platform == "win32":
     lib_gl = find_library("OpenGL32")
@@ -71,7 +71,7 @@ class Test_OpenGL_libs(unittest.TestCase):
 
 ##    class LoadLibs(unittest.TestCase):
 ##        def test_libm(self):
-##            import math
+##            accio math
 ##            libm = cdll.libm
 ##            sqrt = libm.sqrt
 ##            sqrt.argtypes = (c_double,)

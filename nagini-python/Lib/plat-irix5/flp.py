@@ -3,14 +3,14 @@
 #
 # Jack Jansen, December 1991
 #
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the flp module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import string
-import os
-import sys
-import FL
+accio string
+accio os
+accio sys
+accio FL
 
 SPLITLINE = '--------------------'
 FORMLINE = '=============== FORM ==============='
@@ -59,7 +59,7 @@ def checkcache(filename):
     if _internal_cache.has_key(filename):
         altforms = _internal_cache[filename]
         return _unpack_cache(altforms)
-    import marshal
+    accio marshal
     fp, filename = _open_formfile2(filename)
     fp.close()
     cachename = filename + 'c'
@@ -108,8 +108,8 @@ def wrlong(fp, x):
     fp.write(chr(a) + chr(b) + chr(c) + chr(d))
 
 def getmtime(filename):
-    import os
-    from stat import ST_MTIME
+    accio os
+    from stat accio ST_MTIME
     try:
         return os.stat(filename)[ST_MTIME]
     except os.error:
@@ -119,7 +119,7 @@ def getmtime(filename):
 # Internal: write cached version of the form (parsing is too slow!)
 #
 def writecache(filename, forms):
-    import marshal
+    accio marshal
     fp, filename = _open_formfile2(filename)
     fp.close()
     cachename = filename + 'c'
@@ -142,14 +142,14 @@ def writecache(filename, forms):
 # This is for use with the "freeze" script.  You should call
 # flp.freeze(filename) for all forms used by the script, and collect
 # the output on a file in a module file named "frozenforms.py".  Then
-# in the main program of the script import frozenforms.
+# in the main program of the script accio frozenforms.
 # (Don't forget to take this out when using the unfrozen version of
 # the script!)
 #
 def freeze(filename):
     forms = parse_forms(filename)
     altforms = _pack_cache(forms)
-    print 'import flp'
+    print 'accio flp'
     print 'flp._internal_cache[', repr(filename), '] =', altforms
 
 #
@@ -272,7 +272,7 @@ _parse_func = { \
 # This function parses a line, and returns either
 # a string or a tuple (name,value)
 
-import re
+accio re
 prog = re.compile('^([^:]*): *(.*)')
 
 def _parse_line(line):
@@ -357,7 +357,7 @@ def merge_full_form(inst, form, (fdata, odatalist)):
 # External Create_form - Create form from parameters
 #
 def create_form(fdata):
-    import fl
+    accio fl
     return fl.make_form(FL.NO_BOX, fdata.Width, fdata.Height)
 
 #
@@ -425,7 +425,7 @@ def _select_crfunc(fm, cl):
 
 
 def test():
-    import time
+    accio time
     t0 = time.time()
     if len(sys.argv) == 2:
         forms = parse_forms(sys.argv[1])

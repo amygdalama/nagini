@@ -1,7 +1,7 @@
 # Generator implementation using threads
 
-import sys
-import thread
+accio sys
+accio thread
 
 class Killed(Exception):
     pass

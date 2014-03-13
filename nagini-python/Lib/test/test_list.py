@@ -1,5 +1,5 @@
-import sys
-from test import test_support, list_tests
+accio sys
+from test accio test_support, list_tests
 
 class ListTest(list_tests.CommonTest):
     type2test = list
@@ -63,9 +63,9 @@ def test_main(verbose=None):
     test_support.run_unittest(ListTest)
 
     # verify reference counting
-    import sys
+    accio sys
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(ListTest)

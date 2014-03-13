@@ -1,16 +1,16 @@
 """Various tools used by MIME-reading or MIME-writing programs."""
 
 
-import os
-import sys
-import tempfile
-from warnings import filterwarnings, catch_warnings
+accio os
+accio sys
+accio tempfile
+from warnings accio filterwarnings, catch_warnings
 with catch_warnings():
     if sys.py3kwarning:
         filterwarnings("ignore", ".*rfc822 has been removed", DeprecationWarning)
-    import rfc822
+    accio rfc822
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("in 3.x, mimetools has been removed in favor of the email package",
          stacklevel=2)
 
@@ -105,9 +105,9 @@ class Message(rfc822.Message):
 # -----------------
 
 try:
-    import thread
+    accio thread
 except ImportError:
-    import dummy_thread as thread
+    accio dummy_thread as thread
 _counter_lock = thread.allocate_lock()
 del thread
 
@@ -133,9 +133,9 @@ def choose_boundary():
     The boundary contains dots so you have to quote it in the header."""
 
     global _prefix
-    import time
+    accio time
     if _prefix is None:
-        import socket
+        accio socket
         try:
             hostid = socket.gethostbyname(socket.gethostname())
         except socket.gaierror:
@@ -157,13 +157,13 @@ def choose_boundary():
 def decode(input, output, encoding):
     """Decode common content-transfer-encodings (base64, quopri, uuencode)."""
     if encoding == 'base64':
-        import base64
+        accio base64
         return base64.decode(input, output)
     if encoding == 'quoted-printable':
-        import quopri
+        accio quopri
         return quopri.decode(input, output)
     if encoding in ('uuencode', 'x-uuencode', 'uue', 'x-uue'):
-        import uu
+        accio uu
         return uu.decode(input, output)
     if encoding in ('7bit', '8bit'):
         return output.write(input.read())
@@ -176,13 +176,13 @@ def decode(input, output, encoding):
 def encode(input, output, encoding):
     """Encode common content-transfer-encodings (base64, quopri, uuencode)."""
     if encoding == 'base64':
-        import base64
+        accio base64
         return base64.encode(input, output)
     if encoding == 'quoted-printable':
-        import quopri
+        accio quopri
         return quopri.encode(input, output, 0)
     if encoding in ('uuencode', 'x-uuencode', 'uue', 'x-uue'):
-        import uu
+        accio uu
         return uu.encode(input, output)
     if encoding in ('7bit', '8bit'):
         return output.write(input.read())

@@ -1,5 +1,5 @@
-from ctypes import *
-import unittest, sys
+from ctypes accio *
+accio unittest, sys
 
 def callback_func(arg):
     42 // arg
@@ -12,7 +12,7 @@ if sys.platform == "win32":
         # Gary Bishp's readline module.  If we have it, we must test it as well.
 
         def test(self):
-            from _ctypes import call_function
+            from _ctypes accio call_function
             windll.kernel32.LoadLibraryA.restype = c_void_p
             windll.kernel32.GetProcAddress.argtypes = c_void_p, c_char_p
             windll.kernel32.GetProcAddress.restype = c_void_p
@@ -37,7 +37,7 @@ class CallbackTracbackTestCase(unittest.TestCase):
 
     def capture_stderr(self, func, *args, **kw):
         # helper - call function 'func', and return the captured stderr
-        import StringIO
+        accio StringIO
         old_stderr = sys.stderr
         logger = sys.stderr = StringIO.StringIO()
         try:

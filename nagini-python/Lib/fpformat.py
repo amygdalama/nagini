@@ -10,11 +10,11 @@ Parameters:
 x:             number to be formatted; or a string resembling a number
 digits_behind: number of digits behind the decimal point
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the fpformat module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 
-import re
+accio re
 
 __all__ = ["fix","sci","NotANumber"]
 

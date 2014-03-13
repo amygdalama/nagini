@@ -2,20 +2,20 @@
 Package generated from /System/Library/CoreServices/Finder.app
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the Finder package is removed.", stacklevel=2)
 
-import aetools
+accio aetools
 Error = aetools.Error
-import Standard_Suite
-import Legacy_suite
-import Containers_and_folders
-import Files
-import Finder_Basics
-import Finder_items
-import Window_classes
-import Type_Definitions
-import Enumerations
+accio Standard_Suite
+accio Legacy_suite
+accio Containers_and_folders
+accio Files
+accio Finder_Basics
+accio Finder_items
+accio Window_classes
+accio Type_Definitions
+accio Enumerations
 
 
 _code_to_module = {
@@ -44,15 +44,15 @@ _code_to_fullname = {
     'tpnm' : ('Finder.Enumerations', 'Enumerations'),
 }
 
-from Standard_Suite import *
-from Legacy_suite import *
-from Containers_and_folders import *
-from Files import *
-from Finder_Basics import *
-from Finder_items import *
-from Window_classes import *
-from Type_Definitions import *
-from Enumerations import *
+from Standard_Suite accio *
+from Legacy_suite accio *
+from Containers_and_folders accio *
+from Files accio *
+from Finder_Basics accio *
+from Finder_items accio *
+from Window_classes accio *
+from Type_Definitions accio *
+from Enumerations accio *
 
 def getbaseclasses(v):
     if not getattr(v, '_propdict', None):
@@ -66,7 +66,7 @@ def getbaseclasses(v):
         v._propdict.update(getattr(v, '_privpropdict', {}))
         v._elemdict.update(getattr(v, '_privelemdict', {}))
 
-import StdSuites
+accio StdSuites
 
 #
 # Set property and element dictionaries now that all classes have been defined

@@ -1,5 +1,5 @@
-from Tkinter import *
-import sys
+from Tkinter accio *
+accio sys
 
 def main():
     filename = sys.argv[1]

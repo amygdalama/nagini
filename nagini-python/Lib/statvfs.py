@@ -1,5 +1,5 @@
 """Constants for interpreting the results of os.statvfs() and os.fstatvfs()."""
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the statvfs module has been removed in Python 3.0", stacklevel=2)
 del warnpy3k
 

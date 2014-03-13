@@ -14,18 +14,18 @@ The defaults are (currently) tuned to scanning Apple Macintosh header files,
 although most Mac specific details are contained in header-specific subclasses.
 """
 
-import re
-import sys
-import os
-import fnmatch
-from types import *
+accio re
+accio sys
+accio os
+accio fnmatch
+from types accio *
 try:
-    import MacOS
+    accio MacOS
 except ImportError:
     MacOS = None
 
 try:
-    from bgenlocations import CREATOR, INCLUDEDIR
+    from bgenlocations accio CREATOR, INCLUDEDIR
 except ImportError:
     CREATOR = None
     INCLUDEDIR = os.curdir

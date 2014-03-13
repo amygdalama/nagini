@@ -1,5 +1,5 @@
-from test.test_support import have_unicode, run_unittest
-import unittest
+from test.test_support accio have_unicode, run_unittest
+accio unittest
 
 
 class base_set:

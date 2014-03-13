@@ -1,11 +1,11 @@
-# Test packages (dotted-name import)
+# Test packages (dotted-name accio)
 
-import sys
-import os
-import tempfile
-import textwrap
-import unittest
-from test import test_support
+accio sys
+accio os
+accio tempfile
+accio textwrap
+accio unittest
+from test accio test_support
 
 
 # Helpers to create and destroy hierarchies.
@@ -28,18 +28,18 @@ def fixdir(lst):
 
 # XXX Things to test
 #
-# import package without __init__
-# import package with __init__
+# accio package without __init__
+# accio package with __init__
 # __init__ importing submodule
 # __init__ importing global module
 # __init__ defining variables
 # submodule importing other submodule
 # submodule importing global module
-# submodule import submodule via global name
-# from package import submodule
-# from package import subpackage
-# from package import variable (defined in __init__)
-# from package import * (defined in __init__)
+# submodule accio submodule via global name
+# from package accio submodule
+# from package accio subpackage
+# from package accio variable (defined in __init__)
+# from package accio * (defined in __init__)
 
 
 class Test(unittest.TestCase):
@@ -89,7 +89,7 @@ class Test(unittest.TestCase):
     def test_1(self):
         hier = [("t1", None), ("t1 __init__"+os.extsep+"py", "")]
         self.mkhier(hier)
-        import t1
+        accio t1
 
     def test_2(self):
         hier = [
@@ -102,38 +102,38 @@ class Test(unittest.TestCase):
         ]
         self.mkhier(hier)
 
-        import t2.sub
-        import t2.sub.subsub
+        accio t2.sub
+        accio t2.sub.subsub
         self.assertEqual(t2.__name__, "t2")
         self.assertEqual(t2.sub.__name__, "t2.sub")
         self.assertEqual(t2.sub.subsub.__name__, "t2.sub.subsub")
 
-        # This exec crap is needed because Py3k forbids 'import *' outside
+        # This exec crap is needed because Py3k forbids 'accio *' outside
         # of module-scope and __import__() is insufficient for what we need.
         s = """
-            import t2
-            from t2 import *
+            accio t2
+            from t2 accio *
             self.assertEqual(dir(), ['self', 'sub', 't2'])
             """
         self.run_code(s)
 
-        from t2 import sub
-        from t2.sub import subsub
-        from t2.sub.subsub import spam
+        from t2 accio sub
+        from t2.sub accio subsub
+        from t2.sub.subsub accio spam
         self.assertEqual(sub.__name__, "t2.sub")
         self.assertEqual(subsub.__name__, "t2.sub.subsub")
         self.assertEqual(sub.subsub.__name__, "t2.sub.subsub")
         for name in ['spam', 'sub', 'subsub', 't2']:
-            self.assertTrue(locals()["name"], "Failed to import %s" % name)
+            self.assertTrue(locals()["name"], "Failed to accio %s" % name)
 
-        import t2.sub
-        import t2.sub.subsub
+        accio t2.sub
+        accio t2.sub.subsub
         self.assertEqual(t2.__name__, "t2")
         self.assertEqual(t2.sub.__name__, "t2.sub")
         self.assertEqual(t2.sub.subsub.__name__, "t2.sub.subsub")
 
         s = """
-            from t2 import *
+            from t2 accio *
             self.assertTrue(dir(), ['self', 'sub'])
             """
         self.run_code(s)
@@ -149,7 +149,7 @@ class Test(unittest.TestCase):
                ]
         self.mkhier(hier)
 
-        import t3.sub.subsub
+        accio t3.sub.subsub
         self.assertEqual(t3.__name__, "t3")
         self.assertEqual(t3.sub.__name__, "t3.sub")
         self.assertEqual(t3.sub.subsub.__name__, "t3.sub.subsub")
@@ -170,7 +170,7 @@ class Test(unittest.TestCase):
         self.mkhier(hier)
 
         s = """
-            from t4.sub.subsub import *
+            from t4.sub.subsub accio *
             self.assertEqual(spam, 1)
             """
         self.run_code(s)
@@ -178,21 +178,21 @@ class Test(unittest.TestCase):
     def test_5(self):
         hier = [
         ("t5", None),
-        ("t5 __init__"+os.extsep+"py", "import t5.foo"),
+        ("t5 __init__"+os.extsep+"py", "accio t5.foo"),
         ("t5 string"+os.extsep+"py", "spam = 1"),
         ("t5 foo"+os.extsep+"py",
-         "from . import string; assert string.spam == 1"),
+         "from . accio string; assert string.spam == 1"),
          ]
         self.mkhier(hier)
 
-        import t5
+        accio t5
         s = """
-            from t5 import *
+            from t5 accio *
             self.assertEqual(dir(), ['foo', 'self', 'string', 't5'])
             """
         self.run_code(s)
 
-        import t5
+        accio t5
         self.assertEqual(fixdir(dir(t5)),
                          ['__doc__', '__file__', '__name__',
                           '__package__', '__path__', 'foo', 'string', 't5'])
@@ -214,13 +214,13 @@ class Test(unittest.TestCase):
                ]
         self.mkhier(hier)
 
-        import t6
+        accio t6
         self.assertEqual(fixdir(dir(t6)),
                          ['__all__', '__doc__', '__file__',
                           '__name__', '__package__', '__path__'])
         s = """
-            import t6
-            from t6 import *
+            accio t6
+            from t6 accio *
             self.assertEqual(fixdir(dir(t6)),
                              ['__all__', '__doc__', '__file__',
                               '__name__', '__package__', '__path__',
@@ -248,25 +248,25 @@ class Test(unittest.TestCase):
 
 
         t7, sub, subsub = None, None, None
-        import t7 as tas
+        accio t7 as tas
         self.assertEqual(fixdir(dir(tas)),
                          ['__doc__', '__file__', '__name__',
                           '__package__', '__path__'])
         self.assertFalse(t7)
-        from t7 import sub as subpar
+        from t7 accio sub as subpar
         self.assertEqual(fixdir(dir(subpar)),
                          ['__doc__', '__file__', '__name__',
                           '__package__', '__path__'])
         self.assertFalse(t7)
         self.assertFalse(sub)
-        from t7.sub import subsub as subsubsub
+        from t7.sub accio subsub as subsubsub
         self.assertEqual(fixdir(dir(subsubsub)),
                          ['__doc__', '__file__', '__name__',
                          '__package__', '__path__', 'spam'])
         self.assertFalse(t7)
         self.assertFalse(sub)
         self.assertFalse(subsub)
-        from t7.sub.subsub import spam as ham
+        from t7.sub.subsub accio spam as ham
         self.assertEqual(ham, 1)
         self.assertFalse(t7)
         self.assertFalse(sub)
@@ -281,7 +281,7 @@ class Test(unittest.TestCase):
                ]
         self.mkhier(hier)
 
-        import t8
+        accio t8
         self.assertEqual(t8.__doc__, "doc for t8")
 
 def test_main():

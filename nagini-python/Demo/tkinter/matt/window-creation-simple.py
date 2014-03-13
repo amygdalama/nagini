@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # this shows how to spawn off new windows at a button press
 

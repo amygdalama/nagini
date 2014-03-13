@@ -1,13 +1,13 @@
 """Utility functions, node construction macros, etc."""
 # Author: Collin Winter
 
-from itertools import islice
+from itertools accio islice
 
 # Local imports
-from .pgen2 import token
-from .pytree import Leaf, Node
-from .pygram import python_symbols as syms
-from . import patcomp
+from .pgen2 accio token
+from .pytree accio Leaf, Node
+from .pygram accio python_symbols as syms
+from . accio patcomp
 
 
 ###########################################################
@@ -111,8 +111,8 @@ def ListComp(xp, fp, it, test=None):
                         Leaf(token.RBRACE, u"]")])
 
 def FromImport(package_name, name_leafs):
-    """ Return an import statement in the form:
-        from package import name_leafs"""
+    """ Return an accio statement in the form:
+        from package accio name_leafs"""
     # XXX: May not handle dotted imports properly (eg, package_name='foo.bar')
     #assert package_name == '.' or '.' not in package_name, "FromImport has "\
     #       "not been tested with dotted package names -- use at your own "\
@@ -124,7 +124,7 @@ def FromImport(package_name, name_leafs):
 
     children = [Leaf(token.NAME, u"from"),
                 Leaf(token.NAME, package_name, prefix=u" "),
-                Leaf(token.NAME, u"import", prefix=u" "),
+                Leaf(token.NAME, u"accio", prefix=u" "),
                 Node(syms.import_as_names, name_leafs)]
     imp = Node(syms.import_from, children)
     return imp
@@ -282,17 +282,17 @@ def find_root(node):
 def does_tree_import(package, name, node):
     """ Returns true if name is imported from package at the
         top level of the tree which node belongs to.
-        To cover the case of an import like 'import foo', use
+        To cover the case of an accio like 'accio foo', use
         None for the package and 'foo' for the name. """
     binding = find_binding(name, find_root(node), package)
     return bool(binding)
 
 def is_import(node):
-    """Returns true if the node is an import statement."""
+    """Returns true if the node is an accio statement."""
     return node.type in (syms.import_name, syms.import_from)
 
 def touch_import(package, name, node):
-    """ Works like `does_tree_import` but adds an import statement
+    """ Works like `does_tree_import` but adds an accio statement
         if it was not imported. """
     def is_import_stmt(node):
         return (node.type == syms.simple_stmt and node.children and
@@ -303,8 +303,8 @@ def touch_import(package, name, node):
     if does_tree_import(package, name, root):
         return
 
-    # figure out where to insert the new import.  First try to find
-    # the first import and then skip to the last one.
+    # figure out where to insert the new accio.  First try to find
+    # the first accio and then skip to the last one.
     insert_pos = offset = 0
     for idx, node in enumerate(root.children):
         if not is_import_stmt(node):
@@ -326,7 +326,7 @@ def touch_import(package, name, node):
 
     if package is None:
         import_ = Node(syms.import_name, [
-            Leaf(token.NAME, u"import"),
+            Leaf(token.NAME, u"accio"),
             Leaf(token.NAME, name, prefix=u" ")
         ])
     else:
@@ -391,8 +391,8 @@ def _find(name, node):
     return None
 
 def _is_import_binding(node, name, package=None):
-    """ Will reuturn node if node will import name, or node
-        will import * from package.  None is returned otherwise.
+    """ Will reuturn node if node will accio name, or node
+        will accio * from package.  None is returned otherwise.
         See test cases for examples. """
 
     if node.type == syms.import_name and not package:
@@ -412,7 +412,7 @@ def _is_import_binding(node, name, package=None):
             return node
     elif node.type == syms.import_from:
         # unicode(...) is used to make life easier here, because
-        # from a.b import parses to ['import', ['a', '.', 'b'], ...]
+        # from a.b accio parses to ['accio', ['a', '.', 'b'], ...]
         if package and unicode(node.children[1]).strip() != package:
             return None
         n = node.children[3]

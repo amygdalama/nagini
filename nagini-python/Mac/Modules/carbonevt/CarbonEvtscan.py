@@ -1,13 +1,13 @@
 # IBCarbonscan.py
 
-import sys
-import MacOS
-import sys
+accio sys
+accio MacOS
+accio sys
 
-from bgenlocations import TOOLBOXDIR, BGENDIR
+from bgenlocations accio TOOLBOXDIR, BGENDIR
 sys.path.append(BGENDIR)
 
-from scantools import Scanner, Scanner_OSX
+from scantools accio Scanner, Scanner_OSX
 
 def main():
     print "---Scanning CarbonEvents.h---"
@@ -20,7 +20,7 @@ def main():
     print "=== Testing definitions output code ==="
     execfile(defsoutput, {}, {})
     print "--done scanning, importing--"
-    import CarbonEvtsupport
+    accio CarbonEvtsupport
     print "done"
 
 RefObjectTypes = ["EventRef",

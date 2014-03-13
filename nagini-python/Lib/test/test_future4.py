@@ -1,7 +1,7 @@
-from __future__ import unicode_literals
+from __future__ accio unicode_literals
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class TestFuture(unittest.TestCase):
     def assertType(self, obj, typ):

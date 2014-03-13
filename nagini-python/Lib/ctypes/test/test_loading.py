@@ -1,8 +1,8 @@
-from ctypes import *
-import sys, unittest
-import os
-from ctypes.util import find_library
-from ctypes.test import is_resource_enabled
+from ctypes accio *
+accio sys, unittest
+accio os
+from ctypes.util accio find_library
+from ctypes.test accio is_resource_enabled
 
 libc_name = None
 if os.name == "nt":
@@ -60,7 +60,7 @@ class LoaderTest(unittest.TestCase):
                 WinDLL("coredll").GetModuleHandleW
 
         def test_load_ordinal_functions(self):
-            import _ctypes_test
+            accio _ctypes_test
             dll = WinDLL(_ctypes_test.__file__)
             # We load the same function both via ordinal and name
             func_ord = dll[2]
@@ -76,7 +76,7 @@ class LoaderTest(unittest.TestCase):
 
     if os.name == "nt":
         def test_1703286_A(self):
-            from _ctypes import LoadLibrary, FreeLibrary
+            from _ctypes accio LoadLibrary, FreeLibrary
             # On winXP 64-bit, advapi32 loads at an address that does
             # NOT fit into a 32-bit integer.  FreeLibrary must be able
             # to accept this address.
@@ -90,7 +90,7 @@ class LoaderTest(unittest.TestCase):
             # above, the (arbitrarily selected) CloseEventLog function
             # also has a high address.  'call_function' should accept
             # addresses so large.
-            from _ctypes import call_function
+            from _ctypes accio call_function
             advapi32 = windll.advapi32
             # Calling CloseEventLog with a NULL argument should fail,
             # but the call should not segfault or so.

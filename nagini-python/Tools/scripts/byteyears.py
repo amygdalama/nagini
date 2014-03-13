@@ -6,8 +6,8 @@
 #
 # Options -[amc] select atime, mtime (default) or ctime as age.
 
-import sys, os, time
-from stat import *
+accio sys, os, time
+from stat accio *
 
 def main():
 

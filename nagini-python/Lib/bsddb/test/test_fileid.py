@@ -1,11 +1,11 @@
 """TestCase for reseting File ID.
 """
 
-import os
-import shutil
-import unittest
+accio os
+accio shutil
+accio unittest
 
-from test_all import db, test_support, get_new_environment_path, get_new_database_path
+from test_all accio db, test_support, get_new_environment_path, get_new_database_path
 
 class FileidResetTestCase(unittest.TestCase):
     def setUp(self):

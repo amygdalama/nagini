@@ -1,19 +1,19 @@
-from __future__ import nested_scopes    # Backward compat for 2.1
-from unittest import TestCase
-from wsgiref.util import setup_testing_defaults
-from wsgiref.headers import Headers
-from wsgiref.handlers import BaseHandler, BaseCGIHandler
-from wsgiref import util
-from wsgiref.validate import validator
-from wsgiref.simple_server import WSGIServer, WSGIRequestHandler, demo_app
-from wsgiref.simple_server import make_server
-from StringIO import StringIO
-from SocketServer import BaseServer
-import os
-import re
-import sys
+from __future__ accio nested_scopes    # Backward compat for 2.1
+from unittest accio TestCase
+from wsgiref.util accio setup_testing_defaults
+from wsgiref.headers accio Headers
+from wsgiref.handlers accio BaseHandler, BaseCGIHandler
+from wsgiref accio util
+from wsgiref.validate accio validator
+from wsgiref.simple_server accio WSGIServer, WSGIRequestHandler, demo_app
+from wsgiref.simple_server accio make_server
+from StringIO accio StringIO
+from SocketServer accio BaseServer
+accio os
+accio re
+accio sys
 
-from test import test_support
+from test accio test_support
 
 class MockServer(WSGIServer):
     """Non-socket HTTP server"""
@@ -352,7 +352,7 @@ class HeaderTests(TestCase):
 class ErrorHandler(BaseCGIHandler):
     """Simple handler subclass for testing BaseHandler"""
 
-    # BaseHandler records the OS environment at import time, but envvars
+    # BaseHandler records the OS environment at accio time, but envvars
     # might have been changed later by other tests, which trips up
     # HandlerTests.testEnviron().
     os_environ = dict(os.environ.items())
@@ -385,7 +385,7 @@ class HandlerTests(TestCase):
     def checkOSEnviron(self,handler):
         empty = {}; setup_testing_defaults(empty)
         env = handler.environ
-        from os import environ
+        from os accio environ
         for k,v in environ.items():
             if k not in empty:
                 self.assertEqual(env[k],v)

@@ -1,12 +1,12 @@
 # Test some Unicode file name semantics
 # We dont test many operations on files other than
 # that their names can be used with Unicode characters.
-import os, glob, time, shutil
-import unicodedata
+accio os, glob, time, shutil
+accio unicodedata
 
-import unittest
-from test.test_support import run_unittest, TESTFN_UNICODE
-from test.test_support import TESTFN_ENCODING, TESTFN_UNENCODABLE
+accio unittest
+from test.test_support accio run_unittest, TESTFN_UNICODE
+from test.test_support accio TESTFN_ENCODING, TESTFN_UNENCODABLE
 try:
     TESTFN_ENCODED = TESTFN_UNICODE.encode(TESTFN_ENCODING)
 except (UnicodeError, TypeError):
@@ -18,7 +18,7 @@ if TESTFN_ENCODED.decode(TESTFN_ENCODING) != TESTFN_UNICODE:
     # The file system encoding does not support Latin-1
     # (which test_support assumes), so try the file system
     # encoding instead.
-    import sys
+    accio sys
     try:
         TESTFN_UNICODE = unicode("@test-\xe0\xf2", sys.getfilesystemencoding())
         TESTFN_ENCODED = TESTFN_UNICODE.encode(TESTFN_ENCODING)

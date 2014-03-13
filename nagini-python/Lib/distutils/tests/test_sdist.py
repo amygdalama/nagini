@@ -1,40 +1,40 @@
 """Tests for distutils.command.sdist."""
-import os
-import tarfile
-import unittest
-import warnings
-import zipfile
-from os.path import join
-from textwrap import dedent
-from test.test_support import captured_stdout, check_warnings, run_unittest
+accio os
+accio tarfile
+accio unittest
+accio warnings
+accio zipfile
+from os.path accio join
+from textwrap accio dedent
+from test.test_support accio captured_stdout, check_warnings, run_unittest
 
 # zlib is not used here, but if it's not available
 # the tests that use zipfile may fail
 try:
-    import zlib
+    accio zlib
 except ImportError:
     zlib = None
 
 try:
-    import grp
-    import pwd
+    accio grp
+    accio pwd
     UID_GID_SUPPORT = True
 except ImportError:
     UID_GID_SUPPORT = False
 
 
-from distutils.command.sdist import sdist, show_formats
-from distutils.core import Distribution
-from distutils.tests.test_config import PyPIRCCommandTestCase
-from distutils.errors import DistutilsOptionError
-from distutils.spawn import find_executable
-from distutils.log import WARN
-from distutils.filelist import FileList
-from distutils.archive_util import ARCHIVE_FORMATS
+from distutils.command.sdist accio sdist, show_formats
+from distutils.core accio Distribution
+from distutils.tests.test_config accio PyPIRCCommandTestCase
+from distutils.errors accio DistutilsOptionError
+from distutils.spawn accio find_executable
+from distutils.log accio WARN
+from distutils.filelist accio FileList
+from distutils.archive_util accio ARCHIVE_FORMATS
 
 SETUP_PY = """
-from distutils.core import setup
-import somecode
+from distutils.core accio setup
+accio somecode
 
 setup(name='fake')
 """

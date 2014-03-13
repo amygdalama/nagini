@@ -1,16 +1,16 @@
-import unittest
-import pickle
-import cPickle
-import StringIO
-import cStringIO
-import pickletools
-import copy_reg
+accio unittest
+accio pickle
+accio cPickle
+accio StringIO
+accio cStringIO
+accio pickletools
+accio copy_reg
 
-from test.test_support import TestFailed, verbose, have_unicode, TESTFN
+from test.test_support accio TestFailed, verbose, have_unicode, TESTFN
 try:
-    from test.test_support import _2G, _1M, precisionbigmemtest
+    from test.test_support accio _2G, _1M, precisionbigmemtest
 except ImportError:
-    # this import might fail when run on older Python versions by test_xpickle
+    # this accio might fail when run on older Python versions by test_xpickle
     _2G = _1M = 0
     def precisionbigmemtest(*args, **kwargs):
         return lambda self: None
@@ -29,7 +29,7 @@ def run_with_locale(catstr, *locales):
     def decorator(func):
         def inner(*args, **kwds):
             try:
-                import locale
+                accio locale
                 category = getattr(locale, catstr)
                 orig_locale = locale.setlocale(category)
             except AttributeError:
@@ -108,7 +108,7 @@ class C:
     def __cmp__(self, other):
         return cmp(self.__dict__, other.__dict__)
 
-import __main__
+accio __main__
 __main__.C = C
 C.__module__ = "__main__"
 
@@ -468,7 +468,7 @@ class AbstractPickleTests(unittest.TestCase):
     # is a mystery.  cPickle also suppresses PUT for objects with a refcount
     # of 1.
     def dont_test_disassembly(self):
-        from pickletools import dis
+        from pickletools accio dis
 
         for proto, expected in (0, DATA0_DIS), (1, DATA1_DIS):
             s = self.dumps(self._testdata, proto)
@@ -566,7 +566,7 @@ class AbstractPickleTests(unittest.TestCase):
                 self.assertEqual(t2, t)
 
     def test_ints(self):
-        import sys
+        accio sys
         for proto in protocols:
             n = sys.maxint
             while n:
@@ -642,8 +642,8 @@ class AbstractPickleTests(unittest.TestCase):
             self.assertEqual(a, b)
 
     def test_structseq(self):
-        import time
-        import os
+        accio time
+        accio os
 
         t = time.localtime()
         for proto in protocols:
@@ -1080,7 +1080,7 @@ class SimpleNewObj(object):
 class AbstractPickleModuleTests(unittest.TestCase):
 
     def test_dump_closed_file(self):
-        import os
+        accio os
         f = open(TESTFN, "w")
         try:
             f.close()
@@ -1089,7 +1089,7 @@ class AbstractPickleModuleTests(unittest.TestCase):
             os.remove(TESTFN)
 
     def test_load_closed_file(self):
-        import os
+        accio os
         f = open(TESTFN, "w")
         try:
             f.close()

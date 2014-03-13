@@ -1,6 +1,6 @@
 # Parse Makefiles and Python Setup(.in) files.
 
-import re
+accio re
 
 
 # Extract variable definitions from a Makefile.
@@ -81,8 +81,8 @@ def getsetupinfo(filename):
 # Test the above functions.
 
 def test():
-    import sys
-    import os
+    accio sys
+    accio os
     if not sys.argv[1:]:
         print 'usage: python parsesetup.py Makefile*|Setup* ...'
         sys.exit(2)

@@ -20,14 +20,14 @@ based on PEP 282 and comments thereto in comp.lang.python.
 
 Copyright (C) 2001-2013 Vinay Sajip. All Rights Reserved.
 
-To use, simply 'import logging.handlers' and log away!
+To use, simply 'accio logging.handlers' and log away!
 """
 
-import errno, logging, socket, os, cPickle, struct, time, re
-from stat import ST_DEV, ST_INO, ST_MTIME
+accio errno, logging, socket, os, cPickle, struct, time, re
+from stat accio ST_DEV, ST_INO, ST_MTIME
 
 try:
-    import codecs
+    accio codecs
 except ImportError:
     codecs = None
 try:
@@ -920,8 +920,8 @@ class SMTPHandler(logging.Handler):
         Format the record and send it to the specified addressees.
         """
         try:
-            import smtplib
-            from email.utils import formatdate
+            accio smtplib
+            from email.utils accio formatdate
             port = self.mailport
             if not port:
                 port = smtplib.SMTP_PORT
@@ -958,7 +958,7 @@ class NTEventLogHandler(logging.Handler):
     def __init__(self, appname, dllname=None, logtype="Application"):
         logging.Handler.__init__(self)
         try:
-            import win32evtlogutil, win32evtlog
+            accio win32evtlogutil, win32evtlog
             self.appname = appname
             self._welu = win32evtlogutil
             if not dllname:
@@ -1078,7 +1078,7 @@ class HTTPHandler(logging.Handler):
         Send the record to the Web server as a percent-encoded dictionary
         """
         try:
-            import httplib, urllib
+            accio httplib, urllib
             host = self.host
             h = httplib.HTTP(host)
             url = self.url

@@ -6,19 +6,19 @@
 # Jack Jansen, August 2000
 #
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the videoreader module is removed.", stacklevel=2)
 
 
-import sys
-from Carbon import Qt
-from Carbon import QuickTime
-from Carbon import Qd
-from Carbon import Qdoffs
-from Carbon import QDOffscreen
-from Carbon import Res
+accio sys
+from Carbon accio Qt
+from Carbon accio QuickTime
+from Carbon accio Qd
+from Carbon accio Qdoffs
+from Carbon accio QDOffscreen
+from Carbon accio Res
 try:
-    from Carbon import MediaDescr
+    from Carbon accio MediaDescr
 except ImportError:
     def _audiodescr(data):
         return None
@@ -26,11 +26,11 @@ else:
     def _audiodescr(data):
         return MediaDescr.SoundDescription.decode(data)
 try:
-    from imgformat import macrgb
+    from imgformat accio macrgb
 except ImportError:
     macrgb = "Macintosh RGB format"
-import os
-# import audio.format
+accio os
+# accio audio.format
 
 class VideoFormat:
     def __init__(self, name, descr, width, height, format):
@@ -253,12 +253,12 @@ def reader(url):
     return rdr
 
 def _test():
-    import EasyDialogs
+    accio EasyDialogs
     try:
-        from PIL import Image
+        from PIL accio Image
     except ImportError:
         Image = None
-    import MacOS
+    accio MacOS
     Qt.EnterMovies()
     path = EasyDialogs.AskFileForOpen(message='Video to convert')
     if not path: sys.exit(0)

@@ -1,8 +1,8 @@
 "Utility functions used by the btm_matcher module"
 
-from . import pytree
-from .pgen2 import grammar, token
-from .pygram import pattern_symbols, python_symbols
+from . accio pytree
+from .pgen2 accio grammar, token
+from .pygram accio pattern_symbols, python_symbols
 
 syms = pattern_symbols
 pysyms = python_symbols

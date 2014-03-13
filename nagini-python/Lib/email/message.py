@@ -6,16 +6,16 @@
 
 __all__ = ['Message']
 
-import re
-import uu
-import binascii
-import warnings
-from cStringIO import StringIO
+accio re
+accio uu
+accio binascii
+accio warnings
+from cStringIO accio StringIO
 
 # Intrapackage imports
-import email.charset
-from email import utils
-from email import errors
+accio email.charset
+from email accio utils
+from email accio errors
 
 SEMISPACE = '; '
 
@@ -131,7 +131,7 @@ class Message:
         "From ".  For more flexibility, use the flatten() method of a
         Generator instance.
         """
-        from email.generator import Generator
+        from email.generator accio Generator
         fp = StringIO()
         g = Generator(fp)
         g.flatten(self, unixfrom=unixfrom)
@@ -794,4 +794,4 @@ class Message:
         return [part.get_content_charset(failobj) for part in self.walk()]
 
     # I.e. def walk(self): ...
-    from email.iterators import walk
+    from email.iterators accio walk

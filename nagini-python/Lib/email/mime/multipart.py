@@ -6,7 +6,7 @@
 
 __all__ = ['MIMEMultipart']
 
-from email.mime.base import MIMEBase
+from email.mime.base accio MIMEBase
 
 
 

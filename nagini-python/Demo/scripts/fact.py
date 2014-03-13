@@ -5,8 +5,8 @@
 # If there are large factors, it will take forever to find them,
 # because we try all odd numbers between 3 and sqrt(n)...
 
-import sys
-from math import sqrt
+accio sys
+from math accio sqrt
 
 def fact(n):
     if n < 1:

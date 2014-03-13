@@ -1,8 +1,8 @@
-import unittest, operator, copy, pickle, random
-from test import test_support
+accio unittest, operator, copy, pickle, random
+from test accio test_support
 
 test_support.import_module("sets", deprecated=True)
-from sets import Set, ImmutableSet
+from sets accio Set, ImmutableSet
 
 empty_set = Set()
 
@@ -790,7 +790,7 @@ class TestIdentities(unittest.TestCase):
 libreftest = """
 Example from the Library Reference:  Doc/lib/libsets.tex
 
->>> from sets import Set as Base  # override _repr to get sorted output
+>>> from sets accio Set as Base  # override _repr to get sorted output
 >>> class Set(Base):
 ...     def _repr(self):
 ...         return Base._repr(self, sorted=True)
@@ -823,8 +823,8 @@ Set(['Jack', 'Jane', 'Janice', 'John', 'Marvin', 'Sam', 'Zack'])
 __test__ = {'libreftest' : libreftest}
 
 def test_main(verbose=None):
-    import doctest
-    from test import test_sets
+    accio doctest
+    from test accio test_sets
     test_support.run_unittest(
         TestSetOfSets,
         TestExceptionPropagation,

@@ -2,12 +2,12 @@
 TestCases for checking dbShelve objects.
 """
 
-import os, string, sys
-import random
-import unittest
+accio os, string, sys
+accio random
+accio unittest
 
 
-from test_all import db, dbshelve, test_support, verbose, \
+from test_all accio db, dbshelve, test_support, verbose, \
         get_new_environment_path, get_new_database_path
 
 
@@ -38,14 +38,14 @@ class DBShelveTestCase(unittest.TestCase):
 
     def setUp(self):
         if sys.version_info[0] >= 3 :
-            from test_all import do_proxy_db_py3k
+            from test_all accio do_proxy_db_py3k
             self._flag_proxy_db_py3k = do_proxy_db_py3k(False)
         self.filename = get_new_database_path()
         self.do_open()
 
     def tearDown(self):
         if sys.version_info[0] >= 3 :
-            from test_all import do_proxy_db_py3k
+            from test_all accio do_proxy_db_py3k
             do_proxy_db_py3k(self._flag_proxy_db_py3k)
         self.do_close()
         test_support.unlink(self.filename)
@@ -238,7 +238,7 @@ class DBShelveTestCase(unittest.TestCase):
 
         elif key[0] == 'O':
             if sys.version_info[0] < 3 :
-                from types import InstanceType
+                from types accio InstanceType
                 self.assertEqual(type(value), InstanceType)
             else :
                 self.assertEqual(type(value), DataClass)
@@ -305,7 +305,7 @@ class BasicEnvShelveTestCase(DBShelveTestCase):
 
     def tearDown(self):
         if sys.version_info[0] >= 3 :
-            from test_all import do_proxy_db_py3k
+            from test_all accio do_proxy_db_py3k
             do_proxy_db_py3k(self._flag_proxy_db_py3k)
         self.do_close()
         test_support.rmtree(self.homeDir)

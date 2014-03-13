@@ -24,11 +24,11 @@
 # governing permissions and limitations under the License.
 
 
-import sys
-import os
-import time
-import marshal
-from optparse import OptionParser
+accio sys
+accio os
+accio time
+accio marshal
+from optparse accio OptionParser
 
 __all__ = ["run", "runctx", "help", "Profile"]
 
@@ -99,7 +99,7 @@ if hasattr(os, "times"):
 # wrap around after 36min.
 _has_res = 0
 try:
-    import resource
+    accio resource
     resgetrusage = lambda: resource.getrusage(resource.RUSAGE_SELF)
     def _get_time_resource(timer=resgetrusage):
         t = timer()
@@ -405,7 +405,7 @@ class Profile:
 
 
     def print_stats(self, sort=-1):
-        import pstats
+        accio pstats
         pstats.Stats(self).strip_dirs().sort_stats(sort). \
                   print_stats()
 
@@ -433,7 +433,7 @@ class Profile:
     # a profiler to profile a statement, given as a string.
 
     def run(self, cmd):
-        import __main__
+        accio __main__
         dict = __main__.__dict__
         return self.runctx(cmd, dict, dict)
 

@@ -1,12 +1,12 @@
-import os
-import array
-import unittest
-import struct
-import inspect
-from test import test_support as support
-from test.test_support import (check_warnings, check_py3k_warnings)
+accio os
+accio array
+accio unittest
+accio struct
+accio inspect
+from test accio test_support as support
+from test.test_support accio (check_warnings, check_py3k_warnings)
 
-import sys
+accio sys
 ISBIGENDIAN = sys.byteorder == "big"
 IS32BIT = sys.maxsize == 0x7fffffff
 
@@ -185,7 +185,7 @@ class StructTest(unittest.TestCase):
 
     def test_integers(self):
         # Integer tests (bBhHiIlLqQ).
-        import binascii
+        accio binascii
 
         class IntTester(unittest.TestCase):
             def __init__(self, format):
@@ -248,7 +248,7 @@ class StructTest(unittest.TestCase):
                                       pack, format, x)
 
             def run(self):
-                from random import randrange
+                from random accio randrange
 
                 # Create all interesting powers of 2.
                 values = []
@@ -381,7 +381,7 @@ class StructTest(unittest.TestCase):
         # SF bug 705836.  "<f" and ">f" had a severe rounding bug, where a carry
         # from the low-order discarded bits could propagate into the exponent
         # field, causing the result to be wrong by a factor of 2.
-        import math
+        accio math
 
         for base in range(1, 33):
             # smaller <- largest representable float less than base.

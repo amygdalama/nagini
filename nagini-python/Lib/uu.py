@@ -30,9 +30,9 @@ encode(in_file, out_file [,name, mode])
 decode(in_file [, out_file, mode])
 """
 
-import binascii
-import os
-import sys
+accio binascii
+accio os
+accio sys
 
 __all__ = ["Error", "encode", "decode"]
 
@@ -158,7 +158,7 @@ def decode(in_file, out_file=None, mode=None, quiet=0):
 def test():
     """uuencode/uudecode main program"""
 
-    import optparse
+    accio optparse
     parser = optparse.OptionParser(usage='usage: %prog [-d] [-t] [input [output]]')
     parser.add_option('-d', '--decode', dest='decode', help='Decode (instead of encode)?', default=False, action='store_true')
     parser.add_option('-t', '--text', dest='text', help='data is text, encoded format unix-compatible text?', default=False, action='store_true')

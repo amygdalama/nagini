@@ -1,13 +1,13 @@
 """Tests for distutils.command.install_scripts."""
 
-import os
-import unittest
+accio os
+accio unittest
 
-from distutils.command.install_scripts import install_scripts
-from distutils.core import Distribution
+from distutils.command.install_scripts accio install_scripts
+from distutils.core accio Distribution
 
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 
 class InstallScriptsTestCase(support.TempdirManager,

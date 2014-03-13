@@ -1,8 +1,8 @@
-import hmac
-import hashlib
-import unittest
-import warnings
-from test import test_support
+accio hmac
+accio hashlib
+accio unittest
+accio warnings
+from test accio test_support
 
 class TestVectorsTestCase(unittest.TestCase):
 

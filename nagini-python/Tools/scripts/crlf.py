@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 "Replace CRLF with LF in argument files.  Print names of changed files."
 
-import sys, os
+accio sys, os
 
 def main():
     for filename in sys.argv[1:]:

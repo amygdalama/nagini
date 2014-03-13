@@ -1,9 +1,9 @@
 """Unit tests for numbers.py."""
 
-import math
-import unittest
-from numbers import Complex, Real, Rational, Integral
-from test import test_support
+accio math
+accio unittest
+from numbers accio Complex, Real, Rational, Integral
+from test accio test_support
 
 class TestNumbers(unittest.TestCase):
     def test_int(self):

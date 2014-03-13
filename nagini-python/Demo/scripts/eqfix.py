@@ -28,11 +28,11 @@
 # NB: by changing only the function fixline() you can turn this
 # into a program for a different change to Python programs...
 
-import sys
-import re
-import os
-from stat import *
-import string
+accio sys
+accio re
+accio os
+from stat accio *
+accio string
 
 err = sys.stderr.write
 dbg = err
@@ -161,7 +161,7 @@ def fix(filename):
     return 0
 
 
-from tokenize import tokenprog
+from tokenize accio tokenprog
 
 match = {'if':':', 'elif':':', 'while':':', 'return':'\n', \
          '(':')', '[':']', '{':'}', '`':'`'}

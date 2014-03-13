@@ -34,13 +34,13 @@ saferepr()
 
 """
 
-import sys as _sys
-import warnings
+accio sys as _sys
+accio warnings
 
 try:
-    from cStringIO import StringIO as _StringIO
+    from cStringIO accio StringIO as _StringIO
 except ImportError:
-    from StringIO import StringIO as _StringIO
+    from StringIO accio StringIO as _StringIO
 
 __all__ = ["pprint","pformat","isreadable","isrecursive","saferepr",
            "PrettyPrinter"]
@@ -330,7 +330,7 @@ def _recursion(object):
 
 
 def _perfcheck(object=None):
-    import time
+    accio time
     if object is None:
         object = [("string", (1, 2), [3, 4], {5: 6, 7: 8})] * 100000
     p = PrettyPrinter()

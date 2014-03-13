@@ -13,7 +13,7 @@ Intentionally no variables are used except for the
 colorloop:
 """
 
-from turtle import *
+from turtle accio *
 
 def main():
     peacecolors = ("red3",  "orange", "yellow",

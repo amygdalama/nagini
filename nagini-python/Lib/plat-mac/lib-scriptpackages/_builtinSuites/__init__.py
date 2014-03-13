@@ -5,11 +5,11 @@ in the Required suite according to the Apple docs, but they often seem to be
 in the Standard suite.
 """
 
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("In 3.x, the _builtinSuites module is removed.", stacklevel=2)
 
-import aetools
-import builtin_Suite
+accio aetools
+accio builtin_Suite
 
 
 _code_to_module = {
@@ -24,7 +24,7 @@ _code_to_fullname = {
         'core' : ('_builtinSuites.builtin_Suite', 'builtin_Suite'),
 }
 
-from builtin_Suite import *
+from builtin_Suite accio *
 
 class _builtinSuites(builtin_Suite_Events,
                 aetools.TalkTo):

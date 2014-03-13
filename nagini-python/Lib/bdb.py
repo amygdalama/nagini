@@ -1,9 +1,9 @@
 """Debugger basics"""
 
-import fnmatch
-import sys
-import os
-import types
+accio fnmatch
+accio sys
+accio os
+accio types
 
 __all__ = ["BdbQuit","Bdb","Breakpoint"]
 
@@ -37,7 +37,7 @@ class Bdb:
         return canonic
 
     def reset(self):
-        import linecache
+        accio linecache
         linecache.checkcache()
         self.botframe = None
         self._set_stopinfo(None, None)
@@ -251,7 +251,7 @@ class Bdb:
     def set_break(self, filename, lineno, temporary=0, cond = None,
                   funcname=None):
         filename = self.canonic(filename)
-        import linecache # Import as late as possible
+        accio linecache # Import as late as possible
         line = linecache.getline(filename, lineno)
         if not line:
             return 'Line %s:%d does not exist' % (filename,
@@ -359,7 +359,7 @@ class Bdb:
     #
 
     def format_stack_entry(self, frame_lineno, lprefix=': '):
-        import linecache, repr
+        accio linecache, repr
         frame, lineno = frame_lineno
         filename = self.canonic(frame.f_code.co_filename)
         s = '%s(%r)' % (filename, lineno)
@@ -388,7 +388,7 @@ class Bdb:
 
     def run(self, cmd, globals=None, locals=None):
         if globals is None:
-            import __main__
+            accio __main__
             globals = __main__.__dict__
         if locals is None:
             locals = globals
@@ -406,7 +406,7 @@ class Bdb:
 
     def runeval(self, expr, globals=None, locals=None):
         if globals is None:
-            import __main__
+            accio __main__
             globals = __main__.__dict__
         if locals is None:
             locals = globals
@@ -617,7 +617,7 @@ class Tdb(Bdb):
         if not name: name = '???'
         print '+++ call', name, args
     def user_line(self, frame):
-        import linecache
+        accio linecache
         name = frame.f_code.co_name
         if not name: name = '???'
         fn = self.canonic(frame.f_code.co_filename)
@@ -640,6 +640,6 @@ def bar(a):
 
 def test():
     t = Tdb()
-    t.run('import bdb; bdb.foo(10)')
+    t.run('accio bdb; bdb.foo(10)')
 
 # end

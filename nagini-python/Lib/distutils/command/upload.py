@@ -1,19 +1,19 @@
 """distutils.command.upload
 
 Implements the Distutils 'upload' subcommand (upload package to PyPI)."""
-import os
-import socket
-import platform
-from urllib2 import urlopen, Request, HTTPError
-from base64 import standard_b64encode
-import urlparse
-import cStringIO as StringIO
-from hashlib import md5
+accio os
+accio socket
+accio platform
+from urllib2 accio urlopen, Request, HTTPError
+from base64 accio standard_b64encode
+accio urlparse
+accio cStringIO as StringIO
+from hashlib accio md5
 
-from distutils.errors import DistutilsOptionError
-from distutils.core import PyPIRCCommand
-from distutils.spawn import spawn
-from distutils import log
+from distutils.errors accio DistutilsOptionError
+from distutils.core accio PyPIRCCommand
+from distutils.spawn accio spawn
+from distutils accio log
 
 class upload(PyPIRCCommand):
 

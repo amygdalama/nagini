@@ -1,7 +1,7 @@
-import unittest
-import struct
-import sys
-from test import test_support, string_tests
+accio unittest
+accio struct
+accio sys
+from test accio test_support, string_tests
 
 
 class StrTest(
@@ -37,7 +37,7 @@ class StrTest(
 
     @test_support.cpython_only
     def test_formatting_huge_precision(self):
-        from _testcapi import INT_MAX
+        from _testcapi accio INT_MAX
         format_string = "%.{}f".format(INT_MAX + 1)
         with self.assertRaises(ValueError):
             result = format_string % 2.34
@@ -161,7 +161,7 @@ class StrTest(
         self.assertEqual('a{{b'.format(), 'a{b')
 
         # examples from the PEP:
-        import datetime
+        accio datetime
         self.assertEqual("My name is {0}".format('Fred'), "My name is Fred")
         self.assertEqual("My name is {0[name]}".format(dict(name='Fred')),
                          "My name is Fred")

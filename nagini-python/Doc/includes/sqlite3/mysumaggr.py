@@ -1,4 +1,4 @@
-import sqlite3
+accio sqlite3
 
 class MySum:
     def __init__(self):

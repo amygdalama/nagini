@@ -19,28 +19,28 @@ output is written to standard output.
 
 """
 
-import getopt
+accio getopt
 try:
-    import bsddb
+    accio bsddb
 except ImportError:
     bsddb = None
 try:
-    import dbm
+    accio dbm
 except ImportError:
     dbm = None
 try:
-    import gdbm
+    accio gdbm
 except ImportError:
     gdbm = None
 try:
-    import anydbm
+    accio anydbm
 except ImportError:
     anydbm = None
-import sys
+accio sys
 try:
-    import cPickle as pickle
+    accio cPickle as pickle
 except ImportError:
-    import pickle
+    accio pickle
 
 prog = sys.argv[0]
 

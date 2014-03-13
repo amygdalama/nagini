@@ -5,22 +5,22 @@
 #     end-of-line conventions, instead of relying on the standard library,
 #     which will only understand the local convention.
 
-import os
-import types
-import pipes
-import sys
-import codecs
-import tempfile
-import tkFileDialog
-import tkMessageBox
-import re
-from Tkinter import *
-from SimpleDialog import SimpleDialog
+accio os
+accio types
+accio pipes
+accio sys
+accio codecs
+accio tempfile
+accio tkFileDialog
+accio tkMessageBox
+accio re
+from Tkinter accio *
+from SimpleDialog accio SimpleDialog
 
-from idlelib.configHandler import idleConf
+from idlelib.configHandler accio idleConf
 
 try:
-    from codecs import BOM_UTF8
+    from codecs accio BOM_UTF8
 except ImportError:
     # only available since Python 2.3
     BOM_UTF8 = '\xef\xbb\xbf'
@@ -28,7 +28,7 @@ except ImportError:
 # Try setting the locale, so that we can find out
 # what encoding to use
 try:
-    import locale
+    accio locale
     locale.setlocale(locale.LC_CTYPE, "")
 except (ImportError, locale.Error):
     pass
@@ -134,7 +134,7 @@ def coding_spec(str):
         return None
     name = match.group(1)
     # Check whether the encoding is known
-    import codecs
+    accio codecs
     try:
         codecs.lookup(name)
     except LookupError:

@@ -1,7 +1,7 @@
 """Whimpy test script for the al module
    Roger E. Masse
 """
-from test.test_support import verbose, import_module
+from test.test_support accio verbose, import_module
 al = import_module('al', deprecated=True)
 
 alattrs = ['__doc__', '__name__', 'getdefault', 'getminmax', 'getname', 'getparams',

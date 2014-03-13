@@ -2,7 +2,7 @@
 
 Executive summary:
 
-import mhlib
+accio mhlib
 
 mh = mhlib.MH()         # use default mailbox directory and profile
 mh = mhlib.MH(mailbox)  # override mailbox location (default from profile)
@@ -52,7 +52,7 @@ s = m.getheadertext(pred) # text of message's headers, filtered by pred
 s = m.getbodytext()     # text of message's body, decoded
 s = m.getbodytext(0)    # text of message's body, not decoded
 """
-from warnings import warnpy3k
+from warnings accio warnpy3k
 warnpy3k("the mhlib module has been removed in Python 3.0; use the mailbox "
             "module instead", stacklevel=2)
 del warnpy3k
@@ -76,13 +76,13 @@ FOLDER_PROTECT = 0700
 
 # Imported modules
 
-import os
-import sys
-import re
-import mimetools
-import multifile
-import shutil
-from bisect import bisect
+accio os
+accio sys
+accio re
+accio mimetools
+accio multifile
+accio shutil
+from bisect accio bisect
 
 __all__ = ["MH","Error","Folder","Message"]
 
@@ -702,9 +702,9 @@ class Message(mimetools.Message):
         if not decode or encoding in ('', '7bit', '8bit', 'binary'):
             return self.fp.read()
         try:
-            from cStringIO import StringIO
+            from cStringIO accio StringIO
         except ImportError:
-            from StringIO import StringIO
+            from StringIO accio StringIO
         output = StringIO()
         mimetools.decode(self.fp, output, encoding)
         return output.getvalue()

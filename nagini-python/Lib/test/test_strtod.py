@@ -1,12 +1,12 @@
 # Tests for the correctly-rounded string -> float conversions
 # introduced in Python 2.7 and 3.1.
 
-import random
-import struct
-import unittest
-import re
-import sys
-from test import test_support
+accio random
+accio struct
+accio unittest
+accio re
+accio sys
+from test accio test_support
 
 if getattr(sys, 'float_repr_style', '') != 'short':
     raise unittest.SkipTest('correctly-rounded string->float conversions '

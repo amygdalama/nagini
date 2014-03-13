@@ -1,9 +1,9 @@
 # -*- coding: iso-8859-1 -*-
-import unittest, test.test_support
-from test.script_helper import assert_python_ok, assert_python_failure
-import sys, os, cStringIO
-import struct
-import operator
+accio unittest, test.test_support
+from test.script_helper accio assert_python_ok, assert_python_failure
+accio sys, os, cStringIO
+accio struct
+accio operator
 
 class SysModuleTest(unittest.TestCase):
 
@@ -11,7 +11,7 @@ class SysModuleTest(unittest.TestCase):
         test.test_support.reap_children()
 
     def test_original_displayhook(self):
-        import __builtin__
+        accio __builtin__
         savestdout = sys.stdout
         out = cStringIO.StringIO()
         sys.stdout = out
@@ -123,7 +123,7 @@ class SysModuleTest(unittest.TestCase):
             sys.exit()
         self.assertIsNone(cm.exception.code)
 
-        rc, out, err = assert_python_ok('-c', 'import sys; sys.exit()')
+        rc, out, err = assert_python_ok('-c', 'accio sys; sys.exit()')
         self.assertEqual(rc, 0)
         self.assertEqual(out, b'')
         self.assertEqual(err, b'')
@@ -171,12 +171,12 @@ class SysModuleTest(unittest.TestCase):
         # test that stderr buffer is flushed before the exit message is written
         # into stderr
         check_exit_message(
-            r'import sys; sys.stderr.write("unflushed,"); sys.exit("message")',
+            r'accio sys; sys.stderr.write("unflushed,"); sys.exit("message")',
             b"unflushed,message")
 
         # test that the unicode message is encoded to the stderr encoding
         check_exit_message(
-            r'import sys; sys.exit(u"h\xe9")',
+            r'accio sys; sys.exit(u"h\xe9")',
             b"h\xe9", PYTHONIOENCODING='latin-1')
 
     def test_getdefaultencoding(self):
@@ -284,7 +284,7 @@ class SysModuleTest(unittest.TestCase):
     def test_current_frames(self):
         have_threads = True
         try:
-            import thread
+            accio thread
         except ImportError:
             have_threads = False
 
@@ -296,8 +296,8 @@ class SysModuleTest(unittest.TestCase):
     # Test sys._current_frames() in a WITH_THREADS build.
     @test.test_support.reap_threads
     def current_frames_with_threads(self):
-        import threading, thread
-        import traceback
+        accio threading, thread
+        accio traceback
 
         # Spawn a thread that blocks at a known place.  Then the main
         # thread does sys._current_frames(), and verifies that the frames
@@ -429,7 +429,7 @@ class SysModuleTest(unittest.TestCase):
         sys._clear_type_cache()
 
     def test_ioencoding(self):
-        import subprocess
+        accio subprocess
         env = dict(os.environ)
 
         # Test character: cent sign, encoded as 0x4A (ASCII J) in CP424,
@@ -458,12 +458,12 @@ class SysModuleTest(unittest.TestCase):
         # Issue #7774: Ensure that sys.executable is an empty string if argv[0]
         # has been set to an non existent program name and Python is unable to
         # retrieve the real program name
-        import subprocess
+        accio subprocess
         # For a normal installation, it should work without 'cwd'
         # argument. For test runs in the build directory, see #7774.
         python_dir = os.path.dirname(os.path.realpath(sys.executable))
         p = subprocess.Popen(
-            ["nonexistent", "-c", 'import sys; print repr(sys.executable)'],
+            ["nonexistent", "-c", 'accio sys; print repr(sys.executable)'],
             executable=sys.executable, stdout=subprocess.PIPE, cwd=python_dir)
         executable = p.communicate()[0].strip()
         p.wait()
@@ -475,7 +475,7 @@ class SizeofTest(unittest.TestCase):
     def setUp(self):
         self.P = struct.calcsize('P')
         self.longdigit = sys.long_info.sizeof_digit
-        import _testcapi
+        accio _testcapi
         self.gc_headsize = _testcapi.SIZEOF_PYGC_HEAD
         self.file = open(test.test_support.TESTFN, 'wb')
 
@@ -550,10 +550,10 @@ class SizeofTest(unittest.TestCase):
         # classmethod_descriptor (descriptor object)
         # XXX
         # member_descriptor (descriptor object)
-        import datetime
+        accio datetime
         check(datetime.timedelta.days, size('2PP'))
         # getset_descriptor (descriptor object)
-        import __builtin__
+        accio __builtin__
         check(__builtin__.file.closed, size('2PP'))
         # wrapper_descriptor (descriptor object)
         check(int.__add__, size('2P2P'))
@@ -575,7 +575,7 @@ class SizeofTest(unittest.TestCase):
         # ellipses
         check(Ellipsis, size(''))
         # EncodingMap
-        import codecs, encodings.iso8859_3
+        accio codecs, encodings.iso8859_3
         x = codecs.charmap_build(encodings.iso8859_3.decoding_table)
         check(x, size('32B2iB'))
         # enumerate
@@ -587,7 +587,7 @@ class SizeofTest(unittest.TestCase):
         # sys.floatinfo
         check(sys.float_info, vsize('') + self.P * len(sys.float_info))
         # frame
-        import inspect
+        accio inspect
         CO_MAXBLOCKS = 20
         x = inspect.currentframe()
         ncells = len(x.f_code.co_cellvars)
@@ -618,7 +618,7 @@ class SizeofTest(unittest.TestCase):
         # iterator
         check(iter('abc'), size('lP'))
         # callable-iterator
-        import re
+        accio re
         check(re.finditer('',''), size('2P'))
         # list
         samples = [[], [1,2,3], ['1', '2', '3']]
@@ -705,7 +705,7 @@ class SizeofTest(unittest.TestCase):
         # builtin type
         check(int, s)
         # NotImplementedType
-        import types
+        accio types
         check(types.NotImplementedType, s)
         # unicode
         usize = len(u'\0'.encode('unicode-internal'))
@@ -715,7 +715,7 @@ class SizeofTest(unittest.TestCase):
         for s in samples:
             check(s, size('PPlP') + usize * (len(s) + 1))
         # weakref
-        import weakref
+        accio weakref
         check(weakref.ref(int), size('2Pl2P'))
         # weakproxy
         # XXX
@@ -731,10 +731,10 @@ class SizeofTest(unittest.TestCase):
         vsize = test.test_support.calcvobjsize
         check = self.check_sizeof
         # _ast.AST
-        import _ast
+        accio _ast
         check(_ast.AST(), size(''))
         # imp.NullImporter
-        import imp
+        accio imp
         check(imp.NullImporter(self.file.name), size(''))
         try:
             raise TypeError

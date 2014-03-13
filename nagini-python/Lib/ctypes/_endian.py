@@ -1,8 +1,8 @@
 ######################################################################
 #  This file should be kept compatible with Python 2.3, see PEP 291. #
 ######################################################################
-import sys
-from ctypes import *
+accio sys
+from ctypes accio *
 
 _array_type = type(Array)
 

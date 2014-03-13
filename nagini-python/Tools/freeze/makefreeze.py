@@ -1,5 +1,5 @@
-import marshal
-import bkfile
+accio marshal
+accio bkfile
 
 
 # Write a file containing frozen code for the modules in the dictionary.

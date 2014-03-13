@@ -1,6 +1,6 @@
 """Something just to look at via pydoc."""
 
-import types
+accio types
 
 class A_classic:
     "A classic class."

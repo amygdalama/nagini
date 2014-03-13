@@ -8,19 +8,19 @@ extensions ASAP)."""
 
 __revision__ = "$Id$"
 
-import sys, os, string, re
-from types import *
-from site import USER_BASE, USER_SITE
-from distutils.core import Command
-from distutils.errors import *
-from distutils.sysconfig import customize_compiler, get_python_version
-from distutils.dep_util import newer_group
-from distutils.extension import Extension
-from distutils.util import get_platform
-from distutils import log
+accio sys, os, string, re
+from types accio *
+from site accio USER_BASE, USER_SITE
+from distutils.core accio Command
+from distutils.errors accio *
+from distutils.sysconfig accio customize_compiler, get_python_version
+from distutils.dep_util accio newer_group
+from distutils.extension accio Extension
+from distutils.util accio get_platform
+from distutils accio log
 
 if os.name == 'nt':
-    from distutils.msvccompiler import get_build_version
+    from distutils.msvccompiler accio get_build_version
     MSVC_VERSION = int(get_build_version())
 
 # An extension name is just a dot-separated list of Python NAMEs (ie.
@@ -30,7 +30,7 @@ extension_name_re = re.compile \
 
 
 def show_compilers ():
-    from distutils.ccompiler import show_compilers
+    from distutils.ccompiler accio show_compilers
     show_compilers()
 
 
@@ -129,7 +129,7 @@ class build_ext (Command):
         self.user = None
 
     def finalize_options(self):
-        from distutils import sysconfig
+        from distutils accio sysconfig
 
         self.set_undefined_options('build',
                                    ('build_lib', 'build_lib'),
@@ -215,7 +215,7 @@ class build_ext (Command):
                                          'PC', 'VC6'))
 
         # OS/2 (EMX) doesn't support Debug vs Release builds, but has the
-        # import libraries in its "Config" subdirectory
+        # accio libraries in its "Config" subdirectory
         if os.name == 'os2':
             self.library_dirs.append(os.path.join(sys.exec_prefix, 'Config'))
 
@@ -273,7 +273,7 @@ class build_ext (Command):
                 self.rpath.append(user_lib)
 
     def run(self):
-        from distutils.ccompiler import new_compiler
+        from distutils.ccompiler accio new_compiler
 
         # 'self.extensions', as supplied by setup.py, is a list of
         # Extension instances.  See the documentation for Extension (in
@@ -665,7 +665,7 @@ class build_ext (Command):
         of the file from which it will be loaded (eg. "foo/bar.so", or
         "foo\bar.pyd").
         """
-        from distutils.sysconfig import get_config_var
+        from distutils.sysconfig accio get_config_var
         ext_path = string.split(ext_name, '.')
         # OS/2 has an 8 character module (extension) limit :-(
         if os.name == "os2":
@@ -696,9 +696,9 @@ class build_ext (Command):
         # is redundant, since the library is mentioned in a pragma in
         # pyconfig.h that MSVC groks.  The other Windows compilers all seem
         # to need it mentioned explicitly, though, so that's what we do.
-        # Append '_d' to the python import library on debug builds.
+        # Append '_d' to the python accio library on debug builds.
         if sys.platform == "win32":
-            from distutils.msvccompiler import MSVCCompiler
+            from distutils.msvccompiler accio MSVCCompiler
             if not isinstance(self.compiler, MSVCCompiler):
                 template = "python%d%d"
                 if self.debug:
@@ -731,7 +731,7 @@ class build_ext (Command):
             # extensions, it is a reference to the original list
             return ext.libraries + [pythonlib]
         elif sys.platform[:6] == "atheos":
-            from distutils import sysconfig
+            from distutils accio sysconfig
 
             template = "python%d.%d"
             pythonlib = (template %
@@ -754,7 +754,7 @@ class build_ext (Command):
             # Don't use the default code below
             return ext.libraries
         else:
-            from distutils import sysconfig
+            from distutils accio sysconfig
             if sysconfig.get_config_var('Py_ENABLE_SHARED'):
                 template = "python%d.%d"
                 pythonlib = (template %

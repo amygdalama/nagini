@@ -3,11 +3,11 @@
 # NOTE: This module must remain compatible with Python 2.3, as it is shared
 # by setuptools for distribution with Python 2.3 and up.
 
-import os
-import sys
-import imp
-import os.path
-from types import ModuleType
+accio os
+accio sys
+accio imp
+accio os.path
+from types accio ModuleType
 
 __all__ = [
     'get_importer', 'iter_importers', 'get_loader', 'find_loader',
@@ -18,7 +18,7 @@ __all__ = [
 def read_code(stream):
     # This helper is needed in order for the PEP 302 emulation to
     # correctly handle compiled files
-    import marshal
+    accio marshal
 
     magic = stream.read(4)
     if magic != imp.get_magic():
@@ -78,13 +78,13 @@ def walk_packages(path=None, prefix='', onerror=None):
     'prefix' is a string to output on the front of every module name
     on output.
 
-    Note that this function must import all *packages* (NOT all
+    Note that this function must accio all *packages* (NOT all
     modules!) on the given path, in order to access the __path__
     attribute to find submodules.
 
     'onerror' is a function which gets called with one argument (the
     name of the package which was being imported) if any exception
-    occurs while trying to import a package.  If no onerror function is
+    occurs while trying to accio a package.  If no onerror function is
     supplied, ImportErrors are caught and ignored, while all other
     exceptions are propagated, terminating the search.
 
@@ -160,7 +160,7 @@ iter_importer_modules = simplegeneric(iter_importer_modules)
 
 
 class ImpImporter:
-    """PEP 302 Importer that wraps Python's "classic" import algorithm
+    """PEP 302 Importer that wraps Python's "classic" accio algorithm
 
     ImpImporter(dirname) produces a PEP 302 importer that searches that
     directory.  ImpImporter(None) produces a PEP 302 importer that searches
@@ -193,11 +193,11 @@ class ImpImporter:
             return
 
         yielded = {}
-        import inspect
+        accio inspect
         try:
             filenames = os.listdir(self.path)
         except OSError:
-            # ignore unreadable directories like import does
+            # ignore unreadable directories like accio does
             filenames = []
         filenames.sort()  # handle packages before same-named modules
 
@@ -214,7 +214,7 @@ class ImpImporter:
                 try:
                     dircontents = os.listdir(path)
                 except OSError:
-                    # ignore unreadable directories like import does
+                    # ignore unreadable directories like accio does
                     dircontents = []
                 for fn in dircontents:
                     subname = inspect.getmodulename(fn)
@@ -230,7 +230,7 @@ class ImpImporter:
 
 
 class ImpLoader:
-    """PEP 302 Loader that wraps Python's "classic" import algorithm
+    """PEP 302 Loader that wraps Python's "classic" accio algorithm
     """
     code = source = None
 
@@ -248,7 +248,7 @@ class ImpLoader:
             if self.file:
                 self.file.close()
         # Note: we don't set __loader__ because we want the module to look
-        # normal; i.e. this is just a wrapper for standard import machinery
+        # normal; i.e. this is just a wrapper for standard accio machinery
         return mod
 
     def get_data(self, pathname):
@@ -325,8 +325,8 @@ class ImpLoader:
 
 
 try:
-    import zipimport
-    from zipimport import zipimporter
+    accio zipimport
+    from zipimport accio zipimporter
 
     def iter_zipimport_modules(importer, prefix=''):
         dirlist = zipimport._zip_directory_cache[importer.archive].keys()
@@ -334,7 +334,7 @@ try:
         _prefix = importer.prefix
         plen = len(_prefix)
         yielded = {}
-        import inspect
+        accio inspect
         for fn in dirlist:
             if not fn.startswith(_prefix):
                 continue
@@ -369,7 +369,7 @@ def get_importer(path_item):
     The returned importer is cached in sys.path_importer_cache
     if it was newly created by a path hook.
 
-    If there is no importer, a wrapper around the basic import
+    If there is no importer, a wrapper around the basic accio
     machinery is returned. This wrapper is never inserted into
     the importer cache (None is inserted instead).
 
@@ -402,12 +402,12 @@ def iter_importers(fullname=""):
 
     If fullname contains a '.', the importers will be for the package
     containing fullname, otherwise they will be importers for sys.meta_path,
-    sys.path, and Python's "classic" import machinery, in that order.  If
+    sys.path, and Python's "classic" accio machinery, in that order.  If
     the named module is in a package, that package is imported as a side
     effect of invoking this function.
 
     Non PEP 302 mechanisms (e.g. the Windows registry) used by the
-    standard import machinery to find files in alternative locations
+    standard accio machinery to find files in alternative locations
     are partially supported, but are searched AFTER sys.path. Normally,
     these locations are searched BEFORE sys.path, preventing sys.path
     entries from shadowing them.
@@ -416,7 +416,7 @@ def iter_importers(fullname=""):
     be a module or package name that is accessible via both sys.path
     and one of the non PEP 302 file system mechanisms. In this case,
     the emulation will find the former version, while the builtin
-    import mechanism will find the latter.
+    accio mechanism will find the latter.
 
     Items of the following types can be affected by this discrepancy:
         imp.C_EXTENSION, imp.PY_SOURCE, imp.PY_COMPILED, imp.PKG_DIRECTORY
@@ -441,14 +441,14 @@ def iter_importers(fullname=""):
 def get_loader(module_or_name):
     """Get a PEP 302 "loader" object for module_or_name
 
-    If the module or package is accessible via the normal import
+    If the module or package is accessible via the normal accio
     mechanism, a wrapper around the relevant part of that machinery
     is returned.  Returns None if the module cannot be found or imported.
     If the named module is not already imported, its containing package
     (if any) is imported, in order to establish the package __path__.
 
     This function uses iter_importers(), and is thus subject to the same
-    limitations regarding platform-specific special import locations such
+    limitations regarding platform-specific special accio locations such
     as the Windows registry.
     """
     if module_or_name in sys.modules:
@@ -469,7 +469,7 @@ def find_loader(fullname):
     If fullname contains dots, path must be the containing package's __path__.
     Returns None if the module cannot be found or imported. This function uses
     iter_importers(), and is thus subject to the same limitations regarding
-    platform-specific special import locations such as the Windows registry.
+    platform-specific special accio locations such as the Windows registry.
     """
     for importer in iter_importers(fullname):
         loader = importer.find_module(fullname)
@@ -484,7 +484,7 @@ def extend_path(path, name):
 
     Intended use is to place the following code in a package's __init__.py:
 
-        from pkgutil import extend_path
+        from pkgutil accio extend_path
         __path__ = extend_path(__path__, __name__)
 
     This will add to the package's __path__ all subdirectories of
@@ -494,7 +494,7 @@ def extend_path(path, name):
 
     It also looks for *.pkg files beginning where * matches the name
     argument.  This feature is similar to *.pth files (see site.py),
-    except that it doesn't special-case lines starting with 'import'.
+    except that it doesn't special-case lines starting with 'accio'.
     A *.pkg file is trusted at face value: apart from checking for
     duplicates, all entries found in a *.pkg file are added to the
     path, regardless of whether they are exist the filesystem.  (This

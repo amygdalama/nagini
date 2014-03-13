@@ -4,21 +4,21 @@ XXX The functions here don't copy the resource fork or other metadata on Mac.
 
 """
 
-import os
-import sys
-import stat
-from os.path import abspath
-import fnmatch
-import collections
-import errno
+accio os
+accio sys
+accio stat
+from os.path accio abspath
+accio fnmatch
+accio collections
+accio errno
 
 try:
-    from pwd import getpwnam
+    from pwd accio getpwnam
 except ImportError:
     getpwnam = None
 
 try:
-    from grp import getgrnam
+    from grp accio getgrnam
 except ImportError:
     getgrnam = None
 
@@ -370,7 +370,7 @@ def _make_tarball(base_name, base_dir, compress="gzip", verbose=0, dry_run=0,
 
 
     # creating the tarball
-    import tarfile  # late import so Python build itself doesn't break
+    accio tarfile  # late accio so Python build itself doesn't break
 
     if logger is not None:
         logger.info('Creating tar archive')
@@ -402,8 +402,8 @@ def _call_external_zip(base_dir, zip_filename, verbose=False, dry_run=False):
         zipoptions = "-r"
     else:
         zipoptions = "-rq"
-    from distutils.errors import DistutilsExecError
-    from distutils.spawn import spawn
+    from distutils.errors accio DistutilsExecError
+    from distutils.spawn accio spawn
     try:
         spawn(["zip", zipoptions, zip_filename, base_dir], dry_run=dry_run)
     except DistutilsExecError:
@@ -411,7 +411,7 @@ def _call_external_zip(base_dir, zip_filename, verbose=False, dry_run=False):
         # external 'zip' command" and "zip failed".
         raise ExecError, \
             ("unable to create zip file '%s': "
-            "could neither import the 'zipfile' module nor "
+            "could neither accio the 'zipfile' module nor "
             "find a standalone zip utility") % zip_filename
 
 def _make_zipfile(base_name, base_dir, verbose=0, dry_run=0, logger=None):
@@ -435,7 +435,7 @@ def _make_zipfile(base_name, base_dir, verbose=0, dry_run=0, logger=None):
     # If zipfile module is not available, try spawning an external 'zip'
     # command.
     try:
-        import zipfile
+        accio zipfile
     except ImportError:
         zipfile = None
 

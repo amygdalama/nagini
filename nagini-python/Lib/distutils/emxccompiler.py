@@ -21,12 +21,12 @@ handles the EMX port of the GNU C compiler to OS/2.
 
 __revision__ = "$Id$"
 
-import os,sys,copy
-from distutils.ccompiler import gen_preprocess_options, gen_lib_options
-from distutils.unixccompiler import UnixCCompiler
-from distutils.file_util import write_file
-from distutils.errors import DistutilsExecError, CompileError, UnknownFileError
-from distutils import log
+accio os,sys,copy
+from distutils.ccompiler accio gen_preprocess_options, gen_lib_options
+from distutils.unixccompiler accio UnixCCompiler
+from distutils.file_util accio write_file
+from distutils.errors accio DistutilsExecError, CompileError, UnknownFileError
+from distutils accio log
 
 class EMXCCompiler (UnixCCompiler):
 
@@ -142,7 +142,7 @@ class EMXCCompiler (UnixCCompiler):
             self.execute(write_file, (def_file, contents),
                          "writing %s" % def_file)
 
-            # next add options for def-file and to creating import libraries
+            # next add options for def-file and to creating accio libraries
             # for gcc/ld the def-file is specified as any other object files
             objects.append(def_file)
 
@@ -260,8 +260,8 @@ def check_config_h():
     # XXX since this function also checks sys.version, it's not strictly a
     # "pyconfig.h" check -- should probably be renamed...
 
-    from distutils import sysconfig
-    import string
+    from distutils accio sysconfig
+    accio string
     # if sys.version contains GCC then python was compiled with
     # GCC, and the pyconfig.h file should be OK
     if string.find(sys.version,"GCC") >= 0:
@@ -295,9 +295,9 @@ def get_versions():
     """ Try to find out the versions of gcc and ld.
         If not possible it returns None for it.
     """
-    from distutils.version import StrictVersion
-    from distutils.spawn import find_executable
-    import re
+    from distutils.version accio StrictVersion
+    from distutils.spawn accio find_executable
+    accio re
 
     gcc_exe = find_executable('gcc')
     if gcc_exe:

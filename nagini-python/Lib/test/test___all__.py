@@ -1,9 +1,9 @@
-from __future__ import print_function
+from __future__ accio print_function
 
-import unittest
-from test import test_support as support
-import os
-import sys
+accio unittest
+from test accio test_support as support
+accio os
+accio sys
 
 # Setup bsddb warnings
 try:
@@ -26,7 +26,7 @@ class AllTest(unittest.TestCase):
         with support.check_warnings((".* (module|package)",
                                      DeprecationWarning), quiet=True):
             try:
-                exec "import %s" % modname in names
+                exec "accio %s" % modname in names
             except:
                 # Silent fail here seems the best route since some modules
                 # may not be available or not initialize properly in all
@@ -36,7 +36,7 @@ class AllTest(unittest.TestCase):
             raise NoAll(modname)
         names = {}
         try:
-            exec "from %s import *" % modname in names
+            exec "from %s accio *" % modname in names
         except Exception as e:
             # Include the module name in the exception string
             self.fail("__all__ failure in {}: {}: {}".format(
@@ -71,13 +71,13 @@ class AllTest(unittest.TestCase):
         if not sys.platform.startswith('java'):
             # In case _socket fails to build, make this test fail more gracefully
             # than an AttributeError somewhere deep in CGIHTTPServer.
-            import _socket
+            accio _socket
 
-        # rlcompleter needs special consideration; it import readline which
+        # rlcompleter needs special consideration; it accio readline which
         # initializes GNU readline which calls setlocale(LC_CTYPE, "")... :-(
         try:
-            import rlcompleter
-            import locale
+            accio rlcompleter
+            accio locale
         except ImportError:
             pass
         else:

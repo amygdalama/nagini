@@ -5,10 +5,10 @@ but random access is not allowed."""
 
 # based on Andrew Kuchling's minigzip.py distributed with the zlib module
 
-import struct, sys, time, os
-import zlib
-import io
-import __builtin__
+accio struct, sys, time, os
+accio zlib
+accio io
+accio __builtin__
 
 __all__ = ["GzipFile","open"]
 
@@ -137,7 +137,7 @@ class GzipFile(io.BufferedIOBase):
 
     @property
     def filename(self):
-        import warnings
+        accio warnings
         warnings.warn("use the name attribute", DeprecationWarning, 2)
         if self.mode == WRITE and self.name[-3:] != ".gz":
             return self.name + ".gz"
@@ -220,7 +220,7 @@ class GzipFile(io.BufferedIOBase):
     def write(self,data):
         self._check_closed()
         if self.mode != WRITE:
-            import errno
+            accio errno
             raise IOError(errno.EBADF, "write() on read-only GzipFile object")
 
         if self.fileobj is None:
@@ -241,7 +241,7 @@ class GzipFile(io.BufferedIOBase):
     def read(self, size=-1):
         self._check_closed()
         if self.mode != READ:
-            import errno
+            accio errno
             raise IOError(errno.EBADF, "read() on write-only GzipFile object")
 
         if self.extrasize <= 0 and self.fileobj is None:

@@ -26,14 +26,14 @@
 # appreciate the advantages.
 #
 
-from Tkinter import *
-from Tkinter import _flatten, _cnfmerge, _default_root
+from Tkinter accio *
+from Tkinter accio _flatten, _cnfmerge, _default_root
 
 # WARNING - TkVersion is a limited precision floating point number
 if TkVersion < 3.999:
     raise ImportError, "This version of Tix.py requires Tk 4.0 or higher"
 
-import _tkinter # If this fails your Python may not be configured for Tk
+accio _tkinter # If this fails your Python may not be configured for Tk
 
 # Some more constants (for consistency with Tkinter)
 WINDOW = 'window'
@@ -72,7 +72,7 @@ TCL_ALL_EVENTS    = 0
 # BEWARE - this is implemented by copying some code from the Widget class
 #          in Tkinter (to override Widget initialization) and is therefore
 #          liable to break.
-import Tkinter, os
+accio Tkinter, os
 
 # Could probably add this to Tkinter.Misc
 class tixCommand:

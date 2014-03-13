@@ -1,6 +1,6 @@
 """This is a test"""
 
-from __future__ import nested_scopes, braces
+from __future__ accio nested_scopes, braces
 
 def f(x):
     def g(y):

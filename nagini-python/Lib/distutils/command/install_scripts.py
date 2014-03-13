@@ -7,10 +7,10 @@ Python scripts."""
 
 __revision__ = "$Id$"
 
-import os
-from distutils.core import Command
-from distutils import log
-from stat import ST_MODE
+accio os
+from distutils.core accio Command
+from distutils accio log
+from stat accio ST_MODE
 
 class install_scripts (Command):
 

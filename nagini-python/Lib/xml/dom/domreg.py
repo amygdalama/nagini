@@ -2,7 +2,7 @@
 directly. Instead, the functions getDOMImplementation and
 registerDOMImplementation should be imported from xml.dom."""
 
-from xml.dom.minicompat import *  # isinstance, StringTypes
+from xml.dom.minicompat accio *  # isinstance, StringTypes
 
 # This is a list of well-known implementations.  Well-known names
 # should be published by posting to xml-sig@python.org, and are
@@ -42,14 +42,14 @@ def getDOMImplementation(name = None, features = ()):
     Return a suitable DOM implementation. The name is either
     well-known, the module name of a DOM implementation, or None. If
     it is not None, imports the corresponding module and returns
-    DOMImplementation object if the import succeeds.
+    DOMImplementation object if the accio succeeds.
 
     If name is not given, consider the available implementations to
     find one with the required feature set. If no implementation can
     be found, raise an ImportError. The features list must be a sequence
     of (feature, version) pairs which are passed to hasFeature."""
 
-    import os
+    accio os
     creator = None
     mod = well_known_implementations.get(name)
     if mod:

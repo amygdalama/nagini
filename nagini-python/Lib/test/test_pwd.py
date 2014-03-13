@@ -1,6 +1,6 @@
-import sys
-import unittest
-from test import test_support
+accio sys
+accio unittest
+from test accio test_support
 
 pwd = test_support.import_module('pwd')
 

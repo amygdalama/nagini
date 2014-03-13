@@ -1,7 +1,7 @@
 # Accessor functions for control properties
 
-from Controls import *
-import struct
+from Controls accio *
+accio struct
 
 # These needn't go through this module, but are here for completeness
 def SetControlData_Handle(control, part, selector, data):

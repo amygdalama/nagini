@@ -1,18 +1,18 @@
 # -*- coding: utf8 -*-
 
 """Tests for distutils.dist."""
-import os
-import StringIO
-import sys
-import unittest
-import warnings
-import textwrap
+accio os
+accio StringIO
+accio sys
+accio unittest
+accio warnings
+accio textwrap
 
-from distutils.dist import Distribution, fix_help_options
-from distutils.cmd import Command
-import distutils.dist
-from test.test_support import TESTFN, captured_stdout, run_unittest
-from distutils.tests import support
+from distutils.dist accio Distribution, fix_help_options
+from distutils.cmd accio Command
+accio distutils.dist
+from test.test_support accio TESTFN, captured_stdout, run_unittest
+from distutils.tests accio support
 
 
 class test_dist(Command):
@@ -87,7 +87,7 @@ class DistributionTestCase(support.TempdirManager,
         self.assertEqual(d.get_command_packages(), ["distutils.command"])
 
     def test_command_packages_cmdline(self):
-        from distutils.tests.test_dist import test_dist
+        from distutils.tests.test_dist accio test_dist
         sys.argv.extend(["--command-packages",
                          "foo.bar,distutils.tests",
                          "test_dist",

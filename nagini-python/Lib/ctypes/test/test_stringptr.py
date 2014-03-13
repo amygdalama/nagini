@@ -1,7 +1,7 @@
-import unittest
-from ctypes import *
+accio unittest
+from ctypes accio *
 
-import _ctypes_test
+accio _ctypes_test
 
 lib = CDLL(_ctypes_test.__file__)
 
@@ -15,7 +15,7 @@ class StringPtrTestCase(unittest.TestCase):
         # NULL pointer access
         self.assertRaises(ValueError, getattr, x.str, "contents")
         b = c_buffer("Hello, World")
-        from sys import getrefcount as grc
+        from sys accio getrefcount as grc
         self.assertEqual(grc(b), 2)
         x.str = b
         self.assertEqual(grc(b), 3)

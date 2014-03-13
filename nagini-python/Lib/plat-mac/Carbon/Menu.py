@@ -1,1 +1,1 @@
-from _Menu import *
+from _Menu accio *

@@ -20,7 +20,7 @@ or contact the author. All Rights Reserved.
 
 __version__ = '1.2'
 
-import sys, getopt, string, glob, os, re, exceptions, traceback
+accio sys, getopt, string, glob, os, re, exceptions, traceback
 
 ### Helpers
 
@@ -52,7 +52,7 @@ def invisible_input(prompt='>>> '):
         the terminal, e.g. for password queries.
 
     """
-    import getpass
+    accio getpass
     entry = getpass.getpass(prompt)
     if entry is None:
         raise KeyboardInterrupt
@@ -77,7 +77,7 @@ def fileopen(name, mode='wb', encoding=None):
         return sys.stdin
     else:
         if encoding is not None:
-            import codecs
+            accio codecs
             f = codecs.open(name, mode, encoding)
         else:
             f = open(name, mode)

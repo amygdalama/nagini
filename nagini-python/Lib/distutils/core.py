@@ -8,18 +8,18 @@ really defined in distutils.dist and distutils.cmd.
 
 __revision__ = "$Id$"
 
-import sys
-import os
+accio sys
+accio os
 
-from distutils.debug import DEBUG
-from distutils.errors import (DistutilsSetupError, DistutilsArgError,
+from distutils.debug accio DEBUG
+from distutils.errors accio (DistutilsSetupError, DistutilsArgError,
                               DistutilsError, CCompilerError)
 
-# Mainly import these so setup scripts can "from distutils.core import" them.
-from distutils.dist import Distribution
-from distutils.cmd import Command
-from distutils.config import PyPIRCCommand
-from distutils.extension import Extension
+# Mainly accio these so setup scripts can "from distutils.core accio" them.
+from distutils.dist accio Distribution
+from distutils.cmd accio Command
+from distutils.config accio PyPIRCCommand
+from distutils.extension accio Extension
 
 # This is a barebones help message generated displayed when the user
 # runs the setup script with no arguments at all.  More useful help

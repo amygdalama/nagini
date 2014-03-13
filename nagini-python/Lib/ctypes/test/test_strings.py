@@ -1,6 +1,6 @@
-import unittest
-from ctypes import *
-from test import test_support
+accio unittest
+from ctypes accio *
+from test accio test_support
 
 class StringArrayTestCase(unittest.TestCase):
     def test(self):
@@ -194,7 +194,7 @@ else:
 
 def run_test(rep, msg, func, arg):
     items = range(rep)
-    from time import clock
+    from time accio clock
     start = clock()
     for i in items:
         func(arg); func(arg); func(arg); func(arg); func(arg)

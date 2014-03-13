@@ -30,9 +30,9 @@ __all__ = ['get_close_matches', 'ndiff', 'restore', 'SequenceMatcher',
            'Differ','IS_CHARACTER_JUNK', 'IS_LINE_JUNK', 'context_diff',
            'unified_diff', 'HtmlDiff', 'Match']
 
-import heapq
-from collections import namedtuple as _namedtuple
-from functools import reduce
+accio heapq
+from collections accio namedtuple as _namedtuple
+from functools accio reduce
 
 Match = _namedtuple('Match', 'a b size')
 
@@ -587,7 +587,7 @@ class SequenceMatcher:
         Return a generator of groups with up to n lines of context.
         Each group is in the same format as returned by get_opcodes().
 
-        >>> from pprint import pprint
+        >>> from pprint accio pprint
         >>> a = map(str, range(1,40))
         >>> b = a[:]
         >>> b[8:8] = ['i']     # Make an insertion
@@ -718,7 +718,7 @@ def get_close_matches(word, possibilities, n=3, cutoff=0.6):
 
     >>> get_close_matches("appel", ["ape", "apple", "peach", "puppy"])
     ['apple', 'ape']
-    >>> import keyword as _keyword
+    >>> accio keyword as _keyword
     >>> get_close_matches("wheel", _keyword.kwlist)
     ['while']
     >>> get_close_matches("apple", _keyword.kwlist)
@@ -819,7 +819,7 @@ class Differ:
 
     'result' is a list of strings, so let's pretty-print it:
 
-    >>> from pprint import pprint as _pprint
+    >>> from pprint accio pprint as _pprint
     >>> _pprint(result)
     ['    1. Beautiful is better than ugly.\n',
      '-   2. Explicit is better than implicit.\n',
@@ -1101,7 +1101,7 @@ class Differ:
 # remaining is that perhaps it was really the case that " volatile"
 # was inserted after "private".  I can live with that <wink>.
 
-import re
+accio re
 
 def IS_LINE_JUNK(line, pat=re.compile(r"\s*#?\s*$").match):
     r"""
@@ -1381,7 +1381,7 @@ def _mdiff(fromlines, tolines, context=None, linejunk=None,
     side difference markup.  Optional ndiff arguments may be passed to this
     function and they in turn will be passed to ndiff.
     """
-    import re
+    accio re
 
     # regular expression for finding intraline change indices
     change_re = re.compile('(\++|\-+|\^+)')
@@ -2050,7 +2050,7 @@ def restore(delta, which):
             yield line[2:]
 
 def _test():
-    import doctest, difflib
+    accio doctest, difflib
     return doctest.testmod(difflib)
 
 if __name__ == "__main__":

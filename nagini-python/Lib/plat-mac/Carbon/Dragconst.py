@@ -1,8 +1,8 @@
 # Generated from 'Drag.h'
 
 def FOUR_CHAR_CODE(x): return x
-from Carbon.TextEdit import *
-from Carbon.QuickDraw import *
+from Carbon.TextEdit accio *
+from Carbon.QuickDraw accio *
 fkDragActionAll = -1
 
 

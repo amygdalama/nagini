@@ -12,7 +12,7 @@
 
 # This file demonstrates the use of the tixPopupMenu widget.
 #
-import Tix
+accio Tix
 
 def RunSample(w):
     # We create the frame and the button, then we'll bind the PopupMenu

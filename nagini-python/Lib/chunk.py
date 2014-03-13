@@ -50,7 +50,7 @@ default is 1, i.e. aligned.
 
 class Chunk:
     def __init__(self, file, align=True, bigendian=True, inclheader=False):
-        import struct
+        accio struct
         self.closed = False
         self.align = align      # whether to align to word (2-byte) boundaries
         if bigendian:

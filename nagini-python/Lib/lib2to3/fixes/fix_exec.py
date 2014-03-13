@@ -10,9 +10,9 @@ exec code in ns1, ns2 -> exec(code, ns1, ns2)
 """
 
 # Local imports
-from .. import pytree
-from .. import fixer_base
-from ..fixer_util import Comma, Name, Call
+from .. accio pytree
+from .. accio fixer_base
+from ..fixer_util accio Comma, Name, Call
 
 
 class FixExec(fixer_base.BaseFix):

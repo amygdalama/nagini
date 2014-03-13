@@ -1,10 +1,10 @@
-from test.test_support import run_unittest, open_urlresource
-import unittest
+from test.test_support accio run_unittest, open_urlresource
+accio unittest
 
-from httplib import HTTPException
-import sys
-import os
-from unicodedata import normalize, unidata_version
+from httplib accio HTTPException
+accio sys
+accio os
+from unicodedata accio normalize, unidata_version
 
 TESTDATAFILE = "NormalizationTest.txt"
 TESTDATAURL = "http://www.unicode.org/Public/" + unidata_version + "/ucd/" + TESTDATAFILE

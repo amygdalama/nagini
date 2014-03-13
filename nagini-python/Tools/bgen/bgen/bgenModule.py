@@ -1,5 +1,5 @@
-from bgenOutput import *
-from bgenGeneratorGroup import GeneratorGroup
+from bgenOutput accio *
+from bgenGeneratorGroup accio GeneratorGroup
 
 class Module(GeneratorGroup):
 
@@ -84,7 +84,7 @@ class Module(GeneratorGroup):
 
 
 def _test():
-    from bgenGenerator import FunctionGenerator
+    from bgenGenerator accio FunctionGenerator
     m = Module("spam", "", "#include <stdio.h>")
     g = FunctionGenerator(None, "bacon")
     m.add(g)

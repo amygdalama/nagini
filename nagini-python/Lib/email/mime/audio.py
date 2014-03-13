@@ -6,11 +6,11 @@
 
 __all__ = ['MIMEAudio']
 
-import sndhdr
+accio sndhdr
 
-from cStringIO import StringIO
-from email import encoders
-from email.mime.nonmultipart import MIMENonMultipart
+from cStringIO accio StringIO
+from email accio encoders
+from email.mime.nonmultipart accio MIMENonMultipart
 
 
 

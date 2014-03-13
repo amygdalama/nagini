@@ -4,8 +4,8 @@
 #
 # From tclock.c, Copyright Howard Jones <ha.jones@ic.ac.uk>, September 1994.
 
-from math import *
-import curses, time
+from math accio *
+accio curses, time
 
 ASPECT = 2.2
 

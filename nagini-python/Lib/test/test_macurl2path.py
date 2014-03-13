@@ -1,5 +1,5 @@
-import macurl2path
-import unittest
+accio macurl2path
+accio unittest
 
 class MacUrl2PathTestCase(unittest.TestCase):
     def test_url2pathname(self):

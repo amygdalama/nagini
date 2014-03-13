@@ -10,9 +10,9 @@ design pattern.
 """
 
 
-import turtle
-import random
-import time
+accio turtle
+accio random
+accio time
 
 SCREENWIDTH = 640
 SCREENHEIGHT = 480

@@ -1,26 +1,26 @@
-import sys
-import unittest
-from test import test_support
-from UserList import UserList
+accio sys
+accio unittest
+from test accio test_support
+from UserList accio UserList
 
 # We do a bit of trickery here to be able to test both the C implementation
 # and the Python implementation of the module.
 
-# Make it impossible to import the C implementation anymore.
+# Make it impossible to accio the C implementation anymore.
 sys.modules['_bisect'] = 0
 # We must also handle the case that bisect was imported before.
 if 'bisect' in sys.modules:
     del sys.modules['bisect']
 
-# Now we can import the module and get the pure Python implementation.
-import bisect as py_bisect
+# Now we can accio the module and get the pure Python implementation.
+accio bisect as py_bisect
 
 # Restore everything to normal.
 del sys.modules['_bisect']
 del sys.modules['bisect']
 
 # This is now the module with the C implementation.
-import bisect as c_bisect
+accio bisect as c_bisect
 
 
 class Range(object):
@@ -174,7 +174,7 @@ class TestBisect(unittest.TestCase):
         self.assertEqual(data.last_insert, (x + 1, x))
 
     def test_random(self, n=25):
-        from random import randrange
+        from random accio randrange
         for i in xrange(n):
             data = [randrange(0, n, 2) for j in xrange(i)]
             data.sort()
@@ -233,7 +233,7 @@ class TestInsort(unittest.TestCase):
     module = None
 
     def test_vsBuiltinSort(self, n=500):
-        from random import choice
+        from random accio choice
         for insorted in (list(), UserList()):
             for i in xrange(n):
                 digit = choice("0123456789")
@@ -329,7 +329,7 @@ This example uses bisect() to look up a letter grade for an exam total
 
     >>> grades = "FEDCBA"
     >>> breakpoints = [30, 44, 66, 75, 85]
-    >>> from bisect import bisect
+    >>> from bisect accio bisect
     >>> def grade(total):
     ...           return grades[bisect(breakpoints, total)]
     ...
@@ -345,7 +345,7 @@ This example uses bisect() to look up a letter grade for an exam total
 __test__ = {'libreftest' : libreftest}
 
 def test_main(verbose=None):
-    from test import test_bisect
+    from test accio test_bisect
 
     test_classes = [TestBisectPython, TestBisectC,
                     TestInsortPython, TestInsortC,
@@ -356,7 +356,7 @@ def test_main(verbose=None):
 
     # verify reference counting
     if verbose and hasattr(sys, "gettotalrefcount"):
-        import gc
+        accio gc
         counts = [None] * 5
         for i in xrange(len(counts)):
             test_support.run_unittest(*test_classes)

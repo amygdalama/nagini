@@ -11,8 +11,8 @@ __all__ = [
     # Do not include _structure() since it's part of the debugging API.
     ]
 
-import sys
-from cStringIO import StringIO
+accio sys
+from cStringIO accio StringIO
 
 
 

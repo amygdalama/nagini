@@ -1,7 +1,7 @@
 # Echo client demo using Unix sockets
 # Piet van Oostrum
 
-from socket import *
+from socket accio *
 
 FILE = 'unix-socket'
 s = socket(AF_UNIX, SOCK_STREAM)

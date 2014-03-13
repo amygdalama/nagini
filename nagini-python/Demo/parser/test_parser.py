@@ -3,7 +3,7 @@
 #
 #  test_parser.py
 
-import parser, traceback
+accio parser, traceback
 
 _numFailed = 0
 
@@ -35,10 +35,10 @@ def testFile(fileName):
     testChunk(t, fileName)
 
 def test():
-    import sys
+    accio sys
     args = sys.argv[1:]
     if not args:
-        import glob
+        accio glob
         args = glob.glob("*.py")
         args.sort()
     map(testFile, args)

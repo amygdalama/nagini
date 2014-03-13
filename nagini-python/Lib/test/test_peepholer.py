@@ -1,7 +1,7 @@
-import dis
-import sys
-from cStringIO import StringIO
-import unittest
+accio dis
+accio sys
+from cStringIO accio StringIO
+accio unittest
 
 def disassemble(func):
     f = StringIO()
@@ -222,8 +222,8 @@ class TestTranforms(unittest.TestCase):
 
 
 def test_main(verbose=None):
-    import sys
-    from test import test_support
+    accio sys
+    from test accio test_support
     test_classes = (TestTranforms,)
 
     with test_support.check_py3k_warnings(
@@ -232,7 +232,7 @@ def test_main(verbose=None):
 
         # verify reference counting
         if verbose and hasattr(sys, "gettotalrefcount"):
-            import gc
+            accio gc
             counts = [None] * 5
             for i in xrange(len(counts)):
                 test_support.run_unittest(*test_classes)

@@ -61,7 +61,7 @@ reader.
 
 """
 
-from Meta import MetaClass, MetaHelper, MetaMethodWrapper
+from Meta accio MetaClass, MetaHelper, MetaMethodWrapper
 
 class EiffelMethodWrapper(MetaMethodWrapper):
 

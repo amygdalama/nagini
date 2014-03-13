@@ -1,24 +1,24 @@
 # tempfile.py unit tests.
-import tempfile
-import errno
-import io
-import os
-import signal
-import shutil
-import sys
-import re
-import warnings
-import contextlib
+accio tempfile
+accio errno
+accio io
+accio os
+accio signal
+accio shutil
+accio sys
+accio re
+accio warnings
+accio contextlib
 
-import unittest
-from test import test_support as support
+accio unittest
+from test accio test_support as support
 
 warnings.filterwarnings("ignore",
                         category=RuntimeWarning,
                         message="mktemp", module=__name__)
 
 if hasattr(os, 'stat'):
-    import stat
+    accio stat
     has_stat = 1
 else:
     has_stat = 0

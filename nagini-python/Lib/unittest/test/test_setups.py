@@ -1,8 +1,8 @@
-import sys
+accio sys
 
-from cStringIO import StringIO
+from cStringIO accio StringIO
 
-import unittest
+accio unittest
 
 
 def resultFactory(*_):

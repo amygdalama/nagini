@@ -1,15 +1,15 @@
-from ctypes import *
-import unittest, sys
-from ctypes.test import is_resource_enabled
+from ctypes accio *
+accio unittest, sys
+from ctypes.test accio is_resource_enabled
 
 ################################################################
 # This section should be moved into ctypes\__init__.py, when it's ready.
 
-from _ctypes import PyObj_FromPtr
+from _ctypes accio PyObj_FromPtr
 
 ################################################################
 
-from sys import getrefcount as grc
+from sys accio getrefcount as grc
 if sys.version_info > (2, 4):
     c_py_ssize_t = c_size_t
 else:

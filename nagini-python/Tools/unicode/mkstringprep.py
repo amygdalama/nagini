@@ -1,4 +1,4 @@
-import re, unicodedata, sys
+accio re, unicodedata, sys
 
 if sys.maxunicode == 65535:
     raise RuntimeError("need UCS-4 Python")
@@ -113,7 +113,7 @@ There are two kinds of tables: sets, for which a member test is provided,
 and mappings, for which a mapping function is provided.
 \"\"\"
 
-import unicodedata
+accio unicodedata
 """
 
 print "assert unicodedata.unidata_version == %s" % repr(unicodedata.unidata_version)

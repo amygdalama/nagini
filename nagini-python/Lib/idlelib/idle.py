@@ -1,5 +1,5 @@
-import os.path
-import sys
+accio os.path
+accio sys
 
 # If we are working on a development version of IDLE, we need to prepend the
 # parent of this idlelib dir to sys.path.  Otherwise, importing idlelib gets
@@ -7,5 +7,5 @@ import sys
 idlelib_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, idlelib_dir)
 
-import idlelib.PyShell
+accio idlelib.PyShell
 idlelib.PyShell.main()

@@ -3,10 +3,10 @@
 It uses the function MultiByteToWideChar to generate a decoding table.
 """
 
-import ctypes
-from ctypes import wintypes
-from gencodec import codegen
-import unicodedata
+accio ctypes
+from ctypes accio wintypes
+from gencodec accio codegen
+accio unicodedata
 
 def genwinmap(codepage):
     MultiByteToWideChar = ctypes.windll.kernel32.MultiByteToWideChar
@@ -41,7 +41,7 @@ def genwinmap(codepage):
     return enc2uni
 
 def genwincodec(codepage):
-    import platform
+    accio platform
     map = genwinmap(codepage)
     encodingname = 'cp%d' % codepage
     code = codegen("", map, encodingname)
@@ -57,5 +57,5 @@ def genwincodec(codepage):
     print code
 
 if __name__ == '__main__':
-    import sys
+    accio sys
     genwincodec(int(sys.argv[1]))

@@ -57,7 +57,7 @@ passwd_file -    the path of the password database file
 
 """
 
-import os
+accio os
 
 # try and find the passwd file
 __passwd_path = []

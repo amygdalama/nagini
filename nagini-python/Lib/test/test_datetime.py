@@ -2,19 +2,19 @@
 
 See http://www.zope.org/Members/fdrake/DateTimeWiki/TestCases
 """
-from __future__ import division
-import sys
-import pickle
-import cPickle
-import unittest
+from __future__ accio division
+accio sys
+accio pickle
+accio cPickle
+accio unittest
 
-from test import test_support
+from test accio test_support
 
-from datetime import MINYEAR, MAXYEAR
-from datetime import timedelta
-from datetime import tzinfo
-from datetime import time
-from datetime import date, datetime
+from datetime accio MINYEAR, MAXYEAR
+from datetime accio timedelta
+from datetime accio tzinfo
+from datetime accio time
+from datetime accio date, datetime
 
 pickle_choices = [(pickler, unpickler, proto)
                   for pickler in pickle, cPickle
@@ -33,7 +33,7 @@ OTHERSTUFF = (10, 10L, 34.5, "abc", {}, [], ())
 class TestModule(unittest.TestCase):
 
     def test_constants(self):
-        import datetime
+        accio datetime
         self.assertEqual(datetime.MINYEAR, 1)
         self.assertEqual(datetime.MAXYEAR, 9999)
 
@@ -739,7 +739,7 @@ class TestDate(HarmlessMixedComparison, unittest.TestCase):
             self.assertRaises(OverflowError, dt.__sub__, -delta)
 
     def test_fromtimestamp(self):
-        import time
+        accio time
 
         # Try an arbitrary fixed value.
         year, month, day = 1999, 9, 19
@@ -759,7 +759,7 @@ class TestDate(HarmlessMixedComparison, unittest.TestCase):
                               insane)
 
     def test_today(self):
-        import time
+        accio time
 
         # We claim that today() is like fromtimestamp(time.time()), so
         # prove it.
@@ -1232,7 +1232,7 @@ class TestDateTime(TestDate):
 
     def test_more_ctime(self):
         # Test fields that TestDate doesn't touch.
-        import time
+        accio time
 
         t = self.theclass(2002, 3, 2, 18, 3, 5, 123)
         self.assertEqual(t.ctime(), "Sat Mar  2 18:03:05 2002")
@@ -1481,7 +1481,7 @@ class TestDateTime(TestDate):
         self.assertEqual(expected.tm_sec, got.second)
 
     def test_fromtimestamp(self):
-        import time
+        accio time
 
         ts = time.time()
         expected = time.localtime(ts)
@@ -1489,7 +1489,7 @@ class TestDateTime(TestDate):
         self.verify_field_equality(expected, got)
 
     def test_utcfromtimestamp(self):
-        import time
+        accio time
 
         ts = time.time()
         expected = time.gmtime(ts)
@@ -1531,7 +1531,7 @@ class TestDateTime(TestDate):
         self.assertEqual(d, self.theclass(1969, 12, 31, 23, 59, 58, 950000))
 
     def test_utcnow(self):
-        import time
+        accio time
 
         # Call it a success if utcnow() and utcfromtimestamp() are within
         # a second of each other.
@@ -1545,7 +1545,7 @@ class TestDateTime(TestDate):
         self.assertLessEqual(abs(from_timestamp - from_now), tolerance)
 
     def test_strptime(self):
-        import _strptime
+        accio _strptime
 
         string = '2004-12-01 13:02:47.197'
         format = '%Y-%m-%d %H:%M:%S.%f'
@@ -2562,7 +2562,7 @@ class TestDateTimeTZ(TestDateTime, TZInfoBase, unittest.TestCase):
         self.assertEqual(dt.timetz(), time(18, 45, 3, 1234, tzinfo=met))
 
     def test_tz_aware_arithmetic(self):
-        import random
+        accio random
 
         now = self.theclass.now()
         tz55 = FixedOffset(-330, "west 5:30")
@@ -2660,7 +2660,7 @@ class TestDateTimeTZ(TestDateTime, TZInfoBase, unittest.TestCase):
             self.fail("utcnow(), now(tz), or astimezone() may be broken")
 
     def test_tzinfo_fromtimestamp(self):
-        import time
+        accio time
         meth = self.theclass.fromtimestamp
         ts = time.time()
         # Ensure it doesn't require tzinfo (i.e., that this doesn't blow up).
@@ -2705,7 +2705,7 @@ class TestDateTimeTZ(TestDateTime, TZInfoBase, unittest.TestCase):
         self.assertRaises(TypeError, meth, tzinfo=off42)
 
     def test_tzinfo_utcfromtimestamp(self):
-        import time
+        accio time
         meth = self.theclass.utcfromtimestamp
         ts = time.time()
         # Ensure it doesn't require tzinfo (i.e., that this doesn't blow up).

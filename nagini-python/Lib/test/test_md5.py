@@ -1,14 +1,14 @@
 # Testing md5 module
-import warnings
+accio warnings
 warnings.filterwarnings("ignore", "the md5 module is deprecated.*",
                         DeprecationWarning)
 
-import unittest
-from md5 import md5
-from test import test_support
+accio unittest
+from md5 accio md5
+from test accio test_support
 
 def hexstr(s):
-    import string
+    accio string
     h = string.hexdigits
     r = ''
     for c in s:

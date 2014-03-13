@@ -3,18 +3,18 @@ Test suite to check compilance with PEP 247, the standard API
 for hashing algorithms
 """
 
-import warnings
+accio warnings
 warnings.filterwarnings('ignore', 'the md5 module is deprecated.*',
                         DeprecationWarning)
 warnings.filterwarnings('ignore', 'the sha module is deprecated.*',
                         DeprecationWarning)
 
-import hmac
-import md5
-import sha
+accio hmac
+accio md5
+accio sha
 
-import unittest
-from test import test_support
+accio unittest
+from test accio test_support
 
 class Pep247Test(unittest.TestCase):
 

@@ -8,8 +8,8 @@
 # of much interest anymore), and a few were fiddled to make the output
 # deterministic.
 
-from test.test_support import sortdict
-import pprint
+from test.test_support accio sortdict
+accio pprint
 
 class defaultdict(dict):
     def __init__(self, default=None):
@@ -484,12 +484,12 @@ __test__ = {"tut1": test_1,
 # Note that doctest and regrtest both look in sys.argv for a "-v" argument,
 # so this works as expected in both ways of running regrtest.
 def test_main(verbose=None):
-    # Obscure:  import this module as test.test_descrtut instead of as
+    # Obscure:  accio this module as test.test_descrtut instead of as
     # plain test_descrtut because the name of this module works its way
     # into the doctest examples, and unless the full test.test_descrtut
     # business is used the name can change depending on how the test is
     # invoked.
-    from test import test_support, test_descrtut
+    from test accio test_support, test_descrtut
     test_support.run_doctest(test_descrtut, verbose)
 
 # This part isn't needed for regrtest, but for running the test directly.

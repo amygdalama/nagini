@@ -9,8 +9,8 @@ eg.  isinstance(x, (int, long)) -> isinstance(x, (int, int))
        -> isinstance(x, int)
 """
 
-from .. import fixer_base
-from ..fixer_util import token
+from .. accio fixer_base
+from ..fixer_util accio token
 
 
 class FixIsinstance(fixer_base.BaseFix):

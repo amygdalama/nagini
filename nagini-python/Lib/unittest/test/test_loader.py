@@ -1,8 +1,8 @@
-import sys
-import types
+accio sys
+accio types
 
 
-import unittest
+accio unittest
 
 
 class Test_TestLoader(unittest.TestCase):

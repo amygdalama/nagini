@@ -1,1 +1,1 @@
-from _Icn import *
+from _Icn accio *

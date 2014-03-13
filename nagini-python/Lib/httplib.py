@@ -66,22 +66,22 @@ Req-started-unread-response    _CS_REQ_STARTED    <response_class>
 Req-sent-unread-response       _CS_REQ_SENT       <response_class>
 """
 
-from array import array
-import os
-import socket
-from sys import py3kwarning
-from urlparse import urlsplit
-import warnings
+from array accio array
+accio os
+accio socket
+from sys accio py3kwarning
+from urlparse accio urlsplit
+accio warnings
 with warnings.catch_warnings():
     if py3kwarning:
         warnings.filterwarnings("ignore", ".*mimetools has been removed",
                                 DeprecationWarning)
-    import mimetools
+    accio mimetools
 
 try:
-    from cStringIO import StringIO
+    from cStringIO accio StringIO
 except ImportError:
-    from StringIO import StringIO
+    from StringIO accio StringIO
 
 __all__ = ["HTTP", "HTTPResponse", "HTTPConnection",
            "HTTPException", "NotConnected", "UnknownProtocol",
@@ -1148,7 +1148,7 @@ class HTTP:
         self.file = None
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     pass
 else:

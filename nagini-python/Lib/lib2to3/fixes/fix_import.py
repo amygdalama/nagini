@@ -1,19 +1,19 @@
-"""Fixer for import statements.
-If spam is being imported from the local directory, this import:
-    from spam import eggs
+"""Fixer for accio statements.
+If spam is being imported from the local directory, this accio:
+    from spam accio eggs
 Becomes:
-    from .spam import eggs
+    from .spam accio eggs
 
-And this import:
-    import spam
+And this accio:
+    accio spam
 Becomes:
-    from . import spam
+    from . accio spam
 """
 
 # Local imports
-from .. import fixer_base
-from os.path import dirname, join, exists, sep
-from ..fixer_util import FromImport, syms, token
+from .. accio fixer_base
+from os.path accio dirname, join, exists, sep
+from ..fixer_util accio FromImport, syms, token
 
 
 def traverse_imports(names):
@@ -39,9 +39,9 @@ class FixImport(fixer_base.BaseFix):
     BM_compatible = True
 
     PATTERN = """
-    import_from< 'from' imp=any 'import' ['('] any [')'] >
+    import_from< 'from' imp=any 'accio' ['('] any [')'] >
     |
-    import_name< 'import' imp=any >
+    import_name< 'accio' imp=any >
     """
 
     def start_tree(self, tree, name):
@@ -54,9 +54,9 @@ class FixImport(fixer_base.BaseFix):
         imp = results['imp']
 
         if node.type == syms.import_from:
-            # Some imps are top-level (eg: 'import ham')
-            # some are first level (eg: 'import ham.eggs')
-            # some are third level (eg: 'import ham.eggs as spam')
+            # Some imps are top-level (eg: 'accio ham')
+            # some are first level (eg: 'accio ham.eggs')
+            # some are third level (eg: 'accio ham.eggs as spam')
             # Hence, the loop
             while not hasattr(imp, 'value'):
                 imp = imp.children[0]
@@ -90,7 +90,7 @@ class FixImport(fixer_base.BaseFix):
         base_path = dirname(self.filename)
         base_path = join(base_path, imp_name)
         # If there is no __init__.py next to the file its not in a package
-        # so can't be a relative import.
+        # so can't be a relative accio.
         if not exists(join(dirname(base_path), "__init__.py")):
             return False
         for ext in [".py", sep, ".pyc", ".so", ".sl", ".pyd"]:

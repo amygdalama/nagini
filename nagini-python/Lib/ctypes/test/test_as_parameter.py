@@ -1,6 +1,6 @@
-import unittest
-from ctypes import *
-import _ctypes_test
+accio unittest
+from ctypes accio *
+accio _ctypes_test
 
 dll = CDLL(_ctypes_test.__file__)
 
@@ -189,7 +189,7 @@ class BasicWrapTestCase(unittest.TestCase):
                              (9*2, 8*3, 7*4, 6*5, 5*6, 4*7, 3*8, 2*9))
 
     def test_recursive_as_param(self):
-        from ctypes import c_int
+        from ctypes accio c_int
 
         class A(object):
             pass

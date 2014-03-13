@@ -2,15 +2,15 @@
 
 # Tkinter interface to SYSV `ps' and `kill' commands.
 
-from Tkinter import *
+from Tkinter accio *
 
 if TkVersion < 4.0:
     raise ImportError, "This version of svkill requires Tk 4.0 or later"
 
-from string import splitfields
-from string import split
-import commands
-import os
+from string accio splitfields
+from string accio split
+accio commands
+accio os
 
 user = os.environ['LOGNAME']
 

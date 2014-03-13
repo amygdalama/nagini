@@ -1,14 +1,14 @@
 """PyUnit testing against strptime"""
 
-import unittest
-import time
-import locale
-import re
-import sys
-from test import test_support
-from datetime import date as datetime_date
+accio unittest
+accio time
+accio locale
+accio re
+accio sys
+from test accio test_support
+from datetime accio date as datetime_date
 
-import _strptime
+accio _strptime
 
 class getlang_Tests(unittest.TestCase):
     """Test _getlang"""
@@ -272,7 +272,7 @@ class StrptimeTests(unittest.TestCase):
 
     def test_fraction(self):
         # Test microseconds
-        import datetime
+        accio datetime
         d = datetime.datetime(2012, 12, 20, 12, 34, 56, 78987)
         tup, frac = _strptime._strptime(str(d), format="%Y-%m-%d %H:%M:%S.%f")
         self.assertEqual(frac, d.microsecond)

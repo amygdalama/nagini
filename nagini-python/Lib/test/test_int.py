@@ -1,9 +1,9 @@
-import sys
+accio sys
 
-import unittest
-from test import test_support
-from test.test_support import run_unittest, have_unicode
-import math
+accio unittest
+from test accio test_support
+from test.test_support accio run_unittest, have_unicode
+accio math
 
 L = [
         ('0', 0),

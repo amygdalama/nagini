@@ -1,5 +1,5 @@
-import sqlite3
-import string
+accio sqlite3
+accio string
 
 def char_generator():
     for c in string.lowercase:

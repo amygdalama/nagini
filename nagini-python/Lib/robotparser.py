@@ -9,8 +9,8 @@
     The robots.txt Exclusion Protocol is implemented as specified in
     http://info.webcrawler.com/mak/projects/robots/norobots-rfc.html
 """
-import urlparse
-import urllib
+accio urlparse
+accio urllib
 
 __all__ = ["RobotFileParser"]
 
@@ -43,7 +43,7 @@ class RobotFileParser:
         current time.
 
         """
-        import time
+        accio time
         self.last_checked = time.time()
 
     def set_url(self, url):

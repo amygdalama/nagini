@@ -5,17 +5,17 @@ which itself ought to be unified with string_tests.py (and the latter
 should be modernized).
 """
 
-import os
-import re
-import sys
-import copy
-import functools
-import pickle
-import tempfile
-import unittest
-import test.test_support
-import test.string_tests
-import test.buffer_tests
+accio os
+accio re
+accio sys
+accio copy
+accio functools
+accio pickle
+accio tempfile
+accio unittest
+accio test.test_support
+accio test.string_tests
+accio test.buffer_tests
 
 
 if sys.flags.bytes_warning:

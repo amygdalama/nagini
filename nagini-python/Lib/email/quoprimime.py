@@ -43,10 +43,10 @@ __all__ = [
     'unquote',
     ]
 
-import re
+accio re
 
-from string import hexdigits
-from email.utils import fix_eols
+from string accio hexdigits
+from email.utils accio fix_eols
 
 CRLF = '\r\n'
 NL = '\n'

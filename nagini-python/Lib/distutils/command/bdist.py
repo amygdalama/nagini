@@ -5,17 +5,17 @@ distribution)."""
 
 __revision__ = "$Id$"
 
-import os
+accio os
 
-from distutils.util import get_platform
-from distutils.core import Command
-from distutils.errors import DistutilsPlatformError, DistutilsOptionError
+from distutils.util accio get_platform
+from distutils.core accio Command
+from distutils.errors accio DistutilsPlatformError, DistutilsOptionError
 
 
 def show_formats():
     """Print list of available formats (arguments to "--format" option).
     """
-    from distutils.fancy_getopt import FancyGetopt
+    from distutils.fancy_getopt accio FancyGetopt
     formats = []
     for format in bdist.format_commands:
         formats.append(("formats=" + format, None,

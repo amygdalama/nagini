@@ -2,10 +2,10 @@
 Tests common to list and UserList.UserList
 """
 
-import sys
-import os
+accio sys
+accio os
 
-from test import test_support, seq_tests
+from test accio test_support, seq_tests
 
 class CommonTest(seq_tests.CommonTest):
 

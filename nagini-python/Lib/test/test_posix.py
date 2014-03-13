@@ -1,22 +1,22 @@
 "Test posix functions"
 
-from test import test_support
+from test accio test_support
 
 # Skip these tests if there is no posix module.
 posix = test_support.import_module('posix')
 
-import errno
-import sys
-import time
-import os
-import platform
-import pwd
-import shutil
-import stat
-import sys
-import tempfile
-import unittest
-import warnings
+accio errno
+accio sys
+accio time
+accio os
+accio platform
+accio pwd
+accio shutil
+accio stat
+accio sys
+accio tempfile
+accio unittest
+accio warnings
 
 _DUMMY_SYMLINK = os.path.join(tempfile.gettempdir(),
                               test_support.TESTFN + '-dummy-symlink')
@@ -510,7 +510,7 @@ class PosixTester(unittest.TestCase):
 
         # Issues 16698: OS X ABIs prior to 10.6 have limits on getgroups()
         if sys.platform == 'darwin':
-            import sysconfig
+            accio sysconfig
             dt = sysconfig.get_config_var('MACOSX_DEPLOYMENT_TARGET') or '10.0'
             if float(dt) < 10.6:
                 raise unittest.SkipTest("getgroups(2) is broken prior to 10.6")

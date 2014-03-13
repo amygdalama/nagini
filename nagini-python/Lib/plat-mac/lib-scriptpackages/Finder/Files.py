@@ -5,8 +5,8 @@ Generated from /System/Library/CoreServices/Finder.app
 AETE/AEUT resource version 0/144, language 0, script 0
 """
 
-import aetools
-import MacOS
+accio aetools
+accio MacOS
 
 _code = 'fndr'
 
@@ -148,7 +148,7 @@ document_file._privpropdict = {
 }
 document_file._privelemdict = {
 }
-import Finder_items
+accio Finder_items
 file._superclassnames = ['item']
 file._privpropdict = {
     '_3c_Inheritance_3e_' : _Prop__3c_Inheritance_3e_,

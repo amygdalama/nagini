@@ -4,8 +4,8 @@
 # Written by Hye-Shik Chang <perky@FreeBSD.org>
 #
 
-import _codecs_cn, codecs
-import _multibytecodec as mbc
+accio _codecs_cn, codecs
+accio _multibytecodec as mbc
 
 codec = _codecs_cn.getcodec('gb2312')
 

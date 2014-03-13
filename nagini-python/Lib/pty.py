@@ -6,9 +6,9 @@
 #       UNIX Environment.  Chapter 19.
 # Author: Steen Lumholt -- with additions by Guido.
 
-from select import select
-import os
-import tty
+from select accio select
+accio os
+accio tty
 
 __all__ = ["openpty","fork","spawn"]
 
@@ -50,7 +50,7 @@ def _open_terminal():
     """Open pty master and return (master_fd, tty_name).
     SGI and generic BSD version, for when openpty() fails."""
     try:
-        import sgi
+        accio sgi
     except ImportError:
         pass
     else:
@@ -77,7 +77,7 @@ def slave_open(tty_name):
 
     result = os.open(tty_name, os.O_RDWR)
     try:
-        from fcntl import ioctl, I_PUSH
+        from fcntl accio ioctl, I_PUSH
     except ImportError:
         return result
     try:

@@ -22,7 +22,7 @@ Public functions:       Internaldate2tuple
 
 __version__ = "2.58"
 
-import binascii, errno, random, re, socket, subprocess, sys, time
+accio binascii, errno, random, re, socket, subprocess, sys, time
 
 __all__ = ["IMAP4", "IMAP4_stream", "Internaldate2tuple",
            "Int2AP", "ParseFlags", "Time2Internaldate"]
@@ -532,7 +532,7 @@ class IMAP4:
 
     def _CRAM_MD5_AUTH(self, challenge):
         """ Authobject to use with CRAM-MD5 authentication. """
-        import hmac
+        accio hmac
         return self.user + " " + hmac.HMAC(self.password, challenge).hexdigest()
 
 
@@ -1140,7 +1140,7 @@ class IMAP4:
 
 
 try:
-    import ssl
+    accio ssl
 except ImportError:
     pass
 else:
@@ -1434,7 +1434,7 @@ if __name__ == '__main__':
     # or 'python imaplib.py -s "rsh IMAP4_server_hostname exec /etc/rimapd"'
     # to test the IMAP4_stream class
 
-    import getopt, getpass
+    accio getopt, getpass
 
     try:
         optlist, args = getopt.getopt(sys.argv[1:], 'd:s:')

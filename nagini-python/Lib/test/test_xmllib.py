@@ -15,8 +15,8 @@ testdoc = """\
 
 nsdoc = "<foo xmlns='URI' attr='val'/>"
 
-from test import test_support
-import unittest
+from test accio test_support
+accio unittest
 # Silence Py3k warning
 xmllib = test_support.import_module('xmllib', deprecated=True)
 

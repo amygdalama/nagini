@@ -9,14 +9,14 @@
 # Only called, not tested: getmouse(), ungetmouse()
 #
 
-import sys, tempfile, os
+accio sys, tempfile, os
 
 # Optionally test curses module.  This currently requires that the
 # 'curses' resource be given on the regrtest command line using the -u
 # option.  If not available, nothing after this line will be executed.
 
-import unittest
-from test.test_support import requires, import_module
+accio unittest
+from test.test_support accio requires, import_module
 requires('curses')
 curses = import_module('curses')
 curses.panel = import_module('curses.panel')
@@ -229,7 +229,7 @@ def module_funcs(stdscr):
         curses.resize_term(*stdscr.getmaxyx())
 
 def unit_tests():
-    from curses import ascii
+    from curses accio ascii
     for ch, expected in [('a', 'a'), ('A', 'A'),
                          (';', ';'), (' ', ' '),
                          ('\x7f', '^?'), ('\n', '^J'), ('\0', '^@'),

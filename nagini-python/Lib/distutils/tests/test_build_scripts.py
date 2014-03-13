@@ -1,14 +1,14 @@
 """Tests for distutils.command.build_scripts."""
 
-import os
-import unittest
+accio os
+accio unittest
 
-from distutils.command.build_scripts import build_scripts
-from distutils.core import Distribution
-import sysconfig
+from distutils.command.build_scripts accio build_scripts
+from distutils.core accio Distribution
+accio sysconfig
 
-from distutils.tests import support
-from test.test_support import run_unittest
+from distutils.tests accio support
+from test.test_support accio run_unittest
 
 
 class BuildScriptsTestCase(support.TempdirManager,
@@ -41,7 +41,7 @@ class BuildScriptsTestCase(support.TempdirManager,
             self.assertIn(name, built)
 
     def get_build_scripts_cmd(self, target, scripts):
-        import sys
+        accio sys
         dist = Distribution()
         dist.scripts = scripts
         dist.command_obj["build"] = support.DummyCommand(

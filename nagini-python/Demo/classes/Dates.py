@@ -170,7 +170,7 @@ class Date:
         return _num2day(self.ord)
 
 def today():
-    import time
+    accio time
     local = time.localtime(time.time())
     return Date(local[1], local[2], local[0])
 

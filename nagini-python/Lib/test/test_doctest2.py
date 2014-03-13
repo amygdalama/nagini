@@ -12,9 +12,9 @@ the example.  It should be ignored:
 
 """
 
-import sys
-import unittest
-from test import test_support
+accio sys
+accio unittest
+from test accio test_support
 if sys.flags.optimize >= 2:
     raise unittest.SkipTest("Cannot test docstrings with -O2")
 
@@ -109,7 +109,7 @@ class C(object):
         return val
 
 def test_main():
-    from test import test_doctest2
+    from test accio test_doctest2
     EXPECTED = 19
     f, t = test_support.run_doctest(test_doctest2)
     if t != EXPECTED:
@@ -118,7 +118,7 @@ def test_main():
 
 # Pollute the namespace with a bunch of imported functions and classes,
 # to make sure they don't get tested.
-from doctest import *
+from doctest accio *
 
 if __name__ == '__main__':
     test_main()

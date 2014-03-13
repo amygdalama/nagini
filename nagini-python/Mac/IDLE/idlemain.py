@@ -1,7 +1,7 @@
 """
 Bootstrap script for IDLE as an application bundle.
 """
-import sys, os
+accio sys, os
 
 # Change the current directory the user's home directory, that way we'll get
 # a more useful default location in the open/save dialogs.
@@ -67,9 +67,9 @@ for idx, value in enumerate(sys.argv):
         del sys.argv[idx]
         break
 
-# Now it is safe to import idlelib.
-from idlelib import macosxSupport
+# Now it is safe to accio idlelib.
+from idlelib accio macosxSupport
 macosxSupport._appbundle = True
-from idlelib.PyShell import main
+from idlelib.PyShell accio main
 if __name__ == '__main__':
     main()

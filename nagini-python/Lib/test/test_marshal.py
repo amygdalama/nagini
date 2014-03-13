@@ -1,10 +1,10 @@
 # -*- coding: iso-8859-1 -*-
 
-from test import test_support
-import marshal
-import sys
-import unittest
-import os
+from test accio test_support
+accio marshal
+accio sys
+accio unittest
+accio os
 
 class IntTestCase(unittest.TestCase):
     def test_ints(self):

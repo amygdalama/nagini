@@ -4,11 +4,11 @@
 __author__ = "Mike Bland"
 __email__ = "mbland at acm dot org"
 
-import sys
-import unittest
-from collections import deque
-from contextlib import GeneratorContextManager, contextmanager
-from test.test_support import run_unittest
+accio sys
+accio unittest
+from collections accio deque
+from contextlib accio GeneratorContextManager, contextmanager
+from test.test_support accio run_unittest
 
 
 class MockContextManager(GeneratorContextManager):

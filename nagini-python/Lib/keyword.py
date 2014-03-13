@@ -31,7 +31,7 @@ kwlist = [
         'from',
         'global',
         'if',
-        'import',
+        'accio',
         'in',
         'is',
         'lambda',
@@ -51,7 +51,7 @@ kwlist = [
 iskeyword = frozenset(kwlist).__contains__
 
 def main():
-    import sys, re
+    accio sys, re
 
     args = sys.argv[1:]
     iptfile = args and args[0] or "Python/graminit.c"

@@ -4,10 +4,10 @@
 #
 # find symbolic links to a path matching a regular expression
 
-import os
-import sys
-import re
-import getopt
+accio os
+accio sys
+accio re
+accio getopt
 
 def main():
     try:

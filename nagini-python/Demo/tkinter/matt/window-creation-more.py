@@ -1,4 +1,4 @@
-from Tkinter import *
+from Tkinter accio *
 
 # this shows how to create a new window with a button in it
 # that can create new windows
