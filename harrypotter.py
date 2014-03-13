@@ -50,12 +50,12 @@ def type(thing, cache={}):
 __builtins__.type = type
 
 
-def trace(frame, event, arg):
-    print frame, event, arg
-    if event == 'call':
-        print frame.f_globals.keys()
-        line_text = linecache.getline(frame.f_globals["__file__"], frame.f_lineno)
-        print line_text
+# def trace(frame, event, arg):
+#     print frame, event, arg
+#     if event == 'call':
+#         print frame.f_globals.keys()
+#         line_text = linecache.getline(frame.f_globals["__file__"], frame.f_lineno)
+#         print line_text
 
-sys.settrace(trace)
+# sys.settrace(trace)
 
