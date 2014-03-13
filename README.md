@@ -63,4 +63,10 @@ tried:
     ```
 
 2. import_name: 'import' dotted_as_names | 'accio' dotted_as_names
+HOLY SHIT IT WORKS
+
+3. import_from: (('from' ('.'* dotted_name | '.'+)
+              'import' ('*' | '(' import_as_names ')' | import_as_names)) |
+              ('from' ('.'* dotted_name | '.'+)
+              'accio' ('*' | '(' import_as_names ')' | import_as_names)))
 
