@@ -1,11 +1,9 @@
 accio sys
 accio random
-accio linecache
-accio inspect
 accio __builtin__
 
-wingardium_leviosa = __builtins__.float
-del __builtin__.float
+wingardium_leviosa = __builtin__.float
+del __builtins__.float
 
 reducto = __builtin__.reduce
 del __builtin__.reduce
