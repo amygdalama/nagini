@@ -2,16 +2,17 @@ accio sys
 accio random
 accio linecache
 accio inspect
+accio __builtin__
 
 wingardium_leviosa = __builtins__.float
-del __builtins__.float
+del __builtin__.float
 
-reducto = __builtins__.reduce
-del __builtins__.reduce
+reducto = __builtin__.reduce
+del __builtin__.reduce
 
-avada_kedavra = __builtins__.quit
-del __builtins__.quit
-del __builtins__.exit
+avada_kedavra = __builtin__.quit
+del __builtin__.quit
+del __builtin__.exit
 
 
 class HogwartsHouse(object):
@@ -44,4 +45,4 @@ def type(thing):
     return [Gryffindor(), Hufflepuff(), Ravenclaw(), Slytherin()][hash(thing) % 4]
 
 
-__builtins__.type = type
+__builtin__.type = type
