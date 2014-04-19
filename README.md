@@ -1,5 +1,38 @@
 Nagini is a custom Harry Potter-themed Python. More information on how I made Nagini can be found in this [blog post](http://mathamy.com/import-accio-bootstrapping-python-grammar.html).
 
+
+# Usage
+
+## Launching the `nagini` interpreter
+
+    $ nagini
+
+## `accio`ing modules
+
+    >>> accio random
+    >>> random.random()
+    0.6507285787268219
+
+## Checking the type of an object
+
+    >>> type(3)
+    <__main__.Slytherin object at 0x1004c3290>
+
+## Converting from `int` to `float`
+
+    >>> wingardium_leviosa(3)
+    3.0
+
+## Functional Programming
+
+    >>> reducto(lambda a, x: a + x, range(5))
+    10
+
+## Quitting the `nagini` interpreter
+
+    >>> avada_kedavra()
+
+
 # Installation
 
 1. Clone repository
@@ -35,35 +68,3 @@ Nagini is a custom Harry Potter-themed Python. More information on how I made Na
     Or, if you want access to the `nagini` command for all terminal sessions, add the following line to your `.bashrc` or `.bash_profile`:
 
         export PATH=/path/to/nagini:$PATH
-
-
-# Usage
-
-## Launching the `nagini` interpreter
-
-    $ nagini
-
-## `accio`ing modules
-
-    >>> accio random
-    >>> random.random()
-    0.6507285787268219
-
-## Checking the type of an object
-
-    >>> type(3)
-    <__main__.Slytherin object at 0x1004c3290>
-
-## Converting from `int` to `float`
-
-    >>> wingardium_leviosa(3)
-    3.0
-
-## Functional Programming
-
-    >>> reducto(lambda a, x: a + x, range(5))
-    10
-
-## Quitting the `nagini` interpreter
-
-    >>> avada_kedavra()
