@@ -3,32 +3,32 @@ Nagini is a custom Harry Potter-themed Python. More information on how I made Na
 
 # Usage
 
-## Launching the `nagini` interpreter
+### Launching the `nagini` interpreter
 
     $ nagini
 
-## `accio`ing modules
+### `accio`ing modules
 
     >>> accio random
     >>> random.random()
     0.6507285787268219
 
-## Checking the type of an object
+### Checking the type of an object
 
     >>> type(3)
     <__main__.Slytherin object at 0x1004c3290>
 
-## Converting from `int` to `float`
+### Converting from `int` to `float`
 
     >>> wingardium_leviosa(3)
     3.0
 
-## Functional Programming
+### Functional Programming
 
     >>> reducto(lambda a, x: a + x, range(5))
     10
 
-## Quitting the `nagini` interpreter
+### Quitting the `nagini` interpreter
 
     >>> avada_kedavra()
 
