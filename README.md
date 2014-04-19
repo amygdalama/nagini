@@ -1,109 +1,46 @@
-Learning about Python internals by replacing them with Harry Potter spells, because why wouldn't I do such a thing.
+Nagini is a custom Harry Potter-themed Python. More information on how I made Nagini can be found in this [blog post](http://mathamy.com/import-accio-bootstrapping-python-grammar.html).
 
-Add the line
+# Installation
 
-```
-export PYTHONSTARTUP=~/path/to/harrypotter.py
-```
-to your `~/.bashrc` or `~/.bash_profile` to really screw things up.
+1. Clone repository
 
+    $ git clone https://github.com/amygdalama/nagini.git
 
-Add nagini script
-Create symlink in usr/local/bin to nagini script
-chmod nagini
+2. Compile intermediary Python
 
+    $ cd nagini/cpython
+    $ ./configure
+    $ make
 
-clone cpython, lol:
+3. Create a symlink for the intermediary Python and add it to the `PATH`
 
-```
-$ hg clone http://hg.python.org/cpython
-destination directory: cpython
-requesting all changes
-adding changesets
-adding manifests
-adding file changes
-added 89634 changesets with 197780 changes to 10122 files (+2 heads)
-updating to branch default
-3835 files updated, 0 files merged, 0 files removed, 0 files unresolved
+    $ ln -s python.exe python
+    $ export PATH=$(pwd):$PATH
 
-$ cd cpython
-$ hg checkout 2.7
-3752 files updated, 0 files merged, 913 files removed, 0 files unresolved
+4. Compile Nagini
 
-$ ./configure --with-pydebug
-$ make -s -j2
-```
+    $ cd ../nagini-python
+    $ ./configure
+    $ make
 
-Got this warning message:
+5. Make the `nagini` script executable
 
-```
-Python build finished, but the necessary bits to build these modules were not found:
-_bsddb             dl                 imageop         
-linuxaudiodev      ossaudiodev        readline        
-spwd               sunaudiodev                        
-To find the necessary bits, look in setup.py in detect_modules() for the module's name.
-```
+    $ cd ../
+    $ chmod a+x nagini
+
+6. Add the location of the `nagini` script to your path
+
+    $ export PATH=$(pwd):$PATH
+
+Or, if you want access to the `nagini` command for all terminal sessions, add the following line to your `.bashrc` or `.bash_profile`:
+
+    export PATH=/path/to/nagini:$PATH
 
 
-tried:
-
-1. import_spell
-    ```
-    import_name: import_spell dotted_as_names
-    import_from: ('from' ('.'* dotted_name | '.'+)
-                  import_spell ('*' | '(' import_as_names ')' | import_as_names))
-    import_spell: 'import' | 'accio'
-    ```
-
-    received error: 
-    ```
-    >>> import numpy
-    SystemError: invalid node 339 for PyAST_FromNode
-    [58574 refs]
-    ```
-
-2. import_name: 'import' dotted_as_names | 'accio' dotted_as_names
-HOLY SHIT IT WORKS
-
-3. import_from: (('from' ('.'* dotted_name | '.'+)
-              'import' ('*' | '(' import_as_names ')' | import_as_names)) |
-              ('from' ('.'* dotted_name | '.'+)
-              'accio' ('*' | '(' import_as_names ')' | import_as_names)))
-HOLY SHIT THAT WORKS TOO
+# Usage
 
 
+# Contents
 
-Add cpython/bin with symlink to cpython/python.exe:
-mkdir bin
-cd bin
-ln -s ../python.exe python
-
-`export PATH=/Users/amyhanlon/projects/nagini/cpython/bin:$PATH`
-
-cp -r cpython nagini-python
-cd nagini-python
-
-```
-for i in `find . -name '*.py'`; do sed -i '' 's/[[:<:]]import[[:>:]]/accio/g' $i; done
-```
-change to only accio
-import_name: 'accio' dotted_as_names
-import_from: ('from' ('.'* dotted_name | '.'+)
-              'accio' ('*' | '(' import_as_names ')' | import_as_names))
-
-./configure --with-pydebug  # when is this necessary?
-make -s -j2
-
-./configure
-make
-
-(to remove debug messages)
-
-
-Good resources:
-http://docs.python.org/devguide/
-http://legacy.python.org/dev/peps/pep-0339/
-http://eli.thegreenplace.net/2010/06/30/python-internals-adding-a-new-statement-to-python/
-http://legacy.python.org/dev/peps/pep-0306/
-http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form
+# License
 
