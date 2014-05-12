@@ -1,5 +1,14 @@
-export PYTHONSTARTUP=harrypotter.py
+PRG="$0"
 
-~/projects/nagini/nagini-python/python.exe
+# need this for relative symlinks
+while [ -h "$PRG" ] ; do
+   PRG=`readlink "$PRG"`
+done
+
+scriptdir=`dirname "$PRG"`
+
+export PYTHONSTARTUP=$scriptdir/harrypotter.py
+
+$scriptdir/nagini-python/python.exe
 
 export PYTHONSTARTUP=""
