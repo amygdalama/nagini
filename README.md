@@ -41,7 +41,7 @@ Nagini is a custom Harry Potter-themed Python. More information on how I made Na
 
 2. Compile intermediary Python
 
-        $ cd nagini/cpython
+        $ cd intermediary-python
         $ ./configure
         $ make
 
