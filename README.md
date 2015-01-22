@@ -33,7 +33,7 @@ Nagini is a custom Harry Potter-themed Python. More information on how I made Na
     >>> avada_kedavra()
 
 
-# Installation
+# Compile from Source
 
 1. Clone repository
 
